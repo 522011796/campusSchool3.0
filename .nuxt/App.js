@@ -9,6 +9,8 @@ import '../node_modules/element-ui/lib/theme-chalk/index.css'
 
 import '../assets/css/common.css'
 
+import '../assets/font-awesome-4.7.0/css/font-awesome.min.css'
+
 import _6f6c098b from '../layouts/default.vue'
 
 const layouts = { "_default": sanitizeComponent(_6f6c098b) }

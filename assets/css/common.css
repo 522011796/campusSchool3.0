@@ -7,4 +7,117 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  color: #303133;
+}
+body{
+  margin: 0px;
+  padding: 0px;
+}
+p{
+  margin: 0px;
+}
+.moon-container{
+
+}
+.moon-top-menu{
+  height: 60px;
+  width: 100%;
+  top: 0px;
+  z-index: 1200;
+  border-bottom: 1px solid #dcdee2;
+  box-shadow: 0 4px 4px rgba(0,21,41,.08);
+  transition: all .2s ease-in-out;
+}
+.moon-left-menu{
+  border-right: 1px solid #dcdee2;
+  overflow-y: auto;
+  float: left;
+  box-shadow: 1px 0px 4px rgba(0,21,41,.08);
+  position: relative;
+}
+/*.moon-left-menu:not(.el-menu--collapse) {
+  width: 200px;
+}*/
+.moon-right-menu{
+
+}
+.moon-flearfix{
+  clear: both;
+}
+.moon-top-logo{
+  width: 200px;
+  height: 100%;
+  background: #dddddd;
+  position: relative;
+}
+.moon-top-middle-menu{
+  margin: 0px 200px;
+  height: 100%;
+  text-align: center;
+}
+.moon-top-right{
+  height: 100%;
+  width: 200px;
+  position: relative;
+  text-align: right;
+  background: #dddddd;
+}
+.moon-right-item-menu{
+  height: 40px;
+  line-height: 40px;
+  border-bottom: 1px solid #dcdee2;
+  padding: 0px 5px;
+}
+.moon-right-content{
+  overflow-y: auto;
+  padding: 0px 5px;
+}
+.moon-left-collapse{
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #F2F6FC;
+}
+.pull-left{
+  float: left;
+}
+.pull-right{
+  float: right;
+}
+.text-center{
+  text-align: center;
+}
+.color-grand{
+  color: #409EFF;
+}
+.color-success{
+  color: #67C23A;
+}
+.color-warning{
+  color: #E6A23C;
+}
+.color-danger{
+  color: #F56C6C;
+}
+.color-muted{
+  color: #909399;
+}
+.color-grand{
+  color: #409EFF;
+}
+.margin-right-5{
+  margin-right: 5px;
+}
+.padding-tb-5{
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+/*****/
+.el-menu {
+  border-right: solid 0px #e6e6e6;
+  list-style: none;
+  position: relative;
+  margin: 0;
+  padding-left: 0;
+  background-color: #FFF;
 }
