@@ -7,7 +7,7 @@ import NuxtBuildIndicator from './components/nuxt-build-indicator'
 
 import '../node_modules/element-ui/lib/theme-chalk/index.css'
 
-import '../assets/css/main.css'
+import '../assets/css/common.css'
 
 import _6f6c098b from '../layouts/default.vue'
 
