@@ -17,10 +17,16 @@
         <i class="fa fa-navicon color-muted" @click="toggleCollapse"></i>
       </div>
       <el-menu class="el-menu-vertical-demo" :collapse-transition="false" :collapse="isCollapse">
-        <el-menu-item index="1">
-          <i class="el-icon-menu"></i>
-          <span slot="title">导航一</span>
-        </el-menu-item>
+        <el-submenu index="1">
+          <template slot="title">
+            <i class="el-icon-location"></i>
+            <span>导航一</span>
+          </template>
+          <el-menu-item-group>
+            <el-menu-item index="1-1">选项1</el-menu-item>
+            <el-menu-item index="1-2">选项2</el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
         <el-menu-item index="2">
           <i class="el-icon-menu"></i>
           <span slot="title">导航二</span>
@@ -39,7 +45,7 @@
       <div class="moon-right-item-menu">
         <el-tag closable size="medium" v-for="n in 6" class="margin-right-5">{{n}}</el-tag>
       </div>
-      <div class="moon-right-content">
+      <div class="moon-right-content" :style="rightHeight">
         <Nuxt />
       </div>
     </div>
