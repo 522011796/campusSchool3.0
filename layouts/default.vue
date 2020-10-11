@@ -76,7 +76,7 @@
     },
     created() {
       this.hh();
-      //this.activeIndex = this.$route.path;
+      this.activeIndex = this.$route.query.top;
       this.activeSliderIndex = this.$route.path;
       this.getTopMenu();
       this.getSliderMenu(this.$route.query.top);
@@ -123,6 +123,12 @@
 
                   if (this.clickType == "click"){
                     this.activeSliderIndex = res.data[i].list[j].list[0].path;
+                    this.$router.push({
+                      path: res.data[i].list[j].list[0].path,
+                      query: {
+                        top: res.data[i].list[j].list[0].top
+                      }
+                    });
                   }
                 }else{
                   this.sliderMenuList = {
@@ -132,6 +138,12 @@
 
                   if (this.clickType == "click"){
                     this.activeSliderIndex = res.data[i].list[0].path;
+                    this.$router.push({
+                      path: res.data[i].list[0].path,
+                      query: {
+                        top: res.data[i].list[0].top
+                      }
+                    });
                   }
                 }
               }
