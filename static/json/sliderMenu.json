@@ -1,0 +1,42 @@
+[
+  {
+    "key": "topMenu1",
+    "list": [
+      {
+        "name": "menu1",
+        "key": "menu1",
+        "list": [
+          {
+            "name": "test1",
+            "top": "topMenu1",
+            "key": "test1",
+            "path": "/test/test1"
+          },
+          {
+            "name": "test2",
+            "top": "topMenu1",
+            "key": "test2",
+            "path": "/test/test2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "topMenu2",
+    "list": [
+      {
+        "name": "menu3",
+        "top": "topMenu2",
+        "key": "menu3",
+        "path": "/test/test3"
+      },
+      {
+        "name": "menu4",
+        "top": "topMenu2",
+        "key": "menu4",
+        "path": "/test/test4"
+      }
+    ]
+  }
+]
