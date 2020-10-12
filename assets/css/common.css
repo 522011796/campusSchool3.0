@@ -121,3 +121,33 @@ p{
   padding-left: 0;
   background-color: #FFF;
 }
+/***自定义radio组件颜色***/
+/*.el-radio__input.is-checked + .el-radio__label {
+  color: #fd7624 !important;
+}
+.el-radio__input.is-checked .el-radio__inner {
+  background: #fd7624 !important;
+  border-color: #fd7624 !important;
+}
+.el-radio__input.is-disabled+span.el-radio__label {
+  color: #C0C4CC !important;
+  cursor: not-allowed !important;
+}
+.el-radio__input.is-disabled+span.el-radio__inner {
+  color: #C0C4CC !important;
+  cursor: not-allowed !important;
+}
+.el-radio__input.is-disabled.is-checked + .el-radio__label {
+  color: #C0C4CC !important;
+}
+.el-radio__input.is-disabled.is-checked .el-radio__inner {
+  background: #F5F7FA !important;
+  border-color: #E4E7ED !important;
+}
+.el-radio.is-bordered.is-checked {
+  border-color: #fd7624 !important;
+}
+.el-radio.is-bordered.is-disabled {
+  cursor: not-allowed !important;
+  border-color: #E4E7ED !important;
+}*/

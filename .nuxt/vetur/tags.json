@@ -11,6 +11,12 @@
   "LazyMyPagination": {
     "description": "Auto imported from components/MyPagination.vue"
   },
+  "MyRadio": {
+    "description": "Auto imported from components/MyRadio.vue"
+  },
+  "LazyMyRadio": {
+    "description": "Auto imported from components/MyRadio.vue"
+  },
   "MySelect": {
     "description": "Auto imported from components/MySelect.vue"
   },

@@ -8,6 +8,15 @@
         <button class="pull-left" type="button" @click="changeSelect">set</button>
         <div class="moon-clearfix"></div>
       </div>
+      <div>
+        <div>
+          <my-radio :sel-value="radioModel" label="1" :border="true" :size="size" @change="handleChangeRadio">选项一</my-radio>
+          <my-radio :sel-value="radioModel" label="2" :disabled="true" @change="handleChangeRadio">选项一</my-radio>
+        </div>
+        <div>
+          <my-radio :sel-value="radioModel" :group="true" :options="options" :disabled="false" :size="size" :border="true" :button="true" text-color="#fff" fill="#f00" @change="handleChangeRadio"></my-radio>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -15,17 +24,21 @@
 <script>
   import MyPagination from "../../components/MyPagination";
   import MySelect from "../../components/MySelect";
+  import MyRadio from "../../components/MyRadio";
   import mixins from "../../utils/mixins";
   export default {
     name: 'test1',
     mixins: [mixins],
-    components: {MyPagination, MySelect},
+    components: {MyPagination, MySelect, MyRadio},
     data(){
       return {
         options: [],
         selModel: '',
         loading: false,
-        group: true
+        group: false,
+        radioModel: '',
+        radioLabel: '1',
+        size: 'mini'
       }
     },
     created() {
@@ -70,6 +83,10 @@
       },
       changeSelect(){
         this.getSelect("2");
+      },
+      handleChangeRadio(data){
+        console.log(data);
+        this.radioModel = data;
       },
       getSelect(){
         setTimeout(() => {
