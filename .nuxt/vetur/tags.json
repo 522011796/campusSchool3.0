@@ -10,5 +10,11 @@
   },
   "LazyMyPagination": {
     "description": "Auto imported from components/MyPagination.vue"
+  },
+  "MySelect": {
+    "description": "Auto imported from components/MySelect.vue"
+  },
+  "LazyMySelect": {
+    "description": "Auto imported from components/MySelect.vue"
   }
 }

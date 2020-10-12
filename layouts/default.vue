@@ -12,7 +12,7 @@
           <el-menu-item v-for="(item, index) in topMenuList" :key="index" :index="item.key">{{item.name}}</el-menu-item>
         </el-menu>
       </div>
-      <div class="moon-flearfix"></div>
+      <div class="moon-clearfix"></div>
     </div>
     <div class="moon-left-menu" :style="leftHeight">
       <div class="moon-left-collapse">
@@ -47,7 +47,7 @@
         <Nuxt />
       </div>
     </div>
-    <div class="moon-flearfix"></div>
+    <div class="moon-clearfix"></div>
   </div>
 </template>
 

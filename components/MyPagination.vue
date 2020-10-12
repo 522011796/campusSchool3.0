@@ -56,10 +56,10 @@
     },
     methods: {
       handleSizeChange(data) {
-        this.$emit('sizeChange',data);
+        this.$emit('sizeChange', data);
       },
       handleCurrentChange(data) {
-        this.$emit('currentPage',data);
+        this.$emit('currentPage', data);
       }
     }
   }
