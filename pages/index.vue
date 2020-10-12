@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div v-for="n in 100">{{n}}</div>
+    <div v-for="n in 100" :key="n">{{n}}</div>
   </div>
 </template>
 

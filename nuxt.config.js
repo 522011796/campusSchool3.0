@@ -21,7 +21,8 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    '@/plugins/element-ui'
+    '@/plugins/element-ui',
+    '@/plugins/axios'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -38,7 +39,16 @@ export default {
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    credentials: true,
+    proxy: true
+  },
+  proxy: [
+    ['/proxy', {
+      target:'http://campustest.9451.org:10201',  //api请求路径
+      pathRewrite: { '^/proxy' : '/' }  //重定向请求路径，防止路由、api路径的冲突
+    }]
+  ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {

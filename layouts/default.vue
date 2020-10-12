@@ -41,7 +41,7 @@
     </div>
     <div class="moon-right-menu" :style="rightWidth">
       <div class="moon-right-item-menu">
-        <el-tag closable size="medium" v-for="n in 6" class="margin-right-5">{{n}}</el-tag>
+        <el-tag closable size="medium" v-for="n in 6" :key="n" class="margin-right-5">{{n}}</el-tag>
       </div>
       <div class="moon-right-content" :style="rightHeight">
         <Nuxt />
@@ -52,8 +52,10 @@
 </template>
 
 <script>
+  import mixins from '../utils/mixins';
   export default {
     name: 'default',
+    mixins: [mixins],
     data(){
       return {
         isCollapse: false,
@@ -74,8 +76,12 @@
         }
       }
     },
+    mounted() {
+
+    },
     created() {
       this.hh();
+      this.init();
       this.activeIndex = this.$route.query.top;
       this.activeSliderIndex = this.$route.path;
       this.getTopMenu();
@@ -111,7 +117,7 @@
         })
       },
       getSliderMenu(key){
-        this.$axios.get('/json/sliderMenu.json').then(res => {
+        this.$axios.get('/json/sliderMenu.json',{dataType: 'stringfy'}).then(res => {
           for (let i = 0; i < res.data.length; i++){
             if (res.data[i].key == key){
               for (let j = 0; j < res.data[i].list.length; j++){
@@ -151,6 +157,14 @@
             }
           }
         })
+      },
+      async init() {
+        await this.getSessionInfo();
+        this.test1();
+      },
+      test1() {
+        console.log(2);
+        console.log(this.value, this.testDefault);
       }
     },
     watch: {

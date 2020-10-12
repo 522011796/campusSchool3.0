@@ -4,5 +4,11 @@
   },
   "LazyLogo": {
     "description": "Auto imported from components/Logo.vue"
+  },
+  "MyPagination": {
+    "description": "Auto imported from components/MyPagination.vue"
+  },
+  "LazyMyPagination": {
+    "description": "Auto imported from components/MyPagination.vue"
   }
 }
