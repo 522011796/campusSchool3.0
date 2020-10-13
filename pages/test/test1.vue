@@ -24,6 +24,26 @@
           <my-check :sel-value="checkModel" :group="true" :options="options" :button="false" text-color="#fff" fill="#f00" size="mini" @change="handleChangeCheckArrExp"></my-check>
         </div>
       </div>
+      <div>
+        <div class="pull-left" style="width: 200px">
+          <my-tree :show-type="1" :show-checkbox="false" :show-child-type="4" @node-click="handleNodeClickExp" @check-change="handleCheckChangeExp"></my-tree>
+          </div>
+        <div class="pull-left" style="width: 200px">
+          <my-tree :show-type="2" :show-checkbox="true" :show-child-type="1" @node-click="handleNodeClickExp" @check-change="handleCheckChangeExp"></my-tree>
+        </div>
+        <div class="pull-left" style="width: 200px">
+          <my-tree :show-type="3" :show-checkbox="true" :show-child-type="4" @node-click="handleNodeClickExp" @check-change="handleCheckChangeExp"></my-tree>
+        </div>
+        <div class="moon-clearfix"></div>
+      </div>
+      <div>
+        <my-sex sex="1" size="small" effect="plain" type="success"></my-sex>
+        <my-sex sex="1" size="small" type="success"></my-sex>
+        <my-sex sex="0" size="mini" type="info"></my-sex>
+        <my-sex sex="2" type="warning"></my-sex>
+        <my-sex sex="2" tag="text" class="color-danger"></my-sex>
+        <my-sex sex="2" type="danger" effect="dark" size="small"></my-sex>
+      </div>
     </div>
   </div>
 </template>
@@ -33,11 +53,13 @@
   import MySelect from "../../components/MySelect";
   import MyRadio from "../../components/MyRadio";
   import MyCheck from "../../components/MyCheck";
+  import MyTree from "../../components/MyTree";
+  import MySex from "../../components/MySex";
   import mixins from "../../utils/mixins";
   export default {
     name: 'test1',
     mixins: [mixins],
-    components: {MyPagination, MySelect, MyRadio, MyCheck},
+    components: {MyPagination, MySelect, MyRadio, MyCheck, MyTree, MySex},
     data(){
       return {
         options: [],
@@ -75,8 +97,13 @@
         this.num = data;
       },
       handleChangeExp(data){
-        console.log(11111,data);
         this.selModel = data;
+      },
+      handleNodeClickExp(data){
+        console.log(data);
+      },
+      handleCheckChangeExp(data, checked, indeterminate){
+        console.log(data, checked, indeterminate);
       },
       remoteMethodExp(query){
         this.loading = true;

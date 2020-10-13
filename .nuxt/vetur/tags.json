@@ -28,5 +28,17 @@
   },
   "LazyMySelect": {
     "description": "Auto imported from components/MySelect.vue"
+  },
+  "MySex": {
+    "description": "Auto imported from components/MySex.vue"
+  },
+  "LazyMySex": {
+    "description": "Auto imported from components/MySex.vue"
+  },
+  "MyTree": {
+    "description": "Auto imported from components/MyTree.vue"
+  },
+  "LazyMyTree": {
+    "description": "Auto imported from components/MyTree.vue"
   }
 }
