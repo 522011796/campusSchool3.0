@@ -5,6 +5,12 @@
   "LazyLogo": {
     "description": "Auto imported from components/Logo.vue"
   },
+  "MyCheck": {
+    "description": "Auto imported from components/MyCheck.vue"
+  },
+  "LazyMyCheck": {
+    "description": "Auto imported from components/MyCheck.vue"
+  },
   "MyPagination": {
     "description": "Auto imported from components/MyPagination.vue"
   },

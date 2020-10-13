@@ -17,6 +17,13 @@
           <my-radio :sel-value="radioModel" :group="true" :options="options" :disabled="false" :size="size" :border="true" :button="true" text-color="#fff" fill="#f00" @change="handleChangeRadio"></my-radio>
         </div>
       </div>
+      <div>
+        <my-check :sel-value="checkModelOnly" :disabled="false" :border="true" size="small" @change="handleChangeCheckExp">备选项</my-check>
+        <my-check :sel-value="checkModelCustom" :true-label="1" :false-label="0" :disabled="false" :border="true" size="small" @change="handleChangeCheckCustomExp">备选项</my-check>
+        <div>
+          <my-check :sel-value="checkModel" :group="true" :options="options" :button="false" text-color="#fff" fill="#f00" size="mini" @change="handleChangeCheckArrExp"></my-check>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -25,11 +32,12 @@
   import MyPagination from "../../components/MyPagination";
   import MySelect from "../../components/MySelect";
   import MyRadio from "../../components/MyRadio";
+  import MyCheck from "../../components/MyCheck";
   import mixins from "../../utils/mixins";
   export default {
     name: 'test1',
     mixins: [mixins],
-    components: {MyPagination, MySelect, MyRadio},
+    components: {MyPagination, MySelect, MyRadio, MyCheck},
     data(){
       return {
         options: [],
@@ -38,7 +46,10 @@
         group: false,
         radioModel: '',
         radioLabel: '1',
-        size: 'mini'
+        size: 'mini',
+        checkModel: ["0", "2"],
+        checkModelOnly: true,
+        checkModelCustom: ''
       }
     },
     created() {
@@ -87,6 +98,18 @@
       handleChangeRadio(data){
         console.log(data);
         this.radioModel = data;
+      },
+      handleChangeCheckExp(data){
+        console.log(data);
+        this.checkModelOnly = data;
+      },
+      handleChangeCheckCustomExp(data){
+        console.log(data);
+        this.checkModelCustom = data;
+      },
+      handleChangeCheckArrExp(data){
+        console.log(data);
+        this.checkModel = data;
       },
       getSelect(){
         setTimeout(() => {
