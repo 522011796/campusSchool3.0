@@ -326,7 +326,6 @@
             dataArr.push(item);
           }
         });
-        console.log(dataArr);
         return dataArr;
       },
       handleNodeClick(data) {

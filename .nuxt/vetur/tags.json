@@ -11,6 +11,12 @@
   "LazyMyCheck": {
     "description": "Auto imported from components/MyCheck.vue"
   },
+  "MyDatePicker": {
+    "description": "Auto imported from components/MyDatePicker.vue"
+  },
+  "LazyMyDatePicker": {
+    "description": "Auto imported from components/MyDatePicker.vue"
+  },
   "MyPagination": {
     "description": "Auto imported from components/MyPagination.vue"
   },

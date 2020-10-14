@@ -49,6 +49,9 @@
         <my-input-button :options="options" class="pull-left" size="small" type="success" :plain="true" icon-style="fa fa-search" :show-select="true" :clearable="true" width-class="width: 240px;" @click="handleClick"></my-input-button>
         <div class="moon-clearfix"></div>
       </div>
+      <div>
+        <my-date-picker :sel-value="dateTime" size="small" :disabled="false" type="daterange" format="yyyy-MM-dd" :pickerOptions="pickerOptions" @change="handleChangeDate"></my-date-picker>
+      </div>
     </div>
   </div>
 </template>
@@ -61,11 +64,12 @@
   import MyTree from "../../components/MyTree";
   import MySex from "../../components/MySex";
   import MyInputButton from "../../components/search/MyInputButton";
+  import MyDatePicker from "../../components/MyDatePicker";
   import mixins from "../../utils/mixins";
   export default {
     name: 'test1',
     mixins: [mixins],
-    components: {MyPagination, MySelect, MyRadio, MyCheck, MyTree, MySex, MyInputButton},
+    components: {MyPagination, MySelect, MyRadio, MyCheck, MyTree, MySex, MyInputButton, MyDatePicker},
     data(){
       return {
         options: [],
@@ -77,18 +81,24 @@
         size: 'mini',
         checkModel: ["0", "2"],
         checkModelOnly: true,
-        checkModelCustom: ''
+        checkModelCustom: '',
+        dateTime: '',
+        pickerOptions: {
+          disabledDate(time) {
+            //return time.getTime() > Date.now();
+            //return time.getFullYear() < '2019' || time.getFullYear() > new Date().getFullYear()
+            return time.getTime() < new Date(2020, 9, 1) || time.getTime() > new Date(2020, 10, 10);
+          }
+        }
       }
     },
     created() {
       this.init();
       if (this.group){
-        console.log(21);
         this.getSelectGroup();
       }
 
       if (!this.group){
-        console.log(12);
         this.getSelect();
       }
     },
@@ -145,20 +155,22 @@
         this.checkModel = data;
       },
       handleClick(data){
-        console.log(1,data,this.selModel);
+        console.log(1,data,this.selModel, this.dateTime);
+      },
+      handleChangeDate(data){
+        console.log(2,data);
+        this.dateTime = data;
       },
       getSelect(){
         setTimeout(() => {
           this.options = [];
           for (let i = 0; i < 10; i++){
             if (i % 2 == 0){
-              console.log(1);
               this.options.push({
                 value: ""+i,
                 label: '项目' + i
               });
             }else {
-              console.log(2);
               this.options.push({
                 value: ""+i,
                 label: '项目' + i,
