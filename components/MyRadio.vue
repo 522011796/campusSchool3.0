@@ -14,7 +14,7 @@
 <script>
   import {oneOf} from "../utils/utils";
   export default {
-    name: 'mySelect',
+    name: 'myRadio',
     props: {
       selValue: {
         default: '',

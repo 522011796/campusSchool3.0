@@ -40,5 +40,11 @@
   },
   "LazyMyTree": {
     "description": "Auto imported from components/MyTree.vue"
+  },
+  "MyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
+  },
+  "LazyMyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
   }
 }

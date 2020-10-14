@@ -44,6 +44,11 @@
         <my-sex sex="2" tag="text" class="color-danger"></my-sex>
         <my-sex sex="2" type="danger" effect="dark" size="small"></my-sex>
       </div>
+      <div>
+        <my-select class="width-100 pull-left margin-right-5" :sel-value="selModel" :options="options" :clearable="true" size="small" :group="group" @change="handleChangeExp" :remote-method="remoteMethodExp"></my-select>
+        <my-input-button :options="options" class="pull-left" size="small" type="success" :plain="true" icon-style="fa fa-search" :show-select="true" :clearable="true" width-class="width: 240px;" @click="handleClick"></my-input-button>
+        <div class="moon-clearfix"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -55,11 +60,12 @@
   import MyCheck from "../../components/MyCheck";
   import MyTree from "../../components/MyTree";
   import MySex from "../../components/MySex";
+  import MyInputButton from "../../components/search/MyInputButton";
   import mixins from "../../utils/mixins";
   export default {
     name: 'test1',
     mixins: [mixins],
-    components: {MyPagination, MySelect, MyRadio, MyCheck, MyTree, MySex},
+    components: {MyPagination, MySelect, MyRadio, MyCheck, MyTree, MySex, MyInputButton},
     data(){
       return {
         options: [],
@@ -137,6 +143,9 @@
       handleChangeCheckArrExp(data){
         console.log(data);
         this.checkModel = data;
+      },
+      handleClick(data){
+        console.log(1,data,this.selModel);
       },
       getSelect(){
         setTimeout(() => {

@@ -115,6 +115,15 @@ p{
   padding-top: 5px;
   padding-bottom: 5px;
 }
+.width-100{
+  width: 100px;
+}
+.width-150{
+  width: 150px;
+}
+.width-200{
+  width: 200px;
+}
 /*****/
 .el-menu {
   border-right: solid 0px #e6e6e6;

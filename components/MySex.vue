@@ -16,7 +16,7 @@
 <script>
   import {oneOf} from "../utils/utils";
   export default {
-    name: 'mySelect',
+    name: 'mySex',
     props: {
       sex: {
         default: 0,
