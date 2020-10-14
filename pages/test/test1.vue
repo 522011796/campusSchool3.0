@@ -52,6 +52,9 @@
       <div>
         <my-date-picker :sel-value="dateTime" size="small" :disabled="false" type="daterange" format="yyyy-MM-dd" :pickerOptions="pickerOptions" @change="handleChangeDate"></my-date-picker>
       </div>
+      <div class="width-200">
+        <my-block-tree title-color="#909399" align="center" size="small" title-icon="fa fa-home" item-icon="fa fa-search" @click="handleItemClick"></my-block-tree>
+      </div>
     </div>
   </div>
 </template>
@@ -65,11 +68,12 @@
   import MySex from "../../components/MySex";
   import MyInputButton from "../../components/search/MyInputButton";
   import MyDatePicker from "../../components/MyDatePicker";
+  import MyBlockTree from "../../components/MyBlockTree";
   import mixins from "../../utils/mixins";
   export default {
     name: 'test1',
     mixins: [mixins],
-    components: {MyPagination, MySelect, MyRadio, MyCheck, MyTree, MySex, MyInputButton, MyDatePicker},
+    components: {MyPagination, MySelect, MyRadio, MyCheck, MyTree, MySex, MyInputButton, MyDatePicker, MyBlockTree},
     data(){
       return {
         options: [],
@@ -160,6 +164,9 @@
       handleChangeDate(data){
         console.log(2,data);
         this.dateTime = data;
+      },
+      handleItemClick(data){
+        console.log(3,data);
       },
       getSelect(){
         setTimeout(() => {

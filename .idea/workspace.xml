@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/MyDatePicker.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/MyBlockTree.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MyTree.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyTree.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/test/test1.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/test/test1.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +79,7 @@
       <workItem from="1602236688418" duration="638000" />
       <workItem from="1602237688915" duration="45752000" />
       <workItem from="1602515209123" duration="29559000" />
-      <workItem from="1602602280392" duration="8757000" />
+      <workItem from="1602602280392" duration="20369000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1602238139674</created>
@@ -173,7 +172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602639447783</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="init">
+      <created>1602645864308</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1602645864308</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -192,10 +198,10 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.805@0.23.1440.805" timestamp="1602237225642" />
-    <state x="198" y="28" key="CommitChangelistDialog2" timestamp="1602639446728">
+    <state x="198" y="28" key="CommitChangelistDialog2" timestamp="1602645863410">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1602639446728" />
+    <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1602645863410" />
     <state x="562" y="326" width="316" height="274" key="Github.ShareDialog" timestamp="1602237265874">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
@@ -208,17 +214,17 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="221" y="64" key="SettingsEditor/0.23.1440.805@0.23.1440.805" timestamp="1602238031085" />
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1602639449418">
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1602645865743">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1602639449418" />
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1602645865743" />
     <state x="100" y="123" width="1240" height="605" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1602491505106">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="100" y="123" width="1240" height="605" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1440.805@0.23.1440.805" timestamp="1602491505106" />
-    <state x="378" y="182" width="837" height="486" key="find.popup" timestamp="1602500211047">
+    <state x="378" y="182" width="837" height="486" key="find.popup" timestamp="1602684643611">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state x="378" y="182" width="837" height="486" key="find.popup/0.23.1440.805@0.23.1440.805" timestamp="1602500211047" />
+    <state x="378" y="182" width="837" height="486" key="find.popup/0.23.1440.805@0.23.1440.805" timestamp="1602684643611" />
   </component>
 </project>

@@ -1,4 +1,5 @@
 export { default as Logo } from '../../components/Logo.vue'
+export { default as MyBlockTree } from '../../components/MyBlockTree.vue'
 export { default as MyCheck } from '../../components/MyCheck.vue'
 export { default as MyDatePicker } from '../../components/MyDatePicker.vue'
 export { default as MyPagination } from '../../components/MyPagination.vue'
@@ -9,6 +10,7 @@ export { default as MyTree } from '../../components/MyTree.vue'
 export { default as MyInputButton } from '../../components/search/MyInputButton.vue'
 
 export const LazyLogo = import('../../components/Logo.vue' /* webpackChunkName: "components/Logo" */).then(c => c.default || c)
+export const LazyMyBlockTree = import('../../components/MyBlockTree.vue' /* webpackChunkName: "components/MyBlockTree" */).then(c => c.default || c)
 export const LazyMyCheck = import('../../components/MyCheck.vue' /* webpackChunkName: "components/MyCheck" */).then(c => c.default || c)
 export const LazyMyDatePicker = import('../../components/MyDatePicker.vue' /* webpackChunkName: "components/MyDatePicker" */).then(c => c.default || c)
 export const LazyMyPagination = import('../../components/MyPagination.vue' /* webpackChunkName: "components/MyPagination" */).then(c => c.default || c)

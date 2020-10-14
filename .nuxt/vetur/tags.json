@@ -5,6 +5,12 @@
   "LazyLogo": {
     "description": "Auto imported from components/Logo.vue"
   },
+  "MyBlockTree": {
+    "description": "Auto imported from components/MyBlockTree.vue"
+  },
+  "LazyMyBlockTree": {
+    "description": "Auto imported from components/MyBlockTree.vue"
+  },
   "MyCheck": {
     "description": "Auto imported from components/MyCheck.vue"
   },
