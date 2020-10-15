@@ -8,6 +8,7 @@ export { default as MySelect } from '../../components/MySelect.vue'
 export { default as MySex } from '../../components/MySex.vue'
 export { default as MyTree } from '../../components/MyTree.vue'
 export { default as MyInputButton } from '../../components/search/MyInputButton.vue'
+export { default as MySexSelect } from '../../components/utils/MySexSelect.vue'
 export { default as MyBlockListChildTree } from '../../components/tree/MyBlockListChildTree.vue'
 export { default as MyBlockListTree } from '../../components/tree/MyBlockListTree.vue'
 export { default as TreeNode } from '../../components/tree/treeNode.js'
@@ -22,6 +23,7 @@ export const LazyMySelect = import('../../components/MySelect.vue' /* webpackChu
 export const LazyMySex = import('../../components/MySex.vue' /* webpackChunkName: "components/MySex" */).then(c => c.default || c)
 export const LazyMyTree = import('../../components/MyTree.vue' /* webpackChunkName: "components/MyTree" */).then(c => c.default || c)
 export const LazyMyInputButton = import('../../components/search/MyInputButton.vue' /* webpackChunkName: "components/search/MyInputButton" */).then(c => c.default || c)
+export const LazyMySexSelect = import('../../components/utils/MySexSelect.vue' /* webpackChunkName: "components/utils/MySexSelect" */).then(c => c.default || c)
 export const LazyMyBlockListChildTree = import('../../components/tree/MyBlockListChildTree.vue' /* webpackChunkName: "components/tree/MyBlockListChildTree" */).then(c => c.default || c)
 export const LazyMyBlockListTree = import('../../components/tree/MyBlockListTree.vue' /* webpackChunkName: "components/tree/MyBlockListTree" */).then(c => c.default || c)
 export const LazyTreeNode = import('../../components/tree/treeNode.js' /* webpackChunkName: "components/tree/treeNode" */).then(c => c.default || c)

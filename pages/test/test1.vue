@@ -58,6 +58,9 @@
       <div class="width-200 margin-top-10">
         <my-block-list-tree :data="dataCollege" :width="200" :opr="true" icon-prefix="el-icon-caret-bottom" @click="handleTreeClick" @edit-click="handleTreeClick"></my-block-list-tree>
       </div>
+      <div>
+        <my-sex-select sel-value="1" size="small" @change="handleTreeClick" class="width-100"></my-sex-select>
+      </div>
     </div>
   </div>
 </template>
@@ -73,11 +76,12 @@
   import MyDatePicker from "../../components/MyDatePicker";
   import MyBlockTree from "../../components/MyBlockTree";
   import MyBlockListTree from "../../components/tree/MyBlockListTree";
+  import MySexSelect from "../../components/utils/MySexSelect";
   import mixins from "../../utils/mixins";
   export default {
     name: 'test1',
     mixins: [mixins],
-    components: {MyPagination, MySelect, MyRadio, MyCheck, MyTree, MySex, MyInputButton, MyDatePicker, MyBlockTree, MyBlockListTree},
+    components: {MyPagination, MySelect, MyRadio, MyCheck, MyTree, MySex, MyInputButton, MyDatePicker, MyBlockTree, MyBlockListTree, MySexSelect},
     data(){
       return {
         options: [],
@@ -101,27 +105,27 @@
         dataCollege: [{
           label: '学院11234124124',
           id: '1',
-          show: true,
+          show: false,
           children: [{
             label: '专业',
             id: '11',
             unit: 1,
-            show: true,
+            show: false,
             children: [{
               label: '一年级',
               id: '12',
               unit: 2,
-              show: true,
+              show: false,
               children: [{
                 label: '班级1',
                 id: '13',
                 unit: 3,
-                show: true,
+                show: false,
               },{
                 label: '班级2',
                 id: '14',
                 unit: 3,
-                show: true,
+                show: false,
                 disabled: true,
                 children: [{
                   label: '1001',
@@ -138,40 +142,40 @@
               label: '二年级',
               id: '15',
               unit: 2,
-              show: true,
+              show: false,
             }]
           }]
         },{
           label: '学院2',
           id: '2',
-          show: true,
+          show: false,
           children: [{
             label: '专业2',
             id: '21',
             unit: 1,
-            show: true,
+            show: false,
             children: [{
               label: '一年级',
               id: '22',
               unit: 2,
-              show: true,
+              show: false,
               children: [{
                 label: '班级1',
                 id: '23',
                 unit: 3,
-                show: true,
+                show: false,
               },{
                 label: '班级2',
                 id: '24',
                 unit: 3,
                 disabled: true,
-                show: true,
+                show: false,
               }]
             },{
               label: '二年级',
               id: '25',
               unit: 2,
-              show: true,
+              show: false,
             }]
           }]
         }]
