@@ -53,7 +53,7 @@
         <my-date-picker :sel-value="dateTime" size="small" :disabled="false" type="daterange" format="yyyy-MM-dd" :pickerOptions="pickerOptions" @change="handleChangeDate"></my-date-picker>
       </div>
       <div class="width-200">
-        <my-block-tree title-color="#909399" align="center" size="small" title-icon="fa fa-home" item-icon="fa fa-search" @click="handleItemClick"></my-block-tree>
+        <my-block-tree :sel-value="dataCollege" title-color="#909399" align="center" size="small" title-icon="fa fa-home" item-icon="fa fa-search" @click="handleItemClick"></my-block-tree>
       </div>
     </div>
   </div>
@@ -93,7 +93,64 @@
             //return time.getFullYear() < '2019' || time.getFullYear() > new Date().getFullYear()
             return time.getTime() < new Date(2020, 9, 1) || time.getTime() > new Date(2020, 10, 10);
           }
-        }
+        },
+        dataCollege: [{
+          label: '学院1',
+          id: '1',
+          show: true,
+          children: [{
+            label: '专业',
+            id: '11',
+            unit: 1,
+            children: [{
+              label: '一年级',
+              id: '12',
+              unit: 2,
+              children: [{
+                label: '班级1',
+                id: '13',
+                unit: 3,
+              },{
+                label: '班级2',
+                id: '14',
+                unit: 3,
+                disabled: true
+              }]
+            },{
+              label: '二年级',
+              id: '15',
+              unit: 2,
+            }]
+          }]
+        },{
+          label: '学院22222222222222222222',
+          id: '2',
+          show: true,
+          children: [{
+            label: '专业2124124124124124124',
+            id: '21',
+            unit: 1,
+            children: [{
+              label: '一年级',
+              id: '22',
+              unit: 2,
+              children: [{
+                label: '班级1',
+                id: '23',
+                unit: 3,
+              },{
+                label: '班级2',
+                id: '24',
+                unit: 3,
+                disabled: true
+              }]
+            },{
+              label: '二年级',
+              id: '25',
+              unit: 2,
+            }]
+          }]
+        }]
       }
     },
     created() {

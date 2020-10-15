@@ -1,23 +1,32 @@
 <template>
-  <div class="my-block-tree-container" :setSize="setSize">
-    <div v-for="item in dataCollege" :key="item.id">
+  <div class="my-block-tree-container" :setSize="setSize" :selectModel="selectModel">
+    <div v-if="dataArr && dataArr.length > 0" v-for="item in dataArr" :key="item.id">
       <div class="my-block-tree-title" v-if="showTitle" :style="titleBgColor" :setTitleStyle="setTitleStyle" :align="align" @click="handleTitleClick($event,item)">
         <div class="content-text-class" :style="alignStyle" :setAlign="setAlign">
           <span :class="titleIcon" class="icon-inner-class"></span>
-          <span :style="contentTextStyle">{{item.label}}</span>
+          <span>{{item.label}}</span>
           <!--<span class="icon-class" :class="item.show ? 'el-icon-arrow-up' : 'el-icon-arrow-down'" :style="iconStyle"></span>-->
           <span class="el-icon-arrow-up" :class="item.show ? 'icon-class-down' : 'icon-class-up'" :style="iconStyle"></span>
           <div class="moon-clearfix"></div>
         </div>
       </div>
+      <div v-if="!item.show" class="lineHeight"></div>
       <el-collapse-transition>
         <div class="my-block-tree-content" v-show="item.show">
-          <div class="my-block-tree-item block-content-text-class" :style="itemStyle" :setAlign="setAlign" v-for="itemChild in item.children" :key="itemChild.id" @click="handleItem($event,itemChild)">
-            <span :class="itemIcon" class="icon-inner-class"></span>
-            <span :style="contentTextStyle">{{itemChild.label}}</span>
+          <div class="my-block-tree-item block-content-text-class" :style="itemStyle" v-for="itemChild in item.children" :key="itemChild.id" @click="handleItem($event,itemChild)">
+            <div class="content-text-class" :setAlign="setAlign">
+              <span :class="itemIcon" class="icon-inner-class"></span>
+              <span>{{itemChild.label}}</span>
+            </div>
           </div>
         </div>
       </el-collapse-transition>
+    </div>
+
+    <div v-if="dataArr && dataArr.length <= 0" class="my-block-tree-nodata-content">
+      <div>
+        <span>暂无数据</span>
+      </div>
     </div>
   </div>
 </template>
@@ -29,7 +38,7 @@
     props: {
       selValue: {
         default: '',
-        type: String
+        type: Array
       },
       label: {
         default: '',
@@ -62,11 +71,12 @@
     },
     computed: {
       selectModel(){
-        this.value = this.selValue;
+        this.dataArr = this.selValue;
       },
       setTitleStyle(){
         if (!!this.titleColor){
           this.titleBgColor['background'] = this.titleColor;
+          this.titleBgColor['opacity'] = '0.8';
           this.titleBgColor['color'] = '#ffffff';
           this.titleBgColor['border-color'] = this.titleColor;
         }else {
@@ -113,63 +123,7 @@
         alignStyle: {},
         contentTextStyle: {},
         iconStyle: {},
-        dataCollege: [{
-          label: '学院1',
-          id: '1',
-          show: true,
-          children: [{
-            label: '专业',
-            id: '11',
-            unit: 1,
-            children: [{
-              label: '一年级',
-              id: '12',
-              unit: 2,
-              children: [{
-                label: '班级1',
-                id: '13',
-                unit: 3,
-              },{
-                label: '班级2',
-                id: '14',
-                unit: 3,
-                disabled: true
-              }]
-            },{
-              label: '二年级',
-              id: '15',
-              unit: 2,
-            }]
-          }]
-        },{
-          label: '学院2',
-          id: '2',
-          show: true,
-          children: [{
-            label: '专业2',
-            id: '21',
-            unit: 1,
-            children: [{
-              label: '一年级',
-              id: '22',
-              unit: 2,
-              children: [{
-                label: '班级1',
-                id: '23',
-                unit: 3,
-              },{
-                label: '班级2',
-                id: '24',
-                unit: 3,
-                disabled: true
-              }]
-            },{
-              label: '二年级',
-              id: '25',
-              unit: 2,
-            }]
-          }]
-        }]
+        dataArr: []
       }
     },
     mounted() {
@@ -184,9 +138,11 @@
       setContentStyle(){
         let width = document.querySelector(".my-block-tree-container").clientWidth;
         if (width > 0){
-          width = width - 60;
+          width = width - 80;
         }
         this.contentTextStyle.width = width +"px";
+        this.alignStyle['width'] = width +"px";
+        //this.itemStyle['width'] = width +"px";
       },
       handleChange(data) {
         this.$emit('change', data);
@@ -211,7 +167,7 @@
   padding: 12px 10px;
   border-top-right-radius: 0px;
   border-top-left-radius: 0px;
-  margin-bottom: 1px;
+  margin-bottom: 0px;
   position: relative;
 }
 .my-block-tree-content{
@@ -223,9 +179,10 @@
   border-left: 1px solid #DCDFE6;
   border-right: 1px solid #DCDFE6;
   color: #909399;
+  background: transparent;
 }
 .my-block-tree-item:hover{
-  background: rgb(244, 244, 245);;
+  background: rgb(244, 244, 245);
 }
 .icon-class-down{
   position: absolute;
@@ -242,7 +199,6 @@
   transition: all .2s ease-in-out;
 }
 .content-text-class{
-  display:inline-block;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -256,5 +212,16 @@
 }
 .icon-inner-class{
   position: relative;
+}
+.lineHeight{
+  height: 1px;
+  background: #F2F6FC
+}
+.my-block-tree-nodata-content{
+  border: 1px solid #DCDFE6;
+  padding: 10px;
+}
+.inline-block-class{
+  display: inline-block;
 }
 </style>
