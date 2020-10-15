@@ -58,5 +58,23 @@
   },
   "LazyMyInputButton": {
     "description": "Auto imported from components/search/MyInputButton.vue"
+  },
+  "MyBlockListChildTree": {
+    "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
+  },
+  "LazyMyBlockListChildTree": {
+    "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
+  },
+  "MyBlockListTree": {
+    "description": "Auto imported from components/tree/MyBlockListTree.vue"
+  },
+  "LazyMyBlockListTree": {
+    "description": "Auto imported from components/tree/MyBlockListTree.vue"
+  },
+  "TreeNode": {
+    "description": "Auto imported from components/tree/treeNode.js"
+  },
+  "LazyTreeNode": {
+    "description": "Auto imported from components/tree/treeNode.js"
   }
 }

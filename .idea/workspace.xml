@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="init">
+    <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/components/tree/MyBlockListChildTree.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/tree/MyBlockListTree.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/tree/treeNode.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/MyBlockTree.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyBlockTree.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/test/test1.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/test/test1.vue" afterDir="false" />
     </list>
@@ -31,7 +36,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/components" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/tree" />
     <property name="list.type.of.created.stylesheet" value="textmate" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
@@ -42,12 +47,15 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/components/tree" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/components/tree" />
       <recent name="$PROJECT_DIR$/components" />
       <recent name="$PROJECT_DIR$/components/search" />
       <recent name="$PROJECT_DIR$/utils" />
       <recent name="$PROJECT_DIR$/plugins" />
-      <recent name="$PROJECT_DIR$/static/json" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -77,7 +85,8 @@
       <workItem from="1602236688418" duration="638000" />
       <workItem from="1602237688915" duration="45752000" />
       <workItem from="1602515209123" duration="29559000" />
-      <workItem from="1602602280392" duration="24532000" />
+      <workItem from="1602602280392" duration="32995000" />
+      <workItem from="1602740617969" duration="25681000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1602238139674</created>
@@ -184,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602688167236</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="init">
+      <created>1602726013858</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1602726013858</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,10 +219,10 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.805@0.23.1440.805" timestamp="1602237225642" />
-    <state x="198" y="28" key="CommitChangelistDialog2" timestamp="1602723327471">
+    <state x="198" y="28" key="CommitChangelistDialog2" timestamp="1602726012867">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1602723327471" />
+    <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1602726012867" />
     <state x="562" y="326" width="316" height="274" key="Github.ShareDialog" timestamp="1602237265874">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
@@ -219,17 +235,17 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="221" y="64" key="SettingsEditor/0.23.1440.805@0.23.1440.805" timestamp="1602238031085" />
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1602688335851">
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1602726068336">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1602688335851" />
-    <state x="100" y="123" width="1240" height="605" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1602491505106">
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1602726068336" />
+    <state x="100" y="123" width="1240" height="605" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1602766134753">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state x="100" y="123" width="1240" height="605" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1440.805@0.23.1440.805" timestamp="1602491505106" />
-    <state x="378" y="182" width="837" height="486" key="find.popup" timestamp="1602684643611">
+    <state x="100" y="123" width="1240" height="605" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1440.805@0.23.1440.805" timestamp="1602766134753" />
+    <state x="378" y="182" width="837" height="486" key="find.popup" timestamp="1602765661784">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state x="378" y="182" width="837" height="486" key="find.popup/0.23.1440.805@0.23.1440.805" timestamp="1602684643611" />
+    <state x="378" y="182" width="837" height="486" key="find.popup/0.23.1440.805@0.23.1440.805" timestamp="1602765661784" />
   </component>
 </project>

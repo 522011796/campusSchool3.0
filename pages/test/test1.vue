@@ -53,7 +53,10 @@
         <my-date-picker :sel-value="dateTime" size="small" :disabled="false" type="daterange" format="yyyy-MM-dd" :pickerOptions="pickerOptions" @change="handleChangeDate"></my-date-picker>
       </div>
       <div class="width-200">
-        <my-block-tree :sel-value="dataCollege" title-color="#909399" align="center" size="small" title-icon="fa fa-home" item-icon="fa fa-search" @click="handleItemClick"></my-block-tree>
+        <my-block-tree :width="200" :sel-value="dataCollege" title-color="#909399" align="center" size="small" title-icon="fa fa-home" item-icon="fa fa-search" @click="handleItemClick"></my-block-tree>
+      </div>
+      <div class="width-200 margin-top-10">
+        <my-block-list-tree :data="dataCollege" :width="200" :opr="true" icon-prefix="el-icon-caret-bottom" @click="handleTreeClick" @edit-click="handleTreeClick"></my-block-list-tree>
       </div>
     </div>
   </div>
@@ -69,11 +72,12 @@
   import MyInputButton from "../../components/search/MyInputButton";
   import MyDatePicker from "../../components/MyDatePicker";
   import MyBlockTree from "../../components/MyBlockTree";
+  import MyBlockListTree from "../../components/tree/MyBlockListTree";
   import mixins from "../../utils/mixins";
   export default {
     name: 'test1',
     mixins: [mixins],
-    components: {MyPagination, MySelect, MyRadio, MyCheck, MyTree, MySex, MyInputButton, MyDatePicker, MyBlockTree},
+    components: {MyPagination, MySelect, MyRadio, MyCheck, MyTree, MySex, MyInputButton, MyDatePicker, MyBlockTree, MyBlockListTree},
     data(){
       return {
         options: [],
@@ -95,59 +99,79 @@
           }
         },
         dataCollege: [{
-          label: '学院1',
+          label: '学院11234124124',
           id: '1',
           show: true,
           children: [{
             label: '专业',
             id: '11',
             unit: 1,
+            show: true,
             children: [{
               label: '一年级',
               id: '12',
               unit: 2,
+              show: true,
               children: [{
                 label: '班级1',
                 id: '13',
                 unit: 3,
+                show: true,
               },{
                 label: '班级2',
                 id: '14',
                 unit: 3,
-                disabled: true
+                show: true,
+                disabled: true,
+                children: [{
+                  label: '1001',
+                  id: '15',
+                  unit: 3,
+                },{
+                  label: '1002',
+                  id: '16',
+                  unit: 3,
+                  disabled: true
+                }]
               }]
             },{
               label: '二年级',
               id: '15',
               unit: 2,
+              show: true,
             }]
           }]
         },{
-          label: '学院22222222222222222222',
+          label: '学院2',
           id: '2',
           show: true,
           children: [{
-            label: '专业2124124124124124124',
+            label: '专业2',
             id: '21',
             unit: 1,
+            show: true,
             children: [{
               label: '一年级',
               id: '22',
               unit: 2,
+              show: true,
               children: [{
                 label: '班级1',
                 id: '23',
                 unit: 3,
+                show: true,
               },{
                 label: '班级2',
                 id: '24',
                 unit: 3,
-                disabled: true
+                disabled: true,
+                show: true,
               }]
             },{
               label: '二年级',
               id: '25',
               unit: 2,
+              show: true,
             }]
           }]
         }]
@@ -224,6 +248,9 @@
       },
       handleItemClick(data){
         console.log(3,data);
+      },
+      handleTreeClick(data){
+        console.log(5,data);
       },
       getSelect(){
         setTimeout(() => {

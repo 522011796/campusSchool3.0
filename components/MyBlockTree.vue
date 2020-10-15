@@ -67,6 +67,10 @@
       itemIcon: {
         default: '',
         type: String
+      },
+      width: {
+        default: '',
+        type: [String, Number]
       }
     },
     computed: {
@@ -136,7 +140,7 @@
     },
     methods: {
       setContentStyle(){
-        let width = document.querySelector(".my-block-tree-container").clientWidth;
+        let width = this.width;
         if (width > 0){
           width = width - 80;
         }
