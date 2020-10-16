@@ -48,7 +48,6 @@
     },
     computed: {
       selectModel(){
-        console.log(this.data);
         this.dataCollege = this.setData(this.data);
       },
       setClass(){

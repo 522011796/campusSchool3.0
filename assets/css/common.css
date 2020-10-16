@@ -105,11 +105,23 @@ p{
 .color-grand{
   color: #409EFF;
 }
+.color-disabeld{
+  color: #C0C4CC;
+}
+.color-white{
+  color: #ffffff;
+}
+.bg-success{
+  background: #67C23A;
+}
 .margin-right-5{
   margin-right: 5px;
 }
 .margin-top-10{
   margin-top: 10px;
+}
+.margin-bottom-10{
+  margin-bottom: 10px;
 }
 .padding-tb-5{
   padding-top: 5px;
@@ -124,6 +136,21 @@ p{
 .width-200{
   width: 200px;
 }
+.line-height{
+  background: #EBEEF5;
+  height: 1px;
+  margin: 10px 0px;
+}
+.moon-content-text-ellipsis-class{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+}
+.detail-card .title-class{
+  position: relative;
+  top: -5px;
+}
 /*****/
 .el-menu {
   border-right: solid 0px #e6e6e6;
@@ -132,6 +159,18 @@ p{
   margin: 0;
   padding-left: 0;
   background-color: #FFF;
+}
+.detail-card .el-card__header {
+  padding: 8px 5px;
+  border-bottom: 1px solid #EBEEF5;
+  box-sizing: border-box;
+}
+.detail-group-card .el-card {
+  border: 1px solid #EBEEF5;
+  background-color: #FFF;
+  color: #303133;
+  transition: .3s;
+  margin-bottom: 10px;
 }
 /***自定义radio组件颜色***/
 /*.el-radio__input.is-checked + .el-radio__label {

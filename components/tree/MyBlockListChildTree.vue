@@ -108,7 +108,6 @@
       setWidth() {
         if (this.width && this.width != ""){
           //this.widthStyle['width'] = this.width - 80 + "px";
-          console.log(this.width);
         }
       }
     },
@@ -191,7 +190,6 @@
       }
     },
     mounted() {
-      console.log(this.opr);
       this.oprShow = this.opr;
     },
     methods: {

@@ -283,3 +283,27 @@ export function weekNoText(val){
   let gradeList = ['星期一','星期二','星期三','星期四','星期五','星期六','星期日'];
   return gradeList[parseInt(val)-1];
 }
+
+export function auditStatusText(val){
+  let statusList = {
+    "0": "待审批",
+    "1": "已通过",
+    "2": "已驳回",
+    "3": "已通过",
+    "4": "已驳回",
+    "5": "",
+  };
+  return statusList[val];
+}
+
+export function auditStatusColor(val){
+  let statusList = {
+    "0": "color-muted",
+    "1": "color-success",
+    "2": "color-danger",
+    "3": "color-success",
+    "4": "color-success",
+    "5": "color-warning",
+  };
+  return statusList[val];
+}
