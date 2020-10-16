@@ -64,7 +64,7 @@
         </div>
       </div>
       <div style="margin-left: 10px; border: 1px solid; margin-left: 200px">
-        <my-audit-detail :sel-value="dataTerLeaveAudit"></my-audit-detail>
+        <my-audit-detail :sel-value="dataAudit"></my-audit-detail>
       </div>
       <div class="moon-clearfix"></div>
     </div>
