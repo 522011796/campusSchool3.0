@@ -79,7 +79,7 @@
           </el-col>
         </el-row>
       </div>
-      <div class="color-muted">
+      <div class="color-muted margin-top-5">
         <el-row>
           <el-col :span="12" class="ellipsis-tag" v-if="value.apply_file != ''">
             <div>

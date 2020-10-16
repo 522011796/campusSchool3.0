@@ -12,7 +12,7 @@
           <el-col :span="12" class="ellipsis-tag">
             <div>
               <div>
-                <span class="title-class">类型:</span>
+                <span class="title-class color-disabeld">类型:</span>
                 <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}">{{value.str1}}</span>
               </div>
             </div>
@@ -20,7 +20,7 @@
           <el-col :span="12" class="ellipsis-tag">
             <div>
               <div>
-                <span class="title-class">时长:</span>
+                <span class="title-class color-disabeld">时长:</span>
                 <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}">{{value.double1}}天</span>
               </div>
             </div>
@@ -30,7 +30,7 @@
           <el-col :span="12" class="ellipsis-tag">
             <div>
               <div>
-                <span class="title-class">开始时间:</span>
+                <span class="title-class color-disabeld">开始时间:</span>
                 <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px'}">{{value.date1}}</span>
               </div>
             </div>
@@ -38,14 +38,14 @@
           <el-col :span="12" class="ellipsis-tag">
             <div>
               <div>
-                <span class="title-class">结束时间:</span>
+                <span class="title-class color-disabeld">结束时间:</span>
                 <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px'}">{{value.date2}}</span>
               </div>
             </div>
           </el-col>
         </el-row>
       </div>
-      <div class="color-muted">
+      <div class="color-muted margin-top-5">
         <el-row>
           <el-col :span="12" class="ellipsis-tag" v-if="value.apply_file != ''">
             <div>

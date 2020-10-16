@@ -2,23 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/utils/auditDetail/CreditDetail.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/utils/auditDetail/MyAuditDetail.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/utils/auditDetail/RepuDetail.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/utils/auditDetail/StuleaveDetail.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/utils/auditDetail/TerleaveDetail.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/axios.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/common.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/tree/MyBlockListChildTree.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/tree/MyBlockListChildTree.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/tree/MyBlockListTree.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/tree/MyBlockListTree.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/MySexSelect.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/MySexSelect.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/test/test1.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/test/test1.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/MyAuditDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/MyAuditDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/StuleaveDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/StuleaveDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/TerleaveDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/TerleaveDetail.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +83,7 @@
       <workItem from="1602237688915" duration="45752000" />
       <workItem from="1602515209123" duration="29559000" />
       <workItem from="1602602280392" duration="32995000" />
-      <workItem from="1602740617969" duration="48631000" />
+      <workItem from="1602740617969" duration="49087000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1602238139674</created>
@@ -223,7 +211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602774945009</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="init">
+      <created>1602843952599</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1602843952599</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,10 +237,10 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.805@0.23.1440.805" timestamp="1602828707649" />
-    <state x="198" y="28" key="CommitChangelistDialog2" timestamp="1602774943759">
+    <state x="198" y="28" key="CommitChangelistDialog2" timestamp="1602843951597">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1602774943759" />
+    <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1602843951597" />
     <state x="562" y="326" width="316" height="274" key="Github.ShareDialog" timestamp="1602237265874">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
@@ -258,10 +253,10 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="221" y="64" key="SettingsEditor/0.23.1440.805@0.23.1440.805" timestamp="1602238031085" />
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1602774947183">
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1602843954557">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1602774947183" />
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1602843954557" />
     <state x="100" y="123" width="1240" height="605" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1602766134753">
       <screen x="0" y="23" width="1440" height="805" />
     </state>

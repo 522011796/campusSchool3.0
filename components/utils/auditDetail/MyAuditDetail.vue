@@ -7,8 +7,8 @@
         </div>
         <!--<credit-detail :sel-value="value"></credit-detail>-->
         <!--<repu-detail :sel-value="value"></repu-detail>-->
-        <!--<stuleave-detail :sel-value="value"></stuleave-detail>-->
-        <terleave-detail :sel-value="value"></terleave-detail>
+        <stuleave-detail :sel-value="value"></stuleave-detail>
+        <!--<terleave-detail :sel-value="value"></terleave-detail>-->
       </el-timeline-item>
 
       <div class="detail-group-card">
