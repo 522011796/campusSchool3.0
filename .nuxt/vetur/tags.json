@@ -53,11 +53,11 @@
   "LazyMyTree": {
     "description": "Auto imported from components/MyTree.vue"
   },
-  "MyInputButton": {
-    "description": "Auto imported from components/search/MyInputButton.vue"
+  "MySexSelect": {
+    "description": "Auto imported from components/utils/MySexSelect.vue"
   },
-  "LazyMyInputButton": {
-    "description": "Auto imported from components/search/MyInputButton.vue"
+  "LazyMySexSelect": {
+    "description": "Auto imported from components/utils/MySexSelect.vue"
   },
   "MyBlockListChildTree": {
     "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
@@ -77,11 +77,17 @@
   "LazyTreeNode": {
     "description": "Auto imported from components/tree/treeNode.js"
   },
-  "MySexSelect": {
-    "description": "Auto imported from components/utils/MySexSelect.vue"
+  "MyNormalDialog": {
+    "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
   },
-  "LazyMySexSelect": {
-    "description": "Auto imported from components/utils/MySexSelect.vue"
+  "LazyMyNormalDialog": {
+    "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
+  },
+  "MyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
+  },
+  "LazyMyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
   },
   "CreditDetail": {
     "description": "Auto imported from components/utils/auditDetail/CreditDetail.vue"

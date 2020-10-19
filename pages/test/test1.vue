@@ -55,21 +55,27 @@
       <div>
         <my-date-picker :sel-value="dateTime" size="small" :disabled="false" type="daterange" format="yyyy-MM-dd" :pickerOptions="pickerOptions" @change="handleChangeDate"></my-date-picker>
       </div>
-      <div class="pull-left">
-        <div class="width-200">
-          <my-block-tree :width="200" :sel-value="dataCollege" title-color="#909399" align="center" size="small" title-icon="fa fa-home" item-icon="fa fa-search" @click="handleItemClick"></my-block-tree>
-        </div>
-        <div class="width-200 margin-top-10">
-          <my-block-list-tree :data="dataCollege" :width="200" :opr="true" icon-prefix="el-icon-caret-bottom" @click="handleTreeClick" @edit-click="handleTreeClick"></my-block-list-tree>
-        </div>
-        <div>
-          <my-sex-select sel-value="1" size="small" @change="handleTreeClick" class="width-100"></my-sex-select>
-        </div>
+      <div>
+        <a href="javascript:;" @click="changeDialog">删除</a>
+        <my-normal-dialog  :visible.sync="visible" :loading="dialogLoading" title="提示" content="确认需要删除该信息？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
       </div>
-      <div style="margin-left: 10px; border: 1px solid; margin-left: 200px">
-        <my-audit-detail :sel-value="dataAudit"></my-audit-detail>
+      <div>
+        <div class="pull-left">
+          <div class="width-200">
+            <my-block-tree :width="200" :sel-value="dataCollege" title-color="#909399" align="center" size="small" title-icon="fa fa-home" item-icon="fa fa-search" @click="handleItemClick"></my-block-tree>
+          </div>
+          <div class="width-200 margin-top-10">
+            <my-block-list-tree :data="dataCollege" :width="200" :opr="true" icon-prefix="el-icon-caret-bottom" @click="handleTreeClick" @edit-click="handleTreeClick"></my-block-list-tree>
+          </div>
+          <div>
+            <my-sex-select sel-value="1" size="small" @change="handleTreeClick" class="width-100"></my-sex-select>
+          </div>
+        </div>
+        <div style="margin-left: 10px; border: 1px solid; margin-left: 200px;height: 300px;overflow-y: auto">
+          <my-audit-detail :sel-value="dataAudit"></my-audit-detail>
+        </div>
+        <div class="moon-clearfix"></div>
       </div>
-      <div class="moon-clearfix"></div>
     </div>
   </div>
 </template>
@@ -87,16 +93,18 @@
   import MyBlockListTree from "../../components/tree/MyBlockListTree";
   import MySexSelect from "../../components/utils/MySexSelect";
   import MyAuditDetail from "../../components/utils/auditDetail/MyAuditDetail";
+  import MyNormalDialog from "../../components/utils/dialog/MyNormalDialog";
   import mixins from "../../utils/mixins";
   export default {
     name: 'test1',
     mixins: [mixins],
-    components: {MyPagination, MySelect, MyRadio, MyCheck, MyTree, MySex, MyInputButton, MyDatePicker, MyBlockTree, MyBlockListTree, MySexSelect, MyAuditDetail},
+    components: {MyPagination, MySelect, MyRadio, MyCheck, MyTree, MySex, MyInputButton, MyDatePicker, MyBlockTree, MyBlockListTree, MySexSelect, MyAuditDetail, MyNormalDialog},
     data(){
       return {
         options: [],
         selModel: '',
         loading: false,
+        dialogLoading: false,
         group: false,
         radioModel: '',
         radioLabel: '1',
@@ -105,6 +113,7 @@
         checkModelOnly: true,
         checkModelCustom: '',
         dateTime: '',
+        visible: false,
         pickerOptions: {
           disabledDate(time) {
             //return time.getTime() > Date.now();
@@ -451,6 +460,23 @@
       },
       handleTreeClick(data){
         console.log(5,data);
+      },
+      handleOkChange(data) {
+        this.dialogLoading = true;
+        setTimeout(() => {
+          this.visible = false;
+          this.dialogLoading = false;
+        },2000)
+      },
+      handleCancelChange(data) {
+        this.visible = false;
+      },
+      closeDialog(data){
+        console.log(333);
+        this.dialogLoading = false;
+      },
+      changeDialog(){
+        this.visible = true;
       },
       getSelect(){
         setTimeout(() => {
