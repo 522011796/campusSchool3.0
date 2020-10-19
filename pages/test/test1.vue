@@ -389,6 +389,7 @@
         await this.getSchoolBuildInfo();
         await this.getDormBuildInfo();
         await this.getDeptInfo();
+        await this.getCurrentDateInfo();
       },
       handleCurrentChangeExp(data){
         this.page = data;

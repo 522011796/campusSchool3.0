@@ -41,7 +41,7 @@
     </div>
     <div class="moon-right-menu" :style="rightWidth">
       <div class="moon-right-item-menu">
-        <el-tag closable size="medium" v-for="n in 6" :key="n" class="margin-right-5">{{n}}</el-tag>
+        <el-tag closable size="medium" color="#ffffff" v-for="n in 6" :key="n" class="margin-right-5">{{n}}</el-tag>
       </div>
       <div class="moon-right-content" :style="rightHeight">
         <Nuxt />
@@ -59,6 +59,7 @@
     data(){
       return {
         isCollapse: false,
+        screenWidth: 0,
         activeIndex: '1',
         activeSliderIndex: '',
         topMenuList: [],
@@ -76,12 +77,19 @@
         }
       }
     },
-    mounted() {
-
+    mounted () {
+      this.screenWidth = document.body.clientWidth;
+      // 监听窗口大小
+      window.onresize = () => {
+        return (() => {
+          this.screenWidth = document.body.clientWidth;
+        })()
+      }
     },
     created() {
       this.hh();
       this.init();
+      this.toggleCollapse();
       this.activeIndex = this.$route.query.top;
       this.activeSliderIndex = this.$route.path;
       this.getTopMenu();
@@ -175,6 +183,16 @@
           this.activeIndex = this.$route.query.top;
           this.getSliderMenu(this.$route.query.top);
         });
+      },
+      screenWidth(val) {
+        this.screenWidth = val;
+        if (this.screenWidth-200 < 768){
+          this.isCollapse = false;
+          this.toggleCollapse();
+        }else {
+          this.isCollapse = true;
+          this.toggleCollapse();
+        }
       }
     }
   }

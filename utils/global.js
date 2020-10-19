@@ -12,6 +12,11 @@ const dataCollegeList= [];
 const dataSchoolBuildList = [];
 const dataDormBuildList = [];
 const dataDeptList = [];
+const currentYear = "";
+const currentMonth = "";
+const currentDay = "";
+const currentTermId = "";
+const currentWeekNum = "";
 
 export default {
   total,
@@ -27,5 +32,10 @@ export default {
   dataCollegeList: [],
   dataSchoolBuildList: [],
   dataDormBuildList: [],
-  dataDeptList: []
+  dataDeptList: [],
+  currentDay,
+  currentMonth,
+  currentTermId,
+  currentWeekNum,
+  currentYear
 }

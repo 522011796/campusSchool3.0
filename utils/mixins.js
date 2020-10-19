@@ -18,7 +18,12 @@ export default {
       dataCollege: global.dataCollegeList,
       dataSchoolBuild: global.dataSchoolBuildList,
       dataDormBuild: global.dataDormBuildList,
-      dataDept: global.dataDeptList
+      dataDept: global.dataDeptList,
+      currentYear: global.currentYear,
+      currentMonth: global.currentMonth,
+      currentDay: global.currentDay,
+      currentTermId: global.currentTermId,
+      currentWeekNum: global.currentWeekNum
     }
   },
   created() {
@@ -45,6 +50,15 @@ export default {
       await this.$axios.get('/proxy/user/user/getSess', {params: params}).then(res => {
         console.log(1);
         this.testDefault = 1234;
+      });
+    },
+    /**
+     * 获取当前系统所在的信息
+     * 当前年、月、日、学期、学周等信息
+     */
+    async getCurrentDateInfo(){
+      await this.$axios.get('/proxy/user/user/getSess').then(res => {
+        console.log(3);
       });
     },
     /**
