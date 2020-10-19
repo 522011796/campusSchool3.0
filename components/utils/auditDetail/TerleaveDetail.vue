@@ -5,11 +5,11 @@
         <div class="color-success">
           <el-row>
             <el-col :span="12">
-              <span>申请人:</span>
+              <span>{{$t("申请人")}}:</span>
               <span>{{value.apply_user_name}}</span>
             </el-col>
             <el-col :span="12">
-              <span>部门:</span>
+              <span>{{$t("部门")}}:</span>
               <span>{{value.depart_name}}</span>
             </el-col>
           </el-row>
@@ -20,7 +20,7 @@
           <el-col :span="12" class="ellipsis-tag">
             <div>
               <div>
-                <span class="title-class color-disabeld">类型:</span>
+                <span class="title-class color-disabeld">{{$t("类型")}}:</span>
                 <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}">{{value.str1}}</span>
               </div>
             </div>
@@ -28,12 +28,12 @@
           <el-col :span="12" class="ellipsis-tag">
             <div>
               <div>
-                <span class="title-class color-disabeld" style="position: relative; top: 0px">时长:</span>
+                <span class="title-class color-disabeld" style="position: relative; top: 0px">{{$t("时长")}}:</span>
                 <span class="moon-content-text-ellipsis-class">{{value.double1}}天</span>
                 <el-tooltip class="item" effect="dark" placement="top-start">
                   <div slot="content">
                     <div v-if="value.str3" v-for="(item, index) in JSON.parse(value.str3)">
-                      <span>第{{item.section}}节课</span>
+                      <span>{{$t("第")}}{{item.section}}{{$t("节课")}}</span>
                     </div>
                   </div>
                   <i class="el-icon-info"></i>
@@ -46,7 +46,7 @@
           <el-col :span="12" class="ellipsis-tag">
             <div>
               <div>
-                <span class="title-class color-disabeld">开始时间:</span>
+                <span class="title-class color-disabeld">{{$t("开始时间")}}:</span>
                 <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px'}">{{value.date1}}</span>
               </div>
             </div>
@@ -54,7 +54,7 @@
           <el-col :span="12" class="ellipsis-tag">
             <div>
               <div>
-                <span class="title-class color-disabeld">结束时间:</span>
+                <span class="title-class color-disabeld">{{$t("结束时间")}}:</span>
                 <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px'}">{{value.date2}}</span>
               </div>
             </div>
@@ -64,7 +64,7 @@
           <el-col :span="12" class="ellipsis-tag">
             <div>
               <div>
-                <span class="title-class color-disabeld">申请时间:</span>
+                <span class="title-class color-disabeld">{{$t("申请时间")}}:</span>
                 <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px'}">{{value.apply_time}}</span>
               </div>
             </div>
@@ -72,7 +72,7 @@
           <el-col :span="12" class="ellipsis-tag">
             <div>
               <div>
-                <span class="title-class color-disabeld">请假时间:</span>
+                <span class="title-class color-disabeld">{{$t("请假时间")}}:</span>
                 <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px'}">{{value.date2}}</span>
               </div>
             </div>
@@ -84,7 +84,7 @@
           <el-col :span="12" class="ellipsis-tag" v-if="value.apply_file != ''">
             <div>
               <div>
-                <span class="title-class color-disabeld">附件:</span>
+                <span class="title-class color-disabeld">{{$t("附件")}}:</span>
                 <span>
                   <el-image style="width: 20px; height: 20px" :src="value.apply_file"></el-image>
                 </span>
@@ -97,7 +97,7 @@
           <el-col :span="24" class="ellipsis-long-tag">
             <div>
               <div>
-                <span class="title-class color-disabeld">说明:</span>
+                <span class="title-class color-disabeld">{{$t("说明")}}:</span>
                 <el-tooltip class="item" effect="dark" :content="value.des" placement="top">
                   <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','max-width': widthDesStyle - 60 +'px'}">
                     {{value.des}}

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <el-select v-model="value" v-bind="selectModel" :size="size" placeholder="请选择" @change="handleChange">
-      <el-option value="1" label="女"></el-option>
-      <el-option value="0" label="男"></el-option>
-      <el-option value="2" label="未知"></el-option>
+    <el-select v-model="value" v-bind="selectModel" :size="size" :placeholder="$t('请选择')" @change="handleChange">
+      <el-option value="1" :label="$t('女')"></el-option>
+      <el-option value="0" :label="$t('男')"></el-option>
+      <el-option value="2" :label="$t('未知')"></el-option>
     </el-select>
   </div>
 </template>

@@ -3,7 +3,7 @@
     <el-card :body-style="{'padding': '10px'}" :selectModel="selectModel">
       <div slot="header" style="padding: 5px !important;">
         <div class="color-success">
-          <span>申报人:</span>
+          <span>{{$t("申报人")}}:</span>
           <span>{{value.apply_user_name}}</span>
         </div>
       </div>
@@ -11,7 +11,7 @@
         <el-row>
           <el-col :span="24">
             <div>
-              <span class="color-disabeld">学生姓名:</span>
+              <span class="color-disabeld">{{$t("学生姓名")}}:</span>
               <span>{{value.real_name}}</span>
             </div>
           </el-col>
@@ -20,7 +20,7 @@
           <el-col :span="8" class="ellipsis-tag">
             <div>
               <div>
-                <span class="title-class color-disabeld">班级:</span>
+                <span class="title-class color-disabeld">{{$t("班级")}}:</span>
                 <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}">{{value.class_name}}</span>
               </div>
             </div>
@@ -28,7 +28,7 @@
           <el-col :span="8" class="ellipsis-tag">
             <div>
               <div>
-                <span class="title-class color-disabeld">专业:</span>
+                <span class="title-class color-disabeld">{{$t("专业")}}:</span>
                 <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}">{{value.major_name}}</span>
               </div>
             </div>
@@ -36,7 +36,7 @@
           <el-col :span="8" class="ellipsis-tag">
             <div>
               <div>
-                <span class="title-class color-disabeld">院系:</span>
+                <span class="title-class color-disabeld">{{$t("院系")}}:</span>
                 <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}">{{value.college_name}}</span>
               </div>
             </div>
@@ -49,7 +49,7 @@
           <el-col :span="8" class="ellipsis-tag">
             <div>
               <div>
-                <span class="title-class color-disabeld">类型:</span>
+                <span class="title-class color-disabeld">{{$t("类型")}}:</span>
                 <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}">{{value.str1}}</span>
               </div>
             </div>
@@ -57,7 +57,7 @@
           <el-col :span="8" class="ellipsis-tag">
             <div>
               <div>
-                <span class="title-class color-disabeld">项目:</span>
+                <span class="title-class color-disabeld">{{$t("项目")}}:</span>
                 <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}">{{value.str2}}</span>
               </div>
             </div>
@@ -65,7 +65,7 @@
           <el-col :span="8" class="ellipsis-tag" v-if="value.apply_file != ''">
             <div>
               <div>
-                <span class="title-class color-disabeld">附件:</span>
+                <span class="title-class color-disabeld">{{$t("附件")}}:</span>
                 <span>
                   <el-image style="width: 20px; height: 20px" :src="value.apply_file"></el-image>
                 </span>
@@ -77,7 +77,7 @@
           <el-col :span="24" class="ellipsis-long-tag">
             <div>
               <div>
-                <span class="title-class color-disabeld">说明:</span>
+                <span class="title-class color-disabeld">{{$t("说明")}}:</span>
                 <el-tooltip class="item" effect="dark" :content="value.des" placement="top">
                   <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','max-width': widthDesStyle - 60 +'px'}">
                     {{value.des}}

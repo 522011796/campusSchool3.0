@@ -1,7 +1,7 @@
 <template>
   <span>
     <el-input v-model="inputValue" :size="size" :style="widthClass" :placeholder="placeholder" :clearable="clearable">
-      <el-select v-if="showSelect" v-model="selectValue" :style="selectWidthClass" :clearable="clearable" slot="prepend" placeholder="请选择" @change="selectChange">
+      <el-select v-if="showSelect" v-model="selectValue" :style="selectWidthClass" :clearable="clearable" slot="prepend" :placeholder="$t('请选择')" @change="selectChange">
         <el-option
           v-for="item in options"
           :key="item.value"
@@ -13,7 +13,7 @@
     </el-input>
     <el-button :size="size" :type="type" :plain="plain" @click="handleClick">
       <i v-if="showIcon" :class="iconStyle"></i>
-      搜索
+      {{$t("搜索")}}
     </el-button>
   </span>
 </template>

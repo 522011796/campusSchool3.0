@@ -3,7 +3,8 @@
     <el-select
       v-model="value"
       v-bind="selectModel"
-      :placeholder="placeholder"
+      :setPlaceholder="setPlaceholder"
+      :placeholder="selectPlaceholder"
       :size="size"
       :clearable="clearable"
       :disabled="disabled"
@@ -46,7 +47,7 @@
     name: 'mySelect',
     props: {
       placeholder: {
-        default: '请选择',
+        default: '',
         type: String
       },
       selValue: {
@@ -99,16 +100,19 @@
     computed: {
       selectModel(){
         this.value = this.selValue;
+      },
+      setPlaceholder(){
+        this.selectPlaceholder = this.placeholder ? this.placeholder : this.$t("请选择")
       }
     },
     data() {
       return {
+        selectPlaceholder: '',
         value: ''
       }
     },
     methods: {
       handleChange(data) {
-        console.log(33,data);
         this.$emit('change', data);
       }
     }

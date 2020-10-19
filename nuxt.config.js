@@ -22,7 +22,11 @@ export default {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     '@/plugins/element-ui',
-    '@/plugins/axios'
+    '@/plugins/axios',
+    '@/plugins/i18n',
+    '@/plugins/qs',
+    '@/plugins/moment',
+    '@/plugins/echarts',
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -53,5 +57,9 @@ export default {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     transpile: [/^element-ui/],
+    vendor: ['i18n', 'qs', 'axios', 'moment', 'echarts'] //为防止重复打包
+  },
+  router: {
+    middleware: ['i18n']
   }
 }

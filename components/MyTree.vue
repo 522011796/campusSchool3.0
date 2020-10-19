@@ -4,7 +4,7 @@
       <el-input
         v-if="showFilter"
         :size="fliterSize"
-        placeholder="输入关键字进行过滤"
+        :placeholder="$t('输入关键字进行过滤')"
         v-model="filterText">
       </el-input>
     </div>

@@ -53,6 +53,30 @@
   "LazyMyTree": {
     "description": "Auto imported from components/MyTree.vue"
   },
+  "MyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
+  },
+  "LazyMyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
+  },
+  "MyBlockListChildTree": {
+    "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
+  },
+  "LazyMyBlockListChildTree": {
+    "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
+  },
+  "MyBlockListTree": {
+    "description": "Auto imported from components/tree/MyBlockListTree.vue"
+  },
+  "LazyMyBlockListTree": {
+    "description": "Auto imported from components/tree/MyBlockListTree.vue"
+  },
+  "TreeNode": {
+    "description": "Auto imported from components/tree/treeNode.js"
+  },
+  "LazyTreeNode": {
+    "description": "Auto imported from components/tree/treeNode.js"
+  },
   "MySexSelect": {
     "description": "Auto imported from components/utils/MySexSelect.vue"
   },
@@ -88,29 +112,5 @@
   },
   "LazyTerleaveDetail": {
     "description": "Auto imported from components/utils/auditDetail/TerleaveDetail.vue"
-  },
-  "MyInputButton": {
-    "description": "Auto imported from components/search/MyInputButton.vue"
-  },
-  "LazyMyInputButton": {
-    "description": "Auto imported from components/search/MyInputButton.vue"
-  },
-  "MyBlockListChildTree": {
-    "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
-  },
-  "LazyMyBlockListChildTree": {
-    "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
-  },
-  "MyBlockListTree": {
-    "description": "Auto imported from components/tree/MyBlockListTree.vue"
-  },
-  "LazyMyBlockListTree": {
-    "description": "Auto imported from components/tree/MyBlockListTree.vue"
-  },
-  "TreeNode": {
-    "description": "Auto imported from components/tree/treeNode.js"
-  },
-  "LazyTreeNode": {
-    "description": "Auto imported from components/tree/treeNode.js"
   }
 }

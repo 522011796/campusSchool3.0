@@ -17,8 +17,8 @@
             <el-badge :value="item.orderIndex" class="item" type="success"></el-badge>
           </span>
           <div class="text-center" style="position: absolute; left: 8px; top: 25px;">
-            <div class="tag-min-div color-muted" v-if="item.andor == 'or'">或签</div>
-            <div class="tag-min-div color-muted" size="mini" v-if="item.andor == 'and'">与签</div>
+            <div class="tag-min-div color-muted" v-if="item.andor == 'or'">{{$t("或签")}}</div>
+            <div class="tag-min-div color-muted" size="mini" v-if="item.andor == 'and'">{{$t("与签")}}</div>
             <i class="el-icon-bottom color-disabeld"></i>
           </div>
           <el-card :body-style="{'padding': '12px'}" v-for="(itemChild, index) in item.handleUsers" :key="itemChild.id">
@@ -34,7 +34,7 @@
             <div v-if="itemChild.des && itemChild.des != ''" class="color-warning margin-top-10">
               <el-row class="margin-top-10">
                 <el-col :span="4">
-                  <span>审批意见:</span>
+                  <span>{{$t("审批意见")}}:</span>
                 </el-col>
                 <el-col :span="20">
                   <el-tooltip class="item" effect="dark" :content="itemChild.des" placement="top-start" :tabindex="9999">
