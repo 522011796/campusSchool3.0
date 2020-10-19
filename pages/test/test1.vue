@@ -26,13 +26,13 @@
       </div>
       <div>
         <div class="pull-left" style="width: 200px">
-          <my-tree :show-type="1" :show-checkbox="false" :show-child-type="4" @node-click="handleNodeClickExp" @check-change="handleCheckChangeExp"></my-tree>
+          <my-tree :sel-value="dataCollege" :show-type="1" :show-checkbox="false" :show-child-type="4" @node-click="handleNodeClickExp" @check-change="handleCheckChangeExp"></my-tree>
           </div>
         <div class="pull-left" style="width: 200px">
-          <my-tree :show-type="2" :show-checkbox="true" :show-child-type="1" @node-click="handleNodeClickExp" @check-change="handleCheckChangeExp"></my-tree>
+          <my-tree :sel-value="dataSchoolBuild" :show-type="2" :show-checkbox="true" :show-child-type="1" @node-click="handleNodeClickExp" @check-change="handleCheckChangeExp"></my-tree>
         </div>
         <div class="pull-left" style="width: 200px">
-          <my-tree :show-type="3" :show-checkbox="true" :show-child-type="4" @node-click="handleNodeClickExp" @check-change="handleCheckChangeExp"></my-tree>
+          <my-tree :sel-value="dataDormBuild" :show-type="3" :show-checkbox="true" :show-child-type="4" @node-click="handleNodeClickExp" @check-change="handleCheckChangeExp"></my-tree>
         </div>
         <div class="moon-clearfix"></div>
       </div>
@@ -109,83 +109,6 @@
             return time.getTime() < new Date(2020, 9, 1) || time.getTime() > new Date(2020, 10, 10);
           }
         },
-        dataCollege: [{
-          label: '学院11234124124',
-          id: '1',
-          show: false,
-          children: [{
-            label: '专业',
-            id: '11',
-            unit: 1,
-            show: false,
-            children: [{
-              label: '一年级',
-              id: '12',
-              unit: 2,
-              show: false,
-              children: [{
-                label: '班级1',
-                id: '13',
-                unit: 3,
-                show: false,
-              },{
-                label: '班级2',
-                id: '14',
-                unit: 3,
-                show: false,
-                disabled: true,
-                children: [{
-                  label: '1001',
-                  id: '15',
-                  unit: 3,
-                },{
-                  label: '1002',
-                  id: '16',
-                  unit: 3,
-                  disabled: true
-                }]
-              }]
-            },{
-              label: '二年级',
-              id: '15',
-              unit: 2,
-              show: false,
-            }]
-          }]
-        },{
-          label: '学院2',
-          id: '2',
-          show: false,
-          children: [{
-            label: '专业2',
-            id: '21',
-            unit: 1,
-            show: false,
-            children: [{
-              label: '一年级',
-              id: '22',
-              unit: 2,
-              show: false,
-              children: [{
-                label: '班级1',
-                id: '23',
-                unit: 3,
-                show: false,
-              },{
-                label: '班级2',
-                id: '24',
-                unit: 3,
-                disabled: true,
-                show: false,
-              }]
-            },{
-              label: '二年级',
-              id: '25',
-              unit: 2,
-              show: false,
-            }]
-          }]
-        }],
         dataAudit: {
           "cancel": true,
           "handle_time": null,
@@ -445,6 +368,7 @@
     },
     created() {
       this.init();
+      this.initInfo();
       if (this.group){
         this.getSelectGroup();
       }
@@ -456,6 +380,11 @@
     methods: {
       init(){
         this.total = 500;
+      },
+      async initInfo(){
+        await this.getCollegeInfo();
+        await this.getSchoolBuildInfo();
+        await this.getDormBuildInfo();
       },
       handleCurrentChangeExp(data){
         this.page = data;

@@ -7,7 +7,17 @@ export default {
       //公共属性
       total: global.total,
       page: global.page,
-      num: global.num
+      num: global.num,
+      collegeId: global.collegeId,
+      collegeName: global.collegeName,
+      majorId: global.majorId,
+      majorName: global.majorName,
+      classId: global.classId,
+      className: global.className,
+      gradeId: global.gradeId,
+      dataCollege: global.dataCollegeList,
+      dataSchoolBuild: global.dataSchoolBuildList,
+      dataDormBuild: global.dataDormBuildList
     }
   },
   created() {
@@ -27,13 +37,241 @@ export default {
      * 采用同步执行，为了在需要使用的时候，可以先执行完成后再执行下一步操作
      * @returns {Promise<void>}
      */
-    async getSessionInfo(){
+    async getSessionInfo() {
       let params = {
         keys:'campusId,userType,campusType,userId,username,campusName,campusLogo,realName,externalSystemName,externalSystem,termId,externalSystemName,externalSystem'
       };
       await this.$axios.get('/proxy/user/user/getSess', {params: params}).then(res => {
         console.log(1);
         this.testDefault = 1234;
+      });
+    },
+    /**
+     * 获取学院的list信息
+     * 主要用于树形菜单，下来菜单等
+     * @returns {Promise<void>}
+     */
+    async getCollegeInfo() {
+      await this.$axios.get('/proxy/user/user/getSess').then(res => {
+        this.dataCollege = [{
+          label: '学院11234124124',
+          id: '1',
+          show: false,
+          children: [{
+            label: '专业',
+            id: '11',
+            unit: 1,
+            show: false,
+            children: [{
+              label: '一年级',
+              id: '12',
+              unit: 2,
+              show: false,
+              children: [{
+                label: '班级1',
+                id: '13',
+                unit: 3,
+                show: false,
+              },{
+                label: '班级2',
+                id: '14',
+                unit: 3,
+                show: false,
+                disabled: true,
+                children: [{
+                  label: '1001',
+                  id: '15',
+                  unit: 3,
+                },{
+                  label: '1002',
+                  id: '16',
+                  unit: 3,
+                  disabled: true
+                }]
+              }]
+            },{
+              label: '二年级',
+              id: '15',
+              unit: 2,
+              show: false,
+            }]
+          }]
+        },{
+          label: '学院2',
+          id: '2',
+          show: false,
+          children: [{
+            label: '专业2',
+            id: '21',
+            unit: 1,
+            show: false,
+            children: [{
+              label: '一年级',
+              id: '22',
+              unit: 2,
+              show: false,
+              children: [{
+                label: '班级1',
+                id: '23',
+                unit: 3,
+                show: false,
+              },{
+                label: '班级2',
+                id: '24',
+                unit: 3,
+                disabled: true,
+                show: false,
+              }]
+            },{
+              label: '二年级',
+              id: '25',
+              unit: 2,
+              show: false,
+            }]
+          }]
+        }];
+      });
+    },
+    /**
+     * 获取宿舍楼的list信息
+     * 主要用于树形菜单，下来菜单等
+     * @returns {Promise<void>}
+     */
+    async getDormBuildInfo() {
+      await this.$axios.get('/proxy/user/user/getSess').then(res => {
+        this.dataDormBuild = [{
+          label: '宿舍楼1',
+          id: '1',
+          children: [{
+            label: '楼1',
+            id: '2',
+            unit: 1,
+            children: [{
+              label: '1层',
+              id: '3',
+              unit: 2,
+              children: [{
+                label: '1001',
+                id: 4,
+                unit: 3
+              },{
+                label: '1002',
+                id: 5,
+                unit: 3
+              }]
+            },{
+              label: '2层',
+              id: '6',
+              unit: 2,
+              children: [{
+                label: '2001',
+                id: 7,
+                unit: 3
+              },{
+                label: '2002',
+                id: 8,
+                unit: 3
+              }]
+            }]
+          }]
+        },{
+          label: '宿舍楼2',
+          id: '11',
+          children: [{
+            label: '楼1',
+            id: '12',
+            unit: 1,
+            children: [{
+              label: '1层',
+              id: '13',
+              unit: 2,
+              children: [{
+                label: '1001',
+                id: 14,
+                unit: 3
+              },{
+                label: '1002',
+                id: 15,
+                unit: 3
+              }]
+            },{
+              label: '2层',
+              id: '16',
+              unit: 2,
+              children: [{
+                label: '2001',
+                id: 17,
+                unit: 3
+              },{
+                label: '2002',
+                id: 18,
+                unit: 3
+              }]
+            }]
+          }]
+        }];
+      });
+    },
+    /**
+     * 获取教学楼的list信息
+     * 主要用于树形菜单，下来菜单等
+     * @returns {Promise<void>}
+     */
+    async getSchoolBuildInfo() {
+      await this.$axios.get('/proxy/user/user/getSess').then(res => {
+        this.dataSchoolBuild = [{
+          label: '教学楼1',
+          id: '1',
+          children: [{
+            label: '楼1',
+            id: '11',
+            unit: 1,
+            children: [{
+              label: '1层',
+              id: '1',
+              unit: 2,
+              children: [{
+                label: '2001',
+                id: 17,
+                unit: 3
+              },{
+                label: '2002',
+                id: 18,
+                unit: 3
+              }]
+            },{
+              label: '2层',
+              id: '2',
+              unit: 2,
+            }]
+          }]
+        },{
+          label: '教学楼2',
+          id: '1',
+          children: [{
+            label: '楼1',
+            id: '11',
+            unit: 1,
+            children: [{
+              label: '1层',
+              id: '1',
+              unit: 2,
+            },{
+              label: '2层',
+              id: '2',
+              unit: 2,
+              children: [{
+                label: '2001',
+                id: 17,
+                unit: 3
+              },{
+                label: '2002',
+                id: 18,
+                unit: 3
+              }]
+            }]
+          }]
+        }];
       });
     }
   }

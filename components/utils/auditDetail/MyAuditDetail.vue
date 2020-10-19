@@ -21,7 +21,7 @@
             <div class="tag-min-div color-muted" size="mini" v-if="item.andor == 'and'">与签</div>
             <i class="el-icon-bottom color-disabeld"></i>
           </div>
-          <el-card v-for="(itemChild, index) in item.handleUsers" :key="itemChild.id">
+          <el-card :body-style="{'padding': '12px'}" v-for="(itemChild, index) in item.handleUsers" :key="itemChild.id">
             <div :class="auditColor(itemChild.status)">
               <span>{{item.handleTypeName}}</span>
               <el-divider direction="vertical"></el-divider>
