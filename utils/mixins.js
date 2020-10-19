@@ -1,4 +1,6 @@
 import global from "~/utils/global";
+import {common} from "~/utils/api/url";
+
 export default {
   data (){
     return {
@@ -47,7 +49,7 @@ export default {
       let params = {
         keys:'campusId,userType,campusType,userId,username,campusName,campusLogo,realName,externalSystemName,externalSystem,termId,externalSystemName,externalSystem'
       };
-      await this.$axios.get('/proxy/user/user/getSess', {params: params}).then(res => {
+      await this.$axios.get(common.session_url, {params: params}).then(res => {
         console.log(1);
         this.testDefault = 1234;
       });
@@ -57,7 +59,7 @@ export default {
      * 当前年、月、日、学期、学周等信息
      */
     async getCurrentDateInfo(){
-      await this.$axios.get('/proxy/user/user/getSess').then(res => {
+      await this.$axios.get(common.session_url).then(res => {
         console.log(3);
       });
     },
@@ -67,7 +69,7 @@ export default {
      * @returns {Promise<void>}
      */
     async getCollegeInfo() {
-      await this.$axios.get('/proxy/user/user/getSess').then(res => {
+      await this.$axios.get(common.session_url).then(res => {
         this.dataCollege = [{
           label: '学院11234124124',
           id: '1',
@@ -153,7 +155,7 @@ export default {
      * @returns {Promise<void>}
      */
     async getDormBuildInfo() {
-      await this.$axios.get('/proxy/user/user/getSess').then(res => {
+      await this.$axios.get(common.session_url).then(res => {
         this.dataDormBuild = [{
           label: '宿舍楼1',
           id: '1',
@@ -233,7 +235,7 @@ export default {
      * @returns {Promise<void>}
      */
     async getSchoolBuildInfo() {
-      await this.$axios.get('/proxy/user/user/getSess').then(res => {
+      await this.$axios.get(common.session_url).then(res => {
         this.dataSchoolBuild = [{
           label: '教学楼1',
           id: '1',
@@ -295,7 +297,7 @@ export default {
      * @returns {Promise<void>}
      */
     async getDeptInfo() {
-      await this.$axios.get('/proxy/user/user/getSess').then(res => {
+      await this.$axios.get(common.session_url).then(res => {
         this.dataDept = [{
           label: '部门1',
           id: '1',
