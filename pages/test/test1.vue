@@ -25,14 +25,17 @@
         </div>
       </div>
       <div>
-        <div class="pull-left" style="width: 200px">
-          <my-tree :sel-value="dataCollege" :show-type="1" :show-checkbox="false" :show-child-type="4" @node-click="handleNodeClickExp" @check-change="handleCheckChangeExp"></my-tree>
-          </div>
-        <div class="pull-left" style="width: 200px">
-          <my-tree :sel-value="dataSchoolBuild" :show-type="2" :show-checkbox="true" :show-child-type="1" @node-click="handleNodeClickExp" @check-change="handleCheckChangeExp"></my-tree>
+        <div class="pull-left" style="width: 150px">
+          <my-tree :sel-value="dataCollege" :show-type="1" :show-checkbox="false" :show-child-type="1" @node-click="handleNodeClickExp" @check-change="handleCheckChangeExp"></my-tree>
         </div>
-        <div class="pull-left" style="width: 200px">
-          <my-tree :sel-value="dataDormBuild" :show-type="3" :show-checkbox="true" :show-child-type="4" @node-click="handleNodeClickExp" @check-change="handleCheckChangeExp"></my-tree>
+        <div class="pull-left" style="width: 150px">
+          <my-tree :sel-value="dataSchoolBuild" :show-type="2" :show-checkbox="true" :show-child-type="2" @node-click="handleNodeClickExp" @check-change="handleCheckChangeExp"></my-tree>
+        </div>
+        <div class="pull-left" style="width: 150px">
+          <my-tree :sel-value="dataDormBuild" :show-type="3" :show-checkbox="true" :show-child-type="3" @node-click="handleNodeClickExp" @check-change="handleCheckChangeExp"></my-tree>
+        </div>
+        <div class="pull-left" style="width: 150px">
+          <my-tree :sel-value="dataDept" :show-type="3" :show-checkbox="true" @node-click="handleNodeClickExp" @check-change="handleCheckChangeExp"></my-tree>
         </div>
         <div class="moon-clearfix"></div>
       </div>
@@ -385,6 +388,7 @@
         await this.getCollegeInfo();
         await this.getSchoolBuildInfo();
         await this.getDormBuildInfo();
+        await this.getDeptInfo();
       },
       handleCurrentChangeExp(data){
         this.page = data;

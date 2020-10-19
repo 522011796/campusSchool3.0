@@ -17,7 +17,8 @@ export default {
       gradeId: global.gradeId,
       dataCollege: global.dataCollegeList,
       dataSchoolBuild: global.dataSchoolBuildList,
-      dataDormBuild: global.dataDormBuildList
+      dataDormBuild: global.dataDormBuildList,
+      dataDept: global.dataDeptList
     }
   },
   created() {
@@ -264,6 +265,77 @@ export default {
                 label: '2001',
                 id: 17,
                 unit: 3
+              },{
+                label: '2002',
+                id: 18,
+                unit: 3
+              }]
+            }]
+          }]
+        }];
+      });
+    },
+    /**
+     * 获取部门的list信息
+     * 主要用于树形菜单，下来菜单等
+     * @returns {Promise<void>}
+     */
+    async getDeptInfo() {
+      await this.$axios.get('/proxy/user/user/getSess').then(res => {
+        this.dataDept = [{
+          label: '部门1',
+          id: '1',
+          children: [{
+            label: '楼1',
+            id: '11',
+            unit: 1,
+            children: [{
+              label: '1层',
+              id: '1',
+              unit: 2,
+              children: [{
+                label: '2001',
+                id: 17,
+                unit: 3
+              },{
+                label: '2002',
+                id: 18,
+                unit: 3
+              }]
+            },{
+              label: '2层',
+              id: '2',
+              unit: 2,
+            }]
+          }]
+        },{
+          label: '部门2',
+          id: '1',
+          children: [{
+            label: '楼1',
+            id: '11',
+            unit: 1,
+            children: [{
+              label: '1层',
+              id: '1',
+              unit: 2,
+            },{
+              label: '2层',
+              id: '2',
+              unit: 2,
+              children: [{
+                label: '2001',
+                id: 17,
+                unit: 3,
+                children: [{
+                  label: '2001',
+                  id: 19,
+                  unit: 3
+                },{
+                  label: '2002',
+                  id: 20,
+                  unit: 3
+                }]
               },{
                 label: '2002',
                 id: 18,

@@ -78,6 +78,8 @@
     computed: {
       selectModel(){
         this.data = this.selValue;
+        let dataArr = [];
+        this.data = this.setChildData(this.data, dataArr);
       }
     },
     data() {
@@ -91,19 +93,19 @@
       }
     },
     created() {
-      if (this.showType == '1'){
+      /*if (this.showType == '1'){
         this.getCollegeData();
       }else if (this.showType == '2'){
         this.getClassBuildData();
       }else if (this.showType == '3'){
         this.getDormBuildData();
-      }
+      }*/
+      //this.getCollegeData();
     },
     methods: {
       getCollegeData(){
-        let dataArr = [];
-        this.data = this.setChildData(this.data, dataArr);
-      },
+
+      }/*,
       getClassBuildData(){
         let dataArr = [];
         this.data = this.setChildData(this.data, dataArr);
@@ -111,7 +113,7 @@
       getDormBuildData(){
         let dataArr = [];
         this.data = this.setChildData(this.data, dataArr);
-      },
+      }*/,
       setChildData(data, dataArr){
         data.map((item, index) => {
           if (this.showChildType == "1"){

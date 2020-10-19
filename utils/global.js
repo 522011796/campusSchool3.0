@@ -11,6 +11,7 @@ const gradeId = "";
 const dataCollegeList= [];
 const dataSchoolBuildList = [];
 const dataDormBuildList = [];
+const dataDeptList = [];
 
 export default {
   total,
@@ -25,5 +26,6 @@ export default {
   gradeId,
   dataCollegeList: [],
   dataSchoolBuildList: [],
-  dataDormBuildList: []
+  dataDormBuildList: [],
+  dataDeptList: []
 }
