@@ -12,6 +12,9 @@
           <i class="fa fa-info-circle" style="font-size: 18px"></i>
           {{content}}
         </div>
+        <div class="color-muted font-size-12">
+          {{detail}}
+        </div>
       </div>
       <div slot="footer">
         <div style="height: 1px; background: #EBEEF5;margin: 0px 0px"></div>
@@ -47,6 +50,10 @@
         default: ''
       },
       content: {
+        type: String,
+        default: ''
+      },
+      detail: {
         type: String,
         default: ''
       },
