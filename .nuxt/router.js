@@ -3,6 +3,10 @@ import Router from 'vue-router'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
+const _72ad03bc = () => interopDefault(import('../pages/basicInfo/buildSet.vue' /* webpackChunkName: "pages/basicInfo/buildSet" */))
+const _12957bd5 = () => interopDefault(import('../pages/basicInfo/classRoom.vue' /* webpackChunkName: "pages/basicInfo/classRoom" */))
+const _53492cf8 = () => interopDefault(import('../pages/basicInfo/role.vue' /* webpackChunkName: "pages/basicInfo/role" */))
+const _6324ad48 = () => interopDefault(import('../pages/basicInfo/yearAndTerm.vue' /* webpackChunkName: "pages/basicInfo/yearAndTerm" */))
 const _cbf69006 = () => interopDefault(import('../pages/test/test1.vue' /* webpackChunkName: "pages/test/test1" */))
 const _cbda6104 = () => interopDefault(import('../pages/test/test2.vue' /* webpackChunkName: "pages/test/test2" */))
 const _cbbe3202 = () => interopDefault(import('../pages/test/test3.vue' /* webpackChunkName: "pages/test/test3" */))
@@ -26,6 +30,22 @@ export const routerOptions = {
   scrollBehavior,
 
   routes: [{
+    path: "/basicInfo/buildSet",
+    component: _72ad03bc,
+    name: "basicInfo-buildSet"
+  }, {
+    path: "/basicInfo/classRoom",
+    component: _12957bd5,
+    name: "basicInfo-classRoom"
+  }, {
+    path: "/basicInfo/role",
+    component: _53492cf8,
+    name: "basicInfo-role"
+  }, {
+    path: "/basicInfo/yearAndTerm",
+    component: _6324ad48,
+    name: "basicInfo-yearAndTerm"
+  }, {
     path: "/test/test1",
     component: _cbf69006,
     name: "test-test1"

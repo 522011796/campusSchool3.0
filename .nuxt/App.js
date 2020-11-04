@@ -12,8 +12,9 @@ import '../assets/css/common.css'
 import '../assets/font-awesome-4.7.0/css/font-awesome.min.css'
 
 import _6f6c098b from '../layouts/default.vue'
+import _4d6b8a81 from '../layouts/defaultBak.vue'
 
-const layouts = { "_default": sanitizeComponent(_6f6c098b) }
+const layouts = { "_default": sanitizeComponent(_6f6c098b),"_defaultBak": sanitizeComponent(_4d6b8a81) }
 
 export default {
   render (h, props) {

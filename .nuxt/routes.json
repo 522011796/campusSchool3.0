@@ -1,5 +1,33 @@
 [
   {
+    "name": "basicInfo-buildSet",
+    "path": "/basicInfo/buildSet",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/basicInfo/buildSet.vue",
+    "chunkName": "pages/basicInfo/buildSet",
+    "_name": "_72ad03bc"
+  },
+  {
+    "name": "basicInfo-classRoom",
+    "path": "/basicInfo/classRoom",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/basicInfo/classRoom.vue",
+    "chunkName": "pages/basicInfo/classRoom",
+    "_name": "_12957bd5"
+  },
+  {
+    "name": "basicInfo-role",
+    "path": "/basicInfo/role",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/basicInfo/role.vue",
+    "chunkName": "pages/basicInfo/role",
+    "_name": "_53492cf8"
+  },
+  {
+    "name": "basicInfo-yearAndTerm",
+    "path": "/basicInfo/yearAndTerm",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/basicInfo/yearAndTerm.vue",
+    "chunkName": "pages/basicInfo/yearAndTerm",
+    "_name": "_6324ad48"
+  },
+  {
     "name": "test-test1",
     "path": "/test/test1",
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/test/test1.vue",

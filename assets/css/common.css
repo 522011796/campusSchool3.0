@@ -28,6 +28,8 @@ p{
   border-bottom: 1px solid #dcdee2;
   box-shadow: 0 4px 4px rgba(0,21,41,.08);
   transition: all .2s ease-in-out;
+  background: rgb(160, 207, 255);
+  background-image: linear-gradient(to right, rgb(179, 216, 255) , rgb(160, 207, 255));
 }
 .moon-left-menu{
   border-right: 1px solid #dcdee2;
@@ -35,6 +37,11 @@ p{
   float: left;
   box-shadow: 1px 0px 4px rgba(0,21,41,.08);
   position: relative;
+  background: rgb(160, 207, 255);
+  background-image: linear-gradient(to bottom, rgb(179, 216, 255) , rgb(160, 207, 255));
+  padding: 10px 10px;
+  position: relative;
+  transition: all .2s ease-in-out;
 }
 /*.moon-left-menu:not(.el-menu--collapse) {
   width: 200px;
@@ -48,20 +55,19 @@ p{
 .moon-top-logo{
   width: 200px;
   height: 100%;
-  background: #dddddd;
   position: relative;
+  text-align: center;
 }
 .moon-top-middle-menu{
-  margin: 0px 200px;
+  margin: 0px 150px 0px 200px;
   height: 100%;
-  text-align: center;
+  text-align: left;
 }
 .moon-top-right{
   height: 100%;
-  width: 200px;
+  width: 150px;
   position: relative;
   text-align: right;
-  background: #dddddd;
 }
 .moon-right-item-menu{
   height: 40px;
@@ -102,6 +108,15 @@ p{
 }
 .font-size-17{
   font-size: 17px;
+}
+.font-size-18{
+  font-size: 18px;
+}
+.font-size-19{
+  font-size: 19px;
+}
+.font-size-20{
+  font-size: 20px;
 }
 .color-grand{
   color: #409EFF;
@@ -241,6 +256,18 @@ p{
   box-shadow: 0 1px 3px rgba(0,0,0,.3);
   box-sizing: border-box;
   width: 300px;
+}
+ul{
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+.custom-drawer{
+  background: rgba(233, 233, 235, 0.95);
+  margin-top: 60px;
+}
+.el-drawer:focus {
+  outline: none;
 }
 /***自定义radio组件颜色***/
 /*.el-radio__input.is-checked + .el-radio__label {

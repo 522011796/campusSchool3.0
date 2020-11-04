@@ -1,10 +1,6 @@
 [
   {
-    "name": "菜单1",
-    "key": "topMenu1"
-  },
-  {
-    "name": "菜单2",
-    "key": "topMenu2"
+    "name": "基础信息",
+    "key": "basicInfo"
   }
 ]

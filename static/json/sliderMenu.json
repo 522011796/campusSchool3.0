@@ -1,41 +1,84 @@
 [
   {
-    "key": "topMenu1",
+    "key": "basicInfo",
+    "name": "基础信息",
+    "id": 1,
     "list": [
       {
-        "name": "menu1",
-        "key": "menu1",
+        "name": "基础",
+        "icon": "fa fa-info-o",
+        "toggle": false,
+        "id": 11,
+        "key": "basic",
         "list": [
           {
-            "name": "test1",
-            "top": "topMenu1",
-            "key": "test1",
-            "path": "/test/test1"
+            "name": "学年学期",
+            "key": "yearAndTerm",
+            "id": 110,
+            "top": "basicInfo",
+            "path": "/basicInfo/yearAndTerm"
           },
           {
-            "name": "test2",
-            "top": "topMenu1",
-            "key": "test2",
-            "path": "/test/test2"
+            "name": "角色管理",
+            "key": "role",
+            "id": 111,
+            "top": "basicInfo",
+            "path": "/basicInfo/role"
+          }
+        ]
+      },
+      {
+        "name": "组织",
+        "icon": "fa fa-cube",
+        "toggle": false,
+        "id": 12,
+        "key": "basicGroup",
+        "list": [
+          {
+            "name": "教室管理",
+            "key": "classRoom",
+            "id": 121,
+            "top": "basicInfo",
+            "path": "/basicInfo/classRoom"
+          },
+          {
+            "name": "教学楼设置",
+            "key": "buildSet",
+            "id": 122,
+            "top": "basicInfo",
+            "path": "/basicInfo/buildSet"
           }
         ]
       }
     ]
   },
   {
-    "key": "topMenu2",
+    "key": "test",
+    "name": "test",
+    "id": 1,
     "list": [
       {
-        "name": "menu3",
-        "top": "topMenu2",
-        "key": "menu3",
-        "path": "/test/test3"
-      },
-      {
-        "name": "menu4",
-        "top": "topMenu2",
-        "key": "menu4",
-        "path": "/test/test4"
+        "name": "test",
+        "icon": "fa fa-info-o",
+        "toggle": false,
+        "id": 11,
+        "key": "basic",
+        "list": [
+          {
+            "name": "test1",
+            "key": "test1",
+            "id": 110,
+            "top": "test",
+            "path": "/test/test1"
+          },
+          {
+            "name": "tes2",
+            "key": "tes2",
+            "id": 111,
+            "top": "test",
+            "path": "/test/test2"
+          }
+        ]
       }
     ]
   }
