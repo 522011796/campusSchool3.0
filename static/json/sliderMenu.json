@@ -6,7 +6,7 @@
     "list": [
       {
         "name": "基础",
-        "icon": "fa fa-info-o",
+        "icon": "fa fa-info-circle",
         "toggle": false,
         "id": 11,
         "key": "basic",

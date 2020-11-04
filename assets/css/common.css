@@ -43,6 +43,11 @@ p{
   position: relative;
   transition: all .2s ease-in-out;
 }
+.custom-popover{
+  background: rgb(160, 207, 255);
+  background-image: linear-gradient(to bottom, rgb(179, 216, 255) , rgb(160, 207, 255));
+  padding: 5px 0px;
+}
 /*.moon-left-menu:not(.el-menu--collapse) {
   width: 200px;
 }*/

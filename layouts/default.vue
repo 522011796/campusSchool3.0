@@ -159,7 +159,7 @@
             <el-row @click.native="toggleMenu($event, item)">
               <el-col :span="22">
               <span class="title">
-                <i class="fa fa-info-circle"></i>
+                <i :class="item.icon"></i>
                 {{item.name}}
               </span>
               </el-col>
@@ -185,6 +185,48 @@
       <div class="moon-right-menu" :style="rightWidth">
         <div class="moon-right-item-menu">
           <!--<el-tag closable size="medium" color="#ffffff" v-for="n in 6" :key="n" class="margin-right-5">{{n}}</el-tag>-->
+          <el-popover
+            v-if="!isCollapse"
+            placement="bottom-start"
+            popper-class="custom-popover"
+            width="240"
+            :visible-arrow="false"
+            trigger="click">
+
+            <div class="moon-right-pop-menu" :style="popMenuHeight">
+              <div class="moon-left-menu-item" v-for="(item, index) in sliderMenuList" :key="item.id">
+                <div>
+                  <el-row @click.native="toggleMenu($event, item)">
+                    <el-col :span="22">
+                      <span class="title">
+                        <i :class="item.icon"></i>
+                        {{item.name}}
+                      </span>
+                    </el-col>
+                    <el-col :span="2">
+                      <div class="icon">
+                        <i class="fa fa-angle-double-down" :class="item.toggle ? 'icon-class-up' : 'icon-class-down'"></i>
+                      </div>
+                    </el-col>
+                  </el-row>
+                </div>
+                <el-collapse-transition>
+                  <div class="moon-left-menu-sub-item" v-show="item.toggle">
+                    <ul>
+                      <li style="padding-left: 20px" :class="activeSliderIndex == itemChild.key ? 'moon-left-menu-sub-item-active' : ''" v-for="(itemChild, indexChild) in item.list" :key="itemChild.id" @click="routerUrl($event, itemChild, item)">
+                        <span>{{itemChild.name}}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </el-collapse-transition>
+              </div>
+            </div>
+
+            <span slot="reference" class="moon-menu-tab">
+              <i class="fa fa-indent"></i>
+              <label>{{$t("菜单列表")}}</label>
+            </span>
+          </el-popover>
         </div>
         <div class="moon-right-content" :style="rightHeight">
           <Nuxt />
@@ -232,6 +274,10 @@
           'height': '',
           'overflow-y': 'auto'
         },
+        popMenuHeight: {
+          'height': '',
+          'overflow-y': 'auto'
+        },
         toggleTag: {
 
         }
@@ -261,6 +307,7 @@
           this.leftHeight.height = window.innerHeight - 60 + 'px';
           this.rightHeight.height = window.innerHeight - 60 - 40 + 'px';
           this.drawerHeight.height = window.innerHeight - 60 - 120 + 'px';
+          this.popMenuHeight.height = window.innerHeight - 60 - 100 + 'px';
         }
       },
       async init() {
@@ -603,5 +650,24 @@
 .moon-left-menu-tag_indicator:hover{
   background: rgb(160, 207, 255);
   color: #FFFFFF;
+}
+.moon-menu-tab{
+  border-radius: 2px;
+  border: 1px solid #DCDFE6;
+  font-size: 12px;
+  padding: 5px 10px;
+}
+.moon-menu-tab:hover{
+  color: #FFFFFF;
+  background: rgb(160, 207, 255);
+  border: 1px solid rgb(160, 207, 255);
+}
+.moon-right-pop-menu{
+  overflow-y: auto;
+  position: relative;
+  background: rgb(160, 207, 255);
+  background-image: linear-gradient(to bottom, rgb(179, 216, 255) , rgb(160, 207, 255));
+  padding: 10px 10px;
+  position: relative;
 }
 </style>
