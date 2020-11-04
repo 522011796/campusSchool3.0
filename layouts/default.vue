@@ -22,7 +22,7 @@
       <div class="moon-top-middle-menu">
         <div class="moon-top-middle-menu-title">
           <span class="moon-top-middle-menu-item">
-            <i class="item fa fa-th" style="font-size: 18px"></i>
+            <i class="item fa fa-th" style="font-size: 18px" @click="showMenuList($event)"></i>
           </span>
 
           <span class="moon-top-middle-menu-item-text" v-for="(item, index) in topMenuList" :key="index" @click="handleTopSelect($event, item)">
@@ -142,6 +142,51 @@
           </div>
         </div>
       </el-drawer>
+
+      <!--菜单列表-->
+      <el-drawer
+        :visible.sync="drawerMenu"
+        :direction="direction"
+        custom-class="custom-drawer"
+        :before-close="handleClose"
+        size="80%"
+        :with-header="false"
+        :modal="false"
+        :close-on-press-escape="false"
+        :wrapperClosable="true">
+
+        <div class="drawer-main-menu">
+          <i class="fa fa-close drawer-menu-close" @click="closeDrawer"></i>
+          <div class="drawer-main-menu-left text-center" :style="drawerMenuHeight">
+            <div class="drawer-main-menu-left-container">
+              <div class="drawer-main-menu-left-container-item drawer-main-menu-left-container-item-active" v-for="(item, index) in topMenuList" :key="index">
+                <i :class="item.icon"></i>
+                <span>{{item.name}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="drawer-main-menu-right" :style="drawerMenuHeight">
+            <div class="drawer-main-menu-right-container">
+              <div class="drawer-main-menu-right-container-item" v-for="(item, index) in sliderMenuList" :key="item.id">
+                <div class="drawer-main-menu-right-container-item-title">
+                  <i :class="item.icon"></i>
+                  <span>{{item.name}}</span>
+                </div>
+                <div class="drawer-main-menu-right-container-item-list">
+                  <div class="drawer-main-menu-right-container-item-list-item" v-for="(itemChild, indexChild) in item.list" :key="itemChild.id">
+                    <span>{{itemChild.name}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="moon-clearfix"></div>
+            </div>
+          </div>
+          <div class="moon-clearfix"></div>
+          <!--<div class="drawer-item" :style="drawerHeight">
+
+          </div>-->
+        </div>
+      </el-drawer>
     </div>
 
     <div style="position: relative">
@@ -249,6 +294,7 @@
         isCollapse: true,
         drawer: false,
         drawerAudit: false,
+        drawerMenu: false,
         direction: 'ttb',
         screenWidth: 0,
         activeIndex: '1',
@@ -271,6 +317,10 @@
           'marginLeft': '220px'
         },
         drawerHeight: {
+          'height': '',
+          'overflow-y': 'auto'
+        },
+        drawerMenuHeight: {
           'height': '',
           'overflow-y': 'auto'
         },
@@ -307,6 +357,7 @@
           this.leftHeight.height = window.innerHeight - 60 + 'px';
           this.rightHeight.height = window.innerHeight - 60 - 40 + 'px';
           this.drawerHeight.height = window.innerHeight - 60 - 120 + 'px';
+          this.drawerMenuHeight.height = window.innerHeight - 60 + 'px';
           this.popMenuHeight.height = window.innerHeight - 60 - 100 + 'px';
         }
       },
@@ -377,6 +428,9 @@
       showAuditMsg(){
         this.drawerAudit = true;
       },
+      showMenuList(){
+        this.drawerMenu = true;
+      },
       handleClose(done) {
         done();
       },
@@ -386,6 +440,7 @@
       closeDrawer(){
         this.drawer = false;
         this.drawerAudit = false;
+        this.drawerMenu = false;
       },
       toggleLeftMenu(event){
         this.isCollapse = false;
@@ -558,6 +613,10 @@
   margin: 0px 300px;
   position: relative;
 }
+.drawer-main-menu{
+  margin: 0px 0px;
+  position: relative;
+}
 .drawer-title, .drawer-audit-title{
   position: relative;
   display: inline-block;
@@ -598,6 +657,14 @@
   top: 10px;
   font-size: 20px;
   color: #999999;
+}
+.drawer-menu-close{
+  position: absolute;
+  right: 30px;
+  top: 10px;
+  font-size: 25px;
+  color: #999999;
+  z-index: 9999;
 }
 .moon-left-menu-tag{
   position: absolute;
@@ -669,5 +736,53 @@
   background-image: linear-gradient(to bottom, rgb(179, 216, 255) , rgb(160, 207, 255));
   padding: 10px 10px;
   position: relative;
+}
+.drawer-main-menu-left{
+  width: 220px;
+  position: relative;
+  float: left;
+  background: #dddddd;
+}
+.drawer-main-menu-right{
+  margin-left: 220px;
+  position: relative;
+  padding:0px 50px;
+}
+.drawer-main-menu-left-container{
+  margin-top: 30px;
+}
+.drawer-main-menu-left-container-item{
+  padding: 8px 0px;
+  margin-top: 5px;
+  cursor: default;
+  position: relative;
+}
+.drawer-main-menu-right-container{
+  margin-top: 40px;
+}
+.drawer-main-menu-right-container-item{
+  float: left;
+  margin-right: 50px;
+}
+.drawer-main-menu-right-container-item-title{
+  color: #E6A23C;
+  font-weight: bold;
+}
+.drawer-main-menu-right-container-item-list{
+  margin-top: 10px;
+}
+.drawer-main-menu-right-container-item-list-item{
+  padding: 5px 0px;
+  cursor: default;
+}
+.drawer-main-menu-left-container-item-active:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 40px);
+  width: 80px;
+  height: 3px;
+  background: #409eff;
 }
 </style>
