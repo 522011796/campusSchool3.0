@@ -732,8 +732,8 @@
 .moon-right-pop-menu{
   overflow-y: auto;
   position: relative;
-  background: rgb(160, 207, 255);
-  background-image: linear-gradient(to bottom, rgb(179, 216, 255) , rgb(160, 207, 255));
+  background: rgb(140, 197, 255);
+  background-image: linear-gradient(to bottom, rgb(179, 216, 255) , rgb(140, 197, 255));
   padding: 10px 10px;
   position: relative;
 }
@@ -741,7 +741,7 @@
   width: 220px;
   position: relative;
   float: left;
-  background: #dddddd;
+  background: #e5e5e5;
 }
 .drawer-main-menu-right{
   margin-left: 220px;

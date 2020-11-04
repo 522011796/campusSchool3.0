@@ -28,8 +28,8 @@ p{
   border-bottom: 1px solid #dcdee2;
   box-shadow: 0 4px 4px rgba(0,21,41,.08);
   transition: all .2s ease-in-out;
-  background: rgb(160, 207, 255);
-  background-image: linear-gradient(to right, rgb(179, 216, 255) , rgb(160, 207, 255));
+  background: rgb(140, 197, 255);
+  background-image: linear-gradient(to right, rgb(179, 216, 255) , rgb(140, 197, 255));
 }
 .moon-left-menu{
   border-right: 1px solid #dcdee2;
@@ -37,15 +37,15 @@ p{
   float: left;
   box-shadow: 1px 0px 4px rgba(0,21,41,.08);
   position: relative;
-  background: rgb(160, 207, 255);
-  background-image: linear-gradient(to bottom, rgb(179, 216, 255) , rgb(160, 207, 255));
+  background: rgb(140, 197, 2555);
+  background-image: linear-gradient(to bottom, rgb(179, 216, 255) , rgb(140, 197, 255));
   padding: 10px 10px;
   position: relative;
   transition: all .2s ease-in-out;
 }
 .custom-popover{
-  background: rgb(160, 207, 255);
-  background-image: linear-gradient(to bottom, rgb(179, 216, 255) , rgb(160, 207, 255));
+  background: rgb(140, 197, 255);
+  background-image: linear-gradient(to bottom, rgb(179, 216, 255) , rgb(140, 197, 255));
   padding: 5px 0px;
 }
 /*.moon-left-menu:not(.el-menu--collapse) {
