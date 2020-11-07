@@ -25,11 +25,14 @@ export default {
       currentMonth: global.currentMonth,
       currentDay: global.currentDay,
       currentTermId: global.currentTermId,
-      currentWeekNum: global.currentWeekNum
+      currentWeekNum: global.currentWeekNum,
+      tableHeight: {
+        'height': ''
+      }
     }
   },
   created() {
-
+    this.g_HH();
   },
   methods: {
     test() {
@@ -39,6 +42,11 @@ export default {
           resolve(this.testDefault);
         }, 3000)
       })
+    },
+    g_HH(){
+      if (process.browser) {
+        this.tableHeight.height = window.innerHeight - 240 + 'px';
+      }
     },
     /**
      * 获取session
@@ -71,7 +79,7 @@ export default {
     async getCollegeInfo() {
       await this.$axios.get(common.session_url).then(res => {
         this.dataCollege = [{
-          label: '学院11234124124',
+          label: '学院1',
           id: '1',
           show: false,
           children: [{

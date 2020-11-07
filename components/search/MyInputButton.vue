@@ -22,14 +22,14 @@
   import {oneOf} from "../../utils/utils";
 
   export default {
-    name: 'mySelect',
+    name: 'myInputButton',
     props: {
       placeholder: {
         default: '请输入内容',
         type: String
       },
       widthClass: {
-        default: '',
+        default: 'width: 150px',
         type: String
       },
       selectWidthClass: {

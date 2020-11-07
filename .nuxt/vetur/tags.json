@@ -71,6 +71,12 @@
   "LazyMyBlockListTree": {
     "description": "Auto imported from components/tree/MyBlockListTree.vue"
   },
+  "MyElTree": {
+    "description": "Auto imported from components/tree/MyElTree.vue"
+  },
+  "LazyMyElTree": {
+    "description": "Auto imported from components/tree/MyElTree.vue"
+  },
   "TreeNode": {
     "description": "Auto imported from components/tree/treeNode.js"
   },
@@ -82,6 +88,12 @@
   },
   "LazyMySexSelect": {
     "description": "Auto imported from components/utils/MySexSelect.vue"
+  },
+  "MyNormalDialog": {
+    "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
+  },
+  "LazyMyNormalDialog": {
+    "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
   },
   "CreditDetail": {
     "description": "Auto imported from components/utils/auditDetail/CreditDetail.vue"
@@ -112,11 +124,5 @@
   },
   "LazyTerleaveDetail": {
     "description": "Auto imported from components/utils/auditDetail/TerleaveDetail.vue"
-  },
-  "MyNormalDialog": {
-    "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
-  },
-  "LazyMyNormalDialog": {
-    "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
   }
 }

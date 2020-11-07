@@ -8,16 +8,51 @@
         </span>
       </div>
       <div class="pull-right moon-top-right">
-        <span class="moon-top-right-item top-18">
-          <el-avatar size="small" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></el-avatar>
-        </span>
-        <span class="moon-top-right-item top-6">
-          <label>xxxxxx</label>
-        </span>
+        <el-popover
+          popper-class="custom-user-popover"
+          placement="bottom"
+          transition="zoom-in-center"
+          trigger="click">
 
-        <el-badge is-dot hidden class="item">
-          <i class="fa fa-cog"></i>
-        </el-badge>
+          <div>
+            <div class="moon-top-user-info-container">
+              <div class="moon-top-user-info-item">
+                <i class="fa fa-user-circle"></i>
+                <span>admin</span>
+              </div>
+              <div class="moon-top-user-info-item">
+                <i class="fa fa-id-card"></i>
+                <span>000001</span>
+              </div>
+              <div class="moon-top-user-info-item">
+                <i class="fa fa-phone"></i>
+                <span>138****3486</span>
+              </div>
+              <div class="moon-top-user-info-item">
+                <i class="fa fa-users"></i>
+                <span>部门1</span>
+              </div>
+            </div>
+            <div class="moon-top-user-info-opr">
+              <el-row>
+                <el-col :span="24">
+                  <div>
+                    <span>{{$t("退出")}}</span>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+          </div>
+
+          <span slot="reference">
+            <label class="moon-top-right-item top-18">
+              <el-avatar size="small" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></el-avatar>
+            </label>
+            <label class="moon-top-right-item top-6">
+              <label>xxxxxx</label>
+            </label>
+          </span>
+        </el-popover>
       </div>
       <div class="moon-top-middle-menu">
         <div class="moon-top-middle-menu-title">
@@ -63,7 +98,11 @@
               </el-badge>
 
               <el-badge is-dot hidden class="item">
-                <i class="fa fa-refresh"></i>
+                <i class="fa fa-refresh" :class="refreshStatus == true ? 'fa-spin' : ''" @click="refreshInit($event)"></i>
+              </el-badge>
+
+              <el-badge is-dot hidden class="item">
+                <i class="fa fa-cogs" @click="showSet($event)"></i>
               </el-badge>
             </span>
           </div>
@@ -187,6 +226,168 @@
           </div>-->
         </div>
       </el-drawer>
+
+      <!--系统设置-->
+      <el-drawer
+        :visible.sync="drawerSet"
+        :direction="direction"
+        custom-class="custom-drawer"
+        :before-close="handleClose"
+        size="100%"
+        :with-header="false"
+        :modal="false"
+        :close-on-press-escape="false"
+        :wrapperClosable="true">
+
+        <div class="drawer-main-menu">
+          <i class="fa fa-close drawer-menu-close" @click="closeDrawer"></i>
+          <div class="drawer-main-menu-left text-center" :style="drawerMenuHeight">
+            <div class="drawer-main-menu-left-container">
+              <div class="drawer-main-menu-left-container-item font-size-14" :class="settingType == 1 ? 'drawer-main-menu-left-container-item-active' : ''" @click="settingTypeOpr($event, 1)">
+                <i class="fa fa-home"></i>
+                <span>{{$t("学校信息")}}</span>
+              </div>
+              <div class="drawer-main-menu-left-container-item font-size-14" :class="settingType == 2 ? 'drawer-main-menu-left-container-item-active' : ''" @click="settingTypeOpr($event, 2)">
+                <i class="fa fa-info-circle"></i>
+                <span>{{$t("版本信息")}}</span>
+              </div>
+              <div class="drawer-main-menu-left-container-item font-size-14" :class="settingType == 3 ? 'drawer-main-menu-left-container-item-active' : ''" @click="settingTypeOpr($event, 3)">
+                <i class="fa fa-lock"></i>
+                <span>{{$t("修改密码")}}</span>
+              </div>
+              <div class="drawer-main-menu-left-container-item font-size-14" :class="settingType == 4 ? 'drawer-main-menu-left-container-item-active' : ''" @click="settingTypeOpr($event, 4)">
+                <i class="fa fa-phone-square"></i>
+                <span>{{$t("修改手机")}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="drawer-main-menu-right" :style="drawerSetHeight">
+            <!--校园信息-->
+            <div class="drawer-main-menu-right-container">
+              <div id="campus-info" class="campus-info-container" v-if="settingType == 1">
+                <el-form label-width="80px">
+                  <el-form-item label="学校名称">
+                    <el-input v-model="form.name" class="width-300"></el-input>
+                  </el-form-item>
+                  <el-form-item label="学校LOGO">
+                    <el-upload
+                      class="avatar-uploader"
+                      action="https://jsonplaceholder.typicode.com/posts/"
+                      :show-file-list="false"
+                      >
+                      <img v-if="form.logo" :src="form.logo" class="avatar">
+                      <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                    </el-upload>
+                  </el-form-item>
+                  <el-form-item label="学校地址">
+                    <el-input v-model="form.address" class="width-300"></el-input>
+                  </el-form-item>
+                  <el-form-item label="学校编号">
+                    <el-input v-model="form.no" class="width-300"></el-input>
+                  </el-form-item>
+                  <el-form-item label="负责人">
+                    <el-input v-model="form.admin" class="width-300"></el-input>
+                  </el-form-item>
+                  <el-form-item label="电话">
+                    <el-input v-model="form.phone" class="width-300"></el-input>
+                  </el-form-item>
+                  <el-form-item label="图片列表">
+                    <el-avatar shape="square" :size="50" v-for="(item, index) in form.imgs" :key="index" :src="item" style="margin-right: 10px"></el-avatar>
+                  </el-form-item>
+                  <el-form-item label="学校介绍">
+
+                  </el-form-item>
+                </el-form>
+              </div>
+
+              <!--版本信息-->
+              <div id="version-info" class="campus-info-container" v-if="settingType == 2">
+                <div>
+                  <el-timeline>
+                    <el-timeline-item v-for="n in 10">
+                      <el-card :body-style="{padding: '10px'}">
+                        <div slot="header" class="clearfix">
+                          <span class="font-size-15  color-warning" style="font-weight: bold">v1.0.0</span>
+                          <el-button style="float: right; padding: 3px 0" type="text">2020-11-11 11:11:11</el-button>
+                        </div>
+
+                        <div>
+                          <div>
+                            <div>
+                              <span class="font-size-15 color-warning" style="font-weight: bold">新功能</span>
+                            </div>
+                            <div class="margin-top-5">
+                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                            </div>
+                          </div>
+
+                          <div class="margin-top-20">
+                            <div>
+                              <span class="font-size-15 color-warning" style="font-weight: bold">BUG修复</span>
+                            </div>
+                            <div class="margin-top-5">
+                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                            </div>
+                          </div>
+
+                          <div class="margin-top-20">
+                            <div>
+                              <span class="font-size-15 color-warning" style="font-weight: bold">其他说明</span>
+                            </div>
+                            <div class="margin-top-5">
+                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                            </div>
+                          </div>
+                        </div>
+                      </el-card>
+                    </el-timeline-item>
+                  </el-timeline>
+                </div>
+              </div>
+
+              <!--修改手机号-->
+              <div id="phone-info" class="campus-info-container" v-if="settingType == 3">
+                <el-form label-width="80px">
+                  <el-form-item label="旧手机号">
+                    <el-input v-model="formPhone.oldPhone" class="width-300"></el-input>
+                  </el-form-item>
+                  <el-form-item label="新手机号">
+                    <el-input v-model="formPhone.newPhone" class="width-300"></el-input>
+                  </el-form-item>
+                  <el-form-item label="验证码">
+                    <el-input v-model="formPhone.phoneCode" class="width-300"></el-input>
+                  </el-form-item>
+                </el-form>
+              </div>
+
+              <!--修改密码-->
+              <div id="pwd-info" class="campus-info-container" v-if="settingType == 4">
+                <el-form label-width="100px">
+                  <el-form-item label="当前手机号">
+                    <el-input v-model="formPwd.phone" class="width-300"></el-input>
+                  </el-form-item>
+                  <el-form-item label="验证码">
+                    <el-input v-model="formPwd.phoneCode" class="width-300"></el-input>
+                  </el-form-item>
+                  <el-form-item label="密码">
+                    <el-input v-model="formPwd.pwd" class="width-300"></el-input>
+                  </el-form-item>
+                </el-form>
+              </div>
+            </div>
+          </div>
+          <div class="moon-clearfix"></div>
+        </div>
+      </el-drawer>
     </div>
 
     <div style="position: relative">
@@ -295,6 +496,9 @@
         drawer: false,
         drawerAudit: false,
         drawerMenu: false,
+        drawerSet: false,
+        refreshStatus: false,
+        settingType: 1,
         direction: 'ttb',
         screenWidth: 0,
         activeIndex: '1',
@@ -324,12 +528,36 @@
           'height': '',
           'overflow-y': 'auto'
         },
+        drawerSetHeight: {
+          'height': '',
+          'overflow-y': 'auto'
+        },
         popMenuHeight: {
           'height': '',
           'overflow-y': 'auto'
         },
         toggleTag: {
 
+        },
+        form: {
+          name: '',
+          logo: '',
+          admin: '',
+          phone: '',
+          address: '',
+          no: '',
+          remarks: '',
+          imgs: ["https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg", "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"]
+        },
+        formPhone: {
+          oldPhone: '',
+          newPhone: '',
+          phoneCode: '',
+        },
+        formPwd: {
+          phone: '',
+          phoneCode: '',
+          pwd: ''
         }
       }
     },
@@ -358,6 +586,7 @@
           this.rightHeight.height = window.innerHeight - 60 - 40 + 'px';
           this.drawerHeight.height = window.innerHeight - 60 - 120 + 'px';
           this.drawerMenuHeight.height = window.innerHeight - 60 + 'px';
+          this.drawerSetHeight.height = window.innerHeight - 60 + 'px';
           this.popMenuHeight.height = window.innerHeight - 60 - 100 + 'px';
         }
       },
@@ -425,11 +654,21 @@
       showMsg(event){
         this.drawer = true;
       },
+      refreshInit(event){
+        let _self = this;
+        this.refreshStatus = true;
+        setTimeout(() => {
+          this.refreshStatus = false;
+        },2000);
+      },
       showAuditMsg(){
         this.drawerAudit = true;
       },
       showMenuList(){
         this.drawerMenu = true;
+      },
+      showSet(){
+        this.drawerSet = true;
       },
       handleClose(done) {
         done();
@@ -441,6 +680,7 @@
         this.drawer = false;
         this.drawerAudit = false;
         this.drawerMenu = false;
+        this.drawerSet = false;
       },
       toggleLeftMenu(event){
         this.isCollapse = false;
@@ -455,6 +695,9 @@
         this.leftHeight.width = "200px";
         this.leftHeight['padding'] = "10px";
         this.toggleTag['left'] = "220px";
+      },
+      settingTypeOpr(event, type){
+        this.settingType = type;
       }
     },
     watch: {
@@ -675,6 +918,7 @@
   display: flex;
   left: 220px;
   transition: all .2s ease-in-out;
+  z-index: 99;
 }
 .moon-left-menu-tag .moon-left-menu-tag-container {
   width: 100%;
@@ -741,7 +985,7 @@
   width: 220px;
   position: relative;
   float: left;
-  background: #e5e5e5;
+  background: rgba(198, 226, 255, 0.9);
 }
 .drawer-main-menu-right{
   margin-left: 220px;
@@ -750,12 +994,20 @@
 }
 .drawer-main-menu-left-container{
   margin-top: 30px;
+  /*background: rgba(140, 197, 255, 0.3);
+  margin: 30px 15px;
+  padding: 10px 0px;
+  border-radius: 5px;*/
 }
 .drawer-main-menu-left-container-item{
-  padding: 8px 0px;
+  padding: 10px 0px;
   margin-top: 5px;
   cursor: default;
   position: relative;
+  background: rgba(140, 197, 255, 0.6);
+  margin: 10px 15px;
+  border-radius: 5px;
+  color: #ffffff;
 }
 .drawer-main-menu-right-container{
   margin-top: 40px;
@@ -784,5 +1036,46 @@
   width: 80px;
   height: 3px;
   background: #409eff;
+}
+.moon-top-user-info-container{
+  padding: 10px 15px;
+}
+.moon-top-user-info-item{
+  padding:5px 0px;
+}
+.moon-top-user-info-opr{
+  border-top: 1px solid #E4E7ED;
+  text-align: center;
+  padding: 5px 0px;
+  color: #E6A23C;
+}
+.campus-info-container{
+  background: #FFFFFF;
+  padding: 20px 20px;
+  margin: 20px 20px;
+  border-radius: 4px;
+}
+.campus-info-logo-avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.campus-info-logo-avatar-uploader .el-upload:hover {
+  border-color: #409EFF;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  border: 1px dashed #dddddd;
+}
+.avatar {
+  width: 60px;
+  height: 60px;
 }
 </style>
