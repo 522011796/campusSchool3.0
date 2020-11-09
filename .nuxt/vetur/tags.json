@@ -53,6 +53,12 @@
   "LazyMyTree": {
     "description": "Auto imported from components/MyTree.vue"
   },
+  "LayoutLr": {
+    "description": "Auto imported from components/Layout/LayoutLr.vue"
+  },
+  "LazyLayoutLr": {
+    "description": "Auto imported from components/Layout/LayoutLr.vue"
+  },
   "MyInputButton": {
     "description": "Auto imported from components/search/MyInputButton.vue"
   },
@@ -88,6 +94,12 @@
   },
   "LazyMySexSelect": {
     "description": "Auto imported from components/utils/MySexSelect.vue"
+  },
+  "DialogNormal": {
+    "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
+  },
+  "LazyDialogNormal": {
+    "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
   },
   "MyNormalDialog": {
     "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"

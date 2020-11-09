@@ -45,7 +45,7 @@ export default {
     },
     g_HH(){
       if (process.browser) {
-        this.tableHeight.height = window.innerHeight - 240 + 'px';
+        this.tableHeight.height = window.innerHeight - 248 + 'px';
       }
     },
     /**

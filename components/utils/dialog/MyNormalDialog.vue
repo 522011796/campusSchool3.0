@@ -12,7 +12,7 @@
           <i class="fa fa-info-circle" style="font-size: 18px"></i>
           {{content}}
         </div>
-        <div class="color-muted font-size-12">
+        <div class="color-muted font-size-12 margin-top-5">
           {{detail}}
         </div>
       </div>

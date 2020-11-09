@@ -304,7 +304,7 @@
               <div id="version-info" class="campus-info-container" v-if="settingType == 2">
                 <div>
                   <el-timeline>
-                    <el-timeline-item v-for="n in 10">
+                    <el-timeline-item v-for="n in 10" :key="n">
                       <el-card :body-style="{padding: '10px'}">
                         <div slot="header" class="clearfix">
                           <span class="font-size-15  color-warning" style="font-weight: bold">v1.0.0</span>
@@ -612,10 +612,9 @@
           for (let i = 0; i < res.data.length; i++){
             if (key == res.data[i].key){
               this.sliderMenuList = res.data[i].list;
-
               if (type == "click"){
                 this.$router.push({
-                  path: this.sliderMenuList[0].path,
+                  path: this.sliderMenuList[0].list[0].path,
                   query: {
                     top: this.sliderMenuList[0].list[0].top,
                     key: this.sliderMenuList[0].list[0].key,

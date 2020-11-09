@@ -11,8 +11,9 @@ html {
   overflow-y: hidden;
 }
 body{
-  margin: 0px;
-  padding: 0px;
+  margin: 0px !important;
+  padding: 0px !important;
+  overflow-y: hidden;
 }
 p{
   margin: 0px;
@@ -82,7 +83,7 @@ p{
   background: #FFFFFF;
 }
 .moon-right-content{
-  overflow-y: auto;
+  overflow-y: hidden;
   padding: 0px 0px;
   position: relative;
 }
@@ -161,6 +162,9 @@ p{
 .margin-right-5{
   margin-right: 5px;
 }
+.margin-right-10{
+  margin-right: 10px;
+}
 .margin-top-5{
   margin-top: 5px;
 }
@@ -193,6 +197,9 @@ p{
 }
 .width-200{
   width: 200px;
+}
+.width-260{
+  width: 260px;
 }
 .width-300{
   width: 300px;
@@ -403,6 +410,68 @@ ul{
   margin-left: 5px;
   padding-right: 12px;
 }
+/***dialog***/
+.custom-normal-dialog{
+  background: rgba(238,238,238, 0.7);
+  box-shadow: 2px 2px 2px 1px rgba(0,0,0, 0.4);
+  z-index: 1;
+}
+.custom-normal-dialog::after {
+  content: '';
+  background: rgba(255,255,255, 0.99);
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -ms-filter: blur(10px);
+  -o-filter: blur(10px);
+  filter: blur(10px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+.custom-normal-dialog .el-dialog__header{
+  padding: 0px;
+}
+.custom-normal-dialog .dialog-normal-title{
+  border-bottom: 1px solid #EBEEF5;
+}
+.custom-normal-dialog .dialog-normal-header{
+  padding: 15px 15px;
+}
+.custom-normal-dialog .dialog-normal-close{
+  padding: 12px 15px;
+}
+.custom-normal-dialog .el-dialog__footer{
+  padding: 0px 0px;
+  text-align: right;
+}
+.custom-normal-dialog .dialog-normal-footer{
+  padding: 12px 10px;
+  border-top: 1px solid #EBEEF5;
+}
+.custom-normal-dialog .dialog-normal-header .title{
+  font-size: 15px;
+  font-weight: bold;
+}
+.custom-normal-dialog .dialog-normal-header .subTitle{
+  font-size: 13px;
+  color: #999999;
+}
+.custom-normal-dialog .el-dialog__body{
+  padding: 10px 15px;
+}
+.custom-normal-dialog .dialog-normal-body{
+
+}
+/***loading***/
+.custom-g-loading .el-icon-loading{
+  font-size: 32px;
+}
+.custom-g-loading .el-loading-text{
+  font-size: 15px;
+}
 /**自定义tree**/
 .custom-el-tree{
 
@@ -410,7 +479,7 @@ ul{
 .custom-el-tree .tree-container {
   height: 35px;
   color: #606266;
-   padding: 0px 0px;
+  padding: 0px 0px;
 }
 .custom-el-tree .el-tree{
   background: none;

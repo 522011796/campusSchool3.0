@@ -10,6 +10,7 @@ const startLoading = () => {
       text: 'Loading',
       spinner: 'el-icon-loading',
       background: 'rgba(221, 221, 221, 0.3)',
+      customClass: 'custom-g-loading',
       target: document.querySelector('.moon-right-menu')//设置加载动画区域
     });
   }

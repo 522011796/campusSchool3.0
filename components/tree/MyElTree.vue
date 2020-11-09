@@ -56,6 +56,10 @@
       opr: {
         default: false,
         type: Boolean
+      },
+      type: {
+        default: '',
+        type: String
       }
     },
     computed: {
@@ -76,7 +80,6 @@
       }
     },
     mounted() {
-      console.log(this.$slots.default !== undefined);
       this.slotDefault = this.$slots.default !== undefined;
     },
     created() {
@@ -84,9 +87,16 @@
     },
     methods: {
       async initInfo(){
-        await this.getCollegeInfo();
-
-        this.data = this.dataCollege;
+        if(this.type == 1){
+          await this.getCollegeInfo();
+          this.data = this.dataCollege;
+        }else if(this.type == 2){
+          await this.getDormBuildInfo();
+          this.data = this.dataDormBuild;
+        }else if(this.type == 3){
+          await this.getSchoolBuildInfo();
+          this.data = this.dataSchoolBuild;
+        }
       },
       filterNode(value, data) {
         if (!value) return true;

@@ -3,54 +3,70 @@
     "name": "basicInfo-buildSet",
     "path": "/basicInfo/buildSet",
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/basicInfo/buildSet.vue",
-    "chunkName": "pages/basicInfo/buildSet"
+    "chunkName": "pages/basicInfo/buildSet",
+    "_name": "_72ad03bc"
   },
   {
     "name": "basicInfo-classRoom",
     "path": "/basicInfo/classRoom",
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/basicInfo/classRoom.vue",
-    "chunkName": "pages/basicInfo/classRoom"
+    "chunkName": "pages/basicInfo/classRoom",
+    "_name": "_12957bd5"
+  },
+  {
+    "name": "basicInfo-classRoomBak",
+    "path": "/basicInfo/classRoomBak",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/basicInfo/classRoomBak.vue",
+    "chunkName": "pages/basicInfo/classRoomBak",
+    "_name": "_c1cf9bb2"
   },
   {
     "name": "basicInfo-role",
     "path": "/basicInfo/role",
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/basicInfo/role.vue",
-    "chunkName": "pages/basicInfo/role"
+    "chunkName": "pages/basicInfo/role",
+    "_name": "_53492cf8"
   },
   {
     "name": "basicInfo-yearAndTerm",
     "path": "/basicInfo/yearAndTerm",
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/basicInfo/yearAndTerm.vue",
-    "chunkName": "pages/basicInfo/yearAndTerm"
+    "chunkName": "pages/basicInfo/yearAndTerm",
+    "_name": "_6324ad48"
   },
   {
     "name": "test-test1",
     "path": "/test/test1",
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/test/test1.vue",
-    "chunkName": "pages/test/test1"
+    "chunkName": "pages/test/test1",
+    "_name": "_cbf69006"
   },
   {
     "name": "test-test2",
     "path": "/test/test2",
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/test/test2.vue",
-    "chunkName": "pages/test/test2"
+    "chunkName": "pages/test/test2",
+    "_name": "_cbda6104"
   },
   {
     "name": "test-test3",
     "path": "/test/test3",
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/test/test3.vue",
-    "chunkName": "pages/test/test3"
+    "chunkName": "pages/test/test3",
+    "_name": "_cbbe3202"
   },
   {
     "name": "test-test4",
     "path": "/test/test4",
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/test/test4.vue",
-    "chunkName": "pages/test/test4"
+    "chunkName": "pages/test/test4",
+    "_name": "_cba20300"
   },
   {
     "name": "index",
     "path": "/",
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/index.vue",
-    "chunkName": "pages/index"
+    "chunkName": "pages/index",
+    "_name": "_41b58047"
   }
 ]
