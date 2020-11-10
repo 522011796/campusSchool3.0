@@ -28,6 +28,9 @@ export default {
       currentWeekNum: global.currentWeekNum,
       tableHeight: {
         'height': ''
+      },
+      drawHeight: {
+        'height': ''
       }
     }
   },
@@ -46,6 +49,7 @@ export default {
     g_HH(){
       if (process.browser) {
         this.tableHeight.height = window.innerHeight - 248 + 'px';
+        this.drawHeight.height = window.innerHeight - 80 + 'px';
       }
     },
     /**

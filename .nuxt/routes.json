@@ -21,6 +21,13 @@
     "_name": "_c1cf9bb2"
   },
   {
+    "name": "basicInfo-organization",
+    "path": "/basicInfo/organization",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/basicInfo/organization.vue",
+    "chunkName": "pages/basicInfo/organization",
+    "_name": "_6ed659c1"
+  },
+  {
     "name": "basicInfo-role",
     "path": "/basicInfo/role",
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/basicInfo/role.vue",

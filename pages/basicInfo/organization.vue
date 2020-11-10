@@ -1,130 +1,74 @@
 <template>
   <div class="container">
-    <layout-lr>
-      <div slot="left">
-        <div class="color-muted font-size-12 padding-tb-5 margin-top-10">
-          <!--<span class="layout-left-menu-tag"></span>-->
-          <span class="layout-left-menu-title">教室管理</span>
-        </div>
-        <MyElTree type="3"></MyElTree>
+    <layout-tb>
+      <template slot="tag">组织机构</template>
+
+      <div slot="tab">
+        <el-row>
+          <el-col :span="12">
+            <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInitData($event, 'main')">{{$t("添加组织")}}</el-button>
+            <el-button size="small" type="warning" plain  icon="el-icon-notebook-2" @click="uploadOrganization($event)">{{$t("导入组织")}}</el-button>
+          </el-col>
+          <el-col :span="12" class="text-right">
+            <MyInputButton size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('名称/编号')" @click="search"></MyInputButton>
+          </el-col>
+        </el-row>
       </div>
 
-      <div slot="right">
-        <div>
-          <div>
-            <el-row :gutter="8">
-              <el-col :span="4">
-                <div class="classroom-top-item">
-                  <span><i class="fa fa-home"></i> {{$t("教室总数")}}: </span>
-                  <span>0</span>
-                </div>
-              </el-col>
-              <el-col :span="4">
-                <div class="classroom-top-item">
-                  <span><i class="fa fa-home"></i> {{$t("多媒体教室")}}: </span>
-                  <span>0</span>
-                </div>
-              </el-col>
-              <el-col :span="4">
-                <div class="classroom-top-item">
-                  <span><i class="fa fa-cubes"></i> {{$t("终端")}}: </span>
-                  <span>0</span>
-                </div>
-              </el-col>
-              <el-col :span="4">
-                <div class="classroom-top-item">
-                  <span><i class="fa fa-mobile-phone"></i> {{$t("平板")}}: </span>
-                  <span>0</span>
-                </div>
-              </el-col>
-              <el-col :span="4">
-                <div class="classroom-top-item">
-                  <span><i class="fa fa-video-camera"></i> {{$t("摄像头")}}: </span>
-                  <span>0</span>
-                </div>
-              </el-col>
-              <el-col :span="4">
-                <div class="classroom-top-item">
-                  <span><i class="fa fa-id-badge"></i> {{$t("门禁")}}: </span>
-                  <span>0</span>
-                </div>
-              </el-col>
-            </el-row>
-          </div>
-        </div>
-
-        <div class="layout-right-tab margin-top-10">
-          <el-row>
-            <el-col :span="12">
-              <el-button size="small" type="primary"  icon="el-icon-plus" @click="addClassRoom($event)">{{$t("添加教室")}}</el-button>
-              <el-button size="small" type="warning" plain  icon="el-icon-notebook-2" @click="uploadClassRoom($event)">{{$t("导入教室")}}</el-button>
-            </el-col>
-            <el-col :span="12" class="text-right">
-              <MyInputButton size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('编号')" @click="search"></MyInputButton>
-            </el-col>
-          </el-row>
-        </div>
-
-        <div>
-          <el-table
-            :data="tableData"
-            header-cell-class-name="custom-table-cell-bg"
-            size="medium"
-            :max-height="tableHeight.height"
-            style="width: 100%">
-            <el-table-column
-              prop="date"
-              :label="$t('楼层')"
-              width="180">
-            </el-table-column>
-            <el-table-column
-              prop="name"
-              :label="$t('编号')"
-              width="180">
-            </el-table-column>
-            <el-table-column
-              prop="address"
-              :label="$t('多媒体')">
-            </el-table-column>
-            <el-table-column
-              fixed="right"
-              :label="$t('操作')"
-              width="80">
-              <template slot-scope="scope">
-                <i class="fa fa-edit margin-right-5 color-grand" @click="handleEdit(scope.row)"></i>
-                <i class="fa fa-trash color-danger" @click="handleDelete(scope.row)"></i>
-              </template>
-            </el-table-column>
-          </el-table>
-        </div>
+      <div slot="content">
+        <el-table
+          :data="tableData"
+          header-cell-class-name="custom-table-cell-bg"
+          size="medium"
+          row-key="id"
+          :max-height="tableHeight.height"
+          style="width: 100%">
+          <el-table-column
+            prop="date"
+            :label="$t('名称')"
+            width="180">
+          </el-table-column>
+          <el-table-column
+            prop="name"
+            :label="$t('简称')"
+            width="180">
+          </el-table-column>
+          <el-table-column
+            prop="address"
+            :label="$t('编号')">
+          </el-table-column>
+          <el-table-column
+            fixed="right"
+            label="操作"
+            width="120">
+            <template slot-scope="scope">
+              <i class="fa fa-plus-circle margin-right-5 color-success" @click="addInitData(scope.row)"></i>
+              <i class="fa fa-edit margin-right-5 color-grand" @click="addInitData(scope.row)"></i>
+              <i class="fa fa-trash color-danger" @click="handleDelete(scope.row)"></i>
+            </template>
+          </el-table-column>
+        </el-table>
 
         <div class="layout-right-footer text-right">
           <MyPagination class="layout-pagination"></MyPagination>
         </div>
       </div>
-    </layout-lr>
+    </layout-tb>
 
-    <dialog-normal :visible="classRoomeVisible" :title="$t('教室设置')" @close="closeDialog" @right-close="cancelDialog">
+    <dialog-normal :visible="modalVisible" :title="$t('教室设置')" @close="closeDialog" @right-close="cancelDialog">
       <div class="margin-top-10">
         <el-form ref="form" :model="form" label-width="140px">
-          <el-form-item label="教学楼">
-            <el-input v-model="form.buildName" class="width-260"></el-input>
+          <el-form-item label="上级部门" v-if="form.oprType != 'main'">
+            <span>x</span>
           </el-form-item>
-          <el-form-item label="楼层">
-            <el-input v-model="form.floor" class="width-260"></el-input>
+          <el-form-item label="组织名称">
+            <el-input v-model="form.name" class="width-260"></el-input>
           </el-form-item>
-          <el-form-item label="房间编号">
-            <el-input v-model="form.roomNo" class="width-260"></el-input>
+          <el-form-item label="组织编号">
+            <el-input v-model="form.no" class="width-260"></el-input>
           </el-form-item>
-          <el-form-item label="用途">
-            <el-input v-model="form.use" class="width-260"></el-input>
-          </el-form-item>
-          <el-form-item label="多媒体">
-            <el-switch
-              v-model="form.video"
-              active-color="#13ce66"
-              inactive-color="#ff4949">
-            </el-switch>
+          <el-form-item label="组织简称">
+            <el-input v-model="form.realName" class="width-260"></el-input>
           </el-form-item>
         </el-form>
       </div>
@@ -143,111 +87,156 @@
     </drawer-right>
 
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" content="确认需要删除该信息？" :detail="subDetail" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
+
   </div>
 </template>
 
 <script>
-import LayoutLr from "../../components/Layout/LayoutLr";
-import MyElTree from "../../components/tree/MyElTree";
+import mixins from "../../utils/mixins";
+import LayoutTb from "../../components/Layout/LayoutTb";
 import MyInputButton from "../../components/search/MyInputButton";
 import MyPagination from "../../components/MyPagination";
 import DialogNormal from "../../components/utils/dialog/DialogNormal";
 import MyNormalDialog from "../../components/utils/dialog/MyNormalDialog";
 import DrawerRight from "../../components/utils/dialog/DrawerRight";
-import mixins from "../../utils/mixins";
 import {common} from "../../utils/api/url";
 export default {
   mixins: [mixins],
-  components: {MyElTree,MyInputButton,MyPagination,LayoutLr,DialogNormal,MyNormalDialog,DrawerRight},
+  components: {LayoutTb,MyInputButton,MyPagination,DialogNormal,MyNormalDialog,DrawerRight},
   data(){
     return {
-      searchInputStyle: "width: 200px",
-      classRoomeVisible: false,
+      modalVisible: false,
       drawerVisible: false,
       visibleConfim: false,
       dialogLoading: false,
-      subDetail: '',
       loading: false,
       drawerLoading: false,
+      subDetail: '',
       form: {
+        oprType: '',
         id: '',
-        buildName: '',
-        floor: '',
-        roomNo: '',
-        areaTotal: '0',
-        personTotal: '0',
-        use: '',
-        video: false
+        name: '',
+        no: '',
+        realName: ''
       },
       tableData: [{
+        id: 1,
         date: '2016-05-02',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1518 弄'
       }, {
+        id: 2,
         date: '2016-05-04',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1517 弄'
       }, {
+        id: 3,
         date: '2016-05-01',
         name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
+        address: '上海市普陀区金沙江路 1519 弄',
+        children: [{
+          id: 31,
+          date: '2016-05-11',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1519 弄'
+        }, {
+          id: 32,
+          date: '2016-05-12',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1519 弄'
+        }]
       }, {
+        id: 4,
         date: '2016-05-03',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1516 弄'
       }, {
+        id: 5,
         date: '2016-05-03',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1516 弄'
       }, {
+        id: 6,
         date: '2016-05-03',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1516 弄'
       }, {
+        id: 7,
         date: '2016-05-03',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1516 弄'
       }, {
+        id: 8,
         date: '2016-05-03',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1516 弄'
       }, {
+        id: 9,
         date: '2016-05-03',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1516 弄'
       }, {
+        id: 10,
         date: '2016-05-03',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1516 弄'
       }, {
+        id: 11,
         date: '2016-05-03',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1516 弄'
       }, {
+        id: 12,
         date: '2016-05-03',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1516 弄'
       }, {
+        id: 13,
         date: '2016-05-03',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1516 弄'
       }, {
+        id: 14,
         date: '2016-05-03',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1516 弄'
       }, {
+        id: 15,
         date: '2016-05-03',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1516 弄'
       }, {
+        id: 16,
         date: '2016-05-03',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1516 弄'
       }, {
+        id: 17,
         date: '2016-05-03',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1516 弄'
       }, {
+        id: 18,
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+      }, {
+        id: 19,
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+      }, {
+        id: 20,
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+      }, {
+        id: 21,
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+      }, {
+        id: 22,
         date: '2016-05-03',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1516 弄'
@@ -258,20 +247,24 @@ export default {
 
   },
   methods: {
-    addClassRoom(event){
-      this.classRoomeVisible = true;
+    addInitData(event, type){
+      this.form.oprType = '';
+      if (type && type == "main"){
+        this.form.oprType = 'main';
+      }
+      this.modalVisible = true;
     },
-    uploadClassRoom(event){
+    uploadOrganization(event){
       this.drawerVisible = true;
     },
     cancelDialog(){
-      this.classRoomeVisible = false;
+      this.modalVisible = false;
     },
     cancelDrawDialog(){
       this.drawerVisible = false;
     },
     closeDialog(event){
-      console.log(this.classRoomeVisible);
+      console.log(this.modalVisible);
       console.log(this.drawerVisible);
     },
     okDialog(event){
@@ -282,7 +275,7 @@ export default {
           type: 'success'
         });
         this.dialogLoading = false;
-        this.classRoomeVisible = false;
+        this.modalVisible = false;
       },2000)
     },
     closeDrawDialog(event){
@@ -302,7 +295,7 @@ export default {
       },2000)
     },
     handleEdit(row){
-      this.classRoomeVisible = true;
+      this.modalVisible = true;
     },
     handleDelete(row){
       this.subDetail = row.name;
@@ -332,15 +325,6 @@ export default {
 
 <style scoped>
 .container {
-
-}
-.classroom-top-item{
-  border: 1px solid #EBEEF5;
-  border-radius: 2px;
-  padding: 0px 10px;
-  height: 40px;
-  line-height: 40px;
-  color: #606266;
-  background: #f9f9f9;
+  padding: 10px 15px;
 }
 </style>

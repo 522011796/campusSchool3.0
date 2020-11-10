@@ -12,16 +12,23 @@
         "key": "basic",
         "list": [
           {
+            "name": "组织机构",
+            "key": "organization",
+            "id": 110,
+            "top": "basicInfo",
+            "path": "/basicInfo/organization"
+          },
+          {
             "name": "学年学期",
             "key": "yearAndTerm",
-            "id": 110,
+            "id": 111,
             "top": "basicInfo",
             "path": "/basicInfo/yearAndTerm"
           },
           {
             "name": "角色管理",
             "key": "role",
-            "id": 111,
+            "id": 112,
             "top": "basicInfo",
             "path": "/basicInfo/role"
           }
