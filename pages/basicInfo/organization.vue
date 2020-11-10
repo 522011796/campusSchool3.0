@@ -17,24 +17,26 @@
 
       <div slot="content">
         <el-table
+          ref="refTable"
           :data="tableData"
           header-cell-class-name="custom-table-cell-bg"
           size="medium"
           row-key="id"
           :max-height="tableHeight.height"
-          style="width: 100%">
+          style="width: 100%"
+          @cell-click="cellClick">
           <el-table-column
-            prop="date"
+            prop="name"
             :label="$t('名称')"
             width="180">
           </el-table-column>
           <el-table-column
-            prop="name"
+            prop="realName"
             :label="$t('简称')"
             width="180">
           </el-table-column>
           <el-table-column
-            prop="address"
+            prop="no"
             :label="$t('编号')">
           </el-table-column>
           <el-table-column
@@ -82,7 +84,7 @@
       </div>
     </dialog-normal>
 
-    <drawer-right :visible="drawerVisible" :loading="drawerLoading" :hide-footer="true" size="400px" :title="$t('导入教室')" action="https://jsonplaceholder.typicode.com/posts/" download-file="xxx" @close="closeDialog" @right-close="cancelDrawDialog" @ok="okDrawDialog" @cancel="closeDrawDialog">
+    <drawer-right @changeDrawer="closeDrawerDialog" :visible="drawerVisible" :loading="drawerLoading" :hide-footer="true" size="400px" :title="$t('导入教室')" action="https://jsonplaceholder.typicode.com/posts/" download-file="xxx" @right-close="cancelDrawDialog" @ok="okDrawDialog" @cancel="closeDrawDialog">
 
     </drawer-right>
 
@@ -119,132 +121,26 @@ export default {
         no: '',
         realName: ''
       },
-      tableData: [{
-        id: 1,
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        id: 2,
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        id: 3,
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄',
-        children: [{
-          id: 31,
-          date: '2016-05-11',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          id: 32,
-          date: '2016-05-12',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }]
-      }, {
-        id: 4,
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }, {
-        id: 5,
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }, {
-        id: 6,
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }, {
-        id: 7,
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }, {
-        id: 8,
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }, {
-        id: 9,
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }, {
-        id: 10,
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }, {
-        id: 11,
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }, {
-        id: 12,
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }, {
-        id: 13,
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }, {
-        id: 14,
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }, {
-        id: 15,
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }, {
-        id: 16,
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }, {
-        id: 17,
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }, {
-        id: 18,
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }, {
-        id: 19,
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }, {
-        id: 20,
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }, {
-        id: 21,
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }, {
-        id: 22,
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }]
+      tableData: []
     }
   },
   created() {
-
+    for(let i = 0; i < 30; i++){
+      this.tableData.push(
+        {
+          id: i+1,
+          name: '2016-05-02',
+          realName: '王小虎',
+          no: '上海市普陀区金沙江路 1518 弄',
+          children: [{
+            id: "item" + (i +1),
+            name: '2016-05-01',
+            realName: '王小虎',
+            no: '上海市普陀区金沙江路 1519 弄'
+          }]
+        }
+      );
+    }
   },
   methods: {
     addInitData(event, type){
@@ -264,8 +160,11 @@ export default {
       this.drawerVisible = false;
     },
     closeDialog(event){
-      console.log(this.modalVisible);
-      console.log(this.drawerVisible);
+
+    },
+    closeDrawerDialog(event){
+      console.log(event);
+      this.drawerVisible = event;
     },
     okDialog(event){
       this.dialogLoading = true;
@@ -318,6 +217,11 @@ export default {
       this.$axios.get(common.session_url, {params: params}).then(res => {
         console.log(1);
       });
+    },
+    cellClick(row, column, cell, event){
+      if (column.property == 'name'){
+        this.$refs.refTable.toggleRowExpansion(row);
+      }
     }
   }
 }

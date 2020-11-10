@@ -138,7 +138,7 @@
       </div>
     </dialog-normal>
 
-    <drawer-right :visible="drawerVisible" :loading="drawerLoading" :hide-footer="true" size="400px" :title="$t('导入教室')" action="https://jsonplaceholder.typicode.com/posts/" download-file="xxx" @close="closeDialog" @right-close="cancelDrawDialog" @ok="okDrawDialog" @cancel="closeDrawDialog">
+    <drawer-right @changeDrawer="closeDrawerDialog" :visible="drawerVisible" :loading="drawerLoading" :hide-footer="true" size="400px" :title="$t('导入教室')" action="https://jsonplaceholder.typicode.com/posts/" download-file="xxx" @right-close="cancelDrawDialog" @ok="okDrawDialog" @cancel="closeDrawDialog">
 
     </drawer-right>
 
@@ -271,8 +271,11 @@ export default {
       this.drawerVisible = false;
     },
     closeDialog(event){
-      console.log(this.classRoomeVisible);
-      console.log(this.drawerVisible);
+
+    },
+    closeDrawerDialog(event){
+      console.log(event);
+      this.drawerVisible = event;
     },
     okDialog(event){
       this.dialogLoading = true;

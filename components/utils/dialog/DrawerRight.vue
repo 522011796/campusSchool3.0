@@ -2,14 +2,12 @@
   <div class="container">
     <el-drawer
       custom-class="drawer-normal-drawer"
-      :visible.sync="visible"
+      :visible.sync="drawer_"
       :direction="direction"
-      :wrapperClosable="false"
+      :wrapperClosable="true"
       :show-close="false"
       :modal-append-to-body="false"
-      :size="size"
-      :before-close="handleBeforeClose"
-      @close="closeDialog">
+      :size="size">
 
       <div slot="title" class="drawer-normal-title">
         <el-row v-if="!header">
@@ -128,10 +126,20 @@ export default {
       type: String
     }
   },
+  computed: {
+    drawer_:{
+      get(){
+        return this.visible
+      },
+      set(v){
+        this.$emit("changeDrawer",v)
+      }
+    }
+  },
   data(){
     return {
       drawer: false,
-      dialogNormalVisible: true,
+      dialogNormalVisible: false,
       footer: false,
       header: false,
       drawerLoading: false
@@ -146,12 +154,6 @@ export default {
 
   },
   methods: {
-    closeDialog(data){
-      this.$emit("close", data);
-    },
-    handleBeforeClose(data){
-      this.$emit("before-close", data);
-    },
     handleClose(data){
       if (this.footer){
         this.$emit("right-close", data);

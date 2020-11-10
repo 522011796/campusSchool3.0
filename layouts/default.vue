@@ -12,7 +12,7 @@
           popper-class="custom-user-popover"
           placement="bottom"
           transition="zoom-in-center"
-          trigger="click">
+          trigger="hover">
 
           <div>
             <div class="moon-top-user-info-container">
@@ -400,31 +400,44 @@
       </div>
 
       <div class="moon-left-menu" :style="leftHeight">
-        <div class="moon-left-menu-item" v-for="(item, index) in sliderMenuList" :key="item.id">
-          <div>
-            <el-row @click.native="toggleMenu($event, item)">
-              <el-col :span="22">
+        <div :style="leftItemHeight">
+          <div class="moon-left-menu-item" v-for="(item, index) in sliderMenuList" :key="item.id">
+            <div>
+              <el-row @click.native="toggleMenu($event, item)">
+                <el-col :span="22">
               <span class="title">
                 <i :class="item.icon"></i>
                 {{item.name}}
               </span>
-              </el-col>
-              <el-col :span="2">
-                <div class="icon">
-                  <i class="fa fa-angle-double-down" :class="item.toggle ? 'icon-class-up' : 'icon-class-down'"></i>
-                </div>
-              </el-col>
-            </el-row>
-          </div>
-          <el-collapse-transition>
-            <div class="moon-left-menu-sub-item" v-show="item.toggle">
-              <ul>
-                <li style="padding-left: 20px" :class="activeSliderIndex == itemChild.key ? 'moon-left-menu-sub-item-active' : ''" v-for="(itemChild, indexChild) in item.list" :key="itemChild.id" @click="routerUrl($event, itemChild, item)">
-                  <span>{{itemChild.name}}</span>
-                </li>
-              </ul>
+                </el-col>
+                <el-col :span="2">
+                  <div class="icon">
+                    <i class="fa fa-angle-double-down" :class="item.toggle ? 'icon-class-up' : 'icon-class-down'"></i>
+                  </div>
+                </el-col>
+              </el-row>
             </div>
-          </el-collapse-transition>
+            <el-collapse-transition>
+              <div class="moon-left-menu-sub-item" v-show="item.toggle">
+                <ul>
+                  <li style="padding-left: 20px" :class="activeSliderIndex == itemChild.key ? 'moon-left-menu-sub-item-active' : ''" v-for="(itemChild, indexChild) in item.list" :key="itemChild.id" @click="routerUrl($event, itemChild, item)">
+                    <span>{{itemChild.name}}</span>
+                  </li>
+                </ul>
+              </div>
+            </el-collapse-transition>
+          </div>
+        </div>
+
+        <div class="moon-menu-toggle-main" style="right: 0px;">
+          <div class="moon-menu-toggle-item">
+            <span class="color-white font-size-12">{{$t('固定菜单栏')}}</span>
+            <el-switch
+              v-model="menuToggle"
+              active-color="#13ce66"
+              @change="changeSwitchToggle">
+            </el-switch>
+          </div>
         </div>
       </div>
 
@@ -511,7 +524,7 @@
         drawerMenu: false,
         drawerSet: false,
         refreshStatus: false,
-        menuToggle: false,
+        menuToggle: true,
         popMenuCollapse: false,
         settingType: 1,
         direction: 'ttb',
@@ -528,6 +541,10 @@
         leftHeight: {
           'height': '',
           'width': '200px'
+        },
+        leftItemHeight: {
+          'height': '',
+          'overflow-y': 'auto'
         },
         rightHeight: {
           'height': ''
@@ -598,6 +615,7 @@
       hh(){
         if (process.browser) {
           this.leftHeight.height = window.innerHeight - 60 + 'px';
+          this.leftItemHeight.height = window.innerHeight - 105 + 'px';
           this.rightHeight.height = window.innerHeight - 60 - 40 + 'px';
           this.drawerHeight.height = window.innerHeight - 60 - 120 + 'px';
           this.drawerMenuHeight.height = window.innerHeight - 60 + 'px';
@@ -708,6 +726,7 @@
       toggleRightMenu(event){
         this.isCollapse = true;
         this.popMenuCollapse = false;
+        this.menuToggle = true;
         this.rightWidth.marginLeft = "220px";
         this.leftHeight.width = "200px";
         this.leftHeight['padding'] = "10px";
