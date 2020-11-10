@@ -93,6 +93,14 @@ p{
   padding-bottom: 5px;
   border-bottom: 1px solid #F2F6FC;
 }
+.moon-menu-toggle-main{
+  position: relative;
+  width: 100%;
+  right: 10px;
+  bottom: 0px;
+  text-align: right;
+  margin-top: 5px;
+}
 .pull-left{
   float: left;
 }
