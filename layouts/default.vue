@@ -56,22 +56,35 @@
       </div>
       <div class="moon-top-middle-menu">
         <div class="moon-top-middle-menu-title">
-          <span class="moon-top-middle-menu-item">
-            <i class="item fa fa-th" style="font-size: 18px" @click="showMenuList($event)"></i>
-          </span>
+          <div style="display: inline-block" :style="topWidth">
+            <span class="moon-top-middle-menu-item">
+              <i class="item fa fa-th" style="font-size: 18px" @click="showMenuList($event)"></i>
+            </span>
 
-          <span class="moon-top-middle-menu-item-text" v-for="(item, index) in topMenuList" :key="index" @click="handleTopSelect($event, item)">
-            <label class="item" :class="activeTop == item.key ? 'moon-top-middle-menu-item-text-active' : ''">{{item.name}}</label>
-          </span>
+            <span class="moon-top-middle-menu-item-text" v-for="(item, index) in topMenuList" :key="index" v-if="index <= widthIndex" @click="handleTopSelect($event, item)">
+              <label class="item" :class="activeTop == item.key ? 'moon-top-middle-menu-item-text-active' : ''">{{item.name}}</label>
+            </span>
 
-          <span class="moon-top-middle-menu-item-text">
-            <!--<label class="item">
-              <el-tag type="info" size="small" closable>标签三</el-tag>
-            </label>-->
-            <label class="item">
-              <i class="fa fa-plus-circle"></i>
-            </label>
-          </span>
+            <!--<span class="moon-top-middle-menu-item-text" v-if="topMenuList.length > widthIndex">
+              <label class="item">更多</label>
+            </span>-->
+            <el-dropdown class="moon-top-middle-menu-item-text" v-if="topMenuList.length > widthIndex">
+              <span class="el-dropdown-link item">
+                更多<i class="el-icon-arrow-down el-icon--right"></i>
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item>黄金糕</el-dropdown-item>
+                <el-dropdown-item>狮子头</el-dropdown-item>
+                <el-dropdown-item>螺蛳粉</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+
+            <span class="moon-top-middle-menu-item-text">
+              <label class="item">
+                <i class="fa fa-plus-circle"></i>
+              </label>
+            </span>
+          </div>
 
           <div class="pull-right">
             <span class="moon-top-middle-menu-info">
@@ -538,6 +551,10 @@
         activeSlider: '',
         activeTop: '',
         activeSubSlider: '',
+        widthIndex: 0,
+        topWidth: {
+          width: '0px'
+        },
         leftHeight: {
           'height': '',
           'width': '200px'
@@ -595,12 +612,18 @@
     },
     mounted () {
       this.screenWidth = document.body.clientWidth;
+      let width = document.querySelector(".moon-top-middle-menu-title").clientWidth;
+      this.topWidth.width = width - 400 + 'px';
+      this.widthIndex = (width - 400) / 150;
       // 监听窗口大小
       window.onresize = () => {
+        width = document.querySelector(".moon-top-middle-menu-title").clientWidth;
         return (() => {
           this.screenWidth = document.body.clientWidth;
+          this.topWidth.width = width - 400 + 'px';
+          this.widthIndex = (width - 400) / 150;
         })()
-      }
+      };
     },
     created() {
       this.hh();
@@ -757,6 +780,16 @@
           }
           this.setSliderSubToggle();
         });
+      },
+      screenWidth(val) {
+        this.screenWidth = val;
+        if (this.screenWidth-100 < 1200){
+          this.isCollapse = false;
+          this.toggleLeftMenu();
+        }else {
+          this.isCollapse = true;
+          this.toggleRightMenu();
+        }
       }
     }
   }

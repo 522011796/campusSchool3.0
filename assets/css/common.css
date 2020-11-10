@@ -9,6 +9,7 @@ html {
   box-sizing: border-box;
   color: #595959;;
   overflow-y: hidden;
+  min-width: 1200px;
 }
 body{
   margin: 0px !important;
