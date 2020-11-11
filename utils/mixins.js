@@ -10,8 +10,12 @@ export default {
       total: global.total,
       page: global.page,
       num: global.num,
+      loginUserName: global.loginUserName,
       collegeId: global.collegeId,
       collegeName: global.collegeName,
+      campusName: global.campusName,
+      loginUserType: global.loginUserType,
+      campusLogo: global.campusLogo,
       majorId: global.majorId,
       majorName: global.majorName,
       classId: global.classId,
@@ -26,6 +30,11 @@ export default {
       currentDay: global.currentDay,
       currentTermId: global.currentTermId,
       currentWeekNum: global.currentWeekNum,
+      currentWeekNo: global.currentWeekNo,
+      userJobNum: global.userJobNum,
+      realName: global.realName,
+      headImage: global.headImage,
+      userPhone: global.userPhone,
       tableHeight: {
         'height': ''
       },
@@ -62,8 +71,34 @@ export default {
         keys:'campusId,userType,campusType,userId,username,campusName,campusLogo,realName,externalSystemName,externalSystem,termId,externalSystemName,externalSystem'
       };
       await this.$axios.get(common.session_url, {params: params}).then(res => {
-        console.log(1);
-        this.testDefault = 1234;
+        console.log(res);
+        this.campusId = res.data.data.campusId;
+        this.campusName = res.data.data.campusName;
+        this.loginUserName = res.data.data.username;
+        this.loginUserType = res.data.data.userType;
+        this.campusLogo = res.data.data.campusLogo;
+        this.currentTermId = res.data.data.currentTermId;
+        this.userJobNum = res.data.data.jobNum;
+        this.realName = res.data.data.realName;
+        this.headImage = res.data.data.headImage;
+        this.organizeName = res.data.data.organizeName;
+        this.headImage = res.data.data.headImage;
+      });
+    },
+    /**
+     * 获取当前学年学期学周
+     * 采用同步执行，为了在需要使用的时候，可以先执行完成后再执行下一步操作
+     * @returns {Promise<void>}
+     */
+    async getCurrentWeekInfo(campusId) {
+      let params = {
+        campusId: campusId
+      };
+      await this.$axios.get(common.organization_week, {params: params}).then(res => {
+        this.currentYear = res.data.data.name;
+        this.currentWeekNum = res.data.data.weekNum;
+        this.currentWeekNo = res.data.data.weekNo;
+
       });
     },
     /**

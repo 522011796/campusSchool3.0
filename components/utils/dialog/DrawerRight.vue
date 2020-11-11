@@ -30,7 +30,7 @@
             <i class="fa fa-download"></i>
             {{$t("下载模版")}}
           </el-button>
-          <span class="font-size-12 color-muted">({{$t("支持格式xls")}})</span>
+          <span class="font-size-12 color-muted">({{$t("支持Excel2003或者Excel2007")}})</span>
         </div>
 
         <div class="margin-top-10">
@@ -41,7 +41,12 @@
             <el-upload
               class="custom-upload"
               drag
-              :action="action">
+              :action="action"
+              :accept="accept"
+              :data="data"
+              :show-file-list="false"
+              :on-success="handleAvatarSuccess"
+              :on-error="handleAvatarError">
 
               <i class="el-icon-upload"></i>
               <div class="el-upload__text">{{$t("将文件拖到此处，或")}}<em>{{$t("点击上传")}}</em></div>
@@ -59,7 +64,8 @@
                   <span>{{$t("上传进度")}}</span>
                 </div>
                 <div class="color-disabeld font-size-12 margin-top-5">
-                  <span>{{$t("文件未上传")}}</span>
+                  <span v-if="process != ''">{{process}}</span>
+                  <span v-else>{{$t("文件未上传")}}</span>
                 </div>
               </el-timeline-item>
 
@@ -68,7 +74,12 @@
                   <span>{{$t("上传结果")}}</span>
                 </div>
                 <div class="color-disabeld font-size-12 margin-top-5">
-                  <span>{{$t("暂无数据")}}</span>
+                  <div v-if="Object.keys(result).length > 0">
+                    <div v-for="(item, index) in result" :key="index">
+                      <span>{{item}}</span>
+                    </div>
+                  </div>
+                  <span v-else>{{$t("暂无数据")}}</span>
                 </div>
               </el-timeline-item>
             </el-timeline>
@@ -90,6 +101,7 @@
 <script>
 import mixins from "../../../utils/mixins";
 import {oneOf} from "../../../utils/utils";
+import {common} from "../../../utils/api/url";
 export default {
   mixins: [mixins],
   props: {
@@ -124,6 +136,26 @@ export default {
     downloadFile: {
       default: '',
       type: String
+    },
+    accept: {
+      default: '',
+      type: String
+    },
+    data: {
+      default: function () {
+        return {};
+      },
+      type: Object
+    },
+    process: {
+      default: '',
+      type: String
+    },
+    result: {
+      default: function () {
+        return {};
+      },
+      type: Object
     }
   },
   computed: {
@@ -155,7 +187,7 @@ export default {
   },
   methods: {
     handleClose(data){
-      if (this.footer){
+      if (!this.footer){
         this.$emit("right-close", data);
       }else {
         this.handleCancel();
@@ -169,7 +201,13 @@ export default {
     },
     download(event){
       console.log(this.downloadFile);
-      //window.open(this.downloadFile);
+      window.open(this.downloadFile, '_self');
+    },
+    handleAvatarSuccess(res, file){
+      this.$emit('success', res, file);
+    },
+    handleAvatarError(res, file){
+      this.$emit('error', res, file);
     }
   }
 }

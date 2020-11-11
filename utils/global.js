@@ -17,6 +17,16 @@ const currentMonth = "";
 const currentDay = "";
 const currentTermId = "";
 const currentWeekNum = "";
+const loginUserName = "";
+const loginUserType = "";
+const campusLogo = "";
+const campusName = "";
+const currentWeekNo = "";
+const userJobNum = "";
+const organizeName = "";
+const realName = "";
+const headImage = "";
+const userPhone = "";
 
 export default {
   total,
@@ -37,5 +47,15 @@ export default {
   currentMonth,
   currentTermId,
   currentWeekNum,
-  currentYear
+  currentYear,
+  loginUserName,
+  loginUserType,
+  campusLogo,
+  campusName,
+  currentWeekNo,
+  userJobNum,
+  organizeName,
+  realName,
+  headImage,
+  userPhone
 }

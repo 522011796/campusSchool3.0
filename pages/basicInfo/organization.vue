@@ -9,9 +9,9 @@
             <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInitData($event, 'main')">{{$t("添加组织")}}</el-button>
             <el-button size="small" type="warning" plain  icon="el-icon-notebook-2" @click="uploadOrganization($event)">{{$t("导入组织")}}</el-button>
           </el-col>
-          <el-col :span="12" class="text-right">
+          <!--<el-col :span="12" class="text-right">
             <MyInputButton size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('名称/编号')" @click="search"></MyInputButton>
-          </el-col>
+          </el-col>-->
         </el-row>
       </div>
 
@@ -26,17 +26,17 @@
           style="width: 100%"
           @cell-click="cellClick">
           <el-table-column
-            prop="name"
+            prop="department_name"
             :label="$t('名称')"
             width="180">
           </el-table-column>
           <el-table-column
-            prop="realName"
+            prop="dept_short_name"
             :label="$t('简称')"
             width="180">
           </el-table-column>
           <el-table-column
-            prop="no"
+            prop="department_no"
             :label="$t('编号')">
           </el-table-column>
           <el-table-column
@@ -44,7 +44,7 @@
             label="操作"
             width="120">
             <template slot-scope="scope">
-              <i class="fa fa-plus-circle margin-right-5 color-success" @click="addInitData(scope.row)"></i>
+              <i class="fa fa-plus-circle margin-right-5 color-success" @click="addInitData(scope.row, 'sub')"></i>
               <i class="fa fa-edit margin-right-5 color-grand" @click="addInitData(scope.row)"></i>
               <i class="fa fa-trash color-danger" @click="handleDelete(scope.row)"></i>
             </template>
@@ -52,7 +52,8 @@
         </el-table>
 
         <div class="layout-right-footer text-right">
-          <MyPagination class="layout-pagination"></MyPagination>
+          <!--<MyPagination class="layout-pagination"></MyPagination>-->
+          <span class="margin-right-10">{{$t("共")}} {{tableData.length}} {{$t("条")}}</span>
         </div>
       </div>
     </layout-tb>
@@ -61,7 +62,7 @@
       <div class="margin-top-10">
         <el-form ref="form" :model="form" label-width="140px">
           <el-form-item label="上级部门" v-if="form.oprType != 'main'">
-            <span>x</span>
+            <span>{{form.superName}}</span>
           </el-form-item>
           <el-form-item label="组织名称">
             <el-input v-model="form.name" class="width-260"></el-input>
@@ -84,7 +85,7 @@
       </div>
     </dialog-normal>
 
-    <drawer-right @changeDrawer="closeDrawerDialog" :visible="drawerVisible" :loading="drawerLoading" :hide-footer="true" size="400px" :title="$t('导入教室')" action="https://jsonplaceholder.typicode.com/posts/" download-file="xxx" @right-close="cancelDrawDialog" @ok="okDrawDialog" @cancel="closeDrawDialog">
+    <drawer-right @changeDrawer="closeDrawerDialog" :visible="drawerVisible" accept=".xls,.xlsx" :data="{all: true}" :loading="drawerLoading" :hide-footer="true" size="400px" :title="$t('导入教室')" :action="uploadAction" :download-file="uploadFile" :result="uploadResult" :process="uploadProcess" @right-close="cancelDrawDialog" @success="uploadSuccess" @error="uploadError">
 
     </drawer-right>
 
@@ -102,6 +103,8 @@ import DialogNormal from "../../components/utils/dialog/DialogNormal";
 import MyNormalDialog from "../../components/utils/dialog/MyNormalDialog";
 import DrawerRight from "../../components/utils/dialog/DrawerRight";
 import {common} from "../../utils/api/url";
+import {setChildren,MessageSuccess, MessageError} from "../../utils/utils";
+
 export default {
   mixins: [mixins],
   components: {LayoutTb,MyInputButton,MyPagination,DialogNormal,MyNormalDialog,DrawerRight},
@@ -114,9 +117,15 @@ export default {
       loading: false,
       drawerLoading: false,
       subDetail: '',
+      uploadFile: common.organization_file,
+      uploadAction: common.organization_upload,
+      uploadResult: {},
+      uploadProcess: '',
       form: {
         oprType: '',
         id: '',
+        deptSuperId: '',
+        superName: '',
         name: '',
         no: '',
         realName: ''
@@ -125,28 +134,42 @@ export default {
     }
   },
   created() {
-    for(let i = 0; i < 30; i++){
-      this.tableData.push(
-        {
-          id: i+1,
-          name: '2016-05-02',
-          realName: '王小虎',
-          no: '上海市普陀区金沙江路 1518 弄',
-          children: [{
-            id: "item" + (i +1),
-            name: '2016-05-01',
-            realName: '王小虎',
-            no: '上海市普陀区金沙江路 1519 弄'
-          }]
-        }
-      );
-    }
+    this.init();
   },
   methods: {
+    init(){
+      let groupArr = [];
+      let params = {
+        superDeptId: 0
+      };
+      this.$axios.get(common.organization_url, {params: params}).then(res => {
+        console.log(res);
+        if (res.data.data){
+          this.form.deptSuperId = res.data.data[0].id;
+          this.tableData = setChildren(res.data.data[0].child_list, groupArr, 'child_list', 'children');
+        }
+      });
+    },
     addInitData(event, type){
+      console.log(event);
       this.form.oprType = '';
       if (type && type == "main"){
         this.form.oprType = 'main';
+      }else if(type && type == "sub"){
+        this.form = {
+          deptSuperId: event.id,
+          superName: event.department_name
+        };
+      }else {
+        this.form = {
+          oprType: '',
+          id: event.id,
+          deptSuperId: event.id,
+          superName: event.department_name,
+          name: event.department_name,
+          no: event.department_no,
+          realName: event.dept_short_name,
+        };
       }
       this.modalVisible = true;
     },
@@ -157,29 +180,57 @@ export default {
       this.modalVisible = false;
     },
     cancelDrawDialog(){
+      this.uploadProcess = '';
+      this.uploadResult = {};
       this.drawerVisible = false;
     },
     closeDialog(event){
-
+      this.form = {
+        oprType: '',
+        id: '',
+        deptSuperId: '',
+        name: '',
+        departmentName: '',
+        no: '',
+        realName: '',
+      };
+      console.log(111);
     },
     closeDrawerDialog(event){
-      console.log(event);
+      console.log(111,this.drawerVisible);
+      this.uploadProcess = '';
+      this.uploadResult = {};
       this.drawerVisible = event;
     },
     okDialog(event){
+      let url = "";
+      let params = {
+        departmentNo: this.form.no,
+        departmentName: this.form.name,
+        deptShortName: this.form.realName,
+        superDeptId: this.form.deptSuperId
+      };
+      if (this.form.id && this.form.id != ""){
+        url = common.organization_update;
+        params['organizeId'] = this.form.id;
+      }else {
+        url = common.organization_add;
+      }
+      params = this.$qs.stringify(params);
       this.dialogLoading = true;
-      setTimeout(() => {
-        this.$message({
-          message: '恭喜你，这是一条成功消息',
-          type: 'success'
-        });
+      this.$axios.post(url, params).then(res=>{
+        if (res.data.code == 200){
+          this.init();
+          MessageSuccess(res.data.desc);
+        }else {
+          MessageError(res.data.desc);
+        }
         this.dialogLoading = false;
         this.modalVisible = false;
-      },2000)
+      });
     },
     closeDrawDialog(event){
       this.drawerVisible = false;
-      console.log(111,this.drawerVisible);
     },
     okDrawDialog(event){
       console.log(222,this.drawerVisible);
@@ -197,15 +248,26 @@ export default {
       this.modalVisible = true;
     },
     handleDelete(row){
-      this.subDetail = row.name;
+      this.subDetail = row.department_name;
+      this.form.id = row.id;
       this.visibleConfim = true;
     },
     handleOkChange(data) {
       this.dialogLoading = true;
-      setTimeout(() => {
+      let params = {
+        organizeId: this.form.id
+      };
+      params = this.$qs.stringify(params);
+      this.$axios.post(common.organization_delete, params).then(res => {
+        if (res.data.code == 200){
+          this.init();
+          MessageSuccess(res.data.desc);
+        }else {
+          MessageError(res.data.desc);
+        }
         this.visibleConfim = false;
         this.dialogLoading = false;
-      },2000)
+      });
     },
     handleCancelChange(data) {
       this.visibleConfim = false;
@@ -219,9 +281,18 @@ export default {
       });
     },
     cellClick(row, column, cell, event){
-      if (column.property == 'name'){
+      if (column.property == 'department_name'){
         this.$refs.refTable.toggleRowExpansion(row);
       }
+    },
+    uploadSuccess(res, file){
+      this.uploadProcess = res.desc;
+      if (res.data){
+        this.uploadResult = res.data;
+      }
+    },
+    uploadError(res, file){
+      this.uploadProcess = res.data.data;
     }
   }
 }

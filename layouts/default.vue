@@ -2,9 +2,13 @@
   <div class="moon-container">
     <div class="moon-top-menu">
       <div class="pull-left moon-top-logo">
-        <span class="color-white moon-top-logo-title">
+        <span v-if="campusName == ''" class="color-white moon-top-logo-title">
           <i class="fa fa-home"></i>
           智慧校园系统
+        </span>
+        <span v-if="campusName != ''" class="color-white moon-top-logo-title">
+          <el-avatar shape="square" :size="30" :src="campusLogo" style="margin-left: 2px"></el-avatar>
+          <label style="position: relative; top: -10px;">{{campusName}}</label>
         </span>
       </div>
       <div class="pull-right moon-top-right">
@@ -16,22 +20,35 @@
 
           <div>
             <div class="moon-top-user-info-container">
-              <div class="moon-top-user-info-item">
-                <i class="fa fa-user-circle"></i>
-                <span>admin</span>
-              </div>
-              <div class="moon-top-user-info-item">
-                <i class="fa fa-id-card"></i>
-                <span>000001</span>
-              </div>
-              <div class="moon-top-user-info-item">
-                <i class="fa fa-phone"></i>
-                <span>138****3486</span>
-              </div>
-              <div class="moon-top-user-info-item">
-                <i class="fa fa-users"></i>
-                <span>部门1</span>
-              </div>
+              <template v-if="loginUserType == 2">
+                <div class="moon-top-user-info-item">
+                  <i class="fa fa-user-circle"></i>
+                  <span>{{loginUserName}}</span>
+                </div>
+                <div class="moon-top-user-info-item">
+                  <i class="fa fa-flag"></i>
+                  <span>{{$t("管理员")}}</span>
+                </div>
+              </template>
+
+              <template v-if="loginUserType == 4">
+                <div class="moon-top-user-info-item">
+                  <i class="fa fa-user-circle"></i>
+                  <span>{{realName}}</span>
+                </div>
+                <div class="moon-top-user-info-item">
+                  <i class="fa fa-id-card"></i>
+                  <span>{{userJobNum}}</span>
+                </div>
+                <!--<div class="moon-top-user-info-item">
+                  <i class="fa fa-phone"></i>
+                  <span>138****3486</span>
+                </div>-->
+                <div class="moon-top-user-info-item">
+                  <i class="fa fa-users"></i>
+                  <span>{{organizeName}}</span>
+                </div>
+              </template>
             </div>
             <div class="moon-top-user-info-opr">
               <el-row>
@@ -46,10 +63,12 @@
 
           <span slot="reference">
             <label class="moon-top-right-item top-18">
-              <el-avatar size="small" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></el-avatar>
+              <el-avatar size="small" v-if="headImage != undefined" :src="headImage"></el-avatar>
+              <el-avatar size="small" v-else icon="el-icon-user-solid"></el-avatar>
             </label>
             <label class="moon-top-right-item top-6">
-              <label>xxxxxx</label>
+              <label class="moon-top-right-item-eliplse" v-if="loginUserType == 2">{{loginUserName}}</label>
+              <label class="moon-top-right-item-eliplse" v-if="loginUserType == 4">{{realName}}</label>
             </label>
           </span>
         </el-popover>
@@ -96,13 +115,13 @@
                 <i class="fa fa-calendar"></i>
               </label>
               <label>
-                2020第一学年
+                {{year}}
               </label>
               <label>
-                第23周
+                {{$t("第")}}{{weekNum}}{{$t("周")}}
               </label>
               <label>
-                周二
+                {{weekToText(week)}}
               </label>
             </span>
             <span class="moon-top-middle-menu-title-icon">
@@ -528,6 +547,7 @@
 
 <script>
   import mixins from '../utils/mixins';
+  import {auditStatusColor,weekNoText} from "../utils/utils";
   export default {
     name: 'default',
     mixins: [mixins],
@@ -556,6 +576,9 @@
         activeTop: '',
         activeSubSlider: '',
         widthIndex: 0,
+        year: '',
+        weekNum: '',
+        week: '',
         topWidth: {
           width: '0px'
         },
@@ -652,10 +675,12 @@
       },
       async init() {
         await this.getSessionInfo();
-        this.test1();
+        await this.getCurrentWeekInfo(this.campusId);
+        this.year = this.currentYear;
+        this.weekNum = this.currentWeekNum;
+        this.week = this.currentWeekNo;
       },
       test1() {
-        console.log(2);
         console.log(this.value, this.testDefault);
       },
       handleTopSelect(event, item) {
@@ -770,6 +795,9 @@
           this.menuToggle = false;
           this.toggleLeftMenu();
         }
+      },
+      weekToText(val){
+        return weekNoText(val);
       }
     },
     watch: {
@@ -802,7 +830,7 @@
 <style scoped>
 .moon-top-logo-title{
   color: #ffffff;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   position: relative;
   top: 18px;
@@ -831,6 +859,16 @@
   position: relative;
   color: #FFFFFF;
   font-weight: bold;
+}
+.moon-top-right-item-eliplse{
+  display: inline-block;
+  max-width: 55px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+  position: relative;
+  top: 5px;
 }
 .moon-top-right-item.top-18{
   top: 18px;
@@ -1130,6 +1168,7 @@
   text-align: center;
   padding: 5px 0px;
   color: #E6A23C;
+  cursor: default;
 }
 .campus-info-container{
   background: #FFFFFF;

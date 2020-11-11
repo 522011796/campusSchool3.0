@@ -1,3 +1,4 @@
+import { Message } from 'element-ui'
 export function oneOf (value, validList) {
   for (let i = 0; i < validList.length; i++) {
     if (value === validList[i]) {
@@ -5,6 +6,51 @@ export function oneOf (value, validList) {
     }
   }
   return false;
+}
+
+export function setChildren(tree, obj, param, param2){//迭代方法
+  let _self = this;
+  if (tree && tree.length > 0){
+    tree.map(function (item,index) {
+      obj.push(item);
+
+      if(item[param] != undefined && item[param].length > 0){
+        obj[index][param2] = [];
+        setChildren(item.child_list,obj[index][param2]);
+      }
+    });
+    return obj;
+  }
+}
+
+export function MessageError(text = '失败',) {
+  Message({
+    message: text,
+    type: 'error',
+    duration: 3 * 1000
+  })
+}
+export function MessageInfo(text = '消息') {
+  Message({
+    message: text,
+    type: 'info',
+    duration: 3 * 1000
+  })
+}
+export function MessageSuccess(text = '成功') {
+  Message({
+    message: text,
+    type: 'success',
+    duration: 3 * 1000
+  })
+}
+
+export function MessageWarning(text = '警告') {
+  Message({
+    message: text,
+    type: 'warning',
+    duration: 3 * 1000
+  })
 }
 
 export function getLength (str) {
