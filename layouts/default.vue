@@ -65,19 +65,23 @@
               <label class="item" :class="activeTop == item.key ? 'moon-top-middle-menu-item-text-active' : ''">{{item.name}}</label>
             </span>
 
-            <!--<span class="moon-top-middle-menu-item-text" v-if="topMenuList.length > widthIndex">
-              <label class="item">更多</label>
-            </span>-->
-            <el-dropdown class="moon-top-middle-menu-item-text" v-if="topMenuList.length > widthIndex">
-              <span class="el-dropdown-link item">
-                更多<i class="el-icon-arrow-down el-icon--right"></i>
+            <el-popover
+              v-if="topMenuList.length > widthIndex"
+              popper-class="custom-user-popover"
+              placement="bottom"
+              trigger="click">
+              <div>
+                <ul class="pop-more">
+                  <li v-for="(item, index) in topMenuList" :key="index" v-if="index > widthIndex" @click="handleTopSelect($event, item)">
+                    {{item.name}}
+                  </li>
+                </ul>
+              </div>
+
+              <span slot="reference" class="moon-top-middle-menu-item-text el-dropdown-link item" style="cursor: default">
+                {{$t('更多')}} <i class="el-icon-arrow-down"></i>
               </span>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>黄金糕</el-dropdown-item>
-                <el-dropdown-item>狮子头</el-dropdown-item>
-                <el-dropdown-item>螺蛳粉</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
+            </el-popover>
 
             <span class="moon-top-middle-menu-item-text">
               <label class="item">
@@ -1155,5 +1159,23 @@
 .avatar {
   width: 60px;
   height: 60px;
+}
+.pop-more{
+  list-style: none;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.pop-more li{
+  height: 30px;
+  line-height: 30px;
+  padding: 5px 10px;
+  color: #606266;
+  font-size: 14px;
+  cursor: default;
+}
+.pop-more li:hover{
+  height: 30px;
+  line-height: 30px;
+  background: rgb(244, 244, 245);
 }
 </style>
