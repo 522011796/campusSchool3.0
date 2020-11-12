@@ -338,7 +338,8 @@
           :with-header="false"
           :modal="false"
           :close-on-press-escape="false"
-          :wrapperClosable="true">
+          :wrapperClosable="true"
+          @close="closeModalDrawer">
 
           <div class="drawer-main-menu">
             <i class="fa fa-close drawer-menu-close" @click="closeDrawer"></i>
@@ -942,26 +943,7 @@
       },
       settingTypeOpr(event, type){
         this.settingType = type;
-        this.form = {
-          name: '',
-          logo: '',
-          admin: '',
-          phone: '',
-          address: '',
-          no: '',
-          remarks: '',
-          imgs: ["https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg", "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"]
-        };
-        this.formPhone = {
-          oldPhone: '',
-          newPhone: '',
-          phoneCode: '',
-        };
-        this.formPwd = {
-          phone: '',
-          phoneCode: '',
-          pwd: ''
-        };
+        this.closeModalDrawer();
       },
       changeSwitchToggle(event){
         if (event == true){
@@ -1008,6 +990,26 @@
         this.msgList = [];
         this.msgAuditList = [];
         this.tabVal = 0;
+        this.form = {
+          name: '',
+          logo: '',
+          admin: '',
+          phone: '',
+          address: '',
+          no: '',
+          remarks: '',
+          imgs: ["https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg", "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"]
+        };
+        this.formPhone = {
+          oldPhone: '',
+          newPhone: '',
+          phoneCode: '',
+        };
+        this.formPwd = {
+          phone: '',
+          phoneCode: '',
+          pwd: ''
+        };
       },
       showMsgDetail(event, item){
         let params = {

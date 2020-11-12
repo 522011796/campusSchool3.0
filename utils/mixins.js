@@ -89,7 +89,6 @@ export default {
         keys:'campusId,userType,campusType,userId,username,campusName,campusLogo,realName,externalSystemName,externalSystem,termId,externalSystemName,externalSystem'
       };
       await this.$axios.get(common.session_url, {params: params}).then(res => {
-        console.log(res.data.data);
         this.campusId = res.data.data.campusId;
         this.campusName = res.data.data.campusName;
         this.loginUserName = res.data.data.username;
