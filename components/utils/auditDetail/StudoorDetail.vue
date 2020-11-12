@@ -9,8 +9,8 @@
               <span>{{value.apply_user_name}}</span>
             </el-col>
             <el-col :span="12">
-              <span>{{$t("部门")}}:</span>
-              <span>{{value.depart_name}}</span>
+              <span>{{$t("班级")}}:</span>
+              <span>{{value.class_name}}</span>
             </el-col>
           </el-row>
         </div>
@@ -21,7 +21,7 @@
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("类型")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}">{{value.str1}}</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}">{{value.str3}}</span>
               </div>
             </div>
           </el-col>
@@ -29,20 +29,12 @@
             <div>
               <div>
                 <span class="title-class color-disabeld" style="position: relative; top: 0px">{{$t("时长")}}:</span>
-                <span class="moon-content-text-ellipsis-class">{{value.double1}}天</span>
-                <el-tooltip class="item" effect="dark" placement="top-start">
-                  <div slot="content">
-                    <div v-if="value.str3" v-for="(item, index) in JSON.parse(value.str3)">
-                      <span>{{$t("第")}}{{item.section}}{{$t("节课")}}</span>
-                    </div>
-                  </div>
-                  <i class="el-icon-info"></i>
-                </el-tooltip>
+                <span class="moon-content-text-ellipsis-class">{{value.double1}}{{$t("小时")}}</span>
               </div>
             </div>
           </el-col>
         </el-row>
-        <el-row v-if="value.apply_type_code == 'TeacherBusiTripApply'" class="margin-top-10">
+        <el-row class="margin-top-10">
           <el-col :span="12" class="ellipsis-tag">
             <div>
               <div>
@@ -69,19 +61,11 @@
               </div>
             </div>
           </el-col>
-          <el-col :span="12" class="ellipsis-tag">
-            <div>
-              <div>
-                <span class="title-class color-disabeld">{{$t("请假时间")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px'}">{{value.date2}}</span>
-              </div>
-            </div>
-          </el-col>
         </el-row>
       </div>
       <div class="color-muted margin-top-5">
         <el-row>
-          <el-col :span="12" class="ellipsis-tag" v-if="value.apply_file != ''">
+          <el-col :span="12" class="ellipsis-tag" v-if="value.apply_file && value.apply_file != ''">
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("附件")}}:</span>
@@ -115,7 +99,7 @@
 <script>
   import {oneOf} from '../../../utils/utils';
   export default {
-    name: 'TerleaveDetail',
+    name: 'StudoorDetail',
     props: {
       selValue: {
         default: function () {

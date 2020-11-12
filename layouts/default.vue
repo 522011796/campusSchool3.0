@@ -125,11 +125,11 @@
               </label>
             </span>
             <span class="moon-top-middle-menu-title-icon">
-              <el-badge is-dot class="item">
+              <el-badge :is-dot="auditNum > 0" class="item">
                 <i class="fa fa-bookmark" @click="showAuditMsg($event)"></i>
               </el-badge>
 
-              <el-badge is-dot class="item">
+              <el-badge :is-dot="bellNum > 0" class="item">
                 <i class="fa fa-bell-o" @click="showMsg($event)"></i>
               </el-badge>
 
@@ -148,35 +148,69 @@
       <div class="moon-clearfix"></div>
 
       <!--消息中心-->
-      <el-drawer
-        :visible.sync="drawer"
-        :direction="direction"
-        custom-class="custom-drawer"
-        :before-close="handleClose"
-        size="100%"
-        :with-header="false"
-        :modal="false"
-        :close-on-press-escape="false"
-        :wrapperClosable="false">
+      <div class="drawer-custom-top">
+        <el-drawer
+          :visible.sync="drawer"
+          :direction="direction"
+          custom-class="custom-drawer"
+          :before-close="handleClose"
+          size="100%"
+          :with-header="false"
+          :modal="false"
+          :close-on-press-escape="false"
+          :wrapperClosable="false"
+          @close="closeModalDrawer">
 
-        <div class="drawer-main">
-          <i class="fa fa-close drawer-close" @click="closeDrawer"></i>
-          <div class="text-center">
-            <span class="drawer-title" :class="tabVal == 1 ? 'drawer-active' : ''" @click="tabChange($event, 1)">
+          <div class="drawer-main">
+            <i class="fa fa-close drawer-close" @click="closeDrawer"></i>
+            <div class="text-center">
+            <span class="drawer-title" :class="tabVal == -1 ? 'drawer-active' : ''" @click="tabChange($event, -1)">
               {{$t("全部")}}
             </span>
-            <span class="drawer-title" :class="tabVal == 2 ? 'drawer-active' : ''" @click="tabChange($event, 2)">
+              <span class="drawer-title" :class="tabVal == 1 ? 'drawer-active' : ''" @click="tabChange($event, 1)">
               {{$t("已读")}}
             </span>
-            <span class="drawer-title" :class="tabVal == 3 ? 'drawer-active' : ''" @click="tabChange($event, 3)">
+              <span class="drawer-title" :class="tabVal == 0 ? 'drawer-active' : ''" @click="tabChange($event, 0)">
               {{$t("未读")}}
             </span>
-          </div>
-          <div class="drawer-item" :style="drawerHeight">
+            </div>
+            <div class="drawer-item" :style="drawerHeight">
+              <div class="padding-lr-10 padding-tb-5">
+                <el-card class="margin-bottom-10" shadow="always" v-for="(item,index) in msgList" :key="index" @click.native="showMsgDetail($event,item)">
+                  <div v-if="item.extraMap && item.extraMap.applyTypeCode != null">
+                    <div>
+                      <label>{{$t("来自")}}</label>
+                      <label class="color-success" v-if="item.extraMap.userType == 5">{{item.extraMap.className}}</label>
+                      <label class="color-success" v-if="item.extraMap.userType == 4">{{item.extraMap.departmentName}}</label>
+                      <label class="color-grand">{{item.extraMap.realName}}</label>
+                      <label>{{$t("的")}}</label>
+                      <label class="color-danger">{{item.extraMap.applyTypeName}}</label>
+                    </div>
+                    <div class="margin-top-10 color-muted font-size-12">
+                      <label>{{$moment(item.create_time).format("YYYY-MM-DD HH:mm")}}</label>
+                    </div>
+                  </div>
+                  <span v-else>
+                  <div>
+                    <span>{{item.title}}</span>
+                  </div>
+                  <div class="margin-top-5">
+                    <span class="color-muted">{{item.title_desc}}</span>
+                  </div>
+                  <div class="margin-top-10 color-muted font-size-12">
+                    <label>{{$moment(item.create_time).format("YYYY-MM-DD HH:mm")}}</label>
+                  </div>
+                </span>
+                </el-card>
+              </div>
+            </div>
 
+            <div class="text-right padding-tb-5">
+              <my-pagination :total="total" @currentPage="currentPage" @sizeChange="sizeChange"></my-pagination>
+            </div>
           </div>
-        </div>
-      </el-drawer>
+        </el-drawer>
+      </div>
 
       <!--审批中心-->
       <el-drawer
@@ -542,15 +576,31 @@
       </div>
       <div class="moon-clearfix"></div>
     </div>
+
+    <!--消息中心使用的右侧层-->
+    <drawer-layout-right @changeDrawer="closeDrawerDialog" :visible="drawerVisible" :loading="drawerLoading" size="500px" :title="$t('消息详细')" @right-close="cancelDrawDialog">
+      <div slot="content">
+        <my-audit-detail :type="msgType" :sel-value="dataAudit"></my-audit-detail>
+      </div>
+      <div slot="footer">
+        <audit-button :sel-value="dataAudit" @ok="handleOk" @no="handleNo" @cancel="handleCancel"></audit-button>
+      </div>
+    </drawer-layout-right>
   </div>
 </template>
 
 <script>
   import mixins from '../utils/mixins';
-  import {auditStatusColor,weekNoText} from "../utils/utils";
+  import MyPagination from "../components/MyPagination";
+  import DrawerLayoutRight from "../components/utils/dialog/DrawerLayoutRight";
+  import MyAuditDetail from "../components/utils/auditDetail/MyAuditDetail";
+  import AuditButton from "../components/utils/auditDetail/AuditButton";
+  import {auditStatusColor, weekNoText, MessageSuccess, MessageError, MessageWarning} from "../utils/utils";
+  import {common} from "../utils/api/url";
   export default {
     name: 'default',
     mixins: [mixins],
+    components: {MyPagination, DrawerLayoutRight,MyAuditDetail,AuditButton},
     data(){
       return {
         activeTabName: 'all',
@@ -563,6 +613,8 @@
         refreshStatus: false,
         menuToggle: true,
         popMenuCollapse: false,
+        drawerVisible: false,
+        drawerLoading: false,
         settingType: 1,
         direction: 'ttb',
         screenWidth: 0,
@@ -571,7 +623,7 @@
         topMenuList: [],
         sliderMenuList: [],
         clickType: '',
-        tabVal: '1',
+        tabVal: '0',
         activeSlider: '',
         activeTop: '',
         activeSubSlider: '',
@@ -579,6 +631,14 @@
         year: '',
         weekNum: '',
         week: '',
+        bellNum: 0,
+        auditNum: 0,
+        msgList: [],
+        loading: false,
+        msgType: '',
+        dataAudit: {},
+        objectId: '',
+        auditObjectItem: {},
         topWidth: {
           width: '0px'
         },
@@ -655,6 +715,7 @@
     created() {
       this.hh();
       this.init();
+      this.getBell();
       this.activeIndex = this.$route.query.top;
       this.activeSliderIndex = this.$route.query.key;
       this.activeSubSlider = this.$route.query.sub;
@@ -736,6 +797,21 @@
         item.toggle = !item.toggle;
       },
       showMsg(event){
+        let params = {
+          page: this.page,
+          num: this.num,
+          actionGroup: 1,
+          readed: this.tabVal == -1 ? '' : this.tabVal
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.msgRead_list, params).then(res => {
+          console.log(res);
+          if (res.data.code == 200){
+            this.msgList = res.data.data.list;
+            this.total = res.data.data.totalCount;
+          }
+          this.loading = false
+        });
         this.drawer = true;
       },
       refreshInit(event){
@@ -759,6 +835,7 @@
       },
       tabChange(event, type){
         this.tabVal = type;
+        this.showMsg();
       },
       closeDrawer(){
         this.drawer = false;
@@ -798,6 +875,110 @@
       },
       weekToText(val){
         return weekNoText(val);
+      },
+      getBell(){
+        this.$axios.post(common.noread_num).then(res => {
+          if (res.data.code == 200){
+            this.bellNum = res.data.data;
+          }
+        });
+      },
+      currentPage(event){
+        this.page = event;
+        this.showMsg();
+      },
+      sizeChange(event){
+        this.page = 1;
+        this.num = event;
+        this.showMsg();
+      },
+      closeModalDrawer(){
+        console.log(111);
+        this.page = 1;
+        this.num = 20;
+        this.tabVal = 0;
+      },
+      showMsgDetail(event, item){
+        let params = {
+          id:item.object_id
+        };
+        this.auditObjectItem = item;
+        this.$axios.get(common.msg_detail_center, {params: params}).then(res => {
+          if (res.data.code == 200){
+            this.dataAudit = res.data.data;
+            this.msgType = res.data.data.apply_type_code;
+            this.drawerVisible = true;
+            this.setRead(item);
+          }else {
+            MessageWarning(res.data.desc);
+          }
+        });
+      },
+      setRead(item){
+        let params = {
+          msgId:item.id,
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.msg_readed, params).then(res => {
+          if (res.data.code == 200){
+            this.showMsg();
+          }
+        });
+      },
+      closeDrawerDialog(event){
+        this.msgType = '';
+        this.auditObjectItem = {};
+        this.drawerVisible = event;
+      },
+      cancelDrawDialog(){
+        this.drawerVisible = false;
+      },
+      handleOk(data){
+        let params = {
+          applyId: this.auditObjectItem.object_id,
+          status: 1
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.msg_handle, params).then(res => {
+          if (res.data.code == 200){
+            this.showMsgDetail(null, this.auditObjectItem);
+            MessageSuccess(res.data.desc);
+          }else{
+            MessageWarning(res.data.desc);
+          }
+        });
+      },
+      handleNo(data){
+        let params = {
+          applyId: this.auditObjectItem.object_id,
+          status: 2
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.msg_handle, params).then(res => {
+          console.log(res.data);
+          if (res.data.code == 200){
+            this.showMsgDetail(null, this.auditObjectItem);
+            MessageSuccess(res.data.desc);
+          }else{
+            MessageWarning(res.data.desc);
+          }
+        });
+      },
+      handleCancel(data){
+        let params = {
+          applyId: this.auditObjectItem.object_id,
+          status: -1
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.msg_handle, params).then(res => {
+          console.log(res.data);
+          if (res.data.code == 200){
+            this.showMsgDetail(null, this.auditObjectItem);
+            MessageSuccess(res.data.desc);
+          }else{
+            MessageWarning(res.data.desc);
+          }
+        });
       }
     },
     watch: {
@@ -833,7 +1014,7 @@
   font-size: 16px;
   font-weight: bold;
   position: relative;
-  top: 18px;
+  top: 15px;
 }
 .moon-top-middle-menu-title-icon{
   position: relative;

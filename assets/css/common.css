@@ -171,11 +171,23 @@ p{
 .bg-success{
   background: #67C23A;
 }
+.bg-warning{
+  background: #E6A23C;
+}
+.bg-danger{
+  background: #F56C6C;
+}
+.bg-muted{
+  background: #909399;
+}
 .margin-right-5{
   margin-right: 5px;
 }
 .margin-right-10{
   margin-right: 10px;
+}
+.margin-left-10{
+  margin-left: 10px;
 }
 .margin-top-5{
   margin-top: 5px;
@@ -313,7 +325,16 @@ ul{
 }
 .custom-drawer{
   background: rgba(217, 236, 255, 0.95);
-  margin-top: 60px;
+  margin-top: 0px;
+}
+.drawer-custom-top .el-drawer__wrapper {
+  position: fixed;
+  top: 60px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  margin: 0;
 }
 .el-drawer:focus {
   outline: none;
@@ -552,6 +573,16 @@ ul{
   line-height: 40px;
   text-align: right;
   padding: 0px 10px;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  border-top: 1px solid #E4E7ED;
+}
+.drawer-normal-drawer .drawer-normal-full-footer{
+  height: 40px;
+  line-height: 40px;
+  text-align: right;
+  padding: 0px 0px;
   position: absolute;
   bottom: 0px;
   width: 100%;

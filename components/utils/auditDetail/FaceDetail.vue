@@ -8,10 +8,6 @@
               <span>{{$t("申请人")}}:</span>
               <span>{{value.apply_user_name}}</span>
             </el-col>
-            <el-col :span="12">
-              <span>{{$t("部门")}}:</span>
-              <span>{{value.depart_name}}</span>
-            </el-col>
           </el-row>
         </div>
       </div>
@@ -28,60 +24,25 @@
           <el-col :span="12" class="ellipsis-tag">
             <div>
               <div>
-                <span class="title-class color-disabeld" style="position: relative; top: 0px">{{$t("时长")}}:</span>
-                <span class="moon-content-text-ellipsis-class">{{value.double1}}天</span>
-                <el-tooltip class="item" effect="dark" placement="top-start">
-                  <div slot="content">
-                    <div v-if="value.str3" v-for="(item, index) in JSON.parse(value.str3)">
-                      <span>{{$t("第")}}{{item.section}}{{$t("节课")}}</span>
-                    </div>
-                  </div>
-                  <i class="el-icon-info"></i>
-                </el-tooltip>
-              </div>
-            </div>
-          </el-col>
-        </el-row>
-        <el-row v-if="value.apply_type_code == 'TeacherBusiTripApply'" class="margin-top-10">
-          <el-col :span="12" class="ellipsis-tag">
-            <div>
-              <div>
-                <span class="title-class color-disabeld">{{$t("开始时间")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px','position': 'relative','top': '-2px'}">{{$moment(value.date1).format("YYYY-MM-DD HH:mm:ss")}}</span>
-              </div>
-            </div>
-          </el-col>
-          <el-col :span="12" class="ellipsis-tag">
-            <div>
-              <div>
-                <span class="title-class color-disabeld">{{$t("结束时间")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px','position': 'relative','top': '-2px'}">{{$moment(value.date2).format("YYYY-MM-DD HH:mm:ss")}}</span>
-              </div>
-            </div>
-          </el-col>
-        </el-row>
-        <el-row class="margin-top-10">
-          <el-col :span="12" class="ellipsis-tag">
-            <div>
-              <div>
                 <span class="title-class color-disabeld">{{$t("申请时间")}}:</span>
                 <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px','position': 'relative','top': '-2px'}">{{$moment(value.apply_time).format("YYYY-MM-DD HH:mm:ss")}}</span>
               </div>
             </div>
           </el-col>
-          <el-col :span="12" class="ellipsis-tag">
-            <div>
-              <div>
-                <span class="title-class color-disabeld">{{$t("请假时间")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px'}">{{value.date2}}</span>
-              </div>
+        </el-row>
+        <el-row class="margin-top-10">
+          <el-col :span="24">
+            <div class="text-center">
+              <img v-if="value.str2" :src="value.str2" style="height: 100px;width: 100px;border-radius: 5px"/>
+              <img v-if="value.str3" :src="value.str3" style="height: 100px;width: 100px;border-radius: 5px;margin: 0px 15px 0px 15px"/>
+              <img v-if="value.str4" :src="value.str4" style="height: 100px;width: 100px;border-radius: 5px"/>
             </div>
           </el-col>
         </el-row>
       </div>
       <div class="color-muted margin-top-5">
         <el-row>
-          <el-col :span="12" class="ellipsis-tag" v-if="value.apply_file != ''">
+          <el-col :span="12" class="ellipsis-tag" v-if="value.apply_file && value.apply_file != ''">
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("附件")}}:</span>
@@ -115,7 +76,7 @@
 <script>
   import {oneOf} from '../../../utils/utils';
   export default {
-    name: 'TerleaveDetail',
+    name: 'TerdoorDetail',
     props: {
       selValue: {
         default: function () {

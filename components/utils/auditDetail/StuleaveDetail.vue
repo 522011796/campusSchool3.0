@@ -31,7 +31,7 @@
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("开始时间")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px'}">{{value.date1}}</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px','position': 'relative','top': '-2px'}">{{$moment(value.date1).format("YYYY-MM-DD HH:mm:ss")}}</span>
               </div>
             </div>
           </el-col>
@@ -39,7 +39,7 @@
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("结束时间")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px'}">{{value.date2}}</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px','position': 'relative','top': '-2px'}">{{$moment(value.date2).format("YYYY-MM-DD HH:mm:ss")}}</span>
               </div>
             </div>
           </el-col>
@@ -59,7 +59,7 @@
           </el-col>
         </el-row>
         <div class="line-height"></div>
-        <el-row class="margin-top-10">
+        <el-row class="margin-top-10" v-if="value.des && value.des != ''">
           <el-col :span="24" class="ellipsis-long-tag">
             <div>
               <div>

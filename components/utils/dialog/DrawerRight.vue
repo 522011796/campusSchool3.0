@@ -2,6 +2,7 @@
   <div class="container">
     <el-drawer
       custom-class="drawer-normal-drawer"
+      style="margin-top: 60px"
       :visible.sync="drawer_"
       :direction="direction"
       :wrapperClosable="true"

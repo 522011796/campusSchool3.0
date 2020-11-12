@@ -1,14 +1,18 @@
 <template>
   <div class="detail-card" :selectModel="selectModel">
     <el-timeline>
-      <el-timeline-item color="#0bbd87" :timestamp="''+value.apply_time" placement="top">
+      <el-timeline-item color="#0bbd87" placement="top">
         <div slot="dot" class="text-center" style="position: relative; left: -5px;font-size: 12px;height: 18px;width: 18px;border-radius: 18px;background: #67C23A;vertical-align: center">
           <i class="el-icon-s-promotion color-white" style="position: relative; top: 2px"></i>
         </div>
-        <!--<credit-detail :sel-value="value"></credit-detail>-->
-        <!--<repu-detail :sel-value="value"></repu-detail>-->
-        <stuleave-detail :sel-value="value"></stuleave-detail>
-        <!--<terleave-detail :sel-value="value"></terleave-detail>-->
+
+        <credit-detail v-if="type == 'ScoreApply'" :sel-value="value"></credit-detail>
+        <repu-detail v-if="type == 'PunishmentApply'" :sel-value="value"></repu-detail>
+        <stuleave-detail v-if="type == 'LeaveApply'" :sel-value="value"></stuleave-detail>
+        <terleave-detail v-if="type == 'TeacherLeaveApply'" :sel-value="value"></terleave-detail>
+        <terdoor-detail v-if="type == 'TeacherDoorOpenApply'" :sel-value="value"></terdoor-detail>
+        <studoor-detail v-if="type == 'DoorOpenApply'" :sel-value="value"></studoor-detail>
+        <face-detail v-if="type == 'FacePhotoApply'" :sel-value="value"></face-detail>
       </el-timeline-item>
 
       <div class="detail-group-card">
@@ -26,10 +30,11 @@
               <span>{{item.handleTypeName}}</span>
               <el-divider direction="vertical"></el-divider>
               <span>{{itemChild.handleName}}</span>
-              <el-divider direction="vertical"></el-divider>
-              <span>{{auditStatus(itemChild.status)}}</span>
-              <el-divider direction="vertical"></el-divider>
-              <span>{{itemChild.time}}</span>
+              <el-divider direction="vertical" v-if="itemChild.status != 5"></el-divider>
+              <span v-if="itemChild.status != 5">{{auditStatus(itemChild.status)}}</span>
+              <el-divider direction="vertical" v-if="itemChild.status != 5"></el-divider>
+              <span v-if="itemChild.time && itemChild.status != 5">{{$moment(itemChild.time).format("YYYY-MM-DD HH:mm:ss")}}</span>
+              <span v-else></span>
             </div>
             <div v-if="itemChild.des && itemChild.des != ''" class="color-warning margin-top-10">
               <el-row class="margin-top-10">
@@ -55,10 +60,13 @@
   import RepuDetail from "./RepuDetail";
   import StuleaveDetail from "./StuleaveDetail";
   import TerleaveDetail from "./TerleaveDetail";
+  import FaceDetail from "./FaceDetail";
+  import TerdoorDetail from "./TerdoorDetail";
+  import StudoorDetail from "./StudoorDetail";
   import {oneOf, auditStatusText, auditStatusColor} from '../../../utils/utils';
   export default {
     name: 'MyAuditDetail',
-    components: {CreditDetail, RepuDetail, StuleaveDetail, TerleaveDetail},
+    components: {CreditDetail, RepuDetail, StuleaveDetail, TerleaveDetail,FaceDetail,TerdoorDetail,StudoorDetail},
     props: {
       selValue: {
         default: function () {
@@ -71,6 +79,10 @@
           return [];
         },
         type: Array
+      },
+      type: {
+        default: '',
+        type: String,
       }
     },
     computed: {

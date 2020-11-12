@@ -21,7 +21,7 @@
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("班级")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}">{{value.class_name}}</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-70+'px'}">{{value.class_name}}</span>
               </div>
             </div>
           </el-col>
@@ -29,7 +29,7 @@
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("专业")}}专业:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}">{{value.major_name}}</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-70+'px'}">{{value.major_name}}</span>
               </div>
             </div>
           </el-col>
@@ -37,7 +37,7 @@
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("院系")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}">{{value.college_name}}</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-70+'px'}">{{value.college_name}}</span>
               </div>
             </div>
           </el-col>
@@ -73,7 +73,7 @@
             </div>
           </el-col>
         </el-row>
-        <el-row class="margin-top-10">
+        <el-row class="margin-top-10" v-if="value.des && value.des != ''">
           <el-col :span="24" class="ellipsis-long-tag">
             <div>
               <div>

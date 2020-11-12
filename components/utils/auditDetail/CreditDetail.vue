@@ -5,6 +5,7 @@
         <div class="color-success">
           <span>{{$t("申报人")}}:</span>
           <span>{{value.apply_user_name}}</span>
+          <span class="font-size-12 color-muted">({{$moment(value.apply_time).format("YYYY-MM-DD HH:mm:ss")}})</span>
         </div>
       </div>
       <div class="color-muted">
@@ -73,7 +74,7 @@
             </div>
           </el-col>
         </el-row>
-        <el-row class="margin-top-10">
+        <el-row class="margin-top-10" v-if="value.des && value.des != ''">
           <el-col :span="24" class="ellipsis-long-tag">
             <div>
               <div>

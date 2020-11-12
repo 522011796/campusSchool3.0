@@ -65,6 +65,12 @@
   "LazyLayoutTb": {
     "description": "Auto imported from components/Layout/LayoutTb.vue"
   },
+  "MyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
+  },
+  "LazyMyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
+  },
   "MyBlockListChildTree": {
     "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
   },
@@ -95,17 +101,23 @@
   "LazyMySexSelect": {
     "description": "Auto imported from components/utils/MySexSelect.vue"
   },
-  "MyInputButton": {
-    "description": "Auto imported from components/search/MyInputButton.vue"
+  "AuditButton": {
+    "description": "Auto imported from components/utils/auditDetail/AuditButton.vue"
   },
-  "LazyMyInputButton": {
-    "description": "Auto imported from components/search/MyInputButton.vue"
+  "LazyAuditButton": {
+    "description": "Auto imported from components/utils/auditDetail/AuditButton.vue"
   },
   "CreditDetail": {
     "description": "Auto imported from components/utils/auditDetail/CreditDetail.vue"
   },
   "LazyCreditDetail": {
     "description": "Auto imported from components/utils/auditDetail/CreditDetail.vue"
+  },
+  "FaceDetail": {
+    "description": "Auto imported from components/utils/auditDetail/FaceDetail.vue"
+  },
+  "LazyFaceDetail": {
+    "description": "Auto imported from components/utils/auditDetail/FaceDetail.vue"
   },
   "MyAuditDetail": {
     "description": "Auto imported from components/utils/auditDetail/MyAuditDetail.vue"
@@ -119,11 +131,23 @@
   "LazyRepuDetail": {
     "description": "Auto imported from components/utils/auditDetail/RepuDetail.vue"
   },
+  "StudoorDetail": {
+    "description": "Auto imported from components/utils/auditDetail/StudoorDetail.vue"
+  },
+  "LazyStudoorDetail": {
+    "description": "Auto imported from components/utils/auditDetail/StudoorDetail.vue"
+  },
   "StuleaveDetail": {
     "description": "Auto imported from components/utils/auditDetail/StuleaveDetail.vue"
   },
   "LazyStuleaveDetail": {
     "description": "Auto imported from components/utils/auditDetail/StuleaveDetail.vue"
+  },
+  "TerdoorDetail": {
+    "description": "Auto imported from components/utils/auditDetail/TerdoorDetail.vue"
+  },
+  "LazyTerdoorDetail": {
+    "description": "Auto imported from components/utils/auditDetail/TerdoorDetail.vue"
   },
   "TerleaveDetail": {
     "description": "Auto imported from components/utils/auditDetail/TerleaveDetail.vue"
@@ -136,6 +160,12 @@
   },
   "LazyDialogNormal": {
     "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
+  },
+  "DrawerLayoutRight": {
+    "description": "Auto imported from components/utils/dialog/DrawerLayoutRight.vue"
+  },
+  "LazyDrawerLayoutRight": {
+    "description": "Auto imported from components/utils/dialog/DrawerLayoutRight.vue"
   },
   "DrawerRight": {
     "description": "Auto imported from components/utils/dialog/DrawerRight.vue"
