@@ -63,7 +63,7 @@
               </div>
             </div>
           </el-col>
-          <el-col :span="8" class="ellipsis-tag" v-if="value.apply_file != ''">
+          <el-col :span="8" class="ellipsis-tag" v-if="value.apply_file && value.apply_file != ''">
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("附件")}}:</span>

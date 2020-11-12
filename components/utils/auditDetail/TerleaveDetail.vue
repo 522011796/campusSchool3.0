@@ -81,7 +81,7 @@
       </div>
       <div class="color-muted margin-top-5">
         <el-row>
-          <el-col :span="12" class="ellipsis-tag" v-if="value.apply_file != ''">
+          <el-col :span="12" class="ellipsis-tag" v-if="value.apply_file && value.apply_file != ''">
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("附件")}}:</span>

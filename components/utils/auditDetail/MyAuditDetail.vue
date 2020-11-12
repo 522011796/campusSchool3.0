@@ -36,14 +36,14 @@
               <span v-if="itemChild.time && itemChild.status != 5">{{$moment(itemChild.time).format("YYYY-MM-DD HH:mm:ss")}}</span>
               <span v-else></span>
             </div>
-            <div v-if="itemChild.des && itemChild.des != ''" class="color-warning margin-top-10">
+            <div v-if="itemChild.des3 && itemChild.des3 != ''" class="color-warning margin-top-10">
               <el-row class="margin-top-10">
                 <el-col :span="4">
                   <span>{{$t("审批意见")}}:</span>
                 </el-col>
                 <el-col :span="20">
-                  <el-tooltip class="item" effect="dark" :content="itemChild.des" placement="top-start" :tabindex="9999">
-                    <span>{{itemChild.des}}</span>
+                  <el-tooltip class="item" effect="dark" :content="itemChild.des3" placement="top-start" :tabindex="9999">
+                    <span>{{itemChild.des3}}</span>
                   </el-tooltip>
                 </el-col>
               </el-row>

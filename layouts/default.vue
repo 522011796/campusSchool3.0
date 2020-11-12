@@ -125,12 +125,12 @@
               </label>
             </span>
             <span class="moon-top-middle-menu-title-icon">
-              <el-badge :is-dot="auditNum > 0" class="item">
-                <i class="fa fa-bookmark" @click="showAuditMsg($event)"></i>
+              <el-badge :is-dot="auditCount > 0" class="item">
+                <i class="fa fa-bookmark" @click="showAuditMsg('LeaveApply')"></i>
               </el-badge>
 
               <el-badge :is-dot="bellNum > 0" class="item">
-                <i class="fa fa-bell-o" @click="showMsg($event)"></i>
+                <i class="fa fa-bell-o" @click="showMsg(0)"></i>
               </el-badge>
 
               <el-badge is-dot hidden class="item">
@@ -213,251 +213,283 @@
       </div>
 
       <!--审批中心-->
-      <el-drawer
-        :visible.sync="drawerAudit"
-        :direction="direction"
-        custom-class="custom-drawer"
-        :before-close="handleClose"
-        size="100%"
-        :with-header="false"
-        :modal="false"
-        :close-on-press-escape="false"
-        :wrapperClosable="false">
+      <div class="drawer-custom-top">
+        <el-drawer
+          :visible.sync="drawerAudit"
+          :direction="direction"
+          custom-class="custom-drawer"
+          :before-close="handleClose"
+          size="100%"
+          :with-header="false"
+          :modal="false"
+          :close-on-press-escape="false"
+          :wrapperClosable="false"
+          @close="closeModalDrawer">
 
-        <div class="drawer-main">
-          <i class="fa fa-close drawer-close" @click="closeDrawer"></i>
-          <div class="text-center">
-            <span class="drawer-audit-title" :class="tabVal == 1 ? 'drawer-active' : ''" @click="tabChange($event, 1)">
-              {{$t("学生请假申请")}}
+          <div class="drawer-main">
+            <i class="fa fa-close drawer-close" @click="closeDrawer"></i>
+            <div class="text-center">
+            <span class="drawer-audit-title" :class="tabVal == 'LeaveApply' ? 'drawer-active' : ''" @click="tabAuditChange($event, 'LeaveApply')">
+              {{$t("学生请假")}}
             </span>
-            <span class="drawer-audit-title" :class="tabVal == 2 ? 'drawer-active' : ''" @click="tabChange($event, 2)">
-              {{$t("教工请假申请")}}
+              <span class="drawer-audit-title" :class="tabVal == 'TeacherLeaveApply' ? 'drawer-active' : ''" @click="tabAuditChange($event, 'TeacherLeaveApply')">
+              {{$t("教工请假")}}
             </span>
-            <span class="drawer-audit-title" :class="tabVal == 3 ? 'drawer-active' : ''" @click="tabChange($event, 3)">
-              {{$t("学工奖惩申请")}}
+              <span class="drawer-audit-title" :class="tabVal == 'PunishmentApply' ? 'drawer-active' : ''" @click="tabAuditChange($event, 'PunishmentApply')">
+              {{$t("学工奖惩")}}
             </span>
-            <span class="drawer-audit-title" :class="tabVal == 4 ? 'drawer-active' : ''" @click="tabChange($event, 4)">
-              {{$t("素质学分申请")}}
+              <span class="drawer-audit-title" :class="tabVal == 'ScoreApply' ? 'drawer-active' : ''" @click="tabAuditChange($event, 'ScoreApply')">
+              {{$t("素质学分")}}
             </span>
-            <span class="drawer-audit-title" :class="tabVal == 5 ? 'drawer-active' : ''" @click="tabChange($event, 5)">
-              {{$t("学工门禁申请")}}
+              <span class="drawer-audit-title" :class="tabVal == 'DoorOpenApply' ? 'drawer-active' : ''" @click="tabAuditChange($event, 'DoorOpenApply')">
+              {{$t("学工门禁")}}
             </span>
-            <span class="drawer-audit-title" :class="tabVal == 6 ? 'drawer-active' : ''" @click="tabChange($event, 6)">
-              {{$t("教工门禁申请")}}
+              <span class="drawer-audit-title" :class="tabVal == 'TeacherDoorOpenApply' ? 'drawer-active' : ''" @click="tabAuditChange($event, 'TeacherDoorOpenApply')">
+              {{$t("教工门禁")}}
             </span>
-          </div>
-          <div class="drawer-item" :style="drawerHeight">
-
-          </div>
-        </div>
-      </el-drawer>
-
-      <!--菜单列表-->
-      <el-drawer
-        :visible.sync="drawerMenu"
-        :direction="direction"
-        custom-class="custom-drawer"
-        :before-close="handleClose"
-        size="80%"
-        :with-header="false"
-        :modal="false"
-        :close-on-press-escape="false"
-        :wrapperClosable="true">
-
-        <div class="drawer-main-menu">
-          <i class="fa fa-close drawer-menu-close" @click="closeDrawer"></i>
-          <div class="drawer-main-menu-left text-center" :style="drawerMenuHeight">
-            <div class="drawer-main-menu-left-container">
-              <div class="drawer-main-menu-left-container-item drawer-main-menu-left-container-item-active" v-for="(item, index) in topMenuList" :key="index">
-                <i :class="item.icon"></i>
-                <span>{{item.name}}</span>
+              <span class="drawer-audit-title" :class="tabVal == 'FacePhotoApply' ? 'drawer-active' : ''" @click="tabAuditChange($event, 'FacePhotoApply')">
+              {{$t("人脸识别")}}
+            </span>
+            </div>
+            <div class="drawer-item" :style="drawerHeight">
+              <div class="padding-lr-10 padding-tb-5">
+                <div v-if="msgAuditList.length <= 0" class="text-center">
+                  <span class="color-disabeld">{{$t("暂无数据")}}</span>
+                </div>
+                <el-card v-else class="margin-bottom-10" shadow="always" v-for="(item,index) in msgAuditList" :key="index" @click.native="showMsgDetail($event,item)">
+                  <div>
+                    <label>{{$t("来自")}}</label>
+                    <label class="color-success" v-if="item.user_type == 5">{{item.class_name}}</label>
+                    <label class="color-success" v-if="item.user_type == 4">{{item.department_name}}</label>
+                    <label class="color-grand">{{item.real_name}}</label>
+                    <label>{{$t("的")}}</label>
+                    <label class="color-danger">{{item.str1}}</label>
+                    <label>{{$t("申请")}}</label>
+                  </div>
+                  <div class="margin-top-10 color-muted font-size-12">
+                    <label>{{$moment(item.create_time).format("YYYY-MM-DD HH:mm")}}</label>
+                  </div>
+                </el-card>
               </div>
             </div>
+
+            <div class="text-right padding-tb-5">
+              <my-pagination :total="total" @currentPage="currentAuditPage" @sizeChange="sizeAuditChange"></my-pagination>
+            </div>
           </div>
-          <div class="drawer-main-menu-right" :style="drawerMenuHeight">
-            <div class="drawer-main-menu-right-container">
-              <div class="drawer-main-menu-right-container-item" v-for="(item, index) in sliderMenuList" :key="item.id">
-                <div class="drawer-main-menu-right-container-item-title">
+        </el-drawer>
+      </div>
+
+      <!--菜单列表-->
+      <div class="drawer-custom-top">
+        <el-drawer
+          :visible.sync="drawerMenu"
+          :direction="direction"
+          custom-class="custom-drawer"
+          :before-close="handleClose"
+          size="80%"
+          :with-header="false"
+          :modal="false"
+          :close-on-press-escape="false"
+          :wrapperClosable="true">
+
+          <div class="drawer-main-menu">
+            <i class="fa fa-close drawer-menu-close" @click="closeDrawer"></i>
+            <div class="drawer-main-menu-left text-center" :style="drawerMenuHeight">
+              <div class="drawer-main-menu-left-container">
+                <div class="drawer-main-menu-left-container-item drawer-main-menu-left-container-item-active" v-for="(item, index) in topMenuList" :key="index">
                   <i :class="item.icon"></i>
                   <span>{{item.name}}</span>
                 </div>
-                <div class="drawer-main-menu-right-container-item-list">
-                  <div class="drawer-main-menu-right-container-item-list-item" v-for="(itemChild, indexChild) in item.list" :key="itemChild.id">
-                    <span>{{itemChild.name}}</span>
+              </div>
+            </div>
+            <div class="drawer-main-menu-right" :style="drawerMenuHeight">
+              <div class="drawer-main-menu-right-container">
+                <div class="drawer-main-menu-right-container-item" v-for="(item, index) in sliderMenuList" :key="item.id">
+                  <div class="drawer-main-menu-right-container-item-title">
+                    <i :class="item.icon"></i>
+                    <span>{{item.name}}</span>
+                  </div>
+                  <div class="drawer-main-menu-right-container-item-list">
+                    <div class="drawer-main-menu-right-container-item-list-item" v-for="(itemChild, indexChild) in item.list" :key="itemChild.id">
+                      <span>{{itemChild.name}}</span>
+                    </div>
                   </div>
                 </div>
+                <div class="moon-clearfix"></div>
               </div>
-              <div class="moon-clearfix"></div>
             </div>
-          </div>
-          <div class="moon-clearfix"></div>
-          <!--<div class="drawer-item" :style="drawerHeight">
+            <div class="moon-clearfix"></div>
+            <!--<div class="drawer-item" :style="drawerHeight">
 
-          </div>-->
-        </div>
-      </el-drawer>
+            </div>-->
+          </div>
+        </el-drawer>
+      </div>
 
       <!--系统设置-->
-      <el-drawer
-        :visible.sync="drawerSet"
-        :direction="direction"
-        custom-class="custom-drawer"
-        :before-close="handleClose"
-        size="100%"
-        :with-header="false"
-        :modal="false"
-        :close-on-press-escape="false"
-        :wrapperClosable="true">
+      <div class="drawer-custom-top">
+        <el-drawer
+          :visible.sync="drawerSet"
+          :direction="direction"
+          custom-class="custom-drawer"
+          :before-close="handleClose"
+          size="100%"
+          :with-header="false"
+          :modal="false"
+          :close-on-press-escape="false"
+          :wrapperClosable="true">
 
-        <div class="drawer-main-menu">
-          <i class="fa fa-close drawer-menu-close" @click="closeDrawer"></i>
-          <div class="drawer-main-menu-left text-center" :style="drawerMenuHeight">
-            <div class="drawer-main-menu-left-container">
-              <div class="drawer-main-menu-left-container-item font-size-14" :class="settingType == 1 ? 'drawer-main-menu-left-container-item-active' : ''" @click="settingTypeOpr($event, 1)">
-                <i class="fa fa-home"></i>
-                <span>{{$t("学校信息")}}</span>
-              </div>
-              <div class="drawer-main-menu-left-container-item font-size-14" :class="settingType == 2 ? 'drawer-main-menu-left-container-item-active' : ''" @click="settingTypeOpr($event, 2)">
-                <i class="fa fa-info-circle"></i>
-                <span>{{$t("版本信息")}}</span>
-              </div>
-              <div class="drawer-main-menu-left-container-item font-size-14" :class="settingType == 3 ? 'drawer-main-menu-left-container-item-active' : ''" @click="settingTypeOpr($event, 3)">
-                <i class="fa fa-lock"></i>
-                <span>{{$t("修改密码")}}</span>
-              </div>
-              <div class="drawer-main-menu-left-container-item font-size-14" :class="settingType == 4 ? 'drawer-main-menu-left-container-item-active' : ''" @click="settingTypeOpr($event, 4)">
-                <i class="fa fa-phone-square"></i>
-                <span>{{$t("修改手机")}}</span>
-              </div>
-            </div>
-          </div>
-          <div class="drawer-main-menu-right" :style="drawerSetHeight">
-            <!--校园信息-->
-            <div class="drawer-main-menu-right-container">
-              <div id="campus-info" class="campus-info-container" v-if="settingType == 1">
-                <el-form label-width="80px">
-                  <el-form-item label="学校名称">
-                    <el-input v-model="form.name" class="width-300"></el-input>
-                  </el-form-item>
-                  <el-form-item label="学校LOGO">
-                    <el-upload
-                      class="avatar-uploader"
-                      action="https://jsonplaceholder.typicode.com/posts/"
-                      :show-file-list="false"
-                      >
-                      <img v-if="form.logo" :src="form.logo" class="avatar">
-                      <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                    </el-upload>
-                  </el-form-item>
-                  <el-form-item label="学校地址">
-                    <el-input v-model="form.address" class="width-300"></el-input>
-                  </el-form-item>
-                  <el-form-item label="学校编号">
-                    <el-input v-model="form.no" class="width-300"></el-input>
-                  </el-form-item>
-                  <el-form-item label="负责人">
-                    <el-input v-model="form.admin" class="width-300"></el-input>
-                  </el-form-item>
-                  <el-form-item label="电话">
-                    <el-input v-model="form.phone" class="width-300"></el-input>
-                  </el-form-item>
-                  <el-form-item label="图片列表">
-                    <el-avatar shape="square" :size="50" v-for="(item, index) in form.imgs" :key="index" :src="item" style="margin-right: 10px"></el-avatar>
-                  </el-form-item>
-                  <el-form-item label="学校介绍">
-
-                  </el-form-item>
-                </el-form>
-              </div>
-
-              <!--版本信息-->
-              <div id="version-info" class="campus-info-container" v-if="settingType == 2">
-                <div>
-                  <el-timeline>
-                    <el-timeline-item v-for="n in 10" :key="n">
-                      <el-card :body-style="{padding: '10px'}">
-                        <div slot="header" class="clearfix">
-                          <span class="font-size-15  color-warning" style="font-weight: bold">v1.0.0</span>
-                          <el-button style="float: right; padding: 3px 0" type="text">2020-11-11 11:11:11</el-button>
-                        </div>
-
-                        <div>
-                          <div>
-                            <div>
-                              <span class="font-size-15 color-warning" style="font-weight: bold">新功能</span>
-                            </div>
-                            <div class="margin-top-5">
-                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
-                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
-                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
-                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
-                            </div>
-                          </div>
-
-                          <div class="margin-top-20">
-                            <div>
-                              <span class="font-size-15 color-warning" style="font-weight: bold">BUG修复</span>
-                            </div>
-                            <div class="margin-top-5">
-                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
-                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
-                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
-                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
-                            </div>
-                          </div>
-
-                          <div class="margin-top-20">
-                            <div>
-                              <span class="font-size-15 color-warning" style="font-weight: bold">其他说明</span>
-                            </div>
-                            <div class="margin-top-5">
-                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
-                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
-                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
-                              jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
-                            </div>
-                          </div>
-                        </div>
-                      </el-card>
-                    </el-timeline-item>
-                  </el-timeline>
+          <div class="drawer-main-menu">
+            <i class="fa fa-close drawer-menu-close" @click="closeDrawer"></i>
+            <div class="drawer-main-menu-left text-center" :style="drawerMenuHeight">
+              <div class="drawer-main-menu-left-container">
+                <div class="drawer-main-menu-left-container-item font-size-14" :class="settingType == 1 ? 'drawer-main-menu-left-container-item-active' : ''" @click="settingTypeOpr($event, 1)">
+                  <i class="fa fa-home"></i>
+                  <span>{{$t("学校信息")}}</span>
+                </div>
+                <div class="drawer-main-menu-left-container-item font-size-14" :class="settingType == 2 ? 'drawer-main-menu-left-container-item-active' : ''" @click="settingTypeOpr($event, 2)">
+                  <i class="fa fa-info-circle"></i>
+                  <span>{{$t("版本信息")}}</span>
+                </div>
+                <div class="drawer-main-menu-left-container-item font-size-14" :class="settingType == 3 ? 'drawer-main-menu-left-container-item-active' : ''" @click="settingTypeOpr($event, 3)">
+                  <i class="fa fa-lock"></i>
+                  <span>{{$t("修改密码")}}</span>
+                </div>
+                <div class="drawer-main-menu-left-container-item font-size-14" :class="settingType == 4 ? 'drawer-main-menu-left-container-item-active' : ''" @click="settingTypeOpr($event, 4)">
+                  <i class="fa fa-phone-square"></i>
+                  <span>{{$t("修改手机")}}</span>
                 </div>
               </div>
+            </div>
+            <div class="drawer-main-menu-right" :style="drawerSetHeight">
+              <!--校园信息-->
+              <div class="drawer-main-menu-right-container">
+                <div id="campus-info" class="campus-info-container" v-if="settingType == 1">
+                  <el-form label-width="80px">
+                    <el-form-item label="学校名称">
+                      <el-input v-model="form.name" class="width-300"></el-input>
+                    </el-form-item>
+                    <el-form-item label="学校LOGO">
+                      <el-upload
+                        class="avatar-uploader"
+                        action="https://jsonplaceholder.typicode.com/posts/"
+                        :show-file-list="false"
+                      >
+                        <img v-if="form.logo" :src="form.logo" class="avatar">
+                        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                      </el-upload>
+                    </el-form-item>
+                    <el-form-item label="学校地址">
+                      <el-input v-model="form.address" class="width-300"></el-input>
+                    </el-form-item>
+                    <el-form-item label="学校编号">
+                      <el-input v-model="form.no" class="width-300"></el-input>
+                    </el-form-item>
+                    <el-form-item label="负责人">
+                      <el-input v-model="form.admin" class="width-300"></el-input>
+                    </el-form-item>
+                    <el-form-item label="电话">
+                      <el-input v-model="form.phone" class="width-300"></el-input>
+                    </el-form-item>
+                    <el-form-item label="图片列表">
+                      <el-avatar shape="square" :size="50" v-for="(item, index) in form.imgs" :key="index" :src="item" style="margin-right: 10px"></el-avatar>
+                    </el-form-item>
+                    <el-form-item label="学校介绍">
 
-              <!--修改手机号-->
-              <div id="phone-info" class="campus-info-container" v-if="settingType == 3">
-                <el-form label-width="80px">
-                  <el-form-item label="旧手机号">
-                    <el-input v-model="formPhone.oldPhone" class="width-300"></el-input>
-                  </el-form-item>
-                  <el-form-item label="新手机号">
-                    <el-input v-model="formPhone.newPhone" class="width-300"></el-input>
-                  </el-form-item>
-                  <el-form-item label="验证码">
-                    <el-input v-model="formPhone.phoneCode" class="width-300"></el-input>
-                  </el-form-item>
-                </el-form>
-              </div>
+                    </el-form-item>
+                  </el-form>
+                </div>
 
-              <!--修改密码-->
-              <div id="pwd-info" class="campus-info-container" v-if="settingType == 4">
-                <el-form label-width="100px">
-                  <el-form-item label="当前手机号">
-                    <el-input v-model="formPwd.phone" class="width-300"></el-input>
-                  </el-form-item>
-                  <el-form-item label="验证码">
-                    <el-input v-model="formPwd.phoneCode" class="width-300"></el-input>
-                  </el-form-item>
-                  <el-form-item label="密码">
-                    <el-input v-model="formPwd.pwd" class="width-300"></el-input>
-                  </el-form-item>
-                </el-form>
+                <!--版本信息-->
+                <div id="version-info" class="campus-info-container" v-if="settingType == 2">
+                  <div>
+                    <el-timeline>
+                      <el-timeline-item v-for="n in 10" :key="n">
+                        <el-card :body-style="{padding: '10px'}">
+                          <div slot="header" class="clearfix">
+                            <span class="font-size-15  color-warning" style="font-weight: bold">v1.0.0</span>
+                            <el-button style="float: right; padding: 3px 0" type="text">2020-11-11 11:11:11</el-button>
+                          </div>
+
+                          <div>
+                            <div>
+                              <div>
+                                <span class="font-size-15 color-warning" style="font-weight: bold">新功能</span>
+                              </div>
+                              <div class="margin-top-5">
+                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                              </div>
+                            </div>
+
+                            <div class="margin-top-20">
+                              <div>
+                                <span class="font-size-15 color-warning" style="font-weight: bold">BUG修复</span>
+                              </div>
+                              <div class="margin-top-5">
+                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                              </div>
+                            </div>
+
+                            <div class="margin-top-20">
+                              <div>
+                                <span class="font-size-15 color-warning" style="font-weight: bold">其他说明</span>
+                              </div>
+                              <div class="margin-top-5">
+                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                              </div>
+                            </div>
+                          </div>
+                        </el-card>
+                      </el-timeline-item>
+                    </el-timeline>
+                  </div>
+                </div>
+
+                <!--修改手机号-->
+                <div id="phone-info" class="campus-info-container" v-if="settingType == 3">
+                  <el-form label-width="80px">
+                    <el-form-item label="旧手机号">
+                      <el-input v-model="formPhone.oldPhone" class="width-300"></el-input>
+                    </el-form-item>
+                    <el-form-item label="新手机号">
+                      <el-input v-model="formPhone.newPhone" class="width-300"></el-input>
+                    </el-form-item>
+                    <el-form-item label="验证码">
+                      <el-input v-model="formPhone.phoneCode" class="width-300"></el-input>
+                    </el-form-item>
+                  </el-form>
+                </div>
+
+                <!--修改密码-->
+                <div id="pwd-info" class="campus-info-container" v-if="settingType == 4">
+                  <el-form label-width="100px">
+                    <el-form-item label="当前手机号">
+                      <el-input v-model="formPwd.phone" class="width-300"></el-input>
+                    </el-form-item>
+                    <el-form-item label="验证码">
+                      <el-input v-model="formPwd.phoneCode" class="width-300"></el-input>
+                    </el-form-item>
+                    <el-form-item label="密码">
+                      <el-input v-model="formPwd.pwd" class="width-300"></el-input>
+                    </el-form-item>
+                  </el-form>
+                </div>
               </div>
             </div>
+            <div class="moon-clearfix"></div>
           </div>
-          <div class="moon-clearfix"></div>
-        </div>
-      </el-drawer>
+        </el-drawer>
+      </div>
     </div>
 
     <div style="position: relative">
@@ -578,7 +610,7 @@
     </div>
 
     <!--消息中心使用的右侧层-->
-    <drawer-layout-right @changeDrawer="closeDrawerDialog" :visible="drawerVisible" :loading="drawerLoading" size="500px" :title="$t('消息详细')" @right-close="cancelDrawDialog">
+    <drawer-layout-right @changeDrawer="closeDrawerDialog" :visible="drawerVisible" :loading="drawerLoading" size="550px" :title="$t('消息详细')" @right-close="cancelDrawDialog">
       <div slot="content">
         <my-audit-detail :type="msgType" :sel-value="dataAudit"></my-audit-detail>
       </div>
@@ -634,6 +666,7 @@
         bellNum: 0,
         auditNum: 0,
         msgList: [],
+        msgAuditList: [],
         loading: false,
         msgType: '',
         dataAudit: {},
@@ -737,6 +770,7 @@
       async init() {
         await this.getSessionInfo();
         await this.getCurrentWeekInfo(this.campusId);
+        await this.getNoReadNum();
         this.year = this.currentYear;
         this.weekNum = this.currentWeekNum;
         this.week = this.currentWeekNo;
@@ -796,13 +830,14 @@
       toggleMenu(event, item){
         item.toggle = !item.toggle;
       },
-      showMsg(event){
+      showMsg(type){
         let params = {
           page: this.page,
           num: this.num,
           actionGroup: 1,
-          readed: this.tabVal == -1 ? '' : this.tabVal
+          readed: type == -1 ? '' : type
         };
+        this.tabVal = type;
         params = this.$qs.stringify(params);
         this.$axios.post(common.msgRead_list, params).then(res => {
           console.log(res);
@@ -821,7 +856,23 @@
           this.refreshStatus = false;
         },2000);
       },
-      showAuditMsg(){
+      showAuditMsg(type){
+        let params = {
+          page: this.page,
+          num: this.num,
+          applyTypeCode: type,
+          hasHandle: false
+        };
+        this.tabVal = type;
+        //params = this.$qs.stringify(params);
+        this.$axios.get(common.msg_audit_list, {params: params}).then(res => {
+          console.log(res);
+          if (res.data.code == 200){
+            this.msgAuditList = res.data.data.list;
+            this.total = res.data.data.totalCount;
+          }
+          this.loading = false
+        });
         this.drawerAudit = true;
       },
       showMenuList(){
@@ -835,7 +886,11 @@
       },
       tabChange(event, type){
         this.tabVal = type;
-        this.showMsg();
+        this.showMsg(type);
+      },
+      tabAuditChange(event, type){
+        this.tabVal = type;
+        this.showAuditMsg(type);
       },
       closeDrawer(){
         this.drawer = false;
@@ -885,22 +940,34 @@
       },
       currentPage(event){
         this.page = event;
-        this.showMsg();
+        this.showMsg(this.tabVal);
       },
       sizeChange(event){
         this.page = 1;
         this.num = event;
-        this.showMsg();
+        this.showMsg(this.tabVal);
+      },
+      currentAuditPage(event){
+        this.page = event;
+        this.showAuditMsg(this.tabVal);
+      },
+      sizeAuditChange(event){
+        this.page = 1;
+        this.num = event;
+        this.showAuditMsg(this.tabVal);
       },
       closeModalDrawer(){
         console.log(111);
         this.page = 1;
         this.num = 20;
+        this.total = 0;
+        this.msgList = [];
+        this.msgAuditList = [];
         this.tabVal = 0;
       },
       showMsgDetail(event, item){
         let params = {
-          id:item.object_id
+          id:item.object_id ? item.object_id : item.id
         };
         this.auditObjectItem = item;
         this.$axios.get(common.msg_detail_center, {params: params}).then(res => {
@@ -921,7 +988,7 @@
         params = this.$qs.stringify(params);
         this.$axios.post(common.msg_readed, params).then(res => {
           if (res.data.code == 200){
-            this.showMsg();
+            this.showMsg(this.tabVal);
           }
         });
       },
@@ -933,31 +1000,42 @@
       cancelDrawDialog(){
         this.drawerVisible = false;
       },
-      handleOk(data){
+      handleOk(data,textarea){
         let params = {
-          applyId: this.auditObjectItem.object_id,
-          status: 1
+          applyId: this.auditObjectItem.object_id ? this.auditObjectItem.object_id : this.auditObjectItem.id,
+          status: 1,
+          des2: textarea
         };
         params = this.$qs.stringify(params);
         this.$axios.post(common.msg_handle, params).then(res => {
           if (res.data.code == 200){
             this.showMsgDetail(null, this.auditObjectItem);
+            if (this.auditObjectItem.object_id){
+              this.showMsg(this.tabVal);
+            }else {
+              this.showAuditMsg(this.tabVal);
+            }
             MessageSuccess(res.data.desc);
           }else{
             MessageWarning(res.data.desc);
           }
         });
       },
-      handleNo(data){
+      handleNo(data,textarea){
         let params = {
-          applyId: this.auditObjectItem.object_id,
-          status: 2
+          applyId: this.auditObjectItem.object_id ? this.auditObjectItem.object_id : this.auditObjectItem.id,
+          status: 2,
+          des2: textarea
         };
         params = this.$qs.stringify(params);
         this.$axios.post(common.msg_handle, params).then(res => {
-          console.log(res.data);
           if (res.data.code == 200){
             this.showMsgDetail(null, this.auditObjectItem);
+            if (this.auditObjectItem.object_id){
+              this.showMsg(this.tabVal);
+            }else {
+              this.showAuditMsg(this.tabVal);
+            }
             MessageSuccess(res.data.desc);
           }else{
             MessageWarning(res.data.desc);
@@ -966,14 +1044,18 @@
       },
       handleCancel(data){
         let params = {
-          applyId: this.auditObjectItem.object_id,
+          applyId: this.auditObjectItem.object_id ? this.auditObjectItem.object_id : this.auditObjectItem.id,
           status: -1
         };
         params = this.$qs.stringify(params);
         this.$axios.post(common.msg_handle, params).then(res => {
-          console.log(res.data);
           if (res.data.code == 200){
             this.showMsgDetail(null, this.auditObjectItem);
+            if (this.auditObjectItem.object_id){
+              this.showMsg(this.tabVal);
+            }else {
+              this.showAuditMsg(this.tabVal);
+            }
             MessageSuccess(res.data.desc);
           }else{
             MessageWarning(res.data.desc);

@@ -27,6 +27,7 @@ const organizeName = "";
 const realName = "";
 const headImage = "";
 const userPhone = "";
+const auditCount = 0;
 
 export default {
   total,
@@ -57,5 +58,6 @@ export default {
   organizeName,
   realName,
   headImage,
-  userPhone
+  userPhone,
+  auditCount
 }

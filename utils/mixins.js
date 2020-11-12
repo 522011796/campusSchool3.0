@@ -35,6 +35,7 @@ export default {
       realName: global.realName,
       headImage: global.headImage,
       userPhone: global.userPhone,
+      auditCount: global.auditCount,
       tableHeight: {
         'height': ''
       },
@@ -60,6 +61,20 @@ export default {
         this.tableHeight.height = window.innerHeight - 248 + 'px';
         this.drawHeight.height = window.innerHeight - 80 + 'px';
       }
+    },
+    /**
+     * 获取用户未读消息数量
+     */
+    async getNoReadNum() {
+      let params = {
+        actionTypeSet: '510,511,512,513,514,515,516,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531',
+        applyTypeCodeSet: 'PunishmentApply,LeaveApply,TeacherLeaveApply,ScoreApply',
+        actionType: '1,2,3,-1'
+      };
+      params = this.$qs.stringify(params);
+      await this.$axios.post(common.noread_count, params).then(res => {
+        this.auditCount = res.data.data[-2].waitCount;
+      });
     },
     /**
      * 获取session
