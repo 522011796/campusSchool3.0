@@ -27,22 +27,28 @@
           </el-col>
           <el-col :span="12" class="ellipsis-tag">
             <div>
-              <div>
+              <div v-if="value.apply_type_sub_code == 'TeacherLeaveApplyClass'">
                 <span class="title-class color-disabeld" style="position: relative; top: 0px">{{$t("时长")}}:</span>
-                <span class="moon-content-text-ellipsis-class">{{value.double1}}天</span>
+                <span class="moon-content-text-ellipsis-class">{{value.num1}}{{$t("节课")}}</span>
                 <el-tooltip class="item" effect="dark" placement="top-start">
                   <div slot="content">
                     <div v-if="value.str3" v-for="(item, index) in JSON.parse(value.str3)">
                       <span>{{$t("第")}}{{item.section}}{{$t("节课")}}</span>
+                      :
+                      <span>{{item.courseName}}</span>
                     </div>
                   </div>
                   <i class="el-icon-info"></i>
                 </el-tooltip>
               </div>
+              <div v-if="value.apply_type_sub_code == 'TeacherLeaveApplyTime'">
+                <span class="title-class color-disabeld" style="position: relative; top: 0px">{{$t("时长")}}:</span>
+                <span class="moon-content-text-ellipsis-class">{{value.double1}}天</span>
+              </div>
             </div>
           </el-col>
         </el-row>
-        <el-row v-if="value.apply_type_code == 'TeacherBusiTripApply'" class="margin-top-10">
+        <el-row v-if="value.apply_type_code == 'TeacherBusiTripApply' || value.apply_type_sub_code == 'TeacherLeaveApplyTime'" class="margin-top-10">
           <el-col :span="12" class="ellipsis-tag">
             <div>
               <div>
@@ -60,7 +66,25 @@
             </div>
           </el-col>
         </el-row>
-        <el-row class="margin-top-10">
+        <el-row v-if="value.apply_type_code == 'TeacherAmendSignApply'" class="margin-top-10">
+          <el-col :span="12" class="ellipsis-tag">
+            <div>
+              <div>
+                <span class="title-class color-disabeld">{{$t("上班时间")}}:</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px','position': 'relative','top': '-2px'}">{{$moment(value.date1).format("YYYY-MM-DD HH:mm:ss")}}</span>
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="12" class="ellipsis-tag">
+            <div>
+              <div>
+                <span class="title-class color-disabeld">{{$t("补卡时间")}}:</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px','position': 'relative','top': '-2px'}">{{$moment(value.date2).format("YYYY-MM-DD HH:mm:ss")}}</span>
+              </div>
+            </div>
+          </el-col>
+        </el-row>
+        <el-row v-if="value.apply_type_code == 'TeacherLeaveApply'" class="margin-top-10">
           <el-col :span="12" class="ellipsis-tag">
             <div>
               <div>
@@ -69,11 +93,11 @@
               </div>
             </div>
           </el-col>
-          <el-col :span="12" class="ellipsis-tag">
+          <el-col v-if="value.apply_type_sub_code == 'TeacherLeaveApplyClass'" :span="12" class="ellipsis-tag">
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("请假时间")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px'}">{{value.date2}}</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px','position': 'relative','top': '-2px'}">{{$moment(value.date2).format("YYYY-MM-DD HH:mm:ss")}}</span>
               </div>
             </div>
           </el-col>
