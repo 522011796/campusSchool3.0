@@ -14,6 +14,10 @@ export const common = {
   msg_handle: '/proxy/user/unionapply/apply/handel',//消息审批操作
   msg_audit_list: '/proxy/user/unionapply/apply/teacher/handle/page',//审批消息列表
   noread_count: '/proxy/user/message/notRead/count',//审批未读消息数
+  updatephone_mms: '/proxy/uup/captcha/updPhone/send',//获取修改手机验证码
+  updatephone_save: '/proxy/uup/ssoUser/phone',//更新手机
+  updatepwd_mms: '/proxy/uup/captcha/send',//获取修改密码验证码
+  updatepwd_save: '/proxy/uup/ssoUser/reset/pass',//更新密码
 
   organization_url:  '/proxy/school/hierarchical/get-organize-tree',//组织机构列表
   organization_add:  '/proxy/school/school/dept/add',//组织机构添加

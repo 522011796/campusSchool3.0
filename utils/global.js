@@ -28,6 +28,7 @@ const realName = "";
 const headImage = "";
 const userPhone = "";
 const auditCount = 0;
+const loginUserId = "";
 
 export default {
   total,
@@ -59,5 +60,6 @@ export default {
   realName,
   headImage,
   userPhone,
-  auditCount
+  auditCount,
+  loginUserId
 }

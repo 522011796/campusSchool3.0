@@ -354,11 +354,11 @@
                 </div>
                 <div class="drawer-main-menu-left-container-item font-size-14" :class="settingType == 3 ? 'drawer-main-menu-left-container-item-active' : ''" @click="settingTypeOpr($event, 3)">
                   <i class="fa fa-lock"></i>
-                  <span>{{$t("修改密码")}}</span>
+                  <span>{{$t("修改手机")}}</span>
                 </div>
                 <div class="drawer-main-menu-left-container-item font-size-14" :class="settingType == 4 ? 'drawer-main-menu-left-container-item-active' : ''" @click="settingTypeOpr($event, 4)">
                   <i class="fa fa-phone-square"></i>
-                  <span>{{$t("修改手机")}}</span>
+                  <span>{{$t("修改密码")}}</span>
                 </div>
               </div>
             </div>
@@ -465,9 +465,19 @@
                       <el-input v-model="formPhone.newPhone" class="width-300"></el-input>
                     </el-form-item>
                     <el-form-item label="验证码">
-                      <el-input v-model="formPhone.phoneCode" class="width-300"></el-input>
+                      <el-input class="width-300" placeholder="" v-model="formPhone.phoneCode">
+                        <template slot="append">
+                          <timeout-button :action="updatePhoneMms" :data="{oldPhone: this.formPhone.oldPhone, newPhone: this.formPhone.newPhone, userId: this.loginUserId}">
+                            <template>{{$t("获取验证码")}}</template>
+                          </timeout-button>
+                        </template>
+                      </el-input>
                     </el-form-item>
                   </el-form>
+
+                  <div class="text-center">
+                    <el-button type="primary" size="small" :loading="loading" @click="updatePhone">{{$t("保存")}}</el-button>
+                  </div>
                 </div>
 
                 <!--修改密码-->
@@ -477,12 +487,22 @@
                       <el-input v-model="formPwd.phone" class="width-300"></el-input>
                     </el-form-item>
                     <el-form-item label="验证码">
-                      <el-input v-model="formPwd.phoneCode" class="width-300"></el-input>
+                      <el-input class="width-300" placeholder="" v-model="formPhone.phoneCode">
+                        <template slot="append">
+                          <timeout-button :action="updatePwdMms" :data="{type: 1, username: this.loginUserName, userId: this.loginUserId}">
+                            <template>{{$t("获取验证码")}}</template>
+                          </timeout-button>
+                        </template>
+                      </el-input>
                     </el-form-item>
                     <el-form-item label="密码">
                       <el-input v-model="formPwd.pwd" class="width-300"></el-input>
                     </el-form-item>
                   </el-form>
+
+                  <div class="text-center">
+                    <el-button type="primary" size="small" :loading="loading" @click="updatePwd">{{$t("保存")}}</el-button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -627,12 +647,13 @@
   import DrawerLayoutRight from "../components/utils/dialog/DrawerLayoutRight";
   import MyAuditDetail from "../components/utils/auditDetail/MyAuditDetail";
   import AuditButton from "../components/utils/auditDetail/AuditButton";
+  import TimeoutButton from "../components/utils/button/TimeoutButton";
   import {auditStatusColor, weekNoText, MessageSuccess, MessageError, MessageWarning} from "../utils/utils";
   import {common} from "../utils/api/url";
   export default {
     name: 'default',
     mixins: [mixins],
-    components: {MyPagination, DrawerLayoutRight,MyAuditDetail,AuditButton},
+    components: {MyPagination, DrawerLayoutRight,MyAuditDetail,AuditButton,TimeoutButton},
     data(){
       return {
         activeTabName: 'all',
@@ -672,6 +693,8 @@
         dataAudit: {},
         objectId: '',
         auditObjectItem: {},
+        updatePhoneMms: common.updatephone_mms,
+        updatePwdMms: common.updatepwd_mms,
         topWidth: {
           width: '0px'
         },
@@ -727,7 +750,8 @@
           phone: '',
           phoneCode: '',
           pwd: ''
-        }
+        },
+        setData: {}
       }
     },
     mounted () {
@@ -918,6 +942,26 @@
       },
       settingTypeOpr(event, type){
         this.settingType = type;
+        this.form = {
+          name: '',
+          logo: '',
+          admin: '',
+          phone: '',
+          address: '',
+          no: '',
+          remarks: '',
+          imgs: ["https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg", "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"]
+        };
+        this.formPhone = {
+          oldPhone: '',
+          newPhone: '',
+          phoneCode: '',
+        };
+        this.formPwd = {
+          phone: '',
+          phoneCode: '',
+          pwd: ''
+        };
       },
       changeSwitchToggle(event){
         if (event == true){
@@ -1060,6 +1104,44 @@
           }else{
             MessageWarning(res.data.desc);
           }
+        });
+      },
+      updatePhone(){
+        let params = {
+          phone: this.formPhone.newPhone,
+          captcha: this.formPhone.phoneCode,
+          userId: this.loginUserId,
+          username: this.loginUserName,
+          appcode: 12,
+        };
+        params = this.$qs.stringify(params);
+        this.loading = true;
+        this.$axios.post(common.updatephone_save, params).then(res => {
+          if (res.data.code == 200){
+            MessageSuccess(res.data.desc);
+          }else{
+            MessageWarning(res.data.desc);
+          }
+          this.loading = false;
+        });
+      },
+      updatePwd(){
+        let params = {
+          phone: this.formPhone.newPhone,
+          captcha: this.formPhone.phoneCode,
+          userId: this.loginUserId,
+          username: this.loginUserName,
+          appcode: 12,
+        };
+        params = this.$qs.stringify(params);
+        this.loading = true;
+        this.$axios.post(common.updatepwd_save, params).then(res => {
+          if (res.data.code == 200){
+            MessageSuccess(res.data.desc);
+          }else{
+            MessageWarning(res.data.desc);
+          }
+          this.loading = false;
         });
       }
     },

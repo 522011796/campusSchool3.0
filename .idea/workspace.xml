@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/components/utils/button/TimeoutButton.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/CreditDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/CreditDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/FaceDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/FaceDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/RepuDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/RepuDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/StudoorDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/StudoorDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/StuleaveDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/StuleaveDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/TerdoorDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/TerdoorDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/TerleaveDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/TerleaveDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layouts/default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/default.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/global.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,7 +37,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/utils/auditDetail" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/utils/button" />
     <property name="list.type.of.created.stylesheet" value="textmate" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
@@ -53,11 +53,11 @@
       <recent name="$PROJECT_DIR$/components/tree" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/components/utils/button" />
       <recent name="$PROJECT_DIR$/components/utils/auditDetail" />
       <recent name="$PROJECT_DIR$/components/utils/dialog" />
       <recent name="$PROJECT_DIR$/components/Layout" />
       <recent name="$PROJECT_DIR$/pages/basicInfo" />
-      <recent name="$PROJECT_DIR$/components/dialog" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -93,7 +93,7 @@
       <workItem from="1603172221855" duration="988000" />
       <workItem from="1604364814322" duration="55526000" />
       <workItem from="1604646556872" duration="2333000" />
-      <workItem from="1604712904285" duration="123701000" />
+      <workItem from="1604712904285" duration="129862000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1602238139674</created>
@@ -403,7 +403,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605177132521</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="init">
+      <created>1605177401119</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1605177401119</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -422,10 +429,10 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.805@0.23.1440.805" timestamp="1602828707649" />
-    <state x="198" y="28" key="CommitChangelistDialog2" timestamp="1605177131496">
+    <state x="198" y="28" key="CommitChangelistDialog2" timestamp="1605177400054">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605177131496" />
+    <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605177400053" />
     <state x="100" y="123" width="1240" height="605" key="DiffContextDialog" timestamp="1605058122839">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
@@ -458,18 +465,18 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="221" y="64" key="SettingsEditor/0.23.1440.805@0.23.1440.805" timestamp="1602238031085" />
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1605177134166">
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1605177402396">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605177134166" />
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605177402396" />
     <state x="100" y="123" width="1240" height="605" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1604591676209">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="100" y="123" width="1240" height="605" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1440.805@0.23.1440.805" timestamp="1604591676209" />
-    <state x="378" y="182" width="837" height="486" key="find.popup" timestamp="1605162768135">
+    <state x="378" y="182" width="837" height="486" key="find.popup" timestamp="1605192320927">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state x="378" y="182" width="837" height="486" key="find.popup/0.23.1440.805@0.23.1440.805" timestamp="1605162768135" />
+    <state x="378" y="182" width="837" height="486" key="find.popup/0.23.1440.805@0.23.1440.805" timestamp="1605192320927" />
     <state x="385" y="152" width="670" height="676" key="search.everywhere.popup" timestamp="1604935260573">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
