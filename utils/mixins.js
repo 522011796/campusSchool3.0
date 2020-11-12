@@ -73,7 +73,9 @@ export default {
       };
       params = this.$qs.stringify(params);
       await this.$axios.post(common.noread_count, params).then(res => {
-        this.auditCount = res.data.data[-2].waitCount;
+        if (res.data.data){
+          this.auditCount = res.data.data[-2].waitCount;
+        }
       });
     },
     /**
@@ -86,7 +88,6 @@ export default {
         keys:'campusId,userType,campusType,userId,username,campusName,campusLogo,realName,externalSystemName,externalSystem,termId,externalSystemName,externalSystem'
       };
       await this.$axios.get(common.session_url, {params: params}).then(res => {
-        console.log(res);
         this.campusId = res.data.data.campusId;
         this.campusName = res.data.data.campusName;
         this.loginUserName = res.data.data.username;

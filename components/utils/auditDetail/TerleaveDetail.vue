@@ -166,8 +166,11 @@
         widthDesStyle: null
       }
     },
-    created() {
+    mounted() {
       this.setWidth();
+    },
+    created() {
+
     },
     methods: {
       setWidth(){
