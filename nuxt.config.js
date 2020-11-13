@@ -17,6 +17,9 @@ export default {
     'element-ui/lib/theme-chalk/index.css',
     '~assets/css/common.css',
     '~assets/font-awesome-4.7.0/css/font-awesome.min.css',
+    'quill/dist/quill.snow.css',
+    'quill/dist/quill.bubble.css',
+    'quill/dist/quill.core.css',
   ],
   loading: false,
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
@@ -27,6 +30,7 @@ export default {
     '@/plugins/qs',
     '@/plugins/moment',
     '@/plugins/echarts',
+    { src: "~plugins/vue-quill-custom-editor.js", ssr: false },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

@@ -18,6 +18,11 @@ export const common = {
   updatephone_save: '/proxy/uup/ssoUser/phone',//更新手机
   updatepwd_mms: '/proxy/uup/captcha/send',//获取修改密码验证码
   updatepwd_save: '/proxy/uup/ssoUser/reset/pass',//更新密码
+  school_info: '/proxy/school/school/getSchInfo',//学校信息
+  update_school_info: '/proxy/school/school/info/update',//更新学校信息
+
+  upload_file: '/proxy/school/multipartFile/upload',//上传文件
+  upload_imglist_file: '/proxy/school/school/uploadImg',//上传迎新文件
 
   organization_url:  '/proxy/school/hierarchical/get-organize-tree',//组织机构列表
   organization_add:  '/proxy/school/school/dept/add',//组织机构添加

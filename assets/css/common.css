@@ -429,6 +429,9 @@ ul{
   background: #FFFFFF;
   padding: 0px 10px;
 }
+.ql-container.ql-snow .ql-editor {
+  min-height: 300px;
+}
 /**树形菜单**/
 .tree-container{
   background: #ffffff;

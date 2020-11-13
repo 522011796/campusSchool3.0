@@ -11,6 +11,12 @@ import '../assets/css/common.css'
 
 import '../assets/font-awesome-4.7.0/css/font-awesome.min.css'
 
+import '../node_modules/quill/dist/quill.snow.css'
+
+import '../node_modules/quill/dist/quill.bubble.css'
+
+import '../node_modules/quill/dist/quill.core.css'
+
 import _6f6c098b from '../layouts/default.vue'
 import _4d6b8a81 from '../layouts/defaultBak.vue'
 

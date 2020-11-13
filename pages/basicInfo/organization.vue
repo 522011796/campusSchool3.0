@@ -143,7 +143,6 @@ export default {
         superDeptId: 0
       };
       this.$axios.get(common.organization_url, {params: params}).then(res => {
-        console.log(res);
         if (res.data.data){
           this.form.deptSuperId = res.data.data[0].id;
           this.tableData = setChildren(res.data.data[0].child_list, groupArr, 'child_list', 'children');
@@ -151,7 +150,6 @@ export default {
       });
     },
     addInitData(event, type){
-      console.log(event);
       this.form.oprType = '';
       if (type && type == "main"){
         this.form.oprType = 'main';
@@ -197,7 +195,6 @@ export default {
       console.log(111);
     },
     closeDrawerDialog(event){
-      console.log(111,this.drawerVisible);
       this.uploadProcess = '';
       this.uploadResult = {};
       this.drawerVisible = event;

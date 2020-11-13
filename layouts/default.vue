@@ -125,7 +125,7 @@
               </label>
             </span>
             <span class="moon-top-middle-menu-title-icon">
-              <el-badge :is-dot="auditCount > 0" class="item">
+              <el-badge :is-dot="auditCount > 0" class="item" v-if="loginUserType != 2">
                 <i class="fa fa-bookmark" @click="showAuditMsg('LeaveApply')"></i>
               </el-badge>
 
@@ -328,7 +328,7 @@
       </div>
 
       <!--系统设置-->
-      <div class="drawer-custom-top">
+      <div class="drawer-custom-top" style="position: relative;">
         <el-drawer
           :visible.sync="drawerSet"
           :direction="direction"
@@ -372,14 +372,18 @@
                       <el-input v-model="form.name" class="width-300"></el-input>
                     </el-form-item>
                     <el-form-item label="学校LOGO">
-                      <el-upload
-                        class="avatar-uploader"
-                        action="https://jsonplaceholder.typicode.com/posts/"
-                        :show-file-list="false"
-                      >
+                      <span class="pull-left">
                         <img v-if="form.logo" :src="form.logo" class="avatar">
-                        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                      </el-upload>
+                      </span>
+                      <div class="pull-left margin-left-10">
+                        <upload-square :action="uploadFileUrl" max-size="2" :data="{path: 'logo'}" accept=".png,.jpg,.jpeg" @success="uploadFileSuccess">
+                          <i class="el-icon-plus avatar-uploader-icon"></i>
+                        </upload-square>
+                      </div>
+                      <div class="moon-clearfix"></div>
+                      <div class="moon-tips color-disabeld">
+                        <span>{{$t("建议使用png、jpg格式，大小2M以内，建议尺寸: 108*108像素")}}</span>
+                      </div>
                     </el-form-item>
                     <el-form-item label="学校地址">
                       <el-input v-model="form.address" class="width-300"></el-input>
@@ -394,12 +398,23 @@
                       <el-input v-model="form.phone" class="width-300"></el-input>
                     </el-form-item>
                     <el-form-item label="图片列表">
-                      <el-avatar shape="square" :size="50" v-for="(item, index) in form.imgs" :key="index" :src="item" style="margin-right: 10px"></el-avatar>
+                      <span class="pull-left">
+                        <img v-for="(item, index) in form.imgs" :key="index" :src="item.picture_url" fit="fit" style="margin-right: 10px;height: 50px;width:50px"></img>
+                      </span>
+                      <upload-square class="pull-left margin-left-10" :action="uploadFileListUrl" max-size="5" :data="{path: 'schoolImgList'}" accept=".png,.jpg,.jpeg" @success="uploadImgListFileSuccess">
+                        <i class="el-icon-plus avatar-uploader-icon" style="height: 50px;line-height:50px;width: 50px"></i>
+                      </upload-square>
+                      <div class="moon-clearfix"></div>
                     </el-form-item>
                     <el-form-item label="学校介绍">
-
+                      <quill-block :sel-value="form.remarks" :action="uploadFileUrl" accept=".png,.jpg,.jpeg" max-size="5" :data="{path: 'schoolInfoImg'}" @change="quillChange"></quill-block>
                     </el-form-item>
                   </el-form>
+
+                  <el-button type="primary" class="setting-btn" :loading="loading" circle @click="setSchoolInfo">
+                    <!--<i class="el-icon-check"></i>-->
+                    {{$t("保存")}}
+                  </el-button>
                 </div>
 
                 <!--版本信息-->
@@ -502,7 +517,9 @@
                   </el-form>
 
                   <div class="text-center">
-                    <el-button type="primary" size="small" :loading="loading" @click="updatePwd">{{$t("保存")}}</el-button>
+                    <el-button type="primary" size="small" :loading="loading" @click="updatePwd">
+                      {{$t("保存")}}
+                    </el-button>
                   </div>
                 </div>
               </div>
@@ -624,7 +641,7 @@
           </el-popover>
         </div>
         <div class="moon-right-content" :style="rightHeight">
-          <Nuxt />
+          <Nuxt ref="child"/>
         </div>
       </div>
       <div class="moon-clearfix"></div>
@@ -649,12 +666,14 @@
   import MyAuditDetail from "../components/utils/auditDetail/MyAuditDetail";
   import AuditButton from "../components/utils/auditDetail/AuditButton";
   import TimeoutButton from "../components/utils/button/TimeoutButton";
+  import UploadSquare from "../components/utils/upload/UploadSquare";
+  import QuillBlock from "../components/utils/upload/QuillBlock";
   import {auditStatusColor, weekNoText, MessageSuccess, MessageError, MessageWarning} from "../utils/utils";
   import {common} from "../utils/api/url";
   export default {
     name: 'default',
     mixins: [mixins],
-    components: {MyPagination, DrawerLayoutRight,MyAuditDetail,AuditButton,TimeoutButton},
+    components: {MyPagination, DrawerLayoutRight,MyAuditDetail,AuditButton,TimeoutButton,UploadSquare},
     data(){
       return {
         activeTabName: 'all',
@@ -696,6 +715,8 @@
         auditObjectItem: {},
         updatePhoneMms: common.updatephone_mms,
         updatePwdMms: common.updatepwd_mms,
+        uploadFileUrl: common.upload_file,
+        uploadFileListUrl: common.upload_imglist_file,
         topWidth: {
           width: '0px'
         },
@@ -740,7 +761,7 @@
           address: '',
           no: '',
           remarks: '',
-          imgs: ["https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg", "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"]
+          imgs: []
         },
         formPhone: {
           oldPhone: '',
@@ -864,19 +885,23 @@
         };
         this.tabVal = type;
         params = this.$qs.stringify(params);
-        this.$axios.post(common.msgRead_list, params).then(res => {
-          console.log(res);
-          if (res.data.code == 200){
-            this.msgList = res.data.data.list;
-            this.total = res.data.data.totalCount;
-          }
-          this.loading = false
-        });
+        setTimeout(() => {
+          this.$axios.post(common.msgRead_list, params).then(res => {
+            if (res.data.code == 200){
+              this.msgList = res.data.data.list;
+              this.total = res.data.data.totalCount;
+            }
+            this.loading = false
+          });
+        },800);
         this.drawer = true;
       },
       refreshInit(event){
         let _self = this;
         this.refreshStatus = true;
+        if(this.$refs.child.$children[0].init){
+          this.$refs.child.$children[0].init();//设置子页面的函数
+        }
         setTimeout(() => {
           this.refreshStatus = false;
         },2000);
@@ -889,21 +914,24 @@
           hasHandle: false
         };
         this.tabVal = type;
-        //params = this.$qs.stringify(params);
-        this.$axios.get(common.msg_audit_list, {params: params}).then(res => {
-          console.log(res);
-          if (res.data.code == 200){
-            this.msgAuditList = res.data.data.list;
-            this.total = res.data.data.totalCount;
-          }
-          this.loading = false
-        });
+        setTimeout(() => {
+          this.$axios.get(common.msg_audit_list, {params: params}).then(res => {
+            if (res.data.code == 200){
+              this.msgAuditList = res.data.data.list;
+              this.total = res.data.data.totalCount;
+            }
+            this.loading = false
+          });
+        },800);
         this.drawerAudit = true;
       },
       showMenuList(){
         this.drawerMenu = true;
       },
       showSet(){
+        setTimeout(() => {
+          this.getSchoolInfo();
+        },800);
         this.drawerSet = true;
       },
       handleClose(done) {
@@ -944,6 +972,9 @@
       settingTypeOpr(event, type){
         this.settingType = type;
         this.closeModalDrawer();
+        if (type == 1){
+          this.getSchoolInfo();
+        }
       },
       changeSwitchToggle(event){
         if (event == true){
@@ -983,7 +1014,6 @@
         this.showAuditMsg(this.tabVal);
       },
       closeModalDrawer(){
-        console.log(111);
         this.page = 1;
         this.num = 20;
         this.total = 0;
@@ -998,7 +1028,7 @@
           address: '',
           no: '',
           remarks: '',
-          imgs: ["https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg", "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"]
+          imgs: []
         };
         this.formPhone = {
           oldPhone: '',
@@ -1142,6 +1172,68 @@
             MessageSuccess(res.data.desc);
           }else{
             MessageWarning(res.data.desc);
+          }
+          this.loading = false;
+        });
+      },
+      getSchoolInfo(){
+        this.$axios.get(common.school_info).then(res => {
+          if (res.data.code == 200){
+            let school = res.data.data.school;
+            let schoolInfo = res.data.data.schoolInfo;
+            this.form = {
+              name: school.name,
+              logo: school.logo,
+              admin: schoolInfo.responsiblePersonName,
+              phone: schoolInfo.phone,
+              address: schoolInfo.address,
+              no: school.campusNo,
+              remarks: schoolInfo.description,
+              imgs: res.data.data.imgList
+            };
+          }
+        });
+      },
+      uploadFileSuccess(res,file){
+        if (res.code == 200){
+          this.form.logo = res.data.url;
+        }else {
+          MessageWarning(res.desc);
+        }
+      },
+      uploadImgListFileSuccess(res,file){
+        if (res.code == 200){
+          this.form.imgs.push({
+            id: res.data.id,
+            picture_url: res.data.pictureUrl,
+
+          });
+        }else {
+          MessageWarning(res.desc);
+        }
+      },
+      quillSuccess(res,file){
+
+      },
+      quillChange(data){
+        //this.form.remarks = data.text;
+        this.form.remarks = data.html;
+      },
+      setSchoolInfo(){
+        let params = {
+          responsiblePersonName: this.form.admin,
+          phone: this.form.phone,
+          address: this.form.address,
+          description: this.form.remarks,
+          campusNo: this.form.no
+        };
+        params = this.$qs.stringify(params);
+        this.loading = true;
+        this.$axios.post(common.update_school_info, params).then(res => {
+          if (res.data.code == 200){
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
           }
           this.loading = false;
         });
@@ -1563,5 +1655,15 @@
   height: 30px;
   line-height: 30px;
   background: rgb(244, 244, 245);
+}
+.moon-tips{
+  line-height: 10px !important;
+  font-size: 12px;
+}
+.setting-btn{
+  position: fixed;
+  right: 10px;
+  top:50%;
+  font-size: 12px;
 }
 </style>
