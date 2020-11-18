@@ -503,7 +503,7 @@
                       <el-input v-model="formPwd.phone" class="width-300"></el-input>
                     </el-form-item>
                     <el-form-item label="验证码">
-                      <el-input class="width-300" placeholder="" v-model="formPhone.phoneCode">
+                      <el-input class="width-300" placeholder="" v-model="formPwd.phoneCode">
                         <template slot="append">
                           <timeout-button :action="updatePwdMms" :data="{type: 1, username: this.loginUserName, userId: this.loginUserId}">
                             <template>{{$t("获取验证码")}}</template>
@@ -1159,12 +1159,17 @@
       },
       updatePwd(){
         let params = {
-          phone: this.formPhone.newPhone,
-          captcha: this.formPhone.phoneCode,
-          userId: this.loginUserId,
-          username: this.loginUserName,
-          appcode: 12,
+          pass: this.formPwd.pwd,
+          captcha: this.formPwd.phoneCode
         };
+        if (this.loginUserType == 4){
+          params = {
+            userId: this.loginUserId,
+            password: this.formPwd.pwd,
+            appcode: 12,
+            captcha: this.formPwd.phoneCode
+          };
+        }
         params = this.$qs.stringify(params);
         this.loading = true;
         this.$axios.post(common.updatepwd_save, params).then(res => {

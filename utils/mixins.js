@@ -1,5 +1,6 @@
 import global from "~/utils/global";
 import {common} from "~/utils/api/url";
+import {setChildren} from "~/utils/utils";
 
 export default {
   data (){
@@ -219,79 +220,54 @@ export default {
      * 主要用于树形菜单，下来菜单等
      * @returns {Promise<void>}
      */
-    async getDormBuildInfo() {
-      await this.$axios.get(common.session_url).then(res => {
-        this.dataDormBuild = [{
-          label: '宿舍楼1',
-          id: '1',
-          children: [{
-            label: '楼1',
-            id: '2',
-            unit: 1,
-            children: [{
-              label: '1层',
-              id: '3',
-              unit: 2,
-              children: [{
-                label: '1001',
-                id: 4,
-                unit: 3
-              },{
-                label: '1002',
-                id: 5,
-                unit: 3
-              }]
-            },{
-              label: '2层',
-              id: '6',
-              unit: 2,
-              children: [{
-                label: '2001',
-                id: 7,
-                unit: 3
-              },{
-                label: '2002',
-                id: 8,
-                unit: 3
-              }]
-            }]
-          }]
-        },{
-          label: '宿舍楼2',
-          id: '11',
-          children: [{
-            label: '楼1',
-            id: '12',
-            unit: 1,
-            children: [{
-              label: '1层',
-              id: '13',
-              unit: 2,
-              children: [{
-                label: '1001',
-                id: 14,
-                unit: 3
-              },{
-                label: '1002',
-                id: 15,
-                unit: 3
-              }]
-            },{
-              label: '2层',
-              id: '16',
-              unit: 2,
-              children: [{
-                label: '2001',
-                id: 17,
-                unit: 3
-              },{
-                label: '2002',
-                id: 18,
-                unit: 3
-              }]
-            }]
-          }]
-        }];
+    async getDormBuildInfo(type = 1) {
+      let params = {
+        buildingType: 1
+      };
+      await this.$axios.get(common.hierarchical_build, {params: params}).then(res => {
+        console.log(res);
+        let arr = [];
+        for (let i = 0; i < res.data.data.length; i++){
+          if (type == 1 || type == 2 || type == 3){
+            arr.push({
+              label: res.data.data[i].building_name,
+              id: res.data.data[i].id,
+              unit: res.data.data[i].unit,
+            });
+          }
+
+          if (type == 2 || type == 3){
+            if (res.data.data[i].child_list && res.data.data[i].child_list.length > 0){
+              let childList = res.data.data[i].child_list;
+              arr[i]['children'] = [];
+              for (let j = 0; j < childList.length; j++){
+                arr[i]['children'].push({
+                  label: childList[j].floor_num + "楼",
+                  id: childList[j].floor_num,
+                  unit: childList[j].unit,
+                  build_id: childList[j].build_id,
+                });
+
+                if (type == 3){
+                  if (childList[j].child_list && childList[j].child_list.length > 0){
+                    let childRoomList = childList[j].child_list;
+                    arr[i]['children'][j]['children'] = [];
+                    for (let z = 0; z < childRoomList.length; z++){
+                      arr[i]['children'][j]['children'].push({
+                        label: childRoomList[z].dormitory_no,
+                        id: childRoomList[z].id,
+                        unit: childRoomList[z].unit,
+                        floor_num: childRoomList[z].floor_num,
+                        build_id: childRoomList[z].build_id,
+                      });
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        this.dataDormBuild = arr;
       });
     },
     /**
@@ -299,61 +275,50 @@ export default {
      * 主要用于树形菜单，下来菜单等
      * @returns {Promise<void>}
      */
-    async getSchoolBuildInfo() {
-      await this.$axios.get(common.session_url).then(res => {
-        this.dataSchoolBuild = [{
-          label: '教学楼1',
-          id: '1',
-          children: [{
-            label: '楼1',
-            id: '11',
-            unit: 1,
-            children: [{
-              label: '1层',
-              id: '1',
-              unit: 2,
-              children: [{
-                label: '2001',
-                id: 17,
-                unit: 3
-              },{
-                label: '2002',
-                id: 18,
-                unit: 3
-              }]
-            },{
-              label: '2层',
-              id: '2',
-              unit: 2,
-            }]
-          }]
-        },{
-          label: '教学楼2',
-          id: '1',
-          children: [{
-            label: '楼1',
-            id: '11',
-            unit: 1,
-            children: [{
-              label: '1层',
-              id: '1',
-              unit: 2,
-            },{
-              label: '2层',
-              id: '2',
-              unit: 2,
-              children: [{
-                label: '2001',
-                id: 17,
-                unit: 3
-              },{
-                label: '2002',
-                id: 18,
-                unit: 3
-              }]
-            }]
-          }]
-        }];
+    async getSchoolBuildInfo(type=1) {
+      let params = {
+        buildingType: 0
+      };
+      await this.$axios.get(common.hierarchical_build, {params: params}).then(res => {
+        let arr = [];
+        for (let i = 0; i < res.data.data.length; i++){
+          if (type == 1 || type == 2 || type == 3){
+            arr.push({
+              label: res.data.data[i].building_name,
+              id: res.data.data[i].id,
+              unit: res.data.data[i].unit,
+            });
+          }
+
+          if (type == 2 || type == 3){
+            if (res.data.data[i].child_list && res.data.data[i].child_list.length > 0){
+              let childList = res.data.data[i].child_list;
+              arr[i]['children'] = [];
+              for (let j = 0; j < childList.length; j++){
+                arr[i]['children'].push({
+                  label: childList[j].floor_num + "楼",
+                  id: childList[j].floor_num,
+                  unit: childList[j].unit,
+                });
+
+                if (type == 3){
+                  if (childList[j].child_list && childList[j].child_list.length > 0){
+                    let childRoomList = childList[j].child_list;
+                    arr[i]['children'][j]['children'] = [];
+                    for (let z = 0; z < childRoomList.length; z++){
+                      arr[i]['children'][j]['children'].push({
+                        label: childRoomList[z].classroom_no,
+                        id: childRoomList[z].id,
+                        unit: childRoomList[z].unit,
+                      });
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        this.dataSchoolBuild = arr;
       });
     },
     /**

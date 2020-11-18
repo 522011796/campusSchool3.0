@@ -60,6 +60,10 @@
       type: {
         default: '',
         type: String
+      },
+      subType: {
+        default: 1,
+        type: String
       }
     },
     computed: {
@@ -88,13 +92,13 @@
     methods: {
       async initInfo(){
         if(this.type == 1){
-          await this.getCollegeInfo();
+          await this.getCollegeInfo(this.subType);
           this.data = this.dataCollege;
         }else if(this.type == 2){
-          await this.getDormBuildInfo();
+          await this.getDormBuildInfo(this.subType);
           this.data = this.dataDormBuild;
         }else if(this.type == 3){
-          await this.getSchoolBuildInfo();
+          await this.getSchoolBuildInfo(this.subType);
           this.data = this.dataSchoolBuild;
         }
       },

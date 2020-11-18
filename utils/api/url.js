@@ -29,5 +29,8 @@ export const common = {
   organization_update:  '/proxy/school/school/dept/update',//组织机构编辑
   organization_delete: '/proxy/school/school/dept/delete',//组织机构删除
   organization_file: '/proxy/school/school/organize/download',//组织机构导入文件模版
-  organization_upload: '/proxy/school/school/organize/multyImport'//组织机构导入地址
+  organization_upload: '/proxy/school/school/organize/multyImport',//组织机构导入地址
+
+  hierarchical_build: '/proxy/school/hierarchical/get-building-tree',//0教学楼 1宿舍楼
+  hierarchical_college: '/proxy/school/hierarchical/get-building-tree',//学院
 };

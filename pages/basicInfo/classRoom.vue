@@ -6,7 +6,7 @@
           <!--<span class="layout-left-menu-tag"></span>-->
           <span class="layout-left-menu-title">教室管理</span>
         </div>
-        <MyElTree type="3"></MyElTree>
+        <MyElTree type="3" sub-type="2" @node-click="nodeClick"></MyElTree>
       </div>
 
       <div slot="right">
@@ -320,6 +320,9 @@ export default {
     },
     handleCancelChange(data) {
       this.visibleConfim = false;
+    },
+    nodeClick(data){
+      console.log(data);
     },
     search(event){
       let params = {
