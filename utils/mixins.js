@@ -1,6 +1,6 @@
 import global from "~/utils/global";
 import {common} from "~/utils/api/url";
-import {setChildren} from "~/utils/utils";
+import {setChildren, setCollegeChildren, setSchoolBuildChildren, setDormBuildChildren, setDeptChildren} from "~/utils/utils";
 
 export default {
   data (){
@@ -135,84 +135,10 @@ export default {
      * @returns {Promise<void>}
      */
     async getCollegeInfo() {
-      await this.$axios.get(common.session_url).then(res => {
-        this.dataCollege = [{
-          label: '学院1',
-          id: '1',
-          show: false,
-          children: [{
-            label: '专业',
-            id: '11',
-            unit: 1,
-            show: false,
-            children: [{
-              label: '一年级',
-              id: '12',
-              unit: 2,
-              show: false,
-              children: [{
-                label: '班级1',
-                id: '13',
-                unit: 3,
-                show: false,
-              },{
-                label: '班级2',
-                id: '14',
-                unit: 3,
-                show: false,
-                disabled: true,
-                children: [{
-                  label: '1001',
-                  id: '15',
-                  unit: 3,
-                },{
-                  label: '1002',
-                  id: '16',
-                  unit: 3,
-                  disabled: true
-                }]
-              }]
-            },{
-              label: '二年级',
-              id: '15',
-              unit: 2,
-              show: false,
-            }]
-          }]
-        },{
-          label: '学院2',
-          id: '2',
-          show: false,
-          children: [{
-            label: '专业2',
-            id: '21',
-            unit: 1,
-            show: false,
-            children: [{
-              label: '一年级',
-              id: '22',
-              unit: 2,
-              show: false,
-              children: [{
-                label: '班级1',
-                id: '23',
-                unit: 3,
-                show: false,
-              },{
-                label: '班级2',
-                id: '24',
-                unit: 3,
-                disabled: true,
-                show: false,
-              }]
-            },{
-              label: '二年级',
-              id: '25',
-              unit: 2,
-              show: false,
-            }]
-          }]
-        }];
+      await this.$axios.get(common.hierarchical_college).then(res => {
+        console.log(res);
+        let groupArr = [];
+        this.dataCollege = setCollegeChildren(res.data.data.tree, groupArr, 'children');
       });
     },
     /**
@@ -225,49 +151,7 @@ export default {
         buildingType: 1
       };
       await this.$axios.get(common.hierarchical_build, {params: params}).then(res => {
-        console.log(res);
-        let arr = [];
-        for (let i = 0; i < res.data.data.length; i++){
-          if (type == 1 || type == 2 || type == 3){
-            arr.push({
-              label: res.data.data[i].building_name,
-              id: res.data.data[i].id,
-              unit: res.data.data[i].unit,
-            });
-          }
-
-          if (type == 2 || type == 3){
-            if (res.data.data[i].child_list && res.data.data[i].child_list.length > 0){
-              let childList = res.data.data[i].child_list;
-              arr[i]['children'] = [];
-              for (let j = 0; j < childList.length; j++){
-                arr[i]['children'].push({
-                  label: childList[j].floor_num + "楼",
-                  id: childList[j].floor_num,
-                  unit: childList[j].unit,
-                  build_id: childList[j].build_id,
-                });
-
-                if (type == 3){
-                  if (childList[j].child_list && childList[j].child_list.length > 0){
-                    let childRoomList = childList[j].child_list;
-                    arr[i]['children'][j]['children'] = [];
-                    for (let z = 0; z < childRoomList.length; z++){
-                      arr[i]['children'][j]['children'].push({
-                        label: childRoomList[z].dormitory_no,
-                        id: childRoomList[z].id,
-                        unit: childRoomList[z].unit,
-                        floor_num: childRoomList[z].floor_num,
-                        build_id: childRoomList[z].build_id,
-                      });
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-        this.dataDormBuild = arr;
+        this.dataDormBuild = setDormBuildChildren(res.data.data, type);
       });
     },
     /**
@@ -280,45 +164,7 @@ export default {
         buildingType: 0
       };
       await this.$axios.get(common.hierarchical_build, {params: params}).then(res => {
-        let arr = [];
-        for (let i = 0; i < res.data.data.length; i++){
-          if (type == 1 || type == 2 || type == 3){
-            arr.push({
-              label: res.data.data[i].building_name,
-              id: res.data.data[i].id,
-              unit: res.data.data[i].unit,
-            });
-          }
-
-          if (type == 2 || type == 3){
-            if (res.data.data[i].child_list && res.data.data[i].child_list.length > 0){
-              let childList = res.data.data[i].child_list;
-              arr[i]['children'] = [];
-              for (let j = 0; j < childList.length; j++){
-                arr[i]['children'].push({
-                  label: childList[j].floor_num + "楼",
-                  id: childList[j].floor_num,
-                  unit: childList[j].unit,
-                });
-
-                if (type == 3){
-                  if (childList[j].child_list && childList[j].child_list.length > 0){
-                    let childRoomList = childList[j].child_list;
-                    arr[i]['children'][j]['children'] = [];
-                    for (let z = 0; z < childRoomList.length; z++){
-                      arr[i]['children'][j]['children'].push({
-                        label: childRoomList[z].classroom_no,
-                        id: childRoomList[z].id,
-                        unit: childRoomList[z].unit,
-                      });
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-        this.dataSchoolBuild = arr;
+        this.dataSchoolBuild = setSchoolBuildChildren(res.data.data, type);
       });
     },
     /**
@@ -327,69 +173,12 @@ export default {
      * @returns {Promise<void>}
      */
     async getDeptInfo() {
-      await this.$axios.get(common.session_url).then(res => {
-        this.dataDept = [{
-          label: '部门1',
-          id: '1',
-          children: [{
-            label: '楼1',
-            id: '11',
-            unit: 1,
-            children: [{
-              label: '1层',
-              id: '1',
-              unit: 2,
-              children: [{
-                label: '2001',
-                id: 17,
-                unit: 3
-              },{
-                label: '2002',
-                id: 18,
-                unit: 3
-              }]
-            },{
-              label: '2层',
-              id: '2',
-              unit: 2,
-            }]
-          }]
-        },{
-          label: '部门2',
-          id: '1',
-          children: [{
-            label: '楼1',
-            id: '11',
-            unit: 1,
-            children: [{
-              label: '1层',
-              id: '1',
-              unit: 2,
-            },{
-              label: '2层',
-              id: '2',
-              unit: 2,
-              children: [{
-                label: '2001',
-                id: 17,
-                unit: 3,
-                children: [{
-                  label: '2001',
-                  id: 19,
-                  unit: 3
-                },{
-                  label: '2002',
-                  id: 20,
-                  unit: 3
-                }]
-              },{
-                label: '2002',
-                id: 18,
-                unit: 3
-              }]
-            }]
-          }]
-        }];
+      let params = {
+        superDeptId: 0
+      };
+      await this.$axios.get(common.hierarchical_dept, {params: params}).then(res => {
+        let arr = [];
+        this.dataDept = setDeptChildren(res.data.data[0].child_list, arr, 'child_list', 'children');
       });
     }
   }

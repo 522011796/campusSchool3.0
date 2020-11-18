@@ -100,6 +100,9 @@
         }else if(this.type == 3){
           await this.getSchoolBuildInfo(this.subType);
           this.data = this.dataSchoolBuild;
+        }else if(this.type == 4){
+          await this.getDeptInfo(this.subType);
+          this.data = this.dataDept;
         }
       },
       filterNode(value, data) {

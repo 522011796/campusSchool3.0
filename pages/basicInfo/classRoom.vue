@@ -6,7 +6,7 @@
           <!--<span class="layout-left-menu-tag"></span>-->
           <span class="layout-left-menu-title">教室管理</span>
         </div>
-        <MyElTree type="3" sub-type="2" @node-click="nodeClick"></MyElTree>
+        <MyElTree type="1" sub-type="3" @node-click="nodeClick"></MyElTree>
       </div>
 
       <div slot="right">

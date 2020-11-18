@@ -32,5 +32,6 @@ export const common = {
   organization_upload: '/proxy/school/school/organize/multyImport',//组织机构导入地址
 
   hierarchical_build: '/proxy/school/hierarchical/get-building-tree',//0教学楼 1宿舍楼
-  hierarchical_college: '/proxy/school/hierarchical/get-building-tree',//学院
+  hierarchical_college: '/proxy/edu/edu/major/year/class/tree',//学院
+  hierarchical_dept: '/proxy/school/hierarchical/get-organize-tree',//部门
 };
