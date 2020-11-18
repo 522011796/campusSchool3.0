@@ -73,6 +73,7 @@
           </span>
         </el-popover>
       </div>
+
       <div class="moon-top-middle-menu">
         <div class="moon-top-middle-menu-title">
           <div style="display: inline-block" :style="topWidth">
@@ -80,7 +81,7 @@
               <i class="item fa fa-th" style="font-size: 18px" @click="showMenuList($event)"></i>
             </span>
 
-            <span class="moon-top-middle-menu-item-text" v-for="(item, index) in topMenuList" :key="index" v-if="index <= widthIndex" @click="handleTopSelect($event, item)">
+            <span class="moon-top-middle-menu-item-text" v-for="(item, index) in topMenuList" :key="index" v-if="index <= widthIndex && item.show == true" @click="handleTopSelect($event, item)">
               <label class="item" :class="activeTop == item.key ? 'moon-top-middle-menu-item-text-active' : ''">{{item.name}}</label>
             </span>
 
@@ -297,7 +298,8 @@
             <i class="fa fa-close drawer-menu-close" @click="closeDrawer"></i>
             <div class="drawer-main-menu-left text-center" :style="drawerMenuHeight">
               <div class="drawer-main-menu-left-container">
-                <div class="drawer-main-menu-left-container-item drawer-main-menu-left-container-item-active" v-for="(item, index) in topMenuList" :key="index">
+                <!--drawer-main-menu-left-container-item-active-->
+                <div class="drawer-main-menu-left-container-item" v-for="(item, index) in topMenuAllList" :key="index">
                   <i :class="item.icon"></i>
                   <span>{{item.name}}</span>
                 </div>
@@ -694,6 +696,7 @@
         activeIndex: '1',
         activeSliderIndex: '',
         topMenuList: [],
+        topMenuAllList: [],
         sliderMenuList: [],
         clickType: '',
         tabVal: '0',
@@ -829,7 +832,12 @@
       },
       getTopMenu(){
         this.$axios.get('/json/topMenu.json').then(res => {
-          this.topMenuList = res.data;
+          this.topMenuAllList = res.data;
+          for (let i = 0; i < res.data.length; i++){
+            if (res.data[i].show){
+              this.topMenuList.push(res.data[i]);
+            }
+          }
         })
       },
       getSliderMenu(key, type){

@@ -136,9 +136,10 @@ export default {
      */
     async getCollegeInfo() {
       await this.$axios.get(common.hierarchical_college).then(res => {
-        console.log(res);
         let groupArr = [];
-        this.dataCollege = setCollegeChildren(res.data.data.tree, groupArr, 'children');
+        if (res.data.data){
+          this.dataCollege = setCollegeChildren(res.data.data.tree, groupArr, 'children');
+        }
       });
     },
     /**
@@ -151,7 +152,9 @@ export default {
         buildingType: 1
       };
       await this.$axios.get(common.hierarchical_build, {params: params}).then(res => {
-        this.dataDormBuild = setDormBuildChildren(res.data.data, type);
+        if (res.data.data){
+          this.dataDormBuild = setDormBuildChildren(res.data.data, type);
+        }
       });
     },
     /**
@@ -164,7 +167,9 @@ export default {
         buildingType: 0
       };
       await this.$axios.get(common.hierarchical_build, {params: params}).then(res => {
-        this.dataSchoolBuild = setSchoolBuildChildren(res.data.data, type);
+        if (res.data.data){
+          this.dataSchoolBuild = setSchoolBuildChildren(res.data.data, type);
+        }
       });
     },
     /**
@@ -178,7 +183,9 @@ export default {
       };
       await this.$axios.get(common.hierarchical_dept, {params: params}).then(res => {
         let arr = [];
-        this.dataDept = setDeptChildren(res.data.data[0].child_list, arr, 'child_list', 'children');
+        if (res.data.data){
+          this.dataDept = setDeptChildren(res.data.data[0].child_list, arr, 'child_list', 'children');
+        }
       });
     }
   }

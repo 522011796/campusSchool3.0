@@ -1,6 +1,42 @@
 [
   {
-    "name": "基础信息",
+    "name": "基础管理",
+    "show": true,
     "key": "basicInfo"
+  },
+  {
+    "name": "教学管理",
+    "show": false,
+    "key": "teachInfo"
+  },
+  {
+    "name": "学工管理",
+    "show": false,
+    "key": "studentInfo"
+  },
+  {
+    "name": "考勤管理",
+    "show": false,
+    "key": "attendanceInfo"
+  },
+  {
+    "name": "审批中心",
+    "show": false,
+    "key": "auditInfo"
+  },
+  {
+    "name": "后勤管理",
+    "show": false,
+    "key": "logisticsInfo"
+  },
+  {
+    "name": "大数据中心",
+    "show": false,
+    "key": "dataInfo"
+  },
+  {
+    "name": "系统日志",
+    "show": false,
+    "key": "logInfo"
   }
 ]

@@ -1,89 +1,96 @@
 [
   {
     "key": "basicInfo",
-    "name": "基础信息",
+    "name": "基础管理",
     "id": 1,
     "list": [
       {
-        "name": "基础",
+        "name": "基础信息",
         "icon": "fa fa-info-circle",
         "toggle": false,
-        "id": 11,
+        "id": 100,
         "key": "basic",
         "list": [
           {
             "name": "组织机构",
             "key": "organization",
-            "id": 110,
+            "id": 101,
             "top": "basicInfo",
             "path": "/basicInfo/organization"
           },
           {
             "name": "学年学期",
             "key": "yearAndTerm",
-            "id": 111,
+            "id": 102,
             "top": "basicInfo",
             "path": "/basicInfo/yearAndTerm"
           },
           {
-            "name": "角色管理",
-            "key": "role",
-            "id": 112,
+            "name": "学院信息",
+            "key": "college",
+            "id": 103,
             "top": "basicInfo",
-            "path": "/basicInfo/role"
+            "path": "/basicInfo/college"
+          },
+          {
+            "name": "专业信息",
+            "key": "major",
+            "id": 104,
+            "top": "basicInfo",
+            "path": "/basicInfo/major"
+          },
+          {
+            "name": "班级信息",
+            "key": "class",
+            "id": 105,
+            "top": "basicInfo",
+            "path": "/basicInfo/class"
           }
         ]
       },
       {
-        "name": "组织",
-        "icon": "fa fa-cube",
+        "name": "楼宇管理",
+        "icon": "fa fa-building",
         "toggle": false,
-        "id": 12,
-        "key": "basicGroup",
+        "id": 200,
+        "key": "build",
         "list": [
           {
-            "name": "教室管理",
+            "name": "教学楼",
+            "key": "build",
+            "id": 201,
+            "top": "basicInfo",
+            "path": "/basicInfo/build"
+          },
+          {
+            "name": "宿舍楼",
+            "key": "dorm",
+            "id": 202,
+            "top": "basicInfo",
+            "path": "/basicInfo/dorm"
+          }
+        ]
+      },
+      {
+        "name": "房间管理",
+        "icon": "fa fa-home",
+        "toggle": false,
+        "id": 200,
+        "key": "room",
+        "list": [
+          {
+            "name": "教室信息",
             "key": "classRoom",
-            "id": 121,
+            "id": 201,
             "top": "basicInfo",
             "path": "/basicInfo/classRoom"
           },
           {
-            "name": "教学楼设置",
-            "key": "buildSet",
-            "id": 122,
+            "name": "宿舍信息",
+            "key": "dormRoom",
+            "id": 202,
             "top": "basicInfo",
-            "path": "/basicInfo/buildSet"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "key": "test",
-    "name": "test",
-    "id": 1,
-    "list": [
-      {
-        "name": "test",
-        "icon": "fa fa-info-o",
-        "toggle": false,
-        "id": 11,
-        "key": "basic",
-        "list": [
-          {
-            "name": "test1",
-            "key": "test1",
-            "id": 110,
-            "top": "test",
-            "path": "/test/test1"
-          },
-          {
-            "name": "tes2",
-            "key": "tes2",
-            "id": 111,
-            "top": "test",
-            "path": "/test/test2"
+            "path": "/basicInfo/dormRoom"
           }
         ]
       }

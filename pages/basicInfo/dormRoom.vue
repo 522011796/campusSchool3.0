@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    role
+    dormRoom
   </div>
 </template>
 
