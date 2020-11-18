@@ -75,22 +75,290 @@
         "name": "房间管理",
         "icon": "fa fa-home",
         "toggle": false,
-        "id": 200,
+        "id": 300,
         "key": "room",
         "list": [
           {
             "name": "教室信息",
             "key": "classRoom",
-            "id": 201,
+            "id": 301,
             "top": "basicInfo",
             "path": "/basicInfo/classRoom"
           },
           {
             "name": "宿舍信息",
             "key": "dormRoom",
-            "id": 202,
+            "id": 302,
             "top": "basicInfo",
             "path": "/basicInfo/dormRoom"
+          }
+        ]
+      },
+      {
+        "name": "人员信息",
+        "icon": "fa fa-users",
+        "toggle": false,
+        "id": 400,
+        "key": "personInfo",
+        "list": [
+          {
+            "name": "教工信息",
+            "key": "teacher",
+            "id": 401,
+            "top": "basicInfo",
+            "path": "/basicInfo/teacher"
+          },
+          {
+            "name": "学生信息",
+            "key": "student",
+            "id": 402,
+            "top": "basicInfo",
+            "path": "/basicInfo/student"
+          },
+          {
+            "name": "人员查询",
+            "key": "person",
+            "id": 403,
+            "top": "basicInfo",
+            "path": "/basicInfo/person"
+          }
+        ]
+      },
+      {
+        "name": "设备管理",
+        "icon": "fa fa-cube",
+        "toggle": false,
+        "id": 500,
+        "key": "device",
+        "list": [
+          {
+            "name": "AI终端机管理",
+            "key": "terminal",
+            "id": 501,
+            "top": "basicInfo",
+            "path": "/basicInfo/terminal"
+          },
+          {
+            "name": "AI摄像机",
+            "key": "video",
+            "id": 502,
+            "top": "basicInfo",
+            "path": "/basicInfo/video"
+          },
+          {
+            "name": "AI一体机-云端版",
+            "key": "padCloud",
+            "id": 503,
+            "top": "basicInfo",
+            "path": "/basicInfo/padCloud"
+          },
+          {
+            "name": "AI一体机-本地版",
+            "key": "padLocal",
+            "id": 504,
+            "top": "basicInfo",
+            "path": "/basicInfo/padLocal"
+          },
+          {
+            "name": "设备位置管理",
+            "key": "deviceArea",
+            "id": 505,
+            "top": "basicInfo",
+            "path": "/basicInfo/deviceArea"
+          },
+          {
+            "name": "设备配置管理",
+            "key": "deviceConfig",
+            "id": 506,
+            "top": "basicInfo",
+            "path": "/basicInfo/deviceConfig"
+          }
+        ]
+      },
+      {
+        "name": "教师流程中心",
+        "icon": "fa fa-list",
+        "toggle": false,
+        "id": 600,
+        "key": "terFlow",
+        "list": [
+          {
+            "name": "教师请假申请",
+            "key": "terLeave",
+            "id": 601,
+            "top": "basicInfo",
+            "path": "/basicInfo/terLeave"
+          },
+          {
+            "name": "教师出差申请",
+            "key": "terTravel",
+            "id": 602,
+            "top": "basicInfo",
+            "path": "/basicInfo/terTravel"
+          },
+          {
+            "name": "教师补卡申请",
+            "key": "terAddCard",
+            "id": 603,
+            "top": "basicInfo",
+            "path": "/basicInfo/terAddCard"
+          },
+          {
+            "name": "教师门禁申请",
+            "key": "terDoorAccess",
+            "id": 604,
+            "top": "basicInfo",
+            "path": "/basicInfo/terDoorAccess"
+          }
+        ]
+      },
+      {
+        "name": "学生流程中心",
+        "icon": "fa fa-list",
+        "toggle": false,
+        "id": 700,
+        "key": "stuFlow",
+        "list": [
+          {
+            "name": "学生请假申请",
+            "key": "stuLeave",
+            "id": 701,
+            "top": "basicInfo",
+            "path": "/basicInfo/stuLeave"
+          },
+          {
+            "name": "学生奖惩申请",
+            "key": "stuRepu",
+            "id": 702,
+            "top": "basicInfo",
+            "path": "/basicInfo/stuRepu"
+          },
+          {
+            "name": "学生素质学分申请",
+            "key": "stuCredit",
+            "id": 703,
+            "top": "basicInfo",
+            "path": "/basicInfo/stuCredit"
+          },
+          {
+            "name": "学生门禁申请",
+            "key": "stuDoorAccess",
+            "id": 704,
+            "top": "basicInfo",
+            "path": "/basicInfo/stuDoorAccess"
+          },
+          {
+            "name": "学生头像申请",
+            "key": "stuFace",
+            "id": 704,
+            "top": "basicInfo",
+            "path": "/basicInfo/stuFace"
+          }
+        ]
+      },
+      {
+        "name": "通知公告",
+        "icon": "fa fa-file",
+        "toggle": false,
+        "id": 800,
+        "key": "notice",
+        "list": [
+          {
+            "name": "校园新闻",
+            "key": "news",
+            "id": 801,
+            "top": "basicInfo",
+            "path": "/basicInfo/news"
+          },
+          {
+            "name": "校园公告",
+            "key": "notice",
+            "id": 802,
+            "top": "basicInfo",
+            "path": "/basicInfo/notice"
+          },
+          {
+            "name": "校园通知",
+            "key": "circular",
+            "id": 803,
+            "top": "basicInfo",
+            "path": "/basicInfo/circular"
+          },
+          {
+            "name": "资讯管理",
+            "key": "info",
+            "id": 804,
+            "top": "basicInfo",
+            "path": "/basicInfo/info"
+          }
+        ]
+      },
+      {
+        "name": "AI授权中心",
+        "icon": "fa fa-support",
+        "toggle": false,
+        "id": 900,
+        "key": "authorize",
+        "list": [
+          {
+            "name": "学生授权管理",
+            "key": "stuAuth",
+            "id": 901,
+            "top": "basicInfo",
+            "path": "/basicInfo/stuAuth"
+          },
+          {
+            "name": "教工授权管理",
+            "key": "terAuth",
+            "id": 902,
+            "top": "basicInfo",
+            "path": "/basicInfo/terAuth"
+          },
+          {
+            "name": "陌生人识别记录",
+            "key": "strangerRecord",
+            "id": 903,
+            "top": "basicInfo",
+            "path": "/basicInfo/strangerRecord"
+          }
+        ]
+      },
+      {
+        "name": "权限管理",
+        "icon": "fa fa-tachometer",
+        "toggle": false,
+        "id": 1000,
+        "key": "permission",
+        "list": [
+          {
+            "name": "WEB权限",
+            "key": "webAuth",
+            "id": 1001,
+            "top": "basicInfo",
+            "path": "/basicInfo/webAuth"
+          },
+          {
+            "name": "APP权限",
+            "key": "appAuth",
+            "id": 1002,
+            "top": "basicInfo",
+            "path": "/basicInfo/appAuth"
+          }
+        ]
+      },
+      {
+        "name": "认证管理",
+        "icon": "fa fa-vcard",
+        "toggle": false,
+        "id": 1000,
+        "key": "identification",
+        "list": [
+          {
+            "name": "认证管理",
+            "key": "identification",
+            "id": 1001,
+            "top": "basicInfo",
+            "path": "/basicInfo/identification"
           }
         ]
       }
