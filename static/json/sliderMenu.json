@@ -1006,5 +1006,218 @@
         ]
       }
     ]
+  },
+  {
+    "key": "logisticsInfo",
+    "name": "后勤管理",
+    "id": 6,
+    "list": [
+      {
+        "name": "门禁管理",
+        "icon": "fa fa-tags",
+        "toggle": false,
+        "id": 6000,
+        "key": "doorAccess",
+        "list": [
+          {
+            "name": "通行分析",
+            "key": "passStatic",
+            "id": 6001,
+            "top": "logisticsInfo",
+            "path": "/logisticsInfo/doorAccess/passStatic"
+          },
+          {
+            "name": "远程控制",
+            "key": "remote",
+            "id": 6002,
+            "top": "logisticsInfo",
+            "path": "/logisticsInfo/doorAccess/remote"
+          },
+          {
+            "name": "定时任务",
+            "key": "settimeout",
+            "id": 6003,
+            "top": "logisticsInfo",
+            "path": "/logisticsInfo/doorAccess/settimeout"
+          },
+          {
+            "name": "异常管理",
+            "key": "exception",
+            "id": 6004,
+            "top": "logisticsInfo",
+            "path": "/logisticsInfo/doorAccess/exception"
+          },
+          {
+            "name": "识别记录",
+            "key": "doorAccessRecord",
+            "id": 6005,
+            "top": "logisticsInfo",
+            "path": "/logisticsInfo/doorAccess/doorAccessRecord"
+          },
+          {
+            "name": "权限设置",
+            "key": "permission",
+            "id": 6006,
+            "top": "logisticsInfo",
+            "path": "/logisticsInfo/doorAccess/permission"
+          }
+        ]
+      },
+      {
+        "name": "一卡通",
+        "icon": "fa fa-vcard",
+        "toggle": false,
+        "id": 6100,
+        "key": "onecard",
+        "list": [
+          {
+            "name": "商家管理",
+            "key": "merchant",
+            "id": 6101,
+            "top": "logisticsInfo",
+            "path": "/logisticsInfo/onecard/merchant"
+          },
+          {
+            "name": "交易明细",
+            "key": "billList",
+            "id": 6102,
+            "top": "logisticsInfo",
+            "path": "/logisticsInfo/onecard/billList"
+          },
+          {
+            "name": "学生一卡通",
+            "key": "stuOnecard",
+            "id": 6103,
+            "top": "logisticsInfo",
+            "path": "/logisticsInfo/onecard/stuOnecard"
+          },
+          {
+            "name": "教师一卡通",
+            "key": "terOnecard",
+            "id": 6104,
+            "top": "logisticsInfo",
+            "path": "/logisticsInfo/onecard/terOnecard"
+          },
+          {
+            "name": "一卡通结算",
+            "key": "terDoorApply",
+            "id": 6105,
+            "top": "logisticsInfo",
+            "path": "/logisticsInfo/onecard/onecardPay"
+          },
+          {
+            "name": "校园收款",
+            "key": "Collection",
+            "id": 6106,
+            "top": "logisticsInfo",
+            "path": "/logisticsInfo/onecard/collection"
+          },
+          {
+            "name": "收款管理",
+            "key": "collectionManage",
+            "id": 6107,
+            "top": "logisticsInfo",
+            "path": "/logisticsInfo/onecard/collectionManage"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "logInfo",
+    "name": "系统日志",
+    "id": 7,
+    "list": [
+      {
+        "name": "考务管理",
+        "icon": "fa fa-tags",
+        "toggle": false,
+        "id": 7000,
+        "key": "exam",
+        "list": [
+          {
+            "name": "登录日志",
+            "key": "login",
+            "id": 7001,
+            "top": "logInfo",
+            "path": "/logInfo/login"
+          },
+          {
+            "name": "操作日志",
+            "key": "opr",
+            "id": 7002,
+            "top": "logInfo",
+            "path": "/logInfo/opr"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "dataInfo",
+    "name": "大数据中心",
+    "id": 8,
+    "list": [
+      {
+        "name": "学工大数据",
+        "icon": "fa fa-tags",
+        "toggle": false,
+        "id": 8000,
+        "key": "stuData",
+        "list": [
+          {
+            "name": "学生分析",
+            "key": "stuAnalysis",
+            "id": 8001,
+            "top": "dataInfo",
+            "path": "/dataInfo/stuData/stuAnalysis"
+          },
+          {
+            "name": "考勤态势",
+            "key": "stuStatus",
+            "id": 8002,
+            "top": "dataInfo",
+            "path": "/dataInfo/stuData/stuStatus"
+          },
+          {
+            "name": "考勤画像",
+            "key": "stuPic",
+            "id": 8003,
+            "top": "dataInfo",
+            "path": "/dataInfo/stuData/stuPic"
+          },
+          {
+            "name": "量化统计",
+            "key": "stuQuanti",
+            "id": 8004,
+            "top": "dataInfo",
+            "path": "/dataInfo/stuData/stuQuanti"
+          }
+        ]
+      },
+      {
+        "name": "数据可视化",
+        "icon": "fa fa-tags",
+        "toggle": false,
+        "id": 8100,
+        "key": "dataView",
+        "list": [
+          {
+            "name": "学生分析",
+            "key": "screenManage",
+            "id": 8101,
+            "top": "dataInfo",
+            "path": "/dataInfo/dataView/screenManage"
+          },
+          {
+            "name": "考勤态势",
+            "key": "myScreen",
+            "id": 8102,
+            "top": "dataInfo",
+            "path": "/dataInfo/dataView/myScreen"
+          }
+        ]
+      }
+    ]
   }
 ]

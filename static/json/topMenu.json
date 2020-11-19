@@ -26,17 +26,17 @@
   },
   {
     "name": "后勤管理",
-    "show": false,
+    "show": true,
     "key": "logisticsInfo"
   },
   {
     "name": "大数据中心",
-    "show": false,
+    "show": true,
     "key": "dataInfo"
   },
   {
     "name": "系统日志",
-    "show": false,
+    "show": true,
     "key": "logInfo"
   }
 ]

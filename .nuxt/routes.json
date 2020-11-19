@@ -273,6 +273,20 @@
     "_name": "_6324ad48"
   },
   {
+    "name": "logInfo-login",
+    "path": "/logInfo/login",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/logInfo/login.vue",
+    "chunkName": "pages/logInfo/login",
+    "_name": "_4c25f2be"
+  },
+  {
+    "name": "logInfo-opr",
+    "path": "/logInfo/opr",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/logInfo/opr.vue",
+    "chunkName": "pages/logInfo/opr",
+    "_name": "_1325a9e9"
+  },
+  {
     "name": "test-test1",
     "path": "/test/test1",
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/test/test1.vue",
@@ -495,6 +509,139 @@
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/auditInfo/terApply/leaveApply.vue",
     "chunkName": "pages/auditInfo/terApply/leaveApply",
     "_name": "_20e74288"
+  },
+  {
+    "name": "dataInfo-dataView-myScreen",
+    "path": "/dataInfo/dataView/myScreen",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/dataInfo/dataView/myScreen.vue",
+    "chunkName": "pages/dataInfo/dataView/myScreen",
+    "_name": "_c8ab8148"
+  },
+  {
+    "name": "dataInfo-dataView-screenManage",
+    "path": "/dataInfo/dataView/screenManage",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/dataInfo/dataView/screenManage.vue",
+    "chunkName": "pages/dataInfo/dataView/screenManage",
+    "_name": "_238ed6d6"
+  },
+  {
+    "name": "dataInfo-stuData-stuAnalysis",
+    "path": "/dataInfo/stuData/stuAnalysis",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/dataInfo/stuData/stuAnalysis.vue",
+    "chunkName": "pages/dataInfo/stuData/stuAnalysis",
+    "_name": "_c19618ba"
+  },
+  {
+    "name": "dataInfo-stuData-stuPic",
+    "path": "/dataInfo/stuData/stuPic",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/dataInfo/stuData/stuPic.vue",
+    "chunkName": "pages/dataInfo/stuData/stuPic",
+    "_name": "_3eba9193"
+  },
+  {
+    "name": "dataInfo-stuData-stuQuanti",
+    "path": "/dataInfo/stuData/stuQuanti",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/dataInfo/stuData/stuQuanti.vue",
+    "chunkName": "pages/dataInfo/stuData/stuQuanti",
+    "_name": "_1e53bb0d"
+  },
+  {
+    "name": "dataInfo-stuData-stuStatus",
+    "path": "/dataInfo/stuData/stuStatus",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/dataInfo/stuData/stuStatus.vue",
+    "chunkName": "pages/dataInfo/stuData/stuStatus",
+    "_name": "_9b6d550e"
+  },
+  {
+    "name": "logisticsInfo-doorAccess-doorAccessRecord",
+    "path": "/logisticsInfo/doorAccess/doorAccessRecord",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/logisticsInfo/doorAccess/doorAccessRecord.vue",
+    "chunkName": "pages/logisticsInfo/doorAccess/doorAccessRecord",
+    "_name": "_259324a7"
+  },
+  {
+    "name": "logisticsInfo-doorAccess-exception",
+    "path": "/logisticsInfo/doorAccess/exception",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/logisticsInfo/doorAccess/exception.vue",
+    "chunkName": "pages/logisticsInfo/doorAccess/exception",
+    "_name": "_6aa42efb"
+  },
+  {
+    "name": "logisticsInfo-doorAccess-passStatic",
+    "path": "/logisticsInfo/doorAccess/passStatic",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/logisticsInfo/doorAccess/passStatic.vue",
+    "chunkName": "pages/logisticsInfo/doorAccess/passStatic",
+    "_name": "_30b4803a"
+  },
+  {
+    "name": "logisticsInfo-doorAccess-permission",
+    "path": "/logisticsInfo/doorAccess/permission",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/logisticsInfo/doorAccess/permission.vue",
+    "chunkName": "pages/logisticsInfo/doorAccess/permission",
+    "_name": "_cd10005a"
+  },
+  {
+    "name": "logisticsInfo-doorAccess-remote",
+    "path": "/logisticsInfo/doorAccess/remote",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/logisticsInfo/doorAccess/remote.vue",
+    "chunkName": "pages/logisticsInfo/doorAccess/remote",
+    "_name": "_bf5d166c"
+  },
+  {
+    "name": "logisticsInfo-doorAccess-settimeout",
+    "path": "/logisticsInfo/doorAccess/settimeout",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/logisticsInfo/doorAccess/settimeout.vue",
+    "chunkName": "pages/logisticsInfo/doorAccess/settimeout",
+    "_name": "_fe7cfe7a"
+  },
+  {
+    "name": "logisticsInfo-onecard-billList",
+    "path": "/logisticsInfo/onecard/billList",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/logisticsInfo/onecard/billList.vue",
+    "chunkName": "pages/logisticsInfo/onecard/billList",
+    "_name": "_426fcd07"
+  },
+  {
+    "name": "logisticsInfo-onecard-collection",
+    "path": "/logisticsInfo/onecard/collection",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/logisticsInfo/onecard/collection.vue",
+    "chunkName": "pages/logisticsInfo/onecard/collection",
+    "_name": "_5eee1140"
+  },
+  {
+    "name": "logisticsInfo-onecard-collectionManage",
+    "path": "/logisticsInfo/onecard/collectionManage",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/logisticsInfo/onecard/collectionManage.vue",
+    "chunkName": "pages/logisticsInfo/onecard/collectionManage",
+    "_name": "_8c0cff36"
+  },
+  {
+    "name": "logisticsInfo-onecard-merchant",
+    "path": "/logisticsInfo/onecard/merchant",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/logisticsInfo/onecard/merchant.vue",
+    "chunkName": "pages/logisticsInfo/onecard/merchant",
+    "_name": "_73b6b00a"
+  },
+  {
+    "name": "logisticsInfo-onecard-onecardPay",
+    "path": "/logisticsInfo/onecard/onecardPay",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/logisticsInfo/onecard/onecardPay.vue",
+    "chunkName": "pages/logisticsInfo/onecard/onecardPay",
+    "_name": "_258ae514"
+  },
+  {
+    "name": "logisticsInfo-onecard-stuOnecard",
+    "path": "/logisticsInfo/onecard/stuOnecard",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/logisticsInfo/onecard/stuOnecard.vue",
+    "chunkName": "pages/logisticsInfo/onecard/stuOnecard",
+    "_name": "_34d4e464"
+  },
+  {
+    "name": "logisticsInfo-onecard-terOnecard",
+    "path": "/logisticsInfo/onecard/terOnecard",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/logisticsInfo/onecard/terOnecard.vue",
+    "chunkName": "pages/logisticsInfo/onecard/terOnecard",
+    "_name": "_05f05c57"
   },
   {
     "name": "studentInfo-class-classChecked",

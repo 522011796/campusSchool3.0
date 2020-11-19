@@ -42,6 +42,8 @@ const _365a5806 = () => interopDefault(import('../pages/basicInfo/terTravel.vue'
 const _331ddedd = () => interopDefault(import('../pages/basicInfo/video.vue' /* webpackChunkName: "pages/basicInfo/video" */))
 const _d2be8b04 = () => interopDefault(import('../pages/basicInfo/webAuth.vue' /* webpackChunkName: "pages/basicInfo/webAuth" */))
 const _6324ad48 = () => interopDefault(import('../pages/basicInfo/yearAndTerm.vue' /* webpackChunkName: "pages/basicInfo/yearAndTerm" */))
+const _4c25f2be = () => interopDefault(import('../pages/logInfo/login.vue' /* webpackChunkName: "pages/logInfo/login" */))
+const _1325a9e9 = () => interopDefault(import('../pages/logInfo/opr.vue' /* webpackChunkName: "pages/logInfo/opr" */))
 const _cbf69006 = () => interopDefault(import('../pages/test/test1.vue' /* webpackChunkName: "pages/test/test1" */))
 const _cbda6104 = () => interopDefault(import('../pages/test/test2.vue' /* webpackChunkName: "pages/test/test2" */))
 const _cbbe3202 = () => interopDefault(import('../pages/test/test3.vue' /* webpackChunkName: "pages/test/test3" */))
@@ -74,6 +76,25 @@ const _0ade1ddd = () => interopDefault(import('../pages/auditInfo/stuApply/resul
 const _46852fa0 = () => interopDefault(import('../pages/auditInfo/stuApply/scoreApply.vue' /* webpackChunkName: "pages/auditInfo/stuApply/scoreApply" */))
 const _8ad5d142 = () => interopDefault(import('../pages/auditInfo/terApply/doorApply.vue' /* webpackChunkName: "pages/auditInfo/terApply/doorApply" */))
 const _20e74288 = () => interopDefault(import('../pages/auditInfo/terApply/leaveApply.vue' /* webpackChunkName: "pages/auditInfo/terApply/leaveApply" */))
+const _c8ab8148 = () => interopDefault(import('../pages/dataInfo/dataView/myScreen.vue' /* webpackChunkName: "pages/dataInfo/dataView/myScreen" */))
+const _238ed6d6 = () => interopDefault(import('../pages/dataInfo/dataView/screenManage.vue' /* webpackChunkName: "pages/dataInfo/dataView/screenManage" */))
+const _c19618ba = () => interopDefault(import('../pages/dataInfo/stuData/stuAnalysis.vue' /* webpackChunkName: "pages/dataInfo/stuData/stuAnalysis" */))
+const _3eba9193 = () => interopDefault(import('../pages/dataInfo/stuData/stuPic.vue' /* webpackChunkName: "pages/dataInfo/stuData/stuPic" */))
+const _1e53bb0d = () => interopDefault(import('../pages/dataInfo/stuData/stuQuanti.vue' /* webpackChunkName: "pages/dataInfo/stuData/stuQuanti" */))
+const _9b6d550e = () => interopDefault(import('../pages/dataInfo/stuData/stuStatus.vue' /* webpackChunkName: "pages/dataInfo/stuData/stuStatus" */))
+const _259324a7 = () => interopDefault(import('../pages/logisticsInfo/doorAccess/doorAccessRecord.vue' /* webpackChunkName: "pages/logisticsInfo/doorAccess/doorAccessRecord" */))
+const _6aa42efb = () => interopDefault(import('../pages/logisticsInfo/doorAccess/exception.vue' /* webpackChunkName: "pages/logisticsInfo/doorAccess/exception" */))
+const _30b4803a = () => interopDefault(import('../pages/logisticsInfo/doorAccess/passStatic.vue' /* webpackChunkName: "pages/logisticsInfo/doorAccess/passStatic" */))
+const _cd10005a = () => interopDefault(import('../pages/logisticsInfo/doorAccess/permission.vue' /* webpackChunkName: "pages/logisticsInfo/doorAccess/permission" */))
+const _bf5d166c = () => interopDefault(import('../pages/logisticsInfo/doorAccess/remote.vue' /* webpackChunkName: "pages/logisticsInfo/doorAccess/remote" */))
+const _fe7cfe7a = () => interopDefault(import('../pages/logisticsInfo/doorAccess/settimeout.vue' /* webpackChunkName: "pages/logisticsInfo/doorAccess/settimeout" */))
+const _426fcd07 = () => interopDefault(import('../pages/logisticsInfo/onecard/billList.vue' /* webpackChunkName: "pages/logisticsInfo/onecard/billList" */))
+const _5eee1140 = () => interopDefault(import('../pages/logisticsInfo/onecard/collection.vue' /* webpackChunkName: "pages/logisticsInfo/onecard/collection" */))
+const _8c0cff36 = () => interopDefault(import('../pages/logisticsInfo/onecard/collectionManage.vue' /* webpackChunkName: "pages/logisticsInfo/onecard/collectionManage" */))
+const _73b6b00a = () => interopDefault(import('../pages/logisticsInfo/onecard/merchant.vue' /* webpackChunkName: "pages/logisticsInfo/onecard/merchant" */))
+const _258ae514 = () => interopDefault(import('../pages/logisticsInfo/onecard/onecardPay.vue' /* webpackChunkName: "pages/logisticsInfo/onecard/onecardPay" */))
+const _34d4e464 = () => interopDefault(import('../pages/logisticsInfo/onecard/stuOnecard.vue' /* webpackChunkName: "pages/logisticsInfo/onecard/stuOnecard" */))
+const _05f05c57 = () => interopDefault(import('../pages/logisticsInfo/onecard/terOnecard.vue' /* webpackChunkName: "pages/logisticsInfo/onecard/terOnecard" */))
 const _35eaac32 = () => interopDefault(import('../pages/studentInfo/class/classChecked.vue' /* webpackChunkName: "pages/studentInfo/class/classChecked" */))
 const _429c43d2 = () => interopDefault(import('../pages/studentInfo/class/object.vue' /* webpackChunkName: "pages/studentInfo/class/object" */))
 const _6a2e63ae = () => interopDefault(import('../pages/studentInfo/class/record.vue' /* webpackChunkName: "pages/studentInfo/class/record" */))
@@ -288,6 +309,14 @@ export const routerOptions = {
     component: _6324ad48,
     name: "basicInfo-yearAndTerm"
   }, {
+    path: "/logInfo/login",
+    component: _4c25f2be,
+    name: "logInfo-login"
+  }, {
+    path: "/logInfo/opr",
+    component: _1325a9e9,
+    name: "logInfo-opr"
+  }, {
     path: "/test/test1",
     component: _cbf69006,
     name: "test-test1"
@@ -415,6 +444,82 @@ export const routerOptions = {
     path: "/auditInfo/terApply/leaveApply",
     component: _20e74288,
     name: "auditInfo-terApply-leaveApply"
+  }, {
+    path: "/dataInfo/dataView/myScreen",
+    component: _c8ab8148,
+    name: "dataInfo-dataView-myScreen"
+  }, {
+    path: "/dataInfo/dataView/screenManage",
+    component: _238ed6d6,
+    name: "dataInfo-dataView-screenManage"
+  }, {
+    path: "/dataInfo/stuData/stuAnalysis",
+    component: _c19618ba,
+    name: "dataInfo-stuData-stuAnalysis"
+  }, {
+    path: "/dataInfo/stuData/stuPic",
+    component: _3eba9193,
+    name: "dataInfo-stuData-stuPic"
+  }, {
+    path: "/dataInfo/stuData/stuQuanti",
+    component: _1e53bb0d,
+    name: "dataInfo-stuData-stuQuanti"
+  }, {
+    path: "/dataInfo/stuData/stuStatus",
+    component: _9b6d550e,
+    name: "dataInfo-stuData-stuStatus"
+  }, {
+    path: "/logisticsInfo/doorAccess/doorAccessRecord",
+    component: _259324a7,
+    name: "logisticsInfo-doorAccess-doorAccessRecord"
+  }, {
+    path: "/logisticsInfo/doorAccess/exception",
+    component: _6aa42efb,
+    name: "logisticsInfo-doorAccess-exception"
+  }, {
+    path: "/logisticsInfo/doorAccess/passStatic",
+    component: _30b4803a,
+    name: "logisticsInfo-doorAccess-passStatic"
+  }, {
+    path: "/logisticsInfo/doorAccess/permission",
+    component: _cd10005a,
+    name: "logisticsInfo-doorAccess-permission"
+  }, {
+    path: "/logisticsInfo/doorAccess/remote",
+    component: _bf5d166c,
+    name: "logisticsInfo-doorAccess-remote"
+  }, {
+    path: "/logisticsInfo/doorAccess/settimeout",
+    component: _fe7cfe7a,
+    name: "logisticsInfo-doorAccess-settimeout"
+  }, {
+    path: "/logisticsInfo/onecard/billList",
+    component: _426fcd07,
+    name: "logisticsInfo-onecard-billList"
+  }, {
+    path: "/logisticsInfo/onecard/collection",
+    component: _5eee1140,
+    name: "logisticsInfo-onecard-collection"
+  }, {
+    path: "/logisticsInfo/onecard/collectionManage",
+    component: _8c0cff36,
+    name: "logisticsInfo-onecard-collectionManage"
+  }, {
+    path: "/logisticsInfo/onecard/merchant",
+    component: _73b6b00a,
+    name: "logisticsInfo-onecard-merchant"
+  }, {
+    path: "/logisticsInfo/onecard/onecardPay",
+    component: _258ae514,
+    name: "logisticsInfo-onecard-onecardPay"
+  }, {
+    path: "/logisticsInfo/onecard/stuOnecard",
+    component: _34d4e464,
+    name: "logisticsInfo-onecard-stuOnecard"
+  }, {
+    path: "/logisticsInfo/onecard/terOnecard",
+    component: _05f05c57,
+    name: "logisticsInfo-onecard-terOnecard"
   }, {
     path: "/studentInfo/class/classChecked",
     component: _35eaac32,
