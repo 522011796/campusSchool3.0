@@ -549,7 +549,7 @@
       },
       {
         "name": "内务管理",
-        "icon": "fa fa-send",
+        "icon": "fa fa-bed",
         "toggle": false,
         "id": 3300,
         "key": "homework",
@@ -581,6 +581,427 @@
             "id": 3304,
             "top": "studentInfo",
             "path": "/studentInfo/homework/setting"
+          }
+        ]
+      },
+      {
+        "name": "班级量化",
+        "icon": "fa fa-check-square-o",
+        "toggle": false,
+        "id": 3400,
+        "key": "classChecked",
+        "list": [
+          {
+            "name": "量化查询",
+            "key": "classChecked",
+            "id": 3401,
+            "top": "studentInfo",
+            "path": "/studentInfo/class/classChecked"
+          },
+          {
+            "name": "量化记录",
+            "key": "classCheckedRecord",
+            "id": 3402,
+            "top": "studentInfo",
+            "path": "/studentInfo/class/record"
+          },
+          {
+            "name": "项目管理",
+            "key": "classCheckedObject",
+            "id": 3403,
+            "top": "studentInfo",
+            "path": "/studentInfo/class/object"
+          },
+          {
+            "name": "检查设置",
+            "key": "classCheckedSetting",
+            "id": 3404,
+            "top": "studentInfo",
+            "path": "/studentInfo/class/setting"
+          }
+        ]
+      },
+      {
+        "name": "学生管理",
+        "icon": "fa fa-graduation-cap",
+        "toggle": false,
+        "id": 3500,
+        "key": "studentManage",
+        "list": [
+          {
+            "name": "授权信息",
+            "key": "empower",
+            "id": 3501,
+            "top": "studentInfo",
+            "path": "/studentInfo/student/empower"
+          },
+          {
+            "name": "宿舍信息",
+            "key": "dorm",
+            "id": 3502,
+            "top": "studentInfo",
+            "path": "/studentInfo/student/dorm"
+          },
+          {
+            "name": "班级信息",
+            "key": "class",
+            "id": 3503,
+            "top": "studentInfo",
+            "path": "/studentInfo/student/class"
+          },
+          {
+            "name": "账号信息",
+            "key": "account",
+            "id": 3504,
+            "top": "studentInfo",
+            "path": "/studentInfo/student/account"
+          },
+          {
+            "name": "学籍信息",
+            "key": "status",
+            "id": 3505,
+            "top": "studentInfo",
+            "path": "/studentInfo/student/status"
+          },
+          {
+            "name": "学习形式",
+            "key": "form",
+            "id": 3506,
+            "top": "studentInfo",
+            "path": "/studentInfo/student/form"
+          },
+          {
+            "name": "学生报告",
+            "key": "report",
+            "id": 3506,
+            "top": "studentInfo",
+            "path": "/studentInfo/student/report"
+          },
+          {
+            "name": "学生报警",
+            "key": "warning",
+            "id": 3506,
+            "top": "studentInfo",
+            "path": "/studentInfo/student/warning"
+          }
+        ]
+      },
+      {
+        "name": "宿舍管理",
+        "icon": "fa fa-building",
+        "toggle": false,
+        "id": 3500,
+        "key": "dormManage",
+        "list": [
+          {
+            "name": "宿舍信息",
+            "key": "dormInfo",
+            "id": 3501,
+            "top": "studentInfo",
+            "path": "/studentInfo/dorm/dorm"
+          },
+          {
+            "name": "管理设置",
+            "key": "dormSetting",
+            "id": 3502,
+            "top": "studentInfo",
+            "path": "/studentInfo/dorm/setting"
+          }
+        ]
+      },
+      {
+        "name": "宿舍分配",
+        "icon": "fa fa-retweet",
+        "toggle": false,
+        "id": 3500,
+        "key": "dormOnly",
+        "list": [
+          {
+            "name": "宿舍调换",
+            "key": "dormChange",
+            "id": 3501,
+            "top": "studentInfo",
+            "path": "/studentInfo/dorm/change"
+          },
+          {
+            "name": "分配清空",
+            "key": "dormClear",
+            "id": 3502,
+            "top": "studentInfo",
+            "path": "/studentInfo/dorm/clear"
+          },
+          {
+            "name": "线上选寝",
+            "key": "dormOnline",
+            "id": 3502,
+            "top": "studentInfo",
+            "path": "/studentInfo/dorm/online"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "attendanceInfo",
+    "name": "考勤管理",
+    "id": 4,
+    "list": [
+      {
+        "name": "行政考勤",
+        "icon": "fa fa-tags",
+        "toggle": false,
+        "id": 4000,
+        "key": "administration",
+        "list": [
+          {
+            "name": "综合考勤统计",
+            "key": "static",
+            "id": 4001,
+            "top": "attendanceInfo",
+            "path": "/attendanceInfo/administration/static"
+          },
+          {
+            "name": "综合考勤记录",
+            "key": "record",
+            "id": 4002,
+            "top": "attendanceInfo",
+            "path": "/attendanceInfo/administration/record"
+          },
+          {
+            "name": "综合考勤查询",
+            "key": "search",
+            "id": 4003,
+            "top": "attendanceInfo",
+            "path": "/attendanceInfo/administration/search"
+          },
+          {
+            "name": "人脸识别记录",
+            "key": "faceRecord",
+            "id": 4004,
+            "top": "faceRecord",
+            "path": "/attendanceInfo/administration/faceRecord"
+          },
+          {
+            "name": "行政考勤设置",
+            "key": "setting",
+            "id": 4005,
+            "top": "attendanceInfo",
+            "path": "/attendanceInfo/administration/setting"
+          }
+        ]
+      },
+      {
+        "name": "课堂考勤",
+        "icon": "fa fa-window-maximize",
+        "toggle": false,
+        "id": 4100,
+        "key": "classAttend",
+        "list": [
+          {
+            "name": "实时数据",
+            "key": "classNow",
+            "id": 4101,
+            "top": "attendanceInfo",
+            "path": "/attendanceInfo/classAttend/now"
+          },
+          {
+            "name": "考勤查询",
+            "key": "classSearch",
+            "id": 4102,
+            "top": "attendanceInfo",
+            "path": "/attendanceInfo/classAttend/search"
+          },
+          {
+            "name": "考勤分析",
+            "key": "classAnalysis",
+            "id": 4103,
+            "top": "attendanceInfo",
+            "path": "/attendanceInfo/classAttend/analysis"
+          },
+          {
+            "name": "学生统计",
+            "key": "studentStatic",
+            "id": 4104,
+            "top": "attendanceInfo",
+            "path": "/attendanceInfo/classAttend/studentStatic"
+          },
+          {
+            "name": "教师统计",
+            "key": "teacherStatic",
+            "id": 4105,
+            "top": "attendanceInfo",
+            "path": "/attendanceInfo/classAttend/teacherStatic"
+          },
+          {
+            "name": "识别记录",
+            "key": "attendFaceRecord",
+            "id": 4106,
+            "top": "attendanceInfo",
+            "path": "/attendanceInfo/classAttend/faceRecord"
+          },
+          {
+            "name": "考勤设置",
+            "key": "attendSetting",
+            "id": 4107,
+            "top": "attendanceInfo",
+            "path": "/attendanceInfo/classAttend/setting"
+          }
+        ]
+      },
+      {
+        "name": "归寝考勤",
+        "icon": "fa fa-bed",
+        "toggle": false,
+        "id": 4200,
+        "key": "dormAttend",
+        "list": [
+          {
+            "name": "归寝查询",
+            "key": "search",
+            "id": 4201,
+            "top": "attendanceInfo",
+            "path": "/attendanceInfo/dormAttend/search"
+          },
+          {
+            "name": "归寝统计",
+            "key": "static",
+            "id": 4202,
+            "top": "attendanceInfo",
+            "path": "/attendanceInfo/dormAttend/static"
+          },
+          {
+            "name": "归寝分析",
+            "key": "dormAttendAnalysis",
+            "id": 4203,
+            "top": "attendanceInfo",
+            "path": "/attendanceInfo/dormAttend/analysis"
+          },
+          {
+            "name": "识别记录",
+            "key": "dormFaceRecord",
+            "id": 4204,
+            "top": "attendanceInfo",
+            "path": "/attendanceInfo/dormAttend/faceRecord"
+          },
+          {
+            "name": "归寝设置",
+            "key": "dormAttendSetting",
+            "id": 4205,
+            "top": "attendanceInfo",
+            "path": "/attendanceInfo/dormAttend/setting"
+          }
+        ]
+      },
+      {
+        "name": "会议考勤",
+        "icon": "fa fa-users",
+        "toggle": false,
+        "id": 4200,
+        "key": "meetAttend",
+        "list": [
+          {
+            "name": "签到管理",
+            "key": "meetting",
+            "id": 4201,
+            "top": "attendanceInfo",
+            "path": "/attendanceInfo/meetAttend/meetting"
+          }
+        ]
+      },
+      {
+        "name": "请假管理",
+        "icon": "fa fa-send",
+        "toggle": false,
+        "id": 4300,
+        "key": "leaveAttendManage",
+        "list": [
+          {
+            "name": "请假统计",
+            "key": "leaveStatic",
+            "id": 4301,
+            "top": "attendanceInfo",
+            "path": "/attendanceInfo/leaveManage/static"
+          },
+          {
+            "name": "请假设置",
+            "key": "leaveSetting",
+            "id": 4301,
+            "top": "attendanceInfo",
+            "path": "/attendanceInfo/leaveManage/setting"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "auditInfo",
+    "name": "审批中心",
+    "id": 5,
+    "list": [
+      {
+        "name": "学生申请",
+        "icon": "fa fa-tags",
+        "toggle": false,
+        "id": 5000,
+        "key": "stuApply",
+        "list": [
+          {
+            "name": "学分审批",
+            "key": "scoreApply",
+            "id": 5001,
+            "top": "auditInfo",
+            "path": "/auditInfo/stuApply/scoreApply"
+          },
+          {
+            "name": "请假审批",
+            "key": "leaveApply",
+            "id": 5002,
+            "top": "auditInfo",
+            "path": "/auditInfo/stuApply/leaveApply"
+          },
+          {
+            "name": "奖惩审批",
+            "key": "repuApply",
+            "id": 5003,
+            "top": "auditInfo",
+            "path": "/auditInfo/stuApply/repuApply"
+          },
+          {
+            "name": "门禁审批",
+            "key": "doorApply",
+            "id": 5004,
+            "top": "auditInfo",
+            "path": "/auditInfo/stuApply/doorApply"
+          },
+          {
+            "name": "成绩审批",
+            "key": "resultApply",
+            "id": 5005,
+            "top": "auditInfo",
+            "path": "/auditInfo/stuApply/resultApply"
+          }
+        ]
+      },
+      {
+        "name": "教工申请",
+        "icon": "fa fa-window-maximize",
+        "toggle": false,
+        "id": 2100,
+        "key": "terApply",
+        "list": [
+          {
+            "name": "请假审批",
+            "key": "terLeaveApply",
+            "id": 2101,
+            "top": "auditInfo",
+            "path": "/auditInfo/terApply/leaveApply"
+          },
+          {
+            "name": "门禁审批",
+            "key": "terDoorApply",
+            "id": 2102,
+            "top": "auditInfo",
+            "path": "/auditInfo/terApply/doorApply"
           }
         ]
       }

@@ -46,10 +46,47 @@ const _cbf69006 = () => interopDefault(import('../pages/test/test1.vue' /* webpa
 const _cbda6104 = () => interopDefault(import('../pages/test/test2.vue' /* webpackChunkName: "pages/test/test2" */))
 const _cbbe3202 = () => interopDefault(import('../pages/test/test3.vue' /* webpackChunkName: "pages/test/test3" */))
 const _cba20300 = () => interopDefault(import('../pages/test/test4.vue' /* webpackChunkName: "pages/test/test4" */))
+const _5018bea2 = () => interopDefault(import('../pages/attendanceInfo/administration/faceRecord.vue' /* webpackChunkName: "pages/attendanceInfo/administration/faceRecord" */))
+const _45b80b36 = () => interopDefault(import('../pages/attendanceInfo/administration/record.vue' /* webpackChunkName: "pages/attendanceInfo/administration/record" */))
+const _f2051f88 = () => interopDefault(import('../pages/attendanceInfo/administration/search.vue' /* webpackChunkName: "pages/attendanceInfo/administration/search" */))
+const _742c2c6c = () => interopDefault(import('../pages/attendanceInfo/administration/setting.vue' /* webpackChunkName: "pages/attendanceInfo/administration/setting" */))
+const _aa79f3fc = () => interopDefault(import('../pages/attendanceInfo/administration/static.vue' /* webpackChunkName: "pages/attendanceInfo/administration/static" */))
+const _19c08d26 = () => interopDefault(import('../pages/attendanceInfo/classAttend/analysis.vue' /* webpackChunkName: "pages/attendanceInfo/classAttend/analysis" */))
+const _5a80fc50 = () => interopDefault(import('../pages/attendanceInfo/classAttend/faceRecord.vue' /* webpackChunkName: "pages/attendanceInfo/classAttend/faceRecord" */))
+const _06ea457c = () => interopDefault(import('../pages/attendanceInfo/classAttend/now.vue' /* webpackChunkName: "pages/attendanceInfo/classAttend/now" */))
+const _9c7b831c = () => interopDefault(import('../pages/attendanceInfo/classAttend/search.vue' /* webpackChunkName: "pages/attendanceInfo/classAttend/search" */))
+const _bbfdb614 = () => interopDefault(import('../pages/attendanceInfo/classAttend/setting.vue' /* webpackChunkName: "pages/attendanceInfo/classAttend/setting" */))
+const _92c017a2 = () => interopDefault(import('../pages/attendanceInfo/classAttend/studentStatic.vue' /* webpackChunkName: "pages/attendanceInfo/classAttend/studentStatic" */))
+const _453c9916 = () => interopDefault(import('../pages/attendanceInfo/classAttend/teacherStatic.vue' /* webpackChunkName: "pages/attendanceInfo/classAttend/teacherStatic" */))
+const _4e7d6164 = () => interopDefault(import('../pages/attendanceInfo/dormAttend/analysis.vue' /* webpackChunkName: "pages/attendanceInfo/dormAttend/analysis" */))
+const _56cf4c00 = () => interopDefault(import('../pages/attendanceInfo/dormAttend/faceRecord.vue' /* webpackChunkName: "pages/attendanceInfo/dormAttend/faceRecord" */))
+const _b59a6b58 = () => interopDefault(import('../pages/attendanceInfo/dormAttend/now.vue' /* webpackChunkName: "pages/attendanceInfo/dormAttend/now" */))
+const _4add6a9a = () => interopDefault(import('../pages/attendanceInfo/dormAttend/search.vue' /* webpackChunkName: "pages/attendanceInfo/dormAttend/search" */))
+const _2c4b7dce = () => interopDefault(import('../pages/attendanceInfo/dormAttend/setting.vue' /* webpackChunkName: "pages/attendanceInfo/dormAttend/setting" */))
+const _6ea30060 = () => interopDefault(import('../pages/attendanceInfo/dormAttend/static.vue' /* webpackChunkName: "pages/attendanceInfo/dormAttend/static" */))
+const _52805ec0 = () => interopDefault(import('../pages/attendanceInfo/leaveManage/setting.vue' /* webpackChunkName: "pages/attendanceInfo/leaveManage/setting" */))
+const _6a958da4 = () => interopDefault(import('../pages/attendanceInfo/leaveManage/static.vue' /* webpackChunkName: "pages/attendanceInfo/leaveManage/static" */))
+const _67fc71c6 = () => interopDefault(import('../pages/attendanceInfo/meetAttend/meetting.vue' /* webpackChunkName: "pages/attendanceInfo/meetAttend/meetting" */))
+const _b0297b28 = () => interopDefault(import('../pages/auditInfo/stuApply/doorApply.vue' /* webpackChunkName: "pages/auditInfo/stuApply/doorApply" */))
+const _43530dca = () => interopDefault(import('../pages/auditInfo/stuApply/leaveApply.vue' /* webpackChunkName: "pages/auditInfo/stuApply/leaveApply" */))
+const _5033a43c = () => interopDefault(import('../pages/auditInfo/stuApply/repuApply.vue' /* webpackChunkName: "pages/auditInfo/stuApply/repuApply" */))
+const _0ade1ddd = () => interopDefault(import('../pages/auditInfo/stuApply/resultApply.vue' /* webpackChunkName: "pages/auditInfo/stuApply/resultApply" */))
+const _46852fa0 = () => interopDefault(import('../pages/auditInfo/stuApply/scoreApply.vue' /* webpackChunkName: "pages/auditInfo/stuApply/scoreApply" */))
+const _8ad5d142 = () => interopDefault(import('../pages/auditInfo/terApply/doorApply.vue' /* webpackChunkName: "pages/auditInfo/terApply/doorApply" */))
+const _20e74288 = () => interopDefault(import('../pages/auditInfo/terApply/leaveApply.vue' /* webpackChunkName: "pages/auditInfo/terApply/leaveApply" */))
+const _35eaac32 = () => interopDefault(import('../pages/studentInfo/class/classChecked.vue' /* webpackChunkName: "pages/studentInfo/class/classChecked" */))
+const _429c43d2 = () => interopDefault(import('../pages/studentInfo/class/object.vue' /* webpackChunkName: "pages/studentInfo/class/object" */))
+const _6a2e63ae = () => interopDefault(import('../pages/studentInfo/class/record.vue' /* webpackChunkName: "pages/studentInfo/class/record" */))
+const _3f01d128 = () => interopDefault(import('../pages/studentInfo/class/setting.vue' /* webpackChunkName: "pages/studentInfo/class/setting" */))
 const _68de1900 = () => interopDefault(import('../pages/studentInfo/credit/creditApply.vue' /* webpackChunkName: "pages/studentInfo/credit/creditApply" */))
 const _acc4e168 = () => interopDefault(import('../pages/studentInfo/credit/creditStatic.vue' /* webpackChunkName: "pages/studentInfo/credit/creditStatic" */))
 const _127b8584 = () => interopDefault(import('../pages/studentInfo/credit/object.vue' /* webpackChunkName: "pages/studentInfo/credit/object" */))
 const _71b4a61f = () => interopDefault(import('../pages/studentInfo/credit/scope.vue' /* webpackChunkName: "pages/studentInfo/credit/scope" */))
+const _1de767f0 = () => interopDefault(import('../pages/studentInfo/dorm/change.vue' /* webpackChunkName: "pages/studentInfo/dorm/change" */))
+const _33abe4a5 = () => interopDefault(import('../pages/studentInfo/dorm/clear.vue' /* webpackChunkName: "pages/studentInfo/dorm/clear" */))
+const _0e74b15e = () => interopDefault(import('../pages/studentInfo/dorm/dorm.vue' /* webpackChunkName: "pages/studentInfo/dorm/dorm" */))
+const _5837e52b = () => interopDefault(import('../pages/studentInfo/dorm/online.vue' /* webpackChunkName: "pages/studentInfo/dorm/online" */))
+const _e31c19b0 = () => interopDefault(import('../pages/studentInfo/dorm/setting.vue' /* webpackChunkName: "pages/studentInfo/dorm/setting" */))
 const _a147f5c4 = () => interopDefault(import('../pages/studentInfo/homework/homework.vue' /* webpackChunkName: "pages/studentInfo/homework/homework" */))
 const _775ffc26 = () => interopDefault(import('../pages/studentInfo/homework/object.vue' /* webpackChunkName: "pages/studentInfo/homework/object" */))
 const _9ef21c02 = () => interopDefault(import('../pages/studentInfo/homework/record.vue' /* webpackChunkName: "pages/studentInfo/homework/record" */))
@@ -60,6 +97,14 @@ const _f726e032 = () => interopDefault(import('../pages/studentInfo/leave/settin
 const _791aee58 = () => interopDefault(import('../pages/studentInfo/rp/level.vue' /* webpackChunkName: "pages/studentInfo/rp/level" */))
 const _a12d55c0 = () => interopDefault(import('../pages/studentInfo/rp/rpApply.vue' /* webpackChunkName: "pages/studentInfo/rp/rpApply" */))
 const _3479d72c = () => interopDefault(import('../pages/studentInfo/rp/rpStatic.vue' /* webpackChunkName: "pages/studentInfo/rp/rpStatic" */))
+const _e144adf0 = () => interopDefault(import('../pages/studentInfo/student/account.vue' /* webpackChunkName: "pages/studentInfo/student/account" */))
+const _50b2ff93 = () => interopDefault(import('../pages/studentInfo/student/class.vue' /* webpackChunkName: "pages/studentInfo/student/class" */))
+const _bcc6708a = () => interopDefault(import('../pages/studentInfo/student/dorm.vue' /* webpackChunkName: "pages/studentInfo/student/dorm" */))
+const _4f9d2c38 = () => interopDefault(import('../pages/studentInfo/student/empower.vue' /* webpackChunkName: "pages/studentInfo/student/empower" */))
+const _715f2179 = () => interopDefault(import('../pages/studentInfo/student/form.vue' /* webpackChunkName: "pages/studentInfo/student/form" */))
+const _4cb91ea9 = () => interopDefault(import('../pages/studentInfo/student/report.vue' /* webpackChunkName: "pages/studentInfo/student/report" */))
+const _2f39eb32 = () => interopDefault(import('../pages/studentInfo/student/status.vue' /* webpackChunkName: "pages/studentInfo/student/status" */))
+const _3f117ef7 = () => interopDefault(import('../pages/studentInfo/student/warning.vue' /* webpackChunkName: "pages/studentInfo/student/warning" */))
 const _8eb28206 = () => interopDefault(import('../pages/teachInfo/exam/examManage.vue' /* webpackChunkName: "pages/teachInfo/exam/examManage" */))
 const _79788ac1 = () => interopDefault(import('../pages/teachInfo/exam/examPlan.vue' /* webpackChunkName: "pages/teachInfo/exam/examPlan" */))
 const _1a768a32 = () => interopDefault(import('../pages/teachInfo/exam/performance.vue' /* webpackChunkName: "pages/teachInfo/exam/performance" */))
@@ -259,6 +304,134 @@ export const routerOptions = {
     component: _cba20300,
     name: "test-test4"
   }, {
+    path: "/attendanceInfo/administration/faceRecord",
+    component: _5018bea2,
+    name: "attendanceInfo-administration-faceRecord"
+  }, {
+    path: "/attendanceInfo/administration/record",
+    component: _45b80b36,
+    name: "attendanceInfo-administration-record"
+  }, {
+    path: "/attendanceInfo/administration/search",
+    component: _f2051f88,
+    name: "attendanceInfo-administration-search"
+  }, {
+    path: "/attendanceInfo/administration/setting",
+    component: _742c2c6c,
+    name: "attendanceInfo-administration-setting"
+  }, {
+    path: "/attendanceInfo/administration/static",
+    component: _aa79f3fc,
+    name: "attendanceInfo-administration-static"
+  }, {
+    path: "/attendanceInfo/classAttend/analysis",
+    component: _19c08d26,
+    name: "attendanceInfo-classAttend-analysis"
+  }, {
+    path: "/attendanceInfo/classAttend/faceRecord",
+    component: _5a80fc50,
+    name: "attendanceInfo-classAttend-faceRecord"
+  }, {
+    path: "/attendanceInfo/classAttend/now",
+    component: _06ea457c,
+    name: "attendanceInfo-classAttend-now"
+  }, {
+    path: "/attendanceInfo/classAttend/search",
+    component: _9c7b831c,
+    name: "attendanceInfo-classAttend-search"
+  }, {
+    path: "/attendanceInfo/classAttend/setting",
+    component: _bbfdb614,
+    name: "attendanceInfo-classAttend-setting"
+  }, {
+    path: "/attendanceInfo/classAttend/studentStatic",
+    component: _92c017a2,
+    name: "attendanceInfo-classAttend-studentStatic"
+  }, {
+    path: "/attendanceInfo/classAttend/teacherStatic",
+    component: _453c9916,
+    name: "attendanceInfo-classAttend-teacherStatic"
+  }, {
+    path: "/attendanceInfo/dormAttend/analysis",
+    component: _4e7d6164,
+    name: "attendanceInfo-dormAttend-analysis"
+  }, {
+    path: "/attendanceInfo/dormAttend/faceRecord",
+    component: _56cf4c00,
+    name: "attendanceInfo-dormAttend-faceRecord"
+  }, {
+    path: "/attendanceInfo/dormAttend/now",
+    component: _b59a6b58,
+    name: "attendanceInfo-dormAttend-now"
+  }, {
+    path: "/attendanceInfo/dormAttend/search",
+    component: _4add6a9a,
+    name: "attendanceInfo-dormAttend-search"
+  }, {
+    path: "/attendanceInfo/dormAttend/setting",
+    component: _2c4b7dce,
+    name: "attendanceInfo-dormAttend-setting"
+  }, {
+    path: "/attendanceInfo/dormAttend/static",
+    component: _6ea30060,
+    name: "attendanceInfo-dormAttend-static"
+  }, {
+    path: "/attendanceInfo/leaveManage/setting",
+    component: _52805ec0,
+    name: "attendanceInfo-leaveManage-setting"
+  }, {
+    path: "/attendanceInfo/leaveManage/static",
+    component: _6a958da4,
+    name: "attendanceInfo-leaveManage-static"
+  }, {
+    path: "/attendanceInfo/meetAttend/meetting",
+    component: _67fc71c6,
+    name: "attendanceInfo-meetAttend-meetting"
+  }, {
+    path: "/auditInfo/stuApply/doorApply",
+    component: _b0297b28,
+    name: "auditInfo-stuApply-doorApply"
+  }, {
+    path: "/auditInfo/stuApply/leaveApply",
+    component: _43530dca,
+    name: "auditInfo-stuApply-leaveApply"
+  }, {
+    path: "/auditInfo/stuApply/repuApply",
+    component: _5033a43c,
+    name: "auditInfo-stuApply-repuApply"
+  }, {
+    path: "/auditInfo/stuApply/resultApply",
+    component: _0ade1ddd,
+    name: "auditInfo-stuApply-resultApply"
+  }, {
+    path: "/auditInfo/stuApply/scoreApply",
+    component: _46852fa0,
+    name: "auditInfo-stuApply-scoreApply"
+  }, {
+    path: "/auditInfo/terApply/doorApply",
+    component: _8ad5d142,
+    name: "auditInfo-terApply-doorApply"
+  }, {
+    path: "/auditInfo/terApply/leaveApply",
+    component: _20e74288,
+    name: "auditInfo-terApply-leaveApply"
+  }, {
+    path: "/studentInfo/class/classChecked",
+    component: _35eaac32,
+    name: "studentInfo-class-classChecked"
+  }, {
+    path: "/studentInfo/class/object",
+    component: _429c43d2,
+    name: "studentInfo-class-object"
+  }, {
+    path: "/studentInfo/class/record",
+    component: _6a2e63ae,
+    name: "studentInfo-class-record"
+  }, {
+    path: "/studentInfo/class/setting",
+    component: _3f01d128,
+    name: "studentInfo-class-setting"
+  }, {
     path: "/studentInfo/credit/creditApply",
     component: _68de1900,
     name: "studentInfo-credit-creditApply"
@@ -274,6 +447,26 @@ export const routerOptions = {
     path: "/studentInfo/credit/scope",
     component: _71b4a61f,
     name: "studentInfo-credit-scope"
+  }, {
+    path: "/studentInfo/dorm/change",
+    component: _1de767f0,
+    name: "studentInfo-dorm-change"
+  }, {
+    path: "/studentInfo/dorm/clear",
+    component: _33abe4a5,
+    name: "studentInfo-dorm-clear"
+  }, {
+    path: "/studentInfo/dorm/dorm",
+    component: _0e74b15e,
+    name: "studentInfo-dorm-dorm"
+  }, {
+    path: "/studentInfo/dorm/online",
+    component: _5837e52b,
+    name: "studentInfo-dorm-online"
+  }, {
+    path: "/studentInfo/dorm/setting",
+    component: _e31c19b0,
+    name: "studentInfo-dorm-setting"
   }, {
     path: "/studentInfo/homework/homework",
     component: _a147f5c4,
@@ -314,6 +507,38 @@ export const routerOptions = {
     path: "/studentInfo/rp/rpStatic",
     component: _3479d72c,
     name: "studentInfo-rp-rpStatic"
+  }, {
+    path: "/studentInfo/student/account",
+    component: _e144adf0,
+    name: "studentInfo-student-account"
+  }, {
+    path: "/studentInfo/student/class",
+    component: _50b2ff93,
+    name: "studentInfo-student-class"
+  }, {
+    path: "/studentInfo/student/dorm",
+    component: _bcc6708a,
+    name: "studentInfo-student-dorm"
+  }, {
+    path: "/studentInfo/student/empower",
+    component: _4f9d2c38,
+    name: "studentInfo-student-empower"
+  }, {
+    path: "/studentInfo/student/form",
+    component: _715f2179,
+    name: "studentInfo-student-form"
+  }, {
+    path: "/studentInfo/student/report",
+    component: _4cb91ea9,
+    name: "studentInfo-student-report"
+  }, {
+    path: "/studentInfo/student/status",
+    component: _2f39eb32,
+    name: "studentInfo-student-status"
+  }, {
+    path: "/studentInfo/student/warning",
+    component: _3f117ef7,
+    name: "studentInfo-student-warning"
   }, {
     path: "/teachInfo/exam/examManage",
     component: _8eb28206,

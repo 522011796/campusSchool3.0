@@ -16,12 +16,12 @@
   },
   {
     "name": "考勤管理",
-    "show": false,
+    "show": true,
     "key": "attendanceInfo"
   },
   {
     "name": "审批中心",
-    "show": false,
+    "show": true,
     "key": "auditInfo"
   },
   {

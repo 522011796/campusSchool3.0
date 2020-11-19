@@ -301,6 +301,230 @@
     "_name": "_cba20300"
   },
   {
+    "name": "attendanceInfo-administration-faceRecord",
+    "path": "/attendanceInfo/administration/faceRecord",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/attendanceInfo/administration/faceRecord.vue",
+    "chunkName": "pages/attendanceInfo/administration/faceRecord",
+    "_name": "_5018bea2"
+  },
+  {
+    "name": "attendanceInfo-administration-record",
+    "path": "/attendanceInfo/administration/record",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/attendanceInfo/administration/record.vue",
+    "chunkName": "pages/attendanceInfo/administration/record",
+    "_name": "_45b80b36"
+  },
+  {
+    "name": "attendanceInfo-administration-search",
+    "path": "/attendanceInfo/administration/search",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/attendanceInfo/administration/search.vue",
+    "chunkName": "pages/attendanceInfo/administration/search",
+    "_name": "_f2051f88"
+  },
+  {
+    "name": "attendanceInfo-administration-setting",
+    "path": "/attendanceInfo/administration/setting",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/attendanceInfo/administration/setting.vue",
+    "chunkName": "pages/attendanceInfo/administration/setting",
+    "_name": "_742c2c6c"
+  },
+  {
+    "name": "attendanceInfo-administration-static",
+    "path": "/attendanceInfo/administration/static",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/attendanceInfo/administration/static.vue",
+    "chunkName": "pages/attendanceInfo/administration/static",
+    "_name": "_aa79f3fc"
+  },
+  {
+    "name": "attendanceInfo-classAttend-analysis",
+    "path": "/attendanceInfo/classAttend/analysis",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/attendanceInfo/classAttend/analysis.vue",
+    "chunkName": "pages/attendanceInfo/classAttend/analysis",
+    "_name": "_19c08d26"
+  },
+  {
+    "name": "attendanceInfo-classAttend-faceRecord",
+    "path": "/attendanceInfo/classAttend/faceRecord",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/attendanceInfo/classAttend/faceRecord.vue",
+    "chunkName": "pages/attendanceInfo/classAttend/faceRecord",
+    "_name": "_5a80fc50"
+  },
+  {
+    "name": "attendanceInfo-classAttend-now",
+    "path": "/attendanceInfo/classAttend/now",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/attendanceInfo/classAttend/now.vue",
+    "chunkName": "pages/attendanceInfo/classAttend/now",
+    "_name": "_06ea457c"
+  },
+  {
+    "name": "attendanceInfo-classAttend-search",
+    "path": "/attendanceInfo/classAttend/search",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/attendanceInfo/classAttend/search.vue",
+    "chunkName": "pages/attendanceInfo/classAttend/search",
+    "_name": "_9c7b831c"
+  },
+  {
+    "name": "attendanceInfo-classAttend-setting",
+    "path": "/attendanceInfo/classAttend/setting",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/attendanceInfo/classAttend/setting.vue",
+    "chunkName": "pages/attendanceInfo/classAttend/setting",
+    "_name": "_bbfdb614"
+  },
+  {
+    "name": "attendanceInfo-classAttend-studentStatic",
+    "path": "/attendanceInfo/classAttend/studentStatic",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/attendanceInfo/classAttend/studentStatic.vue",
+    "chunkName": "pages/attendanceInfo/classAttend/studentStatic",
+    "_name": "_92c017a2"
+  },
+  {
+    "name": "attendanceInfo-classAttend-teacherStatic",
+    "path": "/attendanceInfo/classAttend/teacherStatic",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/attendanceInfo/classAttend/teacherStatic.vue",
+    "chunkName": "pages/attendanceInfo/classAttend/teacherStatic",
+    "_name": "_453c9916"
+  },
+  {
+    "name": "attendanceInfo-dormAttend-analysis",
+    "path": "/attendanceInfo/dormAttend/analysis",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/attendanceInfo/dormAttend/analysis.vue",
+    "chunkName": "pages/attendanceInfo/dormAttend/analysis",
+    "_name": "_4e7d6164"
+  },
+  {
+    "name": "attendanceInfo-dormAttend-faceRecord",
+    "path": "/attendanceInfo/dormAttend/faceRecord",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/attendanceInfo/dormAttend/faceRecord.vue",
+    "chunkName": "pages/attendanceInfo/dormAttend/faceRecord",
+    "_name": "_56cf4c00"
+  },
+  {
+    "name": "attendanceInfo-dormAttend-now",
+    "path": "/attendanceInfo/dormAttend/now",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/attendanceInfo/dormAttend/now.vue",
+    "chunkName": "pages/attendanceInfo/dormAttend/now",
+    "_name": "_b59a6b58"
+  },
+  {
+    "name": "attendanceInfo-dormAttend-search",
+    "path": "/attendanceInfo/dormAttend/search",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/attendanceInfo/dormAttend/search.vue",
+    "chunkName": "pages/attendanceInfo/dormAttend/search",
+    "_name": "_4add6a9a"
+  },
+  {
+    "name": "attendanceInfo-dormAttend-setting",
+    "path": "/attendanceInfo/dormAttend/setting",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/attendanceInfo/dormAttend/setting.vue",
+    "chunkName": "pages/attendanceInfo/dormAttend/setting",
+    "_name": "_2c4b7dce"
+  },
+  {
+    "name": "attendanceInfo-dormAttend-static",
+    "path": "/attendanceInfo/dormAttend/static",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/attendanceInfo/dormAttend/static.vue",
+    "chunkName": "pages/attendanceInfo/dormAttend/static",
+    "_name": "_6ea30060"
+  },
+  {
+    "name": "attendanceInfo-leaveManage-setting",
+    "path": "/attendanceInfo/leaveManage/setting",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/attendanceInfo/leaveManage/setting.vue",
+    "chunkName": "pages/attendanceInfo/leaveManage/setting",
+    "_name": "_52805ec0"
+  },
+  {
+    "name": "attendanceInfo-leaveManage-static",
+    "path": "/attendanceInfo/leaveManage/static",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/attendanceInfo/leaveManage/static.vue",
+    "chunkName": "pages/attendanceInfo/leaveManage/static",
+    "_name": "_6a958da4"
+  },
+  {
+    "name": "attendanceInfo-meetAttend-meetting",
+    "path": "/attendanceInfo/meetAttend/meetting",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/attendanceInfo/meetAttend/meetting.vue",
+    "chunkName": "pages/attendanceInfo/meetAttend/meetting",
+    "_name": "_67fc71c6"
+  },
+  {
+    "name": "auditInfo-stuApply-doorApply",
+    "path": "/auditInfo/stuApply/doorApply",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/auditInfo/stuApply/doorApply.vue",
+    "chunkName": "pages/auditInfo/stuApply/doorApply",
+    "_name": "_b0297b28"
+  },
+  {
+    "name": "auditInfo-stuApply-leaveApply",
+    "path": "/auditInfo/stuApply/leaveApply",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/auditInfo/stuApply/leaveApply.vue",
+    "chunkName": "pages/auditInfo/stuApply/leaveApply",
+    "_name": "_43530dca"
+  },
+  {
+    "name": "auditInfo-stuApply-repuApply",
+    "path": "/auditInfo/stuApply/repuApply",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/auditInfo/stuApply/repuApply.vue",
+    "chunkName": "pages/auditInfo/stuApply/repuApply",
+    "_name": "_5033a43c"
+  },
+  {
+    "name": "auditInfo-stuApply-resultApply",
+    "path": "/auditInfo/stuApply/resultApply",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/auditInfo/stuApply/resultApply.vue",
+    "chunkName": "pages/auditInfo/stuApply/resultApply",
+    "_name": "_0ade1ddd"
+  },
+  {
+    "name": "auditInfo-stuApply-scoreApply",
+    "path": "/auditInfo/stuApply/scoreApply",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/auditInfo/stuApply/scoreApply.vue",
+    "chunkName": "pages/auditInfo/stuApply/scoreApply",
+    "_name": "_46852fa0"
+  },
+  {
+    "name": "auditInfo-terApply-doorApply",
+    "path": "/auditInfo/terApply/doorApply",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/auditInfo/terApply/doorApply.vue",
+    "chunkName": "pages/auditInfo/terApply/doorApply",
+    "_name": "_8ad5d142"
+  },
+  {
+    "name": "auditInfo-terApply-leaveApply",
+    "path": "/auditInfo/terApply/leaveApply",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/auditInfo/terApply/leaveApply.vue",
+    "chunkName": "pages/auditInfo/terApply/leaveApply",
+    "_name": "_20e74288"
+  },
+  {
+    "name": "studentInfo-class-classChecked",
+    "path": "/studentInfo/class/classChecked",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/class/classChecked.vue",
+    "chunkName": "pages/studentInfo/class/classChecked",
+    "_name": "_35eaac32"
+  },
+  {
+    "name": "studentInfo-class-object",
+    "path": "/studentInfo/class/object",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/class/object.vue",
+    "chunkName": "pages/studentInfo/class/object",
+    "_name": "_429c43d2"
+  },
+  {
+    "name": "studentInfo-class-record",
+    "path": "/studentInfo/class/record",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/class/record.vue",
+    "chunkName": "pages/studentInfo/class/record",
+    "_name": "_6a2e63ae"
+  },
+  {
+    "name": "studentInfo-class-setting",
+    "path": "/studentInfo/class/setting",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/class/setting.vue",
+    "chunkName": "pages/studentInfo/class/setting",
+    "_name": "_3f01d128"
+  },
+  {
     "name": "studentInfo-credit-creditApply",
     "path": "/studentInfo/credit/creditApply",
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/credit/creditApply.vue",
@@ -327,6 +551,41 @@
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/credit/scope.vue",
     "chunkName": "pages/studentInfo/credit/scope",
     "_name": "_71b4a61f"
+  },
+  {
+    "name": "studentInfo-dorm-change",
+    "path": "/studentInfo/dorm/change",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/dorm/change.vue",
+    "chunkName": "pages/studentInfo/dorm/change",
+    "_name": "_1de767f0"
+  },
+  {
+    "name": "studentInfo-dorm-clear",
+    "path": "/studentInfo/dorm/clear",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/dorm/clear.vue",
+    "chunkName": "pages/studentInfo/dorm/clear",
+    "_name": "_33abe4a5"
+  },
+  {
+    "name": "studentInfo-dorm-dorm",
+    "path": "/studentInfo/dorm/dorm",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/dorm/dorm.vue",
+    "chunkName": "pages/studentInfo/dorm/dorm",
+    "_name": "_0e74b15e"
+  },
+  {
+    "name": "studentInfo-dorm-online",
+    "path": "/studentInfo/dorm/online",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/dorm/online.vue",
+    "chunkName": "pages/studentInfo/dorm/online",
+    "_name": "_5837e52b"
+  },
+  {
+    "name": "studentInfo-dorm-setting",
+    "path": "/studentInfo/dorm/setting",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/dorm/setting.vue",
+    "chunkName": "pages/studentInfo/dorm/setting",
+    "_name": "_e31c19b0"
   },
   {
     "name": "studentInfo-homework-homework",
@@ -397,6 +656,62 @@
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/rp/rpStatic.vue",
     "chunkName": "pages/studentInfo/rp/rpStatic",
     "_name": "_3479d72c"
+  },
+  {
+    "name": "studentInfo-student-account",
+    "path": "/studentInfo/student/account",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/student/account.vue",
+    "chunkName": "pages/studentInfo/student/account",
+    "_name": "_e144adf0"
+  },
+  {
+    "name": "studentInfo-student-class",
+    "path": "/studentInfo/student/class",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/student/class.vue",
+    "chunkName": "pages/studentInfo/student/class",
+    "_name": "_50b2ff93"
+  },
+  {
+    "name": "studentInfo-student-dorm",
+    "path": "/studentInfo/student/dorm",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/student/dorm.vue",
+    "chunkName": "pages/studentInfo/student/dorm",
+    "_name": "_bcc6708a"
+  },
+  {
+    "name": "studentInfo-student-empower",
+    "path": "/studentInfo/student/empower",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/student/empower.vue",
+    "chunkName": "pages/studentInfo/student/empower",
+    "_name": "_4f9d2c38"
+  },
+  {
+    "name": "studentInfo-student-form",
+    "path": "/studentInfo/student/form",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/student/form.vue",
+    "chunkName": "pages/studentInfo/student/form",
+    "_name": "_715f2179"
+  },
+  {
+    "name": "studentInfo-student-report",
+    "path": "/studentInfo/student/report",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/student/report.vue",
+    "chunkName": "pages/studentInfo/student/report",
+    "_name": "_4cb91ea9"
+  },
+  {
+    "name": "studentInfo-student-status",
+    "path": "/studentInfo/student/status",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/student/status.vue",
+    "chunkName": "pages/studentInfo/student/status",
+    "_name": "_2f39eb32"
+  },
+  {
+    "name": "studentInfo-student-warning",
+    "path": "/studentInfo/student/warning",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/student/warning.vue",
+    "chunkName": "pages/studentInfo/student/warning",
+    "_name": "_3f117ef7"
   },
   {
     "name": "teachInfo-exam-examManage",
