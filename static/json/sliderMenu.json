@@ -250,7 +250,7 @@
           {
             "name": "学生头像申请",
             "key": "stuFace",
-            "id": 704,
+            "id": 705,
             "top": "basicInfo",
             "path": "/basicInfo/stuFace"
           }
@@ -350,15 +350,96 @@
         "name": "认证管理",
         "icon": "fa fa-vcard",
         "toggle": false,
-        "id": 1000,
+        "id": 1100,
         "key": "identification",
         "list": [
           {
             "name": "认证管理",
             "key": "identification",
-            "id": 1001,
+            "id": 1101,
             "top": "basicInfo",
             "path": "/basicInfo/identification"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "teachInfo",
+    "name": "教学管理",
+    "id": 1,
+    "list": [
+      {
+        "name": "考务管理",
+        "icon": "fa fa-info-circle",
+        "toggle": false,
+        "id": 2000,
+        "key": "exam",
+        "list": [
+          {
+            "name": "考试管理",
+            "key": "examManage",
+            "id": 2001,
+            "top": "teachInfo",
+            "path": "/teachInfo/exam/examManage"
+          },
+          {
+            "name": "考务安排",
+            "key": "examPlan",
+            "id": 2002,
+            "top": "teachInfo",
+            "path": "/teachInfo/exam/examPlan"
+          },
+          {
+            "name": "成绩录入",
+            "key": "performance",
+            "id": 2003,
+            "top": "teachInfo",
+            "path": "/teachInfo/exam/performance"
+          }
+        ]
+      },
+      {
+        "name": "教务管理",
+        "icon": "fa fa-info-circle",
+        "toggle": false,
+        "id": 2100,
+        "key": "teach",
+        "list": [
+          {
+            "name": "我的课表",
+            "key": "myTable",
+            "id": 2101,
+            "top": "teachInfo",
+            "path": "/teachInfo/teach/myTable"
+          },
+          {
+            "name": "查询课表",
+            "key": "searchTable",
+            "id": 2102,
+            "top": "teachInfo",
+            "path": "/teachInfo/teach/searchTable"
+          },
+          {
+            "name": "教学排课",
+            "key": "teachPlan",
+            "id": 2103,
+            "top": "teachInfo",
+            "path": "/teachInfo/teach/teachPlan"
+          },
+          {
+            "name": "任课安排",
+            "key": "coursePlan",
+            "id": 2104,
+            "top": "teachInfo",
+            "path": "/teachInfo/teach/coursePlan"
+          },
+          {
+            "name": "课程管理",
+            "key": "courseManage",
+            "id": 2105,
+            "top": "teachInfo",
+            "path": "/teachInfo/teach/courseManage"
           }
         ]
       }

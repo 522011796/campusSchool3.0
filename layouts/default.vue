@@ -81,6 +81,7 @@
               <i class="item fa fa-th" style="font-size: 18px" @click="showMenuList($event)"></i>
             </span>
 
+
             <span class="moon-top-middle-menu-item-text" v-for="(item, index) in topMenuList" :key="index" v-if="index <= widthIndex && item.show == true" @click="handleTopSelect($event, item)">
               <label class="item" :class="activeTop == item.key ? 'moon-top-middle-menu-item-text-active' : ''">{{item.name}}</label>
             </span>
@@ -799,10 +800,11 @@
       this.init();
       this.getBell();
       this.activeIndex = this.$route.query.top;
+      this.activeTop = this.$route.query.top;
       this.activeSliderIndex = this.$route.query.key;
       this.activeSubSlider = this.$route.query.sub;
       this.getTopMenu();
-      this.getSliderMenu("basicInfo");
+      this.getSliderMenu(this.activeTop);
     },
     methods: {
       hh(){
@@ -842,6 +844,7 @@
       },
       getSliderMenu(key, type){
         this.activeTop = key;
+        console.log(1111, key);
         this.$axios.get('/json/sliderMenu.json').then(res => {
           for (let i = 0; i < res.data.length; i++){
             if (key == res.data[i].key){

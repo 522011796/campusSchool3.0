@@ -46,6 +46,14 @@ const _cbf69006 = () => interopDefault(import('../pages/test/test1.vue' /* webpa
 const _cbda6104 = () => interopDefault(import('../pages/test/test2.vue' /* webpackChunkName: "pages/test/test2" */))
 const _cbbe3202 = () => interopDefault(import('../pages/test/test3.vue' /* webpackChunkName: "pages/test/test3" */))
 const _cba20300 = () => interopDefault(import('../pages/test/test4.vue' /* webpackChunkName: "pages/test/test4" */))
+const _8eb28206 = () => interopDefault(import('../pages/teachInfo/exam/examManage.vue' /* webpackChunkName: "pages/teachInfo/exam/examManage" */))
+const _79788ac1 = () => interopDefault(import('../pages/teachInfo/exam/examPlan.vue' /* webpackChunkName: "pages/teachInfo/exam/examPlan" */))
+const _1a768a32 = () => interopDefault(import('../pages/teachInfo/exam/performance.vue' /* webpackChunkName: "pages/teachInfo/exam/performance" */))
+const _f5c09ebe = () => interopDefault(import('../pages/teachInfo/teach/courseManage.vue' /* webpackChunkName: "pages/teachInfo/teach/courseManage" */))
+const _26099565 = () => interopDefault(import('../pages/teachInfo/teach/coursePlan.vue' /* webpackChunkName: "pages/teachInfo/teach/coursePlan" */))
+const _0c3f00d1 = () => interopDefault(import('../pages/teachInfo/teach/myTable.vue' /* webpackChunkName: "pages/teachInfo/teach/myTable" */))
+const _615230d5 = () => interopDefault(import('../pages/teachInfo/teach/searchTable.vue' /* webpackChunkName: "pages/teachInfo/teach/searchTable" */))
+const _42220ccd = () => interopDefault(import('../pages/teachInfo/teach/teachPlan.vue' /* webpackChunkName: "pages/teachInfo/teach/teachPlan" */))
 const _41b58047 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 // TODO: remove in Nuxt 3
@@ -236,6 +244,38 @@ export const routerOptions = {
     path: "/test/test4",
     component: _cba20300,
     name: "test-test4"
+  }, {
+    path: "/teachInfo/exam/examManage",
+    component: _8eb28206,
+    name: "teachInfo-exam-examManage"
+  }, {
+    path: "/teachInfo/exam/examPlan",
+    component: _79788ac1,
+    name: "teachInfo-exam-examPlan"
+  }, {
+    path: "/teachInfo/exam/performance",
+    component: _1a768a32,
+    name: "teachInfo-exam-performance"
+  }, {
+    path: "/teachInfo/teach/courseManage",
+    component: _f5c09ebe,
+    name: "teachInfo-teach-courseManage"
+  }, {
+    path: "/teachInfo/teach/coursePlan",
+    component: _26099565,
+    name: "teachInfo-teach-coursePlan"
+  }, {
+    path: "/teachInfo/teach/myTable",
+    component: _0c3f00d1,
+    name: "teachInfo-teach-myTable"
+  }, {
+    path: "/teachInfo/teach/searchTable",
+    component: _615230d5,
+    name: "teachInfo-teach-searchTable"
+  }, {
+    path: "/teachInfo/teach/teachPlan",
+    component: _42220ccd,
+    name: "teachInfo-teach-teachPlan"
   }, {
     path: "/",
     component: _41b58047,
