@@ -301,6 +301,104 @@
     "_name": "_cba20300"
   },
   {
+    "name": "studentInfo-credit-creditApply",
+    "path": "/studentInfo/credit/creditApply",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/credit/creditApply.vue",
+    "chunkName": "pages/studentInfo/credit/creditApply",
+    "_name": "_68de1900"
+  },
+  {
+    "name": "studentInfo-credit-creditStatic",
+    "path": "/studentInfo/credit/creditStatic",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/credit/creditStatic.vue",
+    "chunkName": "pages/studentInfo/credit/creditStatic",
+    "_name": "_acc4e168"
+  },
+  {
+    "name": "studentInfo-credit-object",
+    "path": "/studentInfo/credit/object",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/credit/object.vue",
+    "chunkName": "pages/studentInfo/credit/object",
+    "_name": "_127b8584"
+  },
+  {
+    "name": "studentInfo-credit-scope",
+    "path": "/studentInfo/credit/scope",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/credit/scope.vue",
+    "chunkName": "pages/studentInfo/credit/scope",
+    "_name": "_71b4a61f"
+  },
+  {
+    "name": "studentInfo-homework-homework",
+    "path": "/studentInfo/homework/homework",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/homework/homework.vue",
+    "chunkName": "pages/studentInfo/homework/homework",
+    "_name": "_a147f5c4"
+  },
+  {
+    "name": "studentInfo-homework-object",
+    "path": "/studentInfo/homework/object",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/homework/object.vue",
+    "chunkName": "pages/studentInfo/homework/object",
+    "_name": "_775ffc26"
+  },
+  {
+    "name": "studentInfo-homework-record",
+    "path": "/studentInfo/homework/record",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/homework/record.vue",
+    "chunkName": "pages/studentInfo/homework/record",
+    "_name": "_9ef21c02"
+  },
+  {
+    "name": "studentInfo-homework-setting",
+    "path": "/studentInfo/homework/setting",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/homework/setting.vue",
+    "chunkName": "pages/studentInfo/homework/setting",
+    "_name": "_0d282812"
+  },
+  {
+    "name": "studentInfo-leave-leave",
+    "path": "/studentInfo/leave/leave",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/leave/leave.vue",
+    "chunkName": "pages/studentInfo/leave/leave",
+    "_name": "_7f99f88e"
+  },
+  {
+    "name": "studentInfo-leave-manage",
+    "path": "/studentInfo/leave/manage",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/leave/manage.vue",
+    "chunkName": "pages/studentInfo/leave/manage",
+    "_name": "_0cb9429e"
+  },
+  {
+    "name": "studentInfo-leave-setting",
+    "path": "/studentInfo/leave/setting",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/leave/setting.vue",
+    "chunkName": "pages/studentInfo/leave/setting",
+    "_name": "_f726e032"
+  },
+  {
+    "name": "studentInfo-rp-level",
+    "path": "/studentInfo/rp/level",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/rp/level.vue",
+    "chunkName": "pages/studentInfo/rp/level",
+    "_name": "_791aee58"
+  },
+  {
+    "name": "studentInfo-rp-rpApply",
+    "path": "/studentInfo/rp/rpApply",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/rp/rpApply.vue",
+    "chunkName": "pages/studentInfo/rp/rpApply",
+    "_name": "_a12d55c0"
+  },
+  {
+    "name": "studentInfo-rp-rpStatic",
+    "path": "/studentInfo/rp/rpStatic",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/rp/rpStatic.vue",
+    "chunkName": "pages/studentInfo/rp/rpStatic",
+    "_name": "_3479d72c"
+  },
+  {
     "name": "teachInfo-exam-examManage",
     "path": "/teachInfo/exam/examManage",
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/teachInfo/exam/examManage.vue",

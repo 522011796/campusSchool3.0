@@ -46,6 +46,20 @@ const _cbf69006 = () => interopDefault(import('../pages/test/test1.vue' /* webpa
 const _cbda6104 = () => interopDefault(import('../pages/test/test2.vue' /* webpackChunkName: "pages/test/test2" */))
 const _cbbe3202 = () => interopDefault(import('../pages/test/test3.vue' /* webpackChunkName: "pages/test/test3" */))
 const _cba20300 = () => interopDefault(import('../pages/test/test4.vue' /* webpackChunkName: "pages/test/test4" */))
+const _68de1900 = () => interopDefault(import('../pages/studentInfo/credit/creditApply.vue' /* webpackChunkName: "pages/studentInfo/credit/creditApply" */))
+const _acc4e168 = () => interopDefault(import('../pages/studentInfo/credit/creditStatic.vue' /* webpackChunkName: "pages/studentInfo/credit/creditStatic" */))
+const _127b8584 = () => interopDefault(import('../pages/studentInfo/credit/object.vue' /* webpackChunkName: "pages/studentInfo/credit/object" */))
+const _71b4a61f = () => interopDefault(import('../pages/studentInfo/credit/scope.vue' /* webpackChunkName: "pages/studentInfo/credit/scope" */))
+const _a147f5c4 = () => interopDefault(import('../pages/studentInfo/homework/homework.vue' /* webpackChunkName: "pages/studentInfo/homework/homework" */))
+const _775ffc26 = () => interopDefault(import('../pages/studentInfo/homework/object.vue' /* webpackChunkName: "pages/studentInfo/homework/object" */))
+const _9ef21c02 = () => interopDefault(import('../pages/studentInfo/homework/record.vue' /* webpackChunkName: "pages/studentInfo/homework/record" */))
+const _0d282812 = () => interopDefault(import('../pages/studentInfo/homework/setting.vue' /* webpackChunkName: "pages/studentInfo/homework/setting" */))
+const _7f99f88e = () => interopDefault(import('../pages/studentInfo/leave/leave.vue' /* webpackChunkName: "pages/studentInfo/leave/leave" */))
+const _0cb9429e = () => interopDefault(import('../pages/studentInfo/leave/manage.vue' /* webpackChunkName: "pages/studentInfo/leave/manage" */))
+const _f726e032 = () => interopDefault(import('../pages/studentInfo/leave/setting.vue' /* webpackChunkName: "pages/studentInfo/leave/setting" */))
+const _791aee58 = () => interopDefault(import('../pages/studentInfo/rp/level.vue' /* webpackChunkName: "pages/studentInfo/rp/level" */))
+const _a12d55c0 = () => interopDefault(import('../pages/studentInfo/rp/rpApply.vue' /* webpackChunkName: "pages/studentInfo/rp/rpApply" */))
+const _3479d72c = () => interopDefault(import('../pages/studentInfo/rp/rpStatic.vue' /* webpackChunkName: "pages/studentInfo/rp/rpStatic" */))
 const _8eb28206 = () => interopDefault(import('../pages/teachInfo/exam/examManage.vue' /* webpackChunkName: "pages/teachInfo/exam/examManage" */))
 const _79788ac1 = () => interopDefault(import('../pages/teachInfo/exam/examPlan.vue' /* webpackChunkName: "pages/teachInfo/exam/examPlan" */))
 const _1a768a32 = () => interopDefault(import('../pages/teachInfo/exam/performance.vue' /* webpackChunkName: "pages/teachInfo/exam/performance" */))
@@ -244,6 +258,62 @@ export const routerOptions = {
     path: "/test/test4",
     component: _cba20300,
     name: "test-test4"
+  }, {
+    path: "/studentInfo/credit/creditApply",
+    component: _68de1900,
+    name: "studentInfo-credit-creditApply"
+  }, {
+    path: "/studentInfo/credit/creditStatic",
+    component: _acc4e168,
+    name: "studentInfo-credit-creditStatic"
+  }, {
+    path: "/studentInfo/credit/object",
+    component: _127b8584,
+    name: "studentInfo-credit-object"
+  }, {
+    path: "/studentInfo/credit/scope",
+    component: _71b4a61f,
+    name: "studentInfo-credit-scope"
+  }, {
+    path: "/studentInfo/homework/homework",
+    component: _a147f5c4,
+    name: "studentInfo-homework-homework"
+  }, {
+    path: "/studentInfo/homework/object",
+    component: _775ffc26,
+    name: "studentInfo-homework-object"
+  }, {
+    path: "/studentInfo/homework/record",
+    component: _9ef21c02,
+    name: "studentInfo-homework-record"
+  }, {
+    path: "/studentInfo/homework/setting",
+    component: _0d282812,
+    name: "studentInfo-homework-setting"
+  }, {
+    path: "/studentInfo/leave/leave",
+    component: _7f99f88e,
+    name: "studentInfo-leave-leave"
+  }, {
+    path: "/studentInfo/leave/manage",
+    component: _0cb9429e,
+    name: "studentInfo-leave-manage"
+  }, {
+    path: "/studentInfo/leave/setting",
+    component: _f726e032,
+    name: "studentInfo-leave-setting"
+  }, {
+    path: "/studentInfo/rp/level",
+    component: _791aee58,
+    name: "studentInfo-rp-level"
+  }, {
+    path: "/studentInfo/rp/rpApply",
+    component: _a12d55c0,
+    name: "studentInfo-rp-rpApply"
+  }, {
+    path: "/studentInfo/rp/rpStatic",
+    component: _3479d72c,
+    name: "studentInfo-rp-rpStatic"
   }, {
     path: "/teachInfo/exam/examManage",
     component: _8eb28206,

@@ -367,11 +367,11 @@
   {
     "key": "teachInfo",
     "name": "教学管理",
-    "id": 1,
+    "id": 2,
     "list": [
       {
         "name": "考务管理",
-        "icon": "fa fa-info-circle",
+        "icon": "fa fa-tags",
         "toggle": false,
         "id": 2000,
         "key": "exam",
@@ -401,7 +401,7 @@
       },
       {
         "name": "教务管理",
-        "icon": "fa fa-info-circle",
+        "icon": "fa fa-window-maximize",
         "toggle": false,
         "id": 2100,
         "key": "teach",
@@ -440,6 +440,147 @@
             "id": 2105,
             "top": "teachInfo",
             "path": "/teachInfo/teach/courseManage"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "studentInfo",
+    "name": "学工管理",
+    "id": 3,
+    "list": [
+      {
+        "name": "奖惩管理",
+        "icon": "fa fa-trophy",
+        "toggle": false,
+        "id": 3000,
+        "key": "student",
+        "list": [
+          {
+            "name": "奖惩申请",
+            "key": "rpApply",
+            "id": 3001,
+            "top": "studentInfo",
+            "path": "/studentInfo/rp/rpApply"
+          },
+          {
+            "name": "奖惩分析",
+            "key": "rpStatic",
+            "id": 3002,
+            "top": "studentInfo",
+            "path": "/studentInfo/rp/rpStatic"
+          },
+          {
+            "name": "级别管理",
+            "key": "level",
+            "id": 3003,
+            "top": "studentInfo",
+            "path": "/studentInfo/rp/level"
+          }
+        ]
+      },
+      {
+        "name": "学分管理",
+        "icon": "fa fa-star-o",
+        "toggle": false,
+        "id": 3100,
+        "key": "credit",
+        "list": [
+          {
+            "name": "学分申请",
+            "key": "creditApply",
+            "id": 3101,
+            "top": "studentInfo",
+            "path": "/studentInfo/credit/creditApply"
+          },
+          {
+            "name": "学分分析",
+            "key": "creditStatic",
+            "id": 3102,
+            "top": "studentInfo",
+            "path": "/studentInfo/credit/creditStatic"
+          },
+          {
+            "name": "项目管理",
+            "key": "object",
+            "id": 3103,
+            "top": "studentInfo",
+            "path": "/studentInfo/credit/object"
+          },
+          {
+            "name": "分值管理",
+            "key": "scope",
+            "id": 3103,
+            "top": "studentInfo",
+            "path": "/studentInfo/credit/scope"
+          }
+        ]
+      },
+      {
+        "name": "请假管理",
+        "icon": "fa fa-send",
+        "toggle": false,
+        "id": 3200,
+        "key": "stuLeave",
+        "list": [
+          {
+            "name": "请假查询",
+            "key": "leave",
+            "id": 3201,
+            "top": "studentInfo",
+            "path": "/studentInfo/leave/leave"
+          },
+          {
+            "name": "请假管理",
+            "key": "manage",
+            "id": 3202,
+            "top": "studentInfo",
+            "path": "/studentInfo/leave/manage"
+          },
+          {
+            "name": "请假设置",
+            "key": "setting",
+            "id": 3203,
+            "top": "studentInfo",
+            "path": "/studentInfo/leave/setting"
+          }
+        ]
+      },
+      {
+        "name": "内务管理",
+        "icon": "fa fa-send",
+        "toggle": false,
+        "id": 3300,
+        "key": "homework",
+        "list": [
+          {
+            "name": "内务查询",
+            "key": "homework",
+            "id": 3301,
+            "top": "studentInfo",
+            "path": "/studentInfo/homework/homework"
+          },
+          {
+            "name": "检查记录",
+            "key": "homeworkRecord",
+            "id": 3302,
+            "top": "studentInfo",
+            "path": "/studentInfo/homework/record"
+          },
+          {
+            "name": "项目管理",
+            "key": "homeworkObject",
+            "id": 3303,
+            "top": "studentInfo",
+            "path": "/studentInfo/homework/object"
+          },
+          {
+            "name": "检查设置",
+            "key": "homeworkSetting",
+            "id": 3304,
+            "top": "studentInfo",
+            "path": "/studentInfo/homework/setting"
           }
         ]
       }

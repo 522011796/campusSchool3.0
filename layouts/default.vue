@@ -844,7 +844,6 @@
       },
       getSliderMenu(key, type){
         this.activeTop = key;
-        console.log(1111, key);
         this.$axios.get('/json/sliderMenu.json').then(res => {
           for (let i = 0; i < res.data.length; i++){
             if (key == res.data[i].key){

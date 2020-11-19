@@ -2,17 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pages/teachInfo/exam/examManage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/teachInfo/exam/examPlan.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/teachInfo/exam/performance.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/teachInfo/teach/courseManage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/teachInfo/teach/coursePlan.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/teachInfo/teach/myTable.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/teachInfo/teach/searchTable.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/teachInfo/teach/teachPlan.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/studentInfo/credit/creditApply.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/studentInfo/credit/creditStatic.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/studentInfo/credit/object.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/studentInfo/credit/scope.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/studentInfo/homework/homework.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/studentInfo/homework/object.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/studentInfo/homework/record.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/studentInfo/homework/setting.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/studentInfo/leave/leave.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/studentInfo/leave/manage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/studentInfo/leave/setting.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/studentInfo/rp/level.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/studentInfo/rp/rpApply.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/studentInfo/rp/rpStatic.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/router.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/layouts/default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/default.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/json/sliderMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/sliderMenu.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/json/topMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/topMenu.json" afterDir="false" />
@@ -42,7 +50,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pages/teachInfo/teach" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pages/studentInfo" />
     <property name="list.type.of.created.stylesheet" value="textmate" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
@@ -59,11 +67,11 @@
       <recent name="$PROJECT_DIR$/components/tree" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pages/studentInfo" />
+      <recent name="$PROJECT_DIR$/pages/studentInfo/leave" />
+      <recent name="$PROJECT_DIR$/pages/studentInfo/credit" />
+      <recent name="$PROJECT_DIR$/pages/studentInfo/rp" />
       <recent name="$PROJECT_DIR$/pages/teachInfo/teach" />
-      <recent name="$PROJECT_DIR$/pages/teachInfo" />
-      <recent name="$PROJECT_DIR$/pages/basicInfo" />
-      <recent name="$PROJECT_DIR$/components/utils/upload" />
-      <recent name="$PROJECT_DIR$/plugins" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -102,14 +110,7 @@
       <workItem from="1604712904285" duration="151488000" />
       <workItem from="1605662854660" duration="15034000" />
       <workItem from="1605696722145" duration="117000" />
-      <workItem from="1605711431800" duration="5301000" />
-    </task>
-    <task id="LOCAL-00004" summary="init">
-      <created>1602251579160</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1602251579160</updated>
+      <workItem from="1605711431800" duration="8141000" />
     </task>
     <task id="LOCAL-00005" summary="init">
       <created>1602429143758</created>
@@ -447,7 +448,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605715377476</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="init">
+      <created>1605750394424</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1605750394424</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -462,16 +470,16 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="454" y="235" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.805@0.23.1440.805" timestamp="1602497724708" />
-    <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605748257997">
+    <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605755081482">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.805@0.23.1440.805" timestamp="1602828707649" />
-    <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1605748257997" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1605715376406">
+    <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1605755081482" />
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1605750392589">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1605715376406" />
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1605750392589" />
     <state x="100" y="123" width="1240" height="605" key="DiffContextDialog" timestamp="1605058122839">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
@@ -504,11 +512,11 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="221" y="64" key="SettingsEditor/0.23.1440.805@0.23.1440.805" timestamp="1602238031085" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1605715379647">
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1605750396169">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1605715379647" />
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1605750396169" />
     <state x="100" y="123" width="1240" height="605" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605680124696">
       <screen x="0" y="23" width="1440" height="805" />
     </state>

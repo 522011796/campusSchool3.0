@@ -11,7 +11,7 @@
   },
   {
     "name": "学工管理",
-    "show": false,
+    "show": true,
     "key": "studentInfo"
   },
   {
