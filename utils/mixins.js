@@ -114,10 +114,11 @@ export default {
         campusId: campusId
       };
       await this.$axios.get(common.organization_week, {params: params}).then(res => {
-        this.currentYear = res.data.data.name;
-        this.currentWeekNum = res.data.data.weekNum;
-        this.currentWeekNo = res.data.data.weekNo;
-
+        if (res.data.data){
+          this.currentYear = res.data.data.name;
+          this.currentWeekNum = res.data.data.weekNum;
+          this.currentWeekNo = res.data.data.weekNo;
+        }
       });
     },
     /**

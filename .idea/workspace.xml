@@ -2,34 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pages/dataInfo/dataView/myScreen.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/dataInfo/dataView/screenManage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/dataInfo/stuData/stuAnalysis.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/dataInfo/stuData/stuPic.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/dataInfo/stuData/stuQuanti.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/dataInfo/stuData/stuStatus.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/logInfo/login.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/logInfo/opr.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/doorAccessRecord.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/exception.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/passStatic.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/permission.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/remote.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/settimeout.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/logisticsInfo/onecard/billList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/logisticsInfo/onecard/collection.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/logisticsInfo/onecard/collectionManage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/logisticsInfo/onecard/merchant.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/logisticsInfo/onecard/onecardPay.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/logisticsInfo/onecard/stuOnecard.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/logisticsInfo/onecard/terOnecard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/layouts/defaultFullScreen.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/sliderMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/sliderMenu.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/topMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/topMenu.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layouts/default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/default.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +34,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pages/dataInfo/stuData" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/layouts" />
     <property name="list.type.of.created.stylesheet" value="textmate" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
@@ -73,11 +51,11 @@
       <recent name="$PROJECT_DIR$/components/tree" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/layouts" />
       <recent name="$PROJECT_DIR$/pages/dataInfo/stuData" />
       <recent name="$PROJECT_DIR$/pages/dataInfo/dataView" />
       <recent name="$PROJECT_DIR$/pages/dataInfo" />
       <recent name="$PROJECT_DIR$/pages/logInfo" />
-      <recent name="$PROJECT_DIR$/pages/logisticsInfo/onecard" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -116,14 +94,7 @@
       <workItem from="1604712904285" duration="151488000" />
       <workItem from="1605662854660" duration="15034000" />
       <workItem from="1605696722145" duration="117000" />
-      <workItem from="1605711431800" duration="15549000" />
-    </task>
-    <task id="LOCAL-00007" summary="init">
-      <created>1602496625105</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1602496625105</updated>
+      <workItem from="1605711431800" duration="17284000" />
     </task>
     <task id="LOCAL-00008" summary="init">
       <created>1602501138873</created>
@@ -461,7 +432,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605798697041</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="init">
+      <created>1605801771737</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1605801771737</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -481,11 +459,11 @@
     </state>
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.805@0.23.1440.805" timestamp="1602828707649" />
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1605755081482" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1605798695916">
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1605801770705">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1605798695916" />
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1605801770705" />
     <state x="100" y="123" width="1240" height="605" key="DiffContextDialog" timestamp="1605058122839">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
@@ -518,11 +496,11 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="221" y="64" key="SettingsEditor/0.23.1440.805@0.23.1440.805" timestamp="1602238031085" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1605798698908">
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1605801787317">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1605798698908" />
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1605801787317" />
     <state x="100" y="123" width="1240" height="605" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605680124696">
       <screen x="0" y="23" width="1440" height="805" />
     </state>

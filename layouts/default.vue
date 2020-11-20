@@ -533,121 +533,129 @@
       </div>
     </div>
 
-    <div style="position: relative">
-      <div class="moon-left-menu-tag" :style="toggleTag">
-        <div class="moon-left-menu-tag-container">
-          <div class="moon-left-menu-tag_indicator" @click="isCollapse == true ? toggleLeftMenu($event) : toggleRightMenu($event)">
-            <i class="fa fa-chevron-left" :class="isCollapse == true ? 'icon-class-left' : 'icon-class-right'"></i>
+    <!--全屏布局-->
+    <div v-if="layout == 'full'">
+      1
+    </div>
+
+    <!--左右布局-->
+    <div v-if="layout == 'lr'">
+      <div style="position: relative">
+        <div class="moon-left-menu-tag" :style="toggleTag">
+          <div class="moon-left-menu-tag-container">
+            <div class="moon-left-menu-tag_indicator" @click="isCollapse == true ? toggleLeftMenu($event) : toggleRightMenu($event)">
+              <i class="fa fa-chevron-left" :class="isCollapse == true ? 'icon-class-left' : 'icon-class-right'"></i>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="moon-left-menu" :style="leftHeight">
-        <div :style="leftItemHeight">
-          <div class="moon-left-menu-item" v-for="(item, index) in sliderMenuList" :key="item.id">
-            <div>
-              <el-row @click.native="toggleMenu($event, item)">
-                <el-col :span="22">
+        <div class="moon-left-menu" :style="leftHeight">
+          <div :style="leftItemHeight">
+            <div class="moon-left-menu-item" v-for="(item, index) in sliderMenuList" :key="item.id">
+              <div>
+                <el-row @click.native="toggleMenu($event, item)">
+                  <el-col :span="22">
               <span class="title">
                 <i :class="item.icon"></i>
                 {{item.name}}
               </span>
-                </el-col>
-                <el-col :span="2">
-                  <div class="icon">
-                    <i class="fa fa-angle-double-down" :class="item.toggle ? 'icon-class-up' : 'icon-class-down'"></i>
-                  </div>
-                </el-col>
-              </el-row>
-            </div>
-            <el-collapse-transition>
-              <div class="moon-left-menu-sub-item" v-show="item.toggle">
-                <ul>
-                  <li style="padding-left: 20px" :class="activeSliderIndex == itemChild.key ? 'moon-left-menu-sub-item-active' : ''" v-for="(itemChild, indexChild) in item.list" :key="itemChild.id" @click="routerUrl($event, itemChild, item)">
-                    <span>{{itemChild.name}}</span>
-                  </li>
-                </ul>
+                  </el-col>
+                  <el-col :span="2">
+                    <div class="icon">
+                      <i class="fa fa-angle-double-down" :class="item.toggle ? 'icon-class-up' : 'icon-class-down'"></i>
+                    </div>
+                  </el-col>
+                </el-row>
               </div>
-            </el-collapse-transition>
+              <el-collapse-transition>
+                <div class="moon-left-menu-sub-item" v-show="item.toggle">
+                  <ul>
+                    <li style="padding-left: 20px" :class="activeSliderIndex == itemChild.key ? 'moon-left-menu-sub-item-active' : ''" v-for="(itemChild, indexChild) in item.list" :key="itemChild.id" @click="routerUrl($event, itemChild, item)">
+                      <span>{{itemChild.name}}</span>
+                    </li>
+                  </ul>
+                </div>
+              </el-collapse-transition>
+            </div>
+          </div>
+
+          <div class="moon-menu-toggle-main" style="right: 0px;">
+            <div class="moon-menu-toggle-item">
+              <span class="color-white font-size-12">{{$t('固定菜单栏')}}</span>
+              <el-switch
+                v-model="menuToggle"
+                active-color="#13ce66"
+                @change="changeSwitchToggle">
+              </el-switch>
+            </div>
           </div>
         </div>
 
-        <div class="moon-menu-toggle-main" style="right: 0px;">
-          <div class="moon-menu-toggle-item">
-            <span class="color-white font-size-12">{{$t('固定菜单栏')}}</span>
-            <el-switch
-              v-model="menuToggle"
-              active-color="#13ce66"
-              @change="changeSwitchToggle">
-            </el-switch>
-          </div>
-        </div>
-      </div>
+        <div class="moon-right-menu" :style="rightWidth">
+          <div class="moon-right-item-menu">
+            <!--<el-tag closable size="medium" color="#ffffff" v-for="n in 6" :key="n" class="margin-right-5">{{n}}</el-tag>-->
+            <el-popover
+              v-show="!isCollapse"
+              v-model="popMenuCollapse"
+              placement="bottom-start"
+              popper-class="custom-popover"
+              width="240"
+              :visible-arrow="false"
+              trigger="hover">
 
-      <div class="moon-right-menu" :style="rightWidth">
-        <div class="moon-right-item-menu">
-          <!--<el-tag closable size="medium" color="#ffffff" v-for="n in 6" :key="n" class="margin-right-5">{{n}}</el-tag>-->
-          <el-popover
-            v-show="!isCollapse"
-            v-model="popMenuCollapse"
-            placement="bottom-start"
-            popper-class="custom-popover"
-            width="240"
-            :visible-arrow="false"
-            trigger="hover">
-
-            <div>
-              <div class="moon-right-pop-menu" :style="popMenuHeight">
-                <div class="moon-left-menu-item" v-for="(item, index) in sliderMenuList" :key="item.id">
-                  <div>
-                    <el-row @click.native="toggleMenu($event, item)">
-                      <el-col :span="22">
+              <div>
+                <div class="moon-right-pop-menu" :style="popMenuHeight">
+                  <div class="moon-left-menu-item" v-for="(item, index) in sliderMenuList" :key="item.id">
+                    <div>
+                      <el-row @click.native="toggleMenu($event, item)">
+                        <el-col :span="22">
                       <span class="title">
                         <i :class="item.icon"></i>
                         {{item.name}}
                       </span>
-                      </el-col>
-                      <el-col :span="2">
-                        <div class="icon">
-                          <i class="fa fa-angle-double-down" :class="item.toggle ? 'icon-class-up' : 'icon-class-down'"></i>
-                        </div>
-                      </el-col>
-                    </el-row>
-                  </div>
-                  <el-collapse-transition>
-                    <div class="moon-left-menu-sub-item" v-show="item.toggle">
-                      <ul>
-                        <li style="padding-left: 20px" :class="activeSliderIndex == itemChild.key ? 'moon-left-menu-sub-item-active' : ''" v-for="(itemChild, indexChild) in item.list" :key="itemChild.id" @click="routerUrl($event, itemChild, item)">
-                          <span>{{itemChild.name}}</span>
-                        </li>
-                      </ul>
+                        </el-col>
+                        <el-col :span="2">
+                          <div class="icon">
+                            <i class="fa fa-angle-double-down" :class="item.toggle ? 'icon-class-up' : 'icon-class-down'"></i>
+                          </div>
+                        </el-col>
+                      </el-row>
                     </div>
-                  </el-collapse-transition>
+                    <el-collapse-transition>
+                      <div class="moon-left-menu-sub-item" v-show="item.toggle">
+                        <ul>
+                          <li style="padding-left: 20px" :class="activeSliderIndex == itemChild.key ? 'moon-left-menu-sub-item-active' : ''" v-for="(itemChild, indexChild) in item.list" :key="itemChild.id" @click="routerUrl($event, itemChild, item)">
+                            <span>{{itemChild.name}}</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </el-collapse-transition>
+                  </div>
+                </div>
+                <div class="moon-menu-toggle-main">
+                  <div class="moon-menu-toggle-item">
+                    <span class="color-white font-size-12">{{$t('固定菜单栏')}}</span>
+                    <el-switch
+                      v-model="menuToggle"
+                      active-color="#13ce66"
+                      @change="changeSwitchToggle">
+                    </el-switch>
+                  </div>
                 </div>
               </div>
-              <div class="moon-menu-toggle-main">
-                <div class="moon-menu-toggle-item">
-                  <span class="color-white font-size-12">{{$t('固定菜单栏')}}</span>
-                  <el-switch
-                    v-model="menuToggle"
-                    active-color="#13ce66"
-                    @change="changeSwitchToggle">
-                  </el-switch>
-                </div>
-              </div>
-            </div>
 
-            <span slot="reference" class="moon-menu-tab">
+              <span slot="reference" class="moon-menu-tab">
               <i class="fa fa-indent"></i>
               <label>{{$t("菜单列表")}}</label>
             </span>
-          </el-popover>
+            </el-popover>
+          </div>
+          <div class="moon-right-content" :style="rightHeight">
+            <Nuxt ref="child"/>
+          </div>
         </div>
-        <div class="moon-right-content" :style="rightHeight">
-          <Nuxt ref="child"/>
-        </div>
+        <div class="moon-clearfix"></div>
       </div>
-      <div class="moon-clearfix"></div>
     </div>
 
     <!--消息中心使用的右侧层-->
@@ -679,6 +687,7 @@
     components: {MyPagination, DrawerLayoutRight,MyAuditDetail,AuditButton,TimeoutButton,UploadSquare},
     data(){
       return {
+        layout: 'lr',
         activeTabName: 'all',
         showMenu: false,
         isCollapse: true,
@@ -796,6 +805,10 @@
       };
     },
     created() {
+      if (this.$route.name == "index" || this.$route.name == null){
+        this.layout = "full";
+      }
+
       this.hh();
       this.init();
       this.getBell();
@@ -1257,6 +1270,7 @@
     watch: {
       '$route': function (to, from) {//监听路由变化,为了浏览器点击后退和前进也能切换菜单选中
         this.$nextTick(() => {
+          this.layout = "lr";
           this.clickType = "";
           this.activeSliderIndex = this.$route.query.key;
           this.activeIndex = this.$route.query.top;

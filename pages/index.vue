@@ -12,8 +12,13 @@
 
       }
     },
+    created() {
+      this.layoutInit();
+    },
     methods: {
-
+      layoutInit(){
+        this.$parent.$parent.layout = 'full';
+      },
     }
   }
 </script>

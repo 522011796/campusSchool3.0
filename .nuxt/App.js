@@ -19,8 +19,9 @@ import '../node_modules/quill/dist/quill.core.css'
 
 import _6f6c098b from '../layouts/default.vue'
 import _4d6b8a81 from '../layouts/defaultBak.vue'
+import _41a81bc6 from '../layouts/defaultFullScreen.vue'
 
-const layouts = { "_default": sanitizeComponent(_6f6c098b),"_defaultBak": sanitizeComponent(_4d6b8a81) }
+const layouts = { "_default": sanitizeComponent(_6f6c098b),"_defaultBak": sanitizeComponent(_4d6b8a81),"_defaultFullScreen": sanitizeComponent(_41a81bc6) }
 
 export default {
   render (h, props) {
