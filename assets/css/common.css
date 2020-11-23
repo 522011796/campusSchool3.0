@@ -598,6 +598,11 @@ ul{
   padding: 10px 10px;
   overflow-y: auto;
 }
+.drawer-normal-drawer .drawer-normal-body .el-calendar-table .el-calendar-day {
+  box-sizing: border-box;
+  padding: 8px;
+  height: 50px;
+}
 .drawer-normal-drawer .content{
 
 }

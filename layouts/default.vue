@@ -112,7 +112,7 @@
           </div>
 
           <div class="pull-right">
-            <span class="moon-top-middle-menu-info">
+            <span class="moon-top-middle-menu-info" @click="handeCourse">
               <label>
                 <i class="fa fa-calendar"></i>
               </label>
@@ -667,6 +667,40 @@
         <audit-button :sel-value="dataAudit" @ok="handleOk" @no="handleNo" @cancel="handleCancel"></audit-button>
       </div>
     </drawer-layout-right>
+
+    <!--课程表右侧-->
+    <drawer-layout-right @changeDrawer="closeDrawerDialog" :visible="drawerCourseVisible" size="450px" :title="$t('课程表')" @right-close="cancelDrawDialog">
+      <div slot="content">
+        <el-calendar v-model="calendarValue" style="margin: -10px;"></el-calendar>
+
+        <div class="margin-top-20">
+          <div class="text-center color-disabeld margin-bottom-10">
+            <div>{{$t("课程安排")}}</div>
+            <div class="font-size-12 color-disabeld margin-top-5">
+              <span>2011-11-11</span>
+            </div>
+          </div>
+          <el-timeline>
+            <el-timeline-item placement="top" v-for="n in 10" :key="n" :timestamp="`第${n}节`">
+              <el-card :body-style="{padding: '10px'}">
+                <div class="color-muted">
+                  <i class="fa fa-clock-o"></i>
+                  <span>9:00 - 10:00</span>
+                </div>
+                <div class="color-muted margin-top-5">
+                  <i class="fa fa-cube"></i>
+                  <span>课程课程课程课程课程</span>
+                </div>
+                <div class="color-muted margin-top-5">
+                  <i class="fa fa-home"></i>
+                  <span>班级班级班级班级班级</span>
+                </div>
+              </el-card>
+            </el-timeline-item>
+          </el-timeline>
+        </div>
+      </div>
+    </drawer-layout-right>
   </div>
 </template>
 
@@ -699,6 +733,7 @@
         menuToggle: true,
         popMenuCollapse: false,
         drawerVisible: false,
+        drawerCourseVisible: false,
         drawerLoading: false,
         settingType: 1,
         direction: 'ttb',
@@ -723,6 +758,7 @@
         msgAuditList: [],
         loading: false,
         msgType: '',
+        calendarValue: new Date(),
         dataAudit: {},
         objectId: '',
         auditObjectItem: {},
@@ -1100,9 +1136,11 @@
         this.msgType = '';
         this.auditObjectItem = {};
         this.drawerVisible = event;
+        this.drawerCourseVisible = event;
       },
       cancelDrawDialog(){
         this.drawerVisible = false;
+        this.drawerCourseVisible = false;
       },
       handleOk(data,textarea){
         let params = {
@@ -1270,6 +1308,9 @@
           }
           this.loading = false;
         });
+      },
+      handeCourse(){
+        this.drawerCourseVisible = true;
       }
     },
     watch: {
