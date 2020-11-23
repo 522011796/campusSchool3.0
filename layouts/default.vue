@@ -669,9 +669,21 @@
     </drawer-layout-right>
 
     <!--课程表右侧-->
-    <drawer-layout-right @changeDrawer="closeDrawerDialog" :visible="drawerCourseVisible" size="450px" :title="$t('课程表')" @right-close="cancelDrawDialog">
+    <drawer-layout-right @changeDrawer="closeDrawerDialog" :visible="drawerCourseVisible" size="500px" :title="$t('课程表')" @right-close="cancelDrawDialog">
       <div slot="content">
-        <el-calendar v-model="calendarValue" style="margin: -10px;"></el-calendar>
+        <el-calendar v-model="calendarValue" style="margin: -10px;">
+          <div
+            slot="dateCell"
+            slot-scope="{date, data}">
+            <!--自定义内容-->
+            <div style="position: relative" @click="handleDays($event, data.day)">
+              <div class="calendar-day">{{ data.day.split('-').slice(2).join('-') }}</div>
+              <div style="position: absolute; right:-8px;top: -8px;" v-for="(item, index) in calendarData">
+                <el-tag size="mini" type="success" class="font-size-12" v-if="(item.days).indexOf(data.day.split('-').slice(2)[0])!=-1">{{$t("课")}}</el-tag>
+              </div>
+            </div>
+          </div>
+        </el-calendar>
 
         <div class="margin-top-20">
           <div class="text-center color-disabeld margin-bottom-10">
@@ -766,6 +778,9 @@
         updatePwdMms: common.updatepwd_mms,
         uploadFileUrl: common.upload_file,
         uploadFileListUrl: common.upload_imglist_file,
+        calendarData: [
+          { days: ['09', '11', '20']}
+        ],
         topWidth: {
           width: '0px'
         },
@@ -1311,6 +1326,9 @@
       },
       handeCourse(){
         this.drawerCourseVisible = true;
+      },
+      handleDays(event, day){
+        console.log(day);
       }
     },
     watch: {
@@ -1741,5 +1759,8 @@
   right: 10px;
   top:50%;
   font-size: 12px;
+}
+.calendar-day{
+  padding: 10px;
 }
 </style>
