@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div v-if="slotTop" class="padding-tb-5 padding-lr-10">
+      <slot name="top" ref="slotTop"></slot>
+    </div>
     <div class="padding-tb-5 padding-lr-10">
       <el-input
         size="medium"
@@ -8,7 +11,7 @@
       </el-input>
     </div>
     <div v-if="slotDefault" class="padding-tb-5 padding-lr-10">
-      <slot ref="slotDefault"></slot>
+      <slot name="middle" ref="slotDefault"></slot>
     </div>
     <div class="tree-container custom-el-tree margin-top-5">
       <el-tree
@@ -80,11 +83,13 @@
       return {
         data : [],
         filterText: '',
-        slotDefault: false
+        slotDefault: false,
+        slotTop: false
       }
     },
     mounted() {
-      this.slotDefault = this.$slots.default !== undefined;
+      this.slotDefault = this.$slots.middle !== undefined;
+      this.slotTop = this.$slots.top !== undefined;
     },
     created() {
       this.initInfo();

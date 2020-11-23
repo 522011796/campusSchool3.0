@@ -300,7 +300,7 @@
             <div class="drawer-main-menu-left text-center" :style="drawerMenuHeight">
               <div class="drawer-main-menu-left-container">
                 <!--drawer-main-menu-left-container-item-active-->
-                <div class="drawer-main-menu-left-container-item" v-for="(item, index) in topMenuAllList" :key="index">
+                <div class="drawer-main-menu-left-container-item" :class="activeTop == item.key ? 'moon-top-middle-menu-item-text-active' : ''" v-for="(item, index) in topMenuAllList" :key="index" @click="handleTopSelect($event, item)">
                   <i :class="item.icon"></i>
                   <span>{{item.name}}</span>
                 </div>
@@ -315,7 +315,7 @@
                   </div>
                   <div class="drawer-main-menu-right-container-item-list">
                     <div class="drawer-main-menu-right-container-item-list-item" v-for="(itemChild, indexChild) in item.list" :key="itemChild.id">
-                      <span>{{itemChild.name}}</span>
+                      <span @click="routerUrl($event, itemChild, item)">{{itemChild.name}}</span>
                     </div>
                   </div>
                 </div>
@@ -1608,6 +1608,7 @@
 .drawer-main-menu-right-container-item{
   float: left;
   margin-right: 50px;
+  height: 240px;
 }
 .drawer-main-menu-right-container-item-title{
   color: #E6A23C;

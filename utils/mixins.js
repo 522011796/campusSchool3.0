@@ -41,6 +41,14 @@ export default {
       tableHeight: {
         'height': ''
       },
+      tableMiddleHeight: {
+        'height': ''
+      },
+      divHeight: {
+        'height': '',
+        'overflow-y': 'auto',
+        'overflow-x': 'hidden'
+      },
       drawHeight: {
         'height': ''
       }
@@ -61,6 +69,8 @@ export default {
     g_HH(){
       if (process.browser) {
         this.tableHeight.height = window.innerHeight - 248 + 'px';
+        this.tableMiddleHeight.height = window.innerHeight - 335 + 'px';
+        this.divHeight.height = window.innerHeight - 205 + 'px';
         this.drawHeight.height = window.innerHeight - 80 + 'px';
       }
     },
