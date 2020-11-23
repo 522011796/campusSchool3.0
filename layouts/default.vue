@@ -534,8 +534,8 @@
     </div>
 
     <!--全屏布局-->
-    <div v-if="layout == 'full'">
-      1
+    <div v-if="layout == 'full'" :style="fullHeight">
+      <nuxt ref="child"></nuxt>
     </div>
 
     <!--左右布局-->
@@ -763,6 +763,10 @@
           'height': '',
           'overflow-y': 'auto'
         },
+        fullHeight: {
+          'height': '',
+          'overflow-y': 'auto'
+        },
         toggleTag: {
 
         },
@@ -823,6 +827,7 @@
       hh(){
         if (process.browser) {
           this.leftHeight.height = window.innerHeight - 60 + 'px';
+          this.fullHeight.height = window.innerHeight - 60 + 'px';
           this.leftItemHeight.height = window.innerHeight - 105 + 'px';
           this.rightHeight.height = window.innerHeight - 60 - 40 + 'px';
           this.drawerHeight.height = window.innerHeight - 60 - 120 + 'px';
