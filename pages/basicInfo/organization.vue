@@ -27,13 +27,11 @@
           @cell-click="cellClick">
           <el-table-column
             prop="department_name"
-            :label="$t('名称')"
-            width="180">
+            :label="$t('名称')">
           </el-table-column>
           <el-table-column
             prop="dept_short_name"
-            :label="$t('简称')"
-            width="180">
+            :label="$t('简称')">
           </el-table-column>
           <el-table-column
             prop="department_no"
@@ -58,19 +56,19 @@
       </div>
     </layout-tb>
 
-    <dialog-normal :visible="modalVisible" :title="$t('教室设置')" @close="closeDialog" @right-close="cancelDialog">
+    <dialog-normal :visible="modalVisible" :title="$t('组织设置')" @close="closeDialog" @right-close="cancelDialog">
       <div class="margin-top-10">
-        <el-form ref="form" :model="form" label-width="140px">
+        <el-form :model="form" :rules="rules" ref="form" label-width="140px">
           <el-form-item label="上级部门" v-if="form.oprType != 'main'">
             <span>{{form.superName}}</span>
           </el-form-item>
-          <el-form-item label="组织名称">
+          <el-form-item label="组织名称" prop="name">
             <el-input v-model="form.name" class="width-260"></el-input>
           </el-form-item>
-          <el-form-item label="组织编号">
+          <el-form-item label="组织编号" prop="no">
             <el-input v-model="form.no" class="width-260"></el-input>
           </el-form-item>
-          <el-form-item label="组织简称">
+          <el-form-item label="组织简称" prop="realName">
             <el-input v-model="form.realName" class="width-260"></el-input>
           </el-form-item>
         </el-form>
@@ -104,9 +102,10 @@ import MyNormalDialog from "../../components/utils/dialog/MyNormalDialog";
 import DrawerRight from "../../components/utils/dialog/DrawerRight";
 import {common} from "../../utils/api/url";
 import {setChildren,MessageSuccess, MessageError} from "../../utils/utils";
+import organizationValidater from "../../utils/validater/organizationValidater";
 
 export default {
-  mixins: [mixins],
+  mixins: [mixins, organizationValidater],
   components: {LayoutTb,MyInputButton,MyPagination,DialogNormal,MyNormalDialog,DrawerRight},
   data(){
     return {
@@ -121,6 +120,8 @@ export default {
       uploadAction: common.organization_upload,
       uploadResult: {},
       uploadProcess: '',
+      g_superId: '',
+      tableData: [],
       form: {
         oprType: '',
         id: '',
@@ -130,7 +131,6 @@ export default {
         no: '',
         realName: ''
       },
-      tableData: []
     }
   },
   created() {
@@ -144,6 +144,7 @@ export default {
       };
       this.$axios.get(common.organization_url, {params: params}).then(res => {
         if (res.data.data){
+          this.g_superId = res.data.data[0].id;;
           this.form.deptSuperId = res.data.data[0].id;
           this.tableData = setChildren(res.data.data[0].child_list, groupArr, 'child_list', 'children');
         }
@@ -152,6 +153,7 @@ export default {
     addInitData(event, type){
       this.form.oprType = '';
       if (type && type == "main"){
+        this.form.deptSuperId = this.g_superId;
         this.form.oprType = 'main';
       }else if(type && type == "sub"){
         this.form = {
@@ -192,7 +194,7 @@ export default {
         no: '',
         realName: '',
       };
-      console.log(111);
+      this.$refs['form'].resetFields();
     },
     closeDrawerDialog(event){
       this.uploadProcess = '';
@@ -214,16 +216,21 @@ export default {
         url = common.organization_add;
       }
       params = this.$qs.stringify(params);
-      this.dialogLoading = true;
-      this.$axios.post(url, params).then(res=>{
-        if (res.data.code == 200){
-          this.init();
-          MessageSuccess(res.data.desc);
-        }else {
-          MessageError(res.data.desc);
+
+      this.$refs['form'].validate((valid) => {
+        if (valid) {
+          this.dialogLoading = true;
+          this.$axios.post(url, params).then(res=>{
+            if (res.data.code == 200){
+              this.init();
+              MessageSuccess(res.data.desc);
+            }else {
+              MessageError(res.data.desc);
+            }
+            this.dialogLoading = false;
+            this.modalVisible = false;
+          });
         }
-        this.dialogLoading = false;
-        this.modalVisible = false;
       });
     },
     closeDrawDialog(event){
