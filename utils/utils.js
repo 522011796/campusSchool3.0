@@ -1,4 +1,17 @@
 import { Message } from 'element-ui'
+import crypto from 'crypto';
+
+export function getmd5(str) {
+  var a;
+  var md5 = crypto.createHash("md5");
+  //update("中文", "utf8")
+  md5.update(str);
+  var a = md5.digest('hex');
+  ////console.log(a);
+  //47bce5c74f589f4867dbd57e9ca9f808
+  return a;
+}
+
 export function oneOf (value, validList) {
   for (let i = 0; i < validList.length; i++) {
     if (value === validList[i]) {

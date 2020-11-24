@@ -20,10 +20,10 @@
         <div style="height: 1px; background: #EBEEF5;margin: 0px 0px"></div>
         <el-row>
           <el-col :span="12" class="text-center">
-            <div style="background: #ffffff;width: 100%; height: 100%;" @click="handleCancelChange">{{$t("取消")}}</div>
+            <div style="background: #ffffff;width: 100%; height: 100%;cursor: default" @click="handleCancelChange">{{$t("取消")}}</div>
           </el-col>
           <el-col :span="12" class="text-center">
-            <div style="background: #f5f5f5;width: 100%; height: 100%;" @click="loading == false ? handleOkChange() : ''">
+            <div style="background: #f5f5f5;width: 100%; height: 100%;cursor: default" @click="loading == false ? handleOkChange() : ''">
               <span :class="{'color-muted': loading}">
                 <i class="el-icon-loading" v-if="loading"></i>
                 {{$t("确定")}}

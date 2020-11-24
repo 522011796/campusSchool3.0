@@ -48,6 +48,7 @@ export default function({ $axios, redirect }) {
           return res;
         } else if (res.data.code === 401) {
           hideLoading();
+          redirect('/login');
           return res;
         } else if (res.data.code === 403) {
           hideLoading();

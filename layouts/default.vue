@@ -851,12 +851,14 @@
       this.widthIndex = (width - 400) / 150;
       // 监听窗口大小
       window.onresize = () => {
-        width = document.querySelector(".moon-top-middle-menu-title").clientWidth;
-        return (() => {
-          this.screenWidth = document.body.clientWidth;
-          this.topWidth.width = width - 400 + 'px';
-          this.widthIndex = (width - 400) / 150;
-        })()
+        if (document.querySelector(".moon-top-middle-menu-title")){
+          width = document.querySelector(".moon-top-middle-menu-title").clientWidth;
+          return (() => {
+            this.screenWidth = document.body.clientWidth;
+            this.topWidth.width = width - 400 + 'px';
+            this.widthIndex = (width - 400) / 150;
+          })()
+        }
       };
     },
     created() {

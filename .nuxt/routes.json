@@ -1,5 +1,12 @@
 [
   {
+    "name": "login",
+    "path": "/login",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/login.vue",
+    "chunkName": "pages/login",
+    "_name": "_0b5d235e"
+  },
+  {
     "name": "basicInfo-appAuth",
     "path": "/basicInfo/appAuth",
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/basicInfo/appAuth.vue",

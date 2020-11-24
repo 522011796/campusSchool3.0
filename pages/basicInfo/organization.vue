@@ -59,16 +59,16 @@
     <dialog-normal :visible="modalVisible" :title="$t('组织设置')" @close="closeDialog" @right-close="cancelDialog">
       <div class="margin-top-10">
         <el-form :model="form" :rules="rules" ref="form" label-width="140px">
-          <el-form-item label="上级部门" v-if="form.oprType != 'main'">
+          <el-form-item :label="$t('上级部门')" v-if="form.oprType != 'main'">
             <span>{{form.superName}}</span>
           </el-form-item>
-          <el-form-item label="组织名称" prop="name">
+          <el-form-item :label="$t('组织名称')" prop="name">
             <el-input v-model="form.name" class="width-260"></el-input>
           </el-form-item>
-          <el-form-item label="组织编号" prop="no">
+          <el-form-item :label="$t('组织编号')" prop="no">
             <el-input v-model="form.no" class="width-260"></el-input>
           </el-form-item>
-          <el-form-item label="组织简称" prop="realName">
+          <el-form-item :label="$t('组织简称')" prop="realName">
             <el-input v-model="form.realName" class="width-260"></el-input>
           </el-form-item>
         </el-form>
@@ -194,7 +194,9 @@ export default {
         no: '',
         realName: '',
       };
-      this.$refs['form'].resetFields();
+      if (this.$refs['form']){
+        this.$refs['form'].resetFields();
+      }
     },
     closeDrawerDialog(event){
       this.uploadProcess = '';
@@ -291,8 +293,15 @@ export default {
     },
     uploadSuccess(res, file){
       this.uploadProcess = res.desc;
-      if (res.data){
+
+      if (res.code == 200){
         this.uploadResult = res.data;
+      }else {
+        if (res.data){
+          this.uploadResult = res.data;
+        }else {
+          this.uploadResult = [res.desc];
+        }
       }
     },
     uploadError(res, file){
