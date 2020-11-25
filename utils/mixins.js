@@ -26,6 +26,7 @@ export default {
       dataSchoolBuild: global.dataSchoolBuildList,
       dataDormBuild: global.dataDormBuildList,
       dataDept: global.dataDeptList,
+      currentSeciton: global.currentSeciton,
       currentYear: global.currentYear,
       currentMonth: global.currentMonth,
       currentDay: global.currentDay,
@@ -128,6 +129,7 @@ export default {
           this.currentYear = res.data.data.name;
           this.currentWeekNum = res.data.data.weekNum;
           this.currentWeekNo = res.data.data.weekNo;
+          //this.currentSeciton = res.data.data.section;
         }
       });
     },

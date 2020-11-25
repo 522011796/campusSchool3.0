@@ -7,6 +7,7 @@
       :size="size"
       :style="width"
       :disabled="disabled"
+      :readonly="readonly"
       :range-separator="rangeSeparator"
       :start-placeholder="startPlaceholder"
       :end-placeholder="endPlaceholder"
@@ -16,6 +17,7 @@
       :picker-options="pickerOptions"
       v-bind="selectModel"
       :setWidth="setWidth"
+      :clearable="clearable"
       @change="handleChange">
     </el-date-picker>
   </span>
@@ -57,6 +59,10 @@
         type: [String, Number]
       },
       disabled: {
+        default: false,
+        type: Boolean
+      },
+      readonly: {
         default: false,
         type: Boolean
       },

@@ -12,7 +12,9 @@
       :loading="loading"
       :remote="remote"
       :remote-method="remoteMethod"
-      @change="handleChange">
+      @change="handleChange"
+      :setWidth="setWidth"
+      :style="width">
 
       <template v-if="group == false">
         <el-option
@@ -52,7 +54,7 @@
       },
       selValue: {
         default: '',
-        type: String
+        type: [String, Number]
       },
       options: {
         default: function () {
@@ -95,6 +97,10 @@
           return data;
         },
         type: Function
+      },
+      widthStyle: {
+        default: '',
+        type: [String, Number]
       }
     },
     computed: {
@@ -103,12 +109,20 @@
       },
       setPlaceholder(){
         this.selectPlaceholder = this.placeholder ? this.placeholder : this.$t("请选择")
+      },
+      setWidth(){
+        if (!!this.widthStyle){
+          this.width = {
+            'width': this.widthStyle + "px"
+          };
+        }
       }
     },
     data() {
       return {
         selectPlaceholder: '',
-        value: ''
+        value: '',
+        width: ''
       }
     },
     methods: {

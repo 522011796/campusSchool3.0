@@ -36,4 +36,21 @@ export const common = {
   hierarchical_build: '/proxy/school/hierarchical/get-building-tree',//0教学楼 1宿舍楼
   hierarchical_college: '/proxy/edu/edu/major/year/class/tree',//学院
   hierarchical_dept: '/proxy/school/hierarchical/get-organize-tree',//部门
+
+  year_list: '/proxy/edu/edu/year/page',//学年列表
+  term_list: '/proxy/edu/edu/term/page',//学期列表
+  add_year: '/proxy/edu/edu/year/add',//添加学年
+  update_year: '/proxy/edu/edu/year/update',//修改学年
+  delete_year: '/proxy/edu/edu/year/delete',//删除学年
+  add_term: '/proxy/edu/edu/term/add',//添加学期
+  update_term: '/proxy/edu/edu/term/update',//编辑学期
+  delete_term: '/proxy/edu/edu/term/delete',//删除学期
+  check_current_year: '/proxy/edu/edu/year/judge',//检查学年是否是当前
+  check_current_term: '/proxy/edu/edu/term/judge',//检查学期是否是当前
+  set_current_out: '/proxy/edu/edu/year/currentOut',//设置非当前学年
+  set_current_in: '/proxy/edu/edu/year/currentIn',//设置当前学年
+  set_current_term_out: '/proxy/edu/edu/term/currentOut',//设置非当前学期
+  set_current_term_in: '/proxy/edu/edu/term/currentIn',//设置当前学期
+  get_term: '/proxy/edu/edu/teach/getSetting',//获取学期详细,
+  save_term_info: '/proxy/edu/edu/teach/setting',//保存学期设置
 };

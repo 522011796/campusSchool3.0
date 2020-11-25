@@ -19,6 +19,9 @@ body{
 p{
   margin: 0px;
 }
+a{
+  text-decoration: none;
+}
 .moon-container{
 
 }
@@ -167,9 +170,6 @@ p{
 }
 .color-white{
   color: #ffffff;
-}
-.color-grand{
-  color: #606266;
 }
 .bg-success{
   background: #67C23A;
@@ -367,6 +367,24 @@ ul{
   padding: 0px 0px;
   background: rgba(236, 245, 255, 1);
   font-size: 12px;
+}
+.custom-table-popover{
+  background: rgba(48, 49, 51, 0.8);
+  color: #FFFFFF;
+  font-size: 14px;
+}
+.custom-table-popover .popper__arrow {
+  bottom: -6px;
+  left: 50%;
+  margin-right: 3px;
+  border-top-color: rgba(48, 49, 51, 0.8) !important;
+  border-bottom-width: 0;
+}
+.custom-table-popover .popper__arrow::after {
+  bottom: 1px;
+  margin-left: -6px;
+  border-top-color: rgba(48, 49, 51, 0.1) !important;
+  border-bottom-width: 0;
 }
 #version-info .el-card__header {
   padding: 15px 10px;
@@ -675,6 +693,28 @@ ul{
 .el-dropdown-menu{
 
 }
+/**自定义table**/
+.custom-table{
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #DCDFE6;
+}
+.custom-table tr{
+  height: 35px;
+  line-height: 35px;
+}
+.custom-table tr th{
+  background: #C0C4CC;
+  color: #FFFFFF;
+  border: 1px solid #DCDFE6;
+  text-align: center;
+}
+.custom-table tr td{
+   background: #f5f5f5;
+   color: #606266;
+   border: 1px solid #DCDFE6;
+  text-align: center;
+ }
 /***自定义radio组件颜色***/
 /*.el-radio__input.is-checked + .el-radio__label {
   color: #fd7624 !important;

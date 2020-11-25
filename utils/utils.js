@@ -503,6 +503,11 @@ export function weekNoText(val){
   return gradeList[parseInt(val)-1];
 }
 
+export function weekNoText2(val){
+  let gradeList = ['周一','周二','周三','周四','周五','周六','周日'];
+  return gradeList[parseInt(val)-1];
+}
+
 export function auditStatusText(val){
   let statusList = {
     "0": "待审批",
@@ -525,4 +530,27 @@ export function auditStatusColor(val){
     "5": "color-warning",
   };
   return statusList[val];
+}
+
+export function getWeekTotalSelect(){
+  let arr = [];
+  for (let i = 0; i < 52; i++){
+    arr.push({
+      label: i+1,
+      value: i+1
+    });
+  }
+  return arr;
+}
+
+
+export function setSelectOptions(val){
+  let arr = [];
+  for (let i = 0; i < val; i++){
+    arr.push({
+      label: i+1,
+      value: i+1
+    });
+  }
+  return arr;
 }

@@ -12,6 +12,7 @@ const dataCollegeList= [];
 const dataSchoolBuildList = [];
 const dataDormBuildList = [];
 const dataDeptList = [];
+const currentSeciton = 20;
 const currentYear = "";
 const currentMonth = "";
 const currentDay = "";
@@ -61,5 +62,6 @@ export default {
   headImage,
   userPhone,
   auditCount,
-  loginUserId
+  loginUserId,
+  currentSeciton
 }

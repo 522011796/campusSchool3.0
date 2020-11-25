@@ -11,7 +11,7 @@ const startLoading = () => {
       spinner: 'el-icon-loading',
       background: 'rgba(221, 221, 221, 0.3)',
       customClass: 'custom-g-loading',
-      target: document.querySelector('.moon-right-menu,.drawer-item')//设置加载动画区域
+      target: document.querySelector('.moon-right-menu')//设置加载动画区域
     });
   }
 };
