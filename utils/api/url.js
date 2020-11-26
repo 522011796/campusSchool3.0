@@ -59,4 +59,9 @@ export const common = {
   college_delete: '/proxy/edu/edu/college/delete',//删除学院
   college_upate: '/proxy/edu/edu/college/edit',//编辑学院
   college_add: '/proxy/edu/edu/college/add',//编辑学院
+
+  major_list: '/proxy/school/hierarchical/get-major-list-by-college-id',//专业列表
+  major_add: '/proxy/edu/edu/major/add',//添加专业
+  major_edit: '/proxy/edu/edu/major/edit',//编辑专业
+  major_delete: '/proxy/edu/edu/major/delete',//删除专业
 };

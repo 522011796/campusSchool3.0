@@ -142,8 +142,83 @@ export function setDormBuildChildren(tree, type){//迭代方法--宿舍楼
   }
 }
 
-export function setCollegeChildren(tree, obj, param){//迭代方法-学院
+export function setCollegeChildren(tree, type){//迭代方法-学院
   let _self = this;
+  let arr = [];
+  if (tree && tree.length > 0){
+    for (let i = 0; i < tree.length; i++){
+      if (type == 1 || type == 2 || type == 3 || type == 4){
+        arr.push({
+          value: tree[i].id,
+          id: tree[i].id,
+          label: tree[i].name,
+        });
+      }
+
+      if (type == 2 || type == 3 || type == 4){
+        if (tree[i].children && tree[i].children.length > 0){
+          let childList = tree[i].children;
+          arr[i]['children'] = [];
+          for (let j = 0; j < childList.length; j++){
+            arr[i]['children'].push({
+              value: childList[j].id,
+              id: childList[j].id,
+              label: childList[j].name,
+              college_id: childList[j].college_id,
+              major_no: childList[j].major_no,
+              pId: childList[j].pId,
+              unit: childList[j].unit,
+            });
+
+            if (type == 3 || type ==4){
+              if (childList[j].children && childList[j].children.length > 0){
+                let childRoomList = childList[j].children;
+                arr[i]['children'][j]['children'] = [];
+                for (let z = 0; z < childRoomList.length; z++){
+                  arr[i]['children'][j]['children'].push({
+                    value: childRoomList[z].id,
+                    id: childRoomList[z].id,
+                    label: childRoomList[z].name,
+                    grade: childRoomList[z].grade,
+                    pId: childRoomList[z].sch_id,
+                    start_time: childRoomList[z].start_time,
+                    end_time: childRoomList[z].end_time,
+                    unit: childRoomList[z].unit
+                  });
+
+                  if (type == 4){
+                    if (childRoomList[z].children && childRoomList[z].children.length > 0) {
+                      let childClassList = childRoomList[z].children;
+                      arr[i]['children'][j]['children'][z]['children'] = [];
+                      for (let ll = 0; ll < childClassList.length; ll++) {
+                        arr[i]['children'][j]['children'][z]['children'].push({
+                          value: childClassList[ll].id,
+                          id: childClassList[ll].id,
+                          label: childClassList[ll].name,
+                          master_teacher: childClassList[ll].master_teacher,
+                          pId: childClassList[ll].pId,
+                          class_no: childClassList[ll].class_no,
+                          major_id: childClassList[ll].major_id,
+                          college_id: childClassList[ll].college_id,
+                          classroom_id: childClassList[ll].classroom_id,
+                          building_id: childClassList[ll].building_id,
+                          unit: childClassList[ll].unit
+                        });
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    return arr;
+  }
+
+  /*let _self = this;
+  let arr = [];
   if (tree && tree.length > 0){
     tree.map(function (item,index) {
       obj.push({
@@ -187,13 +262,15 @@ export function setCollegeChildren(tree, obj, param){//迭代方法-学院
         obj[index]['unit'] = item.unit;
       }
 
-      if(item[param] != undefined && item[param].length > 0){
-        obj[index][param] = [];
-        setCollegeChildren(item.children,obj[index][param],param);
+      if (type == 2 || type == 3 || type == 4){
+        if(item[param] != undefined && item[param].length > 0){
+          obj[index][param] = [];
+          setCollegeChildren(item.children,obj[index][param],param, type);
+        }
       }
     });
     return obj;
-  }
+  }*/
 }
 
 export function MessageError(text = '失败',) {

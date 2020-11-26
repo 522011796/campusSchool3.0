@@ -46,7 +46,12 @@ export default {
         'height': ''
       },
       divHeight: {
-        'height': '',
+        'max-height': '',
+        'overflow-y': 'auto',
+        'overflow-x': 'hidden'
+      },
+      divHeight2: {
+        'max-height': '',
         'overflow-y': 'auto',
         'overflow-x': 'hidden'
       },
@@ -71,7 +76,8 @@ export default {
       if (process.browser) {
         this.tableHeight.height = window.innerHeight - 248 + 'px';
         this.tableMiddleHeight.height = window.innerHeight - 335 + 'px';
-        this.divHeight.height = window.innerHeight - 205 + 'px';
+        this.divHeight["max-height"] = window.innerHeight - 205 + 'px';
+        this.divHeight2["max-height"] = window.innerHeight - 235 + 'px';
         this.drawHeight.height = window.innerHeight - 80 + 'px';
       }
     },
@@ -147,11 +153,10 @@ export default {
      * 主要用于树形菜单，下来菜单等
      * @returns {Promise<void>}
      */
-    async getCollegeInfo() {
+    async getCollegeInfo(type = 1) {
       await this.$axios.get(common.hierarchical_college).then(res => {
-        let groupArr = [];
         if (res.data.data){
-          this.dataCollege = setCollegeChildren(res.data.data.tree, groupArr, 'children');
+          this.dataCollege = setCollegeChildren(res.data.data.tree, type);
         }
       });
     },

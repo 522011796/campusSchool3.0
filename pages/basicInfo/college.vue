@@ -437,7 +437,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .container {
     padding: 10px 15px;
   }
