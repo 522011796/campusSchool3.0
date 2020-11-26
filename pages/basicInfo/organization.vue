@@ -26,18 +26,22 @@
           style="width: 100%"
           @cell-click="cellClick">
           <el-table-column
+            align="center"
             prop="department_name"
             :label="$t('名称')">
           </el-table-column>
           <el-table-column
+            align="center"
             prop="dept_short_name"
             :label="$t('简称')">
           </el-table-column>
           <el-table-column
+            align="center"
             prop="department_no"
             :label="$t('编号')">
           </el-table-column>
           <el-table-column
+            align="center"
             fixed="right"
             label="操作"
             width="120">
@@ -239,7 +243,6 @@ export default {
       this.drawerVisible = false;
     },
     okDrawDialog(event){
-      console.log(222,this.drawerVisible);
       this.drawerLoading = true;
       setTimeout(() => {
         this.$message({

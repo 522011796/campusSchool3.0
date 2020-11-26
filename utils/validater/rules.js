@@ -8,6 +8,10 @@ let emailReg = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4
 let s1_20Reg = /^[^0-9]{1,20}$/;
 //1-10位整数
 let n1_10Reg = /^([1-9]{1,10})$/;
+//1-20位字母、数字、中文
+let all1_20Reg = /^[\u4e00-\u9fa5a-zA-Z0-9]{1,20}$/;
+//1-10位字母、数字
+let sn1_10Reg = /^[a-zA-Z0-9]{1,10}$/;
 
 let FormValidate = (function () {
   function FormValidate() {
@@ -39,6 +43,22 @@ let FormValidate = (function () {
       validaten1_10Reg (rule, value, callback) {
         if (value && !n1_10Reg.test(value)) {
           callback(new Error('请输入1-10位正整数'))
+        } else {
+          callback()
+        }
+      },
+      // 1-10位字母、数字
+      validatesn1_10Reg (rule, value, callback) {
+        if (value && !sn1_10Reg.test(value)) {
+          callback(new Error('请输入1-10位数字、字母'))
+        } else {
+          callback()
+        }
+      },
+      // 1-20位字母、数字、中文
+      validatenall1_20Reg (rule, value, callback) {
+        if (value && !all1_20Reg.test(value)) {
+          callback(new Error('请输入1-20位中文、数字、字母'))
         } else {
           callback()
         }

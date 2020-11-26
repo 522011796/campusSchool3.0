@@ -24,10 +24,12 @@
           @cell-click="cellClick"
           :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
           <el-table-column
+            align="center"
             prop="name"
             :label="$t('学年/学期')">
           </el-table-column>
           <el-table-column
+            align="center"
             :label="$t('开始时间')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
@@ -39,6 +41,7 @@
             </template>
           </el-table-column>
           <el-table-column
+            align="center"
             :label="$t('结束时间')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
@@ -50,6 +53,7 @@
             </template>
           </el-table-column>
           <el-table-column
+            align="center"
             fixed="right"
             label="状态">
             <template slot-scope="scope">
@@ -65,6 +69,7 @@
             </template>
           </el-table-column>
           <el-table-column
+            align="center"
             fixed="right"
             label="操作"
             width="120">
@@ -357,7 +362,6 @@
         };
         this.$axios.get(common.year_list, {params: params}).then(res => {
           if (res.data.data){
-            console.log(res);
             for (let i = 0; i < res.data.data.list.length; i++){
               res.data.data.list[i]['hasChildren'] = true;
             }
@@ -417,7 +421,6 @@
           num: 10000
         };
         this.$axios.get(common.get_term, {params: params}).then(res => {
-          console.log(row);
           if (!row.current && JSON.stringify(res.data.data) == "{}"){
             MessageWarning(this.$t("没有教学设置"));
             return;

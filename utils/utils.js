@@ -554,3 +554,26 @@ export function setSelectOptions(val){
   }
   return arr;
 }
+
+export function inArray(search,array,tag){
+  for(var i in array){
+    if (tag){
+      if(array[i][tag] == search[tag]){
+        return i;
+      }
+    }else {
+      if(array[i] == search){
+        return i;
+      }
+    }
+  }
+  return -1;
+}
+
+export function paddingChecked(src,des,tag,desTag){
+  for (let j = 0; j < src.length; j++){
+    if (src[j] == des[tag]){
+      des[desTag] = true;
+    }
+  }
+}
