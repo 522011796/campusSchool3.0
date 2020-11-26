@@ -953,6 +953,8 @@
             sub: itemSub.key
           }
         });
+        this.popMenuCollapse = false;
+        this.drawerMenu = false;
       },
       toggleMenu(event, item){
         item.toggle = !item.toggle;
