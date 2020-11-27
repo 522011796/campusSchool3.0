@@ -9,7 +9,7 @@ export default {
         ],
         className: [
           { required: true, message: this.$t("请输入班级名称"), trigger: 'blur' },
-          { validator: rules.FormValidate.Form().validatenall1_20Reg, trigger: 'blur' }
+          { validator: rules.FormValidate.Form().validatenallOther1_20Reg, trigger: 'blur' }
         ],
         createTime: [
           { required: true, message: this.$t("请选择时间"), trigger: 'blur' }

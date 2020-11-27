@@ -12,6 +12,8 @@ let n1_10Reg = /^([1-9]{1,10})$/;
 let all1_20Reg = /^[\u4e00-\u9fa5a-zA-Z0-9]{1,20}$/;
 //1-10位字母、数字
 let sn1_10Reg = /^[a-zA-Z0-9]{1,10}$/;
+//1-20位字母、数字、中文及特殊字符
+let allOther1_20Reg = /^[\u4e00-\u9fa5a-zA-Z0-9!@#$%^&*,()（）\.]{1,20}$/;
 
 let FormValidate = (function () {
   function FormValidate() {
@@ -59,6 +61,14 @@ let FormValidate = (function () {
       validatenall1_20Reg (rule, value, callback) {
         if (value && !all1_20Reg.test(value)) {
           callback(new Error('请输入1-20位中文、数字、字母'))
+        } else {
+          callback()
+        }
+      },
+      // 1-20位字母、数字、中文、特殊字符
+      validatenallOther1_20Reg (rule, value, callback) {
+        if (value && !allOther1_20Reg.test(value)) {
+          callback(new Error('请输入1-20位字符'))
         } else {
           callback()
         }
