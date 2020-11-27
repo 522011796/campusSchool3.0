@@ -8,6 +8,9 @@
           <el-col :span="12">
             <el-button size="small" type="primary"  icon="el-icon-plus" @click="addCollege($event)">{{$t("添加学院")}}</el-button>
           </el-col>
+          <el-col :span="12" class="text-right">
+            <my-input-button size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('学院名称')" @click="search"></my-input-button>
+          </el-col>
         </el-row>
       </div>
       <div slot="content">
@@ -167,7 +170,7 @@
 import mixins from "../../utils/mixins";
 import {common} from "../../utils/api/url";
 import {MessageError, MessageSuccess} from "../../utils/utils";
-import MyInputButton from "../../.nuxt/components";
+import MyInputButton from "../../components/search/MyInputButton";
 import DialogNormal from "../../components/utils/dialog/DialogNormal";
 import MyNormalDialog from "../../components/utils/dialog/MyNormalDialog";
 import collegeValidater from "../../utils/validater/collegeValidater";
@@ -207,7 +210,10 @@ export default {
   },
   methods: {
     init(){
-      this.$axios(common.college_list).then(res => {
+      let params = {
+        collegeName: this.form.searchKey
+      };
+      this.$axios(common.college_list, {params: params}).then(res => {
         if (res.data.data){
           this.tableData = res.data.data;
         }
@@ -432,6 +438,10 @@ export default {
         }
         this.dialogLoading = false;
       });
+    },
+    search(data){
+      this.form.searchKey = data.input;
+      this.init();
     }
   }
 }

@@ -64,4 +64,9 @@ export const common = {
   major_add: '/proxy/edu/edu/major/add',//添加专业
   major_edit: '/proxy/edu/edu/major/edit',//编辑专业
   major_delete: '/proxy/edu/edu/major/delete',//删除专业
+
+  class_list: '/proxy/edu/edu/class/page',//班级列表
+  class_add: '/proxy/edu/edu/class/add',//添加班级
+  class_edit: '/proxy/edu/edu/class/edit',//编辑班级
+  class_delete: '/proxy/edu/edu/class/delete',//删除班级
 };

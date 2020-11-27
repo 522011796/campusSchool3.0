@@ -33,7 +33,7 @@
         <div>
           <div class="bg-white border-bottom-1 padding-lr-5 padding-tb-5" :style="divHeight">
             <el-row :gutter="16">
-              <el-col :span="6" v-for="n in 100" class="margin-bottom-20">
+              <el-col :span="6" v-for="n in 100" :key="n" class="margin-bottom-20">
                 <el-card :body-style="{padding: '10px 10px'}" style="position: relative">
                   <span class="leave-tag bg-success">
                     {{$t("已通过")}}

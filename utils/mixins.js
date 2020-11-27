@@ -205,6 +205,16 @@ export default {
           this.dataDept = setDeptChildren(res.data.data[0].child_list, arr, 'child_list', 'children');
         }
       });
+    },
+    /**
+     * 重置集联下拉，否则会出现回显问题
+     * 用于自定义集联下拉，非自定义不能使用
+     */
+    resetCasadeSelector(refTag) {
+      if (this.$refs[refTag] && this.$refs[refTag].$refs.cascaderSelector) {
+        this.$refs[refTag].$refs.cascaderSelector.$refs.panel.activePath = [];
+        this.$refs[refTag].$refs.cascaderSelector.$refs.panel.calculateCheckedNodePaths();
+      }
     }
   }
 }

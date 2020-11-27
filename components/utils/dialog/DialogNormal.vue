@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-dialog
+      :top="top"
       custom-class="custom-normal-dialog"
       :visible.sync="visible"
       width="550px"
@@ -48,6 +49,10 @@
 export default {
   name: 'DialogNormal',
   props: {
+    top: {
+      default: '15vh',
+      type: String
+    },
     title: {
       default: '信息',
       type: String

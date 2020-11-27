@@ -2,9 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/components/utils/select/MyCascader.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/validater/classValidater.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layouts/default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/default.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/dialog/DialogNormal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/dialog/DialogNormal.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/class.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/class.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/college.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/college.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/major.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/major.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/yearAndTerm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/yearAndTerm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/leave/leave.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/leave/leave.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,10 +62,10 @@
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/utils/validater" />
+      <recent name="$PROJECT_DIR$/components/utils/select" />
       <recent name="$PROJECT_DIR$/pages" />
       <recent name="$PROJECT_DIR$/plugins" />
       <recent name="$PROJECT_DIR$/components/charts" />
-      <recent name="$PROJECT_DIR$/layouts" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -92,14 +104,7 @@
       <workItem from="1604712904285" duration="151488000" />
       <workItem from="1605662854660" duration="15034000" />
       <workItem from="1605696722145" duration="117000" />
-      <workItem from="1605711431800" duration="146815000" />
-    </task>
-    <task id="LOCAL-00018" summary="init">
-      <created>1602774945004</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1602774945009</updated>
+      <workItem from="1605711431800" duration="171938000" />
     </task>
     <task id="LOCAL-00019" summary="init">
       <created>1602843952599</created>
@@ -437,7 +442,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606400985975</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="1、修改框架和组件样式、细节bug等&#10;2、专业接口对接完成">
+      <created>1606401897697</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1606401897698</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -460,11 +472,11 @@
     </state>
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.805@0.23.1440.805" timestamp="1602828707649" />
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1605755081482" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1606400984015">
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1606401896531">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1606400984015" />
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1606401896531" />
     <state x="100" y="123" width="1240" height="605" key="DiffContextDialog" timestamp="1605058122839">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
@@ -497,21 +509,21 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="221" y="64" key="SettingsEditor/0.23.1440.805@0.23.1440.805" timestamp="1602238031085" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1606400988293">
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1606401924721">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1606400988293" />
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1606401924721" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606369548530">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="100" y="123" width="1240" height="605" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1440.805@0.23.1440.805" timestamp="1605680124696" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1440.798@0.25.1440.798" timestamp="1606369548530" />
-    <state x="378" y="183" width="837" height="486" key="find.popup" timestamp="1606380892225">
+    <state x="378" y="183" width="837" height="486" key="find.popup" timestamp="1606465001946">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="378" y="182" width="837" height="486" key="find.popup/0.23.1440.805@0.23.1440.805" timestamp="1605680757485" />
-    <state x="378" y="183" width="837" height="486" key="find.popup/0.25.1440.798@0.25.1440.798" timestamp="1606380892225" />
+    <state x="378" y="183" width="837" height="486" key="find.popup/0.25.1440.798@0.25.1440.798" timestamp="1606465001946" />
     <state x="385" y="152" width="670" height="676" key="search.everywhere.popup" timestamp="1604935260573">
       <screen x="0" y="23" width="1440" height="805" />
     </state>

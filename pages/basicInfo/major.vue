@@ -15,9 +15,9 @@
             <el-col :span="12">
               <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo($event)">{{$t("添加专业")}}</el-button>
             </el-col>
-            <!--<el-col :span="12" class="text-right">
-              <MyInputButton size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('编号')" @click="search"></MyInputButton>
-            </el-col>-->
+            <el-col :span="12" class="text-right">
+              <my-input-button size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('专业名称')" @click="search"></my-input-button>
+            </el-col>
           </el-row>
         </div>
 
@@ -103,13 +103,14 @@
 import MyElTree from "../../components/tree/MyElTree";
 import DialogNormal from "../../components/utils/dialog/DialogNormal";
 import MySelect from "../../components/MySelect";
+import MyInputButton from "../../components/search/MyInputButton";
 import mixins from "../../utils/mixins";
 import {common} from "../../utils/api/url";
 import {MessageError, MessageSuccess} from "../../utils/utils";
 import majorValidater from "../../utils/validater/majorValidater";
 export default {
   mixins: [mixins, majorValidater],
-  components: {MyElTree,DialogNormal,MySelect},
+  components: {MyElTree,DialogNormal,MySelect,MyInputButton},
   data(){
     return {
       tableData: [],
@@ -135,10 +136,10 @@ export default {
   methods: {
     init(data){
       let params = {
-        collegeId: data ? data.id : ''
+        collegeId: data ? data.id : '',
+        majorName: this.form.searchKey
       };
       this.$axios(common.major_list, {params: params}).then(res => {
-        console.log(res);
         if (res.data.data){
           this.tableData = res.data.data;
         }
@@ -154,7 +155,6 @@ export default {
               label: res.data.data[i].college_name
             });
           }
-          console.log(this.collegeList);
         }
       });
     },
@@ -181,8 +181,9 @@ export default {
       this.subTitle = row.major_name;
       this.visibleConfim = true;
     },
-    search(){
-
+    search(data){
+      this.form.searchKey = data.input;
+      this.init();
     },
     closeDialog(event){
       this.form = {
@@ -211,7 +212,6 @@ export default {
             majorNo: this.form.majorNo,
             majorName: this.form.majorName
           };
-          console.log(this.form.id);
           if (this.form.id != ""){
             url = common.major_edit;
             params['id'] = this.form.id;

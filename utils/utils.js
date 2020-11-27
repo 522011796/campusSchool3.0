@@ -60,6 +60,7 @@ export function setSchoolBuildChildren(tree, type){//迭代方法--教学楼
       if (type == 1 || type == 2 || type == 3){
         arr.push({
           label: tree[i].building_name,
+          value: tree[i].id,
           id: tree[i].id,
           unit: tree[i].unit,
         });
@@ -72,6 +73,7 @@ export function setSchoolBuildChildren(tree, type){//迭代方法--教学楼
           for (let j = 0; j < childList.length; j++){
             arr[i]['children'].push({
               label: childList[j].floor_num + "楼",
+              value: childList[j].floor_num,
               id: childList[j].floor_num,
               unit: childList[j].unit,
             });
@@ -83,6 +85,7 @@ export function setSchoolBuildChildren(tree, type){//迭代方法--教学楼
                 for (let z = 0; z < childRoomList.length; z++){
                   arr[i]['children'][j]['children'].push({
                     label: childRoomList[z].classroom_no,
+                    value: childRoomList[z].id,
                     id: childRoomList[z].id,
                     unit: childRoomList[z].unit,
                   });
@@ -105,6 +108,7 @@ export function setDormBuildChildren(tree, type){//迭代方法--宿舍楼
       if (type == 1 || type == 2 || type == 3){
         arr.push({
           label: tree[i].building_name,
+          value: tree[i].id,
           id: tree[i].id,
           unit: tree[i].unit,
         });
@@ -117,6 +121,7 @@ export function setDormBuildChildren(tree, type){//迭代方法--宿舍楼
           for (let j = 0; j < childList.length; j++){
             arr[i]['children'].push({
               label: childList[j].floor_num + "楼",
+              value: childList[j].floor_num,
               id: childList[j].floor_num,
               unit: childList[j].unit,
             });
@@ -128,6 +133,7 @@ export function setDormBuildChildren(tree, type){//迭代方法--宿舍楼
                 for (let z = 0; z < childRoomList.length; z++){
                   arr[i]['children'][j]['children'].push({
                     label: childRoomList[z].dormitory_no,
+                    value: childRoomList[z].id,
                     id: childRoomList[z].id,
                     unit: childRoomList[z].unit,
                   });
@@ -152,6 +158,7 @@ export function setCollegeChildren(tree, type){//迭代方法-学院
           value: tree[i].id,
           id: tree[i].id,
           label: tree[i].name,
+          unit: tree[i].unit
         });
       }
 
@@ -183,6 +190,7 @@ export function setCollegeChildren(tree, type){//迭代方法-学院
                     pId: childRoomList[z].sch_id,
                     start_time: childRoomList[z].start_time,
                     end_time: childRoomList[z].end_time,
+                    major_id: childRoomList[z].major_id,
                     unit: childRoomList[z].unit
                   });
 
