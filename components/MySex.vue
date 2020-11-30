@@ -1,14 +1,14 @@
 <template>
   <span v-bind="selectModel">
     <template v-if="tag == 'text'">
-      <label v-if="sex == 0">{{$t('男')}}</label>
-      <label v-if="sex == 1">{{$t('女')}}</label>
-      <label v-if="sex == 2">{{$t('未知')}}</label>
+      <label v-if="sex == 1">{{$t('男')}}</label>
+      <label v-if="sex == 2">{{$t('女')}}</label>
+      <label v-if="sex == 3">{{$t('未知')}}</label>
     </template>
     <template v-if="tag == 'tag'">
-      <el-tag v-if="sex == 0" :size="size" :type="type" :effect="effect">{{$t('男')}}</el-tag>
-      <el-tag v-if="sex == 1" :size="size" :type="type" :effect="effect">{{$t('女')}}</el-tag>
-      <el-tag v-if="sex == 2" :size="size" :type="type" :effect="effect">{{$t('未知')}}</el-tag>
+      <el-tag v-if="sex == 1" :size="size" :type="type" :effect="effect">{{$t('男')}}</el-tag>
+      <el-tag v-if="sex == 2" :size="size" :type="type" :effect="effect">{{$t('女')}}</el-tag>
+      <el-tag v-if="sex == 3" :size="size" :type="type" :effect="effect">{{$t('未知')}}</el-tag>
     </template>
   </span>
 </template>

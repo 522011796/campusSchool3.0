@@ -38,9 +38,16 @@
           </el-table-column>
           <el-table-column
             align="center"
-            :label="$t('房屋产权')">
+            :label="$t('负责人')">
             <template slot-scope="scope">
-              <span>{{insterestInfo(scope.row.type)}}</span>
+              <span>{{scope.row.person ? scope.row.person : '--'}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            :label="$t('联系电话')">
+            <template slot-scope="scope">
+              <span>{{scope.row.phone ? scope.row.phone : '--'}}</span>
             </template>
           </el-table-column>
           <el-table-column
@@ -98,10 +105,13 @@
 <script>
 import {common} from "../../utils/api/url";
 import mixins from "../../utils/mixins";
+import MyNormalDialog from "../../components/utils/dialog/MyNormalDialog";
+import DialogNormal from "../../components/utils/dialog/DialogNormal";
 import {insterestText, MessageError, MessageSuccess} from "../../utils/utils";
 import buildValidater from "../../utils/validater/buildValidater";
 export default {
   mixins: [mixins, buildValidater],
+  components: {MyNormalDialog,DialogNormal},
   data(){
     return {
       tableData: [],

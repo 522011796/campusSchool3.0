@@ -125,7 +125,10 @@
 
     <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerVisible" :loading="drawerLoading" size="550px" :title="$t('管理员设置')" @right-close="cancelDrawDialog">
       <div slot="content">
-        <table class="custom-table">
+        <div>
+          <my-input-button ref="teacher" size="small" plain width-class="width: 120px" type="success" :clearable="true" :placeholder="$t('老师名称')" @click="searchTeacher"></my-input-button>
+        </div>
+        <table class="custom-table margin-top-10">
           <tr>
             <th width="15%">{{$t("系主任")}}</th>
             <th width="15%">{{$t("系副主任")}}</th>
@@ -133,7 +136,7 @@
             <th width="15%">{{$t("系部主任")}}</th>
             <th width="40%">{{$t("姓名")}}</th>
           </tr>
-          <tbody>
+          <tbody v-loading="loadingList" :element-loading-text="$t('加载中...')" element-loading-spinner="el-icon-loading">
           <tr v-for="(item, index) in tableTeacherData" :key="item.id">
             <td>
               <my-check :sel-value="item._director" @change="handleBoxChange($event, item, 1)"></my-check>
@@ -191,8 +194,10 @@ export default {
       visibleConfim: false,
       drawerVisible: false,
       drawerLoading: false,
+      loadingList: false,
       subTitle: '',
       errorTips: '',
+      searchTeacherName: '',
       form: {
         id: '',
         no: '',
@@ -224,6 +229,8 @@ export default {
         page: 1,
         num: 9999
       };
+      params['realName'] = this.searchTeacherName;
+      this.loadingList = true;
       this.$axios(common.teacher_list, {params: params}).then(res => {
         if (res.data.data){
           for (let i = 0; i < res.data.data.page.list.length; i++){
@@ -238,6 +245,7 @@ export default {
             paddingChecked(this.form.secretaryId, res.data.data.page.list[i], 'user_id', '_secretary');
           }
           this.tableTeacherData = res.data.data.page.list;
+          this.loadingList = false;
         }
       });
     },
@@ -373,6 +381,9 @@ export default {
         secretaryId: [],
         searchKey: []
       };
+      if (this.$refs.teacher){
+        this.$refs.teacher.inputValue = "";
+      }
       this.drawerVisible = event;
     },
     handleBoxChange(event, item, type){
@@ -428,6 +439,7 @@ export default {
       };
       url = common.college_upate;
       params = this.$qs.stringify(params);
+      this.drawerLoading = true;
       this.$axios.post(url, params).then(res => {
         if (res.data.code == 200){
           this.drawerVisible = false;
@@ -436,12 +448,16 @@ export default {
         }else {
           MessageError(res.data.desc);
         }
-        this.dialogLoading = false;
+        this.drawerLoading = false;
       });
     },
     search(data){
       this.form.searchKey = data.input;
       this.init();
+    },
+    searchTeacher(data){
+      this.searchTeacherName = data.input;
+      this.initTeacher();
     }
   }
 }
