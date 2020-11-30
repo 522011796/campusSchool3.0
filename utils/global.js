@@ -32,16 +32,38 @@ const auditCount = 0;
 const loginUserId = "";
 const buildInterest = [
   {
-    lable: '独立产权',
+    label: '独立产权',
     value: "1"
   },
   {
-    lable: '联合产权',
+    label: '联合产权',
     value: "2"
   },
   {
-    lable: '租用',
+    label: '租用',
     value: "3"
+  }
+];
+const classroomUsed = [
+  {
+    label: '普通教室',
+    value: "1"
+  },
+  {
+    label: '计算机房',
+    value: "2"
+  },
+  {
+    label: '实验室',
+    value: "3"
+  },
+  {
+    label: '实训室',
+    value: "4"
+  },
+  {
+    label: '阶梯教室',
+    value: "5"
   }
 ];
 
@@ -78,5 +100,6 @@ export default {
   auditCount,
   loginUserId,
   currentSeciton,
-  buildInterest
+  buildInterest,
+  classroomUsed
 }

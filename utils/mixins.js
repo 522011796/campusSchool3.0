@@ -40,6 +40,7 @@ export default {
       auditCount: global.auditCount,
       loginUserId: global.loginUserId,
       buildInterest: global.buildInterest,
+      classroomUsed: global.classroomUsed,
       tableHeight: {
         'height': ''
       },

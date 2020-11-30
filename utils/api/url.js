@@ -74,4 +74,10 @@ export const common = {
   build_add: '/proxy/building/building/add',//添加建筑楼
   build_update: '/proxy/building/building/update',//编辑建筑楼
   build_delete: '/proxy/building/building/delete',//删除建筑楼
+
+  classroom_page: '/proxy/building/classroom/page',//教室列表--分页
+  classroom_add: '/proxy/building/classroom/add',//教室添加
+  classroom_edit: '/proxy/building/classroom/update',//教室编辑
+  classroom_delete: '/proxy/building/classroom/delete',//教室删除
+  classroom_list: '/proxy/school/hierarchical/get-room-list-by-floor-num',//教室列表--树形无分页
 };

@@ -75,6 +75,7 @@ export function setSchoolBuildChildren(tree, type){//迭代方法--教学楼
               label: childList[j].floor_num + "楼",
               value: childList[j].floor_num,
               id: childList[j].floor_num,
+              buildId: childList[j].build_id,
               unit: childList[j].unit,
             });
 
@@ -87,6 +88,8 @@ export function setSchoolBuildChildren(tree, type){//迭代方法--教学楼
                     label: childRoomList[z].classroom_no,
                     value: childRoomList[z].id,
                     id: childRoomList[z].id,
+                    buildId: childRoomList[z].build_id,
+                    floorNum: childRoomList[z].floor_num,
                     unit: childRoomList[z].unit,
                   });
                 }

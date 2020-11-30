@@ -213,7 +213,6 @@
         this.loadingList = true;
         this.$axios(common.teacher_list, {params: params}).then(res => {
           if (res.data.data){
-            console.log(this.form.teacherId);
             for (let i = 0; i < res.data.data.page.list.length; i++){
               res.data.data.page.list[i]['_teacherId'] = false;
               paddingChecked(this.form.teacherId, res.data.data.page.list[i], 'user_id', '_teacherId');
