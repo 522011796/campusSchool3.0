@@ -228,7 +228,7 @@ export default {
       let url = "";
       let params = {
         buildingId: this.form.id
-      }
+      };
       url = common.build_delete;
       params = this.$qs.stringify(params);
       this.$axios.post(url, params).then(res => {
