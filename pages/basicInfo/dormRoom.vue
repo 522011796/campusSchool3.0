@@ -15,7 +15,7 @@
             <el-col :span="12">
               <el-col :span="12">
                 <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo($event)">{{$t("添加宿舍")}}</el-button>
-                <!--<el-button size="small" type="warning" plain  icon="el-icon-notebook-2" @click="uploadClassRoom($event)">{{$t("导入教室")}}</el-button>-->
+                <el-button size="small" type="warning" plain  icon="el-icon-notebook-2" @click="uploadClassRoom($event)">{{$t("导入宿舍")}}</el-button>
               </el-col>
             </el-col>
           </el-row>
@@ -110,7 +110,7 @@
       </div>
     </dialog-normal>
 
-    <drawer-right @changeDrawer="closeDrawerDialog" :visible="drawerVisible" :loading="drawerLoading" :hide-footer="true" size="400px" :title="$t('导入教室')" action="https://jsonplaceholder.typicode.com/posts/" download-file="xxx" @right-close="cancelDrawDialog" @ok="okDrawDialog" @cancel="closeDrawDialog">
+    <drawer-right @changeDrawer="closeDrawerDialog" :visible="drawerVisible" :loading="drawerLoading" :hide-footer="true" size="400px" :title="$t('导入宿舍')" action="https://jsonplaceholder.typicode.com/posts/" download-file="xxx" @right-close="cancelDrawDialog" @ok="okDrawDialog" @cancel="closeDrawDialog">
 
     </drawer-right>
 
@@ -359,6 +359,9 @@ export default {
     handleCascaderChange(data){
       this.form.buildName = this.$refs.SelectorBuild.$refs.cascaderSelector.getCheckedNodes()[0].pathLabels[0];
       this.form.buildData = data;
+    },
+    uploadClassRoom(row){
+      this.drawerVisible = true;
     }
   }
 }
