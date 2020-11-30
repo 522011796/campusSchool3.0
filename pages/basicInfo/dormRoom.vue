@@ -178,7 +178,6 @@ export default {
       };
       this.$axios.get(common.dormroom_page, {params: params}).then(res => {
         if (res.data.data){
-          console.log(res.data.data);
           this.tableData = res.data.data.list;
           this.total = res.data.data.totalCount;
           this.num = res.data.data.num;
@@ -190,7 +189,6 @@ export default {
       this.modalVisible = true;
     },
     editInfo(row){
-      console.log(row);
       this.form = {
         id: row.id,
         buildName: row.build_name,
@@ -212,7 +210,6 @@ export default {
       this.modalVisible = true;
     },
     deleteInfo(row){
-      console.log(row);
       this.form.id = row.id;
       this.subDetail = row.dormitory_no;
       this.visibleConfim = true;
