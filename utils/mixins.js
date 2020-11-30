@@ -39,6 +39,7 @@ export default {
       userPhone: global.userPhone,
       auditCount: global.auditCount,
       loginUserId: global.loginUserId,
+      buildInterest: global.buildInterest,
       tableHeight: {
         'height': ''
       },

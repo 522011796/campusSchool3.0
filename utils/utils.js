@@ -617,6 +617,15 @@ export function auditStatusColor(val){
   return statusList[val];
 }
 
+export function insterestText(val){
+  let statusList = {
+    "0": "独立产权",
+    "1": "联合产权",
+    "2": "租用"
+  };
+  return statusList[val];
+}
+
 export function getWeekTotalSelect(){
   let arr = [];
   for (let i = 0; i < 52; i++){

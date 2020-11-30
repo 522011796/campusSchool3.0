@@ -30,6 +30,20 @@ const headImage = "";
 const userPhone = "";
 const auditCount = 0;
 const loginUserId = "";
+const buildInterest = [
+  {
+    lable: '独立产权',
+    value: "1"
+  },
+  {
+    lable: '联合产权',
+    value: "2"
+  },
+  {
+    lable: '租用',
+    value: "3"
+  }
+];
 
 export default {
   total,
@@ -63,5 +77,6 @@ export default {
   userPhone,
   auditCount,
   loginUserId,
-  currentSeciton
+  currentSeciton,
+  buildInterest
 }

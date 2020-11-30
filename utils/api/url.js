@@ -69,4 +69,9 @@ export const common = {
   class_add: '/proxy/edu/edu/class/add',//添加班级
   class_edit: '/proxy/edu/edu/class/edit',//编辑班级
   class_delete: '/proxy/edu/edu/class/delete',//删除班级
+
+  build_list: '/proxy/school/hierarchical/get-building-list-by-campus-id-and-type',//建筑楼、宿舍楼列表
+  build_add: '/proxy/building/building/add',//添加建筑楼
+  build_update: '/proxy/building/building/update',//编辑建筑楼
+  build_delete: '/proxy/building/building/delete',//删除建筑楼
 };

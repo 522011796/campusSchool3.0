@@ -22,15 +22,20 @@ let FormValidate = (function () {
   // From表单验证规则  可用于公用的校验部分
   FormValidate.Form = function () {
     return {
-      // 电话号码验证
-      validatePhone (rule, value, callback) {
-        if (!value) {
-          return callback(new Error('请输入手机号码'))
-        }
-        if (!phoneReg.test(value)) {
-          callback(new Error('手机格式不正确'))
+      // 数字验证
+      validateNumber (rule, value, callback) {
+        if (!numberReg.test(value)) {
+          callback(new Error('必须为数字'))
         } else {
           callback()
+        }
+      },
+      // 电话号码验证
+      validatePhone (rule, value, callback) {
+        if (value && value != ""){
+          phoneReg.test(value) ? callback() : callback(new Error('手机格式不正确'))
+        }else {
+          callback();
         }
       },
       // 1-20位中英文或字符名称验证
