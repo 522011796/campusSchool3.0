@@ -80,4 +80,9 @@ export const common = {
   classroom_edit: '/proxy/building/classroom/update',//教室编辑
   classroom_delete: '/proxy/building/classroom/delete',//教室删除
   classroom_list: '/proxy/school/hierarchical/get-room-list-by-floor-num',//教室列表--树形无分页
+
+  dormroom_page: '/proxy/building/dormitory/page',//宿舍列表--分页
+  dormroom_add: '/proxy/building/dormitory/add',//宿舍添加
+  dormroom_update: '/proxy/building/dormitory/update',//宿舍编辑
+  dormroom_delete: '/proxy/building/dormitory/delete',//宿舍删除
 };

@@ -24,10 +24,10 @@ let FormValidate = (function () {
     return {
       // 数字验证
       validateNumber (rule, value, callback) {
-        if (!numberReg.test(value)) {
-          callback(new Error('必须为数字'))
-        } else {
-          callback()
+        if (value && value != ""){
+          numberReg.test(value) ? callback() : callback(new Error('必须为数字'))
+        }else {
+          callback();
         }
       },
       // 电话号码验证

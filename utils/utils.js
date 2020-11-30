@@ -126,6 +126,8 @@ export function setDormBuildChildren(tree, type){//迭代方法--宿舍楼
               label: childList[j].floor_num + "楼",
               value: childList[j].floor_num,
               id: childList[j].floor_num,
+              buildId: childList[j].build_id,
+              floorNum: childList[j].floor_num,
               unit: childList[j].unit,
             });
 
@@ -138,6 +140,8 @@ export function setDormBuildChildren(tree, type){//迭代方法--宿舍楼
                     label: childRoomList[z].dormitory_no,
                     value: childRoomList[z].id,
                     id: childRoomList[z].id,
+                    buildId: childRoomList[z].build_id,
+                    floorNum: childRoomList[z].floor_num,
                     unit: childRoomList[z].unit,
                   });
                 }
@@ -625,6 +629,14 @@ export function insterestText(val){
     "0": "独立产权",
     "1": "联合产权",
     "2": "租用"
+  };
+  return statusList[val];
+}
+
+export function dormTypeText(val){
+  let statusList = {
+    "0": "男生宿舍",
+    "1": "女生宿舍"
   };
   return statusList[val];
 }

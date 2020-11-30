@@ -4,7 +4,7 @@
       <div slot="left">
         <div class="color-muted font-size-12 padding-tb-5 margin-top-10">
           <!--<span class="layout-left-menu-tag"></span>-->
-          <span class="layout-left-menu-title">教室管理</span>
+          <span class="layout-left-menu-title">教室信息</span>
         </div>
         <MyElTree type="3" sub-type="2" @node-click="nodeClick"></MyElTree>
       </div>
@@ -26,7 +26,7 @@
             :data="tableData"
             header-cell-class-name="custom-table-cell-bg"
             size="medium"
-            :max-height="tableHeight.height"
+            :max-height="tableHeight2.height"
             style="width: 100%">
             <el-table-column
               prop="classroom_no"

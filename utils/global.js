@@ -66,6 +66,16 @@ const classroomUsed = [
     value: "5"
   }
 ];
+const dormroomType = [
+  {
+    label: '男生宿舍',
+    value: "0"
+  },
+  {
+    label: '女生宿舍',
+    value: "1"
+  }
+];
 
 export default {
   total,
@@ -101,5 +111,6 @@ export default {
   loginUserId,
   currentSeciton,
   buildInterest,
-  classroomUsed
+  classroomUsed,
+  dormroomType
 }

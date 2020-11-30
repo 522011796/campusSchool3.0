@@ -41,7 +41,11 @@ export default {
       loginUserId: global.loginUserId,
       buildInterest: global.buildInterest,
       classroomUsed: global.classroomUsed,
+      dormroomType: global.dormroomType,
       tableHeight: {
+        'height': ''
+      },
+      tableHeight2: {
         'height': ''
       },
       tableMiddleHeight: {
@@ -77,6 +81,7 @@ export default {
     g_HH(){
       if (process.browser) {
         this.tableHeight.height = window.innerHeight - 248 + 'px';
+        this.tableHeight2.height = window.innerHeight - 225 + 'px';
         this.tableMiddleHeight.height = window.innerHeight - 335 + 'px';
         this.divHeight["max-height"] = window.innerHeight - 205 + 'px';
         this.divHeight2["max-height"] = window.innerHeight - 235 + 'px';

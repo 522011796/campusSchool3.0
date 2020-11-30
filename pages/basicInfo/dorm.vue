@@ -67,6 +67,11 @@
             </template>
           </el-table-column>
         </el-table>
+
+        <div class="layout-right-footer text-right">
+          <!--<my-pagination :total="total" :page-size="num" @currentPage="currentPage" @sizeChange="sizeChange" class="layout-pagination"></my-pagination>-->
+          <span class="margin-right-10">{{$t("共")}} {{tableData.length}} {{$t("条")}}</span>
+        </div>
       </div>
     </layout-tb>
 
