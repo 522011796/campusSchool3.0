@@ -154,9 +154,9 @@ export default {
     },
     result: {
       default: function () {
-        return {};
+        return {} || [];
       },
-      type: Object
+      type: [Object, Array]
     }
   },
   computed: {

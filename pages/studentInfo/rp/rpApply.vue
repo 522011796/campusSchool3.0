@@ -7,7 +7,7 @@
             <!--<span class="layout-left-menu-tag"></span>-->
             <span class="layout-left-menu-title">奖惩申请</span>
           </div>
-          <MyElTree type="1" sub-type="3" @node-click="nodeClick"></MyElTree>
+          <my-el-tree type="1" sub-type="3" @node-click="nodeClick"></my-el-tree>
         </div>
 
         <div slot="right">
@@ -136,9 +136,10 @@
   import MySelect from "../../../components/MySelect";
   import DrawerLayoutRight from "../../../components/utils/dialog/DrawerLayoutRight";
   import MyAuditDetail from "../../../components/utils/auditDetail/MyAuditDetail";
+  import MyElTree from "../../../components/tree/MyElTree";
   export default {
     mixins: [mixins, MySelect, DrawerLayoutRight,MyAuditDetail],
-    components: {},
+    components: {MyElTree},
     data(){
       return {
         dataAudit: {},

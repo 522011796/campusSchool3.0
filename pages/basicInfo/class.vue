@@ -6,7 +6,7 @@
           <!--<span class="layout-left-menu-tag"></span>-->
           <span class="layout-left-menu-title">班级信息</span>
         </div>
-        <MyElTree type="1" sub-type="3" @node-click="nodeClick"></MyElTree>
+        <my-el-tree type="1" sub-type="3" @node-click="nodeClick"></my-el-tree>
       </div>
 
       <div slot="right">
@@ -219,10 +219,11 @@ import MyRadio from "../../components/MyRadio";
 import mixins from "../../utils/mixins";
 import {MessageError, MessageSuccess, paddingChecked} from "../../utils/utils";
 import classValidater from "../../utils/validater/classValidater";
+import MyElTree from "../../components/tree/MyElTree";
 
 export default {
   mixins: [mixins, classValidater],
-  components: {DialogNormal,MyNormalDialog,MyCascader,MyDatePicker,MyInputButton,MyRadio},
+  components: {MyElTree, DialogNormal,MyNormalDialog,MyCascader,MyDatePicker,MyInputButton,MyRadio},
   data(){
     return {
       tableData: [],

@@ -107,12 +107,6 @@
   "LazyMySexSelect": {
     "description": "Auto imported from components/utils/MySexSelect.vue"
   },
-  "TimeoutButton": {
-    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
-  },
-  "LazyTimeoutButton": {
-    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
-  },
   "AuditButton": {
     "description": "Auto imported from components/utils/auditDetail/AuditButton.vue"
   },
@@ -190,6 +184,12 @@
   },
   "LazyMyNormalDialog": {
     "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
+  },
+  "TimeoutButton": {
+    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
+  },
+  "LazyTimeoutButton": {
+    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
   },
   "MyCascader": {
     "description": "Auto imported from components/utils/select/MyCascader.vue"

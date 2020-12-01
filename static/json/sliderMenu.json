@@ -114,13 +114,6 @@
             "id": 402,
             "top": "basicInfo",
             "path": "/basicInfo/student"
-          },
-          {
-            "name": "人员查询",
-            "key": "person",
-            "id": 403,
-            "top": "basicInfo",
-            "path": "/basicInfo/person"
           }
         ]
       },
@@ -294,36 +287,6 @@
         ]
       },
       {
-        "name": "AI授权中心",
-        "icon": "fa fa-support",
-        "toggle": false,
-        "id": 900,
-        "key": "authorize",
-        "list": [
-          {
-            "name": "学生授权管理",
-            "key": "stuAuth",
-            "id": 901,
-            "top": "basicInfo",
-            "path": "/basicInfo/stuAuth"
-          },
-          {
-            "name": "教工授权管理",
-            "key": "terAuth",
-            "id": 902,
-            "top": "basicInfo",
-            "path": "/basicInfo/terAuth"
-          },
-          {
-            "name": "陌生人识别记录",
-            "key": "strangerRecord",
-            "id": 903,
-            "top": "basicInfo",
-            "path": "/basicInfo/strangerRecord"
-          }
-        ]
-      },
-      {
         "name": "权限管理",
         "icon": "fa fa-tachometer",
         "toggle": false,
@@ -440,6 +403,50 @@
             "id": 2105,
             "top": "teachInfo",
             "path": "/teachInfo/teach/courseManage"
+          }
+        ]
+      },
+      {
+        "name": "教工管理",
+        "icon": "fa fa-window-maximize",
+        "toggle": false,
+        "id": 2200,
+        "key": "teach",
+        "list": [
+          {
+            "name": "授权管理",
+            "key": "terEmpower",
+            "id": 2201,
+            "top": "teachInfo",
+            "path": "/teachInfo/teacher/empower"
+          },
+          {
+            "name": "认证管理",
+            "key": "terAuth",
+            "id": 2202,
+            "top": "teachInfo",
+            "path": "/teachInfo/teacher/auth"
+          },
+          {
+            "name": "账号信息",
+            "key": "terAccount",
+            "id": 2203,
+            "top": "teachInfo",
+            "path": "/teachInfo/teacher/account"
+          },
+          {
+            "name": "其他信息",
+            "key": "terOther",
+            "id": 2204,
+            "top": "teachInfo",
+            "path": "/teachInfo/teacher/other"
+          },
+          {
+            "name": "陌生人记录",
+            "key": "terStranger",
+            "id": 2205,
+            "top": "teachInfo",
+            "path": "/teachInfo/teacher/stranger"
           }
         ]
       }
@@ -629,6 +636,13 @@
             "path": "/studentInfo/student/empower"
           },
           {
+            "name": "认证管理",
+            "key": "stuAuth",
+            "id": 3506,
+            "top": "studentInfo",
+            "path": "/studentInfo/student/stuAuth"
+          },
+          {
             "name": "宿舍信息",
             "key": "dorm",
             "id": 3502,
@@ -676,6 +690,13 @@
             "id": 3508,
             "top": "studentInfo",
             "path": "/studentInfo/student/warning"
+          },
+          {
+            "name": "陌生人记录",
+            "key": "stuStarngerRecord",
+            "id": 3509,
+            "top": "studentInfo",
+            "path": "/studentInfo/student/stuStarngerRecord"
           }
         ]
       },

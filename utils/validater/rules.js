@@ -14,6 +14,10 @@ let all1_20Reg = /^[\u4e00-\u9fa5a-zA-Z0-9]{1,20}$/;
 let sn1_10Reg = /^[a-zA-Z0-9]{1,10}$/;
 //1-20位字母、数字、中文及特殊字符
 let allOther1_20Reg = /^[\u4e00-\u9fa5a-zA-Z0-9!@#$%^&*,()（）\.]{1,20}$/;
+//1-30位字母、数字、中文及特殊字符，不能数字、空格、点开头
+let allRealName1_30Reg = /^[\u4e00-\u9fa5a-zA-Z][\u4e00-\u9fa5\.\sa-zA-Z0-9]{0,29}$/;
+//身份证
+let idCard_Reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
 
 let FormValidate = (function () {
   function FormValidate() {
@@ -34,6 +38,22 @@ let FormValidate = (function () {
       validatePhone (rule, value, callback) {
         if (value && value != ""){
           phoneReg.test(value) ? callback() : callback(new Error('手机格式不正确'))
+        }else {
+          callback();
+        }
+      },
+      // 身份证验证
+      validateIdCard (rule, value, callback) {
+        if (value && value != ""){
+          idCard_Reg.test(value) ? callback() : callback(new Error('身份证格式不正确'))
+        }else {
+          callback();
+        }
+      },
+      // 邮箱验证
+      validateEmail (rule, value, callback) {
+        if (value && value != ""){
+          emailReg.test(value) ? callback() : callback(new Error('邮箱格式不正确'))
         }else {
           callback();
         }
@@ -78,6 +98,14 @@ let FormValidate = (function () {
           callback()
         }
       },
+      // 1-30位字母、数字、中文、不能数字、空格、点开头
+      validateRealName1_30Reg (rule, value, callback) {
+        if (value && !allRealName1_30Reg.test(value)) {
+          callback(new Error('中文、数字、字母开头的字符，长度1-30'))
+        } else {
+          callback()
+        }
+      }
     }
   }
 

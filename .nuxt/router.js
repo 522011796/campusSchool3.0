@@ -126,6 +126,8 @@ const _4f9d2c38 = () => interopDefault(import('../pages/studentInfo/student/empo
 const _715f2179 = () => interopDefault(import('../pages/studentInfo/student/form.vue' /* webpackChunkName: "pages/studentInfo/student/form" */))
 const _4cb91ea9 = () => interopDefault(import('../pages/studentInfo/student/report.vue' /* webpackChunkName: "pages/studentInfo/student/report" */))
 const _2f39eb32 = () => interopDefault(import('../pages/studentInfo/student/status.vue' /* webpackChunkName: "pages/studentInfo/student/status" */))
+const _0c407557 = () => interopDefault(import('../pages/studentInfo/student/stuAuth.vue' /* webpackChunkName: "pages/studentInfo/student/stuAuth" */))
+const _56d7da58 = () => interopDefault(import('../pages/studentInfo/student/stuStarngerRecord.vue' /* webpackChunkName: "pages/studentInfo/student/stuStarngerRecord" */))
 const _3f117ef7 = () => interopDefault(import('../pages/studentInfo/student/warning.vue' /* webpackChunkName: "pages/studentInfo/student/warning" */))
 const _8eb28206 = () => interopDefault(import('../pages/teachInfo/exam/examManage.vue' /* webpackChunkName: "pages/teachInfo/exam/examManage" */))
 const _79788ac1 = () => interopDefault(import('../pages/teachInfo/exam/examPlan.vue' /* webpackChunkName: "pages/teachInfo/exam/examPlan" */))
@@ -135,6 +137,11 @@ const _26099565 = () => interopDefault(import('../pages/teachInfo/teach/coursePl
 const _0c3f00d1 = () => interopDefault(import('../pages/teachInfo/teach/myTable.vue' /* webpackChunkName: "pages/teachInfo/teach/myTable" */))
 const _615230d5 = () => interopDefault(import('../pages/teachInfo/teach/searchTable.vue' /* webpackChunkName: "pages/teachInfo/teach/searchTable" */))
 const _42220ccd = () => interopDefault(import('../pages/teachInfo/teach/teachPlan.vue' /* webpackChunkName: "pages/teachInfo/teach/teachPlan" */))
+const _0bf58ba9 = () => interopDefault(import('../pages/teachInfo/teacher/account.vue' /* webpackChunkName: "pages/teachInfo/teacher/account" */))
+const _2cbe2d48 = () => interopDefault(import('../pages/teachInfo/teacher/auth.vue' /* webpackChunkName: "pages/teachInfo/teacher/auth" */))
+const _6795e24e = () => interopDefault(import('../pages/teachInfo/teacher/empower.vue' /* webpackChunkName: "pages/teachInfo/teacher/empower" */))
+const _fbe53fe8 = () => interopDefault(import('../pages/teachInfo/teacher/other.vue' /* webpackChunkName: "pages/teachInfo/teacher/other" */))
+const _94ec11ac = () => interopDefault(import('../pages/teachInfo/teacher/stranger.vue' /* webpackChunkName: "pages/teachInfo/teacher/stranger" */))
 const _41b58047 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 // TODO: remove in Nuxt 3
@@ -646,6 +653,14 @@ export const routerOptions = {
     component: _2f39eb32,
     name: "studentInfo-student-status"
   }, {
+    path: "/studentInfo/student/stuAuth",
+    component: _0c407557,
+    name: "studentInfo-student-stuAuth"
+  }, {
+    path: "/studentInfo/student/stuStarngerRecord",
+    component: _56d7da58,
+    name: "studentInfo-student-stuStarngerRecord"
+  }, {
     path: "/studentInfo/student/warning",
     component: _3f117ef7,
     name: "studentInfo-student-warning"
@@ -681,6 +696,26 @@ export const routerOptions = {
     path: "/teachInfo/teach/teachPlan",
     component: _42220ccd,
     name: "teachInfo-teach-teachPlan"
+  }, {
+    path: "/teachInfo/teacher/account",
+    component: _0bf58ba9,
+    name: "teachInfo-teacher-account"
+  }, {
+    path: "/teachInfo/teacher/auth",
+    component: _2cbe2d48,
+    name: "teachInfo-teacher-auth"
+  }, {
+    path: "/teachInfo/teacher/empower",
+    component: _6795e24e,
+    name: "teachInfo-teacher-empower"
+  }, {
+    path: "/teachInfo/teacher/other",
+    component: _fbe53fe8,
+    name: "teachInfo-teacher-other"
+  }, {
+    path: "/teachInfo/teacher/stranger",
+    component: _94ec11ac,
+    name: "teachInfo-teacher-stranger"
   }, {
     path: "/",
     component: _41b58047,

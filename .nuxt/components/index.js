@@ -16,7 +16,6 @@ export { default as MyBlockListTree } from '../../components/tree/MyBlockListTre
 export { default as MyElTree } from '../../components/tree/MyElTree.vue'
 export { default as TreeNode } from '../../components/tree/treeNode.js'
 export { default as MySexSelect } from '../../components/utils/MySexSelect.vue'
-export { default as TimeoutButton } from '../../components/utils/button/TimeoutButton.vue'
 export { default as AuditButton } from '../../components/utils/auditDetail/AuditButton.vue'
 export { default as CreditDetail } from '../../components/utils/auditDetail/CreditDetail.vue'
 export { default as FaceDetail } from '../../components/utils/auditDetail/FaceDetail.vue'
@@ -30,6 +29,7 @@ export { default as DialogNormal } from '../../components/utils/dialog/DialogNor
 export { default as DrawerLayoutRight } from '../../components/utils/dialog/DrawerLayoutRight.vue'
 export { default as DrawerRight } from '../../components/utils/dialog/DrawerRight.vue'
 export { default as MyNormalDialog } from '../../components/utils/dialog/MyNormalDialog.vue'
+export { default as TimeoutButton } from '../../components/utils/button/TimeoutButton.vue'
 export { default as MyCascader } from '../../components/utils/select/MyCascader.vue'
 export { default as QuillBlock } from '../../components/utils/upload/QuillBlock.vue'
 export { default as UploadSquare } from '../../components/utils/upload/UploadSquare.vue'
@@ -52,7 +52,6 @@ export const LazyMyBlockListTree = import('../../components/tree/MyBlockListTree
 export const LazyMyElTree = import('../../components/tree/MyElTree.vue' /* webpackChunkName: "components/tree/MyElTree" */).then(c => c.default || c)
 export const LazyTreeNode = import('../../components/tree/treeNode.js' /* webpackChunkName: "components/tree/treeNode" */).then(c => c.default || c)
 export const LazyMySexSelect = import('../../components/utils/MySexSelect.vue' /* webpackChunkName: "components/utils/MySexSelect" */).then(c => c.default || c)
-export const LazyTimeoutButton = import('../../components/utils/button/TimeoutButton.vue' /* webpackChunkName: "components/utils/button/TimeoutButton" */).then(c => c.default || c)
 export const LazyAuditButton = import('../../components/utils/auditDetail/AuditButton.vue' /* webpackChunkName: "components/utils/auditDetail/AuditButton" */).then(c => c.default || c)
 export const LazyCreditDetail = import('../../components/utils/auditDetail/CreditDetail.vue' /* webpackChunkName: "components/utils/auditDetail/CreditDetail" */).then(c => c.default || c)
 export const LazyFaceDetail = import('../../components/utils/auditDetail/FaceDetail.vue' /* webpackChunkName: "components/utils/auditDetail/FaceDetail" */).then(c => c.default || c)
@@ -66,6 +65,7 @@ export const LazyDialogNormal = import('../../components/utils/dialog/DialogNorm
 export const LazyDrawerLayoutRight = import('../../components/utils/dialog/DrawerLayoutRight.vue' /* webpackChunkName: "components/utils/dialog/DrawerLayoutRight" */).then(c => c.default || c)
 export const LazyDrawerRight = import('../../components/utils/dialog/DrawerRight.vue' /* webpackChunkName: "components/utils/dialog/DrawerRight" */).then(c => c.default || c)
 export const LazyMyNormalDialog = import('../../components/utils/dialog/MyNormalDialog.vue' /* webpackChunkName: "components/utils/dialog/MyNormalDialog" */).then(c => c.default || c)
+export const LazyTimeoutButton = import('../../components/utils/button/TimeoutButton.vue' /* webpackChunkName: "components/utils/button/TimeoutButton" */).then(c => c.default || c)
 export const LazyMyCascader = import('../../components/utils/select/MyCascader.vue' /* webpackChunkName: "components/utils/select/MyCascader" */).then(c => c.default || c)
 export const LazyQuillBlock = import('../../components/utils/upload/QuillBlock.vue' /* webpackChunkName: "components/utils/upload/QuillBlock" */).then(c => c.default || c)
 export const LazyUploadSquare = import('../../components/utils/upload/UploadSquare.vue' /* webpackChunkName: "components/utils/upload/UploadSquare" */).then(c => c.default || c)

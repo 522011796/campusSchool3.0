@@ -76,6 +76,39 @@ const dormroomType = [
     value: "1"
   }
 ];
+const searchTeacherType = [
+  {
+    label: "姓名",
+    value: 'realName'
+  },
+  {
+    label: "手机",
+    value: 'phone'
+  },
+  {
+    label: "工号",
+    value: 'jobNum'
+  },
+  {
+    label: "身份证",
+    value: 'cretificateNum'
+  }
+];
+
+const g_sex = [
+  {
+    label: "男",
+    value: '1'
+  },
+  {
+    label: "女",
+    value: '2'
+  },
+  {
+    label: "未知",
+    value: '3'
+  }
+];
 
 export default {
   total,
@@ -112,5 +145,7 @@ export default {
   currentSeciton,
   buildInterest,
   classroomUsed,
-  dormroomType
+  dormroomType,
+  searchTeacherType,
+  g_sex
 }

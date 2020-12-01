@@ -861,6 +861,20 @@
     "_name": "_2f39eb32"
   },
   {
+    "name": "studentInfo-student-stuAuth",
+    "path": "/studentInfo/student/stuAuth",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/student/stuAuth.vue",
+    "chunkName": "pages/studentInfo/student/stuAuth",
+    "_name": "_0c407557"
+  },
+  {
+    "name": "studentInfo-student-stuStarngerRecord",
+    "path": "/studentInfo/student/stuStarngerRecord",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/student/stuStarngerRecord.vue",
+    "chunkName": "pages/studentInfo/student/stuStarngerRecord",
+    "_name": "_56d7da58"
+  },
+  {
     "name": "studentInfo-student-warning",
     "path": "/studentInfo/student/warning",
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/studentInfo/student/warning.vue",
@@ -922,6 +936,41 @@
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/teachInfo/teach/teachPlan.vue",
     "chunkName": "pages/teachInfo/teach/teachPlan",
     "_name": "_42220ccd"
+  },
+  {
+    "name": "teachInfo-teacher-account",
+    "path": "/teachInfo/teacher/account",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/teachInfo/teacher/account.vue",
+    "chunkName": "pages/teachInfo/teacher/account",
+    "_name": "_0bf58ba9"
+  },
+  {
+    "name": "teachInfo-teacher-auth",
+    "path": "/teachInfo/teacher/auth",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/teachInfo/teacher/auth.vue",
+    "chunkName": "pages/teachInfo/teacher/auth",
+    "_name": "_2cbe2d48"
+  },
+  {
+    "name": "teachInfo-teacher-empower",
+    "path": "/teachInfo/teacher/empower",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/teachInfo/teacher/empower.vue",
+    "chunkName": "pages/teachInfo/teacher/empower",
+    "_name": "_6795e24e"
+  },
+  {
+    "name": "teachInfo-teacher-other",
+    "path": "/teachInfo/teacher/other",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/teachInfo/teacher/other.vue",
+    "chunkName": "pages/teachInfo/teacher/other",
+    "_name": "_fbe53fe8"
+  },
+  {
+    "name": "teachInfo-teacher-stranger",
+    "path": "/teachInfo/teacher/stranger",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/teachInfo/teacher/stranger.vue",
+    "chunkName": "pages/teachInfo/teacher/stranger",
+    "_name": "_94ec11ac"
   },
   {
     "name": "index",

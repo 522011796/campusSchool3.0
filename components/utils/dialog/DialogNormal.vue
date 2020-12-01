@@ -4,7 +4,7 @@
       :top="top"
       custom-class="custom-normal-dialog"
       :visible.sync="visible"
-      width="550px"
+      :width="widthStyle"
       :show-close="false"
       :modal-append-to-body="false"
       :before-close="handleBeforeClose"
@@ -51,6 +51,10 @@ export default {
   props: {
     top: {
       default: '15vh',
+      type: String
+    },
+    widthStyle: {
+      default: '550px',
       type: String
     },
     title: {

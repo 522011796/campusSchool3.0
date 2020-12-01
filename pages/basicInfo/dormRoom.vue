@@ -6,7 +6,7 @@
           <!--<span class="layout-left-menu-tag"></span>-->
           <span class="layout-left-menu-title">宿舍信息</span>
         </div>
-        <MyElTree type="2" sub-type="2" @node-click="nodeClick"></MyElTree>
+        <my-el-tree type="2" sub-type="2" @node-click="nodeClick"></my-el-tree>
       </div>
 
       <div slot="right">
@@ -128,10 +128,11 @@ import MySelect from "../../components/MySelect";
 import {dormTypeText, MessageError, MessageSuccess} from "../../utils/utils";
 import mixins from "../../utils/mixins";
 import dormroomValidater from "../../utils/validater/dormroomValidater";
+import MyElTree from "../../components/tree/MyElTree";
 
 export default {
   mixins: [mixins, dormroomValidater],
-  components: {DialogNormal,MyNormalDialog,DrawerRight,MyCascader,MySelect},
+  components: {MyElTree, DialogNormal,MyNormalDialog,DrawerRight,MyCascader,MySelect},
   data(){
     return {
       tableData: [],

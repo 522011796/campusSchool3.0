@@ -42,6 +42,8 @@ export default {
       buildInterest: global.buildInterest,
       classroomUsed: global.classroomUsed,
       dormroomType: global.dormroomType,
+      searchTeacherType: global.searchTeacherType,
+      g_sex: global.g_sex,
       tableHeight: {
         'height': ''
       },

@@ -41,6 +41,7 @@ export function setDeptChildren(tree, obj, param, param2){//迭代方法--部门
   if (tree && tree.length > 0){
     tree.map(function (item,index) {
       item['label'] = item.department_name;
+      item['value'] = item.id;
       obj.push(item);
 
       if(item[param] != undefined && item[param].length > 0){

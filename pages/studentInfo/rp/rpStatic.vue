@@ -7,7 +7,7 @@
             <!--<span class="layout-left-menu-tag"></span>-->
             <span class="layout-left-menu-title">奖惩分析</span>
           </div>
-          <MyElTree type="1" sub-type="3" @node-click="nodeClick"></MyElTree>
+          <my-el-tree type="1" sub-type="3" @node-click="nodeClick"></my-el-tree>
         </div>
 
         <div slot="right">

@@ -6,7 +6,7 @@
           <!--<span class="layout-left-menu-tag"></span>-->
           <span class="layout-left-menu-title">专业信息</span>
         </div>
-        <MyElTree type="1" sub-type="1" @node-click="nodeClick"></MyElTree>
+        <my-el-tree type="1" sub-type="1" @node-click="nodeClick"></my-el-tree>
       </div>
 
       <div slot="right">

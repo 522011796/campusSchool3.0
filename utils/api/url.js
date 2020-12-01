@@ -85,4 +85,11 @@ export const common = {
   dormroom_add: '/proxy/building/dormitory/add',//宿舍添加
   dormroom_update: '/proxy/building/dormitory/update',//宿舍编辑
   dormroom_delete: '/proxy/building/dormitory/delete',//宿舍删除
+
+  teacher_edit: '/proxy/user/employee/edit',//教师编辑
+  teacher_add: '/proxy/user/employee/add',//教师添加
+  teacher_delete: '/proxy/user/employee/del',//教师删除
+  teacher_upload: '/proxy/user/employee/import2',//教师导入
+  teacher_file: '/proxy/user/file/download',//教师导入文件模版
+  upload_loop_result: '/proxy/user/import/loop/messages',//导入信息返回
 };
