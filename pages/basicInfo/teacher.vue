@@ -390,7 +390,6 @@ export default {
             birthday: this.form.borthday,
             certificateNum: this.form.idCard,
             phone: this.form.phone,
-            email: this.form.email,
             joinTime: this.form.innerTime,
             workDate: this.form.workTime,
             workEnjoy: this.form.workEnjoy,
@@ -401,6 +400,9 @@ export default {
             departmentId: this.form.departmentId,
             departName: deptName[deptName.length-1]
           };
+          if (this.form.email){
+            params['email']  = this.form.email;
+          }
           if (this.form.id != ""){
             url = common.teacher_edit;
             params['userId'] = this.form.id;
@@ -576,7 +578,15 @@ export default {
         this.uploadProcess = res.desc;
         this.loopUploadResult(res.data);
       }else {
-
+        this.uploadProcess = this.$t("文件上传成功,正在导入文件...");
+        this.resultList = [];
+        if (res.data){
+          for (let i in res.data){
+            this.uploadResult.push(res.data[i]);
+          }
+        }else {
+          this.uploadResult = [res.desc];
+        }
       }
     },
     uploadError(res, file){
