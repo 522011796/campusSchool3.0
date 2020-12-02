@@ -45,6 +45,8 @@ export default {
       searchTeacherType: global.searchTeacherType,
       searchStudentType: global.searchStudentType,
       g_sex: global.g_sex,
+      filterStatus: global.filterStatus,
+      filterTypes: global.filterTypes,
       tableHeight: {
         'height': ''
       },

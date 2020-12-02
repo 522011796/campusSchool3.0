@@ -622,7 +622,7 @@
           {
             "name": "认证管理",
             "key": "stuAuth",
-            "id": 3506,
+            "id": 3510,
             "top": "studentInfo",
             "path": "/studentInfo/student/stuAuth"
           },

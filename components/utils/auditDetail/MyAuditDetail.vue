@@ -94,7 +94,7 @@
       return {
         value: '',
         detailTitle: {},
-        widthStyle: null
+        //widthStyle: null
       }
     },
     methods: {

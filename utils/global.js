@@ -128,6 +128,17 @@ const g_sex = [
   }
 ];
 
+const filterTypes = [
+  { text: "处分", value: '处分' ,label: '处分'},
+  { text: '奖励', value: '奖励' ,label: '奖励'}
+];
+
+const filterStatus = [
+  { text: "待审批", value: '0' ,label: '待审批'},
+  { text: '已通过', value: '3' ,label: '已通过'},
+  { text: '已驳回', value: '4' ,label: '已驳回'}
+];
+
 export default {
   total,
   page,
@@ -166,5 +177,7 @@ export default {
   dormroomType,
   searchTeacherType,
   g_sex,
-  searchStudentType
+  searchStudentType,
+  filterStatus,
+  filterTypes
 }

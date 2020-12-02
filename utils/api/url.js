@@ -103,4 +103,12 @@ export const common = {
   log_list: '/proxy/log/log/page',//日志
   log_type: '/proxy/log/logtype/get/select/list/exclude/login',//日志类型
   log_clear: '/proxy/log/log/clear',//清空日志
+
+  audit_page: '/proxy/user/unionapply/apply/page',//审批列表统一
+  audit_download: '/proxy/user/unionapply/apply/download',//审批列表导出
+
+  audit_re_level: '/proxy/user/unionapply/punishment/level/list',//奖惩级别列表
+  audit_re_static: '/proxy/user/unionapply/punishment/apply/count',//奖惩统计
+  audit_re_static_add: '/proxy/user/unionapply/punishment/level/add',//奖惩级别添加
+  audit_re_static_del: '/proxy/user/unionapply/punishment/level/del',//奖惩级别删除
 };
