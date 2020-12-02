@@ -240,6 +240,10 @@
         visibleConfim: false,
         drawerVisible: false,
         drawerLoading: false,
+        searchCollege: '',
+        searchMajor: '',
+        searchGrade: '',
+        searchClass: '',
         searchKey: '',
         searchDept: '',
         subTitle: '',
@@ -280,7 +284,10 @@
         let params = {
           page: this.page,
           num: this.num,
-          departPath: this.searchDept,
+          collegeId: this.searchCollege,
+          majorId: this.searchMajor,
+          grade: this.searchGrade,
+          clasz: this.searchClass,
           deleted: 0
         };
         params[this.searchKey['select']] = this.searchKey['input'];
@@ -327,7 +334,21 @@
         this.visibleConfim = true;
       },
       nodeClick(data){
-        this.searchDept = data.department_path;
+        this.searchCollege = "";
+        this.searchMajor = "";
+        this.searchGrade = "";
+        this.searchClass = "";
+        if (data.unit == 1){
+          this.searchCollege = data.id;
+        }else if (data.unit == 2){
+          this.searchCollege = data.college_id;
+          this.searchMajor = data.id;
+        }else if (data.unit == 3){
+          this.searchMajor = data.major_id;
+          this.searchGrade = data.grade;
+        }else if (data.unit == 4){
+          this.searchClass = data.id;
+        }
         this.init();
       },
       search(data){
