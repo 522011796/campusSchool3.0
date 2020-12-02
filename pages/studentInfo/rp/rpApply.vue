@@ -247,6 +247,7 @@
             <div class="rp-fotter-page text-right">
               <el-pagination style="padding: 5px 0px;" small layout="prev, pager, next" :total="totalStudent" :page-size="numStudent" @current-change="currentStudentPage" @size-change="sizeStudentChange"></el-pagination>
             </div>
+            <div><span class="color-danger font-size-12">{{errorStudent}}</span></div>
           </el-form-item>
           <el-form-item :label="$t('附件')">
             <img v-if="form.file != ''" :src="form.file" class="rp-img pull-left"/>
@@ -336,6 +337,7 @@
         levelData: [],
         levelDataKey: [],
         searchStudentKey: '',
+        errorStudent: '',
         form: {
           id: '',
           type: '',
@@ -604,6 +606,11 @@
         let url = "";
         this.$refs['form'].validate((valid) => {
           if (valid) {
+            this.errorStudent = "";
+            if (this.form.userId == ""){
+              this.errorStudent = this.$t("请选择学生");
+              return;
+            }
             this.dialogLoading = true;
             let params = {
               applyFile: this.form.file,
