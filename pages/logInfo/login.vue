@@ -12,7 +12,7 @@
               v-model="visible"
               @hide="closePopover">
               <div>
-                <my-date-picker :sel-value="clearTime" size="small" width-style="180" @change="handleClear"></my-date-picker>
+                <my-date-picker :sel-value="clearTime" :clearable="true" size="small" width-style="180" @change="handleClear"></my-date-picker>
               </div>
               <div class="margin-top-5 text-right">
                 <el-button size="mini" type="text" @click="visible = false">取消</el-button>
@@ -20,24 +20,9 @@
               </div>
               <el-button slot="reference" size="small" type="primary"  icon="el-icon-delete">{{$t("清空")}}</el-button>
             </el-popover>
-
-            <!--<el-popover
-              placement="top"
-              width="160"
-              :tabindex="99999"
-              v-model="visible">
-              <div>
-                <my-date-picker size="small" width-style="240" @change="handleClear"></my-date-picker>
-              </div>
-              <div style="text-align: right; margin: 0">
-                <el-button size="mini" type="text" @click="visible = false">取消</el-button>
-                <el-button type="primary" size="mini" @click="">确定</el-button>
-              </div>
-              <el-button slot="reference" size="small" type="primary"  icon="el-icon-delete" @click="clearInfo($event)">{{$t("清空")}}</el-button>
-            </el-popover>-->
           </el-col>
           <el-col :span="12" class="text-right">
-            <my-date-picker :sel-value="searchDate" type="daterange" size="small" width-style="240" @change="handleChange"></my-date-picker>
+            <my-date-picker :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChange" style="position: relative; top: 1px;"></my-date-picker>
             <my-input-button size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('登录人')" @click="search"></my-input-button>
           </el-col>
         </el-row>
@@ -148,7 +133,6 @@ export default {
         queryType: 1
       };
       this.$axios.get(common.log_list, {params: params}).then(res => {
-        console.log(res);
         if (res.data.data){
           this.tableData = res.data.data.list;
           this.total = res.data.data.totalCount;
@@ -158,6 +142,10 @@ export default {
       });
     },
     clearInfo(){
+      if (this.clearTime == ""){
+        MessageSuccess(this.$t("请选择需要清空的日期"));
+        return;
+      }
       let params = {
         time: this.clearTime ? this.clearTime + " 23:59:59" : ''
       };

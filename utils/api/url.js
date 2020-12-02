@@ -101,5 +101,6 @@ export const common = {
   student_file: '/proxy/user/file/download',//学生导入文件模版
 
   log_list: '/proxy/log/log/page',//日志
+  log_type: '/proxy/log/logtype/get/select/list/exclude/login',//日志类型
   log_clear: '/proxy/log/log/clear',//清空日志
 };
