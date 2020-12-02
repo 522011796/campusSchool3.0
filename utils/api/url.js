@@ -93,6 +93,7 @@ export const common = {
   teacher_file: '/proxy/user/file/download',//教师导入文件模版
   upload_loop_result: '/proxy/user/import/loop/messages',//导入信息返回
 
+  student_list: '/proxy/user/student/page',//学生列表
   student_edit: '/proxy/user/student/update',//学生编辑
   student_add: '/proxy/user/student/add',//学生添加
   student_delete: '/proxy/user/student/del',//学生删除

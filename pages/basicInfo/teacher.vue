@@ -293,7 +293,7 @@ export default {
       let params = {
         page: this.page,
         num: this.num,
-        departPath: '',
+        departPath: this.searchDept,
         deleted: 0
       };
       params[this.searchKey['select']] = this.searchKey['input'];
@@ -310,7 +310,6 @@ export default {
       this.modalVisible = true;
     },
     editInfo(row){
-      console.log(row);
       this.form = {
         id: row.user_id,
         name: row.real_name,
@@ -340,7 +339,6 @@ export default {
         }
       }
       this.$set(this.form, 'deptData', deptArr);
-      console.log(this.form);
       this.modalVisible = true;
     },
     deleteInfo(row){
@@ -349,8 +347,8 @@ export default {
       this.visibleConfim = true;
     },
     nodeClick(data){
-      console.log(data);
-      this.searchDept = "";
+      this.searchDept = data.department_path;
+      this.init();
     },
     search(data){
       this.searchKey = data;
@@ -573,7 +571,6 @@ export default {
       this.drawerVisible = true;
     },
     uploadSuccess(res, file){
-      console.log(res);
       if (res.code == 200){
         this.uploadProcess = res.desc;
         this.loopUploadResult(res.data);

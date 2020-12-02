@@ -94,6 +94,24 @@ const searchTeacherType = [
     value: 'cretificateNum'
   }
 ];
+const searchStudentType = [
+  {
+    label: "姓名",
+    value: 'realName'
+  },
+  {
+    label: "手机",
+    value: 'phone'
+  },
+  {
+    label: "学号",
+    value: 'studentId'
+  },
+  {
+    label: "身份证",
+    value: 'cretificateNum'
+  }
+];
 
 const g_sex = [
   {
@@ -147,5 +165,6 @@ export default {
   classroomUsed,
   dormroomType,
   searchTeacherType,
-  g_sex
+  g_sex,
+  searchStudentType
 }

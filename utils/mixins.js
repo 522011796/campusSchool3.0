@@ -43,6 +43,7 @@ export default {
       classroomUsed: global.classroomUsed,
       dormroomType: global.dormroomType,
       searchTeacherType: global.searchTeacherType,
+      searchStudentType: global.searchStudentType,
       g_sex: global.g_sex,
       tableHeight: {
         'height': ''

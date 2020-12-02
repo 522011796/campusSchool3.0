@@ -308,22 +308,6 @@
             "path": "/basicInfo/appAuth"
           }
         ]
-      },
-      {
-        "name": "认证管理",
-        "icon": "fa fa-vcard",
-        "toggle": false,
-        "id": 1100,
-        "key": "identification",
-        "list": [
-          {
-            "name": "认证管理",
-            "key": "identification",
-            "id": 1101,
-            "top": "basicInfo",
-            "path": "/basicInfo/identification"
-          }
-        ]
       }
     ]
   },

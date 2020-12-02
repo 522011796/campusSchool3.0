@@ -219,6 +219,7 @@ export function setCollegeChildren(tree, type){//迭代方法-学院
                           college_id: childClassList[ll].college_id,
                           classroom_id: childClassList[ll].classroom_id,
                           building_id: childClassList[ll].building_id,
+                          create_time: childClassList[ll].create_time,
                           unit: childClassList[ll].unit
                         });
                       }
