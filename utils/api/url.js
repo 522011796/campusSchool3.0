@@ -108,7 +108,9 @@ export const common = {
   audit_download: '/proxy/user/unionapply/apply/download',//审批列表导出
 
   audit_re_level: '/proxy/user/unionapply/punishment/level/list',//奖惩级别列表
+  audit_re_add: '/proxy/user/unionapply/apply/add',//奖惩申请添加
   audit_re_static: '/proxy/user/unionapply/punishment/apply/count',//奖惩统计
   audit_re_static_add: '/proxy/user/unionapply/punishment/level/add',//奖惩级别添加
   audit_re_static_del: '/proxy/user/unionapply/punishment/level/del',//奖惩级别删除
+
 };

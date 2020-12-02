@@ -92,9 +92,10 @@
   import MyDatePicker from "../../../components/MyDatePicker";
   import MyInputButton from "../../../components/search/MyInputButton";
   import levelValidater from "../../../utils/validater/levelValidater";
+  import DialogNormal from "../../../components/utils/dialog/DialogNormal";
   export default {
     mixins: [mixins, levelValidater],
-    components: {MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton},
+    components: {MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal},
     data(){
       return {
         tableData: [],

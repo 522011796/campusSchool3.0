@@ -66,10 +66,11 @@
 
           <div class="layout-right-tab margin-top-10">
             <el-row class="layout-inline">
-              <el-col :span="4">
+              <el-col :span="12">
+                <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo()">{{$t("奖惩申请")}}</el-button>
                 <el-button size="small" type="warning"  icon="el-icon-download" @click="expandInfo()">{{$t("导出")}}</el-button>
               </el-col>
-              <el-col :span="20" class="text-right">
+              <el-col :span="12" class="text-right">
                 <my-date-picker :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChange" style="position: relative; top: 1px;"></my-date-picker>
                 <my-input-button size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('姓名/学号')" @click="search"></my-input-button>
               </el-col>
@@ -217,6 +218,59 @@
       </layout-lr>
     </div>
 
+    <dialog-normal width-style="600px" top="10vh" :visible="modalVisible" :title="$t('奖惩申请')" @close="closeDialog" @right-close="cancelDialog">
+      <div class="margin-top-10">
+        <el-form :model="form" :rules="rules" ref="form" label-width="140px">
+          <el-form-item :label="$t('类型')" prop="type">
+            <my-select :sel-value="form.type" :options="filterTypes" width-style="350" @change="handleSelect($event, 1)"></my-select>
+          </el-form-item>
+          <el-form-item :label="$t('级别')" prop="level">
+            <my-select :sel-value="form.level" :options="filterAddLevels" width-style="350" @change="handleSelect($event, 2)"></my-select>
+          </el-form-item>
+          <el-form-item :label="$t('学生')">
+            <div class="margin-bottom-10">
+              <my-input-button ref="studentRef" size="small" type="success" :clearable="true" :placeholder="$t('学生名称')" @click="searchStudent"></my-input-button>
+            </div>
+            <el-table height="200" :header-cell-style="{'line-height': '20px'}" size="mini" :data="studentData" border style="width: 350px">
+              <el-table-column align="center" :show-overflow-tooltip="true">
+                <template slot-scope="scope">
+                  <my-radio :sel-value="form.userId" :label="scope.row.user_id" @change="handleRadioChange"><span></span></my-radio>
+                </template>
+              </el-table-column>
+              <el-table-column property="real_name" align="center" label="姓名" :show-overflow-tooltip="true">
+
+              </el-table-column>
+              <el-table-column property="class_name" align="center" label="班级" :show-overflow-tooltip="true">
+
+              </el-table-column>
+            </el-table>
+            <div class="rp-fotter-page text-right">
+              <el-pagination style="padding: 5px 0px;" small layout="prev, pager, next" :total="totalStudent" :page-size="numStudent" @current-change="currentStudentPage" @size-change="sizeStudentChange"></el-pagination>
+            </div>
+          </el-form-item>
+          <el-form-item :label="$t('附件')">
+            <img v-if="form.file != ''" :src="form.file" class="rp-img pull-left"/>
+            <upload-square class="pull-left margin-left-10 margin-top-5" :action="uploadFileAction" max-size="8" :data="{path: 'reFile'}" accept=".png,.jpg,.jpeg" @success="uploadSuccess">
+              <el-button size="small" type="primary">{{$t("点击上传")}}</el-button>
+            </upload-square>
+            <span class="pull-left color-danger font-size-12 margin-left-10 margin-top-5">{{$t("文件不超过8M")}}</span>
+            <div class="moon-clearfix"></div>
+          </el-form-item>
+          <el-form-item :label="$t('说明')">
+            <el-input type="textarea" :rows="2" v-model="form.des" class="width-350"></el-input>
+          </el-form-item>
+        </el-form>
+      </div>
+
+      <div slot="footer">
+        <el-button size="small" @click="cancelDialog">{{$t("取消")}}</el-button>
+        <el-button size="small" type="primary" @click="dialogLoading == false ? okDialog() : ''">
+          <i class="el-icon-loading" v-if="dialogLoading"></i>
+          {{$t("确定")}}
+        </el-button>
+      </div>
+    </dialog-normal>
+
     <!--审批详细-->
     <drawer-layout-right @changeDrawer="closeDrawerDialog" :hide-footer="true" :visible="drawerVisible" size="550px" :title="$t('申请单')" @right-close="cancelDrawDialog">
       <div slot="content">
@@ -235,16 +289,29 @@
   import MyPagination from "../../../components/MyPagination";
   import MyAuditStatus from "../../../components/utils/MyAuditStatus";
   import CircleChart from "../../../components/charts/CircleChart";
+  import MyRadio from "../../../components/MyRadio";
+  import DialogNormal from "../../../components/utils/dialog/DialogNormal";
+  import MyInputButton from "../../../components/search/MyInputButton";
+  import UploadSquare from "../../../components/utils/upload/UploadSquare";
   import {common} from "../../../utils/api/url";
-  import {MessageWarning} from "../../../utils/utils";
+  import {MessageError, MessageSuccess, MessageWarning} from "../../../utils/utils";
+  import rpApplyValidater from "../../../utils/validater/rpApplyValidater";
   export default {
-    mixins: [mixins],
-    components: {MyElTree,MySelect,DrawerLayoutRight,MyAuditDetail,MyPagination,MyAuditStatus,CircleChart},
+    mixins: [mixins, rpApplyValidater],
+    components: {MyElTree,MySelect,DrawerLayoutRight,MyAuditDetail,MyPagination,MyAuditStatus,CircleChart,MyRadio,DialogNormal,MyInputButton,UploadSquare},
     data(){
       return {
+        pageStudnet: 1,
+        numStudent: 20,
+        totalStudent: 0,
         dataAudit: {},
         drawerVisible: false,
+        modalVisible: false,
+        dialogLoading: false,
+        visibleConfim: false,
+        subTitle: '',
         tableData: [],
+        studentData: [],
         searchCollege: '',
         searchMajor: '',
         searchGrade: '',
@@ -258,14 +325,25 @@
         searchDate: [],
         //filterTypes: [{ text: this.$t("处分"), value: '处分' }, { text: '奖励', value: '奖励' }],
         filterLevels: [],
+        filterAddLevels: [],
         //filterStatus: [{ text: this.$t("待审批"), value: '0' }, { text: '已通过', value: '3' }, { text: '已驳回', value: '4' }],
         personTotal: 0,
         reTotal: 0,
         puTotal: 0,
+        uploadFileAction: common.upload_file,
         typeData: [],
         typeDataKey: [],
         levelData: [],
-        levelDataKey: []
+        levelDataKey: [],
+        searchStudentKey: '',
+        form: {
+          id: '',
+          type: '',
+          level: '',
+          file: '',
+          des: '',
+          userId:''
+        }
       }
     },
     created() {
@@ -310,7 +388,6 @@
         params = this.$qs.stringify(params);
         this.$axios.post(common.audit_re_static, params).then(res => {
           if (res.data.data){
-            console.log(res);
             this.personTotal = res.data.data.studentCount;
             this.reTotal = res.data.data['奖励'];
             this.puTotal = res.data.data['处分'];
@@ -344,18 +421,46 @@
           }
         });
       },
-      initLevels(){
+      initLevels(type){
         let params = {
           page: this.page,
-          num: 99999
+          num: 99999,
+          levelType: type
         };
-        this.$axios.post(common.audit_re_level, {params: params}).then(res => {
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.audit_re_level, params).then(res => {
           if (res.data.data){
             for (let i = 0; i < res.data.data.list.length; i++){
               res.data.data.list[i]['text'] = res.data.data.list[i].level_name;
               res.data.data.list[i]['value'] = res.data.data.list[i].level_name;
             }
-            this.filterLevels = res.data.data.list;
+            if (type){
+              this.filterAddLevels = res.data.data.list;
+            }
+            if (!type){
+              this.filterLevels = res.data.data.list;
+            }
+          }
+        });
+      },
+      initStudent(){
+        let params = {
+          page: this.pageStudent,
+          num: this.numStudent,
+          collegeId: this.searchCollege,
+          majorId: this.searchMajor,
+          grade: this.searchGrade,
+          clasz: this.searchClass,
+          deleted: 0
+        };
+        params['realName'] = this.searchStudentKey['input'];
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.student_list, params).then(res => {
+          if (res.data.data){
+            this.studentData = res.data.data.list;
+            this.totalStudent = res.data.data.totalCount;
+            this.numStudnet = res.data.data.num;
+            this.pageStudnet = res.data.data.currentPage;
           }
         });
       },
@@ -377,8 +482,15 @@
         }
         this.init();
       },
+      addInfo(){
+        this.initStudent();
+        this.modalVisible = true;
+      },
+      searchStudent(data){
+        this.searchStudentKey = data;
+        this.initStudent();
+      },
       handleDetail(row){
-        console.log(row);
         let params = {
           id:row.object_id ? row.object_id : row.id
         };
@@ -406,8 +518,28 @@
         this.page = event;
         this.init();
       },
+      sizeStudentChange(event){
+        this.pageStudent = 1;
+        this.numStudent = event;
+        this.initStudent();
+      },
+      currentStudentPage(event){
+        this.pageStudent = event;
+        this.initStudent();
+      },
       handleChange(data){
         this.searchDate = data;
+      },
+      handleRadioChange(data){
+        this.form.userId = data;
+      },
+      handleSelect(data, type){
+        if (type == 1){
+          this.form.type = data;
+          this.initLevels(data);
+        }else if(type == 2){
+          this.form.level = data;
+        }
       },
       search(data){
         this.searchKey = data.input;
@@ -444,6 +576,68 @@
         };
         params = this.$qs.stringify(params);
         window.open(url+"?"+params, "_self");
+      },
+      cancelDialog(){
+        this.modalVisible = false;
+      },
+      closeDialog(event){
+        this.form = {
+          id: '',
+          type: '',
+          level: '',
+          file: '',
+          des: '',
+          userId: ''
+        };
+        this.subTitle = "";
+        this.pageStudent = 1;
+        this.numStudent = 20;
+        this.searchStudentKey = "";
+        if (this.$refs.studentRef){
+          this.$refs.studentRef.inputValue = "";
+        }
+        if (this.$refs['form']){
+          this.$refs['form'].resetFields();
+        }
+      },
+      okDialog(event){
+        let url = "";
+        this.$refs['form'].validate((valid) => {
+          if (valid) {
+            this.dialogLoading = true;
+            let params = {
+              applyFile: this.form.file,
+              applyTypeCode: "PunishmentApply",
+              des: this.form.des,
+              str1: this.form.type,
+              str2: this.form.level,
+              userId: this.form.userId,
+              userType: "5"
+            };
+            url = common.audit_re_add;
+            params = JSON.stringify(params);
+            this.$axios.post(url, params, {dataType: 'stringfy'}).then(res => {
+              if (res.data.code == 200){
+                this.modalVisible = false;
+                this.init();
+                MessageSuccess(res.data.desc);
+              }else {
+                MessageError(res.data.desc);
+              }
+              this.dialogLoading = false;
+            });
+          }
+        });
+      },
+      uploadSuccess(res, file){
+        if (res.code == 200){
+          this.form.file = res.data.url;
+        }else {
+
+        }
+      },
+      uploadError(res, file){
+        MessageError(res.data.desc);
       }
     }
   }
@@ -459,5 +653,17 @@
   }
   .rpStatic-top-item .title{
     font-weight: bold;
+  }
+  .rp-img{
+    height: 50px;
+    width: 50px;
+    border: 1px solid #dddddd;
+  }
+  .rp-fotter-page{
+    border: 1px solid #EBEEF5;
+    border-top: 0px;
+    height: 30px;
+    line-height: 30px;
+    width: 348px;
   }
 </style>
