@@ -87,7 +87,7 @@
         type: String
       },
       unlinkPanels: {
-        default: false,
+        default: true,
         type: Boolean
       },
       clearable: {

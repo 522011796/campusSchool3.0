@@ -99,4 +99,7 @@ export const common = {
   student_delete: '/proxy/user/student/del',//学生删除
   student_upload: '/proxy/user/student/import2',//学生导入
   student_file: '/proxy/user/file/download',//学生导入文件模版
+
+  log_list: '/proxy/log/log/page',//日志
+  log_clear: '/proxy/log/log/clear',//清空日志
 };

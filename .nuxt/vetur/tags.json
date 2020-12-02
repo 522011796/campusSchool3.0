@@ -65,17 +65,29 @@
   "LazyLayoutTb": {
     "description": "Auto imported from components/Layout/LayoutTb.vue"
   },
+  "MyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
+  },
+  "LazyMyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
+  },
   "LineChart": {
     "description": "Auto imported from components/charts/LineChart.vue"
   },
   "LazyLineChart": {
     "description": "Auto imported from components/charts/LineChart.vue"
   },
-  "MyInputButton": {
-    "description": "Auto imported from components/search/MyInputButton.vue"
+  "MySexSelect": {
+    "description": "Auto imported from components/utils/MySexSelect.vue"
   },
-  "LazyMyInputButton": {
-    "description": "Auto imported from components/search/MyInputButton.vue"
+  "LazyMySexSelect": {
+    "description": "Auto imported from components/utils/MySexSelect.vue"
+  },
+  "MyUserType": {
+    "description": "Auto imported from components/utils/MyUserType.vue"
+  },
+  "LazyMyUserType": {
+    "description": "Auto imported from components/utils/MyUserType.vue"
   },
   "MyBlockListChildTree": {
     "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
@@ -101,11 +113,11 @@
   "LazyTreeNode": {
     "description": "Auto imported from components/tree/treeNode.js"
   },
-  "MySexSelect": {
-    "description": "Auto imported from components/utils/MySexSelect.vue"
+  "TimeoutButton": {
+    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
   },
-  "LazyMySexSelect": {
-    "description": "Auto imported from components/utils/MySexSelect.vue"
+  "LazyTimeoutButton": {
+    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
   },
   "AuditButton": {
     "description": "Auto imported from components/utils/auditDetail/AuditButton.vue"
@@ -161,11 +173,11 @@
   "LazyTerleaveDetail": {
     "description": "Auto imported from components/utils/auditDetail/TerleaveDetail.vue"
   },
-  "TimeoutButton": {
-    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
+  "MyCascader": {
+    "description": "Auto imported from components/utils/select/MyCascader.vue"
   },
-  "LazyTimeoutButton": {
-    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
+  "LazyMyCascader": {
+    "description": "Auto imported from components/utils/select/MyCascader.vue"
   },
   "DialogNormal": {
     "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
@@ -190,12 +202,6 @@
   },
   "LazyMyNormalDialog": {
     "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
-  },
-  "MyCascader": {
-    "description": "Auto imported from components/utils/select/MyCascader.vue"
-  },
-  "LazyMyCascader": {
-    "description": "Auto imported from components/utils/select/MyCascader.vue"
   },
   "QuillBlock": {
     "description": "Auto imported from components/utils/upload/QuillBlock.vue"
