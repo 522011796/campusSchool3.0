@@ -122,4 +122,8 @@ export const common = {
   audit_credit_score_fliter_save: '/proxy/user/quality/standard/save',//学分分值添加
   audit_credit_score_fliter_del: '/proxy/user/quality/standard/del',//学分分值删除
 
+  audit_credit_static_page: '/proxy/user/quality/student/page',//学分分析列表
+  audit_credit_export: '/proxy/user/quality/student/export',//学分导出列表
+  audit_credit_static_count: '/proxy/user/quality/student/count',//学分分析统计
+
 };

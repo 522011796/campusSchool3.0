@@ -53,7 +53,7 @@
                       <div class="title">{{$t("级别占比")}}: </div>
                       <div>
                         <div style="height: 100px">
-                          <div v-if="typeData.length <= 0" class="color-disabeld text-center" style="position: relative; top: 20%;">{{$t("暂无数据")}}</div>
+                          <div v-if="levelData.length <= 0" class="color-disabeld text-center" style="position: relative; top: 20%;">{{$t("暂无数据")}}</div>
                           <circle-chart v-else chart-id="levelId" :chart-title='$t("级别占比")' :data-key="levelDataKey" :data="levelData"></circle-chart>
                         </div>
                       </div>
@@ -212,7 +212,7 @@
           </div>
 
           <div class="layout-right-footer text-right">
-            <my-pagination :total="total" :page-size="num" @currentPage="currentPage" @sizeChange="sizeChange" class="layout-pagination"></my-pagination>
+            <my-pagination :total="total" :current-page="page" :page-size="num" @currentPage="currentPage" @sizeChange="sizeChange" class="layout-pagination"></my-pagination>
           </div>
         </div>
       </layout-lr>

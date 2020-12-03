@@ -2,15 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/utils/validater/creditObjectValidater.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/validater/creditScoreValidater.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/charts/TableBarChart.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/class.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/class.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/classRoom.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/classRoom.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/college.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/college.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/dormRoom.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/dormRoom.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/major.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/major.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/student.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/student.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/teacher.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/teacher.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/yearAndTerm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/yearAndTerm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/logInfo/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logInfo/login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/logInfo/opr.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logInfo/opr.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/credit/creditApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/credit/creditApply.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/credit/creditStatic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/credit/creditStatic.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/studentInfo/credit/object.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/credit/object.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/studentInfo/credit/scope.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/credit/scope.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/studentInfo/rp/level.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/rp/level.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/rp/rpApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/rp/rpApply.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/validater/rules.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/rules.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/global.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +52,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/utils/validater" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/charts" />
     <property name="list.type.of.created.stylesheet" value="textmate" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
@@ -55,8 +70,8 @@
       <recent name="$PROJECT_DIR$/components/tree" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/utils/validater" />
       <recent name="$PROJECT_DIR$/components/charts" />
+      <recent name="$PROJECT_DIR$/utils/validater" />
       <recent name="$PROJECT_DIR$/components/utils" />
       <recent name="$PROJECT_DIR$/pages/teachInfo/teacher" />
       <recent name="$PROJECT_DIR$/pages/teachInfo" />
@@ -100,14 +115,7 @@
       <workItem from="1605696722145" duration="117000" />
       <workItem from="1605711431800" duration="203184000" />
       <workItem from="1606743205465" duration="32160000" />
-      <workItem from="1606875308377" duration="45311000" />
-    </task>
-    <task id="LOCAL-00041" summary="init">
-      <created>1605089145551</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1605089145552</updated>
+      <workItem from="1606875308377" duration="55346000" />
     </task>
     <task id="LOCAL-00042" summary="init">
       <created>1605164201191</created>
@@ -445,7 +453,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606967226141</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="1、修改框架和组件样式、细节bug等&#10;2、学分项目、分值接口对接完成">
+      <created>1606977816615</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1606977816618</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -468,7 +483,8 @@
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、奖惩级别接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、奖惩申请接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、学分申请接口对接完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、学分申请接口对接完成" />
+    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、学分项目、分值接口对接完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、学分项目、分值接口对接完成" />
   </component>
   <component name="WindowStateProjectService">
     <state x="454" y="235" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602497724708">
@@ -480,16 +496,16 @@
     </state>
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.805@0.23.1440.805" timestamp="1602828707649" />
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1605755081482" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1606967224842">
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1606977815445">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1606967224842" />
-    <state x="100" y="124" width="1240" height="600" key="DiffContextDialog" timestamp="1606727006299">
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1606977815445" />
+    <state x="100" y="124" width="1240" height="600" key="DiffContextDialog" timestamp="1606983323815">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="100" y="123" width="1240" height="605" key="DiffContextDialog/0.23.1440.805@0.23.1440.805" timestamp="1605058122839" />
-    <state x="100" y="124" width="1240" height="600" key="DiffContextDialog/0.25.1440.798@0.25.1440.798" timestamp="1606727006299" />
+    <state x="100" y="124" width="1240" height="600" key="DiffContextDialog/0.25.1440.798@0.25.1440.798" timestamp="1606983323815" />
     <state x="562" y="326" width="316" height="274" key="Github.ShareDialog" timestamp="1602237265874">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
@@ -518,21 +534,21 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="221" y="64" key="SettingsEditor/0.23.1440.805@0.23.1440.805" timestamp="1602238031085" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1606967227911">
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1606977818418">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1606967227911" />
-    <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606920600535">
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1606977818418" />
+    <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606983323816">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="100" y="123" width="1240" height="605" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1440.805@0.23.1440.805" timestamp="1605680124696" />
-    <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1440.798@0.25.1440.798" timestamp="1606920600535" />
-    <state x="378" y="183" width="837" height="550" key="find.popup" timestamp="1606920391182">
+    <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1440.798@0.25.1440.798" timestamp="1606983323816" />
+    <state x="378" y="183" width="837" height="550" key="find.popup" timestamp="1606988856594">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="378" y="182" width="837" height="486" key="find.popup/0.23.1440.805@0.23.1440.805" timestamp="1605680757485" />
-    <state x="378" y="183" width="837" height="550" key="find.popup/0.25.1440.798@0.25.1440.798" timestamp="1606920391182" />
+    <state x="378" y="183" width="837" height="550" key="find.popup/0.25.1440.798@0.25.1440.798" timestamp="1606988856594" />
     <state x="385" y="152" width="670" height="676" key="search.everywhere.popup" timestamp="1604935260573">
       <screen x="0" y="23" width="1440" height="805" />
     </state>

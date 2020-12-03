@@ -183,6 +183,7 @@ export default {
     },
     search(data){
       this.form.searchKey = data.input;
+      this.page = 1;
       this.init();
     },
     closeDialog(event){

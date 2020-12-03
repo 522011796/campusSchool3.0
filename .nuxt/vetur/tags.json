@@ -65,11 +65,11 @@
   "LazyLineChart": {
     "description": "Auto imported from components/charts/LineChart.vue"
   },
-  "MyInputButton": {
-    "description": "Auto imported from components/search/MyInputButton.vue"
+  "TableBarChart": {
+    "description": "Auto imported from components/charts/TableBarChart.vue"
   },
-  "LazyMyInputButton": {
-    "description": "Auto imported from components/search/MyInputButton.vue"
+  "LazyTableBarChart": {
+    "description": "Auto imported from components/charts/TableBarChart.vue"
   },
   "LayoutLr": {
     "description": "Auto imported from components/Layout/LayoutLr.vue"
@@ -83,23 +83,11 @@
   "LazyLayoutTb": {
     "description": "Auto imported from components/Layout/LayoutTb.vue"
   },
-  "MyAuditStatus": {
-    "description": "Auto imported from components/utils/MyAuditStatus.vue"
+  "MyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
   },
-  "LazyMyAuditStatus": {
-    "description": "Auto imported from components/utils/MyAuditStatus.vue"
-  },
-  "MySexSelect": {
-    "description": "Auto imported from components/utils/MySexSelect.vue"
-  },
-  "LazyMySexSelect": {
-    "description": "Auto imported from components/utils/MySexSelect.vue"
-  },
-  "MyUserType": {
-    "description": "Auto imported from components/utils/MyUserType.vue"
-  },
-  "LazyMyUserType": {
-    "description": "Auto imported from components/utils/MyUserType.vue"
+  "LazyMyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
   },
   "MyBlockListChildTree": {
     "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
@@ -124,6 +112,30 @@
   },
   "LazyTreeNode": {
     "description": "Auto imported from components/tree/treeNode.js"
+  },
+  "MyAuditStatus": {
+    "description": "Auto imported from components/utils/MyAuditStatus.vue"
+  },
+  "LazyMyAuditStatus": {
+    "description": "Auto imported from components/utils/MyAuditStatus.vue"
+  },
+  "MySexSelect": {
+    "description": "Auto imported from components/utils/MySexSelect.vue"
+  },
+  "LazyMySexSelect": {
+    "description": "Auto imported from components/utils/MySexSelect.vue"
+  },
+  "MyUserType": {
+    "description": "Auto imported from components/utils/MyUserType.vue"
+  },
+  "LazyMyUserType": {
+    "description": "Auto imported from components/utils/MyUserType.vue"
+  },
+  "TimeoutButton": {
+    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
+  },
+  "LazyTimeoutButton": {
+    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
   },
   "AuditButton": {
     "description": "Auto imported from components/utils/auditDetail/AuditButton.vue"
@@ -178,12 +190,6 @@
   },
   "LazyTerleaveDetail": {
     "description": "Auto imported from components/utils/auditDetail/TerleaveDetail.vue"
-  },
-  "TimeoutButton": {
-    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
-  },
-  "LazyTimeoutButton": {
-    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
   },
   "DialogNormal": {
     "description": "Auto imported from components/utils/dialog/DialogNormal.vue"

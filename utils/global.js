@@ -144,6 +144,11 @@ const filterScoreTypes = [
   { text: '减分', value: 'false' ,label: '减分'}
 ];
 
+const filterScoreLevels = [
+  { text: "达标", value: true ,label: '达标'},
+  { text: '不达标', value: false ,label: '不达标'}
+];
+
 export default {
   total,
   page,
@@ -185,5 +190,6 @@ export default {
   searchStudentType,
   filterStatus,
   filterTypes,
-  filterScoreTypes
+  filterScoreTypes,
+  filterScoreLevels
 }
