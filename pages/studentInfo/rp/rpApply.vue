@@ -231,7 +231,7 @@
             <div class="margin-bottom-10">
               <my-input-button ref="studentRef" size="small" type="success" :clearable="true" :placeholder="$t('学生名称')" @click="searchStudent"></my-input-button>
             </div>
-            <el-table height="200" :header-cell-style="{'line-height': '20px'}" size="mini" :data="studentData" border style="width: 350px">
+            <el-table v-loading="studentLoading" height="200" :header-cell-style="{'line-height': '20px'}" size="mini" :data="studentData" border style="width: 350px">
               <el-table-column align="center" :show-overflow-tooltip="true">
                 <template slot-scope="scope">
                   <my-radio :sel-value="form.userId" :label="scope.row.user_id" @change="handleRadioChange"><span></span></my-radio>
@@ -283,6 +283,7 @@
 
 <script>
   import mixins from "../../../utils/mixins";
+  import LayoutLr from "../../../components/Layout/LayoutLr";
   import MySelect from "../../../components/MySelect";
   import DrawerLayoutRight from "../../../components/utils/dialog/DrawerLayoutRight";
   import MyAuditDetail from "../../../components/utils/auditDetail/MyAuditDetail";
@@ -299,7 +300,7 @@
   import rpApplyValidater from "../../../utils/validater/rpApplyValidater";
   export default {
     mixins: [mixins, rpApplyValidater],
-    components: {MyElTree,MySelect,DrawerLayoutRight,MyAuditDetail,MyPagination,MyAuditStatus,CircleChart,MyRadio,DialogNormal,MyInputButton,UploadSquare},
+    components: {LayoutLr,MyElTree,MySelect,DrawerLayoutRight,MyAuditDetail,MyPagination,MyAuditStatus,CircleChart,MyRadio,DialogNormal,MyInputButton,UploadSquare},
     data(){
       return {
         pageStudnet: 1,
@@ -310,6 +311,7 @@
         modalVisible: false,
         dialogLoading: false,
         visibleConfim: false,
+        studentLoading: false,
         subTitle: '',
         tableData: [],
         studentData: [],
@@ -457,6 +459,7 @@
         };
         params['realName'] = this.searchStudentKey['input'];
         params = this.$qs.stringify(params);
+        this.studentLoading = true;
         this.$axios.post(common.student_list, params).then(res => {
           if (res.data.data){
             this.studentData = res.data.data.list;
@@ -464,6 +467,7 @@
             this.numStudnet = res.data.data.num;
             this.pageStudnet = res.data.data.currentPage;
           }
+          this.studentLoading = false;
         });
       },
       nodeClick(data){

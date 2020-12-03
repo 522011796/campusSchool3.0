@@ -229,6 +229,7 @@
 <script>
 import mixins from "../../utils/mixins";
 import {common} from "../../utils/api/url";
+import LayoutLr from "../../components/Layout/LayoutLr";
 import MyElTree from "../../components/tree/MyElTree";
 import MyPagination from "../../components/MyPagination";
 import MyInputButton from "../../components/search/MyInputButton";
@@ -243,7 +244,7 @@ import {MessageError, MessageSuccess, nationInfo, teacherTypeInfo, workEnjoy, wo
 import teacherValidater from "../../utils/validater/teacherValidater";
 export default {
   mixins: [mixins, teacherValidater],
-  components: {MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight},
+  components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight},
   data(){
     return {
       tableData: [],

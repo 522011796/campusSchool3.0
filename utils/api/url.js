@@ -113,4 +113,6 @@ export const common = {
   audit_re_static_add: '/proxy/user/unionapply/punishment/level/add',//奖惩级别添加
   audit_re_static_del: '/proxy/user/unionapply/punishment/level/del',//奖惩级别删除
 
+  audit_credit_type_fliter: '/proxy/user/quality/type/name',//学分项目筛选
+
 };

@@ -47,6 +47,7 @@ export default {
       g_sex: global.g_sex,
       filterStatus: global.filterStatus,
       filterTypes: global.filterTypes,
+      filterScoreTypes: global.filterScoreTypes,
       tableHeight: {
         'height': ''
       },

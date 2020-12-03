@@ -139,6 +139,11 @@ const filterStatus = [
   { text: '已驳回', value: '4' ,label: '已驳回'}
 ];
 
+const filterScoreTypes = [
+  { text: "加分", value: 'true' ,label: '加分'},
+  { text: '减分', value: 'false' ,label: '减分'}
+];
+
 export default {
   total,
   page,
@@ -179,5 +184,6 @@ export default {
   g_sex,
   searchStudentType,
   filterStatus,
-  filterTypes
+  filterTypes,
+  filterScoreTypes
 }
