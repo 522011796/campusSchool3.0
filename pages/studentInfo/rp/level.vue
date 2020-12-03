@@ -128,7 +128,6 @@
         params = this.$qs.stringify(params);
         this.$axios.post(common.audit_re_level, params).then(res => {
           if (res.data.data){
-            console.log(res);
             this.tableData = res.data.data.list;
             this.total = res.data.data.totalCount;
             this.num = res.data.data.num;

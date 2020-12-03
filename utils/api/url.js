@@ -113,6 +113,13 @@ export const common = {
   audit_re_static_add: '/proxy/user/unionapply/punishment/level/add',//奖惩级别添加
   audit_re_static_del: '/proxy/user/unionapply/punishment/level/del',//奖惩级别删除
 
+  audit_credit_type_page: '/proxy/user/quality/type/page',//学分项目列表
   audit_credit_type_fliter: '/proxy/user/quality/type/name',//学分项目筛选
+  audit_credit_type_fliter_add: '/proxy/user/quality/type/save',//学分项目添加
+  audit_credit_type_fliter_del: '/proxy/user/quality/type/del',//学分项目删除
+
+  audit_credit_score_fliter_page: '/proxy/user/quality/standard/page',//学分分值列表
+  audit_credit_score_fliter_save: '/proxy/user/quality/standard/save',//学分分值添加
+  audit_credit_score_fliter_del: '/proxy/user/quality/standard/del',//学分分值删除
 
 };
