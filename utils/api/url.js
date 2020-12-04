@@ -126,4 +126,5 @@ export const common = {
   audit_credit_export: '/proxy/user/quality/student/export',//学分导出列表
   audit_credit_static_count: '/proxy/user/quality/student/count',//学分分析统计
 
+  leave_query_page: '/proxy/user/student/leave/apply/page',//请假查询分页
 };

@@ -124,6 +124,12 @@
     watch: {
       filterText(val) {
         this.$refs.tree.filter(val);
+      },
+      type(val){
+        this.initInfo();
+      },
+      subType(val){
+        this.initInfo();
       }
     }
   }
