@@ -88,6 +88,7 @@
 </template>
 
 <script>
+import LayoutLr from "../../../components/Layout/LayoutLr";
 import MyElTree from "../../../components/tree/MyElTree";
 import MyDatePicker from "../../../components/MyDatePicker";
 import MyPagination from "../../../components/MyPagination";
@@ -95,7 +96,7 @@ import mixins from "../../../utils/mixins";
 import {common} from "../../../utils/api/url";
 export default {
   mixins: [mixins],
-  components: {MyElTree,MyDatePicker,MyPagination},
+  components: {MyElTree,MyDatePicker,MyPagination,LayoutLr},
   data(){
     return {
       tableData: [],
@@ -255,7 +256,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .container {
 
 }

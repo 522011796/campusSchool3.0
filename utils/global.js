@@ -149,6 +149,21 @@ const filterScoreLevels = [
   { text: '不达标', value: false ,label: '不达标'}
 ];
 
+const weekNoSelect = [
+  { text: "周一", value: '1' ,label: '周一'},
+  { text: '周二', value: '2' ,label: '周二'},
+  { text: '周三', value: '3' ,label: '周三'},
+  { text: '周四', value: '4' ,label: '周四'},
+  { text: '周五', value: '5' ,label: '周五'},
+  { text: '周六', value: '6' ,label: '周六'},
+  { text: '周日', value: '7' ,label: '周日'}
+];
+
+const switchStatus = [
+  { text: "开", value: '1' ,label: '开'},
+  { text: '关', value: '0' ,label: '关'}
+];
+
 export default {
   total,
   page,
@@ -191,5 +206,7 @@ export default {
   filterStatus,
   filterTypes,
   filterScoreTypes,
-  filterScoreLevels
+  filterScoreLevels,
+  weekNoSelect,
+  switchStatus
 }

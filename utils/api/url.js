@@ -127,4 +127,9 @@ export const common = {
   audit_credit_static_count: '/proxy/user/quality/student/count',//学分分析统计
 
   leave_query_page: '/proxy/user/student/leave/apply/page',//请假查询分页
+  leave_query_level_list: '/proxy/user/student/leave/apply/grade/list',//请假等级列表
+  leave_query_type_list: '/proxy/user/student/leave/apply/type/list',//请假类型列表
+  leave_query_level_save: '/proxy/user/student/leave/apply/grade/save',//请假等级修改
+  leave_query_level_add: '/proxy/user/student/leave/apply/type/add',//请假类型添加/修改
+  leave_query_level_del: '/proxy/user/student/leave/apply/type/del',//请假类型删除
 };

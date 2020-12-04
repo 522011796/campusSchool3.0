@@ -49,6 +49,8 @@ export default {
       filterTypes: global.filterTypes,
       filterScoreTypes: global.filterScoreTypes,
       filterScoreLevels: global.filterScoreLevels,
+      weekNoSelect: global.weekNoSelect,
+      switchStatus: global.switchStatus,
       tableHeight: {
         'height': ''
       },
@@ -56,6 +58,9 @@ export default {
         'height': ''
       },
       tableHeight3: {
+        'height': ''
+      },
+      tableHeight4: {
         'height': ''
       },
       tableMiddleHeight: {
@@ -93,6 +98,7 @@ export default {
         this.tableHeight.height = window.innerHeight - 248 + 'px';
         this.tableHeight2.height = window.innerHeight - 225 + 'px';
         this.tableHeight3.height = window.innerHeight - 370 + 'px';
+        this.tableHeight4.height = window.innerHeight - 440 + 'px';
         this.tableMiddleHeight.height = window.innerHeight - 335 + 'px';
         this.divHeight["max-height"] = window.innerHeight - 205 + 'px';
         this.divHeight2["max-height"] = window.innerHeight - 235 + 'px';

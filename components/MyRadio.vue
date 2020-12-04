@@ -6,7 +6,7 @@
 
     <el-radio-group v-if="group" v-model="value" :disabled="disabled" :size="size" v-bind="selectModel" :text-color="textColor" :fill="fill" @change="handleChange">
       <el-radio v-if="!button" v-for="item in options" :key="item.value" :label="item.value" :disabled="item.disabled" :border="border">{{item.label}}</el-radio>
-      <el-radio-button v-if="button" v-for="item in options" :key="item.value" :label="item.value" :disabled="item.disabled" :border="border"></el-radio-button>
+      <el-radio-button v-if="button" v-for="item in options" :key="item.value" :label="item.value" :disabled="item.disabled" :border="border">{{item.label}}</el-radio-button>
     </el-radio-group>
   </span>
 </template>

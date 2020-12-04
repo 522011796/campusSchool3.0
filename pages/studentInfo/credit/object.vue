@@ -102,10 +102,11 @@
   import MyDatePicker from "../../../components/MyDatePicker";
   import MyInputButton from "../../../components/search/MyInputButton";
   import DialogNormal from "../../../components/utils/dialog/DialogNormal";
+  import MyNormalDialog from "../../../components/utils/dialog/MyNormalDialog";
   import creditObjectValidater from "../../../utils/validater/creditObjectValidater";
   export default {
     mixins: [mixins, creditObjectValidater],
-    components: {MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal},
+    components: {MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal,MyNormalDialog},
     data(){
       return {
         tableData: [],
