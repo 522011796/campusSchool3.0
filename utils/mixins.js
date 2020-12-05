@@ -51,6 +51,8 @@ export default {
       filterScoreLevels: global.filterScoreLevels,
       weekNoSelect: global.weekNoSelect,
       switchStatus: global.switchStatus,
+      levelStatus: global.levelStatus,
+      g_currentDate: {},
       tableHeight: {
         'height': ''
       },
@@ -143,6 +145,21 @@ export default {
         this.organizeName = res.data.data.organizeName;
         this.headImage = res.data.data.headImage;
         this.loginUserId = res.data.data.userId;
+      });
+    },
+    /**
+     * 获取当前时间,主要用在年月日周搜索的条件上
+     * 采用同步执行，为了在需要使用的时候，可以先执行完成后再执行下一步操作
+     * @returns {Promise<void>}
+     */
+    async getCurrentGDateInfo(campusId) {
+      let params = {
+
+      };
+      await this.$axios.get(common.date_now, {params: params}).then(res => {
+        if (res.data.data){
+          this.g_currentDate = res.data.data;
+        }
       });
     },
     /**

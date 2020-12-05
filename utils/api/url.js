@@ -6,6 +6,7 @@ export const common = {
   login_url: 'proxy/user/login', //登录
 
   session_url: '/proxy/user/user/getSess',
+  date_now: '/proxy/course/rollcall/campus/setting/now',//当前时间
   organization_week: '/proxy/edu/edu/term/current/week',//当前学期学周
   noread_num: '/proxy/user/message/notRead/num',//未读消息数
   msg_list: '/proxy//user/message/userMsg/Page',//消息列表
@@ -132,4 +133,12 @@ export const common = {
   leave_query_level_save: '/proxy/user/student/leave/apply/grade/save',//请假等级修改
   leave_query_level_add: '/proxy/user/student/leave/apply/type/add',//请假类型添加/修改
   leave_query_level_del: '/proxy/user/student/leave/apply/type/del',//请假类型删除
+  leave_query_level_count: '/proxy/user/student/leave/stat/count',//请假类型统计
+  leave_query_level_manage_page: '/proxy/user/student/leave/stat/page',//请假管理分页
+  leave_query_level_manage_export: '/proxy/user/student/leave/stat/export',//请假管理导出
+  leave_query_level_manage_unit_page: '/proxy/user/student/leave/apply/timeUnitPage',//请假管理详细列表
+  leave_query_level_manage_unit_export: '/proxy/user/student/leave/apply/timeUnitExport',//请假管理导出
+
+  housework_query_page: '/proxy/course/quantization/qtzt-query-page',//内务评比分页
+  housework_query_count: '/proxy/course/quantization/qtzt-query-count',//内务评比统计
 };

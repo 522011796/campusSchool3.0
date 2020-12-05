@@ -164,6 +164,12 @@ const switchStatus = [
   { text: '关', value: '0' ,label: '关'}
 ];
 
+const levelStatus = [
+  { text: "高", value: '高' ,label: '高'},
+  { text: '中', value: '中' ,label: '中'},
+  { text: '低', value: '低' ,label: '低'}
+];
+
 export default {
   total,
   page,
@@ -208,5 +214,6 @@ export default {
   filterScoreTypes,
   filterScoreLevels,
   weekNoSelect,
-  switchStatus
+  switchStatus,
+  levelStatus
 }

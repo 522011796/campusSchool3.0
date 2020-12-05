@@ -147,6 +147,9 @@ a{
 .font-size-20{
   font-size: 20px;
 }
+.font-size-25{
+  font-size: 25px;
+}
 .color-grand{
   color: #409EFF;
 }
@@ -210,6 +213,9 @@ a{
 .margin-top-20{
   margin-top: 20px;
 }
+.margin-top-30{
+  margin-top: 30px;
+}
 .margin-bottom-10{
   margin-bottom: 10px;
 }
@@ -269,6 +275,11 @@ a{
   background: #EBEEF5;
   height: 1px;
   margin: 10px 0px;
+}
+.line-ver-height{
+  background: #EBEEF5;
+  width: 1px;
+  margin: 0px 5px;
 }
 .moon-content-text-ellipsis-class{
   white-space: nowrap;

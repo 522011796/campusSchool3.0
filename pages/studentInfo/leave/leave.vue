@@ -6,12 +6,12 @@
           <!--<span class="layout-left-menu-tag"></span>-->
           <span class="layout-left-menu-title">请假查询</span>
         </div>
-        <MyElTree :type="mainType" :sub-type="subType" @node-click="nodeClick">
+        <my-el-tree :type="mainType" :sub-type="subType" @node-click="nodeClick">
           <div slot="top" class="text-center">
-            <el-button :type="mainType == 1 ? 'primary' : 'default'" size="mini" @click="changeTree(1,3)">{{$t("院系")}}</el-button>
+            <el-button :type="mainType == 1 ? 'primary' : 'default'" size="mini" @click="changeTree(1,4)">{{$t("院系")}}</el-button>
             <el-button :type="mainType == 2 ? 'primary' : 'default'" size="mini" @click="changeTree(2,2)">{{$t("建筑楼")}}</el-button>
           </div>
-        </MyElTree>
+        </my-el-tree>
       </div>
 
       <div slot="right">
@@ -140,7 +140,6 @@ export default {
         params['floorNum'] = this.searchFloor;
       }
       this.$axios.get(common.audit_page, {params: params}).then(res => {
-        console.log(res);
         if (res.data.data){
           this.tableData = res.data.data.list;
           this.total = res.data.data.totalCount;
