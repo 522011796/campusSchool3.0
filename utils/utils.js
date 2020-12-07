@@ -644,6 +644,15 @@ export function dormTypeText(val){
   return statusList[val];
 }
 
+export function areaTypeText(val){
+  let statusList = {
+    "1": "个人区域",
+    "2": "公共区域",
+    "3": "空床"
+  };
+  return statusList[val];
+}
+
 export function getWeekTotalSelect(){
   let arr = [];
   for (let i = 0; i < 52; i++){

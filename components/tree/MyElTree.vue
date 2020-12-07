@@ -17,8 +17,11 @@
       <el-tree
         class="filter-tree"
         :data="data"
+        :show-checkbox="showCheckbox"
         :filter-node-method="filterNode"
+        :default-checked-keys="defaultCheckedKeys"
         ref="tree"
+        node-key="id"
         @node-click="handleNodeClick"
         @check-change="handleCheckChange">
       </el-tree>
@@ -44,6 +47,12 @@
           return oneOf(val, ['large', 'medium', 'small', 'mini']);
         }
       },
+      defaultCheckedKeys: {
+        default: function () {
+          return [];
+        },
+        type: Array
+      },
       width: {
         default: '',
         type: [String, Number]
@@ -55,6 +64,10 @@
       iconPrefix: {
         default: '',
         type: String
+      },
+      showCheckbox: {
+        default: false,
+        type: Boolean
       },
       opr: {
         default: false,

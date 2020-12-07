@@ -18,8 +18,8 @@
 
       <template v-if="group == false">
         <el-option
-          v-for="item in options"
-          :key="item.value"
+          v-for="(item, index) in options"
+          :key="index"
           :label="item.label"
           :value="item.value"
           :disabled="item.disabled">

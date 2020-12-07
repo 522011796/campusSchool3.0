@@ -53,6 +53,7 @@ export default {
       switchStatus: global.switchStatus,
       levelStatus: global.levelStatus,
       filterCheckStatus: global.filterCheckStatus,
+      filterAreaStatus: global.filterAreaStatus,
       g_currentDate: {},
       tableHeight: {
         'height': ''

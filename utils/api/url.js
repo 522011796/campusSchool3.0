@@ -149,4 +149,16 @@ export const common = {
   housework_query_save: 'proxy/course/quantization/qtzt-finish',//内务评比设置完成设置
   housework_query_setting: '/proxy/course/quantization/checkconf-query',//内务评比设置完成设置
   housework_query_person_change: '/proxy/course/quantization/qtzt-uncheck-query-page',//内务评比人员变更记录
+  housework_query_check_item_page: '/proxy/course/quantization/checkitem-query-page',//内务评比项目列表
+  housework_query_check_item_save: '/proxy/course/quantization/checkitem-add',//内务评比保存项目
+  housework_query_check_item_edit: '/proxy/course/quantization/checkitem-edit',//内务评比保存项目
+  housework_query_check_item_del: '/proxy/course/quantization/checkitem-del',//内务评比删除项目
+  housework_query_check_conf_save: '/proxy/course/quantization/checkconf-save',//内务评比设置周期
+  housework_query_check_conf_query: '/proxy/course/quantization/checkconf-query',//内务评比查询周期
+  housework_query_check_person_list: '/proxy/course/quantization/checkperm-query-page',//内务评比检查人列表
+  housework_query_check_person_del: '/proxy/course/quantization/checkperm-del',//内务评比检查人列表--删除
+  housework_query_check_college: '/proxy/edu/edu/college/catalog',//内务评比学院列表
+  housework_query_check_dorm: '/proxy/building/buildings/type',//内务评比宿舍楼列表
+  housework_query_check_person_save: '/proxy/course/quantization/checkperm-add',//内务评比检查人添加
+  housework_query_check_person_edit: '/proxy/course/quantization/checkperm-edit',//内务评比检查人删除
 };
