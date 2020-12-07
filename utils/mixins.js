@@ -52,6 +52,7 @@ export default {
       weekNoSelect: global.weekNoSelect,
       switchStatus: global.switchStatus,
       levelStatus: global.levelStatus,
+      filterCheckStatus: global.filterCheckStatus,
       g_currentDate: {},
       tableHeight: {
         'height': ''

@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row>
-      <el-col :span="12">
+      <el-col :span="8">
         <el-button-group>
           <el-button :size="size" :type="searchDateType == 1 ? 'primary' : 'default'" @click="handeleSearchDateType(1)">{{$t("日")}}</el-button>
           <el-button :size="size" :type="searchDateType == 2 ? 'primary' : 'default'" @click="handeleSearchDateType(2)">{{$t("周")}}</el-button>
@@ -11,7 +11,7 @@
         </el-button-group>
       </el-col>
 
-      <el-col :span="12">
+      <el-col :span="16">
         <div class="text-right layout-inline">
           <span>
             <my-date-picker class="layout-item" v-if="searchDateType == 1" :size="size" :sel-value="searchCurrentDatteTime" @change="handleSearchChangeTime($event)"></my-date-picker>
@@ -22,6 +22,7 @@
 
             <my-select class="layout-item" v-if="searchDateType == 4" :size="size" :sel-value="searchCurrentYearData" :options="yearList" @change="handleSearchChangeDateTime($event,3)"></my-select>
           </span>
+          <slot name="other"></slot>
           <span class="layout-item" v-if="searchDateType != 5">
             <el-button :size="size" type="success" plain @click="handleClick">{{$t("搜索")}}</el-button>
           </span>
@@ -134,35 +135,41 @@
       },
       initWeek(){
         let arr = [];
-        for (let i = 0; i < this.nowDataObj.weekNumsOfTerm.length; i++){
-          arr.push({
-            label: this.nowDataObj.weekNumsOfTerm[i],
-            value: this.nowDataObj.weekNumsOfTerm[i]
-          });
+        if (this.nowDataObj){
+          for (let i = 0; i < this.nowDataObj.weekNumsOfTerm.length; i++){
+            arr.push({
+              label: this.nowDataObj.weekNumsOfTerm[i],
+              value: this.nowDataObj.weekNumsOfTerm[i]
+            });
+          }
+          this.searchCurrentWeekNum = this.nowDataObj.currentWeekNum;
         }
-        this.searchCurrentWeekNum = this.nowDataObj.currentWeekNum;
         this.weekList = arr;
       },
       initMonth(){
         let arr = [];
-        for (let i = 0; i < this.nowDataObj.monthsOfTerm.length; i++){
-          arr.push({
-            label: this.nowDataObj.monthsOfTerm[i].yearMonth,
-            value: this.nowDataObj.monthsOfTerm[i].yearMonth
-          });
+        if (this.nowDataObj){
+          for (let i = 0; i < this.nowDataObj.monthsOfTerm.length; i++){
+            arr.push({
+              label: this.nowDataObj.monthsOfTerm[i].yearMonth,
+              value: this.nowDataObj.monthsOfTerm[i].yearMonth
+            });
+          }
+          this.searchCurrentMonthData = this.nowDataObj.monthsOfTerm[this.nowDataObj.monthsOfTerm.length - 1].yearMonth;
         }
-        this.searchCurrentMonthData = this.nowDataObj.monthsOfTerm[this.nowDataObj.monthsOfTerm.length - 1].yearMonth;
         this.monthList = arr;
       },
       initYear(){
         let arr = [];
-        for (let i = 0; i < this.nowDataObj.yearList.length; i++){
-          arr.push({
-            label: this.nowDataObj.yearList[i],
-            value: this.nowDataObj.yearList[i]
-          });
+        if (this.nowDataObj){
+          for (let i = 0; i < this.nowDataObj.yearList.length; i++){
+            arr.push({
+              label: this.nowDataObj.yearList[i],
+              value: this.nowDataObj.yearList[i]
+            });
+          }
+          this.searchCurrentYearData = this.nowDataObj.yearList[this.nowDataObj.yearList.length - 1];
         }
-        this.searchCurrentYearData = this.nowDataObj.yearList[this.nowDataObj.yearList.length - 1];
         this.yearList = arr;
       },
       handleClick(data) {

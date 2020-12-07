@@ -170,6 +170,11 @@ const levelStatus = [
   { text: '低', value: '低' ,label: '低'}
 ];
 
+const filterCheckStatus = [
+  { text: "已检查", value: true ,label: '已检查'},
+  { text: '未检查', value: false ,label: '未检查'}
+];
+
 export default {
   total,
   page,
@@ -215,5 +220,6 @@ export default {
   filterScoreLevels,
   weekNoSelect,
   switchStatus,
-  levelStatus
+  levelStatus,
+  filterCheckStatus
 }
