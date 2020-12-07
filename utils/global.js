@@ -181,6 +181,11 @@ const filterAreaStatus = [
   { text: '空床', value: '3' ,label: '空床'}
 ];
 
+const filterOtherAreaStatus = [
+  { text: "个人区域", value: '1' ,label: '个人区域'},
+  { text: '公共区域', value: '2' ,label: '公共区域'}
+];
+
 export default {
   total,
   page,
@@ -228,5 +233,6 @@ export default {
   switchStatus,
   levelStatus,
   filterCheckStatus,
-  filterAreaStatus
+  filterAreaStatus,
+  filterOtherAreaStatus
 }

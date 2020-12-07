@@ -243,13 +243,14 @@
           if (res.data.data){
             arr.push({
               label: this.$t("全校"),
-              value: '-1'
+              value: '-1',
+              type: 3
             });
             for (let i = 0; i < res.data.data.length; i++ ){
               arr.push({
                 label: res.data.data[i].name,
                 value: res.data.data[i].id,
-                type: 3
+                type: 2
               });
             }
 
@@ -369,11 +370,14 @@
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
         }
+        if (this.$refs['formPer']){
+          this.$refs['formPer'].resetFields();
+        }
       },
       okDialog(event){
         let url = "";
         let arr = [];
-        this.$refs['form'].validate((valid) => {
+        this.$refs['formPer'].validate((valid) => {
           if (valid) {
             this.errorStudent = "";
             if (this.formPer.teacherList.length <= 0){

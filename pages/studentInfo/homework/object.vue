@@ -297,10 +297,11 @@
       },
       okDialog(event){
         let url = "";
+        let objArr = [];
         this.$refs['form'].validate((valid) => {
           if (valid) {
             if (this.form.id == ''){
-              let objArr  = this.setAreaChildren(this.$refs.areeTree.$refs.tree.getCheckedNodes());
+              objArr  = this.setAreaChildren(this.$refs.areeTree.$refs.tree.getCheckedNodes());
               if (objArr.length == 0){
                 MessageWarning(this.$t("请选择范围"));
                 return;

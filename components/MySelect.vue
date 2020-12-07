@@ -54,7 +54,7 @@
       },
       selValue: {
         default: '',
-        type: [String, Number]
+        type: [String, Number,Boolean]
       },
       options: {
         default: function () {
