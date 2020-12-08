@@ -186,6 +186,18 @@ const filterOtherAreaStatus = [
   { text: '公共区域', value: '2' ,label: '公共区域'}
 ];
 
+const filterEnableStatus = [
+  { text: "启用", value: true ,label: '启用'},
+  { text: '停用', value: false ,label: '停用'}
+];
+
+const filterPhoneOwner = [
+  { text: "移动", value: 1 ,label: '移动'},
+  { text: '联通', value: 2 ,label: '联通'},
+  { text: '电信', value: 3 ,label: '电信'},
+  { text: '其他', value: 4 ,label: '其他'}
+];
+
 export default {
   total,
   page,
@@ -234,5 +246,7 @@ export default {
   levelStatus,
   filterCheckStatus,
   filterAreaStatus,
-  filterOtherAreaStatus
+  filterOtherAreaStatus,
+  filterEnableStatus,
+  filterPhoneOwner
 }

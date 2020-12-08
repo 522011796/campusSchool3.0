@@ -161,4 +161,15 @@ export const common = {
   housework_query_check_dorm: '/proxy/building/buildings/type',//内务评比宿舍楼列表
   housework_query_check_person_save: '/proxy/course/quantization/checkperm-add',//内务评比检查人添加
   housework_query_check_person_edit: '/proxy/course/quantization/checkperm-edit',//内务评比检查人删除
+
+  phone_limit_page: '/proxy/user/phone/limit/page',//手机号段限制
+  phone_limit_save: '/proxy/user/phone/limit/save',//手机号段设置
+  phone_limit_del: '/proxy/user/phone/limit/del',//手机号段删除
+  phone_limit_no: '/proxy/user/phone/limit/no',//手机编号自动
+  phone_limit_status: '/proxy/user/phone/limit/status',//手机批量操作
+  phone_limit_import: '/proxy/user/phone/limit/import',//手机导入
+  phone_limit_tips_set: '/proxy/user/phone/limit/setting/update',//手机提示信息设置
+  phone_limit_tips_get: '/proxy/user/phone/limit/setting/get',//手机提示信息获取
+
+  file_import_modal: '/proxy/user/file/download',//导入文件模版
 };

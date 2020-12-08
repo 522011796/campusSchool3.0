@@ -55,6 +55,8 @@ export default {
       filterCheckStatus: global.filterCheckStatus,
       filterAreaStatus: global.filterAreaStatus,
       filterOtherAreaStatus: global.filterOtherAreaStatus,
+      filterEnableStatus: global.filterEnableStatus,
+      filterPhoneOwner: global.filterPhoneOwner,
       g_currentDate: {},
       tableHeight: {
         'height': ''
@@ -100,7 +102,7 @@ export default {
     },
     g_HH(){
       if (process.browser) {
-        this.tableHeight.height = window.innerHeight - 248 + 'px';
+        this.tableHeight.height = window.innerHeight - 230 + 'px';
         this.tableHeight2.height = window.innerHeight - 225 + 'px';
         this.tableHeight3.height = window.innerHeight - 370 + 'px';
         this.tableHeight4.height = window.innerHeight - 440 + 'px';
