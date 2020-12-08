@@ -178,7 +178,7 @@
       </div>
     </dialog-normal>
 
-    <dialog-normal :visible="modalAuthVisible" :title="$t('提示信息')" @close="closeDialog" @right-close="cancelDialog">
+    <dialog-normal :visible="modalAuthVisible" :title="tipsText" @close="closeDialog" @right-close="cancelDialog">
       <div class="margin-top-10">
         <el-form :model="formAuth" :rules="rulesAuth" ref="formAuth" label-width="140px">
           <el-form-item :label="$t('功能启用')">
@@ -238,6 +238,7 @@
         autoLoading: false,
         drawerVisible: false,
         drawerLoading: false,
+        tipsText: this.$t('APP手机号认证失败提示信息'),
         clearTime: '',
         action: '',
         subTitle: '',
