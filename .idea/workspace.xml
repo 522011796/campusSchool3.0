@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/static/img/screen-all-class.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/screen-all-dorm.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/screen-build-bg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/validater/screenManageValidater.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/common.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/dataInfo/dataView/screenManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dataInfo/dataView/screenManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/sliderMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/sliderMenu.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/validater/rules.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/rules.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,14 +94,7 @@
       <workItem from="1605711431800" duration="203184000" />
       <workItem from="1606743205465" duration="32160000" />
       <workItem from="1606875308377" duration="82431000" />
-      <workItem from="1607134770964" duration="109472000" />
-    </task>
-    <task id="LOCAL-00055" summary="init">
-      <created>1605798697040</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1605798697041</updated>
+      <workItem from="1607134770964" duration="109929000" />
     </task>
     <task id="LOCAL-00056" summary="init">
       <created>1605801771737</created>
@@ -452,14 +432,20 @@
       <option name="project" value="LOCAL" />
       <updated>1607580969522</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="1、修改框架和组件样式、细节bug等&#10;2、大屏管理接口对接完成">
+      <created>1607591868257</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1607591868258</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、专业接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、班级接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、建筑楼接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、宿舍楼楼接口对接完成" />
@@ -484,7 +470,8 @@
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、陌生人记录、学工管理接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、宿舍设置接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、在线选寝接口对接完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、在线选寝接口对接完成" />
+    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、大屏管理接口对接完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、大屏管理接口对接完成" />
   </component>
   <component name="WindowStateProjectService">
     <state x="454" y="235" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602497724708">
@@ -496,11 +483,11 @@
     </state>
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.805@0.23.1440.805" timestamp="1602828707649" />
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1605755081482" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1607580966274">
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1607591866402">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1607580966274" />
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1607591866402" />
     <state x="100" y="124" width="1240" height="600" key="DiffContextDialog" timestamp="1606983323815">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -534,11 +521,11 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="221" y="64" key="SettingsEditor/0.23.1440.805@0.23.1440.805" timestamp="1602238031085" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1607580971657">
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1607591870529">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1607580971657" />
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1607591870529" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606983323816">
       <screen x="0" y="25" width="1440" height="798" />
     </state>

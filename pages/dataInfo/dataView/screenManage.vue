@@ -110,7 +110,7 @@
           <el-form-item :label="$t('大屏名称')" prop="name">
             <el-input v-model="formModal.name" class="width-260"></el-input>
           </el-form-item>
-          <el-form-item :label="$t('数据集')" prop="className">
+          <el-form-item :label="$t('数据集')" prop="dataSet">
             <my-select :sel-value="formModal.dataSet" :options="dataSetOptions" width-style="260" @change="handleSelect($event, 1)"></my-select>
           </el-form-item>
           <el-form-item :label="$t('分组')" prop="group">
@@ -300,6 +300,7 @@
                 value: res.data.data[i].id,
               });
             }
+            this.formModal.dataSet = arr[0].value;
             this.dataSetOptions = arr;
           }
         });
