@@ -202,10 +202,11 @@
   import MyDatePicker from "../../../components/MyDatePicker";
   import MyInputButton from "../../../components/search/MyInputButton";
   import DialogNormal from "../../../components/utils/dialog/DialogNormal";
+  import DrawerLayoutRight from "../../../components/utils/dialog/DrawerLayoutRight";
   import screenManageValidater from "../../../utils/validater/screenManageValidater";
   export default {
     mixins: [mixins, screenManageValidater],
-    components: {MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal},
+    components: {MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal,DrawerLayoutRight},
     data(){
       return {
         pageStudent: 1,
