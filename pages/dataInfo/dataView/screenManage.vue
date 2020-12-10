@@ -141,7 +141,7 @@
         <span tabindex="1"></span>
         <div>
           <div>
-            <el-form :model="form" ref="form" label-width="50px">
+            <el-form :model="form" :rules="rulesForm" ref="form" label-width="50px">
               <el-form-item :label="$t('组名')" prop="groupName">
                 <el-input v-model="form.groupName" class="width-260"></el-input>
                 <el-button size="medium" type="primary" @click="dialogLoading == false ? saveGroup() : ''">
@@ -423,6 +423,13 @@
       },
       closeDrawerDialog(event){
         this.form.groupName = "";
+        this.form = {
+          id: '',
+          groupName: ''
+        };
+        if (this.$refs['form']){
+          this.$refs['form'].resetFields();
+        }
         this.drawerVisible = event;
       },
       sizeStudentChange(event){
@@ -442,6 +449,10 @@
         }
       },
       closeDialog(event){
+        this.form = {
+          id: '',
+          groupName: ''
+        };
         this.formModal = {
           id: '',
           name: '',
@@ -456,6 +467,9 @@
         this.dataSetOptions = [];
         if (this.$refs['formModal']){
           this.$refs['formModal'].resetFields();
+        }
+        if (this.$refs['form']){
+          this.$refs['form'].resetFields();
         }
       },
       cancelDialog(){
