@@ -20,6 +20,8 @@ let allRealName1_30Reg = /^[\u4e00-\u9fa5a-zA-Z][\u4e00-\u9fa5\.\sa-zA-Z0-9]{0,2
 let idCard_Reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
 //整数或者2位小数
 let nf2_Reg = /^([\+ \-]?(([1-9]\d*)|(0)))([.]\d{0,2})?$/;
+//整数或者2位小数
+let rightnNf2_Reg = /^([\+]?(([1-9]\d*)|(0)))([.]\d{0,2})?$/;
 //负数或者2位小数
 let mnf2_Reg = /(^(-)[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(-)(0){1}$)|(^(-)[0-9]\.[0-9]([0-9])?$)/;
 
@@ -34,6 +36,14 @@ let FormValidate = (function () {
       validateNumber (rule, value, callback) {
         if (value && value != ""){
           numberReg.test(value) ? callback() : callback(new Error('必须为数字'))
+        }else {
+          callback();
+        }
+      },
+      // 整数或者2位小数
+      validateRNf2 (rule, value, callback) {
+        if (value && value != ""){
+          rightnNf2_Reg.test(value) ? callback() : callback(new Error('正整数或者2位小数'))
         }else {
           callback();
         }

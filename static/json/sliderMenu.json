@@ -1136,14 +1136,14 @@
         "key": "dataView",
         "list": [
           {
-            "name": "学生分析",
+            "name": "大屏管理",
             "key": "screenManage",
             "id": 8101,
             "top": "dataInfo",
             "path": "/dataInfo/dataView/screenManage"
           },
           {
-            "name": "考勤态势",
+            "name": "我的大屏",
             "key": "myScreen",
             "id": 8102,
             "top": "dataInfo",

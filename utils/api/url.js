@@ -183,4 +183,9 @@ export const common = {
   stranger_page: '/proxy/school/person/stranger/recognition/page',//陌生人识别记录
   dorm_online_page: '/proxy/building/dormitory/order/page',//在线选寝记录
   dorm_online_handle: '/proxy/building/dormitory/order/handle',//在线选寝确认
+
+  screen_group_page: '/proxy/course/screen/query-screen-group-page',//大屏分组管理
+  screen_group_page_add: '/proxy/course/screen/add-screen-group',//大屏分组设置
+  screen_group_page_del: '/proxy/course/screen/del-screen-group',//大屏分组删除
+  screen_add: '/proxy/course/screen/add-screen',//大屏添加
 };
