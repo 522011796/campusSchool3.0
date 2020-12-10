@@ -181,4 +181,6 @@ export const common = {
   bed_select_list: '/proxy/building/dormitory/bed/select/list',//床位列表
 
   stranger_page: '/proxy/school/person/stranger/recognition/page',//陌生人识别记录
+  dorm_online_page: '/proxy/building/dormitory/order/page',//在线选寝记录
+  dorm_online_handle: '/proxy/building/dormitory/order/handle',//在线选寝确认
 };

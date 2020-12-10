@@ -50,8 +50,13 @@
           </el-table-column>
           <el-table-column
             align="center"
-            prop="sn"
             :label="$t('照片抓拍')">
+
+            <template slot-scope="scope">
+              <span>
+                <el-avatar shape="square" :size="50" :src="scope.row.path" style="width: 100%; height: 100%;"></el-avatar>
+              </span>
+            </template>
           </el-table-column>
         </el-table>
 

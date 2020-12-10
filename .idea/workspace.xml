@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
+    <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="1、修改框架和组件样式、细节bug等&#10;2、宿舍设置接口对接完成">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/dorm/setting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/dorm/setting.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/dorm/online.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/dorm/online.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/student/stuStarngerRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/student/stuStarngerRecord.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/json/sliderMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/sliderMenu.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/global.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,14 +100,7 @@
       <workItem from="1605711431800" duration="203184000" />
       <workItem from="1606743205465" duration="32160000" />
       <workItem from="1606875308377" duration="82431000" />
-      <workItem from="1607134770964" duration="96755000" />
-    </task>
-    <task id="LOCAL-00053" summary="init">
-      <created>1605750394424</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1605750394424</updated>
+      <workItem from="1607134770964" duration="100184000" />
     </task>
     <task id="LOCAL-00054" summary="init">
       <created>1605755874304</created>
@@ -440,7 +438,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607569997874</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="1、修改框架和组件样式、细节bug等&#10;2、宿舍设置接口对接完成">
+      <created>1607572192415</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1607572192417</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -484,11 +489,11 @@
     </state>
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.805@0.23.1440.805" timestamp="1602828707649" />
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1605755081482" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1607569996198">
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1607580122196">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1607569996198" />
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1607580122196" />
     <state x="100" y="124" width="1240" height="600" key="DiffContextDialog" timestamp="1606983323815">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -522,11 +527,11 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="221" y="64" key="SettingsEditor/0.23.1440.805@0.23.1440.805" timestamp="1602238031085" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1607569999726">
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1607572193859">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1607569999726" />
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1607572193859" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606983323816">
       <screen x="0" y="25" width="1440" height="798" />
     </state>

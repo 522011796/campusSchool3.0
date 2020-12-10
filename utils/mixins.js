@@ -57,6 +57,7 @@ export default {
       filterOtherAreaStatus: global.filterOtherAreaStatus,
       filterEnableStatus: global.filterEnableStatus,
       filterPhoneOwner: global.filterPhoneOwner,
+      filterBillStatus: global.filterBillStatus,
       g_currentDate: {},
       tableHeight: {
         'height': ''

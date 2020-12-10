@@ -198,6 +198,11 @@ const filterPhoneOwner = [
   { text: '其他', value: 4 ,label: '其他'}
 ];
 
+const filterBillStatus = [
+  { text: "待缴费", value: 1 ,label: '待缴费'},
+  { text: '已缴费', value: 2 ,label: '已缴费'}
+];
+
 export default {
   total,
   page,
@@ -248,5 +253,6 @@ export default {
   filterAreaStatus,
   filterOtherAreaStatus,
   filterEnableStatus,
-  filterPhoneOwner
+  filterPhoneOwner,
+  filterBillStatus
 }

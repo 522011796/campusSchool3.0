@@ -657,41 +657,18 @@
             "path": "/studentInfo/dorm/dorm"
           },
           {
-            "name": "管理设置",
-            "key": "dormSetting",
-            "id": 3602,
-            "top": "studentInfo",
-            "path": "/studentInfo/dorm/setting"
-          }
-        ]
-      },
-      {
-        "name": "宿舍分配",
-        "icon": "fa fa-retweet",
-        "toggle": false,
-        "id": 3700,
-        "key": "dormOnly",
-        "list": [
-          {
-            "name": "宿舍调换",
-            "key": "dormChange",
-            "id": 3701,
-            "top": "studentInfo",
-            "path": "/studentInfo/dorm/change"
-          },
-          {
-            "name": "分配清空",
-            "key": "dormClear",
-            "id": 3702,
-            "top": "studentInfo",
-            "path": "/studentInfo/dorm/clear"
-          },
-          {
             "name": "线上选寝",
             "key": "dormOnline",
-            "id": 3703,
+            "id": 3702,
             "top": "studentInfo",
             "path": "/studentInfo/dorm/online"
+          },
+          {
+            "name": "管理设置",
+            "key": "dormSetting",
+            "id": 3703,
+            "top": "studentInfo",
+            "path": "/studentInfo/dorm/setting"
           }
         ]
       }
