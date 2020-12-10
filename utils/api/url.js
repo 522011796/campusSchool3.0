@@ -172,4 +172,13 @@ export const common = {
   phone_limit_tips_get: '/proxy/user/phone/limit/setting/get',//手机提示信息获取
 
   file_import_modal: '/proxy/user/file/download',//导入文件模版
+  device_take_list: '/proxy/school/device/device/take/list',//拍照、读取卡号设备
+  device_take_face: '/proxy/school/device/face/take/img',//拍照
+  device_take_get_face: '/proxy/school/device/face/get/take/img',//拍照轮训获取结果
+  device_take_get_card: '/proxy/school/device/card/regit',//获取卡号请求结果
+  device_take_get_loop_card: '/proxy/school/device/get/card/regit',//获取卡号轮训获取结果
+
+  bed_select_list: '/proxy/building/dormitory/bed/select/list',//床位列表
+
+  stranger_page: '/proxy/school/person/stranger/recognition/page',//陌生人识别记录
 };

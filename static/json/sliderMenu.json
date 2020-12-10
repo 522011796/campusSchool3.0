@@ -613,72 +613,30 @@
         "key": "studentManage",
         "list": [
           {
-            "name": "授权信息",
-            "key": "empower",
+            "name": "学生管理",
+            "key": "stuManage",
             "id": 3501,
             "top": "studentInfo",
-            "path": "/studentInfo/student/empower"
+            "path": "/studentInfo/student/manage"
           },
           {
             "name": "认证管理",
             "key": "stuAuth",
-            "id": 3510,
+            "id": 3502,
             "top": "studentInfo",
             "path": "/studentInfo/student/stuAuth"
           },
           {
-            "name": "宿舍信息",
-            "key": "dorm",
-            "id": 3502,
-            "top": "studentInfo",
-            "path": "/studentInfo/student/dorm"
-          },
-          {
-            "name": "班级信息",
-            "key": "class",
-            "id": 3503,
-            "top": "studentInfo",
-            "path": "/studentInfo/student/class"
-          },
-          {
-            "name": "账号信息",
-            "key": "account",
-            "id": 3504,
-            "top": "studentInfo",
-            "path": "/studentInfo/student/account"
-          },
-          {
-            "name": "学籍信息",
-            "key": "status",
-            "id": 3505,
-            "top": "studentInfo",
-            "path": "/studentInfo/student/status"
-          },
-          {
-            "name": "学习形式",
-            "key": "form",
-            "id": 3506,
-            "top": "studentInfo",
-            "path": "/studentInfo/student/form"
-          },
-          {
-            "name": "学生报告",
-            "key": "report",
-            "id": 3507,
-            "top": "studentInfo",
-            "path": "/studentInfo/student/report"
-          },
-          {
             "name": "学生报警",
             "key": "warning",
-            "id": 3508,
+            "id": 3503,
             "top": "studentInfo",
             "path": "/studentInfo/student/warning"
           },
           {
             "name": "陌生人记录",
             "key": "stuStarngerRecord",
-            "id": 3509,
+            "id": 3504,
             "top": "studentInfo",
             "path": "/studentInfo/student/stuStarngerRecord"
           }

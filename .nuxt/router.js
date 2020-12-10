@@ -124,6 +124,7 @@ const _50b2ff93 = () => interopDefault(import('../pages/studentInfo/student/clas
 const _bcc6708a = () => interopDefault(import('../pages/studentInfo/student/dorm.vue' /* webpackChunkName: "pages/studentInfo/student/dorm" */))
 const _4f9d2c38 = () => interopDefault(import('../pages/studentInfo/student/empower.vue' /* webpackChunkName: "pages/studentInfo/student/empower" */))
 const _715f2179 = () => interopDefault(import('../pages/studentInfo/student/form.vue' /* webpackChunkName: "pages/studentInfo/student/form" */))
+const _6e45e65a = () => interopDefault(import('../pages/studentInfo/student/manage.vue' /* webpackChunkName: "pages/studentInfo/student/manage" */))
 const _4cb91ea9 = () => interopDefault(import('../pages/studentInfo/student/report.vue' /* webpackChunkName: "pages/studentInfo/student/report" */))
 const _2f39eb32 = () => interopDefault(import('../pages/studentInfo/student/status.vue' /* webpackChunkName: "pages/studentInfo/student/status" */))
 const _0c407557 = () => interopDefault(import('../pages/studentInfo/student/stuAuth.vue' /* webpackChunkName: "pages/studentInfo/student/stuAuth" */))
@@ -644,6 +645,10 @@ export const routerOptions = {
     path: "/studentInfo/student/form",
     component: _715f2179,
     name: "studentInfo-student-form"
+  }, {
+    path: "/studentInfo/student/manage",
+    component: _6e45e65a,
+    name: "studentInfo-student-manage"
   }, {
     path: "/studentInfo/student/report",
     component: _4cb91ea9,

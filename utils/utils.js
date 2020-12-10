@@ -359,6 +359,21 @@ export function trim (str) {
   return str.replace(/(^\s*)|(\s*$)/g, "");
 }
 
+export function deviceType(type, str){
+  let deviceType = {
+    "1": "终端机",
+    "3": "一体机本地版",
+    "4": "一体机云端版",
+    "6": "门禁控制器",
+  };
+  if (str && type == 'set') {
+    return deviceType[str];
+  }
+  if (!str && type == 'get'){
+    return deviceType;
+  }
+}
+
 export function workEnjoy(type, str){
   let workEnjoy = {
     "01": "退休",
