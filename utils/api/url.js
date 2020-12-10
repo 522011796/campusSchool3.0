@@ -188,4 +188,6 @@ export const common = {
   screen_group_page_add: '/proxy/course/screen/add-screen-group',//大屏分组设置
   screen_group_page_del: '/proxy/course/screen/del-screen-group',//大屏分组删除
   screen_add: '/proxy/course/screen/add-screen',//大屏添加
+
+  screen_my_page: '/proxy/course/screen/query-screen-page',//我的大屏分页
 };

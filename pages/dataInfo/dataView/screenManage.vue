@@ -278,6 +278,10 @@
             this.numStudent = res.data.data.num;
             this.pageStudent = res.data.data.currentPage;
 
+            arr.push({
+              label: this.$t("默认组"),
+              value: '',
+            });
             for (let i = 0; i < res.data.data.list.length; i++){
               arr.push({
                 label: res.data.data.list[i].group_name,
@@ -485,6 +489,6 @@
     padding: 10px 15px;
   }
   .screen-item{
-    height: 160px;
+    height: 180px;
   }
 </style>
