@@ -163,6 +163,10 @@ export default {
         price: '',
         reamrks: '',
         goodsNum: '',
+        teacherId: [],
+        choseLimit: false,
+        imgList: [],
+        roomPhotos: ""
       },
     }
   },
@@ -190,6 +194,8 @@ export default {
       this.modalVisible = true;
     },
     editInfo(row){
+      let teacher_id = !row.teacher_id ? [] : row.teacher_id.split(",");
+      let photos = row.room_photos ? row.room_photos.split("|") : [];
       this.form = {
         id: row.id,
         buildName: row.build_name,
@@ -207,6 +213,10 @@ export default {
         price: row.room_price,
         remarks: row.room_des,
         goodsNum: row.people_num,
+        teacherId: teacher_id,
+        choseLimit: row.chose_limit == 0 ? true : false,
+        imgList: photos,
+        roomPhotos: ""
       };
       this.modalVisible = true;
     },
@@ -246,6 +256,14 @@ export default {
       let url = "";
       this.$refs['form'].validate((valid) => {
         if (valid) {
+          let arr = "";
+          for (let i = 0; i < this.form.imgList.length; i++){
+            if (i != this.form.imgList.length -1 ){
+              arr += this.form.imgList[i] + "|";
+            }else {
+              arr += this.form.imgList[i];
+            }
+          }
           this.dialogLoading = true;
           let params = {
             dormitoryNo: this.form.roomNo,
@@ -259,6 +277,9 @@ export default {
             roomDes: this.form.remarks,
             floorNum: this.form.buildData[1],
             buildId: this.form.buildData[0],
+            choseLimit: this.form.choseLimit == true ? 0 : 1,
+            teacherId: this.form.teacherId.join(),
+            roomPhotos: arr
           };
           if (this.form.id != ""){
             url = common.dormroom_update;
@@ -298,6 +319,10 @@ export default {
         price: '',
         reamrks: '',
         goodsNum: '',
+        teacherId: [],
+        choseLimit: false,
+        imgList: [],
+        roomPhotos: ""
       };
       this.subTitle = "";
       this.$set(this.form, 'buildData', []);
