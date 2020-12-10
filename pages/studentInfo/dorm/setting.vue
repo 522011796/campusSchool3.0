@@ -13,8 +13,8 @@
         <div class="layout-top-tab margin-top-5">
           <el-row>
             <el-col :span="24">
-              <div>
-
+              <div class="text-right">
+                <my-input-button size="small" plain width-class="width: 200px" type="success" :clearable="true" :placeholder="$t('房间号')" @click="search"></my-input-button>
               </div>
             </el-col>
           </el-row>
@@ -166,10 +166,11 @@
   import dormroomValidater from "../../../utils/validater/dormroomValidater";
   import MyElTree from "../../../components/tree/MyElTree";
   import UploadSquare from "../../../components/utils/upload/UploadSquare";
+  import MyInputButton from "../../../components/search/MyInputButton";
 
   export default {
     mixins: [mixins, dormroomValidater],
-    components: {MyElTree, DialogNormal,MyNormalDialog,DrawerRight,MyCascader,MySelect,UploadSquare},
+    components: {MyElTree, DialogNormal,MyNormalDialog,DrawerRight,MyCascader,MySelect,UploadSquare,MyInputButton},
     data(){
       return {
         tableData: [],
@@ -187,6 +188,7 @@
         subDetail: '',
         errorTips: '',
         searchTeacherName: '',
+        searchKey: '',
         uploadFileUrl: common.upload_file,
         form: {
           id: '',
@@ -224,6 +226,9 @@
           buildId: this.searchBuildId,
           floorNum: this.searchFloorNum
         };
+        if (this.searchKey !== ""){
+          params['dormitoryNo'] = this.searchKey;
+        }
         this.$axios.get(common.dormroom_page, {params: params}).then(res => {
           if (res.data.data){
             this.tableData = res.data.data.list;
@@ -330,8 +335,10 @@
         }
         this.init();
       },
-      search(){
-
+      search(data){
+        this.page = 1;
+        this.searchKey = data.input;
+        this.init();
       },
       dormTypeInfo(val){
         return dormTypeText(val);
