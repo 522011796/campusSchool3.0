@@ -26,7 +26,7 @@
             </div>
             <el-row :gutter="16" class="margin-top-5">
               <el-col :span="8" v-for="(itemChild, indexChild) in item.list" :key="indexChild" class="margin-bottom-20">
-                <el-card :body-style="{padding: '0px'}" style="position: relative">
+                <el-card :body-style="{padding: '0px'}" style="position: relative;height: 280px">
                   <div slot="header" class="moon-clearfix padding-tb-10 padding-lr-10">
                     <span class="color-grand" style="font-weight: bold">
                       <i class="fa fa-television"></i>
