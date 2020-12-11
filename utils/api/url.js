@@ -190,4 +190,6 @@ export const common = {
   screen_add: '/proxy/course/screen/add-screen',//大屏添加
 
   screen_my_page: '/proxy/course/screen/query-screen-page',//我的大屏分页
+  screen_my_edit: '/proxy/course/screen/edit-screen',//我的大屏启禁用
+  screen_my_del: '/proxy/course/screen/del-screen',//我的大屏启删除
 };

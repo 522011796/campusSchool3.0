@@ -104,7 +104,7 @@
       </div>
     </layout-tb>
 
-    <dialog-normal top="10vh" :visible="modalVisible" :title="$t('班级设置')" @close="closeDialog" @right-close="cancelDialog">
+    <dialog-normal top="10vh" :visible="modalVisible" :title="$t('大屏设置')" @close="closeDialog" @right-close="cancelDialog">
       <div class="margin-top-10">
         <el-form :model="formModal" :rules="rules" ref="formModal" label-width="140px">
           <el-form-item :label="$t('大屏名称')" prop="name">

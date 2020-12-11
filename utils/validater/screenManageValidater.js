@@ -16,6 +16,10 @@ export default {
         time: [
           { required: true, message: this.$t("请输入时间"), trigger: 'blur' },
           { validator: rules.FormValidate.Form().validateRNf2, trigger: 'blur' }
+        ],
+        longTime: [
+          { required: true, message: this.$t("请输入时间"), trigger: 'blur' },
+          { validator: rules.FormValidate.Form().validateRNf2, trigger: 'blur' }
         ]
       }
     }
