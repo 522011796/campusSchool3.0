@@ -89,6 +89,11 @@ export default {
         'overflow-y': 'auto',
         'overflow-x': 'hidden'
       },
+      divHeight4: {
+        'height': '',
+        'overflow-y': 'auto',
+        'overflow-x': 'hidden'
+      },
       drawHeight: {
         'height': ''
       }
@@ -116,6 +121,7 @@ export default {
         this.divHeight["max-height"] = window.innerHeight - 205 + 'px';
         this.divHeight2["max-height"] = window.innerHeight - 235 + 'px';
         this.divHeight3.height = window.innerHeight - 235 + 'px';
+        this.divHeight4.height = window.innerHeight - 125 + 'px';
         this.drawHeight.height = window.innerHeight - 80 + 'px';
       }
     },

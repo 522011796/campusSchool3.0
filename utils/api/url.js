@@ -192,4 +192,9 @@ export const common = {
   screen_my_page: '/proxy/course/screen/query-screen-page',//我的大屏分页
   screen_my_edit: '/proxy/course/screen/edit-screen',//我的大屏启禁用
   screen_my_del: '/proxy/course/screen/del-screen',//我的大屏启删除
+
+  school_static_top: '/proxy/user/student/school/count',//考勤态势顶部统计
+  school_static_summary: '/proxy/course/rollcallbigdata/overall/summary',//考勤态势本周本月考勤统计
+  school_static_pie: '/proxy/course/rollcallbigdata/overall/chart/pie',//考勤态势排名饼图
+  school_static_line: '/proxy/course/rollcallbigdata/overall/chart/line',//考勤态势排名线性图
 };

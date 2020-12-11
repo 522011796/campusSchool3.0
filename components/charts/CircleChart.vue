@@ -20,6 +20,22 @@
           return [];
         },
         type: Array
+      },
+      legendRight: {
+        default: 50,
+        type: [String, Number]
+      },
+      radius: {
+        default: function(){
+          return ['50%', '80%'];
+        },
+        type: Array
+      },
+      center: {
+        default: function(){
+          return ['30%', '50%'];
+        },
+        type: Array
       }
     },
     data(){
@@ -46,7 +62,7 @@
           legend: {
             type: 'scroll',
             orient: 'vertical',
-            right: 50,
+            right: this.legendRight,
             itemWidth: 15,
             itemHeight: 10,
             textStyle: {
@@ -59,8 +75,8 @@
             {
               name: this.chartTitle ? this.chartTitle : '信息',
               type: 'pie',
-              radius: ['50%', '80%'],
-              center: ['30%', '50%'],
+              radius: this.radius,
+              center: this.center,
               avoidLabelOverlap: false,
               label: {
                 show: false,
