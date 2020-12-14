@@ -197,4 +197,6 @@ export const common = {
   school_static_summary: '/proxy/course/rollcallbigdata/overall/summary',//考勤态势本周本月考勤统计
   school_static_pie: '/proxy/course/rollcallbigdata/overall/chart/pie',//考勤态势排名饼图
   school_static_line: '/proxy/course/rollcallbigdata/overall/chart/line',//考勤态势排名线性图
+
+  school_static_pic: '/proxy/course/rollcallbigdata/overall/rollcall/face/all',//考勤画像
 };

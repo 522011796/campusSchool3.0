@@ -197,7 +197,7 @@
                     <div class="color-disabeld">
                       <span>{{$t("课堂考勤趋势图")}}</span>
                     </div>
-                    <line-chart></line-chart>
+                    <line-chart chart-id="lineChartId"></line-chart>
                   </div>
                 </el-card>
               </el-col>

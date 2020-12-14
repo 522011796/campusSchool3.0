@@ -6,7 +6,6 @@
 
 <script>
   export default {
-    name: 'circleChart',
     props: {
       chartId: '',
       chartTitle: '',
@@ -57,45 +56,50 @@
         let myChart = this.$echarts.init(lineId); //初始化
         myChart.setOption({ //官网例子
           tooltip: {
-            trigger: 'item',
-            formatter: '{a} <br/>{b}: {c} ({d}%)'
-          },
-          legend: {
-            type: 'scroll',
-            orient: 'vertical',
-            right: this.legendRight,
-            itemWidth: 15,
-            itemHeight: 10,
-            textStyle: {
-              fontSize: 12,
-              color: '#909399'
+            trigger: 'axis',
+            axisPointer: {
+              type: 'none'
             },
-            data: this.dataKey
+            formatter: function (params) {
+              return params[0].name + ': ' + params[0].value;
+            }
           },
-          series: [
-            {
-              name: this.chartTitle ? this.chartTitle : '信息',
-              type: 'pie',
-              radius: this.radius,
-              center: this.center,
-              avoidLabelOverlap: false,
-              label: {
-                show: false,
-                position: 'center'
+          xAxis: {
+            axisTick: {show: false},
+            axisLine: {show: false},
+            axisLabel: {
+              textStyle: {
+                color: '#e54035',
+                fontSize:10
+              },
+              rotate:-20,
+            },
+            data: this.dataKey,
+          },
+          yAxis: {
+            splitLine: {show: false},
+            axisTick: {show: false},
+            axisLine: {show: false},
+            axisLabel: {show: false}
+          },
+          color: ['#e54035'],
+          series: [{
+            name: 'hill',
+            type: 'pictorialBar',
+            barCategoryGap: '-130%',
+            // symbol: 'path://M0,10 L10,10 L5,0 L0,10 z',
+            symbol: 'path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z',
+            itemStyle: {
+              normal: {
+                opacity: 0.5
               },
               emphasis: {
-                label: {
-                  show: true,
-                  fontSize: '10',
-                  fontWeight: 'bold'
-                }
-              },
-              labelLine: {
-                show: false
-              },
-              data: this.data
-            }
-          ]
+                opacity: 1
+              }
+            },
+            data: this.data,
+            z: 10
+          }]
         });
       }
     },
