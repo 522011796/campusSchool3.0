@@ -199,4 +199,10 @@ export const common = {
   school_static_line: '/proxy/course/rollcallbigdata/overall/chart/line',//考勤态势排名线性图
 
   school_static_pic: '/proxy/course/rollcallbigdata/overall/rollcall/face/all',//考勤画像
+
+  student_analysis_static: '/proxy/course/rollcallbigdata/overall/rollcall/student/detail/summary',//学生分析课堂统计信息
+  student_analysis_bed_static: '/proxy/course/rollcallbed/rollcallbed/student/detail/summary',//学生分析归寝统计信息
+  student_analysis_static_page: '/proxy/course/rollcallbigdata/overall/rollcall/student/record/page',//学生分析课堂考勤记录分页--日
+  student_analysis_static_count_page: '/proxy/course/rollcallbigdata/overall/rollcall/student/detail/page',//学生分析课堂考勤记录分页--周/年/学期
+  student_analysis_bed_static_page: '/proxy/course/rollcallbed/rollcallbed/student/detail/page',//学生分析归寝统计信息
 };

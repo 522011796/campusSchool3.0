@@ -3,7 +3,7 @@
     <el-row>
       <el-col :span="8">
         <el-button-group>
-          <el-button :size="size" :type="searchDateType == 1 ? 'primary' : 'default'" @click="handeleSearchDateType(1)">{{$t("日")}}</el-button>
+          <el-button v-if="showDay" :size="size" :type="searchDateType == 1 ? 'primary' : 'default'" @click="handeleSearchDateType(1)">{{$t("日")}}</el-button>
           <el-button :size="size" :type="searchDateType == 2 ? 'primary' : 'default'" @click="handeleSearchDateType(2)">{{$t("周")}}</el-button>
           <el-button :size="size" :type="searchDateType == 3 ? 'primary' : 'default'" @click="handeleSearchDateType(3)">{{$t("月")}}</el-button>
           <el-button v-if="showYear" :size="size" :type="searchDateType == 4 ? 'primary' : 'default'" @click="handeleSearchDateType(4)">{{$t("年")}}</el-button>
@@ -43,6 +43,10 @@
     components: {MySelect,MyDatePicker},
     props: {
       selDateTime: '',
+      showDay: {
+        default: true,
+        type: Boolean
+      },
       showYear: {
         default: true,
         type: Boolean
@@ -106,7 +110,7 @@
     },
     data() {
       return {
-        searchDateType: '1',
+        searchDateType: this.showDay == true ? '1' : '2',
         inputValue: '',
         selectValue: '',
         showIcon: false,
