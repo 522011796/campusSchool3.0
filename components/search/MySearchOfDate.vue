@@ -9,6 +9,7 @@
           <el-button v-if="showYear" :size="size" :type="searchDateType == 4 ? 'primary' : 'default'" @click="handeleSearchDateType(4)">{{$t("年")}}</el-button>
           <el-button v-if="showTerm" :size="size" :type="searchDateType == 5 ? 'primary' : 'default'" @click="handeleSearchDateType(5)">{{$t("学期")}}</el-button>
         </el-button-group>
+        <slot name="opr"></slot>
       </el-col>
 
       <el-col :span="16">

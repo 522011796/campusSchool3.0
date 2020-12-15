@@ -283,6 +283,11 @@ a{
   height: 1px;
   margin: 10px 0px;
 }
+.line-height2{
+  background: #EBEEF5;
+  height: 1px;
+  margin: 0px 0px;
+}
 .line-ver-height{
   background: #EBEEF5;
   width: 1px;

@@ -193,6 +193,15 @@
             <span class="color-warning tag-text">
               {{$t("考勤记录")}}
             </span>
+            <span v-if="showType == 1 && (searchTimeData.timeUnit == null || searchTimeData.timeUnit == 1)">
+              <el-button-group>
+                <el-button size="small" :type="attendType == 1 ? 'primary' : 'default'" @click="selAttenType($event,1)">{{$t("出勤")}}</el-button>
+                <el-button size="small" :type="attendType == 3 ? 'primary' : 'default'" @click="selAttenType($event,3)">{{$t("迟到")}}</el-button>
+                <el-button size="small" :type="attendType == 4 ? 'primary' : 'default'" @click="selAttenType($event,4)">{{$t("早退")}}</el-button>
+                <el-button size="small" :type="attendType == 0 ? 'primary' : 'default'" @click="selAttenType($event,0)">{{$t("旷课")}}</el-button>
+                <el-button size="small" :type="attendType == 2 ? 'primary' : 'default'" @click="selAttenType($event,2)">{{$t("请假")}}</el-button>
+              </el-button-group>
+            </span>
           </div>
           <div class="margin-top-10">
             <div v-if="showType == 1">
@@ -480,7 +489,8 @@
         lineKeyData: [],
         lineLegned: [],
         currentWeekSelNo: '',
-        tableClassData: []
+        tableClassData: [],
+        attendType: 1
       }
     },
     created() {
@@ -629,8 +639,8 @@
           page: this.pageClass,
           num: this.numClass,
           userId: this.userData.user_id,
-          signStatus: 1,
-          orderAsc: false
+          signStatus: this.attendType,
+          orderAsc: false,
         };
         //时间类型
         if (this.searchTimeData.timeUnit == 1){
@@ -896,6 +906,12 @@
       },
       searchTopType(data){
 
+      },
+      selAttenType(event, type){
+        this.attendType = type;
+        this.pageClass = 1;
+        this.numClass = 20;
+        this.initClassRecord();
       }
     }
   }

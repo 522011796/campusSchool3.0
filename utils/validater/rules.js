@@ -24,6 +24,8 @@ let nf2_Reg = /^([\+ \-]?(([1-9]\d*)|(0)))([.]\d{0,2})?$/;
 let rightnNf2_Reg = /^([\+]?(([1-9]\d*)|(0)))([.]\d{0,2})?$/;
 //负数或者2位小数
 let mnf2_Reg = /(^(-)[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(-)(0){1}$)|(^(-)[0-9]\.[0-9]([0-9])?$)/;
+//0-100
+let n0_100_Reg = /^([0-9]{1,2}|100)$/;
 
 let FormValidate = (function () {
   function FormValidate() {
@@ -32,6 +34,14 @@ let FormValidate = (function () {
   // From表单验证规则  可用于公用的校验部分
   FormValidate.Form = function () {
     return {
+      // 数字验证
+      validate0_100Number (rule, value, callback) {
+        if (value && value != ""){
+          n0_100_Reg.test(value) ? callback() : callback(new Error('0-100正整数'))
+        }else {
+          callback();
+        }
+      },
       // 数字验证
       validateNumber (rule, value, callback) {
         if (value && value != ""){
