@@ -905,13 +905,6 @@
             "id": 5004,
             "top": "auditInfo",
             "path": "/auditInfo/stuApply/doorApply"
-          },
-          {
-            "name": "成绩审批",
-            "key": "resultApply",
-            "id": 5005,
-            "top": "auditInfo",
-            "path": "/auditInfo/stuApply/resultApply"
           }
         ]
       },
