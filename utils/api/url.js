@@ -213,4 +213,15 @@ export const common = {
   qtzt_analysis_static_class_student_list: '/proxy/course/quantization/query-qtzt-user-statistic-page',//量化统计班级个人区域
   qtzt_analysis_static_set: '/proxy/course/quantization/statconf-save',//量化统计设置
   qtzt_analysis_static_set_query: '/proxy/course/quantization/statconf-query',//量化统计设置查询
+
+  local_pad_page: '/proxy/school/device/pad/page',//本地平板查询
+  local_pad_sn: '/proxy/school/device/pad/add/get/sn',//本地平板sn查询
+  local_pad_add: '/proxy/school/device/pad/add',//本地平板添加
+  local_pad_config_get: '/proxy/school/device/pad/config/get',//本地平板配置获取
+  local_pad_config_set: '/proxy/school/device/pad/config/set',//本地平板配置
+  local_pad_config_delete: '/proxy/school/device/pad/delete',//本地平板删除
+  local_pad_config_picsync: '/proxy/school/device/device/clearSyncNum',//本地平板照片同步
+  local_pad_config_persync: 'proxy/school/device/user/sync/valid',//本地平板人员同步
+  local_pad_muti_delete: 'proxy/school/device/pad/delete/batch',//本地平板批量删除、解绑
+  local_pad_muti_reset: 'proxy/school/device/pad/reboot/batch',//本地平板批量重启
 };

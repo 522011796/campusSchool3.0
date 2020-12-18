@@ -203,6 +203,18 @@ const filterBillStatus = [
   { text: '已缴费', value: 2 ,label: '已缴费'}
 ];
 
+const filterDeviceUseType = [
+  { text: "归寝签到", value: 1 ,label: '归寝签到'},
+  { text: '课堂考勤', value: 2 ,label: '课堂考勤'},
+  { text: '门禁直连用', value: 3 ,label: '门禁直连用'},
+  { text: '门禁控制器用', value: 4 ,label: '门禁控制器用'}
+];
+
+const filterOnlineStatus = [
+  { text: "在线", value: true, label: '在线'},
+  { text: '离线', value: false, label: '离线'}
+];
+
 export default {
   total,
   page,
@@ -254,5 +266,7 @@ export default {
   filterOtherAreaStatus,
   filterEnableStatus,
   filterPhoneOwner,
-  filterBillStatus
+  filterBillStatus,
+  filterDeviceUseType,
+  filterOnlineStatus
 }

@@ -58,6 +58,8 @@ export default {
       filterEnableStatus: global.filterEnableStatus,
       filterPhoneOwner: global.filterPhoneOwner,
       filterBillStatus: global.filterBillStatus,
+      filterDeviceUseType: global.filterDeviceUseType,
+      filterOnlineStatus: global.filterOnlineStatus,
       g_currentDate: {},
       tableHeight: {
         'height': ''

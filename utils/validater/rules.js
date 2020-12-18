@@ -26,6 +26,8 @@ let rightnNf2_Reg = /^([\+]?(([1-9]\d*)|(0)))([.]\d{0,2})?$/;
 let mnf2_Reg = /(^(-)[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(-)(0){1}$)|(^(-)[0-9]\.[0-9]([0-9])?$)/;
 //0-100
 let n0_100_Reg = /^([0-9]{1,2}|100)$/;
+//ip
+let ip_Reg = /^((([01]?[0-9]{1,2})|(2[0-4][0-9])|(25[0-5]))[.]){3}(([0-1]?[0-9]{1,2})|(2[0-4][0-9])|(25[0-5]))$/;
 
 let FormValidate = (function () {
   function FormValidate() {
@@ -34,7 +36,15 @@ let FormValidate = (function () {
   // From表单验证规则  可用于公用的校验部分
   FormValidate.Form = function () {
     return {
-      // 数字验证
+      // ip验证
+      validate_ip (rule, value, callback) {
+        if (value && value != ""){
+          ip_Reg.test(value) ? callback() : callback(new Error('IP地址格式错误'))
+        }else {
+          callback();
+        }
+      },
+      // 数字验证0-100
       validate0_100Number (rule, value, callback) {
         if (value && value != ""){
           n0_100_Reg.test(value) ? callback() : callback(new Error('0-100正整数'))

@@ -668,6 +668,15 @@ export function areaTypeText(val){
   return statusList[val];
 }
 
+export function levelText(val){
+  let statusList = {
+    "1": "等级1",
+    "2": "等级2",
+    "3": "等级3"
+  };
+  return statusList;
+}
+
 export function getWeekTotalSelect(){
   let arr = [];
   for (let i = 0; i < 52; i++){
