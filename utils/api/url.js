@@ -228,7 +228,7 @@ export const common = {
   wo_pad_page: '/proxy/school/device/wopad/page',//云端平板查询
   wo_pad_add: '/proxy/school/device/wopad/add',//云端平板添加
   wo_pad_config_get: '/proxy/school/device/wopad/setting/get',//云端平板配置获取
-  wo_pad_config_set: '/proxy/school/device/wopad/config/set',//云端平板配置
+  wo_pad_config_set: '/proxy/school/device/wopad/setting/update',//云端平板配置
   wo_pad_config_delete: '/proxy/school/device/wopad/delete',//云端平板删除
   wo_pad_config_picsync: '/proxy/school/device/device/clearSyncNum',//云端平板照片同步
   wo_pad_config_persync: 'proxy/school/device/user/sync/valid',//云端平板人员同步

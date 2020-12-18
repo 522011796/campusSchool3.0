@@ -286,7 +286,7 @@
                 </el-radio-group>
               </el-form-item>
               <el-form-item :label="$t('识别失败判定')">
-                <el-input v-model="formSet.recFailTimesThreshold"></el-input>
+                <el-input v-model="formSet.recFailTimesThreshold" class="width-100"></el-input>
               </el-form-item>
               <el-form-item :label="$t('语音播报')">
                 <el-radio-group size="small" v-model="formSet.recFailTtsModeType">
@@ -316,9 +316,9 @@
                 </el-radio-group>
               </el-form-item>
               <el-form-item :label="$t('识别距离')">
-                <el-radio-group size="mini" v-model="formSet.identifyDistance">
-                  <el-radio-button label="0.5">0.5{{$t('米内')}}</el-radio-button>
-                  <el-radio-button label="1">1{{$t('米内')}}</el-radio-button>
+                <el-radio-group size="mini" v-model="formSet.comRecDistModeType">
+                  <el-radio-button label="2">0.5{{$t('米内')}}</el-radio-button>
+                  <el-radio-button label="3">1{{$t('米内')}}</el-radio-button>
                 </el-radio-group>
               </el-form-item>
               <el-form-item :label="$t('时间窗')">
@@ -331,7 +331,7 @@
                 <el-input size="small" v-model style="width: 80px" v-model="formSet.comRelayTime"></el-input>{{$t('毫秒')}}
               </el-form-item>
               <el-form-item :label="$t('多人脸检测')">
-                <el-radio-group size="mini" v-model="formSet.faceDetecitonType">
+                <el-radio-group size="mini" v-model="formSet.faceDetectionType">
                   <el-radio-button label="1">{{$t('多人脸识别')}}</el-radio-button>
                   <el-radio-button label="2">{{$t('单人脸识别')}}</el-radio-button>
                 </el-radio-group>
@@ -439,7 +439,7 @@
           comRecTimeWindow: 60,
           faceScore: '',
           comRelayTime: 500,
-          faceDetecitonType: 1,
+          faceDetectionType: 1,
           faceEnable: 1
         },
         formConf: {
@@ -476,6 +476,7 @@
           sn: row.sn
         };
         this.$axios.get(common.wo_pad_config_get, {params: params}).then(res => {
+          console.log(res.data.data);
           if (res.data.data){
             this.formSet = {
               name: res.data.data.name,
@@ -497,8 +498,9 @@
               comRecTimeWindow: res.data.data.comRecTimeWindow ? res.data.data.comRecTimeWindow : 60,
               faceScore: res.data.data.faceScore,
               comRelayTime: res.data.data.comRelayTime ? res.data.data.comRelayTime : 500,
-              faceDetecitonType: res.data.data.faceDetecitonType,
-              faceEnable: res.data.data.faceEnable
+              faceDetectionType: res.data.data.faceDetectionType,
+              faceEnable: res.data.data.faceEnable,
+              comRecDistModeType: res.data.data.comRecDistModeType ? res.data.data.comRecDistModeType : 2,
             }
             this.formSet['sn'] = row.sn;
           }
@@ -752,7 +754,8 @@
           faceScore: '',
           comRelayTime: 500,
           faceDetecitonType: 1,
-          faceEnable: 1
+          faceEnable: 1,
+          comRecDistModeType: 2
         };
         this.drawerVisible = event;
       },
