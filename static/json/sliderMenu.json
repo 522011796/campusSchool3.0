@@ -158,13 +158,6 @@
             "id": 505,
             "top": "basicInfo",
             "path": "/basicInfo/deviceArea"
-          },
-          {
-            "name": "设备配置管理",
-            "key": "deviceConfig",
-            "id": 506,
-            "top": "basicInfo",
-            "path": "/basicInfo/deviceConfig"
           }
         ]
       },

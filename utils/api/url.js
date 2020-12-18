@@ -224,4 +224,21 @@ export const common = {
   local_pad_config_persync: 'proxy/school/device/user/sync/valid',//本地平板人员同步
   local_pad_muti_delete: 'proxy/school/device/pad/delete/batch',//本地平板批量删除、解绑
   local_pad_muti_reset: 'proxy/school/device/pad/reboot/batch',//本地平板批量重启
+
+  wo_pad_page: '/proxy/school/device/wopad/page',//云端平板查询
+  wo_pad_add: '/proxy/school/device/wopad/add',//云端平板添加
+  wo_pad_config_get: '/proxy/school/device/wopad/setting/get',//云端平板配置获取
+  wo_pad_config_set: '/proxy/school/device/wopad/config/set',//云端平板配置
+  wo_pad_config_delete: '/proxy/school/device/wopad/delete',//云端平板删除
+  wo_pad_config_picsync: '/proxy/school/device/device/clearSyncNum',//云端平板照片同步
+  wo_pad_config_persync: 'proxy/school/device/user/sync/valid',//云端平板人员同步
+  wo_pad_muti_delete: 'proxy/school/device/wopad/delete/batch',//云端平板批量删除、解绑
+  wo_pad_muti_reset: 'proxy/school/device/wopad/reboot/batch',//云端平板批量重启
+
+  device_set: 'proxy/school/setting/set',//设备配置
+  device_get: 'proxy/school/setting/get',//设备配置获取
+
+  device_class_location_page: 'proxy/school/location/classroom/page',//班级位置
+  device_dorm_location_page: 'proxy/school/location/pad/location/page',//宿舍位置
+  device_unbind_list: 'proxy/school/device/unbind/list',//需要被绑定的设备
 };

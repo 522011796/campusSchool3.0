@@ -14,6 +14,21 @@ export default {
         name: [
           { required: false, validator: rules.FormValidate.Form().validatenall1_20Reg, trigger: 'blur' }
         ]
+      },
+      rulesConf: {
+        pwd: [
+          { required: true, message: this.$t("请输入信息"), trigger: 'blur' },
+          { validator: rules.FormValidate.Form().validatenall1_20Reg, trigger: 'blur' }
+        ],
+        faceCallBack: [
+          { required: true, message: this.$t("请输入信息"), trigger: 'blur' }
+        ],
+        hurtCallBack: [
+          { required: true, message: this.$t("请输入信息"), trigger: 'blur' }
+        ],
+        padPhotoRegisterCallbackUrl: [
+          { required: true, message: this.$t("请输入信息"), trigger: 'blur' }
+        ]
       }
     }
   }
