@@ -265,7 +265,7 @@
           <el-form-item :label="$t('心跳地址')" prop="hurtCallBack">
             <el-input v-model="formConf.hurtCallBack" class="width-260"></el-input>
           </el-form-item>
-          <el-form-item :label="$t('照片注册地址')" prop="padPhotoRegisterCallbackUrl">
+          <el-form-item :label="$t('照片注册地址')">
             <el-input v-model="formConf.padPhotoRegisterCallbackUrl" class="width-260"></el-input>
           </el-form-item>
         </el-form>
@@ -625,6 +625,32 @@
           }
         });
       },
+      setCallbackUrl(){
+        let params = {
+          callbackUrl: this.formConf.faceCallBack
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.device_pad_local_check_down, params).then(res => {
+          if (res.data.code == 200){
+
+          }else {
+            MessageWarning(res.data.desc);
+          }
+        });
+      },
+      setHurtCallbackUrl(){
+        let params = {
+          callbackUrl: this.formConf.hurtCallBack
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.device_pad_local_down, params).then(res => {
+          if (res.data.code == 200){
+
+          }else {
+            MessageWarning(res.data.desc);
+          }
+        });
+      },
       addInfo(){
         this.modalVisible = true;
       },
@@ -801,6 +827,8 @@
               if (res.data.code == 200){
                 this.modalConfVisible = false;
                 this.init();
+                this.setCallbackUrl();
+                this.setHurtCallbackUrl();
                 MessageSuccess(res.data.desc);
               }else {
                 MessageError(res.data.desc);

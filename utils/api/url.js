@@ -237,6 +237,10 @@ export const common = {
 
   device_set: '/proxy/school/setting/set',//设备配置
   device_get: '/proxy/school/setting/get',//设备配置获取
+  device_pad_local_down: '/proxy/school/setting/set/callbackUrl',//本地平板配置下发
+  device_pad_local_check_down: '/proxy/school/setting/set/padCallbackUrl',//本地平板识别配置下发
+  device_pad_local_hurt_down: '/proxy/school/setting/set/padHeartCallbackUrl',//本地平板心跳配置下发
+  device_pad_wo_check_down: '/proxy/school/setting/set/wopadCallbackUrl',//云端平板识别配置下发
 
   device_class_location_page: '/proxy/school/location/classroom/page',//班级位置
   device_dorm_location_page: '/proxy/school/location/pad/location/page',//宿舍位置
