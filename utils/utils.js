@@ -362,6 +362,7 @@ export function trim (str) {
 export function deviceType(type, str){
   let deviceType = {
     "1": "终端机",
+    "2": "摄像头",
     "3": "一体机本地版",
     "4": "一体机云端版",
     "6": "门禁控制器",
@@ -675,6 +676,14 @@ export function levelText(val){
     "3": "等级3"
   };
   return statusList;
+}
+
+export function mediaClassText(val){
+  let statusList = {
+    "true": "多媒体教室",
+    "false": "普通教室"
+  };
+  return statusList[val];
 }
 
 export function getWeekTotalSelect(){

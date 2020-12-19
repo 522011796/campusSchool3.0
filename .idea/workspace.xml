@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/components/utils/status/MyDeviceOnlineStatus.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/basicInfo/deviceArea.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/deviceArea.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/basicInfo/padCloud.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/padCloud.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +36,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/utils/validater" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/utils/status" />
     <property name="list.type.of.created.stylesheet" value="textmate" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
@@ -50,8 +54,8 @@
       <recent name="$PROJECT_DIR$/components/tree" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/utils/validater" />
       <recent name="$PROJECT_DIR$/components/utils/status" />
+      <recent name="$PROJECT_DIR$/utils/validater" />
       <recent name="$PROJECT_DIR$/components/utils/button" />
       <recent name="$PROJECT_DIR$/components/charts" />
       <recent name="$PROJECT_DIR$/static" />
@@ -97,14 +101,7 @@
       <workItem from="1606743205465" duration="32160000" />
       <workItem from="1606875308377" duration="82431000" />
       <workItem from="1607134770964" duration="211120000" />
-      <workItem from="1608254032281" duration="21695000" />
-    </task>
-    <task id="LOCAL-00069" summary="1、修改框架和组件样式、细节bug等&#10;2、班级接口对接完成">
-      <created>1606475716148</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1606475716149</updated>
+      <workItem from="1608254032281" duration="36784000" />
     </task>
     <task id="LOCAL-00070" summary="1、修改框架和组件样式、细节bug等&#10;2、建筑楼接口对接完成">
       <created>1606705871340</created>
@@ -442,7 +439,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608284734956</updated>
     </task>
-    <option name="localTasksCounter" value="118" />
+    <task id="LOCAL-00118" summary="1、修改框架和组件样式、细节bug等&#10;2、云端平板接口对接完成">
+      <created>1608290235622</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1608290235622</updated>
+    </task>
+    <option name="localTasksCounter" value="119" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -486,11 +490,11 @@
     </state>
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.805@0.23.1440.805" timestamp="1602828707649" />
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1605755081482" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1608284733432">
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1608290234444">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1608284733432" />
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1608290234444" />
     <state x="100" y="124" width="1240" height="600" key="DiffContextDialog" timestamp="1608086753723">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -524,11 +528,11 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="221" y="64" key="SettingsEditor/0.23.1440.805@0.23.1440.805" timestamp="1602238031085" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1608284736570">
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1608290238184">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1608284736570" />
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1608290238184" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1608002552886">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -538,15 +542,15 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="441" y="61" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.25.1440.798@0.25.1440.798" timestamp="1607649462988" />
-    <state x="378" y="183" width="837" height="550" key="find.popup" timestamp="1608289026321">
+    <state x="378" y="183" width="837" height="550" key="find.popup" timestamp="1608360388702">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="378" y="182" width="837" height="486" key="find.popup/0.23.1440.805@0.23.1440.805" timestamp="1605680757485" />
-    <state x="378" y="183" width="837" height="550" key="find.popup/0.25.1440.798@0.25.1440.798" timestamp="1608289026321" />
-    <state x="385" y="153" width="670" height="671" key="search.everywhere.popup" timestamp="1608280562630">
+    <state x="378" y="183" width="837" height="550" key="find.popup/0.25.1440.798@0.25.1440.798" timestamp="1608360388702" />
+    <state x="385" y="153" width="670" height="671" key="search.everywhere.popup" timestamp="1608342969370">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="385" y="152" width="670" height="676" key="search.everywhere.popup/0.23.1440.805@0.23.1440.805" timestamp="1604935260573" />
-    <state x="385" y="153" width="670" height="671" key="search.everywhere.popup/0.25.1440.798@0.25.1440.798" timestamp="1608280562630" />
+    <state x="385" y="153" width="670" height="671" key="search.everywhere.popup/0.25.1440.798@0.25.1440.798" timestamp="1608342969370" />
   </component>
 </project>
