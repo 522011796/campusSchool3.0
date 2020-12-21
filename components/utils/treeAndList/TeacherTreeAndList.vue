@@ -161,6 +161,10 @@
         if (this.$refs.commTableRef){
           this.$refs.commTableRef.clearSelection();
         }
+
+        if (this.$refs.SelectorDept && this.$refs.SelectorDept.$refs.cascaderSelector) {
+          this.$refs.SelectorDept.$refs.cascaderSelector.$refs.panel.calculateCheckedNodePaths()
+        }
       }
     }
   }
