@@ -8,6 +8,8 @@
       :setWidth="setWidth"
       :style="width"
       :disabled="disabled"
+      :clearable="clearable"
+      :size="size"
       @change="handleChange"></el-cascader>
   </div>
 </template>
@@ -30,6 +32,10 @@
         type: String
       },
       disabled: {
+        default: false,
+        type: Boolean
+      },
+      clearable: {
         default: false,
         type: Boolean
       },

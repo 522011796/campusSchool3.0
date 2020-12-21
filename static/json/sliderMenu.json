@@ -822,7 +822,7 @@
         "name": "会议考勤",
         "icon": "fa fa-users",
         "toggle": false,
-        "id": 4200,
+        "id": 4300,
         "key": "meetAttend",
         "list": [
           {
@@ -831,29 +831,6 @@
             "id": 4201,
             "top": "attendanceInfo",
             "path": "/attendanceInfo/meetAttend/meetting"
-          }
-        ]
-      },
-      {
-        "name": "请假管理",
-        "icon": "fa fa-send",
-        "toggle": false,
-        "id": 4300,
-        "key": "leaveAttendManage",
-        "list": [
-          {
-            "name": "请假统计",
-            "key": "leaveStatic",
-            "id": 4301,
-            "top": "attendanceInfo",
-            "path": "/attendanceInfo/leaveManage/static"
-          },
-          {
-            "name": "请假设置",
-            "key": "leaveSetting",
-            "id": 4301,
-            "top": "attendanceInfo",
-            "path": "/attendanceInfo/leaveManage/setting"
           }
         ]
       }

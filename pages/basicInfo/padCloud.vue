@@ -693,10 +693,7 @@
           if (valid) {
             this.dialogLoading = true;
             let params = {
-              padPassword: this.formConf.pwd,
               wopadCallbackUrl: this.formConf.faceCallBack,
-              padHeartCallbackUrl: this.formConf.hurtCallBack,
-              padPhotoRegisterCallbackUrl: this.formConf.padPhotoRegisterCallbackUrl,
             };
 
             params = this.$qs.stringify(params);

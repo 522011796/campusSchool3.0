@@ -91,7 +91,6 @@
     },
     methods: {
       handleOkChange(data) {
-        console.log(12344321);
         this.$emit('ok-click', data);
       },
       handleCancelChange(data) {

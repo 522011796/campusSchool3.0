@@ -41,7 +41,7 @@ export function setDeptChildren(tree, obj, param, param2){//迭代方法--部门
   if (tree && tree.length > 0){
     tree.map(function (item,index) {
       item['label'] = item.department_name;
-      item['value'] = item.id;
+      item['value'] = item.department_path;
       obj.push(item);
 
       if(item[param] != undefined && item[param].length > 0){
@@ -684,6 +684,34 @@ export function mediaClassText(val){
     "false": "普通教室"
   };
   return statusList[val];
+}
+
+export function meetingStatusText(type, str){
+  let meetingStatus = {
+    "1": "未开始",
+    "2": "进行中",
+    "3": "已结束"
+  };
+  if (str && type == 'set') {
+    return meetingStatus[str];
+  }
+  if (!str && type == 'get'){
+    return meetingStatus;
+  }
+}
+
+export function meetingJoinStatusText(type, str){
+  let meetingJoinStatus = {
+    "1": "缺席",
+    "2": "请假",
+    "3": "正常"
+  };
+  if (str && type == 'set') {
+    return meetingJoinStatus[str];
+  }
+  if (!str && type == 'get'){
+    return meetingJoinStatus;
+  }
 }
 
 export function getWeekTotalSelect(){

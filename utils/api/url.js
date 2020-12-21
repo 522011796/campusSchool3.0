@@ -249,4 +249,11 @@ export const common = {
   device_bind_dorm_set: '/proxy/school/location/pad/location/bind',//绑定设备--宿舍楼
   device_bind_remove: '/proxy/school/location/classroom/device/unbind',//移除设备--教学楼
   device_bind_dorm_remove: '/proxy/school/location/pad/location/unbind',//移除设备--宿舍楼
+
+  attend_meeting_page: '/proxy/school/meeting/query-meeting-page',//会议签到分页
+  attend_meeting_static: '/proxy/school/meeting/query-meeting-user-stat',//会议签到详细统计
+  attend_meeting_static_page: '/proxy/school/meeting/query-meeting-user-page',//会议签到详细分页
+  attend_meeting_expand: '/proxy/school/meeting/export-meeting-list',//会议签到导出
+  attend_meeting_add: 'proxy/school/meeting/add-meeting',//会议签到添加
+  attend_meeting_device_page: 'proxy/school/device/query-rela-device-page',//人脸识别设备列表
 };
