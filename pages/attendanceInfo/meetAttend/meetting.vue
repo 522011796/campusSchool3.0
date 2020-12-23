@@ -173,7 +173,9 @@
             label="操作"
             width="120">
             <template slot-scope="scope">
-              <i class="fa fa-line-chart color-danger" @click="detailInfo(scope.row)"></i>
+              <i v-if="scope.row.meeting_status == 1" class="fa fa-edit color-grand margin-right-5" @click="editInfo(scope.row)"></i>
+              <i class="fa fa-line-chart color-warning margin-right-5" @click="detailInfo(scope.row)"></i>
+              <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
             </template>
           </el-table-column>
         </el-table>
@@ -331,22 +333,22 @@
       </div>
     </div>
 
-    <dialog-normal top="5vh" :visible="modalVisible" :title="$t('会议设置')" @close="closeDialog" @right-close="cancelDialog">
+    <dialog-normal top="5vh" width-style="550px" :visible="modalVisible" :title="$t('会议设置')" @close="closeDialog" @right-close="cancelDialog">
       <div class="margin-top-10">
         <el-form :model="form" :rules="rules" ref="form" label-width="140px">
-          <el-form-item :label="$t('会议编号')" prop="classNo">
+          <el-form-item :label="$t('会议编号')" prop="meetingNo">
             <el-input v-model="form.meetingNo" class="width-260"></el-input>
           </el-form-item>
-          <el-form-item :label="$t('会议名称')" prop="classNo">
+          <el-form-item :label="$t('会议名称')" prop="meetingName">
             <el-input v-model="form.meetingName" class="width-260"></el-input>
             <span>
 
             </span>
           </el-form-item>
-          <el-form-item :label="$t('会议议题')" prop="classNo">
+          <el-form-item :label="$t('会议议题')" prop="meetingTitle">
             <el-input v-model="form.meetingTitle" class="width-260"></el-input>
           </el-form-item>
-          <el-form-item :label="$t('开始时间')" prop="classNo">
+          <el-form-item :label="$t('开始时间')" prop="beginDate">
             <my-date-picker :sel-value="form.beginDate" width-style="128" @change="handleChangeDate($event, 1)"></my-date-picker>
             <el-time-picker
               :clearable="false"
@@ -359,7 +361,7 @@
               @change="handleChangeTime($event, 1)">
             </el-time-picker>
           </el-form-item>
-          <el-form-item :label="$t('开始时间')" prop="classNo">
+          <el-form-item :label="$t('结束时间')" prop="endDate">
             <my-date-picker :sel-value="form.endDate" width-style="128" @change="handleChangeDate($event, 2)"></my-date-picker>
             <el-time-picker
               :clearable="false"
@@ -372,10 +374,10 @@
               @change="handleChangeTime($event, 2)">
             </el-time-picker>
           </el-form-item>
-          <el-form-item :label="$t('会议地点')" prop="classNo">
+          <el-form-item :label="$t('会议地点')" prop="buildData">
             <my-cascader ref="SelectorBuild" width-style="260" :sel-value="form.buildData" type="3" sub-type="3" @change="handleCascaderChange($event, 1)"></my-cascader>
           </el-form-item>
-          <el-form-item :label="$t('筹备人')" prop="classNo">
+          <el-form-item :label="$t('筹备人')" prop="catererUserId">
             <el-popover
               placement="top"
               width="700"
@@ -391,7 +393,7 @@
               {{form.createUser}}
             </span>
           </el-form-item>
-          <el-form-item :label="$t('审批人')" prop="classNo">
+          <el-form-item :label="$t('审批人')" prop="approverUserId">
             <el-popover
               placement="top"
               width="700"
@@ -407,14 +409,14 @@
               {{form.approverUser}}
             </span>
           </el-form-item>
-          <el-form-item :label="$t('参会人员')" prop="classNo">
+          <el-form-item :label="$t('参会人员')" prop="partUserIds">
             <el-popover
               placement="top"
               width="700"
               trigger="click"
               @show="handleShowTeacher(3)">
               <div>
-                <teacher-tree-and-list ref="popverPartRef" type="checkbox" @select="handleSelUser"></teacher-tree-and-list>
+                <teacher-tree-and-list ref="popverPartRef" :sel-arr="form.partUserIds" set-type="check" @select="handleSelUser"></teacher-tree-and-list>
               </div>
               <el-button slot="reference" type="success" plain size="small">{{$t("添加")}}</el-button>
             </el-popover>
@@ -424,14 +426,19 @@
             </span>
           </el-form-item>
           <el-form-item :label="$t('上传附件')" prop="classNo">
-            <img v-if="form.filePaths != ''" :src="form.filePaths" class="rp-img pull-left"/>
-            <upload-square class="pull-left margin-left-10 margin-top-5" :action="uploadFileAction" max-size="8" :data="{path: 'meetingFile'}" accept=".png,.jpg,.jpeg" @success="uploadSuccess">
+            <div class="pull-left" v-if="form.filePaths.length > 0">
+              <div class="pull-left margin-left-5" style="position: relative;" v-for="(item, index) in form.filePaths" :key="index">
+                <i class="fa fa-close" style="position: absolute; right: -5px; top: -5px;"></i>
+                <img :src="item" class="rp-img"/>
+              </div>
+            </div>
+            <upload-square class="pull-left margin-left-10 margin-top-5" :limit="3" :action="uploadFileAction" max-size="8" :data="{path: 'meetingFile'}" accept=".png,.jpg,.jpeg" @success="uploadSuccess" @error="uploadError">
               <el-button size="small" type="primary">{{$t("点击上传")}}</el-button>
             </upload-square>
-            <span class="pull-left color-danger font-size-12 margin-left-10 margin-top-5">{{$t("文件不超过8M")}}</span>
+            <span class="pull-left color-danger font-size-12 margin-left-10 margin-top-5">{{$t("文件不超过8M,3张")}}</span>
             <div class="moon-clearfix"></div>
           </el-form-item>
-          <el-form-item :label="$t('签到方式')" prop="classNo">
+          <el-form-item ref='signDeviceSnRef' :label="$t('签到方式')" :prop='form.signType == 3 ? "signDeviceSn" : "a"'>
             <el-radio-group v-model="form.signType" @change="hangleChange">
               <div>
                 <el-radio :label="1">{{$t("蓝牙签到")}}</el-radio>
@@ -444,13 +451,12 @@
                   <el-radio :label="3">{{$t("人脸识别考勤机签到")}}</el-radio>
                 </div>
                 <div class="margin-top-5">
-                  <my-select :sel-value="form.signDeviceSn" width-style="260" :options="tableDeviceData" @handleSelect($event)></my-select>
+                  <my-select :sel-value="form.signDeviceSn" width-style="260" :options="tableDeviceData" @change="handleSelect($event)"></my-select>
                 </div>
               </div>
-
             </el-radio-group>
           </el-form-item>
-          <el-form-item :label="$t('提前签到时间')" prop="classNo">
+          <el-form-item :label="$t('提前签到时间')" prop="signBefore">
             <el-input v-model="form.signBefore" class="width-260">
               <template slot="append">{{$t('分钟')}}</template>
             </el-input>
@@ -475,6 +481,9 @@
         </div>
       </div>
     </drawer-layout-right>
+
+    <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="确认需要删除该信息？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
+
   </div>
 </template>
 
@@ -482,21 +491,22 @@
   import MyPagination from "../../../components/MyPagination";
   import mixins from "../../../utils/mixins";
   import {common} from "../../../utils/api/url";
-  import {meetingStatusText, MessageError, MessageSuccess, MessageWarning} from "../../../utils/utils";
+  import {inArray, meetingStatusText, MessageError, MessageSuccess, MessageWarning} from "../../../utils/utils";
   import LayoutTb from "../../../components/Layout/LayoutTb";
   import MySelect from "../../../components/MySelect";
   import MyUserType from "../../../components/utils/MyUserType";
   import MyDatePicker from "../../../components/MyDatePicker";
   import MyInputButton from "../../../components/search/MyInputButton";
-  import levelValidater from "../../../utils/validater/levelValidater";
   import DialogNormal from "../../../components/utils/dialog/DialogNormal";
   import DrawerLayoutRight from "../../../components/utils/dialog/DrawerLayoutRight";
   import MyCascader from "../../../components/utils/select/MyCascader";
   import TeacherTreeAndList from "../../../components/utils/treeAndList/TeacherTreeAndList";
+  import UploadSquare from "../../../components/utils/upload/UploadSquare";
+  import meetingValidater from "../../../utils/validater/meetingValidater";
 
   export default {
-    mixins: [mixins, levelValidater],
-    components: {MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal,DrawerLayoutRight,MyCascader,TeacherTreeAndList},
+    mixins: [mixins, meetingValidater],
+    components: {MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal,DrawerLayoutRight,MyCascader,TeacherTreeAndList,UploadSquare},
     data(){
       return {
         uploadFileAction: common.upload_file,
@@ -536,13 +546,14 @@
         deviceList: [],
         searchDeviceKey: '',
         form: {
+          id: '',
           meetingNo: '',
           meetingName: '',
           meetingTitle: '',
           classroomId: '',
           catererUserId: '',
           approverUserId: '',
-          filePaths: '',
+          filePaths: [],
           signType: 2,
           signDeviceSn: '',
           buildData: [],
@@ -590,7 +601,6 @@
         };
         this.$axios.get(common.attend_meeting_static, {params: params}).then(res => {
           if (res.data.data){
-            console.log(res.data.data);
             this.staticData = res.data.data;
             for (let i = 0; i < res.data.data.allStatList.length; i++){
               res.data.data.allStatList[i]['value'] = res.data.data.allStatList[i].count;
@@ -604,8 +614,8 @@
       },
       initStaticPage(row){
         let params = {
-          page: this.page,
-          num: this.num,
+          page: this.pageStatic,
+          num: this.numStatic,
           id: row.id,
           keyWord: this.searchStatusKey,
           signStatus: this.signStatus
@@ -656,12 +666,56 @@
       returnBack(){
         this.showDetail = false;
       },
+      editInfo(row){
+        let userIds = [];
+        let params = {
+          id: row.id
+        };
+        this.$axios.get(common.attend_meeting_info, {params: params}).then(res => {
+          if (res.data.data){
+            this.form = {
+              id: row.id,
+              meetingNo: res.data.data.meeting_no,
+              meetingName: res.data.data.meeting_name,
+              meetingTitle: res.data.data.meeting_title,
+              classroomId: res.data.data.classroom_id,
+              catererUserId: res.data.data.caterer_user_id,
+              approverUserId: res.data.data.approver_user_id,
+              filePaths: res.data.data.file_path,
+              signType: res.data.data.sign_type,
+              signDeviceSn: res.data.data.sign_device_sn,
+              buildData: [res.data.data.build_id, res.data.data.floor_num, res.data.data.classroom_id],
+              deptData: res.data.data.sign_type,
+              beginDateTime: this.$moment(res.data.data.begin_time).format("HH:mm"),
+              endDateTime: this.$moment(res.data.data.end_time).format("HH:mm"),
+              beginDate: this.$moment(res.data.data.begin_time).format("YYYY-MM-DD"),
+              endDate: this.$moment(res.data.data.end_time).format("YYYY-MM-DD"),
+              signBefore: res.data.data.sign_before,
+              createUser: res.data.data.caterer_user_name,
+              approverUser: res.data.data.approver_user_name,
+              partUserIds: []
+            };
+            for (let i = 0; i < res.data.data.partUserIds.length; i++){
+              userIds.push({
+                user_id: res.data.data.partUserIds[i]
+              });
+            }
+            //this.form['partUserIds'] = userIds;
+            this.$set(this.form, 'partUserIds', userIds);
+          }
+        });
+        this.modalVisible = true;
+      },
       detailInfo(row){
         this.showDetail = true;
         this.detailData = row;
         this.meetingJoinStatusGetInfo();
         this.initStatic(row);
         this.initStaticPage(row);
+      },
+      deleteInfo(row){
+        this.form.id = row.id;
+        this.visibleConfim = true;
       },
       search(data){
         this.searchKey = data.input;
@@ -790,7 +844,7 @@
       handleChangeDate(data, type){
         if (type == 1){
           this.form.beginDate = data;
-        }else if (type == 1){
+        }else if (type == 2){
           this.form.endDate = data;
         }
       },
@@ -814,13 +868,14 @@
       },
       closeDialog(event){
         this.form = {
+          id: '',
           meetingNo: '',
           meetingName: '',
           meetingTitle: '',
           classroomId: '',
           catererUserId: '',
           approverUserId: '',
-          filePaths: '',
+          filePaths: [],
           signType: 2,
           signDeviceSn: '',
           buildData: [],
@@ -849,31 +904,65 @@
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
         }
+
+        this.resetCasadeSelector('SelectorBuild');
       },
       cancelDialog(){
         this.modalVisible = false;
       },
       okDialog(){
         let url = "";
-        this.dialogLoading = true;
-        let params = {
+        let userIds = [];
+        this.$refs['form'].clearValidate();
+        this.$refs['form'].validate((valid) => {
+          if (valid) {
+            this.dialogLoading = true;
+            let params = {
+              meetingNo: this.form.meetingNo,
+              meetingName: this.form.meetingName,
+              meetingTitle: this.form.meetingTitle,
+              classroomId: this.form.classroomId,
+              catererUserId: this.form.catererUserId,
+              approverUserId: this.form.approverUserId,
+              filePaths: this.form.filePaths.join(),
+              signType: this.form.signType,
+              signDeviceSn: this.form.signDeviceSn,
+              beginTime: this.form.beginDate + " " + this.form.beginDateTime,
+              endTime: this.form.endDate + " " + this.form.endDateTime,
+              signBefore: this.form.signBefore
+            };
+            if (this.form.partUserIds.length > 0){
+              for (let i = 0; i < this.form.partUserIds.length; i ++ ){
+                userIds.push(this.form.partUserIds[i].user_id);
+              }
+              params['partUserIds'] = userIds.join();
+            }
 
-        };
-        url = common.class_edit;
-        params = this.$qs.stringify(params);
-        this.$axios.post(url, params).then(res => {
-          if (res.data.code == 200){
-            this.modalVisible = false;
-            this.init();
-            MessageSuccess(res.data.desc);
-          }else {
-            MessageError(res.data.desc);
+            if (this.form.id != ''){
+              params['id'] = this.form.id;
+              url = common.attend_meeting_edit;
+            }else {
+              url = common.attend_meeting_add;
+            }
+            params = this.$qs.stringify(params);
+            this.$axios.post(url, params).then(res => {
+              if (res.data.code == 200){
+                this.modalVisible = false;
+                this.init();
+                MessageSuccess(res.data.desc);
+              }else {
+                MessageError(res.data.desc);
+              }
+              this.dialogLoading = false;
+            });
           }
-          this.dialogLoading = false;
         });
       },
       handleCascaderChange(data, type){
         if (type == 1){
+          if (data.length == 3){
+            this.form.classroomId = data[data.length-1];
+          }
           this.form.buildData = data;
         }else if (type == 2){
           this.form.deptData = data;
@@ -884,13 +973,13 @@
       },
       uploadSuccess(res, file){
         if (res.code == 200){
-          this.form.filePaths = res.data.url;
+          this.form.filePaths.push(res.data.url);
         }else {
 
         }
       },
       uploadError(res, file){
-        MessageError(res.data.desc);
+        //MessageError(res.data.desc);
       },
       handleSelCreateUser(data, type){
         if (type == 1){
@@ -902,7 +991,13 @@
         }
       },
       handleSelUser(data){
-        this.form.partUserIds = data;
+        let arr = [];
+        for (let i = 0; i < data.length; i++){
+          arr.push({
+            user_id: data[i]
+          });
+        }
+        this.form.partUserIds = arr;
       },
       handleShowTeacher(type){
         if (type == 1){
@@ -912,6 +1007,28 @@
         }if (type == 3){
           this.$refs.popverPartRef._handleOpen();
         }
+      },
+      handleOkChange(data) {
+        this.dialogLoading = true;
+        let url = "";
+        let params = {
+          id: this.form.id
+        }
+        url = common.attend_meeting_delete;
+        params = this.$qs.stringify(params);
+        this.$axios.post(url, params).then(res => {
+          if (res.data.code == 200){
+            this.init();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+          this.visibleConfim = false;
+          this.dialogLoading = false;
+        });
+      },
+      handleCancelChange(data) {
+        this.visibleConfim = false;
       }
     }
   }

@@ -7,7 +7,9 @@
       :data="data"
       :auto-upload="true"
       :show-file-list="false"
+      :limit="limit"
       :on-success="handleAvatarSuccess"
+      :on-error="handleAvatarError"
       :before-upload="beforeAvatarUpload">
 
       <slot></slot>
@@ -42,6 +44,10 @@
       maxSize: {
         default: 2,
         type: [Number,String]
+      },
+      limit: {
+        default: 1,
+        type: Number
       }
     },
     computed: {

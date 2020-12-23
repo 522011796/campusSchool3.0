@@ -256,4 +256,7 @@ export const common = {
   attend_meeting_expand: '/proxy/school/meeting/export-meeting-list',//会议签到导出
   attend_meeting_add: 'proxy/school/meeting/add-meeting',//会议签到添加
   attend_meeting_device_page: 'proxy/school/device/query-rela-device-page',//人脸识别设备列表
+  attend_meeting_edit: '/proxy/school/meeting/edit-meeting',//编辑会议
+  attend_meeting_info: '/proxy/school/meeting/query-meeting-info',//获取会议详细
+  attend_meeting_delete: 'proxy/school/meeting/del-meeting',//会议签到删除
 };

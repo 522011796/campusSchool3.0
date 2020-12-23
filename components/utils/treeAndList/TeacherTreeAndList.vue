@@ -1,22 +1,28 @@
 <template>
   <div ref="commTeacherList">
-    <div>
-      <my-cascader ref="SelectorDept" size="small" :clearable="true" width-style="160" :sel-value="searchCommDeptData" type="4" sub-type="" @change="_handleCascaderChange($event)"></my-cascader>
+    <div class="layout-inline">
+      <my-cascader class="layout-item" ref="SelectorDept" size="small" width-style="160" :sel-value="searchCommDeptData" type="4" sub-type="" @change="_handleCascaderChange($event)"></my-cascader>
+      <my-input-button class="layout-item" size="small" :clearable="true" type="success" plain @click="_handleSearch"></my-input-button>
     </div>
     <el-table ref="commTableRef" :data="tableTeacherCommData"
               :max-height="maxHeight"
               size="mini"
               :loading="commLoading"
-              :row-key="_getRowKeys"
-              @selection-change="_handleSelectionChange">
+              :row-key="commGetRowKeys"
+              :reserve-selection="true"
+              @selection-change="_handleSelectionChange"
+              @select="_handleSelectionSelect"
+              @select-all="_handleSelectionAllSelect">
       <el-table-column
-        v-if="type == 'checkbox'"
+        v-if="setType == 'check'"
         :reserve-selection="true"
         type="selection"
         align="center"
-        width="55">
+        width="55"
+        prop="user_id"
+        v-bind="_selArr">
       </el-table-column>
-      <el-table-column align="center" v-if="type == 'radio'">
+      <el-table-column align="center" v-if="setType == 'radio'">
         <template slot-scope="scope">
           <my-radio :sel-value="commSelUserVal" v-bind="_selValue" :label="scope.row.user_id" @change="_handleChange(scope.row)"><span></span></my-radio>
         </template>
@@ -47,7 +53,8 @@
         :page-size="commNum"
         layout="total, sizes, prev, pager, next"
         :total="commTotalTotal">
-      </el-pagination>    </div>
+      </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -55,15 +62,23 @@
   import MyCascader from "../select/MyCascader";
   import {common} from "../../../utils/api/url";
   import MyRadio from "../../MyRadio";
+  import MyInputButton from "../../search/MyInputButton";
+  import {inArray} from "../../../utils/utils";
   export default {
     name: 'teacherTreeAndList',
-    components: {MyRadio, MyCascader,MyRadio},
+    components: {MyRadio, MyCascader,MyRadio,MyInputButton},
     props: {
       selValue: {
         default: '',
         type: [String , Array]
       },
-      type: {
+      selArr: {
+        default: function () {
+          return [];
+        },
+        type: Array
+      },
+      setType: {
         default: 'radio',
         type: [String, Number]
       },
@@ -75,6 +90,13 @@
     computed: {
       _selValue() {
         this.commSelUserVal = this.selValue;
+      },
+      _selArr() {
+        let arr = [];
+        for (let i = 0; i < this.selArr.length; i++){
+          arr.push(this.selArr[i].user_id);
+        }
+        this.commSelUserArr = arr;
       }
     },
     data() {
@@ -88,9 +110,17 @@
         commSearchKey: '',
         commSearchDept: '',
         commSelUserVal: '',
+        commSelUserArr: [],
+        commSelUserTempArr: [],
         commSelUserValObj: {},
         commSelUserValArr: [],
-        commLoading: false
+        commLoading: false,
+        commFlag: false,
+        commMultipleSelection: [],
+        commRow: '',
+        commGetRowKeys(row) {
+          return row.user_id
+        }
       }
     },
     created() {
@@ -105,15 +135,25 @@
           deleted: 0
         };
         this.commLoading = true;
-        params[this.commSearchKey['select']] = this.commSearchKey['input'];
+        params['realName'] = this.commSearchKey['input'];
         this.$axios.get(common.teacher_list, {params: params}).then(res => {
           if (res.data.data){
+            this.$refs.commTableRef.clearSelection();
+            for (let i = 0; i < res.data.data.page.list.length; i++){
+              let sel = inArray(res.data.data.page.list[i], this.selArr, 'user_id');
+              if (sel > -1){
+                this.commFlag = true;
+                res.data.data.page.list[i]['_checked'] = true;
+                this.$refs.commTableRef.toggleRowSelection(res.data.data.page.list[i], true);
+              }
+            }
+            this.commFlag = false;
             this.tableTeacherCommData = res.data.data.page.list;
             this.commTotalTotal= res.data.data.page.totalCount;
             this.commNum = res.data.data.page.num;
             this.commPage = res.data.data.page.currentPage;
+            //this._handleSelect();
           }
-
           this.commLoading = false;
         });
       },
@@ -131,12 +171,54 @@
         this.commSearchDept = data[data.length-1];
         this._initTeacher();
       },
-      _getRowKeys(row) {
-        return row.user_id
+      _handleSelectionSelect(rows, row){
+        let selected = rows.length && rows.indexOf(row) !== -1;
+        this.commRow = row;
+      },
+      _handleSelectionAllSelect(selection){
+        let self = this;
+        self.commRow = "";
+        // 筛选出所有选中项的id
+        let multipleSelection = selection.filter(item => item);
+        if (multipleSelection.length == 0) {
+          this.tableTeacherCommData.forEach(function(value, index, arr) {
+            if (self.commSelUserArr.indexOf(value.user_id) !== -1) {
+              self.commSelUserArr.splice(self.commSelUserArr.indexOf(value.user_id), 1);
+            }
+          });
+
+        } else {
+          var str = multipleSelection.map(function(value, index, arr) {
+            return value.user_id;
+          });
+          self.commSelUserArr = self.commSelUserArr.concat(str);
+          self.commSelUserArr = [...new Set(self.commSelUserArr)];
+
+        }
+        this.$emit("select", self.commSelUserArr);
       },
       _handleSelectionChange(data){
-        this.commSelUserValArr = data;
-        this.$emit("select", data);
+        let self = this;
+        // 筛选出选中项的id
+        this.commMultipleSelection = data.filter(item => item);
+        let str = this.commMultipleSelection.map(function(value, index, arr) {
+          return value.user_id;
+        });
+        if (this.commRow) {
+          // 勾选项id
+          let selectedId = this.commRow.user_id;
+          if (str.indexOf(selectedId) == -1 && self.commSelUserArr.indexOf(selectedId) !== -1) {
+            //取消勾选则是从partId中删除
+            self.commSelUserArr.splice(self.commSelUserArr.indexOf(selectedId), 1);
+          } else if (str.indexOf(selectedId) !== -1 && self.commSelUserArr.indexOf(selectedId) == -1) {
+            //增加勾选增push进去
+            self.commSelUserArr.push(selectedId);
+          }
+          //数组去重
+          self.commSelUserArr = [...new Set(self.commSelUserArr)];
+
+          this.$emit("select", self.commSelUserArr);
+        }
       },
       _handleSizeChange(data){
         this.commPage = 1;
@@ -165,6 +247,26 @@
         if (this.$refs.SelectorDept && this.$refs.SelectorDept.$refs.cascaderSelector) {
           this.$refs.SelectorDept.$refs.cascaderSelector.$refs.panel.calculateCheckedNodePaths()
         }
+      },
+      _handleSelect(){
+        this.commFlag = true;
+        let selArr = [];
+        let arr = [].concat(this.tableTeacherCommData);
+        let arrTempUser = [].concat(this.selArr);
+
+        for (let i = 0; i < arr.length; i++){
+          let sel = inArray(arr[i], arrTempUser, 'user_id');
+          if (sel > -1){
+            selArr.push(arr[i]);
+            this.$refs.commTableRef.toggleRowSelection(arr[i], true);
+          }
+        }
+        this.commSelUserTempArr = selArr;
+        this.commFlag = false;
+      },
+      _handleSearch(data){
+        this.commSearchKey = data;
+        this._initTeacher();
       }
     }
   }
