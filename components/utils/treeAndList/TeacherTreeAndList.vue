@@ -12,15 +12,15 @@
               :reserve-selection="true"
               @selection-change="_handleSelectionChange"
               @select="_handleSelectionSelect"
-              @select-all="_handleSelectionAllSelect">
+              @select-all="_handleSelectionAllSelect"
+              v-bind="_selArr">
       <el-table-column
         v-if="setType == 'check'"
         :reserve-selection="true"
         type="selection"
         align="center"
         width="55"
-        prop="user_id"
-        v-bind="_selArr">
+        prop="user_id">
       </el-table-column>
       <el-table-column align="center" v-if="setType == 'radio'">
         <template slot-scope="scope">
@@ -138,7 +138,7 @@
         params['realName'] = this.commSearchKey['input'];
         this.$axios.get(common.teacher_list, {params: params}).then(res => {
           if (res.data.data){
-            this.$refs.commTableRef.clearSelection();
+            //this.$refs.commTableRef.clearSelection();
             for (let i = 0; i < res.data.data.page.list.length; i++){
               let sel = inArray(res.data.data.page.list[i], this.selArr, 'user_id');
               if (sel > -1){
@@ -199,8 +199,9 @@
       },
       _handleSelectionChange(data){
         let self = this;
+        let dataArr = [].concat(data);
         // 筛选出选中项的id
-        this.commMultipleSelection = data.filter(item => item);
+        this.commMultipleSelection = dataArr.filter(item => item);
         let str = this.commMultipleSelection.map(function(value, index, arr) {
           return value.user_id;
         });
@@ -239,10 +240,6 @@
         this.commSelUserVal =  '';
         this.commSelUserValObj =  {};
         this.commSelUserValArr =  [];
-
-        if (this.$refs.commTableRef){
-          this.$refs.commTableRef.clearSelection();
-        }
 
         if (this.$refs.SelectorDept && this.$refs.SelectorDept.$refs.cascaderSelector) {
           this.$refs.SelectorDept.$refs.cascaderSelector.$refs.panel.calculateCheckedNodePaths()
