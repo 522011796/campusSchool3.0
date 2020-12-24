@@ -714,6 +714,22 @@ export function meetingJoinStatusText(type, str){
   }
 }
 
+export function dormStatus(type, str){
+  let dormStatusList = {
+    "0": "未归",
+    "1": "已归寝",
+    "2": "请假",
+    "3": "晚归",
+    "4": "超长未归"
+  };
+  if (str && type == 'set') {
+    return dormStatusList[str];
+  }
+  if (!str && type == 'get'){
+    return dormStatusList;
+  }
+}
+
 export function getWeekTotalSelect(){
   let arr = [];
   for (let i = 0; i < 52; i++){
@@ -757,5 +773,18 @@ export function paddingChecked(src,des,tag,desTag){
     if (src[j] == des[tag]){
       des[desTag] = true;
     }
+  }
+}
+
+export function secondsFormat(min) {
+  if(min || min == 0){
+    var seconds = min * 60;
+    var day = Math.floor( seconds/ (24*3600) ); // Math.floor()向下取整
+    var hour = Math.floor( (seconds - day*24*3600) / 3600);
+    var minute = Math.floor( (seconds - day*24*3600 - hour*3600) /60 );
+    var second = seconds - day*24*3600 - hour*3600 - minute*60;
+    return day + "天"  + hour + "时" + minute + "分" + second + "秒";
+  }else{
+    return '--';
   }
 }

@@ -2,26 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/components/utils/status/MyDormAttenStatus.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/treeAndList/TeacherTreeAndList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/treeAndList/TeacherTreeAndList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/client/core.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/client/core.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/client/core.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/client/core.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/client/core.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/client/core.min.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/client/library.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/client/library.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/client/library.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/client/library.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/client/library.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/client/library.min.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/library/modules/_core.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/library/modules/_core.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/library/modules/_shared.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/library/modules/_shared.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/library/modules/es7.string.at.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/library/modules/es7.string.at.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/modules/_core.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/modules/_core.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/modules/_shared.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/modules/_shared.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/modules/es7.string.at.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/modules/es7.string.at.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/postinstall.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/babel-runtime/node_modules/core-js/postinstall.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/element-ui/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/element-ui/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/search.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/search.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +36,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/utils/validater" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/utils/status" />
     <property name="list.type.of.created.stylesheet" value="textmate" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
@@ -61,9 +49,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/components/utils/status" />
       <recent name="$PROJECT_DIR$/utils/validater" />
       <recent name="$PROJECT_DIR$/components/utils/teacherTreeAndList" />
-      <recent name="$PROJECT_DIR$/components/utils/status" />
       <recent name="$PROJECT_DIR$/components/utils/button" />
       <recent name="$PROJECT_DIR$/components/charts" />
     </key>
@@ -116,14 +104,7 @@
       <workItem from="1608254032281" duration="63362000" />
       <workItem from="1608543213428" duration="7598000" />
       <workItem from="1608617065213" duration="1941000" />
-      <workItem from="1608625084513" duration="42317000" />
-    </task>
-    <task id="LOCAL-00075" summary="1、修改框架和组件样式、细节bug等&#10;2、宿舍接口对接完成">
-      <created>1606741580681</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1606741580681</updated>
+      <workItem from="1608625084513" duration="48604000" />
     </task>
     <task id="LOCAL-00076" summary="1、修改框架和组件样式、细节bug等&#10;2、宿舍接口对接完成">
       <created>1606741740592</created>
@@ -461,7 +442,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608732414645</updated>
     </task>
-    <option name="localTasksCounter" value="124" />
+    <task id="LOCAL-00124" summary="1、修改框架和组件样式、细节bug等&#10;2、会议接口对接完成">
+      <created>1608734309326</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1608734309326</updated>
+    </task>
+    <option name="localTasksCounter" value="125" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -505,11 +493,11 @@
     </state>
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.805@0.23.1440.805" timestamp="1602828707649" />
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1605755081482" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1608732411321">
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1608734306118">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1608732411321" />
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1608734306118" />
     <state x="100" y="124" width="1240" height="600" key="DiffContextDialog" timestamp="1608719973983">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -547,11 +535,11 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="221" y="64" key="SettingsEditor/0.23.1440.805@0.23.1440.805" timestamp="1602238031085" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1608732416430">
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1608734311179">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1608732416430" />
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1608734311179" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1608002552886">
       <screen x="0" y="25" width="1440" height="798" />
     </state>

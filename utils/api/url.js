@@ -259,4 +259,7 @@ export const common = {
   attend_meeting_edit: '/proxy/school/meeting/edit-meeting',//编辑会议
   attend_meeting_info: '/proxy/school/meeting/query-meeting-info',//获取会议详细
   attend_meeting_delete: 'proxy/school/meeting/del-meeting',//会议签到删除
+
+  attend_dorm_page: 'proxy/course/rollcallbed/rollcallbed/page',//归寝查询
+  attend_dorm_stat: 'proxy/course/rollcallbed/rollcallbed/build/stat',//归寝统计
 };
