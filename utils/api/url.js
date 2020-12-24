@@ -265,4 +265,7 @@ export const common = {
 
   attend_dorm_static_page: 'proxy/course/rollcallbed/rollcallbed/stat/page',//归寝查询统计
   attend_dorm_static_record_page: 'proxy/course/rollcallbed/rollcallbed/user/record/page',//归寝查询统计详细
+
+
+  attend_dorm_static_face_class_record_page: 'proxy/school/person/student/recognition/page',//归寝查询人脸识别记录
 };

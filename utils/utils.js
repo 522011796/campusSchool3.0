@@ -348,8 +348,7 @@ export function clearData (data, isSerialize) {
         if (data[key] === '' || data[key] == 'null' || data[key] == null) {
           delete data[key];
         }
-      }
-      ;
+      };
       return data;
     }
   }
