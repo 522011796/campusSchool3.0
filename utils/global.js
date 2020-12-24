@@ -215,6 +215,14 @@ const filterOnlineStatus = [
   { text: '离线', value: false, label: '离线'}
 ];
 
+const filterDormBackStatus = [
+  { text: "已归寝", value: "1", label: '已归寝'},
+  { text: '晚归', value: "3", label: '晚归'},
+  { text: '未归', value: "0", label: '未归'},
+  { text: '超长未归', value: "4", label: '超长未归'},
+  { text: '请假', value: "2", label: '请假'}
+];
+
 export default {
   total,
   page,
@@ -268,5 +276,6 @@ export default {
   filterPhoneOwner,
   filterBillStatus,
   filterDeviceUseType,
-  filterOnlineStatus
+  filterOnlineStatus,
+  filterDormBackStatus
 }

@@ -24,7 +24,7 @@
             <my-select class="layout-item" v-if="searchDateType == 4" :size="size" :sel-value="searchCurrentYearData" :options="yearList" @change="handleSearchChangeDateTime($event,3)"></my-select>
           </span>
           <slot name="other"></slot>
-          <span class="layout-item" v-if="searchDateType != 5">
+          <span class="layout-item" v-if="searchDateType != 5 || showSearchBtn == true">
             <el-button :size="size" type="success" plain @click="handleClick">{{$t("搜索")}}</el-button>
           </span>
         </div>
@@ -101,6 +101,10 @@
           return [];
         },
         type: Array
+      },
+      showSearchBtn: {
+        default: true,
+        type: Boolean
       }
     },
     computed: {
@@ -123,7 +127,8 @@
         searchCurrentDateTermId: '',
         monthList: [],
         yearList: [],
-        nowDataObj: {}
+        nowDataObj: {},
+        showSearch: true
       }
     },
     created() {
