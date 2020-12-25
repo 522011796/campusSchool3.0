@@ -1,27 +1,343 @@
 <template>
   <div class="container">
-    appAuth
+    <layout-lr>
+      <div slot="left">
+        <div class="color-muted font-size-12 padding-tb-5 margin-top-10">
+          <!--<span class="layout-left-menu-tag"></span>-->
+          <span class="layout-left-menu-title">考勤查询</span>
+        </div>
+        <my-el-tree type="1" sub-type="4" @node-click="nodeClick"></my-el-tree>
+      </div>
+
+      <div slot="right">
+        <div class="layout-top-tab margin-top-5">
+          <el-row>
+            <el-col :span="24" class="text-right">
+              <my-date-picker :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChange" style="position: relative; top: 1px;"></my-date-picker>
+              <my-course-select size="small" :clearable="true" :sel-value="searchCourseId" @change="handleCourseChange"></my-course-select>
+              <my-input-button size="small" :clearable="true" type="success" plain @click="search"></my-input-button>
+            </el-col>
+          </el-row>
+        </div>
+
+        <div class="margin-top-10">
+          <el-table
+            ref="refTable"
+            :data="tableData"
+            header-cell-class-name="custom-table-cell-bg"
+            size="medium"
+            :max-height="tableHeight2.height"
+            style="width: 100%"
+            @filter-change="fliterTable">
+            <el-table-column
+              align="center"
+              :label="$t('日期')">
+
+              <template slot-scope="scope">
+                <span>{{scope.row.busiTime}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('姓名')">
+
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.realName ? scope.row.realName : '--'}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.realName ? scope.row.realName : '--'}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('学号')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.extra.studentNo}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    <span>{{scope.row.extra.studentNo}}</span>
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('班级')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.className ? scope.row.className : '--'}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.className ? scope.row.className : '--'}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('课程')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.courseName ? scope.row.courseName : '--'}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.courseName ? scope.row.courseName : '--'}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('节数')"
+              :filter-multiple="false"
+              column-key="section"
+              :filters="filtersSection">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-left">
+                    <div>
+                      <span>{{$t("上课考勤时间")}}:</span>
+                      <span>{{scope.row.checkclassRull.beginTime}}</span>
+                    </div>
+                    <div>
+                      <span>{{$t("上课时间")}}:</span>
+                      <span>{{scope.row.checkclassRull.classTime1}}</span>
+                    </div>
+                    <div>
+                      <span>{{$t("迟到考勤时间")}}:</span>
+                      <span>{{scope.row.checkclassRull.lateTime}}</span>
+                    </div>
+                    <div v-if="scope.row.checkclassRull.switchOverClass == true">
+                      <span>{{$t("下课考勤时间")}}:</span>
+                      <span>{{scope.row.checkclassRull.overTime}}</span>
+                    </div>
+                  </div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{$t('第')}}{{scope.row.section}}{{$t("节")}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <template>
+              <el-table-column
+                align="center"
+                :label="$t('状态')"
+                :filter-multiple="false"
+                column-key="status"
+                :filters="filterClassAttendStatus">
+                <template slot-scope="scope">
+                  <span>{{classAttendStatusInfo(scope.row.signStatus, 'set')}}</span>
+                </template>
+              </el-table-column>
+            </template>
+            <el-table-column
+              align="center"
+              :label="$t('考勤时间')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">
+                    <div>
+                      <span>{{$moment(scope.row.rollCallTime).format("YYYY-MM-DD hh:mm:ss")}}</span>
+                    </div>
+                    <div>
+                      <span>{{$moment(scope.row.rollCallTime2).format("YYYY-MM-DD hh:mm:ss")}}</span>
+                    </div>
+                  </div>
+                  <div slot="reference">
+                    <div class="name-wrapper moon-content-text-ellipsis-class">
+                      <span>{{$moment(scope.row.rollCallTime).format("YYYY-MM-DD hh:mm:ss")}}</span>
+                    </div>
+                    <div class="name-wrapper moon-content-text-ellipsis-class">
+                      <span>{{$moment(scope.row.rollCallTime2).format("YYYY-MM-DD hh:mm:ss")}}</span>
+                    </div>
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+          </el-table>
+
+          <div class="layout-right-footer text-right">
+            <my-pagination :total="total" :current-page="page" :page-size="num" @currentPage="currentPage" @sizeChange="sizeChange" class="layout-pagination"></my-pagination>
+          </div>
+        </div>
+      </div>
+    </layout-lr>
   </div>
 </template>
 
 <script>
-export default {
-  data(){
-    return {
+  import mixins from "../../../utils/mixins";
+  import {common} from "../../../utils/api/url";
+  import LayoutLr from "../../../components/Layout/LayoutLr";
+  import MyElTree from "../../../components/tree/MyElTree";
+  import MyPagination from "../../../components/MyPagination";
+  import MyInputButton from "../../../components/search/MyInputButton";
+  import MySex from "../../../components/MySex";
+  import DialogNormal from "../../../components/utils/dialog/DialogNormal";
+  import MySelect from "../../../components/MySelect";
+  import MyCascader from "../../../components/utils/select/MyCascader";
+  import MyDatePicker from "../../../components/MyDatePicker";
+  import MyNormalDialog from "../../../components/utils/dialog/MyNormalDialog";
+  import DrawerRight from "../../../components/utils/dialog/DrawerRight";
+  import MySearchOfDate from "../../../components/search/MySearchOfDate";
+  import DrawerLayoutRight from "../../../components/utils/dialog/DrawerLayoutRight";
+  import MyCourseSelect from "../../../components/utils/MyCourseSelect";
+  import {
+    classAttendStatus,
+    dormStatus,
+    MessageError,
+    MessageSuccess,
+    nationInfo,
+    studentTeachStatus, studyType,
+    teacherTypeInfo,
+    workEnjoy,
+    workTitle
+  } from "../../../utils/utils";
+  export default {
+    mixins: [mixins],
+    components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,MySearchOfDate,DrawerLayoutRight,MyCourseSelect},
+    data(){
+      return {
+        searchDate: [],
+        filtersSection: [],
+        searchSection: '',
+        searchCourseId: '',
+        pageDetail: 1,
+        numDetail: 20,
+        totalDetail: 0,
+        searchTimeData: {},
+        tableData: [],
+        tableDetailData: [],
+        modalVisible: false,
+        dialogLoading: false,
+        visibleConfim: false,
+        drawerVisible: false,
+        drawerLoading: false,
+        searchCollege: '',
+        searchMajor: '',
+        searchGrade: '',
+        searchClass: '',
+        searchKey: '',
+        searchDept: '',
+        subTitle: '',
+        uploadProcess: '',
+        searchType: -1,
+        searchDetailType: -1,
+        uploadResult: {},
+        uploadAction: common.student_upload,
+        loopTimer: null,
+        resultList: [],
+        searchTopTime: this.$moment(new Date).format("YYYY-MM-DD")
+      }
+    },
+    created() {
+      this.init();
+      this.initSection();
+    },
+    methods: {
+      init(){
+        let params = {
+          page: this.page,
+          num: this.num,
+          collegeId: this.searchCollege,
+          majorId: this.searchMajor,
+          grade: this.searchGrade,
+          classId: this.searchClass,
+          keyWord: this.searchKey,
+          beginTime: this.searchDate && this.searchDate.length > 0 ? this.searchDate[0] : '',
+          endTime: this.searchDate && this.searchDate.length > 0 ? this.searchDate[1] : '',
+          signStatus: this.searchType == -1 ? "" : this.searchType,
+          section: this.searchSection,
+          userType: 5,
+          realNameAsc: false,
+          busiTimeAsc: false,
+          courseId: this.searchCourseId,
+          realName: this.searchKey
+        };
 
+        this.$axios.get(common.attend_class_page, {params: params}).then(res => {
+          if (res.data.data){
+            this.tableData = res.data.data.list;
+            this.total = res.data.data.totalCount;
+            this.num = res.data.data.num;
+            this.page = res.data.data.currentPage;
+          }
+        });
+      },
+      initSection(){
+        for (let i = 0; i < this.currentSeciton; i++){
+          this.filtersSection.push({
+            text: this.$t("第")+ (i+1) +this.$t("节"),
+            value: i+1
+          });
+        }
+      },
+      nodeClick(data){
+        this.searchCollege = "";
+        this.searchMajor = "";
+        this.searchGrade = "";
+        this.searchClass = "";
+        if (data.unit == 1){
+          this.searchCollege = data.id;
+        }else if (data.unit == 2){
+          this.searchCollege = data.college_id;
+          this.searchMajor = data.id;
+        }else if (data.unit == 3){
+          this.searchMajor = data.major_id;
+          this.searchGrade = data.grade;
+        }else if (data.unit == 4){
+          this.searchClass = data.id;
+        }
+        this.init();
+      },
+      search(data){
+        this.searchKey = data.input;
+        this.page = 1;
+        this.init();
+      },
+      sizeChange(event){
+        this.page = 1;
+        this.num = event;
+        this.init();
+      },
+      currentPage(event){
+        this.page = event;
+        this.init();
+      },
+      changeStatus(type){
+        this.searchType = type;
+        this.init();
+      },
+      changeDetailStatus(type){
+        this.searchDetailType = type;
+        this.pageDetail = 1;
+        this.initDetail();
+      },
+      classAttendStatusInfo(val){
+        return classAttendStatus('set', val);
+      },
+      fliterTable(value, row, column){
+        for (let item in value){
+          if (item == 'status'){
+            this.searchType = value[item][0];
+          }else if (item == 'section'){
+            this.searchSection = value[item][0];
+          }
+        }
+        this.init();
+      },
+      handleChange(data){
+        this.searchDate = data;
+      },
+      handleCourseChange(data){
+        this.searchCourseId = data;
+      }
     }
-  },
-  created() {
-
-  },
-  methods: {
-
   }
-}
 </script>
 
-<style>
-.container {
+<style scoped>
+  .container {
 
-}
+  }
 </style>

@@ -729,6 +729,22 @@ export function dormStatus(type, str){
   }
 }
 
+export function classAttendStatus(type, str){
+  let classStatusList = {
+    "1": "出勤",
+    "3": "迟到",
+    "4": "早退",
+    "0": "旷课",
+    "2": "请假"
+  };
+  if (str != null && type == 'set') {
+    return classStatusList[str];
+  }
+  if (!str && type == 'get'){
+    return classStatusList;
+  }
+}
+
 export function getWeekTotalSelect(){
   let arr = [];
   for (let i = 0; i < 52; i++){

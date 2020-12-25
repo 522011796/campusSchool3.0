@@ -223,6 +223,14 @@ const filterDormBackStatus = [
   { text: '请假', value: "2", label: '请假'}
 ];
 
+const filterClassAttendStatus = [
+  { text: "出勤", value: "1", label: '出勤'},
+  { text: '迟到', value: "3", label: '迟到'},
+  { text: '早退', value: "4", label: '早退'},
+  { text: '旷课', value: "0", label: '旷课'},
+  { text: '请假', value: "2", label: '请假'}
+];
+
 export default {
   total,
   page,
@@ -277,5 +285,6 @@ export default {
   filterBillStatus,
   filterDeviceUseType,
   filterOnlineStatus,
-  filterDormBackStatus
+  filterDormBackStatus,
+  filterClassAttendStatus
 }

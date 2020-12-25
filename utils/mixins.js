@@ -61,6 +61,7 @@ export default {
       filterDeviceUseType: global.filterDeviceUseType,
       filterOnlineStatus: global.filterOnlineStatus,
       filterDormBackStatus: global.filterDormBackStatus,
+      filterClassAttendStatus: global.filterClassAttendStatus,
       g_currentDate: {},
       tableHeight: {
         'height': ''

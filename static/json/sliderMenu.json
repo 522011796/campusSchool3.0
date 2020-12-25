@@ -724,13 +724,6 @@
         "key": "classAttend",
         "list": [
           {
-            "name": "实时数据",
-            "key": "classNow",
-            "id": 4101,
-            "top": "attendanceInfo",
-            "path": "/attendanceInfo/classAttend/now"
-          },
-          {
             "name": "考勤查询",
             "key": "classSearch",
             "id": 4102,
