@@ -276,6 +276,7 @@ export const common = {
   attend_class_static_base: '/proxy/course/rollcallbigdata/overall/rollcall/all/base',//归寝统计分析--基础信息统计
   attend_class_static_chart_base: '/proxy/course/rollcallbigdata/overall/rollcall/single/base',//归寝统计分析--图形统计
   attend_class_static_analyse_page: '/proxy/course/rollcallbigdata/overall/rollcall/single/page',//归寝统计分析--分页
+  attend_class_static_face_class_record_page: 'proxy/school/person/student/recognition/page',//课堂查询人脸识别记录
 
   course_list: 'proxy/course/course/list',//课程列表
 };

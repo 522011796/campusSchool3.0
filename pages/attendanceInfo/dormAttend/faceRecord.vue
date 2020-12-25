@@ -84,7 +84,10 @@
             </el-table-column>
             <el-table-column
               align="center"
-              :label="$t('设备类型')">
+              :label="$t('设备类型')"
+              :filter-multiple="false"
+              column-key="deviceType"
+              :filters="filtersDeviceType">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                   <div class="text-center">{{deviceTypeInfo('set', scope.row.device_type)}}</div>
@@ -150,7 +153,7 @@
                   <i class="fa fa-refresh color-grand" style="font-size: 15px"></i>
                 </div>
                 <div v-if="scope.row.photo_status != 0">
-                  <el-avatar :size="30" :src="scope.row.headImg"></el-avatar>
+                  <img :src="scope.row.photourl" style="width: 30px; height: 30px; border-radius: 30px" />
                 </div>
               </template>
             </el-table-column>
@@ -194,6 +197,7 @@
         tableData: [],
         tableDetailData: [],
         searchDate: [],
+        filtersDeviceType: [],
         modalVisible: false,
         dialogLoading: false,
         visibleConfim: false,
@@ -225,6 +229,7 @@
     },
     created() {
       this.init();
+      this.deviceTypeGetInfo();
     },
     methods: {
       init(){
@@ -256,6 +261,17 @@
             this.page = res.data.data.currentPage;
           }
         });
+      },
+      deviceTypeGetInfo(type, val){
+        let arr = [];
+        let deviceList = deviceType('get', val);
+        for (let i in deviceList){
+          arr.push({
+            value: i,
+            text: deviceList[i]
+          });
+        }
+        this.filtersDeviceType = arr;
       },
       nodeClick(data){
         this.searchCollege = "";
@@ -339,8 +355,8 @@
       },
       fliterTable(value, row, column){
         for (let item in value){
-          if (item == 'status'){
-            this.searchType = value[item][0];
+          if (item == 'deviceType'){
+            this.searchDeviceType = value[item][0];
           }
         }
         this.init();
