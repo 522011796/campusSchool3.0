@@ -260,19 +260,22 @@ export const common = {
   attend_meeting_info: '/proxy/school/meeting/query-meeting-info',//获取会议详细
   attend_meeting_delete: 'proxy/school/meeting/del-meeting',//会议签到删除
 
-  attend_dorm_page: 'proxy/course/rollcallbed/rollcallbed/page',//归寝查询
-  attend_dorm_stat: 'proxy/course/rollcallbed/rollcallbed/build/stat',//归寝查询统计
+  attend_dorm_page: '/proxy/course/rollcallbed/rollcallbed/page',//归寝查询
+  attend_dorm_stat: '/proxy/course/rollcallbed/rollcallbed/build/stat',//归寝查询统计
 
-  attend_dorm_static_page: 'proxy/course/rollcallbed/rollcallbed/stat/page',//归寝查询统计
-  attend_dorm_static_record_page: 'proxy/course/rollcallbed/rollcallbed/user/record/page',//归寝查询统计详细
+  attend_dorm_static_page: '/proxy/course/rollcallbed/rollcallbed/stat/page',//归寝查询统计
+  attend_dorm_static_record_page: '/proxy/course/rollcallbed/rollcallbed/user/record/page',//归寝查询统计详细
 
   attend_dorm_static_face_class_record_page: 'proxy/school/person/student/recognition/page',//归寝查询人脸识别记录
 
-  attend_dorm_static_base: 'proxy/course/rollcallbed/rollcallbed/analyse/base',//归寝统计分析--基础信息统计
-  attend_dorm_static_line: 'proxy/course/rollcallbed/rollcallbed/analyse/line/bar/point',//归寝统计分析--散点图
-  attend_dorm_static_analyse_page: 'proxy/course/rollcallbed/rollcallbed/analyse/page',//归寝统计分析--分页
+  attend_dorm_static_base: '/proxy/course/rollcallbed/rollcallbed/analyse/base',//归寝统计分析--基础信息统计
+  attend_dorm_static_line: '/proxy/course/rollcallbed/rollcallbed/analyse/line/bar/point',//归寝统计分析--散点图
+  attend_dorm_static_analyse_page: '/proxy/course/rollcallbed/rollcallbed/analyse/page',//归寝统计分析--分页
 
-  attend_class_page: 'proxy/course/rollcallsta/user/rollCall/pageweb',//归寝统计分析--分页
+  attend_class_page: '/proxy/course/rollcallsta/user/rollCall/pageweb',//归寝统计分析--分页
+  attend_class_static_base: '/proxy/course/rollcallbigdata/overall/rollcall/all/base',//归寝统计分析--基础信息统计
+  attend_class_static_chart_base: '/proxy/course/rollcallbigdata/overall/rollcall/single/base',//归寝统计分析--图形统计
+  attend_class_static_analyse_page: '/proxy/course/rollcallbigdata/overall/rollcall/single/page',//归寝统计分析--分页
 
   course_list: 'proxy/course/course/list',//课程列表
 };

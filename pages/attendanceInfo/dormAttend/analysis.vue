@@ -4,7 +4,7 @@
       <div slot="left">
         <div class="color-muted font-size-12 padding-tb-5 margin-top-10">
           <!--<span class="layout-left-menu-tag"></span>-->
-          <span class="layout-left-menu-title">识别记录</span>
+          <span class="layout-left-menu-title">考勤分析</span>
         </div>
         <my-el-tree :type="mainType" :sub-type="subType" @node-click="nodeClick">
           <div slot="top" class="text-center">
@@ -498,6 +498,7 @@
               });
             }
             this.popData = popDataList;
+            this.popKeyData = res.data.data.key;
           }
         });
       },
