@@ -268,4 +268,8 @@ export const common = {
 
 
   attend_dorm_static_face_class_record_page: 'proxy/school/person/student/recognition/page',//归寝查询人脸识别记录
+
+  attend_dorm_static_base: 'proxy/course/rollcallbed/rollcallbed/analyse/base',//归寝统计分析--基础信息统计
+  attend_dorm_static_line: 'proxy/course/rollcallbed/rollcallbed/analyse/line/bar/point',//归寝统计分析--散点图
+  attend_dorm_static_analyse_page: 'proxy/course/rollcallbed/rollcallbed/analyse/page',//归寝统计分析--分页
 };

@@ -71,6 +71,12 @@
   "LazyLineChart": {
     "description": "Auto imported from components/charts/LineChart.vue"
   },
+  "LinePopChart": {
+    "description": "Auto imported from components/charts/LinePopChart.vue"
+  },
+  "LazyLinePopChart": {
+    "description": "Auto imported from components/charts/LinePopChart.vue"
+  },
   "PopChart": {
     "description": "Auto imported from components/charts/PopChart.vue"
   },
@@ -95,6 +101,18 @@
   "LazyTableBarChart": {
     "description": "Auto imported from components/charts/TableBarChart.vue"
   },
+  "MyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
+  },
+  "LazyMyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
+  },
+  "MySearchOfDate": {
+    "description": "Auto imported from components/search/MySearchOfDate.vue"
+  },
+  "LazyMySearchOfDate": {
+    "description": "Auto imported from components/search/MySearchOfDate.vue"
+  },
   "LayoutLr": {
     "description": "Auto imported from components/Layout/LayoutLr.vue"
   },
@@ -107,17 +125,23 @@
   "LazyLayoutTb": {
     "description": "Auto imported from components/Layout/LayoutTb.vue"
   },
-  "MyInputButton": {
-    "description": "Auto imported from components/search/MyInputButton.vue"
+  "MyAuditStatus": {
+    "description": "Auto imported from components/utils/MyAuditStatus.vue"
   },
-  "LazyMyInputButton": {
-    "description": "Auto imported from components/search/MyInputButton.vue"
+  "LazyMyAuditStatus": {
+    "description": "Auto imported from components/utils/MyAuditStatus.vue"
   },
-  "MySearchOfDate": {
-    "description": "Auto imported from components/search/MySearchOfDate.vue"
+  "MySexSelect": {
+    "description": "Auto imported from components/utils/MySexSelect.vue"
   },
-  "LazyMySearchOfDate": {
-    "description": "Auto imported from components/search/MySearchOfDate.vue"
+  "LazyMySexSelect": {
+    "description": "Auto imported from components/utils/MySexSelect.vue"
+  },
+  "MyUserType": {
+    "description": "Auto imported from components/utils/MyUserType.vue"
+  },
+  "LazyMyUserType": {
+    "description": "Auto imported from components/utils/MyUserType.vue"
   },
   "MyBlockListChildTree": {
     "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
@@ -142,60 +166,6 @@
   },
   "LazyTreeNode": {
     "description": "Auto imported from components/tree/treeNode.js"
-  },
-  "MyAuditStatus": {
-    "description": "Auto imported from components/utils/MyAuditStatus.vue"
-  },
-  "LazyMyAuditStatus": {
-    "description": "Auto imported from components/utils/MyAuditStatus.vue"
-  },
-  "MySexSelect": {
-    "description": "Auto imported from components/utils/MySexSelect.vue"
-  },
-  "LazyMySexSelect": {
-    "description": "Auto imported from components/utils/MySexSelect.vue"
-  },
-  "MyUserType": {
-    "description": "Auto imported from components/utils/MyUserType.vue"
-  },
-  "LazyMyUserType": {
-    "description": "Auto imported from components/utils/MyUserType.vue"
-  },
-  "AuditStatusButton": {
-    "description": "Auto imported from components/utils/button/AuditStatusButton.vue"
-  },
-  "LazyAuditStatusButton": {
-    "description": "Auto imported from components/utils/button/AuditStatusButton.vue"
-  },
-  "TimeoutButton": {
-    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
-  },
-  "LazyTimeoutButton": {
-    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
-  },
-  "DialogNormal": {
-    "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
-  },
-  "LazyDialogNormal": {
-    "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
-  },
-  "DrawerLayoutRight": {
-    "description": "Auto imported from components/utils/dialog/DrawerLayoutRight.vue"
-  },
-  "LazyDrawerLayoutRight": {
-    "description": "Auto imported from components/utils/dialog/DrawerLayoutRight.vue"
-  },
-  "DrawerRight": {
-    "description": "Auto imported from components/utils/dialog/DrawerRight.vue"
-  },
-  "LazyDrawerRight": {
-    "description": "Auto imported from components/utils/dialog/DrawerRight.vue"
-  },
-  "MyNormalDialog": {
-    "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
-  },
-  "LazyMyNormalDialog": {
-    "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
   },
   "AuditButton": {
     "description": "Auto imported from components/utils/auditDetail/AuditButton.vue"
@@ -257,6 +227,54 @@
   "LazyMyCascader": {
     "description": "Auto imported from components/utils/select/MyCascader.vue"
   },
+  "DialogNormal": {
+    "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
+  },
+  "LazyDialogNormal": {
+    "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
+  },
+  "DrawerLayoutRight": {
+    "description": "Auto imported from components/utils/dialog/DrawerLayoutRight.vue"
+  },
+  "LazyDrawerLayoutRight": {
+    "description": "Auto imported from components/utils/dialog/DrawerLayoutRight.vue"
+  },
+  "DrawerRight": {
+    "description": "Auto imported from components/utils/dialog/DrawerRight.vue"
+  },
+  "LazyDrawerRight": {
+    "description": "Auto imported from components/utils/dialog/DrawerRight.vue"
+  },
+  "MyNormalDialog": {
+    "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
+  },
+  "LazyMyNormalDialog": {
+    "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
+  },
+  "AuditStatusButton": {
+    "description": "Auto imported from components/utils/button/AuditStatusButton.vue"
+  },
+  "LazyAuditStatusButton": {
+    "description": "Auto imported from components/utils/button/AuditStatusButton.vue"
+  },
+  "TimeoutButton": {
+    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
+  },
+  "LazyTimeoutButton": {
+    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
+  },
+  "QuillBlock": {
+    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
+  },
+  "LazyQuillBlock": {
+    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
+  },
+  "UploadSquare": {
+    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
+  },
+  "LazyUploadSquare": {
+    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
+  },
   "MyClassAtten": {
     "description": "Auto imported from components/utils/status/MyClassAtten.vue"
   },
@@ -280,18 +298,6 @@
   },
   "LazyMyDormAttenStatus": {
     "description": "Auto imported from components/utils/status/MyDormAttenStatus.vue"
-  },
-  "QuillBlock": {
-    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
-  },
-  "LazyQuillBlock": {
-    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
-  },
-  "UploadSquare": {
-    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
-  },
-  "LazyUploadSquare": {
-    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
   },
   "TeacherTreeAndList": {
     "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndList.vue"
