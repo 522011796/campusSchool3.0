@@ -31,6 +31,7 @@ export default {
       currentMonth: global.currentMonth,
       currentDay: global.currentDay,
       currentTermId: global.currentTermId,
+      currentYearId: global.currentYearId,
       currentWeekNum: global.currentWeekNum,
       currentWeekNo: global.currentWeekNo,
       userJobNum: global.userJobNum,
@@ -62,7 +63,13 @@ export default {
       filterOnlineStatus: global.filterOnlineStatus,
       filterDormBackStatus: global.filterDormBackStatus,
       filterClassAttendStatus: global.filterClassAttendStatus,
+      currentYearList: global.currentYearList,
+      currentTermList: global.currentTermList,
+      currentWeekList: global.currentWeekList,
       g_currentDate: {},
+      currentYearData: '',
+      currentTermData: '',
+      currentWeekData: '',
       tableHeight: {
         'height': ''
       },
@@ -175,6 +182,7 @@ export default {
         this.loginUserType = res.data.data.userType;
         this.campusLogo = res.data.data.campusLogo;
         this.currentTermId = res.data.data.currentTermId;
+        this.currentYearId = res.data.data.currentYearId;
         this.userJobNum = res.data.data.jobNum;
         this.realName = res.data.data.realName;
         this.headImage = res.data.data.headImage;
@@ -292,6 +300,67 @@ export default {
         this.$refs[refTag].$refs.cascaderSelector.$refs.panel.activePath = [];
         this.$refs[refTag].$refs.cascaderSelector.$refs.panel.calculateCheckedNodePaths();
       }
+    },
+    async initCurrentYearList(){
+      let params = {
+        page: 1,
+        num: 10000
+      };
+      await this.$axios.get(common.year_list, {params: params}).then(res => {
+        if (res.data.data){
+          if (res.data.data.list.length > 0){
+            for (let i = 0; i < res.data.data.list.length; i++){
+              res.data.data.list[i]['label'] = res.data.data.list[i].name;
+              res.data.data.list[i]['value'] = res.data.data.list[i].id;
+              if (res.data.data.list[i].current == true){
+                this.currentYearData = res.data.data.list[i].id;
+              }
+            }
+          }
+          this.currentYearList = res.data.data.list;
+        }
+      });
+    },
+    async initCurrentTermList(year,resolve){
+      let params = {
+        page: 1,
+        num: 999,
+        schYearId: year
+      };
+      this.currentTermData = "";
+      await this.$axios.get(common.term_list, {params: params}).then(res => {
+        if (res.data.data){
+          for (let i = 0; i < res.data.data.list.length; i++){
+            res.data.data.list[i]['label'] = res.data.data.list[i].name;
+            res.data.data.list[i]['value'] = res.data.data.list[i].id;
+            if (res.data.data.list[i].current == true){
+              this.currentTermData = res.data.data.list[i].id;
+              break;
+            }else {
+              this.currentTermData = res.data.data.list[0].id;
+            }
+          }
+          this.currentTermList = res.data.data.list;
+        }
+      });
+    },
+    async initCurrentWeekList(year,term){
+      let currentWeekData = [];
+      let params = {
+        syearId: year,
+        termId: term
+      };
+      await this.$axios.get(common.week_list, {params: params}).then(res => {
+        if (res.data.data.teachSetting){
+          for (let i = 0; i < res.data.data.teachSetting.weekNum; i++){
+            currentWeekData.push({
+              label: this.$t("第")+ (i + 1) + this.$t("周"),
+              value: i + 1
+            });
+          }
+          this.currentWeekList = currentWeekData;
+        }
+      });
     }
   }
 }

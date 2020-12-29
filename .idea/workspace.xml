@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/components/search/MyYearTerm.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/faceRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/faceRecord.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/faceRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/faceRecord.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/studentStatic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/studentStatic.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/teacherStatic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/teacherStatic.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/global.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +39,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/charts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/search" />
     <property name="list.type.of.created.stylesheet" value="textmate" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
@@ -45,11 +52,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/components/search" />
       <recent name="$PROJECT_DIR$/components/charts" />
       <recent name="$PROJECT_DIR$/components/utils" />
       <recent name="$PROJECT_DIR$/components/utils/status" />
       <recent name="$PROJECT_DIR$/utils/validater" />
-      <recent name="$PROJECT_DIR$/components/utils/teacherTreeAndList" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/pages/teachInfo/exam" />
@@ -100,14 +107,7 @@
       <workItem from="1608254032281" duration="63362000" />
       <workItem from="1608543213428" duration="7598000" />
       <workItem from="1608617065213" duration="1941000" />
-      <workItem from="1608625084513" duration="87729000" />
-    </task>
-    <task id="LOCAL-00082" summary="1、修改框架和组件样式、细节bug等&#10;2、学生信息接口对接完成">
-      <created>1606876548302</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1606876548302</updated>
+      <workItem from="1608625084513" duration="99596000" />
     </task>
     <task id="LOCAL-00083" summary="1、修改框架和组件样式、细节bug等&#10;2、登录日志接口对接完成">
       <created>1606881390769</created>
@@ -445,14 +445,20 @@
       <option name="project" value="LOCAL" />
       <updated>1608889224381</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="1、修改框架和组件样式、细节bug等&#10;2、课堂考勤识别记录接口对接完成">
+      <created>1608890444149</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1608890444150</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、请假管理、内务查询外部接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、内务查询、检查记录接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、内务查询、检查记录、检查设置接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、班级查询、检查记录、检查设置接口对接完成" />
@@ -477,7 +483,8 @@
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、归寝分析识别接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、课堂考勤查询接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、课堂考勤分析接口对接完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、课堂考勤分析接口对接完成" />
+    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、课堂考勤识别记录接口对接完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、课堂考勤识别记录接口对接完成" />
   </component>
   <component name="WindowStateProjectService">
     <state x="454" y="235" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602497724708">
@@ -489,11 +496,11 @@
     </state>
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.805@0.23.1440.805" timestamp="1602828707649" />
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1605755081482" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1608889222589">
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1608890442824">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1608889222589" />
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1608890442824" />
     <state x="100" y="124" width="1240" height="600" key="DiffContextDialog" timestamp="1608719973983">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -531,11 +538,11 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="221" y="64" key="SettingsEditor/0.23.1440.805@0.23.1440.805" timestamp="1602238031085" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1608889225937">
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1608890445855">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1608889225937" />
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1608890445855" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1608002552886">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -545,11 +552,11 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="441" y="61" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.25.1440.798@0.25.1440.798" timestamp="1608789941392" />
-    <state x="378" y="183" width="837" height="550" key="find.popup" timestamp="1608890200929">
+    <state x="378" y="183" width="837" height="550" key="find.popup" timestamp="1609207217512">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="378" y="182" width="837" height="486" key="find.popup/0.23.1440.805@0.23.1440.805" timestamp="1605680757485" />
-    <state x="378" y="183" width="837" height="550" key="find.popup/0.25.1440.798@0.25.1440.798" timestamp="1608890200929" />
+    <state x="378" y="183" width="837" height="550" key="find.popup/0.25.1440.798@0.25.1440.798" timestamp="1609207217512" />
     <state x="385" y="153" width="670" height="671" key="search.everywhere.popup" timestamp="1608342969370">
       <screen x="0" y="25" width="1440" height="798" />
     </state>

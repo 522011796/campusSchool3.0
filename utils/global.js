@@ -12,10 +12,14 @@ const dataCollegeList= [];
 const dataSchoolBuildList = [];
 const dataDormBuildList = [];
 const dataDeptList = [];
+const currentYearList = [];
+const currentTermList = [];
+const currentWeekList = [];
 const currentSeciton = 20;
 const currentYear = "";
 const currentMonth = "";
 const currentDay = "";
+const currentYearId = "";
 const currentTermId = "";
 const currentWeekNum = "";
 const loginUserName = "";
@@ -286,5 +290,9 @@ export default {
   filterDeviceUseType,
   filterOnlineStatus,
   filterDormBackStatus,
-  filterClassAttendStatus
+  filterClassAttendStatus,
+  currentYearList,
+  currentTermList,
+  currentWeekList,
+  currentYearId
 }

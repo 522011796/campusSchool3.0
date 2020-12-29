@@ -41,6 +41,7 @@ export const common = {
 
   year_list: '/proxy/edu/edu/year/page',//学年列表
   term_list: '/proxy/edu/edu/term/page',//学期列表
+  week_list: '/proxy/edu/edu/teach/getSetting',//学周列表
   add_year: '/proxy/edu/edu/year/add',//添加学年
   update_year: '/proxy/edu/edu/year/update',//修改学年
   delete_year: '/proxy/edu/edu/year/delete',//删除学年
@@ -279,4 +280,10 @@ export const common = {
   attend_class_static_face_class_record_page: 'proxy/school/person/student/recognition/page',//课堂查询人脸识别记录
 
   course_list: 'proxy/course/course/list',//课程列表
+
+  attend_class_static_stu_page: 'proxy/course/rollcallsta/stu/sum/page',//课堂考勤--学生统计
+  attend_class_static_stu_detail: 'proxy/course/rollcallsta/stu/rollCall/course',//课堂考勤--查询详细
+
+  attend_class_static_ter_page: 'proxy/course/rollcallsta/tch/sum/page',//课堂考勤--学生统计
+  attend_class_static_ter_detail: 'proxy/course/rollcallsta/tch/rollCall/course',//课堂考勤--查询详细
 };
