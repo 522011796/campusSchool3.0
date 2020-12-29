@@ -351,7 +351,7 @@ export default {
         termId: term
       };
       await this.$axios.get(common.week_list, {params: params}).then(res => {
-        if (res.data.data.teachSetting){
+        if (res.data.data && res.data.data.teachSetting){
           for (let i = 0; i < res.data.data.teachSetting.weekNum; i++){
             currentWeekData.push({
               label: this.$t("第")+ (i + 1) + this.$t("周"),

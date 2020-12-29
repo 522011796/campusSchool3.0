@@ -145,7 +145,7 @@
       },
       initWeek(){
         let arr = [];
-        if (this.nowDataObj){
+        if (this.nowDataObj && this.nowDataObj.weekNumsOfTerm){
           for (let i = 0; i < this.nowDataObj.weekNumsOfTerm.length; i++){
             arr.push({
               label: this.nowDataObj.weekNumsOfTerm[i],
@@ -158,7 +158,7 @@
       },
       initMonth(){
         let arr = [];
-        if (this.nowDataObj){
+        if (this.nowDataObj && this.nowDataObj.monthsOfTerm){
           for (let i = 0; i < this.nowDataObj.monthsOfTerm.length; i++){
             arr.push({
               label: this.nowDataObj.monthsOfTerm[i].yearMonth,
@@ -171,7 +171,7 @@
       },
       initYear(){
         let arr = [];
-        if (this.nowDataObj){
+        if (this.nowDataObj && this.nowDataObj.yearList){
           for (let i = 0; i < this.nowDataObj.yearList.length; i++){
             arr.push({
               label: this.nowDataObj.yearList[i],

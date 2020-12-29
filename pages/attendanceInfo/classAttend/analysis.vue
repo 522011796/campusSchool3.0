@@ -414,7 +414,7 @@
         params['page'] = this.page;
         params['num'] = this.num;
         this.$axios.get(common.attend_class_static_base, {params: params}).then(res => {
-          if (res.data.data){
+          if (res.data.data && res.data.data.value){
             this.topData = res.data.data.baseInfo;
             this.lineBaseKeyData = res.data.data.key;
             this.lineBaseLegned = [this.$t("出勤"),this.$t("迟到"),this.$t("早退"),this.$t("旷课"),this.$t("请假")];
@@ -451,7 +451,7 @@
         params['courseId'] = this.searchCourseId;
         params['barChartAttr'] = this.searchStatus;
         this.$axios.get(common.attend_class_static_chart_base, {params: params}).then(res => {
-          if (res.data.data){
+          if (res.data.data && res.data.data.value){
             this.lineKeyData = res.data.data.key;
             this.lineLegned = [this.$t("出勤"),this.$t("迟到"),this.$t("早退"),this.$t("旷课"),this.$t("请假")];
             this.lineData = [
@@ -487,7 +487,7 @@
         params['chartType'] = 3;
         params['barChartAttr'] = this.searchStatus;
         this.$axios.get(common.attend_class_static_chart_base, {params: params}).then(res => {
-          if (res.data.data){
+          if (res.data.data && res.data.data.courseList){
             let popDataList = [];
             let popKey = res.data.key;
             let itemStyle = {

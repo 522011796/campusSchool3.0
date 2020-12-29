@@ -441,7 +441,7 @@
         params['chartType'] = 1;
         params['barChartAttr'] = this.searchStatus;
         this.$axios.get(common.attend_dorm_static_line, {params: params}).then(res => {
-          if (res.data.data){
+          if (res.data.data && res.data.data.value){
             this.lineKeyData = res.data.data.key;
             this.lineLegned = [this.$t("已归寝"),this.$t("未归"),this.$t("晚归"),this.$t("超长未归"),this.$t("请假")];
             this.lineData = [
