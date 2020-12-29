@@ -286,4 +286,6 @@ export const common = {
 
   attend_class_static_ter_page: 'proxy/course/rollcallsta/tch/sum/page',//课堂考勤--学生统计
   attend_class_static_ter_detail: 'proxy/course/rollcallsta/tch/rollCall/course',//课堂考勤--查询详细
+
+  attend_teacher_static_face_page: 'proxy/school/person/teacher/recognition/page',//综合考勤--识别记录
 };

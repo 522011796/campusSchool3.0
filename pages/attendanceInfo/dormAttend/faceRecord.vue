@@ -157,6 +157,13 @@
                 </div>
               </template>
             </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('状态')">
+              <template slot-scope="scope">
+                <span class="color-success">{{$t('通过')}}</span>
+              </template>
+            </el-table-column>
           </el-table>
 
           <div class="layout-right-footer text-right">
