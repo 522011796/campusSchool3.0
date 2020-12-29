@@ -14,7 +14,7 @@
           <el-row>
             <el-col :span="24" class="text-right">
               <my-date-picker :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChange" style="position: relative; top: 1px;"></my-date-picker>
-              <my-input-button ref="teacher" size="small" plain width-class="width: 120px" type="success" :clearable="true" :placeholder="$t('姓名/学号')" @click="search"></my-input-button>
+              <my-input-button ref="teacher" size="small" plain width-class="width: 120px" type="success" :clearable="true" :placeholder="$t('姓名/工号')" @click="search"></my-input-button>
             </el-col>
           </el-row>
         </div>

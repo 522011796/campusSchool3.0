@@ -288,4 +288,8 @@ export const common = {
   attend_class_static_ter_detail: 'proxy/course/rollcallsta/tch/rollCall/course',//课堂考勤--查询详细
 
   attend_teacher_static_face_page: 'proxy/school/person/teacher/recognition/page',//综合考勤--识别记录
+  attend_teacher_static_list_page: 'proxy/course/employee/summary/stat/page',//综合考勤--查询
+  attend_teacher_static_list_attend_detail: 'proxy/course/employee/summary/stat/page',//综合考勤--行政查询详细
+  attend_teacher_static_list_meeting_detail: 'proxy/course/employee/summary/stat/page',//综合考勤--会议查询详细
+  attend_teacher_static_list_leave_detail: 'proxy/course/employee/summary/stat/page',//综合考勤--请假查询详细
 };

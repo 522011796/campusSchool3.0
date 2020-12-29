@@ -235,6 +235,12 @@ const filterClassAttendStatus = [
   { text: '请假', value: "2", label: '请假'}
 ];
 
+const filterAttendTypes = [
+  { text: "行政考勤", value: "attend", label: '行政考勤'},
+  { text: '会议考勤', value: "meeting", label: '会议考勤'},
+  { text: '日常请假', value: "leave", label: '日常请假'}
+];
+
 export default {
   total,
   page,
@@ -294,5 +300,6 @@ export default {
   currentYearList,
   currentTermList,
   currentWeekList,
-  currentYearId
+  currentYearId,
+  filterAttendTypes
 }
