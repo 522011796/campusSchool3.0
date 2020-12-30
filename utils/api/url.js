@@ -255,11 +255,11 @@ export const common = {
   attend_meeting_static: '/proxy/school/meeting/query-meeting-user-stat',//会议签到详细统计
   attend_meeting_static_page: '/proxy/school/meeting/query-meeting-user-page',//会议签到详细分页
   attend_meeting_expand: '/proxy/school/meeting/export-meeting-list',//会议签到导出
-  attend_meeting_add: 'proxy/school/meeting/add-meeting',//会议签到添加
-  attend_meeting_device_page: 'proxy/school/device/query-rela-device-page',//人脸识别设备列表
+  attend_meeting_add: '/proxy/school/meeting/add-meeting',//会议签到添加
+  attend_meeting_device_page: '/proxy/school/device/query-rela-device-page',//人脸识别设备列表
   attend_meeting_edit: '/proxy/school/meeting/edit-meeting',//编辑会议
   attend_meeting_info: '/proxy/school/meeting/query-meeting-info',//获取会议详细
-  attend_meeting_delete: 'proxy/school/meeting/del-meeting',//会议签到删除
+  attend_meeting_delete: '/proxy/school/meeting/del-meeting',//会议签到删除
 
   attend_dorm_page: '/proxy/course/rollcallbed/rollcallbed/page',//归寝查询
   attend_dorm_stat: '/proxy/course/rollcallbed/rollcallbed/build/stat',//归寝查询统计
@@ -267,7 +267,7 @@ export const common = {
   attend_dorm_static_page: '/proxy/course/rollcallbed/rollcallbed/stat/page',//归寝查询统计
   attend_dorm_static_record_page: '/proxy/course/rollcallbed/rollcallbed/user/record/page',//归寝查询统计详细
 
-  attend_dorm_static_face_class_record_page: 'proxy/school/person/student/recognition/page',//归寝查询人脸识别记录
+  attend_dorm_static_face_class_record_page: '/proxy/school/person/student/recognition/page',//归寝查询人脸识别记录
 
   attend_dorm_static_base: '/proxy/course/rollcallbed/rollcallbed/analyse/base',//归寝统计分析--基础信息统计
   attend_dorm_static_line: '/proxy/course/rollcallbed/rollcallbed/analyse/line/bar/point',//归寝统计分析--散点图
@@ -279,17 +279,24 @@ export const common = {
   attend_class_static_analyse_page: '/proxy/course/rollcallbigdata/overall/rollcall/single/page',//归寝统计分析--分页
   attend_class_static_face_class_record_page: 'proxy/school/person/student/recognition/page',//课堂查询人脸识别记录
 
-  course_list: 'proxy/course/course/list',//课程列表
+  course_list: '/proxy/course/course/list',//课程列表
 
-  attend_class_static_stu_page: 'proxy/course/rollcallsta/stu/sum/page',//课堂考勤--学生统计
-  attend_class_static_stu_detail: 'proxy/course/rollcallsta/stu/rollCall/course',//课堂考勤--查询详细
+  attend_class_static_stu_page: '/proxy/course/rollcallsta/stu/sum/page',//课堂考勤--学生统计
+  attend_class_static_stu_detail: '/proxy/course/rollcallsta/stu/rollCall/course',//课堂考勤--查询详细
 
-  attend_class_static_ter_page: 'proxy/course/rollcallsta/tch/sum/page',//课堂考勤--学生统计
-  attend_class_static_ter_detail: 'proxy/course/rollcallsta/tch/rollCall/course',//课堂考勤--查询详细
+  attend_class_static_ter_page: '/proxy/course/rollcallsta/tch/sum/page',//课堂考勤--学生统计
+  attend_class_static_ter_detail: '/proxy/course/rollcallsta/tch/rollCall/course',//课堂考勤--查询详细
 
-  attend_teacher_static_face_page: 'proxy/school/person/teacher/recognition/page',//综合考勤--识别记录
-  attend_teacher_static_list_page: 'proxy/course/employee/summary/stat/page',//综合考勤--查询
-  attend_teacher_static_list_attend_detail: 'proxy/course/employee/summary/stat/page',//综合考勤--行政查询详细
-  attend_teacher_static_list_meeting_detail: 'proxy/course/employee/summary/stat/page',//综合考勤--会议查询详细
-  attend_teacher_static_list_leave_detail: 'proxy/course/employee/summary/stat/page',//综合考勤--请假查询详细
+  attend_teacher_static_face_page: '/proxy/school/person/teacher/recognition/page',//综合考勤--识别记录
+  attend_teacher_static_list_page: '/proxy/course/employee/summary/stat/page',//综合考勤--查询/报表
+  attend_teacher_static_list_attend_detail: '/proxy/course/employee/summary/stat/page',//综合考勤--行政查询详细
+  attend_teacher_static_list_meeting_detail: '/proxy/course/employee/summary/stat/page',//综合考勤--会议查询详细
+  attend_teacher_static_list_leave_detail: '/proxy/course/employee/summary/stat/page',//综合考勤--请假查询详细
+
+  attend_teacher_static_record_page: '/proxy/course/employee/summary/signDay/page',//综合考勤--考勤记录
+  attend_teacher_static_record_export: '/proxy/course/employee/summary/signDay/export',//综合考勤--考勤记录导出
+
+
+  attend_teacher_static_count: '/proxy/user/attendRecords/detail/count',//综合考勤--考勤统计
+  attend_teacher_static_page_export: '/proxy/course/employee/summary/signDay/export',//综合考勤--考勤统计导出
 };
