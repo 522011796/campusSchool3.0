@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/utils/status/MyAdminAtten.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/administration/record.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/administration/record.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/administration/static.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/administration/static.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,14 +99,7 @@
       <workItem from="1608254032281" duration="63362000" />
       <workItem from="1608543213428" duration="7598000" />
       <workItem from="1608617065213" duration="1941000" />
-      <workItem from="1608625084513" duration="119459000" />
-    </task>
-    <task id="LOCAL-00087" summary="1、修改框架和组件样式、细节bug等&#10;2、奖惩申请接口对接完成">
-      <created>1606921135727</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1606921135727</updated>
+      <workItem from="1608625084513" duration="120298000" />
     </task>
     <task id="LOCAL-00088" summary="1、修改框架和组件样式、细节bug等&#10;2、奖惩申请接口对接完成">
       <created>1606921307751</created>
@@ -450,14 +437,20 @@
       <option name="project" value="LOCAL" />
       <updated>1609235889074</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="1、修改框架和组件样式、细节bug等&#10;2、综合考勤统计、记录接口对接完成">
+      <created>1609321473966</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1609321473967</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、认证设置接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、陌生人记录、学工管理接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、宿舍设置接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、在线选寝接口对接完成" />
@@ -482,7 +475,8 @@
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、课堂考勤教师学生统计接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、综合考勤识别记录接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、综合考勤查询接口对接完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、综合考勤查询接口对接完成" />
+    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、综合考勤统计、记录接口对接完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、综合考勤统计、记录接口对接完成" />
   </component>
   <component name="WindowStateProjectService">
     <state x="454" y="235" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602497724708">
@@ -494,11 +488,11 @@
     </state>
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.805@0.23.1440.805" timestamp="1602828707649" />
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1605755081482" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1609235887410">
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1609321472017">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1609235887410" />
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1609321472017" />
     <state x="100" y="124" width="1240" height="600" key="DiffContextDialog" timestamp="1609230587429">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -536,11 +530,11 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="221" y="64" key="SettingsEditor/0.23.1440.805@0.23.1440.805" timestamp="1602238031085" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1609235891331">
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1609321475719">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1609235891331" />
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1609321475719" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1609311204873">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
