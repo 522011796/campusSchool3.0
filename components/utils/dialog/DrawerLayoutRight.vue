@@ -7,7 +7,8 @@
       :wrapperClosable="true"
       :show-close="false"
       :modal-append-to-body="false"
-      :size="size">
+      :size="size"
+      @close="handleColse">
 
       <div slot="title" class="drawer-normal-title">
         <el-row v-if="!header">
@@ -103,6 +104,9 @@ export default {
     },
     handleCancel(data){
       this.$emit("cancel", data);
+    },
+    handleColse(data){
+      this.$emit("close");
     }
   }
 }

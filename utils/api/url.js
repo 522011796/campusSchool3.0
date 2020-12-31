@@ -299,4 +299,8 @@ export const common = {
 
   attend_teacher_static_count: '/proxy/user/attendRecords/detail/count',//综合考勤--考勤统计
   attend_teacher_static_page_export: '/proxy/course/employee/summary/signDay/export',//综合考勤--考勤统计导出
+
+  news_page: '/proxy/school/school/news/page',//新闻分页
+  news_delete: '/proxy/school/school/news/delete',//删除新闻
+  news_add: '/proxy/school/school/news/add',//添加新闻
 };
