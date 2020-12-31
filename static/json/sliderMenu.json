@@ -258,17 +258,17 @@
           },
           {
             "name": "校园公告",
-            "key": "notice",
+            "key": "circular",
             "id": 802,
             "top": "basicInfo",
-            "path": "/basicInfo/notice"
+            "path": "/basicInfo/circular"
           },
           {
             "name": "校园通知",
-            "key": "circular",
+            "key": "notice",
             "id": 803,
             "top": "basicInfo",
-            "path": "/basicInfo/circular"
+            "path": "/basicInfo/notice"
           },
           {
             "name": "资讯管理",

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <layout-tb>
-      <template slot="tag">组织机构</template>
+      <template slot="tag">校园新闻</template>
 
       <div slot="tab">
         <el-row>

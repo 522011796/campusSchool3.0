@@ -303,4 +303,8 @@ export const common = {
   news_page: '/proxy/school/school/news/page',//新闻分页
   news_delete: '/proxy/school/school/news/delete',//删除新闻
   news_add: '/proxy/school/school/news/add',//添加新闻
+
+  circular_page: '/proxy/user/message/page',//公告分页
+  circular_delete: '/proxy/user/message/del',//删除公告
+  circular_add: '/proxy/user/message/saveAndRelease',//添加公告
 };
