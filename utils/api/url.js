@@ -307,4 +307,8 @@ export const common = {
   circular_page: '/proxy/user/message/page',//公告分页
   circular_delete: '/proxy/user/message/del',//删除公告
   circular_add: '/proxy/user/message/saveAndRelease',//添加公告
+
+  info_page: '/proxy/school/school/information/page',//资讯分页
+  info_delete: '/proxy/school/school/information/delete',//删除资讯
+  info_add: '/proxy/school/school/information/add',//添加资讯
 };

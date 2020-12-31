@@ -232,7 +232,6 @@
         let url = "";
         this.$refs['form'].validate((valid) => {
           if (valid) {
-            this.dialogLoading = true;
             let params = {
               title: this.form.title,
               titleDesc: this.form.titleDesc,
