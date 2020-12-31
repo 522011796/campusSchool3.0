@@ -18,11 +18,11 @@
     props: {
       selValue: {
         default: '',
-        type: String
+        type: [Boolean, String]
       },
       label: {
         default: '',
-        type: String
+        type: [Boolean, String]
       },
       group: {
         default: false,

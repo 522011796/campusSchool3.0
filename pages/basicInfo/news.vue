@@ -36,8 +36,11 @@
           </el-table-column>
           <el-table-column
             align="center"
-            prop="dept_short_name"
             :label="$t('发布人')">
+            <template slot-scope="scope">
+              <span v-if="scope.row.releaser_type == 2">{{$t("管理员")}}</span>
+              <span v-if="scope.row.releaser_type == 4">{{scope.row.real_name}}</span>
+            </template>
           </el-table-column>
           <el-table-column
             align="center"
