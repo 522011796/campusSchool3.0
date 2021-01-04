@@ -111,6 +111,7 @@
         commSearchDept: '',
         commSelUserVal: '',
         commSelUserArr: [],
+        commSelUserNameArr: [],
         commSelUserTempArr: [],
         commSelUserValObj: {},
         commSelUserValArr: [],
@@ -136,6 +137,8 @@
         };
         this.commLoading = true;
         params['realName'] = this.commSearchKey['input'];
+        this.commSelUserArr = [];
+        this.commSelUserNameArr = [];
         this.$axios.get(common.teacher_list, {params: params}).then(res => {
           if (res.data.data){
             //this.$refs.commTableRef.clearSelection();
@@ -144,6 +147,8 @@
               if (sel > -1){
                 this.commFlag = true;
                 res.data.data.page.list[i]['_checked'] = true;
+                //this.commSelUserArr.push(res.data.data.page.list[i].user_id);
+                //this.commSelUserNameArr.push(res.data.data.page.list[i].real_name);
                 this.$refs.commTableRef.toggleRowSelection(res.data.data.page.list[i], true);
               }
             }
@@ -185,17 +190,31 @@
             if (self.commSelUserArr.indexOf(value.user_id) !== -1) {
               self.commSelUserArr.splice(self.commSelUserArr.indexOf(value.user_id), 1);
             }
+
+            if (self.commSelUserNameArr.indexOf(value.real_name) !== -1) {
+              self.commSelUserNameArr.splice(self.commSelUserNameArr.indexOf(value.real_name), 1);
+            }
           });
 
         } else {
           var str = multipleSelection.map(function(value, index, arr) {
             return value.user_id;
           });
+          var strName = multipleSelection.map(function(value, index, arr) {
+            return value.real_name;
+          });
+
           self.commSelUserArr = self.commSelUserArr.concat(str);
           self.commSelUserArr = [...new Set(self.commSelUserArr)];
 
+          self.commSelUserNameArr = self.commSelUserNameArr.concat(strName);
+          self.commSelUserNameArr = [...new Set(self.commSelUserNameArr)];
+
         }
-        this.$emit("select", self.commSelUserArr);
+        this.$emit("select", {
+          userIds: self.commSelUserArr,
+          userNames: self.commSelUserNameArr
+        });
       },
       _handleSelectionChange(data){
         let self = this;
@@ -205,6 +224,13 @@
         let str = this.commMultipleSelection.map(function(value, index, arr) {
           return value.user_id;
         });
+        let strName = this.commMultipleSelection.map(function(value, index, arr) {
+          return value.real_name;
+        });
+
+        str = [...new Set(str)];
+        strName = [...new Set(strName)];
+
         if (this.commRow) {
           // 勾选项id
           let selectedId = this.commRow.user_id;
@@ -215,10 +241,24 @@
             //增加勾选增push进去
             self.commSelUserArr.push(selectedId);
           }
+
+          //console.log(this.commSelUserArr);
+          let selectedName = this.commRow.real_name;
+          if (strName.indexOf(selectedName) == -1 && self.commSelUserNameArr.indexOf(selectedName) !== -1) {
+            //取消勾选则是从partId中删除
+            self.commSelUserNameArr.splice(self.commSelUserNameArr.indexOf(selectedName), 1);
+          } else if (strName.indexOf(selectedName) !== -1 && self.commSelUserNameArr.indexOf(selectedName) == -1) {
+            //增加勾选增push进去
+            self.commSelUserNameArr.push(selectedName);
+          }
+
           //数组去重
           self.commSelUserArr = [...new Set(self.commSelUserArr)];
-
-          this.$emit("select", self.commSelUserArr);
+          self.commSelUserNameArr = [...new Set(self.commSelUserNameArr)];
+          this.$emit("select", {
+            userIds: self.commSelUserArr,
+            userNames: self.commSelUserNameArr
+          });
         }
       },
       _handleSizeChange(data){

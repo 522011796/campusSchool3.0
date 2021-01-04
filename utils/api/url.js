@@ -311,4 +311,8 @@ export const common = {
   info_page: '/proxy/school/school/information/page',//资讯分页
   info_delete: '/proxy/school/school/information/delete',//删除资讯
   info_add: '/proxy/school/school/information/add',//添加资讯
+
+  flow_center_page: '/proxy/user/unionapply/apply/process/page',//流程中心分页
+  flow_center_del: '/proxy/user/unionapply/apply/process/del',//流程中心删除
+  flow_center_update: '/proxy/user/unionapply/apply/process/addOrUpdate',//流程中心添加、修改
 };
