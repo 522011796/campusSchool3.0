@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-bind="_getProcessData">
     <div class="layout-inline margin-bottom-10" v-for="(item, index) in conditionProcessList" :key="index">
       <el-select v-model="item.type" @change="handleChangeSlect($event, item)" :style="{width: widthStyle}">
         <el-option :label="options[0].label" :value="options[0].value" v-if="conditionProcessList.length-1 == index"></el-option>
@@ -75,25 +75,66 @@
       widthStyle: {
         default: '',
         type: [String, Number]
+      },
+      processData: {
+        default: function () {
+          return [];
+        },
+        type: Array
       }
     },
     computed: {
-
+      _getProcessData(){
+        this.conditionProcessList = [];
+        let arr = [];
+        if (this.processData.length > 0){
+          let audtiArr = [];
+          let shareArr = [];
+          for (let i = 0; i < this.processData.length; i++){
+            for (let j = 0; j < this.processData[i].audit.length; j++){
+              audtiArr.push({
+                user_id: this.processData[i].audit[j]
+              });
+            }
+            for (let j = 0; j < this.processData[i].share.length; j++){
+              shareArr.push({
+                user_id: this.processData[i].share[j]
+              });
+            }
+            arr.push({
+              type: this.processData[i].type,
+              audit: audtiArr,
+              auditName: this.processData[i].auditName,
+              share: shareArr,
+              notice: this.processData[i].notice
+            });
+          }
+        }else {
+          arr = [{
+            type: 'NullUser',
+            audit: [],
+            auditName: [],
+            share: [],
+            notice: 'or'
+          }];
+        }
+        console.log(this.conditionProcessList);
+        this.conditionProcessList = arr;
+        //return this.conditionProcessList;
+      }
     },
     data() {
       return {
         value: '',
         width: '',
         conditionUserType: 'or',
-        conditionProcessList: [
-          {
-            type: 'NullUser',
-            audit: [],
-            auditName: [],
-            share: [],
-            notice: 'or'
-          }
-        ],
+        conditionProcessList: [{
+          type: 'NullUser',
+          audit: [],
+          auditName: [],
+          share: [],
+          notice: 'or'
+        }],
         options: [
           {
             label: this.$t("不需要审批"),
@@ -121,7 +162,7 @@
           },
           {
             label: this.$t("学管主任审批"),
-            value: 'StudentmanageTeacher'
+            value: 'StudentManageTeacher'
           },
           {
             label: this.$t("系部干事审批"),
@@ -133,6 +174,9 @@
           }
         ]
       }
+    },
+    created() {
+
     },
     methods: {
       handleChange(type, item){

@@ -2,19 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/utils/status/MyFlowCondition.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/utils/status/MyFlowProcess.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/utils/status/MyFlowProcessList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/utils/status/MyFlowType.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/validater/flowProcessValidater.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/treeAndList/TeacherTreeAndList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/treeAndList/TeacherTreeAndList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/meetAttend/meetting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/meetAttend/meetting.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/status/MyFlowProcessList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/status/MyFlowProcessList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/basicInfo/stuLeave.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/stuLeave.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/validater/flowProcessValidater.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/flowProcessValidater.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/validater/rules.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/rules.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,14 +103,7 @@
       <workItem from="1608543213428" duration="7598000" />
       <workItem from="1608617065213" duration="1941000" />
       <workItem from="1608625084513" duration="122942000" />
-      <workItem from="1609379556549" duration="37140000" />
-    </task>
-    <task id="LOCAL-00093" summary="1、修改框架和组件样式、细节bug等&#10;2、请假管理接口对接完成">
-      <created>1607068667146</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1607068667147</updated>
+      <workItem from="1609379556549" duration="44822000" />
     </task>
     <task id="LOCAL-00094" summary="1、修改框架和组件样式、细节bug等&#10;2、请假管理、内务查询外部接口对接完成">
       <created>1607151277827</created>
@@ -456,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609399698552</updated>
     </task>
-    <option name="localTasksCounter" value="142" />
+    <task id="LOCAL-00142" summary="1、修改框架和组件样式、细节bug等&#10;2、通知接口对接完成">
+      <created>1609759472718</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1609759472719</updated>
+    </task>
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -500,11 +492,11 @@
     </state>
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.805@0.23.1440.805" timestamp="1602828707649" />
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1605755081482" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1609399697271">
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1609759471004">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1609399697271" />
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1609759471004" />
     <state x="100" y="124" width="1240" height="600" key="DiffContextDialog" timestamp="1609230587429">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -542,11 +534,11 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="221" y="64" key="SettingsEditor/0.23.1440.805@0.23.1440.805" timestamp="1602238031085" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1609399699994">
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1609759474635">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1609399699994" />
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1609759474635" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1609311204873">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -556,11 +548,11 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="441" y="61" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.25.1440.798@0.25.1440.798" timestamp="1608789941392" />
-    <state x="378" y="183" width="837" height="550" key="find.popup" timestamp="1609751023424">
+    <state x="378" y="183" width="837" height="550" key="find.popup" timestamp="1609814096714">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="378" y="182" width="837" height="486" key="find.popup/0.23.1440.805@0.23.1440.805" timestamp="1605680757485" />
-    <state x="378" y="183" width="837" height="550" key="find.popup/0.25.1440.798@0.25.1440.798" timestamp="1609751023424" />
+    <state x="378" y="183" width="837" height="550" key="find.popup/0.25.1440.798@0.25.1440.798" timestamp="1609814096714" />
     <state x="385" y="153" width="670" height="671" key="search.everywhere.popup" timestamp="1608342969370">
       <screen x="0" y="25" width="1440" height="798" />
     </state>

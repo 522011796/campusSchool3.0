@@ -159,7 +159,7 @@
             <my-radio :sel-value="form.status" :label="false" @change="changeStatus($event, false)">{{$t("禁用")}}</my-radio>
           </el-form-item>
           <el-form-item label="流程">
-            <my-flow-process-list ref="flowProcessRef" width-style="200"></my-flow-process-list>
+            <my-flow-process-list ref="flowProcessRef" :process-data="form.handleProcess" width-style="200"></my-flow-process-list>
           </el-form-item>
         </el-form>
       </div>
@@ -223,6 +223,7 @@
           conditionDay1: '',
           conditionDay2: '',
           status: true,
+          handleProcess: []
         },
       }
     },
@@ -254,7 +255,49 @@
         this.drawerVisible = true;
       },
       editInfo(row){
+        console.log(row);
+        this.form = {
+          id: row.id,
+          name: row.name,
+          content: row.des,
+          conditionType: '1',
+          conditionDay1: '',
+          conditionDay2: '',
+          status: row.enable,
+          handleProcess: []
+        };
+        let handleCondition = row.handle_condition;
+        for (let i = 0; i < handleCondition.length; i++){
+          if (handleCondition[i].type == 'leaveDay' || handleCondition[i].type == 'DoorOpenApply'){
+            if (handleCondition[i].value1 == 0 && handleCondition[i].value2 == 0){
+              this.form.conditionType = '1';
+            }else{
+              this.form.conditionType = '2';
+              this.form.conditionDay1 = handleCondition[i].value1;
+              this.form.conditionDay2 = handleCondition[i].value2;
+            }
+          }
+        }
+        let handleProcess = row.handle_process;
+        for (let i = 0; i < handleProcess.length; i++){
+          let auditNameArr = handleProcess[i].hname ? handleProcess[i].hname.split(",") : [];
+          let auditNameSplit = [];
+          for (let j = 0; j < auditNameArr.length; j++){
+            auditNameSplit = auditNameArr[j].split("@*@")[1];
+          }
+          let shareArr = handleProcess[i].nid ? handleProcess[i].nid.split(",") : [];
+          let auditArr = handleProcess[i].hid ? handleProcess[i].hid.split(",") : [];
+          console.log(shareArr);
+          this.form.handleProcess.push({
+            type: handleProcess[i].htype,
+            audit: auditArr,
+            auditName: auditNameSplit,
+            share: shareArr,
+            notice: handleProcess[i].andor
+          });
+        }
 
+        this.drawerVisible = true;
       },
       deleteInfo(row){
         this.form.id = row.id;
@@ -279,6 +322,7 @@
           conditionDay1: '',
           conditionDay2: '',
           status: true,
+          handleProcess: []
         };
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
@@ -286,6 +330,7 @@
         if (this.$refs['flowProcessRef']){
           this.$refs.flowProcessRef._handleResetChange();
         }
+        console.log(this.form);
         this.drawerVisible = event;
       },
       handleCloseDrawer(){
@@ -297,6 +342,7 @@
           conditionDay1: '',
           conditionDay2: '',
           status: true,
+          handleProcess: []
         };
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
@@ -314,7 +360,7 @@
         //console.log(this.$refs.flowProcessRef._getFlowProcessData());return;
         this.$refs['form'].validate((valid) => {
           if (valid) {
-            if (this.form.conditionType == 2){
+            if (this.form.conditionType == 2 && (this.form.conditionDay1 == "" || this.form.conditionDay2 == "")){
               this.errorTips = "请输入信息";
               return;
             }
@@ -340,22 +386,29 @@
             let processList = this.$refs.flowProcessRef._getFlowProcessData();
             let processData = [];
             let auditArr = [];
+            let shareArr = [];
             let auditNameArr = [];
             for (let i = 0; i < processList.length; i++){
               for (let j = 0; j < processList[i].audit.length; j++){
                 auditArr.push(processList[i].audit[j].user_id);
                 auditNameArr.push(processList[i].audit[j].user_id + "@*@" + processList[i].auditName[j].user_name);
               }
+              for (let j = 0; j < processList[i].share.length; j++){
+                shareArr.push(processList[i].share[j].user_id);
+              }
               processData.push({
                 horder: i,
                 htype: processList[i].type,
                 hid: auditArr.join(),
                 hname: auditNameArr.join(),
-                nid: processList[i].share.join(),
+                nid: shareArr.join(),
                 andor: processList[i].notice
               });
             }
             params['handleProcess'] = processData;
+            if (this.form.id != ''){
+              params['id'] = this.form.id;
+            }
             url = common.flow_center_update;
             //params = this.$qs.stringify(params);
             this.drawerLoading = true;
@@ -381,6 +434,7 @@
         this.$axios.post(common.flow_center_del, params).then(res => {
           if (res.data.code == 200){
             this.init();
+            this.form.id = "";
             MessageSuccess(res.data.desc);
           }else {
             MessageError(res.data.desc);
