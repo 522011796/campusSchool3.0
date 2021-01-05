@@ -93,7 +93,8 @@
           for (let i = 0; i < this.processData.length; i++){
             for (let j = 0; j < this.processData[i].audit.length; j++){
               audtiArr.push({
-                user_id: this.processData[i].audit[j]
+                user_id: this.processData[i].audit[j].user_id,
+                real_name: this.processData[i].audit[j].real_name,
               });
             }
             for (let j = 0; j < this.processData[i].share.length; j++){

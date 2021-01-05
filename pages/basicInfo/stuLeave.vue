@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <layout-tb>
-      <template slot="tag">学生请假流程</template>
+      <template slot="tag">学生请假申请</template>
 
       <div slot="tab">
         <el-row>
@@ -280,12 +280,16 @@
         let handleProcess = row.handle_process;
         for (let i = 0; i < handleProcess.length; i++){
           let auditNameArr = handleProcess[i].hname ? handleProcess[i].hname.split(",") : [];
+          let shareArr = handleProcess[i].nid ? handleProcess[i].nid.split(",") : [];
+          let auditArr = [];
           let auditNameSplit = [];
           for (let j = 0; j < auditNameArr.length; j++){
-            auditNameSplit = auditNameArr[j].split("@*@")[1];
+            //auditNameSplit = auditNameArr[j].split("@*@")[1];
+            auditArr.push({
+              user_id: auditNameArr[j].split("@*@")[0],
+              real_name: auditNameArr[j].split("@*@")[1]
+            })
           }
-          let shareArr = handleProcess[i].nid ? handleProcess[i].nid.split(",") : [];
-          let auditArr = handleProcess[i].hid ? handleProcess[i].hid.split(",") : [];
           this.form.handleProcess.push({
             type: handleProcess[i].htype,
             audit: auditArr,
