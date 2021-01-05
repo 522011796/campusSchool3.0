@@ -992,12 +992,12 @@
       },
       handleSelUser(data){
         let arr = [];
-        for (let i = 0; i < data.userIds.length; i++){
+        /*for (let i = 0; i < data.length; i++){
           arr.push({
-            user_id: data.userIds[i]
+            user_id: data[i].user_id
           });
-        }
-        this.form.partUserIds = arr;
+        }*/
+        this.form.partUserIds = data;
       },
       handleShowTeacher(type){
         if (type == 1){

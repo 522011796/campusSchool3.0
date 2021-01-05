@@ -255,7 +255,6 @@
         this.drawerVisible = true;
       },
       editInfo(row){
-        console.log(row);
         this.form = {
           id: row.id,
           name: row.name,
@@ -287,7 +286,6 @@
           }
           let shareArr = handleProcess[i].nid ? handleProcess[i].nid.split(",") : [];
           let auditArr = handleProcess[i].hid ? handleProcess[i].hid.split(",") : [];
-          console.log(shareArr);
           this.form.handleProcess.push({
             type: handleProcess[i].htype,
             audit: auditArr,
@@ -330,7 +328,6 @@
         if (this.$refs['flowProcessRef']){
           this.$refs.flowProcessRef._handleResetChange();
         }
-        console.log(this.form);
         this.drawerVisible = event;
       },
       handleCloseDrawer(){
@@ -357,7 +354,6 @@
       okDrawDialog(event){
         let url = "";
         this.errorTips = "";
-        //console.log(this.$refs.flowProcessRef._getFlowProcessData());return;
         this.$refs['form'].validate((valid) => {
           if (valid) {
             if (this.form.conditionType == 2 && (this.form.conditionDay1 == "" || this.form.conditionDay2 == "")){
@@ -391,7 +387,9 @@
             for (let i = 0; i < processList.length; i++){
               for (let j = 0; j < processList[i].audit.length; j++){
                 auditArr.push(processList[i].audit[j].user_id);
-                auditNameArr.push(processList[i].audit[j].user_id + "@*@" + processList[i].auditName[j].user_name);
+              }
+              for (let j = 0; j < processList[i].auditName.length; j++){
+                auditNameArr.push(processList[i].auditName[j]);
               }
               for (let j = 0; j < processList[i].share.length; j++){
                 shareArr.push(processList[i].share[j].user_id);

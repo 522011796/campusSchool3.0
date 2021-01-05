@@ -7,18 +7,20 @@
     <el-table ref="commTableRef" :data="tableTeacherCommData"
               :max-height="maxHeight"
               size="mini"
-              :loading="commLoading">
+              :loading="commLoading"
+              :row-key="commGetRowKeys"
+              :reserve-selection="true"
+              @selection-change="_handleSelectionChange"
+              @select="_handleSelectionSelect"
+              @select-all="_handleSelectionAllSelect"
+              v-bind="_selArr">
       <el-table-column
         v-if="setType == 'check'"
+        :reserve-selection="true"
+        type="selection"
         align="center"
-        width="55">
-        <template slot="header" slot-scope="scope">
-          <el-checkbox v-model="commAllCheck" @change="_handleSelectionAllSelect"></el-checkbox>
-        </template>
-
-        <template slot-scope="scope">
-          <el-checkbox v-model="scope.row._checked" @change="_handleSelectionSelect($event, scope.row)"></el-checkbox>
-        </template>
+        width="55"
+        prop="user_id">
       </el-table-column>
       <el-table-column align="center" v-if="setType == 'radio'">
         <template slot-scope="scope">
@@ -90,17 +92,15 @@
         this.commSelUserVal = this.selValue;
       },
       _selArr() {
-        /*let arr = [];
+        let arr = [];
         for (let i = 0; i < this.selArr.length; i++){
           arr.push(this.selArr[i].user_id);
-        }*/
-        //this.commSelUserArr = this.selArr;
+        }
+        this.commSelUserArr = arr;
       }
     },
     data() {
       return {
-        commAllCheck: false,
-        commAllCheckCount: 0,
         value: '',
         commPage: 1,
         commNum: 20,
@@ -129,7 +129,6 @@
     },
     methods: {
       _initTeacher(){
-        this.checkboxCount = 0;
         let params = {
           page: this.commPage,
           num: this.commNum,
@@ -138,25 +137,20 @@
         };
         this.commLoading = true;
         params['realName'] = this.commSearchKey['input'];
-        //this.commSelUserArr = [];
-        //this.commSelUserNameArr = [];
+        this.commSelUserArr = [];
+        this.commSelUserNameArr = [];
         this.$axios.get(common.teacher_list, {params: params}).then(res => {
           if (res.data.data){
             //this.$refs.commTableRef.clearSelection();
             for (let i = 0; i < res.data.data.page.list.length; i++){
-              let sel = inArray(res.data.data.page.list[i], this.commSelUserArr, 'user_id');
+              let sel = inArray(res.data.data.page.list[i], this.selArr, 'user_id');
               if (sel > -1){
                 this.commFlag = true;
                 res.data.data.page.list[i]['_checked'] = true;
-                this.checkboxCount++;
-              }else {
-                res.data.data.page.list[i]['_checked'] = false;
+                //this.commSelUserArr.push(res.data.data.page.list[i].user_id);
+                //this.commSelUserNameArr.push(res.data.data.page.list[i].real_name);
+                this.$refs.commTableRef.toggleRowSelection(res.data.data.page.list[i], true);
               }
-            }
-            if (this.checkboxCount != 0 && this.checkboxCount == this.tableTeacherCommData.length){
-              this.commAllCheck = true;
-            }else {
-              this.commAllCheck = false;
             }
             this.commFlag = false;
             this.tableTeacherCommData = res.data.data.page.list;
@@ -171,7 +165,6 @@
       _handleOpen(){
         this.commPage = 1;
         this.commNum = 20;
-        this.commSelUserArr = this.selArr;
         this._initTeacher();
       },
       _handleChange(data, index){
@@ -183,42 +176,142 @@
         this.commSearchDept = data[data.length-1];
         this._initTeacher();
       },
-      _handleSelectionSelect(event, row){
-        if (event){//选中
-          this.commSelUserArr.push(row);
-          row._checked = true;
-          this.checkboxCount++;
-        }else {//取消选中
-          let checked = inArray(row, this.commSelUserArr, 'user_id');
-          this.commSelUserArr.splice(checked,1);
-          row._checked = false;
-          this.checkboxCount--;
-        }
-        if (this.checkboxCount != 0 && this.checkboxCount == this.tableTeacherCommData.length){
-          this.commAllCheck = true;
-        }else {
-          this.commAllCheck = false;
-        }
-        this.$emit("select", this.commSelUserArr);
+      _handleSelectionSelect(rows, row){
+        let selected = rows.length && rows.indexOf(row) !== -1;
+        this.commRow = row;
       },
       _handleSelectionAllSelect(selection){
-        this.commAllCheck = selection;
-        for (let i = 0; i < this.tableTeacherCommData.length; i++){
-          if (selection == true){
-            this.tableTeacherCommData[i]._checked = true;
-            let checked = inArray(this.tableTeacherCommData[i], this.commSelUserArr, 'user_id');
-            if (checked == -1){
-              this.commSelUserArr.push(this.tableTeacherCommData[i]);
+        let self = this;
+        self.commRow = "";
+        // 筛选出所有选中项的id
+        /*let multipleSelection = selection.filter(item => item);
+        if (multipleSelection.length == 0) {
+          this.tableTeacherCommData.forEach(function(value, index, arr) {
+            if (self.commSelUserArr.indexOf(value.user_id) !== -1) {
+              self.commSelUserArr.splice(self.commSelUserArr.indexOf(value.user_id), 1);
             }
-            this.checkboxCount++;
-          }else {
-            this.tableTeacherCommData[i]._checked = false;
-            this.checkboxCount--;
-          }
+
+            if (self.commSelUserNameArr.indexOf(value.real_name) !== -1) {
+              self.commSelUserNameArr.splice(self.commSelUserNameArr.indexOf(value.real_name), 1);
+            }
+          });
+
+        } else {
+          var str = multipleSelection.map(function(value, index, arr) {
+            return value.user_id;
+          });
+          var strName = multipleSelection.map(function(value, index, arr) {
+            return value.real_name;
+          });
+
+          self.commSelUserArr = self.commSelUserArr.concat(str);
+          self.commSelUserArr = [...new Set(self.commSelUserArr)];
+
+          self.commSelUserNameArr = self.commSelUserNameArr.concat(strName);
+          self.commSelUserNameArr = [...new Set(self.commSelUserNameArr)];
+
         }
+        this.$emit("select", {
+          userIds: self.commSelUserArr,
+          userNames: self.commSelUserNameArr
+        });*/
       },
       _handleSelectionChange(data){
+        let self = this;
+        // 筛选出选中项的id
+        this.commMultipleSelection = data.filter(item => item);
+        let str = this.commMultipleSelection.map(function(value, index, arr) {
+          return value.user_id;
+        });
+        console.log(str);
+        if (this.commRow) {
+          // 勾选项id
+          let selectedId = this.commRow.user_id;
+          console.log(str.indexOf(selectedId),self.commSelUserArr.indexOf(selectedId));
+          //console.log(inArray(selectedId,str), inArray(selectedId,self.commSelUserArr));
+          if (str.indexOf(selectedId) == -1 && self.commSelUserArr.indexOf(selectedId) !== -1) {
+            //取消勾选则是从partId中删除
+            self.commSelUserArr.splice(self.commSelUserArr.indexOf(selectedId), 1);
+            console.log(1);
+          } else if (str.indexOf(selectedId) !== -1 && self.commSelUserArr.indexOf(selectedId) == -1) {
+            //增加勾选增push进去
+            self.commSelUserArr.push(selectedId);
+            console.log(2);
+          }
 
+          //数组去重
+          self.commSelUserArr = [...new Set(self.commSelUserArr)];
+
+          console.log(this.commSelUserArr);
+          this.$emit("select", {
+            userIds: self.commSelUserArr,
+            userNames: self.commSelUserNameArr
+          })
+        };
+
+        /*let self = this;
+        let dataArr = [].concat(data);
+        data = data.reverse().filter(function (item, index) {
+          const _index = data.findIndex((_item) => {
+            return _item.user_id == item.user_id;
+          });
+          return index == _index;
+        });
+        // 筛选出选中项的id
+        this.commMultipleSelection = data.reverse().filter(function (item, index) {
+          const _index = data.findIndex((_item) => {
+            return _item.user_id == item.user_id;
+          });
+          return index == _index;
+        });
+
+        let str = this.commMultipleSelection.map(function(value, index, arr) {
+          return value.user_id;
+        });
+        let strName = this.commMultipleSelection.map(function(value, index, arr) {
+          return value.real_name;
+        });
+
+        str = [...new Set(str)];
+        strName = [...new Set(strName)];
+
+        if (this.commRow) {
+          // 勾选项id
+          let selectedId = this.commRow.user_id;
+          console.log(str.indexOf(selectedId),self.commSelUserArr.indexOf(selectedId));
+          //console.log(inArray(selectedId,str), inArray(selectedId,self.commSelUserArr));
+          if (str.indexOf(selectedId) == -1 && self.commSelUserArr.indexOf(selectedId) !== -1) {
+            //取消勾选则是从partId中删除
+            self.commSelUserArr.splice(self.commSelUserArr.indexOf(selectedId), 1);
+            console.log(1);
+          } else if (str.indexOf(selectedId) !== -1 && self.commSelUserArr.indexOf(selectedId) == -1) {
+            //增加勾选增push进去
+            self.commSelUserArr.push(selectedId);
+            console.log(2);
+          }
+
+          let selectedName = this.commRow.real_name;
+          if (strName.indexOf(selectedName) == -1 && self.commSelUserNameArr.indexOf(selectedName) !== -1) {
+            //取消勾选则是从partId中删除
+            self.commSelUserNameArr.splice(self.commSelUserNameArr.indexOf(selectedName), 1);
+          } else if (strName.indexOf(selectedName) !== -1 && self.commSelUserNameArr.indexOf(selectedName) == -1) {
+            //增加勾选增push进去
+            self.commSelUserNameArr.push(selectedName);
+          } else if (strName.indexOf(selectedName) !== -1 && self.commSelUserNameArr.indexOf(selectedName) != -1) {
+            //增加勾选增push进去
+            self.commSelUserNameArr.splice(self.commSelUserNameArr.indexOf(selectedName), 1);
+          }
+
+          //数组去重
+          self.commSelUserArr = [...new Set(self.commSelUserArr)];
+          self.commSelUserNameArr = [...new Set(self.commSelUserNameArr)];
+
+          console.log(this.commSelUserArr);
+          /!*this.$emit("select", {
+            userIds: self.commSelUserArr,
+            userNames: self.commSelUserNameArr
+          });*!/
+        }*/
       },
       _handleSizeChange(data){
         this.commPage = 1;
@@ -239,7 +332,6 @@
         this.commSelUserVal =  '';
         this.commSelUserValObj =  {};
         this.commSelUserValArr =  [];
-        this.commSelUserArr = [];
 
         if (this.$refs.SelectorDept && this.$refs.SelectorDept.$refs.cascaderSelector) {
           this.$refs.SelectorDept.$refs.cascaderSelector.$refs.panel.calculateCheckedNodePaths()

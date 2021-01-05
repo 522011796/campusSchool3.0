@@ -118,7 +118,6 @@
             notice: 'or'
           }];
         }
-        console.log(this.conditionProcessList);
         this.conditionProcessList = arr;
         //return this.conditionProcessList;
       }
@@ -219,24 +218,20 @@
       handleSelAuditUser(data ,item){
         let arr = [];
         let arrName = [];
-        for (let i = 0; i < data.userIds.length; i++){
+        for (let i = 0; i < data.length; i++){
           arr.push({
-            user_id: data.userIds[i]
+            user_id: data[i].user_id
           });
-        }
-        for (let i = 0; i < data.userNames.length; i++){
-          arrName.push({
-            user_name: data.userNames[i]
-          });
+          arrName.push(data[i].user_id + "@*@" + data[i].real_name);
         }
         item.audit = arr;
         item.auditName = arrName;
       },
       handleSelShareUser(data, item){
         let arr = [];
-        for (let i = 0; i < data.userIds.length; i++){
+        for (let i = 0; i < data.length; i++){
           arr.push({
-            user_id: data.userIds[i]
+            user_id: data[i].user_id
           });
         }
         item.share = arr;
