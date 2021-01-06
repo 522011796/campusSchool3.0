@@ -140,19 +140,7 @@
           <el-form-item label="备注">
             <el-input v-model="form.content" class="width-300"></el-input>
           </el-form-item>
-          <el-form-item label="条件">
-            <!--<el-button-group>
-              <el-button size="small" :type="form.conditionType == '1' ? 'primary' : 'default'" @click="handleChange(1)">{{$t("当日假")}}</el-button>
-              <el-button size="small" :type="form.conditionType == '2' ? 'primary' : 'default'" @click="handleChange(2)">{{$t("自定义时长")}}</el-button>
-            </el-button-group>
-            <span v-if="form.conditionType == 2">
-              <el-input size="small" v-model="form.conditionDay1" style="width: 80px" :placeholder="$t('天数')"></el-input>
-              -
-              <el-input size="small" v-model="form.conditionDay2" style="width: 80px" :placeholder="$t('天数')"></el-input>
-            </span>
-            <div style="line-height: 20px">
-              <span class="color-danger font-size-12">{{errorTips}}</span>
-            </div>-->
+          <el-form-item label="条件" prop="conditionType">
             <my-select width-style="260" :sel-value="form.conditionType" :options="listData" @change="handleChangeSelect($event)"></my-select>
           </el-form-item>
           <el-form-item label="状态">
