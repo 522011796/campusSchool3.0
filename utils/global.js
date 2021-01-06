@@ -241,6 +241,11 @@ const filterAttendTypes = [
   { text: '日常请假', value: "leave", label: '日常请假'}
 ];
 
+const filterScoreFlowTypes = [
+  { text: "加分", value: "加分", label: '加分'},
+  { text: '减分', value: "减分", label: '减分'}
+];
+
 export default {
   total,
   page,
@@ -301,5 +306,6 @@ export default {
   currentTermList,
   currentWeekList,
   currentYearId,
-  filterAttendTypes
+  filterAttendTypes,
+  filterScoreFlowTypes
 }
