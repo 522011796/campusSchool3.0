@@ -141,7 +141,7 @@
             <el-input v-model="form.content" class="width-300"></el-input>
           </el-form-item>
           <el-form-item label="条件" prop="conditionType">
-            <my-select width-style="260" :sel-value="form.conditionType" :options="listData" @change="handleChangeSelect($event)"></my-select>
+            <my-select width-style="300" :sel-value="form.conditionType" :options="listData" @change="handleChangeSelect($event)"></my-select>
           </el-form-item>
           <el-form-item label="状态">
             <my-radio :sel-value="form.status" :label="true" @change="changeStatus($event, true)">{{$t("启用")}}</my-radio>

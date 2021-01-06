@@ -232,13 +232,6 @@
             "id": 704,
             "top": "basicInfo",
             "path": "/basicInfo/stuDoorAccess"
-          },
-          {
-            "name": "学生头像申请",
-            "key": "stuFace",
-            "id": 705,
-            "top": "basicInfo",
-            "path": "/basicInfo/stuFace"
           }
         ]
       },

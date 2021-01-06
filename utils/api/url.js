@@ -315,4 +315,9 @@ export const common = {
   flow_center_page: '/proxy/user/unionapply/apply/process/page',//流程中心分页
   flow_center_del: '/proxy/user/unionapply/apply/process/del',//流程中心删除
   flow_center_update: '/proxy/user/unionapply/apply/process/addOrUpdate',//流程中心添加、修改
+
+  teacher_leave_type_list: '/proxy/user/teacher/leave/apply/type/list',//教师请假类型列表
+
+  teacher_role_group_list: '/proxy/user/school/page/role',//教师角色组列表
+  teacher_role_group_user_list: '/proxy/user/school/role/employees',//教师角色用户列表
 };
