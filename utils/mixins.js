@@ -68,6 +68,8 @@ export default {
       currentWeekList: global.currentWeekList,
       filterAttendTypes: global.filterAttendTypes,
       filterScoreFlowTypes: global.filterScoreFlowTypes,
+      filterTripFlowTypes: global.filterTripFlowTypes,
+      filterCardFlowTypes: global.filterCardFlowTypes,
       g_currentDate: {},
       currentYearData: '',
       currentTermData: '',

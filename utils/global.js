@@ -246,6 +246,14 @@ const filterScoreFlowTypes = [
   { text: '减分', value: "减分", label: '减分'}
 ];
 
+const filterTripFlowTypes = [
+  { text: "出差", value: "出差", label: '出差'}
+];
+
+const filterCardFlowTypes = [
+  { text: "补卡", value: "补卡", label: '补卡'}
+];
+
 export default {
   total,
   page,
@@ -307,5 +315,7 @@ export default {
   currentWeekList,
   currentYearId,
   filterAttendTypes,
-  filterScoreFlowTypes
+  filterScoreFlowTypes,
+  filterTripFlowTypes,
+  filterCardFlowTypes
 }
