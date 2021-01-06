@@ -293,7 +293,7 @@
           this.form.handleProcess.push({
             type: handleProcess[i].htype,
             audit: auditArr,
-            auditName: auditNameSplit,
+            auditName: auditNameArr,
             share: shareArr,
             notice: handleProcess[i].andor
           });
@@ -385,10 +385,10 @@
             }
             let processList = this.$refs.flowProcessRef._getFlowProcessData();
             let processData = [];
-            let auditArr = [];
-            let shareArr = [];
-            let auditNameArr = [];
             for (let i = 0; i < processList.length; i++){
+              let auditArr = [];
+              let shareArr = [];
+              let auditNameArr = [];
               for (let j = 0; j < processList[i].audit.length; j++){
                 auditArr.push(processList[i].audit[j].user_id);
               }

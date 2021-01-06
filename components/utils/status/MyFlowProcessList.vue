@@ -24,7 +24,7 @@
           trigger="click"
           @show="handleShowTeacher(1, index)">
           <div>
-            <teacher-tree-and-list :ref="`popverAuditRef${index}`" :sel-arr="item.audit" set-type="check" @select="handleSelAuditUser($event, item)"></teacher-tree-and-list>
+            <teacher-tree-and-list :ref="`popverAuditRef${index}`" :sel-arr="item.audit" set-type="check" @select="handleSelAuditUser($event, item, index)"></teacher-tree-and-list>
           </div>
           <el-tag slot="reference" type="success">
             <i class="fa fa-user"></i>
@@ -38,7 +38,7 @@
           trigger="click"
           @show="handleShowTeacher(2, index)">
           <div>
-            <teacher-tree-and-list :ref="`popverShareRef${index}`" :sel-arr="item.share" set-type="check" @select="handleSelShareUser($event, item)"></teacher-tree-and-list>
+            <teacher-tree-and-list :ref="`popverShareRef${index}`" :sel-arr="item.share" set-type="check" @select="handleSelShareUser($event, item, index)"></teacher-tree-and-list>
           </div>
           <el-tag slot="reference" type="success">
             <i class="fa fa-share"></i>
@@ -88,9 +88,9 @@
         this.conditionProcessList = [];
         let arr = [];
         if (this.processData.length > 0){
-          let audtiArr = [];
-          let shareArr = [];
           for (let i = 0; i < this.processData.length; i++){
+            let audtiArr = [];
+            let shareArr = [];
             for (let j = 0; j < this.processData[i].audit.length; j++){
               audtiArr.push({
                 user_id: this.processData[i].audit[j].user_id,
@@ -216,7 +216,7 @@
           this.$refs['popverShareRef'+index][0]._handleOpen();
         }
       },
-      handleSelAuditUser(data ,item){
+      handleSelAuditUser(data ,item, index){
         let arr = [];
         let arrName = [];
         for (let i = 0; i < data.length; i++){
