@@ -53,18 +53,6 @@
   "LazyMyTree": {
     "description": "Auto imported from components/MyTree.vue"
   },
-  "LayoutLr": {
-    "description": "Auto imported from components/Layout/LayoutLr.vue"
-  },
-  "LazyLayoutLr": {
-    "description": "Auto imported from components/Layout/LayoutLr.vue"
-  },
-  "LayoutTb": {
-    "description": "Auto imported from components/Layout/LayoutTb.vue"
-  },
-  "LazyLayoutTb": {
-    "description": "Auto imported from components/Layout/LayoutTb.vue"
-  },
   "BarChart": {
     "description": "Auto imported from components/charts/BarChart.vue"
   },
@@ -136,6 +124,18 @@
   },
   "LazyMyYearTerm": {
     "description": "Auto imported from components/search/MyYearTerm.vue"
+  },
+  "LayoutLr": {
+    "description": "Auto imported from components/Layout/LayoutLr.vue"
+  },
+  "LazyLayoutLr": {
+    "description": "Auto imported from components/Layout/LayoutLr.vue"
+  },
+  "LayoutTb": {
+    "description": "Auto imported from components/Layout/LayoutTb.vue"
+  },
+  "LazyLayoutTb": {
+    "description": "Auto imported from components/Layout/LayoutTb.vue"
   },
   "MyAuditStatus": {
     "description": "Auto imported from components/utils/MyAuditStatus.vue"
@@ -251,12 +251,6 @@
   "LazyTimeoutButton": {
     "description": "Auto imported from components/utils/button/TimeoutButton.vue"
   },
-  "MyCascader": {
-    "description": "Auto imported from components/utils/select/MyCascader.vue"
-  },
-  "LazyMyCascader": {
-    "description": "Auto imported from components/utils/select/MyCascader.vue"
-  },
   "DialogNormal": {
     "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
   },
@@ -281,23 +275,11 @@
   "LazyMyNormalDialog": {
     "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
   },
-  "MyRoleList": {
-    "description": "Auto imported from components/utils/treeAndList/MyRoleList.vue"
+  "MyCascader": {
+    "description": "Auto imported from components/utils/select/MyCascader.vue"
   },
-  "LazyMyRoleList": {
-    "description": "Auto imported from components/utils/treeAndList/MyRoleList.vue"
-  },
-  "TeacherTreeAndList": {
-    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndList.vue"
-  },
-  "LazyTeacherTreeAndList": {
-    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndList.vue"
-  },
-  "TeacherTreeAndListBak": {
-    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListBak.vue"
-  },
-  "LazyTeacherTreeAndListBak": {
-    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListBak.vue"
+  "LazyMyCascader": {
+    "description": "Auto imported from components/utils/select/MyCascader.vue"
   },
   "MyAdminAtten": {
     "description": "Auto imported from components/utils/status/MyAdminAtten.vue"
@@ -364,5 +346,23 @@
   },
   "LazyUploadSquare": {
     "description": "Auto imported from components/utils/upload/UploadSquare.vue"
+  },
+  "MyRoleList": {
+    "description": "Auto imported from components/utils/treeAndList/MyRoleList.vue"
+  },
+  "LazyMyRoleList": {
+    "description": "Auto imported from components/utils/treeAndList/MyRoleList.vue"
+  },
+  "TeacherTreeAndList": {
+    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndList.vue"
+  },
+  "LazyTeacherTreeAndList": {
+    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndList.vue"
+  },
+  "TeacherTreeAndListBak": {
+    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListBak.vue"
+  },
+  "LazyTeacherTreeAndListBak": {
+    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListBak.vue"
   }
 }

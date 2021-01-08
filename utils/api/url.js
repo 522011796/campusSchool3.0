@@ -320,4 +320,10 @@ export const common = {
 
   teacher_role_group_list: '/proxy/user/school/page/role',//教师角色组列表
   teacher_role_group_user_list: '/proxy/user/school/role/employees',//教师角色用户列表
+
+  dorm_bed_info: '/proxy/school/dormitory/student/count',//宿舍床位信息
+  dorm_bed_list: '/proxy/school/dormitory/student/count',//宿舍列表
+  dorm_user_dorm_list: '/proxy/school/bed/dorm-group/page',//宿舍人员列表--宿舍
+  dorm_user_class_list: '/proxy/school/student/class-group/page',//宿舍人员列表--班级
+  dorm_user_class_import: '/proxy/building/dormitory/bed/student/import',//宿舍人员导入
 };

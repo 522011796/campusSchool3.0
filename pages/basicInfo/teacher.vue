@@ -257,7 +257,7 @@ export default {
       searchDept: '',
       subTitle: '',
       uploadProcess: '',
-      uploadResult: {},
+      uploadResult: [],
       uploadFile: common.teacher_file + "?fileName=" + encodeURIComponent(this.$t("教师导入模板20180313_v2.xlsx")),
       uploadAction: common.teacher_upload,
       loopTimer: null,
@@ -556,7 +556,7 @@ export default {
     },
     closeDrawerDialog(event){
       this.uploadProcess = '';
-      this.uploadResult = {};
+      this.uploadResult = [];
       clearTimeout(this.loopTimer);
       this.loopTimer = null;
       this.drawerVisible = event;
@@ -566,7 +566,7 @@ export default {
     },
     cancelDrawDialog(){
       this.uploadProcess = '';
-      this.uploadResult = {};
+      this.uploadResult = [];
       this.drawerVisible = false;
     },
     uploadInfo(){

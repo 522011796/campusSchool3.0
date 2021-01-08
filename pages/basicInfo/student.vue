@@ -249,7 +249,7 @@
         searchDept: '',
         subTitle: '',
         uploadProcess: '',
-        uploadResult: {},
+        uploadResult: [],
         uploadFile: common.teacher_file + "?fileName=" + encodeURIComponent(this.$t("学生导入模板20180130_v2.xls")),
         uploadAction: common.student_upload,
         loopTimer: null,
@@ -573,7 +573,7 @@
       },
       closeDrawerDialog(event){
         this.uploadProcess = '';
-        this.uploadResult = {};
+        this.uploadResult = [];
         clearTimeout(this.loopTimer);
         this.loopTimer = null;
         this.drawerVisible = event;
@@ -583,7 +583,7 @@
       },
       cancelDrawDialog(){
         this.uploadProcess = '';
-        this.uploadResult = {};
+        this.uploadResult = [];
         this.drawerVisible = false;
       },
       uploadInfo(){

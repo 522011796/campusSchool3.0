@@ -120,6 +120,11 @@ export default {
         'overflow-y': 'auto',
         'overflow-x': 'hidden'
       },
+      divHeight6: {
+        'height': '',
+        'overflow-y': 'auto',
+        'overflow-x': 'hidden'
+      },
       drawHeight: {
         'height': ''
       }
@@ -151,6 +156,7 @@ export default {
         this.divHeight3.height = window.innerHeight - 235 + 'px';
         this.divHeight4.height = window.innerHeight - 125 + 'px';
         this.divHeight5.height = window.innerHeight - 140 + 'px';
+        this.divHeight6.height = window.innerHeight - 360 + 'px';
         this.drawHeight.height = window.innerHeight - 80 + 'px';
       }
     },
