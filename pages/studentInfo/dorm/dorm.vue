@@ -334,7 +334,27 @@
         this.drawerVisible = true;
       },
       expandInfo(){
-
+        let url = common.dorm_user_class_export;
+        let params = {
+          page: this.page,
+          num: this.num,
+          searchKey: this.searchKey,
+          status: this.searchStatusType
+        };
+        if (this.showType == 1){
+          params['collegeId'] = this.searchCollege;
+          params['majorId'] = this.searchMajor;
+          params['grade'] = this.searchGrade;
+          params['classId'] = this.searchClass;
+        }else if (this.showType == 2){
+          params['buildingId'] = this.searchBuild;
+          params['floorNum'] = this.searchFloor;
+          params['dormId'] = this.searchDorm;
+          params['type'] = this.searchDormType;
+        }
+        params = this.clearDataInfo(params);
+        params = this.$qs.stringify(params);
+        window.open(url+"?"+params, "_self");
       },
       nodeClick(data){
         this.searchCollege = "";

@@ -326,4 +326,5 @@ export const common = {
   dorm_user_dorm_list: '/proxy/school/bed/dorm-group/page',//宿舍人员列表--宿舍
   dorm_user_class_list: '/proxy/school/student/class-group/page',//宿舍人员列表--班级
   dorm_user_class_import: '/proxy/building/dormitory/bed/student/import',//宿舍人员导入
+  dorm_user_class_export: '/proxy/building/dormitory/bed/student/import',//宿舍人员导出
 };
