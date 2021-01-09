@@ -327,4 +327,10 @@ export const common = {
   dorm_user_class_list: '/proxy/school/student/class-group/page',//宿舍人员列表--班级
   dorm_user_class_import: '/proxy/building/dormitory/bed/student/import',//宿舍人员导入
   dorm_user_class_export: '/proxy/building/dormitory/bed/student/import',//宿舍人员导出
+  dorm_user_class_bed_into: '/proxy/user/student/pageForBed',//宿舍人员分配列表
+  dorm_user_class_bed_distribute: '/proxy/building/dormitory/bed/distribute',//分配宿舍人员
+  dorm_user_class_student_clear: '/proxy/building/dormitory/student/clear',//清空宿舍
+  dorm_user_class_bed_clear: '/proxy/building/dormitory/bed/remove',//清空床位
+  dorm_user_class_bed_enable: '/proxy/building/dormitory/bed/enable',//启用禁用床位
+  dorm_user_class_bed_list: '/proxy/building/dormitory/bedStudent/list',//床位列表
 };

@@ -136,12 +136,9 @@
                 </label>
                 <label v-if="showType == 1">
                   <span class="color-success margin-left-5 font-size-14" style="position: relative; top: -12px;">{{item.class_name}}</span>
-                  <!--<span class="color-muted margin-left-5 font-size-12" style="position: relative; top: -12px;">
-                    <label class="color-warning">
-                      ({{item.people_num}})
-                    </label>
-                  </span>-->
                 </label>
+
+                <i v-if="showType == 2" class="fa fa-scissors color-danger pull-right" style="position: relative; top: 10px; right: 10px" @click="removeBed(item, 'clearDormRoomId')"></i>
               </div>
               <el-row :gutter="16" class="margin-top-10">
                 <el-col :span="6" v-for="(itemChild, indexChild) in item.list" :key="indexChild" class="margin-bottom-20">
@@ -171,18 +168,62 @@
                       </el-col>
                       <el-col :span="16" class="text-right">
                         <div class="color-warning font-size-12">
-                          <span v-if="showType == 2" class="moon-content-text-ellipsis-class dorm-card-title">{{itemChild.bed_no}}号床</span>
-                          <span v-if="showType == 1" class="moon-content-text-ellipsis-class dorm-card-title">
-                            <my-sex tag="text" :sex="itemChild.sex"></my-sex>
+                          <span v-if="showType == 2" class="moon-content-text-ellipsis-class dorm-card-title">
+                            <label v-if="itemChild.student_id != null" @click="removeBed(itemChild, 'clearBedId')">
+                              <i class="fa fa-trash color-danger"></i>
+                            </label>
+
+                            <label v-if="itemChild.enable == false" @click="removeBed(itemChild, 'enableBedId')">
+                              <i class="fa fa-check-square-o color-success"></i>
+                            </label>
+
+                            <label v-if="itemChild.enable == true && itemChild.student_id == null" @click="removeBed(itemChild, 'disableBedId')">
+                              <i class="fa fa-ban color-danger"></i>
+                            </label>
+
+                            {{itemChild.bed_no}}号床
+                          </span>
+
+                          <span v-if="showType == 1">
+                            <label v-if="itemChild.bed_no != null" @click="removeBed(itemChild, 'clearBedId')">
+                              <i class="fa fa-trash color-danger"></i>
+                            </label>
+                            <label v-if="itemChild.bed_no != null">{{itemChild.bed_no}}号床</label>
+                            <el-popover
+                              v-else
+                              placement="top"
+                              width="700"
+                              trigger="click"
+                              @show="handleShowDorm(itemChild.user_id, itemChild)"
+                              @hide="handleHideDorm(itemChild.user_id, itemChild)">
+                              <div>
+                                <dorm-build-tree-and-list :ref="`popverDormRef${itemChild.user_id}`" :sel-arr="dormIds" set-type="select" @distribute="handleSelBuild($event, itemChild.user_id)"></dorm-build-tree-and-list>
+                              </div>
+                              <a slot="reference" href="javascript:;" class="color-success">
+                                <i class="fa fa-bed"></i>
+                                {{$t("分配床位")}}
+                              </a>
+                            </el-popover>
                           </span>
                         </div>
                         <div v-if="!itemChild.student_id" class="margin-top-10">
-                          <div>
-                            <i class="fa fa-bed color-warning margin-right-5" style="font-size: 30px;"></i>
-                          </div>
-                          <div class="font-size-12">
-                            <span class="color-muted">{{$t("分配学生")}}</span>
-                          </div>
+                          <el-popover
+                            placement="top"
+                            width="700"
+                            trigger="click"
+                            @show="handleShowStudent(itemChild.id, itemChild)">
+                            <div>
+                              <student-tree-and-list :ref="`popverStudentRef${itemChild.id}`" :sel-arr="studentIds" set-type="select" @distribute="handleSelUser($event, itemChild.id)"></student-tree-and-list>
+                            </div>
+                            <div slot="reference">
+                              <div>
+                                <i class="fa fa-bed color-warning margin-right-5" style="font-size: 30px;"></i>
+                              </div>
+                              <div class="font-size-12">
+                                <span class="color-muted">{{$t("分配学生")}}</span>
+                              </div>
+                            </div>
+                          </el-popover>
                         </div>
                         <div v-if="itemChild.student_id">
                           <div class="font-size-12 margin-top-5">
@@ -192,7 +233,9 @@
                           </div>
                           <div class="font-size-12 margin-top-5">
                             <span class="color-muted" v-if="showType == 2">{{itemChild.build_name}}</span>
-                            <span class="color-muted" v-if="showType == 1">{{itemChild.major_name}}</span>
+                            <span class="color-muted" v-if="showType == 1">
+                              <my-sex tag="text" :sex="itemChild.sex"></my-sex>
+                            </span>
                           </div>
                           <div class="font-size-12 margin-top-5">
                             <span class="color-muted">{{itemChild.class_name}}</span>
@@ -216,13 +259,15 @@
     <drawer-right @changeDrawer="closeDrawerDialog" :visible="drawerVisible" accept=".xls,.xlsx" :loading="drawerLoading" :hide-footer="true" size="400px" :title="$t('导入信息')" :action="uploadAction" :download-file="uploadFile" :result="uploadResult" :process="uploadProcess" @right-close="cancelDrawDialog" @success="uploadSuccess" @error="uploadError">
 
     </drawer-right>
+
+    <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" :content="comfirmMess" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
   </div>
 </template>
 
 <script>
   import mixins from "../../../utils/mixins";
   import {common} from "../../../utils/api/url";
-  import {dormTypeText, studentTeachStatus} from "../../../utils/utils";
+  import {dormTypeText, MessageError, MessageSuccess, MessageWarning, studentTeachStatus} from "../../../utils/utils";
   import LayoutLr from "../../../components/Layout/LayoutLr";
   import MyElTree from "../../../components/tree/MyElTree";
   import MyPagination from "../../../components/MyPagination";
@@ -236,13 +281,15 @@
   import DrawerRight from "../../../components/utils/dialog/DrawerRight";
   import MySearchOfDate from "../../../components/search/MySearchOfDate";
   import DrawerLayoutRight from "../../../components/utils/dialog/DrawerLayoutRight";
+  import StudentTreeAndList from "../../../components/utils/treeAndList/StudentTreeAndList";
+  import DormBuildTreeAndList from "../../../components/utils/treeAndList/DormBuildTreeAndList";
   import {
     clearData, deviceType,
     dormStatus
   } from "../../../utils/utils";
   export default {
     mixins: [mixins],
-    components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,MySearchOfDate,DrawerLayoutRight},
+    components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,MySearchOfDate,DrawerLayoutRight,StudentTreeAndList,DormBuildTreeAndList},
     data(){
       return {
         searchTimeData: {},
@@ -282,6 +329,11 @@
         uploadResult: [],
         loopTimer: null,
         resultList: [],
+        studentIds: [],
+        dormIds: [],
+        comfirmMess: '',
+        oprId: '',
+        clearType: ''
       }
     },
     created() {
@@ -557,6 +609,101 @@
       },
       dormTypeTextInfo(val){
         return dormTypeText(val);
+      },
+      handleShowStudent(index, params){
+        let data = {
+          sex: params.sex,
+          bedNo: params.bed_no,
+          dormId: params.drom_id,
+        };
+        this.$refs[`popverStudentRef${index}`][0]._handleOpen(data);
+      },
+      handleShowDorm(index, params){
+        let type = "";
+        if (params.sex == 2){
+          type = 1;
+        }else if (params.sex == 1){
+          type = 0;
+        }
+        let data = {
+          type: type,
+          userId: params.user_id,
+          majorId: params.class_id
+        };
+        this.$refs[`popverDormRef${index}`][0]._handleOpen(data);
+      },
+      handleHideDorm(index, params){
+        this.$refs[`popverDormRef${index}`][0]._handleResetChange();
+      },
+      handleSelUser(data, id){
+        if (data != null){
+          this.initInfo();
+        }
+      },
+      handleSelBuild(data, id){
+        if (data != null){
+          this.initInfo();
+        }
+      },
+      removeBed(item, type){
+        this.clearType = type;
+        if (type == 'clearDormRoomId'){
+          this.oprId = item.drom_id;
+          this.comfirmMess = this.$t("确认要清空该房间的数据吗？");
+        }else if (type == 'clearBedId'){
+          this.oprId = item.id ? item.id : item.bed_id;
+          this.comfirmMess = this.$t("确认清空该床位吗？");
+        }else if (type == 'enableBedId'){
+          this.oprId = item.id;
+          this.comfirmMess = this.$t("确认启用该床位吗？");
+        }else if (type == 'disableBedId'){
+          this.oprId = item.id;
+          this.comfirmMess = this.$t("确认禁用该床位吗？");
+        }
+        this.visibleConfim = true;
+      },
+      handleOkChange(data) {
+        this.dialogLoading = true;
+        let url = "";
+        let params = {};
+        if (this.clearType == "clearDormRoomId"){
+          params = {
+            id: this.oprId,
+            locationType: 13
+          };
+          url = common.dorm_user_class_student_clear;
+        }else if (this.clearType == 'clearBedId'){
+          params = {
+            bedId: this.oprId
+          };
+          url = common.dorm_user_class_bed_clear;
+        }else if (this.clearType == 'enableBedId'){
+          params = {
+            bedId: this.oprId,
+            enable: true
+          };
+          url = common.dorm_user_class_bed_enable;
+        }else if (this.clearType == 'disableBedId'){
+          params = {
+            bedId: this.oprId,
+            enable: false
+          };
+          url = common.dorm_user_class_bed_enable;
+        }
+        params = this.$qs.stringify(params);
+        this.$axios.post(url, params).then(res => {
+          if (res.data.code == 200){
+            this.initInfo();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+          this.visibleConfim = false;
+          this.dialogLoading = false;
+        });
+      },
+      closeDialog(event){
+
       }
     }
   }
