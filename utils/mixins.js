@@ -71,6 +71,8 @@ export default {
       filterTripFlowTypes: global.filterTripFlowTypes,
       filterCardFlowTypes: global.filterCardFlowTypes,
       filterUserTypes: global.filterUserTypes,
+      filterDoorOpenTypes: global.filterDoorOpenTypes,
+      filterDoorOnlineStatus: global.filterDoorOnlineStatus,
       g_currentDate: {},
       currentYearData: '',
       currentTermData: '',

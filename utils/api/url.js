@@ -337,4 +337,11 @@ export const common = {
   dormaccess_record_stu: '/proxy/school/person/student/recognition/page',//门禁识别记录--学生
   dormaccess_record_ter: '/proxy/school/person/teacher/recognition/page',//门禁识别记录--教师
   dormaccess_record_sta: '/proxy/school/person/stranger/recognition/page',//门禁识别记录--陌生人
+  dormaccess_remote: '/proxy/school/device/door/page',//门禁远程控制
+  dormaccess_remote_open: '/proxy/school/device/door/set-always-open',//门禁远程控制--常开门
+  dormaccess_remote_close: '/proxy/school/device/door/set-always-close',//门禁远程控制--常关门
+  dormaccess_remote_only_open: '/proxy/school/device/door/open',//门禁远程控制--开门
+  dormaccess_remote_cancel_open: '/proxy/school/device/door/set-normal',//门禁远程控制--取消常开
+  dormaccess_remote_cancel_close: '/proxy/school/device/door/set-normal',//门禁远程控制--取消常关
+  dormaccess_remote_record: '/proxy/school/person/user/openDoor/page',//门禁远程控制--开门记录
 };

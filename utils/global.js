@@ -260,6 +260,17 @@ const filterUserTypes = [
   { text: '陌生人', value: "3", label: '陌生人'}
 ];
 
+const filterDoorOpenTypes = [
+  { text: "正常", value: "3", label: '正常'},
+  { text: '常开', value: "1", label: '常开'},
+  { text: '常关', value: "2", label: '常关'}
+];
+
+const filterDoorOnlineStatus = [
+  { text: "在线", value: 1, label: '在线'},
+  { text: '离线', value: 2, label: '离线'}
+];
+
 export default {
   total,
   page,
@@ -324,5 +335,7 @@ export default {
   filterScoreFlowTypes,
   filterTripFlowTypes,
   filterCardFlowTypes,
-  filterUserTypes
+  filterUserTypes,
+  filterDoorOpenTypes,
+  filterDoorOnlineStatus
 }
