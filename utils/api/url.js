@@ -346,4 +346,10 @@ export const common = {
   dormaccess_remote_record: '/proxy/school/person/user/openDoor/page',//门禁远程控制--开门记录
   dormaccess_exception_page: '/proxy/school/person/user/passError/page',//门禁异常
   dormaccess_exception_unbind: '/proxy/school/person/user/passError/normal',//门禁解除异常
+  dormaccess_settimeout: '/proxy/school/device/door-task/page',//门禁定时任务分页
+  dormaccess_settimeout_del: '/proxy/school/device/door-task/del',//门禁定时任务删除
+  dormaccess_settimeout_add: '/proxy/school/device/door-task/add',//门禁定时任务添加
+  dormaccess_settimeout_edit: '/proxy/school/device/door-task/edit',//门禁定时任务编辑
+  dormaccess_settimeout_enable: '/proxy/school/device/door-task/set-enable',//门禁定时任务启用、禁用
+  dormaccess_settimeout_deviceList: '/proxy/school/device/door/list',//门禁定时任务添加
 };
