@@ -344,4 +344,6 @@ export const common = {
   dormaccess_remote_cancel_open: '/proxy/school/device/door/set-normal',//门禁远程控制--取消常开
   dormaccess_remote_cancel_close: '/proxy/school/device/door/set-normal',//门禁远程控制--取消常关
   dormaccess_remote_record: '/proxy/school/person/user/openDoor/page',//门禁远程控制--开门记录
+  dormaccess_exception_page: '/proxy/school/person/user/passError/page',//门禁异常
+  dormaccess_exception_unbind: '/proxy/school/person/user/passError/normal',//门禁解除异常
 };

@@ -462,6 +462,20 @@ export function teachMethod(type, str){
   }
 }
 
+export function doorExceptionStatus(type, str){
+  let teachMethod = {
+    "0": "异常",
+    "1": "受限",
+    "2": "已解除"
+  };
+  if (str && type == 'set') {
+    return doorExceptionStatus[str];
+  }
+  if (!str && type == 'get'){
+    return doorExceptionStatus;
+  }
+}
+
 export function examMethod(type, str){
   let examMethod = {
     "2": "考试",

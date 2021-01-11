@@ -73,6 +73,7 @@ export default {
       filterUserTypes: global.filterUserTypes,
       filterDoorOpenTypes: global.filterDoorOpenTypes,
       filterDoorOnlineStatus: global.filterDoorOnlineStatus,
+      filterDoorExceptionStatus: global.filterDoorExceptionStatus,
       g_currentDate: {},
       currentYearData: '',
       currentTermData: '',

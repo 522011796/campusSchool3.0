@@ -271,6 +271,12 @@ const filterDoorOnlineStatus = [
   { text: '离线', value: 2, label: '离线'}
 ];
 
+const filterDoorExceptionStatus = [
+  { text: "异常", value: "0", label: '异常'},
+  { text: '受限', value: "1", label: '受限'},
+  { text: '已解除', value: "2", label: '已解除'}
+];
+
 export default {
   total,
   page,
@@ -337,5 +343,6 @@ export default {
   filterCardFlowTypes,
   filterUserTypes,
   filterDoorOpenTypes,
-  filterDoorOnlineStatus
+  filterDoorOnlineStatus,
+  filterDoorExceptionStatus
 }
