@@ -19,7 +19,7 @@
           <my-search-of-date size="small" :show-year="true" :show-term="false" :show-week="false" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType">
             <span slot="other">
               <my-select class="layout-item" size="small" width-style="100" :sel-value="searchUserType" :options="filterUserTypes" @change="handleChangeUserType"></my-select>
-              <my-cascader class="layout-item" ref="SelectorDoorAccess" size="small" width-style="160" :clearable="true" :sel-value="searchCommDeptData" type="1" sub-type="4" @change="_handleCascaderChange($event)"></my-cascader>
+              <my-cascader class="layout-item" ref="SelectorDoorAccess" size="small" width-style="160" :clearable="true" :sel-value="searchCommDeptData" :type="selType" :sub-type="selSubType" @change="_handleCascaderChange($event)"></my-cascader>
             </span>
           </my-search-of-date>
         </div>
@@ -496,7 +496,9 @@
         resultList: [],
         tableStudentData: [],
         searchTopTime: this.$moment(new Date).format("YYYY-MM-DD"),
-        detailUserId: ''
+        detailUserId: '',
+        selType: '1',
+        selSubType: "4"
       }
     },
     created() {
@@ -508,24 +510,27 @@
       init(){
         let url = "";
         let userType = "";
-        if (this.searchUserType == 1){
-          userType = 5
-        }else if (this.searchUserType == 2){
-          userType = 4
-        }
         let params = {
           page: this.page,
           num: this.num,
           userType: userType,
           departmentPath: ''
         };
-        params['buildId'] = this.searchBuild;
-        params['floorNum'] = this.searchFloor;
-        params['roomId'] = this.searchRoom;
-        params['collegeId'] = this.searchCollege;
-        params['majorId'] = this.searchMajor;
-        params['grade'] = this.searchGrade;
-        params['classId'] = this.searchClass;
+        if (this.searchUserType == 1){
+          userType = 5;
+          params['userType'] = userType;
+          params['buildId'] = this.searchBuild;
+          params['floorNum'] = this.searchFloor;
+          params['roomId'] = this.searchRoom;
+          params['collegeId'] = this.searchCollege;
+          params['majorId'] = this.searchMajor;
+          params['grade'] = this.searchGrade;
+          params['classId'] = this.searchClass;
+        }else if (this.searchUserType == 2){
+          userType = 4;
+          params['userType'] = userType;
+          params['departmentPath'] = this.searchDept;
+        }
         //时间类型
         if (this.searchTimeData.timeUnit == 1){
           let day = this.searchTimeData.value;
@@ -660,13 +665,21 @@
         params['startTime'] = this.searchDate.length > 0 ? (this.searchDate[0] + ' 00:00') : '';
         params['endTime'] = this.searchDate.length > 0 ? (this.searchDate[1] + ' 23:59') : '';
         params['deviceSceneSubType'] = this.searchDetailType;
-        params['buildId'] = this.searchBuild;
-        params['floorNum'] = this.searchFloor;
-        params['roomId'] = this.searchRoom;
-        params['collegeId'] = this.searchCollege;
-        params['majorId'] = this.searchMajor;
-        params['grade'] = this.searchGrade;
-        params['classId'] = this.searchClass;
+        if (this.searchUserType == 1){
+          userType = 5;
+          params['userType'] = userType;
+          params['buildId'] = this.searchBuild;
+          params['floorNum'] = this.searchFloor;
+          params['roomId'] = this.searchRoom;
+          params['collegeId'] = this.searchCollege;
+          params['majorId'] = this.searchMajor;
+          params['grade'] = this.searchGrade;
+          params['classId'] = this.searchClass;
+        }else if (this.searchUserType == 2){
+          userType = 4;
+          params['userType'] = userType;
+          params['departmentPath'] = this.searchDept;
+        }
         //时间类型
         if (this.searchTimeData.timeUnit == 1){
           let day = this.searchTimeData.value;
@@ -713,24 +726,27 @@
       expandInfo(){
         let url = common.dormaccess_pass_static_export;
         let userType = "";
-        if (this.searchUserType == 1){
-          userType = 5
-        }else if (this.searchUserType == 2){
-          userType = 4
-        }
         let params = {
           page: 1,
           num: 99999,
           userType: userType,
           departmentPath: ''
         };
-        params['buildId'] = this.searchBuild;
-        params['floorNum'] = this.searchFloor;
-        params['roomId'] = this.searchRoom;
-        params['collegeId'] = this.searchCollege;
-        params['majorId'] = this.searchMajor;
-        params['grade'] = this.searchGrade;
-        params['classId'] = this.searchClass;
+        if (this.searchUserType == 1){
+          userType = 5;
+          params['userType'] = userType;
+          params['buildId'] = this.searchBuild;
+          params['floorNum'] = this.searchFloor;
+          params['roomId'] = this.searchRoom;
+          params['collegeId'] = this.searchCollege;
+          params['majorId'] = this.searchMajor;
+          params['grade'] = this.searchGrade;
+          params['classId'] = this.searchClass;
+        }else if (this.searchUserType == 2){
+          userType = 4;
+          params['userType'] = userType;
+          params['departmentPath'] = this.searchDept;
+        }
         //时间类型
         if (this.searchTimeData.timeUnit == 1){
           let day = this.searchTimeData.value;
@@ -762,26 +778,28 @@
       exportDetail(){
         let url = common.dormaccess_pass_static_detail_export;
         let userType = "";
-        if (this.searchUserType == 1){
-          userType = 5
-        }else if (this.searchUserType == 2){
-          userType = 4
-        }
         let params = {};
         params['page'] = this.pageStudent;
         params['num'] = this.numStudent;
-        params['userType'] = userType;
         params['userId'] = this.detailUserId;
         params['startTime'] = this.searchDate.length > 0 ? (this.searchDate[0] + ' 00:00') : '';
         params['endTime'] = this.searchDate.length > 0 ? (this.searchDate[1] + ' 23:59') : '';
         params['deviceSceneSubType'] = this.searchDetailType;
-        params['buildId'] = this.searchBuild;
-        params['floorNum'] = this.searchFloor;
-        params['roomId'] = this.searchRoom;
-        params['collegeId'] = this.searchCollege;
-        params['majorId'] = this.searchMajor;
-        params['grade'] = this.searchGrade;
-        params['classId'] = this.searchClass;
+        if (this.searchUserType == 1){
+          userType = 5;
+          params['userType'] = userType;
+          params['buildId'] = this.searchBuild;
+          params['floorNum'] = this.searchFloor;
+          params['roomId'] = this.searchRoom;
+          params['collegeId'] = this.searchCollege;
+          params['majorId'] = this.searchMajor;
+          params['grade'] = this.searchGrade;
+          params['classId'] = this.searchClass;
+        }else if (this.searchUserType == 2){
+          userType = 4;
+          params['userType'] = userType;
+          params['departmentPath'] = this.searchDept;
+        }
         //时间类型
         if (this.searchTimeData.timeUnit == 1){
           let day = this.searchTimeData.value;
@@ -900,6 +918,14 @@
       },
       handleChangeUserType(data){
         this.searchUserType = data;
+        this.resetCasadeSelector('SelectorDoorAccess');
+        if (data == 1){
+          this.selType = "1";
+          this.selSubType = "4";
+        }else if (data == 2){
+          this.selType = "4";
+          this.selSubType = "";
+        }
         this.page = 1;
         this.init();
       },
@@ -943,22 +969,27 @@
         this.searchMajor = "";
         this.searchGrade = "";
         this.searchClass = "";
-        if (data.length == 1){
-          this.searchCollege = data[0];
-        }else if (data.length == 2){
-          this.searchCollege = data[0];
-          this.searchMajor = data[1];
-        }else if (data.length == 3){
-          this.searchCollege = data[0];
-          this.searchMajor = data[1];
-          this.searchGrade = data[2];
-        }else if (data.length == 4){
-          this.searchCollege = data[0];
-          this.searchMajor = data[1];
-          this.searchGrade = data[2];
-          this.searchClass = data[3];
+        this.searchDept = "";
+        if (this.searchUserType == 1){
+          if (data.length == 1){
+            this.searchCollege = data[0];
+          }else if (data.length == 2){
+            this.searchCollege = data[0];
+            this.searchMajor = data[1];
+          }else if (data.length == 3){
+            this.searchCollege = data[0];
+            this.searchMajor = data[1];
+            this.searchGrade = data[2];
+          }else if (data.length == 4){
+            this.searchCollege = data[0];
+            this.searchMajor = data[1];
+            this.searchGrade = data[2];
+            this.searchClass = data[3];
+          }
+        }else if (this.searchUserType == 2){
+          this.searchDept = data[data.length - 1] ;
         }
-        this.init();
+        this.init(this.searchDept);
       },
       handleSearchChange(data,type){
         if (type == 1){

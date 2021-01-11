@@ -100,6 +100,14 @@
       handleChange(data) {
         this.$emit('change', data);
       }
+    },
+    watch: {
+      type(val){
+        this.initInfo();
+      },
+      subType(val){
+        this.initInfo();
+      }
     }
   }
 </script>

@@ -19,7 +19,7 @@
           <el-row>
             <el-col :span="12" class="layout-inline">
               <my-select class="layout-item" size="small" :sel-value="searchUserType" :options="filterUserTypes" @change="handleChangeUserType"></my-select>
-              <my-cascader class="layout-item" ref="SelectorDoorAccess" size="small" width-style="160" :clearable="true" :sel-value="searchCommDeptData" type="1" sub-type="4" @change="_handleCascaderChange($event)"></my-cascader>
+              <my-cascader class="layout-item" ref="SelectorDoorAccess" size="small" width-style="160" :clearable="true" :sel-value="searchCommDeptData" :type="selType" :sub-type="selSubType" @change="_handleCascaderChange($event)"></my-cascader>
             </el-col>
             <el-col :span="12" class="text-right">
               <my-date-picker :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChange" style="position: relative; top: 1px;"></my-date-picker>
@@ -278,7 +278,9 @@
         uploadAction: common.student_upload,
         loopTimer: null,
         resultList: [],
-        searchTopTime: this.$moment(new Date).format("YYYY-MM-DD")
+        searchTopTime: this.$moment(new Date).format("YYYY-MM-DD"),
+        selType: '1',
+        selSubType: "4"
       }
     },
     created() {
@@ -301,13 +303,18 @@
           deviceLocationType: 1,
           departmentPath: ''
         };
-        params['deviceBuildId'] = this.searchBuild;
-        params['deviceFloorNum'] = this.searchFloor;
-        params['deviceRoomId'] = this.searchRoom;
-        params['collegeId'] = this.searchCollege;
-        params['majorId'] = this.searchMajor;
-        params['grade'] = this.searchGrade;
-        params['classId'] = this.searchClass;
+
+        if (this.searchUserType == 1){
+          params['deviceBuildId'] = this.searchBuild;
+          params['deviceFloorNum'] = this.searchFloor;
+          params['deviceRoomId'] = this.searchRoom;
+          params['collegeId'] = this.searchCollege;
+          params['majorId'] = this.searchMajor;
+          params['grade'] = this.searchGrade;
+          params['classId'] = this.searchClass;
+        }else if (this.searchUserType == 2){
+          params['departmentPath'] = this.searchDept;
+        }
 
         if (this.searchUserType == 1){
           url = common.dormaccess_record_stu;
@@ -411,6 +418,14 @@
       },
       handleChangeUserType(data){
         this.searchUserType = data;
+        this.resetCasadeSelector('SelectorDoorAccess');
+        if (data == 1){
+          this.selType = "1";
+          this.selSubType = "4";
+        }else if (data == 2){
+          this.selType = "4";
+          this.selSubType = "";
+        }
         this.page = 1;
         this.init();
       },
@@ -449,27 +464,31 @@
         this.init();
       },
       _handleCascaderChange(data){
-        //this.commSearchDept = data[data.length-1];
         this.searchCollege = "";
         this.searchMajor = "";
         this.searchGrade = "";
         this.searchClass = "";
-        if (data.length == 1){
-          this.searchCollege = data[0];
-        }else if (data.length == 2){
-          this.searchCollege = data[0];
-          this.searchMajor = data[1];
-        }else if (data.length == 3){
-          this.searchCollege = data[0];
-          this.searchMajor = data[1];
-          this.searchGrade = data[2];
-        }else if (data.length == 4){
-          this.searchCollege = data[0];
-          this.searchMajor = data[1];
-          this.searchGrade = data[2];
-          this.searchClass = data[3];
+        this.searchDept = "";
+        if (this.searchUserType == 1){
+          if (data.length == 1){
+            this.searchCollege = data[0];
+          }else if (data.length == 2){
+            this.searchCollege = data[0];
+            this.searchMajor = data[1];
+          }else if (data.length == 3){
+            this.searchCollege = data[0];
+            this.searchMajor = data[1];
+            this.searchGrade = data[2];
+          }else if (data.length == 4){
+            this.searchCollege = data[0];
+            this.searchMajor = data[1];
+            this.searchGrade = data[2];
+            this.searchClass = data[3];
+          }
+        }else if (this.searchUserType == 2){
+          this.searchDept = data[data.length - 1] ;
         }
-        this.init();
+        this.init(this.searchDept);
       }
     }
   }
