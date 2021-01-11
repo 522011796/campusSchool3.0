@@ -333,4 +333,8 @@ export const common = {
   dorm_user_class_bed_clear: '/proxy/building/dormitory/bed/remove',//清空床位
   dorm_user_class_bed_enable: '/proxy/building/dormitory/bed/enable',//启用禁用床位
   dorm_user_class_bed_list: '/proxy/building/dormitory/bedStudent/list',//床位列表
+
+  dormaccess_record_stu: '/proxy/school/person/student/recognition/page',//门禁识别记录--学生
+  dormaccess_record_ter: '/proxy/school/person/teacher/recognition/page',//门禁识别记录--教师
+  dormaccess_record_sta: '/proxy/school/person/stranger/recognition/page',//门禁识别记录--陌生人
 };

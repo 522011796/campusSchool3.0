@@ -254,6 +254,12 @@ const filterCardFlowTypes = [
   { text: "补卡", value: "补卡", label: '补卡'}
 ];
 
+const filterUserTypes = [
+  { text: "学生", value: "1", label: '学生'},
+  { text: '教师', value: "2", label: '教师'},
+  { text: '陌生人', value: "3", label: '陌生人'}
+];
+
 export default {
   total,
   page,
@@ -317,5 +323,6 @@ export default {
   filterAttendTypes,
   filterScoreFlowTypes,
   filterTripFlowTypes,
-  filterCardFlowTypes
+  filterCardFlowTypes,
+  filterUserTypes
 }

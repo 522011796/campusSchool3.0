@@ -70,6 +70,7 @@ export default {
       filterScoreFlowTypes: global.filterScoreFlowTypes,
       filterTripFlowTypes: global.filterTripFlowTypes,
       filterCardFlowTypes: global.filterCardFlowTypes,
+      filterUserTypes: global.filterUserTypes,
       g_currentDate: {},
       currentYearData: '',
       currentTermData: '',
