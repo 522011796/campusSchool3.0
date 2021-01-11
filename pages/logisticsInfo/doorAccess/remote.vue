@@ -283,7 +283,7 @@
           open: this.searchOpenType,
           controlType: this.searchOpenType,
         };
-        params['buildId'] = this.searchBuild;
+        params['buildingId'] = this.searchBuild;
         params['floorNum'] = this.searchFloor;
         params['classroomId'] = this.searchRoom;
         params['collegeId'] = this.searchCollege;
