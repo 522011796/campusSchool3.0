@@ -283,9 +283,9 @@
           open: this.searchOpenType,
           controlType: this.searchOpenType,
         };
-        params['deviceBuildId'] = this.searchBuild;
-        params['deviceFloorNum'] = this.searchFloor;
-        params['deviceRoomId'] = this.searchRoom;
+        params['buildId'] = this.searchBuild;
+        params['floorNum'] = this.searchFloor;
+        params['classroomId'] = this.searchRoom;
         params['collegeId'] = this.searchCollege;
         params['majorId'] = this.searchMajor;
         params['grade'] = this.searchGrade;
