@@ -7,8 +7,6 @@ export { default as MyRadio } from '../../components/MyRadio.vue'
 export { default as MySelect } from '../../components/MySelect.vue'
 export { default as MySex } from '../../components/MySex.vue'
 export { default as MyTree } from '../../components/MyTree.vue'
-export { default as LayoutLr } from '../../components/Layout/LayoutLr.vue'
-export { default as LayoutTb } from '../../components/Layout/LayoutTb.vue'
 export { default as BarChart } from '../../components/charts/BarChart.vue'
 export { default as CircleChart } from '../../components/charts/CircleChart.vue'
 export { default as LineChart } from '../../components/charts/LineChart.vue'
@@ -21,6 +19,8 @@ export { default as TableBarChart } from '../../components/charts/TableBarChart.
 export { default as MyInputButton } from '../../components/search/MyInputButton.vue'
 export { default as MySearchOfDate } from '../../components/search/MySearchOfDate.vue'
 export { default as MyYearTerm } from '../../components/search/MyYearTerm.vue'
+export { default as LayoutLr } from '../../components/Layout/LayoutLr.vue'
+export { default as LayoutTb } from '../../components/Layout/LayoutTb.vue'
 export { default as MyAuditStatus } from '../../components/utils/MyAuditStatus.vue'
 export { default as MyCourseSelect } from '../../components/utils/MyCourseSelect.vue'
 export { default as MySexSelect } from '../../components/utils/MySexSelect.vue'
@@ -72,8 +72,6 @@ export const LazyMyRadio = import('../../components/MyRadio.vue' /* webpackChunk
 export const LazyMySelect = import('../../components/MySelect.vue' /* webpackChunkName: "components/MySelect" */).then(c => c.default || c)
 export const LazyMySex = import('../../components/MySex.vue' /* webpackChunkName: "components/MySex" */).then(c => c.default || c)
 export const LazyMyTree = import('../../components/MyTree.vue' /* webpackChunkName: "components/MyTree" */).then(c => c.default || c)
-export const LazyLayoutLr = import('../../components/Layout/LayoutLr.vue' /* webpackChunkName: "components/Layout/LayoutLr" */).then(c => c.default || c)
-export const LazyLayoutTb = import('../../components/Layout/LayoutTb.vue' /* webpackChunkName: "components/Layout/LayoutTb" */).then(c => c.default || c)
 export const LazyBarChart = import('../../components/charts/BarChart.vue' /* webpackChunkName: "components/charts/BarChart" */).then(c => c.default || c)
 export const LazyCircleChart = import('../../components/charts/CircleChart.vue' /* webpackChunkName: "components/charts/CircleChart" */).then(c => c.default || c)
 export const LazyLineChart = import('../../components/charts/LineChart.vue' /* webpackChunkName: "components/charts/LineChart" */).then(c => c.default || c)
@@ -86,6 +84,8 @@ export const LazyTableBarChart = import('../../components/charts/TableBarChart.v
 export const LazyMyInputButton = import('../../components/search/MyInputButton.vue' /* webpackChunkName: "components/search/MyInputButton" */).then(c => c.default || c)
 export const LazyMySearchOfDate = import('../../components/search/MySearchOfDate.vue' /* webpackChunkName: "components/search/MySearchOfDate" */).then(c => c.default || c)
 export const LazyMyYearTerm = import('../../components/search/MyYearTerm.vue' /* webpackChunkName: "components/search/MyYearTerm" */).then(c => c.default || c)
+export const LazyLayoutLr = import('../../components/Layout/LayoutLr.vue' /* webpackChunkName: "components/Layout/LayoutLr" */).then(c => c.default || c)
+export const LazyLayoutTb = import('../../components/Layout/LayoutTb.vue' /* webpackChunkName: "components/Layout/LayoutTb" */).then(c => c.default || c)
 export const LazyMyAuditStatus = import('../../components/utils/MyAuditStatus.vue' /* webpackChunkName: "components/utils/MyAuditStatus" */).then(c => c.default || c)
 export const LazyMyCourseSelect = import('../../components/utils/MyCourseSelect.vue' /* webpackChunkName: "components/utils/MyCourseSelect" */).then(c => c.default || c)
 export const LazyMySexSelect = import('../../components/utils/MySexSelect.vue' /* webpackChunkName: "components/utils/MySexSelect" */).then(c => c.default || c)

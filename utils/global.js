@@ -277,6 +277,11 @@ const filterDoorExceptionStatus = [
   { text: '已解除', value: "2", label: '已解除'}
 ];
 
+const filterDoorInOutStatus = [
+  { text: "进入", value: '1' ,label: '进入'},
+  { text: '外出', value: '2' ,label: '外出'}
+];
+
 export default {
   total,
   page,
@@ -344,5 +349,6 @@ export default {
   filterUserTypes,
   filterDoorOpenTypes,
   filterDoorOnlineStatus,
-  filterDoorExceptionStatus
+  filterDoorExceptionStatus,
+  filterDoorInOutStatus
 }

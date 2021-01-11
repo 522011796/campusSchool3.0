@@ -352,4 +352,13 @@ export const common = {
   dormaccess_settimeout_edit: '/proxy/school/device/door-task/edit',//门禁定时任务编辑
   dormaccess_settimeout_enable: '/proxy/school/device/door-task/set-enable',//门禁定时任务启用、禁用
   dormaccess_settimeout_deviceList: '/proxy/school/device/door/list',//门禁定时任务添加
+  dormaccess_pass_static_page: '/proxy/course/access-control/get-page-stat',//门禁分析分页
+  dormaccess_pass_static_level: '/proxy/course/access-control/get-level-list',//门禁分析评率
+  dormaccess_pass_static_export: '/proxy/course/access-control/export-page-stat',//门禁分析导出
+  dormaccess_pass_static_total: '/proxy/course/access-control/get-total-stat',//门禁分析总人数
+  dormaccess_pass_static_line: '/proxy/course/access-control/get-line-chart-stat',//门禁分析线性图
+  dormaccess_pass_static_detail: '/proxy/course/access-control/get-page-detail',//门禁分析详细
+  dormaccess_pass_static_detail_export: '/proxy/course/access-control/export-page-detail',//门禁分析详细导出
+  dormaccess_pass_static_level_page: '/proxy/course/access-control/get-level-list',//门禁分析频率分页
+  dormaccess_pass_static_level_save: '/proxy/course/access-control/save-level',//门禁分析保持频率
 };
