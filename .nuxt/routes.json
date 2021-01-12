@@ -486,6 +486,12 @@
     "chunkName": "pages/logisticsInfo/doorAccess/doorAccessRecord"
   },
   {
+    "name": "logisticsInfo-doorAccess-doorManage",
+    "path": "/logisticsInfo/doorAccess/doorManage",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/logisticsInfo/doorAccess/doorManage.vue",
+    "chunkName": "pages/logisticsInfo/doorAccess/doorManage"
+  },
+  {
     "name": "logisticsInfo-doorAccess-exception",
     "path": "/logisticsInfo/doorAccess/exception",
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/logisticsInfo/doorAccess/exception.vue",

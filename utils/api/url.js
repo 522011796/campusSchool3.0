@@ -361,4 +361,12 @@ export const common = {
   dormaccess_pass_static_detail_export: '/proxy/course/access-control/export-page-detail',//门禁分析详细导出
   dormaccess_pass_static_level_page: '/proxy/course/access-control/get-level-list',//门禁分析频率分页
   dormaccess_pass_static_level_save: '/proxy/course/access-control/save-level',//门禁分析保持频率
+  dormaccess_control_device_page: '/proxy/school/device/access-control/page',//门禁控制器分页
+  dormaccess_control_device_edit: '/proxy/school/device/access-control/edit',//门禁控制器编辑
+  dormaccess_control_device_search: '/proxy/school/device/access-control/search',//门禁控制器设备列表
+  dormaccess_control_device_add: '/proxy/school/device/access-control/add/batch',//门禁控制器设备添加
+  dormaccess_control_device_control_list: '/proxy/school/device/door/list',//门禁控制器接口列表
+  dormaccess_control_device_control_type: '/proxy/school/device/door-identify-type/list',//门禁控制器接口列表--类型
+  dormaccess_control_device_control_device: '/proxy/school/device/door-select-device/list',//门禁控制器接口列表--设备
+  dormaccess_control_device_control_edit: '/proxy/school/device/door/edit/batch',//门禁控制器接口列表--保存
 };

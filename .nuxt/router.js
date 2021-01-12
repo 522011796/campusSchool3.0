@@ -84,6 +84,7 @@ const _3eba9193 = () => interopDefault(import('../pages/dataInfo/stuData/stuPic.
 const _1e53bb0d = () => interopDefault(import('../pages/dataInfo/stuData/stuQuanti.vue' /* webpackChunkName: "pages/dataInfo/stuData/stuQuanti" */))
 const _9b6d550e = () => interopDefault(import('../pages/dataInfo/stuData/stuStatus.vue' /* webpackChunkName: "pages/dataInfo/stuData/stuStatus" */))
 const _259324a7 = () => interopDefault(import('../pages/logisticsInfo/doorAccess/doorAccessRecord.vue' /* webpackChunkName: "pages/logisticsInfo/doorAccess/doorAccessRecord" */))
+const _43fddab7 = () => interopDefault(import('../pages/logisticsInfo/doorAccess/doorManage.vue' /* webpackChunkName: "pages/logisticsInfo/doorAccess/doorManage" */))
 const _6aa42efb = () => interopDefault(import('../pages/logisticsInfo/doorAccess/exception.vue' /* webpackChunkName: "pages/logisticsInfo/doorAccess/exception" */))
 const _30b4803a = () => interopDefault(import('../pages/logisticsInfo/doorAccess/passStatic.vue' /* webpackChunkName: "pages/logisticsInfo/doorAccess/passStatic" */))
 const _cd10005a = () => interopDefault(import('../pages/logisticsInfo/doorAccess/permission.vue' /* webpackChunkName: "pages/logisticsInfo/doorAccess/permission" */))
@@ -485,6 +486,10 @@ export const routerOptions = {
     path: "/logisticsInfo/doorAccess/doorAccessRecord",
     component: _259324a7,
     name: "logisticsInfo-doorAccess-doorAccessRecord"
+  }, {
+    path: "/logisticsInfo/doorAccess/doorManage",
+    component: _43fddab7,
+    name: "logisticsInfo-doorAccess-doorManage"
   }, {
     path: "/logisticsInfo/doorAccess/exception",
     component: _6aa42efb,

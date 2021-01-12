@@ -942,6 +942,13 @@
             "id": 6006,
             "top": "logisticsInfo",
             "path": "/logisticsInfo/doorAccess/permission"
+          },
+          {
+            "name": "门禁控制器",
+            "key": "doorManage",
+            "id": 6007,
+            "top": "logisticsInfo",
+            "path": "/logisticsInfo/doorAccess/doorManage"
           }
         ]
       },
