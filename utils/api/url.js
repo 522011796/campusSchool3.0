@@ -369,4 +369,10 @@ export const common = {
   dormaccess_control_device_control_type: '/proxy/school/device/door-identify-type/list',//门禁控制器接口列表--类型
   dormaccess_control_device_control_device: '/proxy/school/device/door-select-device/list',//门禁控制器接口列表--设备
   dormaccess_control_device_control_edit: '/proxy/school/device/door/edit/batch',//门禁控制器接口列表--保存
+  dormaccess_role_group_page: '/proxy/school/group/page',//门禁权限分页
+  dormaccess_role_group_del: '/proxy/school/group/del',//门禁权限删除
+  dormaccess_role_group_sync: '/proxy/school/group/sync-passTime',//同步生效
+  dormaccess_role_group_device_control: '/proxy/school/device/device/door/group/door/list',//门禁设备--控制器
+  dormaccess_role_group_device_line: '/proxy/school/device/device/door/group/face/list',//门禁设备--直连
+  dormaccess_role_group_edit: '/proxy/school/group/info',//门禁权限--编辑
 };
