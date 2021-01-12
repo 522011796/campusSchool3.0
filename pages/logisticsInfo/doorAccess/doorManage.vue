@@ -86,6 +86,27 @@
           </el-table-column>
           <el-table-column
             align="center"
+            :label="$t('设备类型')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-left">
+                  <div>
+                    <el-tag size="mini" type="success" class="margin-right-5" v-for="(item, index) in scope.row.recModeNameSet" :key="index">{{item}}</el-tag>
+                  </div>
+                  <div class="line-height"></div>
+                  <div v-for="(item, index) in scope.row.doorList" :key="index">
+                    <span>{{item.doorNo}}{{$t("号接口")}}:</span>
+                    <span>{{item.recModeName}}</span>
+                  </div>
+                </div>
+                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class color-warning">
+                  <el-tag size="mini" type="success" class="margin-right-5" v-for="(item, index) in scope.row.recModeNameSet" :key="index">{{item}}</el-tag>
+                </div>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
             :label="$t('备注')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">

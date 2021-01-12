@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/doorManage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/validater/doorManageValidater.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/sliderMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/sliderMenu.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/doorManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/doorManage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,14 +103,7 @@
       <workItem from="1608617065213" duration="1941000" />
       <workItem from="1608625084513" duration="122942000" />
       <workItem from="1609379556549" duration="104145000" />
-      <workItem from="1610156986760" duration="71333000" />
-    </task>
-    <task id="LOCAL-00113" summary="1、修改框架和组件样式、细节bug等&#10;2、学生分析接口对接完成">
-      <created>1607997017413</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1607997017416</updated>
+      <workItem from="1610156986760" duration="71829000" />
     </task>
     <task id="LOCAL-00114" summary="1、修改框架和组件样式、细节bug等&#10;2、量化统计接口对接完成">
       <created>1608029134600</created>
@@ -453,14 +441,20 @@
       <option name="project" value="LOCAL" />
       <updated>1610371223391</updated>
     </task>
-    <option name="localTasksCounter" value="162" />
+    <task id="LOCAL-00162" summary="1、修改框架和组件样式、细节bug等&#10;2、门禁控制器接口对接完成">
+      <created>1610438817747</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1610438817751</updated>
+    </task>
+    <option name="localTasksCounter" value="163" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、归寝人脸识别接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、归寝分析识别接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、课堂考勤查询接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、课堂考勤分析接口对接完成" />
@@ -485,7 +479,8 @@
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、定时任务接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、定时频率接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、通行分析接口对接完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、通行分析接口对接完成" />
+    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、门禁控制器接口对接完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、门禁控制器接口对接完成" />
   </component>
   <component name="WindowStateProjectService">
     <state x="454" y="235" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602497724708">
@@ -497,11 +492,11 @@
     </state>
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.805@0.23.1440.805" timestamp="1602828707649" />
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1605755081482" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1610371221826">
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1610438815154">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1610371221826" />
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1610438815154" />
     <state x="100" y="124" width="1240" height="600" key="DiffContextDialog" timestamp="1610355265212">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -539,11 +534,11 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="221" y="64" key="SettingsEditor/0.23.1440.805@0.23.1440.805" timestamp="1602238031085" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1610371225487">
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1610438819833">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1610371225487" />
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1610438819833" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1610011190284">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
