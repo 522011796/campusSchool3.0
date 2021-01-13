@@ -375,4 +375,9 @@ export const common = {
   dormaccess_role_group_device_control: '/proxy/school/device/device/door/group/door/list',//门禁设备--控制器
   dormaccess_role_group_device_line: '/proxy/school/device/device/door/group/face/list',//门禁设备--直连
   dormaccess_role_group_edit: '/proxy/school/group/info',//门禁权限--编辑
+  dormaccess_role_group_save: '/proxy/school/group/save',//门禁权限--保存
+
+  dormaccess_teacher_select_status_page: '/proxy/user/employee/ac/selected/page',//老师分页--选中自动前排
+  dormaccess_student_select_status_page: '/proxy/user/student/info/ac/selected/user/page',//学生分页--选中自动前排
+
 };

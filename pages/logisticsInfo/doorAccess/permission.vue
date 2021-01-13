@@ -56,7 +56,7 @@
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                 <div class="text-center">
                   <span v-if="scope.row.time_str">
-                    <label v-for="(item, index) in JSON.parse(scope.row.time_str)" :key="index">{{item.t1}}-{{item.t2}}</label>
+                    <div v-for="(item, index) in JSON.parse(scope.row.time_str)" :key="index">{{item.t1}}-{{item.t2}}</div>
                   </span>
                   <span v-else>
                     {{$t("全天")}}
@@ -155,10 +155,63 @@
             <el-input v-model="form.name" class="width-260"></el-input>
           </el-form-item>
           <el-form-item :label="$t('APP管理')" prop="ip">
-
+            <el-popover
+              placement="top"
+              width="700"
+              trigger="click"
+              @show="handleShowTeacher(1)">
+              <div>
+                <teacher-tree-and-list-no-page ref="popverAppRef" user-type="admin" :group-id="form.groupId" :sel-arr="form.approverUserId" set-type="check" @select="handleSelUser($event, 1)"></teacher-tree-and-list-no-page>
+              </div>
+              <el-button slot="reference" type="success" plain size="small" @click="loadingShow(1)">
+                <i v-if="refreshAppStatus == true" class="fa fa-refresh fa-spin"></i>
+                {{$t("添加")}}
+              </el-button>
+            </el-popover>
+            <span class="color-warning margin-left-10">
+              <i class="fa fa-user"></i>
+              {{$t("已选择")}}{{form.approverUserId.length}}{{$t("人员")}}
+            </span>
           </el-form-item>
           <el-form-item :label="$t('授权范围')" prop="comment">
-
+            <div>
+              <el-popover
+                placement="top"
+                width="700"
+                trigger="click"
+                @show="handleShowTeacher(2)">
+                <div>
+                  <teacher-tree-and-list-no-page ref="popverTeacherRef" user-type="user" :group-id="form.groupId" :sel-arr="form.approverTeacherId" set-type="check" @select="handleSelUser($event, 2)"></teacher-tree-and-list-no-page>
+                </div>
+                <el-button slot="reference" type="success" plain size="small" @click="loadingShow(2)">
+                  <i v-if="refreshTeacherStatus == true" class="fa fa-refresh fa-spin"></i>
+                  {{$t("教师")}}
+                </el-button>
+              </el-popover>
+              <span class="color-warning margin-left-10">
+                <i class="fa fa-user"></i>
+                {{$t("已选择")}}{{form.approverTeacherId.length}}{{$t("人员")}}
+              </span>
+            </div>
+            <div>
+              <el-popover
+                placement="top"
+                width="700"
+                trigger="click"
+                @show="handleShowTeacher(3)">
+                <div>
+                  <student-tree-and-list-no-page ref="popverStudentRef" :group-id="form.groupId" :sel-arr="form.approverStudentId" set-type="check" @select="handleSelUser($event, 3)"></student-tree-and-list-no-page>
+                </div>
+                <el-button slot="reference" type="success" plain size="small" @click="loadingShow(3)">
+                  <i v-if="refreshStudentStatus == true" class="fa fa-refresh fa-spin"></i>
+                  {{$t("学生")}}
+                </el-button>
+              </el-popover>
+              <span class="color-warning margin-left-10">
+                <i class="fa fa-user"></i>
+                {{$t("已选择")}}{{form.approverStudentId.length}}{{$t("人员")}}
+              </span>
+            </div>
           </el-form-item>
           <el-form-item :label="$t('启用周期')" prop="comment">
             <div>
@@ -383,6 +436,8 @@
   import MyPagination from "../../../components/MyPagination";
   import mixins from "../../../utils/mixins";
   import {common} from "../../../utils/api/url";
+  import TeacherTreeAndListNoPage from "../../../components/utils/treeAndList/TeacherTreeAndListNoPage";
+  import StudentTreeAndListNoPage from "../../../components/utils/treeAndList/StudentTreeAndListNoPage";
   import {
     levelText,
     MessageError,
@@ -400,9 +455,10 @@
   import doorManageValidater from "../../../utils/validater/doorManageValidater";
   import MyCheck from "../../../components/MyCheck";
   import MyRadio from "../../../components/MyRadio";
+  import permissionValidater from "../../../utils/validater/permissionValidater";
   export default {
-    mixins: [mixins, doorManageValidater],
-    components: {MyPagination,LayoutTb,MySelect,MyInputButton,DialogNormal,DrawerLayoutRight,MyDeviceUseType,MyCheck,MyRadio},
+    mixins: [mixins, permissionValidater],
+    components: {MyPagination,LayoutTb,MySelect,MyInputButton,DialogNormal,DrawerLayoutRight,MyDeviceUseType,MyCheck,MyRadio,TeacherTreeAndListNoPage,StudentTreeAndListNoPage},
     data(){
       return {
         tableData: [],
@@ -425,6 +481,9 @@
         mutiResetLoading: false,
         modalAddVisible: false,
         deviceLoading: false,
+        refreshAppStatus: false,
+        refreshStudentStatus: false,
+        refreshTeacherStatus: false,
         searchOnline: '',
         config: {},
         subTitle: '',
@@ -443,6 +502,7 @@
         tableLineData: [],
         tableTeachData: [],
         tableWorkData: [],
+        showAppPopover: false,
         id: '',
         form: {
           id: '',
@@ -483,7 +543,11 @@
           lineDeviceList: [],
           timeStr: [
             {t1: '00:00', t2: '00:00'}
-          ]
+          ],
+          approverUserId: [],
+          approverTeacherId: [],
+          approverStudentId: [],
+          groupId: ''
         },
         formSet: {
 
@@ -544,13 +608,15 @@
         this.modalVisible = true;
       },
       editInfo(row){
+        let userIds = [];
+        let teacherUserIds = [];
+        let studentUserIds = [];
         let params = {
           id: row.id
         };
         this.$axios.get(common.dormaccess_role_group_edit, {params: params}).then(res => {
           if (res.data.code == 200){
             let data = res.data.data;
-            console.log(data);
             this.form = {
               id: data.id,
               name: data.name,
@@ -588,9 +654,29 @@
               statusList: [],
               controlDeviceList: data.deviceList,
               lineDeviceList: data.deviceList,
-              timeStr: data.timeStr != null ? JSON.parse(data.timeStr) : []
+              timeStr: data.timeStr != null ? JSON.parse(data.timeStr) : [],
+              groupId: row.id
             };
-            console.log(this.form);
+            for (let i = 0; i < res.data.data.adminList.length; i++){
+              userIds.push({
+                user_id: res.data.data.adminList[i]
+              });
+            }
+            this.$set(this.form, 'approverUserId', userIds);
+
+            for (let i = 0; i < res.data.data.studentList.length; i++){
+              studentUserIds.push({
+                user_id: res.data.data.studentList[i]
+              });
+            }
+            this.$set(this.form, 'approverStudentId', studentUserIds);
+
+            for (let i = 0; i < res.data.data.teacherList.length; i++){
+              teacherUserIds.push({
+                user_id: res.data.data.teacherList[i]
+              });
+            }
+            this.$set(this.form, 'approverTeacherId', teacherUserIds);
           }else {
             MessageError(res.data.desc);
           }
@@ -633,18 +719,117 @@
       },
       okDialog(){
         let url = "";
+        let userIds = [];
+        let studentIds = [];
+        let teacherIds = [];
+        let timeStr = [];
+        let dateStr = [] ;
+        let unNormalMap = {};
+        let warningMap = {};
+        let deviceList = [];
         this.$refs['form'].validate((valid) => {
           if (valid) {
-            this.dialogLoading = true;
             let params = {
-              ip: this.form.ip,
-              sn: this.form.sn,
+              id: this.form.groupId,
               name: this.form.name,
-              comment: this.form.comment
+              timeType: this.form.timeType == 1 ? true : false,
+              dateType: this.form.dateType == 1 ? true : false,
+              authTimeStart: this.form.searchData.length > 0 ? this.form.searchData[0] : '',
+              authTimeEnd: this.form.searchData.length > 0 ? this.form.searchData[1] : '',
+              deviceList: [],
+              studentList: [],
+              teacherList: [],
+              studentType: true,
+              teacherType: false,
+              teacherAppType: true,
+              monday: this.form.monday,
+              tuesday: this.form.tuesday,
+              wednesday: this.form.wednesday,
+              thursday: this.form.thursday,
+              friday: this.form.friday,
+              saturday: this.form.saturday,
+              sunday: this.form.sunday,
+              leaveApplyLink: this.form.leaveType,
+              studentStatusSet: this.form.teachTypeList.join(),
+              teacherStatusSet: this.form.workTypeList.join(),
+              studentStatusLink: this.form.teachType,
+              teacherStatusLink: this.form.workType,
+              classTimeLink: this.form.classType,
+              adminList: [],
+              timeStr: [],
+              dateStr: [],
+              unNormalLimit: this.form.errorPassType,
+              warningLimit: this.form.errorType,
+              rangeMin: this.form.errorPassMin1,
+              rangeThe: this.form.errorPassTimes,
+              rangeLimitMin: this.form.errorPassMin2,
+              warningMin: this.form.errorMin,
+              warningThe: this.form.errorTimes,
+              recModes: '',
             };
 
+            if (this.form.approverStudentId.length <= 0 && this.form.approverTeacherId.length <= 0){
+              MessageWarning("请选择授权老师或者学生！");
+              return;
+            }
+
+            deviceList = this.form.controlDeviceList.concat(this.form.lineDeviceList);
+            if (deviceList.length == 0){
+              MessageWarning("请选择设备！");
+              return;
+            }
+            params['deviceList'] = deviceList.join();
+
+            if (this.form.errorPassType == true){
+              unNormalMap = {"min1":this.form.errorPassMin1,"times":this.form.errorPassTimes,"min2":this.form.errorPassMin2};
+              params['unNormalMap'] = JSON.stringify(unNormalMap);
+            }
+
+            if (this.form.errorType == true){
+              unNormalMap = {"min1":this.form.errorMin,"times":this.form.errorTimes};
+              params['warningMap'] = JSON.stringify(unNormalMap);
+            }
+
+            if (this.form.approverUserId.length > 0){
+              for (let i = 0; i < this.form.approverUserId.length; i ++ ){
+                userIds.push(this.form.approverUserId[i].user_id);
+              }
+              params['adminList'] = userIds.join();
+            }
+
+            if (this.form.approverStudentId.length > 0){
+              for (let i = 0; i < this.form.approverStudentId.length; i ++ ){
+                studentIds.push(this.form.approverStudentId[i].user_id);
+              }
+              params['studentList'] = studentIds.join();
+            }
+
+            if (this.form.approverTeacherId.length > 0){
+              for (let i = 0; i < this.form.approverTeacherId.length; i ++ ){
+                teacherIds.push(this.form.approverTeacherId[i].user_id);
+              }
+              params['teacherList'] = teacherIds.join();
+            }
+
+            for (let i = 0 ; i < this.form.timeStr.length; i++){
+              timeStr.push({
+                t1: this.form.timeStr[i].t1,
+                t2: this.form.timeStr[i].t2
+              });
+            }
+            params['timeStr'] = timeStr.length > 0 ? JSON.stringify(timeStr) : [];
+
+            if (this.form.searchData.length > 0){
+              dateStr = [{
+                d1: this.form.searchData[0],
+                d2: this.form.searchData[1]
+              }]
+            }
+            params['dateStr'] = dateStr.length > 0 ? JSON.stringify(dateStr) : [];
+
             params = this.$qs.stringify(params);
-            this.$axios.post(common.dormaccess_control_device_edit, params).then(res => {
+            this.dialogLoading = true;
+            this.$axios.post(common.dormaccess_role_group_save, params).then(res => {
               if (res.data.code == 200){
                 this.modalVisible = false;
                 this.init();
@@ -697,14 +882,23 @@
           lineDeviceList: [],
           timeStr: [
             {t1: '00:00', t2: '00:00'}
-          ]
+          ],
+          approverUserId: [],
+          approverTeacherId: [],
+          approverStudentId: []
         };
-        /*if (this.$refs['form']){
+        if (this.$refs['form']){
           this.$refs['form'].resetFields();
-        }*/
-        /*if (this.$refs.refDeviceTable){
-          this.$refs.refDeviceTable.clearSelection();
-        }*/
+        }
+        if (this.$refs['popverAppRef']){
+          this.$refs.popverAppRef._handleResetChange();
+        }
+        if (this.$refs['popverStudentRef']){
+          this.$refs.popverStudentRef._handleResetChange();
+        }
+        if (this.$refs['popverTeacherRef']){
+          this.$refs.popverTeacherRef._handleResetChange();
+        }
       },
       cancelDialog(){
         this.modalVisible = false;
@@ -791,6 +985,53 @@
       },
       minusTime(index){
         this.form.timeStr.splice(index, 1);
+      },
+      handleShowTeacher(type){
+        setTimeout(()=>{
+          if (type == 1){
+            this.$refs.popverAppRef._handleOpen();
+          }else if (type == 2){
+            this.$refs.popverTeacherRef._handleOpen();
+          }else if (type == 3){
+            this.$refs.popverStudentRef._handleOpen();
+          }
+        },800);
+      },
+      handleSelUser(data, type){
+        if (type == 1){
+          this.form.partUserIds = data;
+        }else if (type == 2){
+          this.form.approverTeacherId = data;
+        }else if (type == 3){
+          this.form.approverStudentId = data;
+        }
+      },
+      loadingShow(type){
+        let timer = null;
+        clearTimeout(timer);
+        switch (type) {
+          case 1:
+            this.refreshAppStatus = true;
+            timer = setTimeout(() => {
+              this.refreshAppStatus = false;
+              clearTimeout(timer);
+            },1000);
+            break;
+          case 2:
+            this.refreshTeacherStatus = true;
+            timer = setTimeout(() => {
+              this.refreshTeacherStatus = false;
+              clearTimeout(timer);
+            },1000);
+            break;
+          case 3:
+            this.refreshStudentStatus = true;
+            timer = setTimeout(() => {
+              this.refreshStudentStatus = false;
+              clearTimeout(timer);
+            },1000);
+            break;
+        }
       }
     }
   }
