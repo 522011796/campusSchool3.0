@@ -693,7 +693,7 @@
             </div>
           </div>
           <el-timeline>
-            <el-timeline-item placement="top" v-for="n in 10" :key="n" :timestamp="`第${n}节`">
+            <el-timeline-item placement="top" v-for="(item, index) in defaultCourseList" :key="key" :timestamp="`第${item.section}节`">
               <el-card :body-style="{padding: '10px'}">
                 <div class="color-muted">
                   <i class="fa fa-clock-o"></i>
@@ -762,6 +762,9 @@
         activeSubSlider: '',
         widthIndex: 0,
         year: '',
+        courseYear: this.$moment(new Date()).format("YYYY"),
+        courseMonth: this.$moment(new Date()).format("MM"),
+        courseDay: this.$moment(new Date()).format("DD"),
         weekNum: '',
         week: '',
         bellNum: 0,
@@ -778,9 +781,8 @@
         updatePwdMms: common.updatepwd_mms,
         uploadFileUrl: common.upload_file,
         uploadFileListUrl: common.upload_imglist_file,
-        calendarData: [
-          { days: ['09', '11', '20']}
-        ],
+        calendarData: [],
+        defaultCourseList: [],
         topWidth: {
           width: '0px'
         },
@@ -893,6 +895,7 @@
         await this.getSessionInfo();
         await this.getCurrentWeekInfo(this.campusId);
         await this.getNoReadNum();
+        this.initCourseDate(this.loginUserId);
         this.year = this.currentYear;
         this.weekNum = this.currentWeekNum;
         this.week = this.currentWeekNo;
@@ -1329,10 +1332,75 @@
         });
       },
       handeCourse(){
+        setTimeout(()=>{
+          this.$nextTick(() => {
+            if (process.client){
+              // 点击前一个月
+              let prevBtn = document.querySelector(
+                ".el-calendar__button-group .el-button-group>button:nth-child(1)"
+              );
+              prevBtn.addEventListener("click", e => {
+                this.courseYear = this.$moment(this.calendarValue).format("YYYY");
+                this.courseMonth = this.$moment(this.calendarValue).format("MM");
+                this.initCourseDate(this.loginUserId);
+              });
+
+              // 点击下一个月
+              let nextBtn = document.querySelector(
+                ".el-calendar__button-group .el-button-group>button:nth-child(3)"
+              );
+              nextBtn.addEventListener("click", () => {
+                this.courseYear = this.$moment(this.calendarValue).format("YYYY");
+                this.courseMonth = this.$moment(this.calendarValue).format("MM");
+                this.initCourseDate(this.loginUserId);
+              });
+
+              //点击今天
+              let todayBtn = document.querySelector(
+                ".el-calendar__button-group .el-button-group>button:nth-child(2)"
+              );
+              todayBtn.addEventListener("click", () => {
+                this.courseYear = this.$moment(this.calendarValue).format("YYYY");
+                this.courseMonth = this.$moment(this.calendarValue).format("MM");
+                this.initCourseDate(this.loginUserId);
+              });
+            }
+          });
+        },1000);
         this.drawerCourseVisible = true;
       },
       handleDays(event, day){
-        console.log(day);
+        let params = {
+          teacherId: this.loginUserId,
+          busiTime: day
+        };
+        this.$axios.get(common.course_static_date, {params: params}).then(res => {
+          if (res.data.data){
+            this.defaultCourseList = res.data.data;
+          }
+        });
+      },
+      initCourseDate(teacherId){
+        let arr = [];
+        let params = {
+          teacherId: teacherId,
+          year: this.courseYear,
+          month: this.courseMonth
+        };
+        this.$axios.get(common.course_static_date, {params: params}).then(res => {
+          if (res.data.data){
+            for (let i = 0; i < res.data.data.length; i++){
+              let str = "";
+              if (res.data.data[i] < 10){
+                str = "0" + res.data.data[i];
+                arr.push(str);
+              }else {
+                arr.push(''+res.data.data[i]);
+              }
+            }
+            this.calendarData = [{days: arr}];
+          }
+        });
       }
     },
     watch: {

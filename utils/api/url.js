@@ -380,4 +380,7 @@ export const common = {
   dormaccess_teacher_select_status_page: '/proxy/user/employee/ac/selected/page',//老师分页--选中自动前排
   dormaccess_student_select_status_page: '/proxy/user/student/info/ac/selected/user/page',//学生分页--选中自动前排
 
+  course_static_date: '/proxy/course/schedule/stat/by/teacher',//课表统计
+  course_static_course_list: '/proxy/course/schedule/list/by/teacher',//课表列表
+
 };
