@@ -10,7 +10,7 @@
       <slot name="tab"></slot>
     </div>
 
-    <div class="margin-top-10">
+    <div class="layout-bottom-tab margin-top-10">
       <slot name="content"></slot>
     </div>
   </div>

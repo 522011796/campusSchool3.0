@@ -30,7 +30,7 @@
     "key": "logisticsInfo"
   },
   {
-    "name": "大数据中心",
+    "name": "数据中心",
     "show": true,
     "key": "dataInfo"
   },

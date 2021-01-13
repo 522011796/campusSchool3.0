@@ -33,17 +33,17 @@ a{
   border-bottom: 1px solid #dcdee2;
   box-shadow: 0 4px 4px rgba(0,21,41,.08);
   transition: all .2s ease-in-out;
-  background: rgb(140, 197, 255);
-  background-image: linear-gradient(to right, rgb(179, 216, 255) , rgb(140, 197, 255));
+  background: #00CDFF;
+  background-image: linear-gradient(to right, #3C8EBB , #00CDFF);
 }
 .moon-left-menu{
   border-right: 1px solid #dcdee2;
   /*overflow-y: auto;*/
   float: left;
-  box-shadow: 1px 0px 4px rgba(0,21,41,.08);
+  box-shadow: 2px 0px 4px #bbbbbb;
   position: relative;
-  background: rgb(140, 197, 2555);
-  background-image: linear-gradient(to bottom, rgb(179, 216, 255) , rgb(140, 197, 255));
+  background: #E6E6E6;
+  background-image: linear-gradient(to bottom, #E6E6E6 , #E6E6E6);
   padding: 10px 10px;
   position: relative;
   transition: all .2s ease-in-out;
@@ -200,6 +200,9 @@ a{
 }
 .margin-right-10{
   margin-right: 10px;
+}
+.margin-right-20{
+  margin-right: 20px;
 }
 .margin-left-10{
   margin-left: 10px;
@@ -406,15 +409,22 @@ ul{
   bottom: 0;
   left: 0;
   overflow: hidden;
-  margin: 0;
+  margin: 0 auto;
 }
 .el-drawer:focus {
   outline: none;
 }
 .custom-user-popover{
   padding: 0px 0px;
-  background: rgba(236, 245, 255, 1);
+  background: #077DBA;
   font-size: 12px;
+  filter:alpha(opacity=85);
+  -moz-opacity:0.85;
+  -khtml-opacity: 0.85;
+  opacity: 0.85;
+}
+.custom-more-popover{
+  top: -20px !important;
 }
 .custom-table-popover{
   background: rgba(48, 49, 51, 0.8);
@@ -445,6 +455,7 @@ ul{
   position: absolute;
   top: 0;
   bottom: 0;
+  margin-left: 0.5px;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -459,6 +470,7 @@ ul{
   -ms-flex-direction: column;
   flex-direction: column;
   overflow-y: auto;
+  box-shadow: 1px 0 3px #bbbbbb;
 }
 .layout-left-menu-tag{
   display: inline-block;
@@ -518,6 +530,10 @@ ul{
   line-height: 60px;
   background: #FFFFFF;
   padding: 0px 10px;
+  box-shadow: 0 0 4px #bbbbbb;
+}
+.layout-bottom-tab{
+  box-shadow: 0 0 4px #bbbbbb;
 }
 .ql-container.ql-snow .ql-editor {
   min-height: 300px;

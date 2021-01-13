@@ -16,7 +16,8 @@
           popper-class="custom-user-popover"
           placement="bottom"
           transition="zoom-in-center"
-          trigger="hover">
+          trigger="hover"
+          :visible-arrow="false">
 
           <div>
             <div class="moon-top-user-info-container">
@@ -77,34 +78,36 @@
       <div class="moon-top-middle-menu">
         <div class="moon-top-middle-menu-title">
           <div style="display: inline-block" :style="topWidth">
-            <span class="moon-top-middle-menu-item">
+            <span class="moon-top-middle-menu-item margin-right-20">
               <i class="item fa fa-th" style="font-size: 18px" @click="showMenuList($event)"></i>
             </span>
 
 
-            <span class="moon-top-middle-menu-item-text" v-for="(item, index) in topMenuList" :key="index" v-if="index <= widthIndex && item.show == true" @click="handleTopSelect($event, item)">
+            <span class="moon-top-middle-menu-item-text" v-for="(item, index) in topMenuList" :key="index" v-if="index < widthIndex && item.show == true" @click="handleTopSelect($event, item)">
               <label class="item" :class="activeTop == item.key ? 'moon-top-middle-menu-item-text-active' : ''">{{item.name}}</label>
             </span>
 
             <el-popover
               v-if="topMenuList.length > widthIndex"
-              popper-class="custom-user-popover"
+              popper-class="custom-user-popover custom-more-popover"
               placement="bottom"
-              trigger="click">
+              trigger="click"
+              :visible-arrow="false"
+              :popper-options="{ boundariesElement: '.moon-top-menu', gpuAcceleration: true }">
               <div>
                 <ul class="pop-more">
-                  <li v-for="(item, index) in topMenuList" :key="index" v-if="index > widthIndex" @click="handleTopSelect($event, item)">
+                  <li v-for="(item, index) in topMenuList" :key="index" v-if="index >= widthIndex" @click="handleTopSelect($event, item)">
                     {{item.name}}
                   </li>
                 </ul>
               </div>
 
-              <span slot="reference" class="moon-top-middle-menu-item-text el-dropdown-link item" style="cursor: default">
+              <span slot="reference" class="moon-top-middle-menu-item-text-more el-dropdown-link item" style="cursor: default">
                 {{$t('更多')}} <i class="el-icon-arrow-down"></i>
               </span>
             </el-popover>
 
-            <span class="moon-top-middle-menu-item-text">
+            <span class="moon-top-middle-menu-item-text-plus">
               <label class="item">
                 <i class="fa fa-plus-circle"></i>
               </label>
@@ -293,14 +296,15 @@
           :with-header="false"
           :modal="false"
           :close-on-press-escape="false"
-          :wrapperClosable="true">
+          :wrapperClosable="true"
+          :style="topDrawerWidth">
 
           <div class="drawer-main-menu">
             <i class="fa fa-close drawer-menu-close" @click="closeDrawer"></i>
             <div class="drawer-main-menu-left text-center" :style="drawerMenuHeight">
               <div class="drawer-main-menu-left-container">
                 <!--drawer-main-menu-left-container-item-active-->
-                <div class="drawer-main-menu-left-container-item" :class="activeTop == item.key ? 'moon-top-middle-menu-item-text-active' : ''" v-for="(item, index) in topMenuAllList" :key="index" @click="handleTopSelect($event, item)">
+                <div class="drawer-main-menu-left-container-item" :class="activeTop == item.key ? 'moon-top-middle-menu-item-text-drawer-active' : ''" v-for="(item, index) in topMenuAllList" :key="index" @click="handleTopSelect($event, item)">
                   <i :class="item.icon"></i>
                   <span>{{item.name}}</span>
                 </div>
@@ -551,14 +555,14 @@
 
         <div class="moon-left-menu" :style="leftHeight">
           <div :style="leftItemHeight">
-            <div class="moon-left-menu-item" v-for="(item, index) in sliderMenuList" :key="item.id">
+            <div :class="item.toggle ? 'moon-left-menu-item' : 'moon-left-menu-item-no-toggle'" v-for="(item, index) in sliderMenuList" :key="item.id">
               <div>
                 <el-row @click.native="toggleMenu($event, item)">
                   <el-col :span="22">
-              <span class="title">
-                <i :class="item.icon"></i>
-                {{item.name}}
-              </span>
+                    <span class="title">
+                      <i :class="item.icon"></i>
+                      {{item.name}}
+                    </span>
                   </el-col>
                   <el-col :span="2">
                     <div class="icon">
@@ -605,7 +609,7 @@
 
               <div>
                 <div class="moon-right-pop-menu" :style="popMenuHeight">
-                  <div class="moon-left-menu-item" v-for="(item, index) in sliderMenuList" :key="item.id">
+                  <div :class="item.toggle ? 'moon-left-menu-item' : 'moon-left-menu-item-no-toggle'" v-for="(item, index) in sliderMenuList" :key="item.id">
                     <div>
                       <el-row @click.native="toggleMenu($event, item)">
                         <el-col :span="22">
@@ -689,23 +693,23 @@
           <div class="text-center color-disabeld margin-bottom-10">
             <div>{{$t("课程安排")}}</div>
             <div class="font-size-12 color-disabeld margin-top-5">
-              <span>2011-11-11</span>
+              <span>{{defaultCourseDay}}</span>
             </div>
           </div>
           <el-timeline>
-            <el-timeline-item placement="top" v-for="(item, index) in defaultCourseList" :key="key" :timestamp="`第${item.section}节`">
+            <el-timeline-item placement="top" v-for="(item, index) in defaultCourseList" :key="index" :timestamp="`第${item.section}节`">
               <el-card :body-style="{padding: '10px'}">
                 <div class="color-muted">
                   <i class="fa fa-clock-o"></i>
-                  <span>9:00 - 10:00</span>
+                  <span>{{item.sectionInfo ? item.sectionInfo.start_time : ''}}</span>
                 </div>
                 <div class="color-muted margin-top-5">
                   <i class="fa fa-cube"></i>
-                  <span>课程课程课程课程课程</span>
+                  <span>{{item.course_name}}</span>
                 </div>
                 <div class="color-muted margin-top-5">
                   <i class="fa fa-home"></i>
-                  <span>班级班级班级班级班级</span>
+                  <span>{{item.class_name}}</span>
                 </div>
               </el-card>
             </el-timeline-item>
@@ -783,7 +787,11 @@
         uploadFileListUrl: common.upload_imglist_file,
         calendarData: [],
         defaultCourseList: [],
+        defaultCourseDay: '',
         topWidth: {
+          width: '0px'
+        },
+        topDrawerWidth: {
           width: '0px'
         },
         leftHeight: {
@@ -850,7 +858,8 @@
       this.screenWidth = document.body.clientWidth;
       let width = document.querySelector(".moon-top-middle-menu-title").clientWidth;
       this.topWidth.width = width - 400 + 'px';
-      this.widthIndex = (width - 400) / 150;
+      this.topDrawerWidth.width = width + 'px';
+      this.widthIndex = (width - 400) / 100 - 2;
       // 监听窗口大小
       window.onresize = () => {
         if (document.querySelector(".moon-top-middle-menu-title")){
@@ -1157,10 +1166,12 @@
       closeDrawerDialog(event){
         this.msgType = '';
         this.auditObjectItem = {};
+        this.defaultCourseDay = '';
         this.drawerVisible = event;
         this.drawerCourseVisible = event;
       },
       cancelDrawDialog(){
+        this.defaultCourseDay = '';
         this.drawerVisible = false;
         this.drawerCourseVisible = false;
       },
@@ -1332,6 +1343,7 @@
         });
       },
       handeCourse(){
+        let currentDay = this.$moment(new Date()).format("YYYY-MM-DD");
         setTimeout(()=>{
           this.$nextTick(() => {
             if (process.client){
@@ -1342,6 +1354,8 @@
               prevBtn.addEventListener("click", e => {
                 this.courseYear = this.$moment(this.calendarValue).format("YYYY");
                 this.courseMonth = this.$moment(this.calendarValue).format("MM");
+                this.defaultCourseDay = this.$moment(this.calendarValue).format("YYYY-MM-01");
+                this.initCourseList(this.$moment(this.calendarValue).format("YYYY-MM-01"));
                 this.initCourseDate(this.loginUserId);
               });
 
@@ -1352,6 +1366,8 @@
               nextBtn.addEventListener("click", () => {
                 this.courseYear = this.$moment(this.calendarValue).format("YYYY");
                 this.courseMonth = this.$moment(this.calendarValue).format("MM");
+                this.defaultCourseDay = this.$moment(this.calendarValue).format("YYYY-MM-01");
+                this.initCourseList(this.$moment(this.calendarValue).format("YYYY-MM-01"));
                 this.initCourseDate(this.loginUserId);
               });
 
@@ -1362,19 +1378,29 @@
               todayBtn.addEventListener("click", () => {
                 this.courseYear = this.$moment(this.calendarValue).format("YYYY");
                 this.courseMonth = this.$moment(this.calendarValue).format("MM");
+                this.defaultCourseDay = this.$moment(this.calendarValue).format("YYYY-MM-DD");
+                this.initCourseList(currentDay);
                 this.initCourseDate(this.loginUserId);
               });
             }
           });
         },1000);
+
+        this.defaultCourseDay = currentDay;
+        this.initCourseList(currentDay);
+        this.initCourseDate(this.loginUserId);
         this.drawerCourseVisible = true;
       },
       handleDays(event, day){
+        this.defaultCourseDay = day;
+        this.initCourseList(day);
+      },
+      initCourseList(day){
         let params = {
           teacherId: this.loginUserId,
           busiTime: day
         };
-        this.$axios.get(common.course_static_date, {params: params}).then(res => {
+        this.$axios.get(common.course_static_course_list, {params: params}).then(res => {
           if (res.data.data){
             this.defaultCourseList = res.data.data;
           }
@@ -1499,10 +1525,33 @@
   position: relative;
   font-size: 15px;
   color: #FFFFFF;
-  margin-left: 20px;
+  margin-left: 0px;
   opacity: 1;
   height: 60px;
   line-height: 60px;
+  width: 90px;
+  display: inline-block;
+}
+.moon-top-middle-menu-item-text-more{
+  position: relative;
+  font-size: 15px;
+  color: #FFFFFF;
+  margin-left: 0px;
+  opacity: 1;
+  height: 60px;
+  line-height: 60px;
+  width: 60px;
+  display: inline-block;
+}
+.moon-top-middle-menu-item-text-plus{
+  position: relative;
+  font-size: 15px;
+  color: #FFFFFF;
+  margin-left: 0px;
+  opacity: 1;
+  height: 60px;
+  line-height: 60px;
+  width: 30px;
   display: inline-block;
 }
 .moon-top-middle-menu-item-text-active:after {
@@ -1510,10 +1559,20 @@
   display: inline-block;
   position: absolute;
   bottom: 0px;
-  left: calc(50% - 20px);
-  width: 40px;
+  left: calc(50% - 45px);
+  width: 60px;
   height: 3px;
-  background: #409eff;
+  background: #E6A23C;
+}
+.moon-top-middle-menu-item-text-drawer-active:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  bottom: 0px;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 3px;
+  background: #E6A23C;
 }
 .moon-top-middle-menu-item .item{
   padding: 10px 5px;
@@ -1523,7 +1582,17 @@
   cursor: default;
 }
 .moon-left-menu-item{
-  background: rgba(217, 236, 255, 0.3);
+  background: #077DBA;
+  padding: 12px 10px 10px 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  filter:alpha(opacity=75);
+  -moz-opacity:0.75;
+  -khtml-opacity: 0.75;
+  opacity: 0.75;
+}
+.moon-left-menu-item-no-toggle{
+  background: #A6D4EB;
   padding: 12px 10px 10px 10px;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -1553,14 +1622,16 @@
 }
 .moon-left-menu-sub-item ul li{
   padding: 10px 0px;
-  color: #FFFFFF;
+  color: #dddddd;
   cursor: default;
 }
 .moon-left-menu-sub-item ul li:hover{
   background: rgba(236, 245, 255, 0.2);
 }
 .moon-left-menu-sub-item-active{
-  background: rgba(236, 245, 255, 0.3);
+  color: #444444 !important;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.5);
 }
 .icon-class-down{
   transform: rotate(0deg);
@@ -1571,6 +1642,7 @@
   transition: all .2s ease-in-out;
 }
 .icon-class-left{
+  color: #dddddd;
   transform: rotate(0deg);
 }
 .icon-class-right{
@@ -1671,12 +1743,12 @@
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  background-color: #fff;
+  background-color: #EBEEF5;
   border-radius: 0 4px 4px 0;
   border: 1px solid #e5e5e5;
   border-left-color: transparent;
   opacity: 1;
-  transition-property: background-color,opacity;
+  /*transition-property: background-color,opacity;*/
   transition-duration: 200ms;
   transition-timing-function: ease-in-out;
   color: #dddddd;
@@ -1764,6 +1836,7 @@
 }
 .moon-top-user-info-container{
   padding: 10px 15px;
+  color: #fefefe;
 }
 .moon-top-user-info-item{
   padding:5px 0px;
@@ -1813,14 +1886,20 @@
   height: 30px;
   line-height: 30px;
   padding: 5px 10px;
-  color: #606266;
+  color: #fefefe;
   font-size: 14px;
   cursor: default;
+  text-align: center;
 }
 .pop-more li:hover{
   height: 30px;
   line-height: 30px;
-  background: rgb(244, 244, 245);
+  background: #FFFFFF;
+  filter:alpha(opacity=75);
+  -moz-opacity:0.75;
+  -khtml-opacity: 0.75;
+  opacity: 0.75;
+  color: #444444;
 }
 .moon-tips{
   line-height: 10px !important;
