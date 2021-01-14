@@ -55,7 +55,7 @@ let FormValidate = (function () {
         }
       },
       // 数字验证0-999
-      validate0_100Number (rule, value, callback) {
+      validate0_999Number (rule, value, callback) {
         if (value && value != ""){
           n0_100_Reg.test(value) ? callback() : callback(new Error('0-999正整数'))
         }else {

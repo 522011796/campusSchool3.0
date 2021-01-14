@@ -392,4 +392,10 @@ export const common = {
 
   course_search_list: '/proxy/course/schedule/list',//课程表,
 
+  course_plan_list: '/proxy/course/course/offer/page',//任课安排表,
+  course_plan_list_delete: '/proxy/course/course/offer/delete',//任课安排表--删除,
+  major_all_list: '/proxy/edu/edu/major/list',//任课安排表--专业
+  course_plan_add: '/proxy/course/course/offer/add',//任课安排表--添加
+  course_plan_change_teacher: '/proxy/course/course/offer/changeTeacher',//任课安排表--修改老师
+
 };

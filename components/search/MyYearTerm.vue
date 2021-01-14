@@ -1,6 +1,6 @@
 <template>
   <span>
-    <el-select v-model="selectYearValue" :style="widthYearClass" :placeholder="$t('请选择学年')" :size="size" @change="selectYearChange">
+    <el-select ref="commSelYear" v-model="selectYearValue" :style="widthYearClass" :placeholder="$t('请选择学年')" :size="size" @change="selectYearChange">
       <el-option
         v-for="item in currentYearList"
         :key="item.value"
@@ -9,7 +9,7 @@
       </el-option>
     </el-select>
 
-    <el-select v-model="selectTermValue" :style="widthTermClass" :placeholder="$t('请选择学期')" :size="size" @change="selectTermChange">
+    <el-select ref="commSelTerm" v-model="selectTermValue" :style="widthTermClass" :placeholder="$t('请选择学期')" :size="size" @change="selectTermChange">
       <el-option
         v-for="item in currentTermList"
         :key="item.value"
@@ -18,7 +18,7 @@
       </el-option>
     </el-select>
 
-    <el-select v-model="selectWeekValue" :clearable="clearableWeek" :style="widthWeekClass" :placeholder="$t('请选择学周')" :size="size" @change="selectWeekChange">
+    <el-select ref="commSelWeek" v-if="showWeek" v-model="selectWeekValue" :clearable="clearableWeek" :style="widthWeekClass" :placeholder="$t('请选择学周')" :size="size" @change="selectWeekChange">
       <el-option
         v-for="item in currentWeekList"
         :key="item.value"
@@ -60,6 +60,10 @@
       },
       showDefaultWeek: {
         default: false,
+        type: Boolean
+      },
+      showWeek: {
+        default: true,
         type: Boolean
       }
     },

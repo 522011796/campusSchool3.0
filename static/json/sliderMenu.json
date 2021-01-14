@@ -340,13 +340,6 @@
         "key": "teach",
         "list": [
           {
-            "name": "我的课表",
-            "key": "myTable",
-            "id": 2101,
-            "top": "teachInfo",
-            "path": "/teachInfo/teach/myTable"
-          },
-          {
             "name": "查询课表",
             "key": "searchTable",
             "id": 2102,
