@@ -379,6 +379,9 @@ export default {
               value: i + 1
             });
           }
+          if (currentWeekData.length > 0){
+            this.currentWeekData = currentWeekData[0].value;
+          }
           this.currentWeekList = currentWeekData;
         }
       });

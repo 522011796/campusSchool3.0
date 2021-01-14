@@ -12,7 +12,7 @@ export default {
           { validator: rules.FormValidate.Form().validatenall1_20Reg, trigger: 'blur' }
         ],
         credit: [
-          { required: false, validator: rules.FormValidate.Form().validateNumber, trigger: 'blur' }
+          { required: false, validator: rules.FormValidate.Form().validate0_100Number, trigger: 'blur' }
         ],
         teachType: [
           { required: true, message: this.$t("请选择信息"), trigger: 'change' }

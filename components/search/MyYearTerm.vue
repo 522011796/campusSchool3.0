@@ -57,6 +57,10 @@
       clearableWeek: {
         default: false,
         type: Boolean
+      },
+      showDefaultWeek: {
+        default: false,
+        type: Boolean
       }
     },
     computed: {
@@ -83,7 +87,10 @@
         await this.initCurrentWeekList(this.currentYearData, this.currentTermData);
         this.selectYearValue = this.currentYearData;
         this.selectTermValue = this.currentTermData;
-        this.selectWeekValue = this.currentWeekData;
+
+        if (this.showDefaultWeek == true){
+          this.selectWeekValue = this.currentWeekData;
+        }
       },
       async selectYearChange(data) {
         this.selectYearValue = data;

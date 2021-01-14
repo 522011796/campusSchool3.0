@@ -390,4 +390,6 @@ export const common = {
   course_mamage_import: '/proxy/course/course/mulImport/check',//课程导入,
   course_mamage_file: '/proxy/course/course/download',//课程导入模版,
 
+  course_search_list: '/proxy/course/schedule/list',//课程表,
+
 };

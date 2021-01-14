@@ -26,6 +26,8 @@ let rightnNf2_Reg = /^([\+]?(([1-9]\d*)|(0)))([.]\d{0,2})?$/;
 let mnf2_Reg = /(^(-)[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(-)(0){1}$)|(^(-)[0-9]\.[0-9]([0-9])?$)/;
 //0-100
 let n0_100_Reg = /^([0-9]{1,2}|100)$/;
+//0-999
+let n0_999_Reg = /^([0-9]{1,3}|999)$/;
 //ip
 let ip_Reg = /^((([01]?[0-9]{1,2})|(2[0-4][0-9])|(25[0-5]))[.]){3}(([0-1]?[0-9]{1,2})|(2[0-4][0-9])|(25[0-5]))$/;
 
@@ -48,6 +50,14 @@ let FormValidate = (function () {
       validate0_100Number (rule, value, callback) {
         if (value && value != ""){
           n0_100_Reg.test(value) ? callback() : callback(new Error('0-100正整数'))
+        }else {
+          callback();
+        }
+      },
+      // 数字验证0-999
+      validate0_100Number (rule, value, callback) {
+        if (value && value != ""){
+          n0_100_Reg.test(value) ? callback() : callback(new Error('0-999正整数'))
         }else {
           callback();
         }
