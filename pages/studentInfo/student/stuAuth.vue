@@ -540,7 +540,7 @@
         this.uploadProcess = res.desc;
 
         if (res.code == 200){
-          this.uploadResult = res.data;
+          this.uploadResult = res.data ? res.data : [res.desc];
         }else {
           if (res.data){
             this.uploadResult = res.data;

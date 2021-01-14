@@ -383,4 +383,11 @@ export const common = {
   course_static_date: '/proxy/course/schedule/stat/by/teacher',//课表统计
   course_static_course_list: '/proxy/course/schedule/list/by/teacher',//课表列表
 
+  course_mamage_page: '/proxy/course/course/page',//课程分页
+  course_mamage_add: '/proxy/course/course/add',//课程添加
+  course_mamage_edit: '/proxy/course/course/edit',//课程编辑
+  course_mamage_del: '/proxy/course/course/delete',//课程删除
+  course_mamage_import: '/proxy/course/course/mulImport/check',//课程导入,
+  course_mamage_file: '/proxy/course/course/download',//课程导入模版,
+
 };

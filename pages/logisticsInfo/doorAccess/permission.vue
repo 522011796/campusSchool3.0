@@ -654,7 +654,7 @@
               statusList: [],
               controlDeviceList: data.deviceList,
               lineDeviceList: data.deviceList,
-              timeStr: data.timeStr != null ? JSON.parse(data.timeStr) : [],
+              timeStr: data.timeStr != null ? JSON.parse(data.timeStr) : [{t1: '00:00', t2: '00:00'}],
               groupId: row.id
             };
             for (let i = 0; i < res.data.data.adminList.length; i++){

@@ -130,6 +130,11 @@ export default {
         'overflow-y': 'auto',
         'overflow-x': 'hidden'
       },
+      divHeight7: {
+        'height': '',
+        'overflow-y': 'auto',
+        'overflow-x': 'hidden'
+      },
       drawHeight: {
         'height': ''
       }
@@ -158,6 +163,7 @@ export default {
         this.tableMiddleHeight.height = window.innerHeight - 335 + 'px';
         this.divHeight["max-height"] = window.innerHeight - 205 + 'px';
         this.divHeight2["max-height"] = window.innerHeight - 235 + 'px';
+        this.divHeight7["max-height"] = window.innerHeight - 240 + 'px';
         this.divHeight3.height = window.innerHeight - 235 + 'px';
         this.divHeight4.height = window.innerHeight - 125 + 'px';
         this.divHeight5.height = window.innerHeight - 140 + 'px';
