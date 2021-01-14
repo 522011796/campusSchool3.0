@@ -148,7 +148,7 @@
       </div>
     </dialog-normal>
 
-    <drawer-right @changeDrawer="closeDrawerDialog" :visible="drawerVisible" accept=".xls,.xlsx" :loading="drawerLoading" :hide-footer="true" size="400px" :title="$t('导入学生')" :action="uploadAction" :download-file="uploadFile" :result="uploadResult" :process="uploadProcess" @right-close="cancelDrawDialog" @success="uploadSuccess" @error="uploadError">
+    <drawer-right @changeDrawer="closeDrawerDialog" :visible="drawerVisible" accept=".xls,.xlsx" :data="{termId: selTerm, yearId: selYear}" :loading="drawerLoading" :hide-footer="true" size="400px" :title="$t('导入任课安排')" :action="uploadAction" :download-file="uploadFile" :result="uploadResult" :process="uploadProcess" @right-close="cancelDrawDialog" @success="uploadSuccess" @error="uploadError">
 
     </drawer-right>
 
@@ -202,8 +202,8 @@
         subTitle: '',
         uploadProcess: '',
         uploadResult: [],
-        uploadFile: common.teacher_file + "?fileName=" + encodeURIComponent(this.$t("学生导入模板20180130_v2.xls")),
-        uploadAction: common.student_upload,
+        uploadFile: common.course_plan_change_export_file,
+        uploadAction: common.course_plan_import,
         loopTimer: null,
         resultList: [],
         selYear: '',
@@ -560,7 +560,7 @@
         clearTimeout(this.loopTimer);
         let params = {
           uuid: uuid,
-          action: 2
+          action: 5
         };
         this.$axios.get(common.upload_loop_result, {params: params}).then(res => {
           let result = "";

@@ -397,5 +397,7 @@ export const common = {
   major_all_list: '/proxy/edu/edu/major/list',//任课安排表--专业
   course_plan_add: '/proxy/course/course/offer/add',//任课安排表--添加
   course_plan_change_teacher: '/proxy/course/course/offer/changeTeacher',//任课安排表--修改老师
+  course_plan_change_export_file: '/proxy/course/course/offer/download',//任课安排表--导出文件
+  course_plan_import: '/proxy/course/course/offer/import',//任课安排表--导入
 
 };

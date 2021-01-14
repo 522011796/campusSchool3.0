@@ -162,7 +162,7 @@
           <el-table-column
             align="center"
             prop="level_type"
-            :label="$t('周天')">
+            :label="$t('周日')">
             <template slot-scope="scope">
               <div class="font-size-12">
                 <div>
