@@ -1,5 +1,12 @@
 [
   {
+    "name": "indexBak",
+    "path": "/indexBak",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/indexBak.vue",
+    "chunkName": "pages/indexBak",
+    "_name": "_c404ff16"
+  },
+  {
     "name": "login",
     "path": "/login",
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/login.vue",

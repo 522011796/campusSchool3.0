@@ -782,6 +782,27 @@ ul{
    border: 1px solid #DCDFE6;
   text-align: center;
 }
+.custom-table-white{
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #DCDFE6;
+}
+.custom-table-white tr{
+  height: 35px;
+  line-height: 35px;
+}
+.custom-table-white tr th{
+  background: #FFFFFF;
+  color: #FFFFFF;
+  border: 1px solid #DCDFE6;
+  text-align: center;
+}
+.custom-table-white tr td{
+  background: #FFFFFF;
+  color: #606266;
+  border: 1px solid #DCDFE6;
+  text-align: center;
+}
 /***自定义radio组件颜色***/
 /*.el-radio__input.is-checked + .el-radio__label {
   color: #fd7624 !important;

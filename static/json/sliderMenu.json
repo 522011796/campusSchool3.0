@@ -292,6 +292,13 @@
             "id": 1002,
             "top": "basicInfo",
             "path": "/basicInfo/appAuth"
+          },
+          {
+            "name": "认证管理",
+            "key": "stuAuth",
+            "id": 3502,
+            "top": "basicInfo",
+            "path": "/basicInfo/stuAuth"
           }
         ]
       }
@@ -382,34 +389,6 @@
             "id": 2201,
             "top": "teachInfo",
             "path": "/teachInfo/teacher/empower"
-          },
-          {
-            "name": "认证管理",
-            "key": "terAuth",
-            "id": 2202,
-            "top": "teachInfo",
-            "path": "/teachInfo/teacher/auth"
-          },
-          {
-            "name": "账号信息",
-            "key": "terAccount",
-            "id": 2203,
-            "top": "teachInfo",
-            "path": "/teachInfo/teacher/account"
-          },
-          {
-            "name": "其他信息",
-            "key": "terOther",
-            "id": 2204,
-            "top": "teachInfo",
-            "path": "/teachInfo/teacher/other"
-          },
-          {
-            "name": "陌生人记录",
-            "key": "terStranger",
-            "id": 2205,
-            "top": "teachInfo",
-            "path": "/teachInfo/teacher/stranger"
           }
         ]
       }
@@ -597,13 +576,6 @@
             "id": 3501,
             "top": "studentInfo",
             "path": "/studentInfo/student/manage"
-          },
-          {
-            "name": "认证管理",
-            "key": "stuAuth",
-            "id": 3502,
-            "top": "studentInfo",
-            "path": "/studentInfo/student/stuAuth"
           },
           {
             "name": "学生报警",

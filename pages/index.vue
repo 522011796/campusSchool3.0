@@ -1,534 +1,226 @@
 <template>
   <div class="container">
-    <el-card :body-style="{padding: '10px', background: '#fefefe'}">
-      <div class="layout-inline">
-        <!--<el-button-group class="layout-item">
-          <el-button type="info" size="small">{{$t("班级")}}</el-button>
-          <el-button type="" size="small">{{$t("本人")}}</el-button>
-        </el-button-group>
-        |-->
-        <el-button-group class="layout-item">
-          <el-button type="info" size="small">{{$t("周")}}</el-button>
-          <el-button type="" size="small">{{$t("年")}}</el-button>
-          <el-button type="" size="small">{{$t("学期")}}</el-button>
-        </el-button-group>
-        |
-        <my-select size="small" class="width-150 layout-item" :options="classList" :placeholder="$t('请选择班级')"></my-select>
-      </div>
-    </el-card>
+    <div>
+      <el-row :gutter="16">
+        <el-col :span="8">
+          <el-card :body-style="{padding: '0px'}" style="height: 260px">
+            <div class="padding-lr-10 padding-tb-10 color-muted">
+              <el-row>
+                <el-col :span="12">
+                  <span class="font-size-25 color-grand">0</span>
+                  <span>{{$t("人")}}</span>
+                </el-col>
+                <el-col :span="12" class="text-right">
+                  <my-cascader ref="SelectorBuild" width-style="180" :clearable="true" size="small" :sel-value="collegeData" type="1" sub-type="4" @change="handleCascaderChange($event,1)"></my-cascader>
+                </el-col>
+              </el-row>
+            </div>
+            <div class="top-content">
 
-    <div class="margin-top-20">
-      <el-row :gutter="8">
-        <el-col :span="18">
-          <div class="color-disabeld">
-            <i class="fa fa-mortar-board"></i>
-            <span>{{$t("学生班级概况")}}</span>
-          </div>
-          <div class="margin-top-5">
-            <el-card>
-              <div>
+            </div>
+            <div class="bottom-content">
+              <div class="padding-lr-10 color-muted">
                 <el-row>
-                  <el-col :span="8">
-                    <div class="pull-left">
-                      <div class="color-disabeld">
-                        <span>{{$t("课堂统计")}}</span>
-                      </div>
-                      <div class="color-muted font-size-12 margin-top-5">
-                        <span>{{$t("出勤率")}}</span>
-                        <span>0%</span>
-                      </div>
-                      <div class="font-size-12 color-disabeld margin-top-10">
-                        <i class="fa fa-user"></i>
-                        <span>{{$t("人数")}}</span>
-                        <span>0</span>
-                      </div>
-                    </div>
-
-                    <el-progress class="pull-left margin-left-20" type="circle" :width="70" :percentage="0"></el-progress>
-                    <div class="moon-clearfix"></div>
+                  <el-col :span="12">
+                    <i class="fa fa-mortar-board"></i>
+                    <span>{{$t("学生人数")}}</span>
                   </el-col>
-                  <el-col :span="8">
-                    <div class="pull-left">
-                      <div class="color-disabeld">
-                        <span>{{$t("归寝统计")}}</span>
-                      </div>
-                      <div class="color-muted font-size-12 margin-top-5">
-                        <span>{{$t("归寝率")}}</span>
-                        <span>0%</span>
-                      </div>
-                      <div class="font-size-12 color-disabeld margin-top-10">
-                        <i class="fa fa-user"></i>
-                        <span>{{$t("人数")}}</span>
-                        <span>0</span>
-                      </div>
-                    </div>
-
-                    <el-progress class="pull-left margin-left-20" type="circle" :width="70" :percentage="0"></el-progress>
-                    <div class="moon-clearfix"></div>
-                  </el-col>
-                  <el-col :span="8">
-                    <div class="pull-left">
-                      <div class="color-disabeld">
-                        <span>{{$t("量化评比")}}</span>
-                      </div>
-                      <div class="color-muted font-size-12 margin-top-5">
-                        <span>{{$t("量化率")}}</span>
-                        <span>0%</span>
-                      </div>
-                      <div class="font-size-12 color-disabeld margin-top-10">
-                        <i class="fa fa-user"></i>
-                        <span>{{$t("人数")}}</span>
-                        <span>0</span>
-                      </div>
-                    </div>
-
-                    <el-progress class="pull-left margin-left-20" type="circle" :width="70" :percentage="0"></el-progress>
-                    <div class="moon-clearfix"></div>
+                  <el-col :span="12" class="text-right">
+                    <i class="fa fa-flag"></i>
                   </el-col>
                 </el-row>
               </div>
-            </el-card>
-          </div>
-
-          <div class="margin-top-20">
-            <el-row :gutter="16">
-              <el-col :span="8">
-                <el-card>
-                  <div class="color-disabeld">
-                    <span>{{$t("学分概况")}}</span>
-
-                    <span class="color-muted font-size-12 margin-top-5">
-                      <label>
-                        {{$t("达标率")}}
-                        0%
-                      </label>
-                    </span>
-                  </div>
-                  <div>
-                    <div class="color-muted font-size-12 margin-top-10">
-                      <div>
-                        {{$t("已达标")}}
-                        <span>0{{$t("人")}}</span>
-                      </div>
-                      <div>
-                        <el-progress :text-inside="true" :stroke-width="15" :percentage="50" color="#67C23A" :format="format"></el-progress>
-                      </div>
-                    </div>
-                    <div class="color-muted font-size-12 margin-top-10">
-                      <div>
-                        {{$t("未达标")}}
-                        <span>0{{$t("人")}}</span>
-                      </div>
-                      <div>
-                        <el-progress :text-inside="true" :stroke-width="15" :percentage="50" color="#e6a23c" :format="format"></el-progress>
-                      </div>
-                    </div>
-                  </div>
-                </el-card>
-              </el-col>
-              <el-col :span="8">
-                <el-card>
-                  <div class="color-disabeld">
-                    <span>{{$t("奖惩概况")}}</span>
-                    <!--<span class="color-muted font-size-12 margin-top-5">
-                      <label>
-                        {{$t("处分")}}
-                        0{{$t("人")}}
-                      </label>
-                    </span>-->
-                  </div>
-                  <div>
-                    <div class="color-muted font-size-12 margin-top-10">
-                      <div>
-                        {{$t("奖励")}}
-                        <span>0{{$t("人")}}</span>
-                      </div>
-                      <div>
-                        <el-progress :text-inside="true" :stroke-width="15" :percentage="50" color="#67C23A" :format="format"></el-progress>
-                      </div>
-                    </div>
-                    <div class="color-muted font-size-12 margin-top-10">
-                      <div>
-                        {{$t("处分")}}
-                        <span>0{{$t("人")}}</span>
-                      </div>
-                      <div>
-                        <el-progress :text-inside="true" :stroke-width="15" :percentage="50" color="#e6a23c" :format="format"></el-progress>
-                      </div>
-                    </div>
-                  </div>
-                </el-card>
-              </el-col>
-              <el-col :span="8">
-                <el-card>
-                  <div class="color-disabeld">
-                    <span>{{$t("宿舍内务概况")}}</span>
-                  </div>
-                  <div>
-                    <div class="color-muted font-size-12 margin-top-10">
-                      <div>
-                        {{$t("合格")}}
-                        <span>0</span>
-                      </div>
-                      <div>
-                        <el-progress :text-inside="true" :stroke-width="15" :percentage="50" color="#67C23A" :format="format"></el-progress>
-                      </div>
-                    </div>
-                    <div class="color-muted font-size-12 margin-top-10">
-                      <div>
-                        {{$t("不合格")}}
-                        <span>0</span>
-                      </div>
-                      <div>
-                        <el-progress :text-inside="true" :stroke-width="15" :percentage="50" color="#e6a23c" :format="format"></el-progress>
-                      </div>
-                    </div>
-                  </div>
-                </el-card>
-              </el-col>
-            </el-row>
-          </div>
-
-          <div class="margin-top-20">
-            <el-row :gutter="16">
-              <el-col :span="24">
-                <el-card :body-style="{padding: '10px'}">
-                  <div style="height: 270px" id="lineId">
-                    <div class="color-disabeld">
-                      <span>{{$t("课堂考勤趋势图")}}</span>
-                    </div>
-                    <line-chart chart-id="lineChartId"></line-chart>
-                  </div>
-                </el-card>
-              </el-col>
-            </el-row>
-          </div>
-
-          <div class="margin-top-20">
-            <el-row :gutter="16">
-              <el-col :span="8">
-                <div class="index_item">
-                  <el-card class="item">
-                    <div>
-                      <div class="color-disabeld">
-                        <span>{{$t("旷课")}}</span>
-                        <span>0{{$t("次")}}</span>
-                      </div>
-                      <div class="margin-top-5">
-                        <el-progress :text-inside="true" :stroke-width="15" :percentage="50" color="#f56c6c" :format="format"></el-progress>
-                      </div>
-                    </div>
-                    <div class="margin-top-5">
-                      <div class="color-disabeld">
-                        <span>{{$t("迟到")}}</span>
-                        <span>0{{$t("次")}}</span>
-                      </div>
-                      <div class="margin-top-5">
-                        <el-progress :text-inside="true" :stroke-width="15" :percentage="50" color="#E6A23C" :format="format"></el-progress>
-                      </div>
-                    </div>
-                    <div class="margin-top-5">
-                      <div class="color-disabeld">
-                        <span>{{$t("早退")}}</span>
-                        <span>0{{$t("次")}}</span>
-                      </div>
-                      <div class="margin-top-5">
-                        <el-progress :text-inside="true" :stroke-width="15" :percentage="50" color="#909399" :format="format"></el-progress>
-                      </div>
-                    </div>
-                    <div class="margin-top-5">
-                      <div class="color-disabeld">
-                        <span>{{$t("正常")}}</span>
-                        <span>0{{$t("次")}}</span>
-                      </div>
-                      <div class="margin-top-5">
-                        <el-progress :text-inside="true" :stroke-width="15" :percentage="50" color="#67C23A" :format="format"></el-progress>
-                      </div>
-                    </div>
-                  </el-card>
-                </div>
-              </el-col>
-              <el-col :span="8">
-                <div class="index_item">
-                  <el-card class="item">
-                    <div>
-                      <div class="color-disabeld">
-                        <span>{{$t("旷寝")}}</span>
-                        <span>0{{$t("次")}}</span>
-                      </div>
-                      <div class="margin-top-5">
-                        <el-progress :text-inside="true" :stroke-width="15" :percentage="50" color="#f56c6c" :format="format"></el-progress>
-                      </div>
-                    </div>
-                    <div class="margin-top-5">
-                      <div class="color-disabeld">
-                        <span>{{$t("晚归")}}</span>
-                        <span>0{{$t("次")}}</span>
-                      </div>
-                      <div class="margin-top-5">
-                        <el-progress :text-inside="true" :stroke-width="15" :percentage="50" color="#E6A23C" :format="format"></el-progress>
-                      </div>
-                    </div>
-                    <div class="margin-top-5">
-                      <div class="color-disabeld">
-                        <span>{{$t("超长未归")}}</span>
-                        <span>0{{$t("次")}}</span>
-                      </div>
-                      <div class="margin-top-5">
-                        <el-progress :text-inside="true" :stroke-width="15" :percentage="50" color="#909399" :format="format"></el-progress>
-                      </div>
-                    </div>
-                    <div class="margin-top-5">
-                      <div class="color-disabeld">
-                        <span>{{$t("正常")}}</span>
-                        <span>0{{$t("次")}}</span>
-                      </div>
-                      <div class="margin-top-5">
-                        <el-progress :text-inside="true" :stroke-width="15" :percentage="50" color="#67C23A" :format="format"></el-progress>
-                      </div>
-                    </div>
-                  </el-card>
-                </div>
-              </el-col>
-              <el-col :span="8" style="position: relative">
-                <div class="index_item">
-                  <el-card class="item_top">
-                    <el-row>
-                      <el-col :span="8">
-                        <div class="color-disabeld"><i class="fa fa-male color-disabeld margin-right-5"></i>{{$t("男")}}</div>
-                        <el-progress class="margin-left-20 margin-top-5" type="circle" :width="70" :percentage="0"></el-progress>
-                      </el-col>
-                      <el-col :span="8">
-                        <div class="color-disabeld"><i class="fa fa-female color-disabeld margin-right-5"></i>{{$t("女")}}</div>
-                        <el-progress class="margin-left-20 margin-top-5" type="circle" :width="70" :percentage="0"></el-progress>
-                      </el-col>
-                      <el-col :span="8">
-                        <div class="color-disabeld"><i class="fa fa-info-circle color-disabeld margin-right-5"></i>{{$t("未知")}}</div>
-                        <el-progress class="margin-left-20 margin-top-5" type="circle" :width="70" :percentage="0"></el-progress>
-                      </el-col>
-                    </el-row>
-                  </el-card>
-
-                  <el-card class="item_bottom" style="position: absolute; top: 149px; width: 100%">
-                    <div>
-                      <el-row>
-                        <el-col :span="8">
-                          <div class="color-disabeld">
-                            <i></i>
-                            <span>{{$t("总床位")}}</span>
-                          </div>
-                          <div class="color-muted margin-top-5">
-                            <span>0</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="8">
-                          <div class="color-disabeld">
-                            <span>{{$t("已安排床位")}}</span>
-                          </div>
-                          <div class="color-muted margin-top-5">
-                            <span>0</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="8">
-                          <div class="color-disabeld">
-                            <span>{{$t("空余床位")}}</span>
-                          </div>
-                          <div class="color-muted margin-top-5">
-                            <span>0</span>
-                          </div>
-                        </el-col>
-                      </el-row>
-                    </div>
-                  </el-card>
-                </div>
-              </el-col>
-            </el-row>
-          </div>
+            </div>
+          </el-card>
         </el-col>
-        <el-col :span="6">
-          <div class="color-disabeld">
-            <i class="fa fa-bar-chart"></i>
-            <span>{{$t("教师/校园概况")}}</span>
-            <el-tooltip class="item" effect="dark" placement="top-start" offset="-2">
-              <div slot="content">
-                <div>
-                  <span>{{$t("管理员账号查看数据为校园所有数据")}}</span>
-                </div>
-                <div>
-                  <span>{{$t("教师账号查看数据为自身所有数据")}}</span>
-                </div>
-              </div>
-              <i class="fa fa-warning color-warning"></i>
-            </el-tooltip>
-          </div>
-          <el-card class="margin-top-5">
-            <div class="color-disabeld">
-              <span>{{$t("设备概况")}}</span>
-            </div>
-            <el-row class="margin-top-5">
-              <el-col :span="12">
-                <div class="color-muted">
-                  <i class="fa fa-cube"></i>
-                  <span>{{$t("终端")}}</span>
-                  <span>0</span>
-                </div>
-                <div class="font-size-12 color-disabeld">
-                  <div class="margin-left-20 margin-top-5">
-                    <span>{{$t("在线")}}</span>
-                    <span>0</span>
-                  </div>
-                  <div class="margin-left-20 margin-top-5">
-                    <span>{{$t("离线")}}</span>
-                    <span>0</span>
-                  </div>
-                </div>
-              </el-col>
-              <el-col :span="12">
-                <div class="color-muted">
-                  <i class="fa fa-video-camera"></i>
-                  <span>{{$t("摄像头")}}</span>
-                  <span>0</span>
-                </div>
-                <div class="font-size-12 color-disabeld">
-                  <div class="margin-left-20 margin-top-5">
-                    <span>{{$t("在线")}}</span>
-                    <span>0</span>
-                  </div>
-                  <div class="margin-left-20 margin-top-5">
-                    <span>{{$t("离线")}}</span>
-                    <span>0</span>
-                  </div>
-                </div>
-              </el-col>
-            </el-row>
-            <el-row class="margin-top-10">
-              <el-col :span="12">
-                <div class="color-muted">
-                  <i class="fa fa-mobile-phone"></i>
-                  <span>{{$t("平板")}}</span>
-                  <span>0</span>
-                </div>
-                <div class="font-size-12 color-disabeld">
-                  <div class="margin-left-20 margin-top-5">
-                    <span>{{$t("在线")}}</span>
-                    <span>0</span>
-                  </div>
-                  <div class="margin-left-20 margin-top-5">
-                    <span>{{$t("离线")}}</span>
-                    <span>0</span>
-                  </div>
-                </div>
-              </el-col>
-              <el-col :span="12">
-                <div class="color-muted">
-                  <i class="fa fa-map"></i>
-                  <span>{{$t("门禁")}}</span>
-                  <span>0</span>
-                </div>
-                <div class="font-size-12 color-disabeld">
-                  <div class="margin-left-20 margin-top-5">
-                    <span>{{$t("在线")}}</span>
-                    <span>0</span>
-                  </div>
-                  <div class="margin-left-20 margin-top-5">
-                    <span>{{$t("离线")}}</span>
-                    <span>0</span>
-                  </div>
-                </div>
-              </el-col>
-            </el-row>
-          </el-card>
-
-          <el-card class="margin-top-20">
-            <div class="color-disabeld">
-              <span>{{$t("日常考勤")}}</span>
-            </div>
-            <div class="margin-top-20 color-muted">
-              <div class="color-disabeld">
-                <span>{{$t("总次数")}}</span>
-                <span>0{{$t("次")}}</span>
-              </div>
-              <div class="margin-top-5">
-                <el-progress :text-inside="true" :stroke-width="15" :percentage="50" color="#67C23A" :format="format"></el-progress>
-              </div>
-              <div class="color-disabeld margin-top-10">
-                <span>{{$t("总天数")}}</span>
-                <span>0{{$t("天")}}</span>
-              </div>
-              <div class="margin-top-5">
-                <el-progress :text-inside="true" :stroke-width="15" :percentage="50" color="#e6a23c" :format="format"></el-progress>
-              </div>
-            </div>
-          </el-card>
-
-          <el-card class="margin-top-20">
-            <div class="color-disabeld">
-              <span>{{$t("行政考勤")}}</span>
-              <span class="font-size-12 color-muted">
-                {{$t("出勤率")}}
-                <label>0%</label>
-              </span>
-            </div>
-            <div class="margin-top-20 color-muted">
+        <el-col :span="8">
+          <el-card :body-style="{padding: '0px'}" style="height: 260px">
+            <div class="padding-lr-10 padding-tb-10 color-muted">
               <el-row>
-                <el-col :span="6" class="font-size-12 text-center">
-                  <div>
-                    {{$t("迟到")}}
-                  </div>
-                  <el-progress type="circle" :width="70" :percentage="0" class="margin-top-5"></el-progress>
+                <el-col :span="12">
+                  <span class="font-size-25 color-grand">0</span>
+                  <span>{{$t("人")}}</span>
                 </el-col>
-                <el-col :span="6" class="font-size-12 text-center">
-                  <div>
-                    {{$t("请假")}}
-                  </div>
-                  <el-progress type="circle" :width="70" :percentage="0" class="margin-top-5"></el-progress>
+                <el-col :span="12" class="text-right">
+                  <my-cascader ref="SelectorBuild" width-style="180" :clearable="true" size="small" :sel-value="deptData" type="4" sub-type="4" @change="handleCascaderChange($event, 2)"></my-cascader>
                 </el-col>
-                <el-col :span="6" class="font-size-12 text-center">
-                  <div>
-                    {{$t("早退")}}
-                  </div>
-                  <el-progress type="circle" :width="70" :percentage="0" class="margin-top-5"></el-progress>
+              </el-row>
+            </div>
+            <div class="top-content">
+
+            </div>
+            <div class="bottom-content">
+              <div class="padding-lr-10 color-muted">
+                <el-row>
+                  <el-col :span="12">
+                    <i class="fa fa-user"></i>
+                    <span>{{$t("教工人数")}}</span>
+                  </el-col>
+                  <el-col :span="12" class="text-right">
+                    <i class="fa fa-flag"></i>
+                  </el-col>
+                </el-row>
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+        <el-col :span="8">
+          <el-card :body-style="{padding: '0px'}" style="height: 260px">
+            <div class="top-table-content color-muted">
+              <table class="custom-table-white margin-top-10">
+                <tr>
+                  <td width="30%">{{$t("系统版本")}}</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td width="30%">{{$t("当前学年")}}</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td width="30%">{{$t("当前学期")}}</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td width="30%">{{$t("当前学周")}}</td>
+                  <td></td>
+                </tr>
+              </table>
+            </div>
+            <div class="bottom-content">
+              <div class="padding-lr-10 color-muted">
+                <el-row>
+                  <el-col :span="12">
+                    <i class="fa fa-cog"></i>
+                    <span>{{$t("系统信息")}}</span>
+                  </el-col>
+                  <el-col :span="12" class="text-right">
+                    <i class="fa fa-flag"></i>
+                  </el-col>
+                </el-row>
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+      </el-row>
+    </div>
+
+    <div class="margin-top-20 custom-card-layout">
+      <el-row :gutter="16">
+        <el-col :span="16">
+          <el-card :body-style="{padding: '0px'}" style="height: 240px">
+            <div slot="header" class="moon-clearfix padding-tb-10 padding-lr-10">
+              <span class="color-muted" style="font-weight: bold;position: relative; top: 5px;">
+                <i class="fa fa-line-chart"></i>
+                <span>{{$t("院系统计")}}</span>
+              </span>
+              <span class="pull-right">
+                <my-cascader ref="SelectorBuild" width-style="180" :clearable="true" size="small" :sel-value="collegeTabData" type="1" sub-type="4" @change="handleCascaderChange($event,3)"></my-cascader>
+              </span>
+              <div class="moon-clearfix"></div>
+            </div>
+            <div class="color-muted padding-tb-10 padding-lr-10" style="position: relative">
+              <div class="item-attend-line-ver" style="position: absolute; left: 50%;top: 0px;"></div>
+
+              <el-row :gutter="16">
+                <el-col :span="12">
+                  <el-row :gutter="16">
+                    <el-col :span="8">
+                      <div class="item-attend-block">
+                        <div>{{$t("应出勤人次")}}</div>
+                        <div>
+                          <span class="font-size-25 color-grand">0</span>
+                        </div>
+                      </div>
+                    </el-col>
+                    <el-col :span="8">
+                      <div class="item-attend-block">
+                        <div>{{$t("已出勤人次")}}</div>
+                        <div>
+                          <span class="font-size-25 color-grand">0</span>
+                        </div>
+                      </div>
+                    </el-col>
+                    <el-col :span="8">
+                      <div class="item-attend-block">
+                        <div>{{$t("旷课人次")}}</div>
+                        <div>
+                          <span class="font-size-25 color-grand">0</span>
+                        </div>
+                      </div>
+                    </el-col>
+                  </el-row>
+                  <el-row :gutter="16" class="margin-top-10">
+                    <el-col :span="8">
+                      <div class="item-attend-block">
+                        <div>{{$t("迟到人次")}}</div>
+                        <div>
+                          <span class="font-size-25 color-grand">0</span>
+                        </div>
+                      </div>
+                    </el-col>
+                    <el-col :span="8">
+                      <div class="item-attend-block">
+                        <div>{{$t("早退人次")}}</div>
+                        <div>
+                          <span class="font-size-25 color-grand">0</span>
+                        </div>
+                      </div>
+                    </el-col>
+                  </el-row>
                 </el-col>
-                <el-col :span="6" class="font-size-12 text-center">
-                  <div>
-                    {{$t("旷工")}}
-                  </div>
-                  <el-progress type="circle" :width="70" :percentage="0" class="margin-top-5"></el-progress>
+                <el-col :span="12">
+                  <el-row :gutter="16">
+                    <el-col :span="8">
+                      <div class="item-attend-block">
+                        <div>{{$t("应归寝人次")}}</div>
+                        <div>
+                          <span class="font-size-25 color-grand">0</span>
+                        </div>
+                      </div>
+                    </el-col>
+                    <el-col :span="8">
+                      <div class="item-attend-block">
+                        <div>{{$t("已归寝人数")}}</div>
+                        <div>
+                          <span class="font-size-25 color-grand">0</span>
+                        </div>
+                      </div>
+                    </el-col>
+                    <el-col :span="8">
+                      <div class="item-attend-block">
+                        <div>{{$t("未归人数")}}</div>
+                        <div>
+                          <span class="font-size-25 color-grand">0</span>
+                        </div>
+                      </div>
+                    </el-col>
+                  </el-row>
+                  <el-row :gutter="16" class="margin-top-10">
+                    <el-col :span="8">
+                      <div class="item-attend-block">
+                        <div>{{$t("晚归人数")}}</div>
+                        <div>
+                          <span class="font-size-25 color-grand">0</span>
+                        </div>
+                      </div>
+                    </el-col>
+                    <el-col :span="8">
+                      <div class="item-attend-block">
+                        <div>{{$t("超长未归人数")}}</div>
+                        <div>
+                          <span class="font-size-25 color-grand">0</span>
+                        </div>
+                      </div>
+                    </el-col>
+                  </el-row>
                 </el-col>
               </el-row>
             </div>
           </el-card>
+        </el-col>
+        <el-col :span="8">
+          <el-card :body-style="{padding: '0px'}" style="height: 140px">
 
-          <el-card class="margin-top-20">
-            <div class="color-disabeld">
-              <span>{{$t("会议考勤")}}</span>
-              <span class="font-size-12 color-muted">
-                {{$t("出勤率")}}
-                <label>0%</label>
-              </span>
-            </div>
-            <div class="margin-top-20 color-muted">
-              <el-row>
-                <el-col :span="8" class="font-size-12 text-center">
-                  <div>
-                    {{$t("正常")}}
-                  </div>
-                  <el-progress type="circle" :width="70" :percentage="0" class="margin-top-5"></el-progress>
-                </el-col>
-                <el-col :span="8" class="font-size-12 text-center">
-                  <div>
-                    {{$t("请假")}}
-                  </div>
-                  <el-progress type="circle" :width="70" :percentage="0" class="margin-top-5"></el-progress>
-                </el-col>
-                <el-col :span="8" class="font-size-12 text-center">
-                  <div>
-                    {{$t("缺勤")}}
-                  </div>
-                  <el-progress type="circle" :width="70" :percentage="0" class="margin-top-5"></el-progress>
-                </el-col>
-              </el-row>
-            </div>
           </el-card>
         </el-col>
       </el-row>
@@ -539,14 +231,19 @@
 <script>
   import LineChart from "../components/charts/LineChart";
   import MySelect from "../components/MySelect";
+  import MyCascader from "../components/utils/select/MyCascader";
   export default {
     name: 'index',
-    components: {MySelect,LineChart},
+    components: {MyCascader, MySelect,LineChart},
     data(){
       return {
         userTypeList: [],
         classList: [],
         userType: 1,
+        collegeData: [],
+        collegeTabData: [],
+        deptData: [],
+        tableData: [],
         format(percentage) {
           return percentage === 100 ? '' : `${percentage}%`;
         }
@@ -559,6 +256,19 @@
       layoutInit(){
         this.$parent.$parent.layout = 'full';
       },
+      handleCascaderChange(data, type){
+        switch (type) {
+          case 1:
+            this.collegeData = data;
+            break;
+          case 2:
+            this.deptData = data;
+            break;
+          case 3:
+            this.collegeTabData = data;
+            break;
+        }
+      },
     }
   }
 </script>
@@ -567,17 +277,28 @@
 .container {
   padding: 10px 15px;
 }
-.index_item{
-  height: 220px;
-  position: relative;
+.top-content{
+  padding: 10px;
+  height: 150px;
 }
-.index_item .item{
-  height: 220px;
+.top-table-content{
+  padding: 10px;
+  height: 202px;
 }
-.index_item .item_top{
-  height: 130px;
+.bottom-content{
+  height: 35px;
+  line-height: 35px;
+  border-top: 1px solid #dddddd;
 }
-.index_item .item_bottom{
-  height: 70px;
+.item-attend-block{
+  background: #f2f2f2;
+  height: 100%;
+  padding: 10px 10px;
+  border-radius: 5px;
+}
+.item-attend-line-ver{
+  background: #f2f2f2;
+  height:220px;
+  width: 1px;
 }
 </style>

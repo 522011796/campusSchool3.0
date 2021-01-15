@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
+const _c404ff16 = () => interopDefault(import('../pages/indexBak.vue' /* webpackChunkName: "pages/indexBak" */))
 const _0b5d235e = () => interopDefault(import('../pages/login.vue' /* webpackChunkName: "pages/login" */))
 const _65df4c4b = () => interopDefault(import('../pages/basicInfo/appAuth.vue' /* webpackChunkName: "pages/basicInfo/appAuth" */))
 const _dfad4160 = () => interopDefault(import('../pages/basicInfo/build.vue' /* webpackChunkName: "pages/basicInfo/build" */))
@@ -163,6 +164,10 @@ export const routerOptions = {
   scrollBehavior,
 
   routes: [{
+    path: "/indexBak",
+    component: _c404ff16,
+    name: "indexBak"
+  }, {
     path: "/login",
     component: _0b5d235e,
     name: "login"
