@@ -100,6 +100,7 @@
         this.selectYearValue = data;
         this.selectTermValue = "";
         await this.initCurrentTermList(data);
+        await this.selectTermChange(this.currentTermData);
         this.selectTermValue = this.currentTermData;
         this.selectCurrentSetData['year'] = data;
         this.selectCurrentSetData['term'] = this.currentTermData;
@@ -110,10 +111,12 @@
         this.selectTermValue = data;
         this.selectWeekValue = "";
         await this.initCurrentWeekList(this.currentYearData, data);
-        this.selectWeekValue = ''+this.currentWeekData;
+        await this.selectWeekChange(this.currentWeekData);
+        this.selectWeekValue = this.currentWeekData;
 
         this.selectCurrentSetData['term'] = data;
         this.selectCurrentSetData['week'] = this.currentWeekData;
+        this.selectCurrentSetData['setWeek'] = this.currentSetWeekNum;
         this.$emit("changeTerm", this.selectCurrentSetData);
       },
       async selectWeekChange(data) {

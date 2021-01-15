@@ -266,6 +266,7 @@
       },
       async initTeachSetting(){
         let arr = [];
+        this.sectionTotal = [];
         let params = {
           syearId: this.selYear,
           termId: this.selTerm
@@ -317,7 +318,7 @@
             for (let itemSection in this.sectionTotal){
               for (let itemSectionChild in this.sectionTotal[itemSection]){
                 for (let item in res.data.data){
-                  if (res.data.data[item].week_no == itemSectionChild){
+                  if (res.data.data[item].week_no == itemSectionChild && res.data.data[item].section == this.sectionTotal[itemSection].section){
                     this.sectionTotal[itemSection][itemSectionChild] = {
                       courseName: res.data.data[item].course_name,
                       buildName: res.data.data[item].building_name + '('+res.data.data[item].classroom_no+')',

@@ -79,6 +79,7 @@ export default {
       currentYearData: '',
       currentTermData: '',
       currentWeekData: '',
+      currentSetWeekNum: 0,
       tableHeight: {
         'height': ''
       },
@@ -367,6 +368,9 @@ export default {
     },
     async initCurrentWeekList(year,term){
       let currentWeekData = [];
+      this.currentWeekList = [];
+      this.currentSetWeekNum = 0;
+      this.currentWeekData = '';
       let params = {
         syearId: year,
         termId: term
@@ -383,6 +387,7 @@ export default {
             this.currentWeekData = currentWeekData[0].value;
           }
           this.currentWeekList = currentWeekData;
+          this.currentSetWeekNum = res.data.data.teachSetting.weekNum;
         }
       });
     }

@@ -400,4 +400,12 @@ export const common = {
   course_plan_change_export_file: '/proxy/course/course/offer/download',//任课安排表--导出文件
   course_plan_import: '/proxy/course/course/offer/import',//任课安排表--导入
 
+  course_tach_plan_list: '/proxy/course/schedule/list',//教学排课表
+  course_tach_plan_paste: '/proxy/course/schedule/add',//教学排粘贴
+  course_tach_plan_delete: '/proxy/course/weekSchedule/delete',//教学排删除
+  course_tach_plan_add: '/proxy/course/schedule/add',//教学排添加
+  course_tach_plan_edit: '/proxy/course/schedule/edit',//教学排编辑
+  course_tech_plan_copy: '/proxy/course/weekSchedule/copy',//教学排复制
+  course_tach_plan_search_week: '/proxy/course/schedule/week/list',//教学排查询设置的周
+
 };

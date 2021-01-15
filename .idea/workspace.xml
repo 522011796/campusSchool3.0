@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="1、修改框架和组件样式、细节bug等&#10;2、任课安排接口对接完成">
+    <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/utils/validater/teachPlanValidater.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/common.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/search/MyYearTerm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/search/MyYearTerm.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/teachInfo/teach/coursePlan.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/teachInfo/teach/coursePlan.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/teachInfo/teach/searchTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/teachInfo/teach/searchTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/teachInfo/teach/teachPlan.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/teachInfo/teach/teachPlan.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,14 +109,7 @@
       <workItem from="1608617065213" duration="1941000" />
       <workItem from="1608625084513" duration="122942000" />
       <workItem from="1609379556549" duration="104145000" />
-      <workItem from="1610156986760" duration="139577000" />
-    </task>
-    <task id="LOCAL-00123" summary="1、修改框架和组件样式、细节bug等&#10;2、会议接口对接完成">
-      <created>1608732414643</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1608732414645</updated>
+      <workItem from="1610156986760" duration="160257000" />
     </task>
     <task id="LOCAL-00124" summary="1、修改框架和组件样式、细节bug等&#10;2、会议接口对接完成">
       <created>1608734309326</created>
@@ -450,7 +447,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610619137590</updated>
     </task>
-    <option name="localTasksCounter" value="172" />
+    <task id="LOCAL-00172" summary="1、修改框架和组件样式、细节bug等&#10;2、任课安排接口对接完成">
+      <created>1610619819984</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1610619819985</updated>
+    </task>
+    <option name="localTasksCounter" value="173" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -494,11 +498,11 @@
     </state>
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.805@0.23.1440.805" timestamp="1602828707649" />
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1605755081482" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1610619585954">
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1610619818397">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1610619585954" />
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1610619818397" />
     <state x="100" y="124" width="1240" height="600" key="DiffContextDialog" timestamp="1610355265212">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -537,11 +541,11 @@
     </state>
     <state x="221" y="64" key="SettingsEditor/0.23.1440.805@0.23.1440.805" timestamp="1602238031085" />
     <state x="221" y="66" key="SettingsEditor/0.25.1440.798@0.25.1440.798" timestamp="1610450476227" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1610619139542">
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1610619821525">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1610619139542" />
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1610619821525" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1610518042586">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -555,11 +559,11 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="506" y="345" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.1440.798@0.25.1440.798" timestamp="1610180393891" />
-    <state x="378" y="183" width="837" height="550" key="find.popup" timestamp="1610619509660">
+    <state x="378" y="183" width="837" height="550" key="find.popup" timestamp="1610694594400">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="378" y="182" width="837" height="486" key="find.popup/0.23.1440.805@0.23.1440.805" timestamp="1605680757485" />
-    <state x="378" y="183" width="837" height="550" key="find.popup/0.25.1440.798@0.25.1440.798" timestamp="1610619509660" />
+    <state x="378" y="183" width="837" height="550" key="find.popup/0.25.1440.798@0.25.1440.798" timestamp="1610694594400" />
     <state x="385" y="153" width="670" height="671" key="search.everywhere.popup" timestamp="1610521565646">
       <screen x="0" y="25" width="1440" height="798" />
     </state>

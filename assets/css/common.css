@@ -781,7 +781,7 @@ ul{
    color: #606266;
    border: 1px solid #DCDFE6;
   text-align: center;
- }
+}
 /***自定义radio组件颜色***/
 /*.el-radio__input.is-checked + .el-radio__label {
   color: #fd7624 !important;
