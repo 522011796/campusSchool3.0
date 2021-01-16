@@ -24,8 +24,10 @@ export default function({ $axios, redirect }) {
     }
   );
   $axios.onRequest(config => {
-    //console.log('Making request to ' + config.url)
-    showLoading();
+    //console.log('Making request to ' + config)
+    if (config.loading != false){
+      showLoading();
+    }
   });
 
   // response interceptor
