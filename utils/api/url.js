@@ -4,6 +4,7 @@
  */
 export const common = {
   login_url: 'proxy/user/login', //登录
+  logout_url: '/proxy/user/logouts',//注销
 
   session_url: '/proxy/user/user/getSess',
   date_now: '/proxy/course/rollcall/campus/setting/now',//当前时间
@@ -407,5 +408,8 @@ export const common = {
   course_tach_plan_edit: '/proxy/course/schedule/edit',//教学排编辑
   course_tech_plan_copy: '/proxy/course/weekSchedule/copy',//教学排复制
   course_tach_plan_search_week: '/proxy/course/schedule/week/list',//教学排查询设置的周
+
+  send_active_account: '/proxy/uup/captcha/registUser/smssend',//发送激活验证码
+  set_active_account: '/proxy/uup/ssoUser/phone',//激活账号
 
 };

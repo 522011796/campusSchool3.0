@@ -53,9 +53,9 @@
             </div>
             <div class="moon-top-user-info-opr">
               <el-row>
-                <el-col :span="24">
+                <el-col :span="24" @click.native="logout">
                   <div>
-                    <span>{{$t("退出")}}</span>
+                    <a href="javascript:;" class="color-white">{{$t("退出")}}</a>
                   </div>
                 </el-col>
               </el-row>
@@ -1425,6 +1425,13 @@
               }
             }
             this.calendarData = [{days: arr}];
+          }
+        });
+      },
+      logout(){
+        this.$axios.post(common.logout_url).then(res => {
+          if (res.data.code == 200){
+            this.$router.push("/login");
           }
         });
       }

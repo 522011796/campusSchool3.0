@@ -36,6 +36,7 @@
         default: '',
         type: String
       },
+      authBefore: Function,
       data: {
         default: function () {
           return {}
@@ -86,11 +87,29 @@
       },
       setTimeoutFun(){
         let me = this;
+        if (this.authBefore){
+          var before = this.authBefore();
+          if (before == false) {
+            return;
+          }
+        }
+        /*if (before && before.then) {
+          before.then(function (processedFile) {
+            console.log(1);
+          }, function () {
+            console.log(2);
+          });
+        } else if (before !== false) {
+          console.log(3);
+        } else {
+          console.log(4);
+        }*/
+
         let params = this.data;
 
         params = this.$qs.stringify(params);
         me.isDisabled = true;
-        this.$axios.post(this.action, params).then(res => {
+        this.$axios.post(this.action, params, {loading: false}).then(res => {
           if (res.data.code == 200){
             MessageSuccess(res.data.desc);
             let interval = setInterval(function() {

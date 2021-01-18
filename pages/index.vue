@@ -16,7 +16,7 @@
               </el-row>
             </div>
             <div class="top-content">
-
+              <sex-pie-chart chart-id="studentPie" :total="300" :male="50" :famale="100"></sex-pie-chart>
             </div>
             <div class="bottom-content">
               <div class="padding-lr-10 color-muted">
@@ -47,7 +47,7 @@
               </el-row>
             </div>
             <div class="top-content">
-
+              <sex-pie-chart chart-id="teacherPie" :total="300" :male="50" :famale="100"></sex-pie-chart>
             </div>
             <div class="bottom-content">
               <div class="padding-lr-10 color-muted">
@@ -68,22 +68,24 @@
           <el-card :body-style="{padding: '0px'}" style="height: 260px">
             <div class="top-table-content color-muted">
               <table class="custom-table-white margin-top-10">
-                <tr>
-                  <td width="30%">{{$t("系统版本")}}</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td width="30%">{{$t("当前学年")}}</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td width="30%">{{$t("当前学期")}}</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td width="30%">{{$t("当前学周")}}</td>
-                  <td></td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <td width="30%">{{$t("系统版本")}}</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td width="30%">{{$t("当前学年")}}</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td width="30%">{{$t("当前学期")}}</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td width="30%">{{$t("当前学周")}}</td>
+                    <td></td>
+                  </tr>
+                </tbody>
               </table>
             </div>
             <div class="bottom-content">
@@ -223,7 +225,7 @@
             <el-tab-pane label="公告"></el-tab-pane>
           </el-tabs>
         </el-col>
-        <el-col :span="8" v-if="userType == 4">
+        <el-col :span="8" v-if="userType == 2">
           <el-card :body-style="{padding: '0px'}" style="height: 140px">
             <div slot="header" class="moon-clearfix padding-tb-10 padding-lr-10">
               <span class="color-muted" style="font-weight: bold;position: relative; top: 0px;">
@@ -344,7 +346,7 @@
               </el-row>
             </div>
           </el-card>
-          <el-card :body-style="{padding: '0px'}" class="margin-top-20" style="height: 500px;overflow-y: auto" v-if="userType == 4">
+          <el-card :body-style="{padding: '0px'}" class="margin-top-20" style="height: 500px;overflow-y: auto" v-if="userType == 2">
             <div slot="header" class="moon-clearfix padding-tb-10 padding-lr-10">
               <span class="color-muted" style="font-weight: bold;position: relative; top: 5px;">
                 <i class="fa fa-line-chart"></i>
@@ -420,14 +422,16 @@
   import LineChart from "../components/charts/LineChart";
   import MySelect from "../components/MySelect";
   import MyCascader from "../components/utils/select/MyCascader";
+  import SexPieChart from "../components/charts/SexPieChart";
+  import mixins from "../utils/mixins";
   export default {
     name: 'index',
-    components: {MyCascader, MySelect,LineChart},
+    mixins: [mixins],
+    components: {MyCascader, MySelect,LineChart,SexPieChart},
     data(){
       return {
         userTypeList: [],
         classList: [],
-        userType: 1,
         collegeData: [],
         collegeTabData: [],
         collegeCreditData: [],
@@ -442,10 +446,16 @@
     },
     created() {
       this.layoutInit();
+      this.init();
     },
     methods: {
       layoutInit(){
         this.$parent.$parent.layout = 'full';
+      },
+      async init(){
+        await this.getSessionInfo();
+        this.userType = this.loginUserType;
+        console.log(this.loginUserType);
       },
       handleCascaderChange(data, type){
         switch (type) {

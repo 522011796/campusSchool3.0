@@ -310,36 +310,6 @@
     "id": 2,
     "list": [
       {
-        "name": "考务管理",
-        "icon": "fa fa-tags",
-        "toggle": false,
-        "id": 2000,
-        "key": "exam",
-        "list": [
-          {
-            "name": "考试管理",
-            "key": "examManage",
-            "id": 2001,
-            "top": "teachInfo",
-            "path": "/teachInfo/exam/examManage"
-          },
-          {
-            "name": "考务安排",
-            "key": "examPlan",
-            "id": 2002,
-            "top": "teachInfo",
-            "path": "/teachInfo/exam/examPlan"
-          },
-          {
-            "name": "成绩录入",
-            "key": "performance",
-            "id": 2003,
-            "top": "teachInfo",
-            "path": "/teachInfo/exam/performance"
-          }
-        ]
-      },
-      {
         "name": "教务管理",
         "icon": "fa fa-window-maximize",
         "toggle": false,
@@ -983,7 +953,7 @@
     "id": 7,
     "list": [
       {
-        "name": "考务管理",
+        "name": "系统日志",
         "icon": "fa fa-tags",
         "toggle": false,
         "id": 7000,

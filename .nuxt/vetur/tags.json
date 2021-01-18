@@ -113,6 +113,12 @@
   "LazyRadarDormChart": {
     "description": "Auto imported from components/charts/RadarDormChart.vue"
   },
+  "SexPieChart": {
+    "description": "Auto imported from components/charts/SexPieChart.vue"
+  },
+  "LazySexPieChart": {
+    "description": "Auto imported from components/charts/SexPieChart.vue"
+  },
   "TableBarChart": {
     "description": "Auto imported from components/charts/TableBarChart.vue"
   },
@@ -281,18 +287,6 @@
   "LazyMyCascader": {
     "description": "Auto imported from components/utils/select/MyCascader.vue"
   },
-  "QuillBlock": {
-    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
-  },
-  "LazyQuillBlock": {
-    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
-  },
-  "UploadSquare": {
-    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
-  },
-  "LazyUploadSquare": {
-    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
-  },
   "MyAdminAtten": {
     "description": "Auto imported from components/utils/status/MyAdminAtten.vue"
   },
@@ -358,6 +352,18 @@
   },
   "LazyMyFlowType": {
     "description": "Auto imported from components/utils/status/MyFlowType.vue"
+  },
+  "QuillBlock": {
+    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
+  },
+  "LazyQuillBlock": {
+    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
+  },
+  "UploadSquare": {
+    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
+  },
+  "LazyUploadSquare": {
+    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
   },
   "DormBuildTreeAndList": {
     "description": "Auto imported from components/utils/treeAndList/DormBuildTreeAndList.vue"
