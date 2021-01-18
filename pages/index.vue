@@ -299,7 +299,7 @@
           </el-card>
         </el-col>
 
-        <el-col :span="8" v-if="userType == 5">
+        <el-col :span="8" v-if="userType == 4">
           <el-card :body-style="{padding: '0px'}" style="height: 140px">
             <div slot="header" class="moon-clearfix padding-tb-10 padding-lr-10">
               <span class="color-muted" style="font-weight: bold;position: relative; top: 0px;">
@@ -378,7 +378,7 @@
             </div>
           </el-card>
 
-          <el-card :body-style="{padding: '0px'}" class="margin-top-20" style="height: 500px;overflow-y: auto" v-if="userType == 5">
+          <el-card :body-style="{padding: '0px'}" class="margin-top-20" style="height: 500px;overflow-y: auto" v-if="userType == 4">
             <div slot="header" class="moon-clearfix padding-tb-10 padding-lr-10">
               <span class="color-muted" style="font-weight: bold;position: relative; top: 5px;">
                 <i class="fa fa-line-chart"></i>

@@ -200,17 +200,17 @@ export default {
       await this.$axios.get(common.session_url, {params: params}).then(res => {
         this.campusId = res.data.data.campusId;
         this.campusName = res.data.data.campusName;
-        this.loginUserName = res.data.data.username;
+        this.loginUserName = res.data.data.LOGIN_RETURN_INFO.username;
         this.loginUserType = res.data.data.userType;
-        this.campusLogo = res.data.data.campusLogo;
+        this.campusLogo = res.data.data.LOGIN_RETURN_INFO.logo;
         this.currentTermId = res.data.data.currentTermId;
         this.currentYearId = res.data.data.currentYearId;
-        this.userJobNum = res.data.data.jobNum;
+        this.userJobNum = res.data.data.LOGIN_RETURN_INFO.jobNum;
         this.realName = res.data.data.realName;
+        this.headImage = res.data.data.LOGIN_RETURN_INFO.teacherPhoto;
+        this.organizeName = res.data.data.LOGIN_RETURN_INFO.organize ? res.data.data.LOGIN_RETURN_INFO.organize.departmentName : '';
         this.headImage = res.data.data.headImage;
-        this.organizeName = res.data.data.organizeName;
-        this.headImage = res.data.data.headImage;
-        this.loginUserId = res.data.data.userId;
+        this.loginUserId = res.data.data.LOGIN_RETURN_INFO.userInfo ? res.data.data.LOGIN_RETURN_INFO.userInfo.userId : res.data.data.userId;
       });
     },
     /**

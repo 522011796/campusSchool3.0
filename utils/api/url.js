@@ -6,7 +6,7 @@ export const common = {
   login_url: 'proxy/user/login', //登录
   logout_url: '/proxy/user/logouts',//注销
 
-  session_url: '/proxy/user/user/getSess',
+  session_url: '/proxy/user/session',
   date_now: '/proxy/course/rollcall/campus/setting/now',//当前时间
   organization_week: '/proxy/edu/edu/term/current/week',//当前学期学周
   noread_num: '/proxy/user/message/notRead/num',//未读消息数

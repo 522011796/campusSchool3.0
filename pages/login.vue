@@ -26,8 +26,8 @@
       </div>
 
       <div class="login-user-opr">
-        <label class="login-user-change-tag" v-if="userType == 1" @click="changeUserType(2)">{{$t("切换教师")}}</label>
-        <label class="login-user-change-tag" v-if="userType == 2" @click="changeUserType(1)">{{$t("切换管理员")}}</label>
+        <label class="login-user-change-tag" v-if="userType == 1" @click="changeUserType(2)"><i class="fa fa-retweet font-size-12"></i> {{$t("切换教师")}}</label>
+        <label class="login-user-change-tag" v-if="userType == 2" @click="changeUserType(1)"><i class="fa fa-retweet font-size-12"></i> {{$t("切换管理员")}}</label>
         <div>
           <span class="login-user-title">{{$t("用户登录")}}</span>
           ｜
