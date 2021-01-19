@@ -513,13 +513,14 @@
   import MyCascader from "../components/utils/select/MyCascader";
   import SexPieChart from "../components/charts/SexPieChart";
   import SexPieMoreChart from "../components/charts/SexPieMoreChart";
+  import DrawerLayoutRight from "../components/utils/dialog/DrawerLayoutRight";
   import mixins from "../utils/mixins";
   import {common} from "../utils/api/url";
   import {deviceType, weekNoText} from "../utils/utils";
   export default {
     name: 'index',
     mixins: [mixins],
-    components: {MyCascader, MySelect,LineChart,SexPieChart,SexPieMoreChart},
+    components: {MyCascader, MySelect,LineChart,SexPieChart,SexPieMoreChart,DrawerLayoutRight},
     data(){
       return {
         userTypeList: [],
@@ -632,7 +633,6 @@
         this.famaleTeacherTotal = 0;
         this.$axios.get(common.index_ter_sex, {params: params}).then(res => {
           if (res.data.data){
-            console.log(res.data.data);
             for (let i = 0; i < res.data.data.length; i++){
               total += res.data.data[i].count;
               if (res.data.data[i].sex == 1){
@@ -657,7 +657,6 @@
         this.deviceTotal = 0;
         this.$axios.get(common.index_device_type).then(res => {
           if (res.data.data){
-            console.log(res);
             this.deviceTypeDate = res.data.data;
             for (let i = 0; i < res.data.data.length; i++){
               total += res.data.data[i].count;
@@ -688,7 +687,6 @@
         }
         this.$axios.get(url, {params: params}).then(res => {
           if (res.data.data){
-            console.log(res);
             this.deviceTypeList = res.data.data.list;
           }
         });
@@ -715,7 +713,6 @@
         this.leaveAttendData = [];
         this.$axios.get(url, {params: params}).then(res => {
           if (res.data.data){
-            console.log(1111,res);
             for (let i = 0; i < res.data.data.length; i++){
               total += res.data.data[i].count;
             }
@@ -728,7 +725,6 @@
         let url = common.index_class_static;
         this.$axios.get(url, {params: params}).then(res => {
           if (res.data.data){
-            console.log(2222,res);
             this.classAttendData = res.data.data;
           }
         });
@@ -752,7 +748,6 @@
         };
         this.$axios.get(url, {params: params}).then(res => {
           if (res.data.data){
-            console.log(333,res);
             for (let i = 0; i < res.data.data.length; i++){
               if (res.data.data[i].str1 == "加分"){
                 credit['add'] = {
@@ -768,7 +763,6 @@
               }
             }
             this.creditAttendData = credit;
-            console.log(this.creditAttendData);
           }
         });
       },
@@ -776,7 +770,6 @@
         let url = common.index_dorm_static;
         this.$axios.get(url, {params: params}).then(res => {
           if (res.data.data){
-            console.log(444,res);
             this.dormAttendData = res.data.data;
           }
         });
@@ -811,7 +804,6 @@
         };
         this.$axios.get(url, {params: params}).then(res => {
           if (res.data.data){
-            console.log(666, res.data.data.list);
             this.creditData = res.data.data.list;
           }
         });
@@ -825,7 +817,6 @@
         };
         this.$axios.get(url, {params: params}).then(res => {
           if (res.data.data){
-            console.log(res.data.data);
             this.noticeContentDetail = res.data.data;
           }
         });
@@ -908,7 +899,6 @@
         this.drawerVisible = false;
       },
       detailMsg(row){
-        console.log(row);
         this.detailNoticeInfo(row.id);
         this.drawerVisible = true;
       },

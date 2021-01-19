@@ -548,6 +548,10 @@ ul{
 .ql-container.ql-snow .ql-editor {
   min-height: 300px;
 }
+.drawer-normal-drawer .ql-editor img{
+  max-height: 240px;
+  width: 100%;
+}
 .layout-inline{
   width: auto;
 }
