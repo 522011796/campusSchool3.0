@@ -7,8 +7,6 @@
         <el-row>
           <el-col :span="18">
             <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo($event)">{{$t("添加规则")}}</el-button>
-            <el-button size="small" type="warning"  icon="el-icon-s-help" @click="syncInfo($event)">{{$t("同步生效")}}</el-button>
-            <!--<el-button size="small" type="warning"  icon="el-icon-s-help" @click="otherInfo($event)">{{$t("例外规则")}}</el-button>-->
           </el-col>
           <el-col :span="6" class="text-right">
             <!--<div class="layout-inline text-right">
@@ -392,44 +390,21 @@
       handleOkChange(data) {
         this.dialogLoading = true;
         let url = "";
-        let params = {};
-        if (this.oprType == "del"){
-          params = {
-            id: this.form.id
-          };
-          url = common.attend_dorm_setting_delete;
-        }else if (this.oprType == "reset"){
-          params = {
-            id: this.form.id
-          };
-          url = common.attend_dorm_setting_clear;
-        }else if (this.oprType == "sync"){
-          url = common.attend_dorm_setting_sync;
-        }
+        let params = {
+          groupId: this.form.id
+        };
+        url = common.attend_admin_setting_delete;
         params = this.$qs.stringify(params);
-        if (this.oprType == "sync"){
-          this.$axios.get(url, params).then(res => {
-            if (res.data.code == 200){
-              this.init();
-              MessageSuccess(res.data.desc);
-            }else {
-              MessageError(res.data.desc);
-            }
-            this.visibleConfim = false;
-            this.dialogLoading = false;
-          });
-        }else {
-          this.$axios.post(url, params).then(res => {
-            if (res.data.code == 200){
-              this.init();
-              MessageSuccess(res.data.desc);
-            }else {
-              MessageError(res.data.desc);
-            }
-            this.visibleConfim = false;
-            this.dialogLoading = false;
-          });
-        }
+        this.$axios.post(url, params).then(res => {
+          if (res.data.code == 200){
+            this.init();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+          this.visibleConfim = false;
+          this.dialogLoading = false;
+        });
       },
       handleCancelChange(data) {
         this.visibleConfim = false;
