@@ -432,4 +432,7 @@ export const common = {
   attend_dorm_setting_add: '/proxy/school/checkbed/checkbed/rule/add',//归寝考勤设置--保存
   attend_dorm_setting_edit: '/proxy/school/checkbed/checkbed/rule/edit',//归寝考勤设置--编辑
 
+
+  attend_admin_setting_page: '/proxy/user/attend/group/page',//行政考勤设置分页
+
 };

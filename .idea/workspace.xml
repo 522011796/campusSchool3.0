@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/otherSetting.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/sign-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/validater/doorAttendOtherSettingValidater.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/validater/doorAttendSettingValidater.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/treeAndList/DormBuildTreeAndList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/treeAndList/DormBuildTreeAndList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/setting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/setting.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/sliderMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/sliderMenu.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/administration/setting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/administration/setting.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,14 +106,7 @@
       <workItem from="1608617065213" duration="1941000" />
       <workItem from="1608625084513" duration="122942000" />
       <workItem from="1609379556549" duration="104145000" />
-      <workItem from="1610156986760" duration="227783000" />
-    </task>
-    <task id="LOCAL-00135" summary="1、修改框架和组件样式、细节bug等&#10;2、综合考勤查询接口对接完成">
-      <created>1609235889072</created>
-      <option name="number" value="00135" />
-      <option name="presentableId" value="LOCAL-00135" />
-      <option name="project" value="LOCAL" />
-      <updated>1609235889074</updated>
+      <workItem from="1610156986760" duration="229957000" />
     </task>
     <task id="LOCAL-00136" summary="1、修改框架和组件样式、细节bug等&#10;2、综合考勤统计、记录接口对接完成">
       <created>1609321473966</created>
@@ -457,14 +444,20 @@
       <option name="project" value="LOCAL" />
       <updated>1611047062147</updated>
     </task>
-    <option name="localTasksCounter" value="184" />
+    <task id="LOCAL-00184" summary="1、修改框架和组件样式、细节bug等&#10;2、归寝考勤设置接口对接完成">
+      <created>1611055817572</created>
+      <option name="number" value="00184" />
+      <option name="presentableId" value="LOCAL-00184" />
+      <option name="project" value="LOCAL" />
+      <updated>1611055817574</updated>
+    </task>
+    <option name="localTasksCounter" value="185" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、综合考勤统计、记录接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、新闻接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、公告接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、资讯接口对接完成" />
@@ -489,7 +482,8 @@
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、登录接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、首页接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、课堂考勤接口对接完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、课堂考勤接口对接完成" />
+    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、归寝考勤设置接口对接完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、归寝考勤设置接口对接完成" />
   </component>
   <component name="WindowStateProjectService">
     <state x="454" y="235" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602497724708">
@@ -501,11 +495,11 @@
     </state>
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.805@0.23.1440.805" timestamp="1602828707649" />
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1605755081482" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1611047059667">
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1611055815367">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1611047059667" />
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1611055815367" />
     <state x="100" y="124" width="1240" height="600" key="DiffContextDialog" timestamp="1610960482971">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -544,11 +538,11 @@
     </state>
     <state x="221" y="64" key="SettingsEditor/0.23.1440.805@0.23.1440.805" timestamp="1602238031085" />
     <state x="221" y="66" key="SettingsEditor/0.25.1440.798@0.25.1440.798" timestamp="1610450476227" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1611047064211">
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1611055819526">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1611047064211" />
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1611055819526" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1610960568205">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
