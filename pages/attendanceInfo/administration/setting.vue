@@ -6,7 +6,7 @@
       <div slot="tab">
         <el-row>
           <el-col :span="18">
-            <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo($event)">{{$t("添加规则")}}</el-button>
+            <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo($event)">{{$t("添加考勤组")}}</el-button>
           </el-col>
           <el-col :span="6" class="text-right">
             <!--<div class="layout-inline text-right">
@@ -171,54 +171,6 @@
               style="width: 128px"
               @change="handleChangeTime($event, 2)">
             </el-time-picker>
-          </el-form-item>
-          <el-form-item :label="$t('状态设置')" prop="name">
-            <table class="custom-table">
-              <tr>
-                <th></th>
-                <th>{{$t("周一")}}<my-check @change="handleWeek($event, 1)"></my-check></th>
-                <th>{{$t("周二")}}<my-check @change="handleWeek($event, 2)"></my-check></th>
-                <th>{{$t("周三")}}<my-check @change="handleWeek($event, 3)"></my-check></th>
-                <th>{{$t("周四")}}<my-check @change="handleWeek($event, 4)"></my-check></th>
-                <th>{{$t("周五")}}<my-check @change="handleWeek($event, 5)"></my-check></th>
-                <th>{{$t("周六")}}<my-check @change="handleWeek($event, 6)"></my-check></th>
-                <th>{{$t("周日")}}<my-check @change="handleWeek($event, 7)"></my-check></th>
-              </tr>
-              <tbody>
-              <tr v-for="(item, index) in tableDayInfo" :key="index">
-                <td>
-                  <div class="setting-td color-muted">
-                    {{$t("第")}}{{item.weekNum}}{{$t("周")}}
-                  </div>
-                </td>
-                <td v-for="(itemChild, indexChild) in item.days" :key="indexChild">
-                  <div class="setting-td color-muted" @click="changeRollCall(itemChild)">
-                    <img v-if="itemChild != null && itemChild.rollCall == true" src="~/static/img/sign-icon.png" class="setting-icon">
-                    <label style="font-weight: normal">{{itemChild != null ? itemChild.busiTime : ''}}</label>
-                  </div>
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          </el-form-item>
-          <el-form-item :label="$t('组名')" prop="delay">
-            <span>{{$t("超过考勤时间")}}</span><el-input v-model="form.delay" style="width:80px"></el-input><span>{{$t("分钟标记为晚归")}}</span>
-          </el-form-item>
-          <el-form-item :label="$t('考勤地点')" prop="dormitoryIdList">
-            <el-popover
-              placement="top"
-              width="700"
-              trigger="click"
-              @show="handleShowTeacher(3)">
-              <div>
-                <dorm-build-tree-and-list ref="popverPartRef" :sel-arr="form.dormitoryIdList" set-type="check" @select="handleSelUser"></dorm-build-tree-and-list>
-              </div>
-              <el-button slot="reference" type="success" plain size="small">{{$t("添加")}}</el-button>
-            </el-popover>
-            <span class="color-warning margin-left-10">
-              <i class="fa fa-user"></i>
-              {{$t("已选择")}}{{form.dormitoryIdList.length}}{{$t("个宿舍")}}
-            </span>
           </el-form-item>
         </el-form>
       </div>
