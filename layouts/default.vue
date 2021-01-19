@@ -602,7 +602,7 @@
               v-show="!isCollapse"
               v-model="popMenuCollapse"
               placement="bottom-start"
-              popper-class="custom-popover"
+              popper-class="custom-popover-menu"
               width="240"
               :visible-arrow="false"
               trigger="hover">
@@ -638,7 +638,7 @@
                 </div>
                 <div class="moon-menu-toggle-main">
                   <div class="moon-menu-toggle-item">
-                    <span class="color-white font-size-12">{{$t('固定菜单栏')}}</span>
+                    <span class="color-grand font-size-12">{{$t('固定菜单栏')}}</span>
                     <el-switch
                       v-model="menuToggle"
                       active-color="#13ce66"

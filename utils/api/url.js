@@ -419,4 +419,9 @@ export const common = {
   index_credit_static: '/proxy/course/home/stat/score',//学分统计
   index_class_static: '/proxy/course/home/stat/rollCall',//课堂考勤统计
   index_dorm_static: '/proxy/course/home/stat/rollCallBed',//归寝统计
+
+  attend_class_setting_page: '/proxy/building/rollcall/group/page',//课堂考勤设置分页
+  attend_class_setting: '/proxy/building/rollcall/group/addOrUpdate',//课堂考勤设置
+  attend_class_setting_del: '/proxy/building/rollcall/group/del',//课堂考勤设置--删除
+
 };
