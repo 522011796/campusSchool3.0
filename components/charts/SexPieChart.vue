@@ -115,7 +115,13 @@ export default {
     }
   },
   watch: {
-    data: function (newQuestion, oldQuestion) {
+    total: function (newQuestion, oldQuestion) {
+      this.lineChart();
+    },
+    male: function (newQuestion, oldQuestion) {
+      this.lineChart();
+    },
+    famale: function (newQuestion, oldQuestion) {
       this.lineChart();
     }
   }

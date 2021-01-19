@@ -412,4 +412,11 @@ export const common = {
   send_active_account: '/proxy/uup/captcha/registUser/smssend',//发送激活验证码
   set_active_account: '/proxy/uup/ssoUser/phone',//激活账号
 
+  index_sex: '/proxy/course/home/stat/student/sex',//学生性别统计
+  index_ter_sex: '/proxy/course/home/stat/teacher/sex',//老师性别统计
+  index_device_type: '/proxy/course/home/stat/device/type',//设备类型统计
+  index_level_static: '/proxy/course/home/stat/leave',//学生请假统计
+  index_credit_static: '/proxy/course/home/stat/score',//学分统计
+  index_class_static: '/proxy/course/home/stat/rollCall',//课堂考勤统计
+  index_dorm_static: '/proxy/course/home/stat/rollCallBed',//归寝统计
 };

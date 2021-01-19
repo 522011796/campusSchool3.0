@@ -199,7 +199,7 @@ export default {
       };
       await this.$axios.get(common.session_url, {params: params}).then(res => {
         this.campusId = res.data.data.campusId;
-        this.campusName = res.data.data.campusName;
+        this.campusName = res.data.data.LOGIN_RETURN_INFO.campusName;
         this.loginUserName = res.data.data.LOGIN_RETURN_INFO.username;
         this.loginUserType = res.data.data.userType;
         this.campusLogo = res.data.data.LOGIN_RETURN_INFO.logo;
