@@ -203,8 +203,8 @@ export default {
         this.loginUserName = res.data.data.LOGIN_RETURN_INFO.username;
         this.loginUserType = res.data.data.userType;
         this.campusLogo = res.data.data.LOGIN_RETURN_INFO.logo;
-        this.currentTermId = res.data.data.currentTermId;
-        this.currentYearId = res.data.data.currentYearId;
+        this.currentTermId = res.data.data.currentTermWeek ? res.data.data.currentTermWeek.id : '';
+        this.currentYearId = res.data.data.currentTermWeek ? res.data.data.currentTermWeek.schYearId : '';
         this.userJobNum = res.data.data.LOGIN_RETURN_INFO.jobNum;
         this.realName = res.data.data.realName;
         this.headImage = res.data.data.LOGIN_RETURN_INFO.teacherPhoto;
