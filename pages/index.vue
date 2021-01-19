@@ -7,7 +7,7 @@
             <div class="padding-lr-10 padding-tb-10 color-muted">
               <el-row>
                 <el-col :span="12">
-                  <span class="font-size-25 color-grand">0</span>
+                  <span class="font-size-25 color-grand">{{sexTotal}}</span>
                   <span>{{$t("人")}}</span>
                 </el-col>
                 <el-col :span="12" class="text-right">
@@ -39,7 +39,7 @@
             <div class="padding-lr-10 padding-tb-10 color-muted">
               <el-row>
                 <el-col :span="12">
-                  <span class="font-size-25 color-grand">0</span>
+                  <span class="font-size-25 color-grand">{{sexTeacherTotal}}</span>
                   <span>{{$t("人")}}</span>
                 </el-col>
                 <el-col :span="12" class="text-right">
