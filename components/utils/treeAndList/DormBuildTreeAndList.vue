@@ -196,7 +196,7 @@
           if (res.data.data){
             //this.$refs.commTableRef.clearSelection();
             for (let i = 0; i < res.data.data.list.length; i++){
-              let sel = inArray(res.data.data.list[i], this.commSelUserArr, 'user_id');
+              let sel = inArray(res.data.data.list[i], this.commSelUserArr, 'id');
               if (sel > -1){
                 this.commFlag = true;
                 res.data.data.list[i]['_checked'] = true;
@@ -228,7 +228,7 @@
         this._initTeacher();
       },
       _handleChange(data, index){
-        this.commSelUserVal = data.user_id;
+        this.commSelUserVal = data.id;
         this.commSelUserValObj = data;
         this.$emit("change", data);
       },
@@ -250,7 +250,7 @@
           row._checked = true;
           this.checkboxCount++;
         }else {//取消选中
-          let checked = inArray(row, this.commSelUserArr, 'user_id');
+          let checked = inArray(row, this.commSelUserArr, 'id');
           this.commSelUserArr.splice(checked,1);
           row._checked = false;
           this.checkboxCount--;
@@ -267,7 +267,7 @@
         for (let i = 0; i < this.tableTeacherCommDormData.length; i++){
           if (selection == true){
             this.tableTeacherCommDormData[i]._checked = true;
-            let checked = inArray(this.tableTeacherCommDormData[i], this.commSelUserArr, 'user_id');
+            let checked = inArray(this.tableTeacherCommDormData[i], this.commSelUserArr, 'id');
             if (checked == -1){
               this.commSelUserArr.push(this.tableTeacherCommDormData[i]);
             }
@@ -320,7 +320,7 @@
         let arrTempUser = [].concat(this.selArr);
 
         for (let i = 0; i < arr.length; i++){
-          let sel = inArray(arr[i], arrTempUser, 'user_id');
+          let sel = inArray(arr[i], arrTempUser, 'id');
           if (sel > -1){
             selArr.push(arr[i]);
             this.$refs.commTableRef.toggleRowSelection(arr[i], true);

@@ -65,6 +65,7 @@ const _453c9916 = () => interopDefault(import('../pages/attendanceInfo/classAtte
 const _4e7d6164 = () => interopDefault(import('../pages/attendanceInfo/dormAttend/analysis.vue' /* webpackChunkName: "pages/attendanceInfo/dormAttend/analysis" */))
 const _56cf4c00 = () => interopDefault(import('../pages/attendanceInfo/dormAttend/faceRecord.vue' /* webpackChunkName: "pages/attendanceInfo/dormAttend/faceRecord" */))
 const _b59a6b58 = () => interopDefault(import('../pages/attendanceInfo/dormAttend/now.vue' /* webpackChunkName: "pages/attendanceInfo/dormAttend/now" */))
+const _b9941adc = () => interopDefault(import('../pages/attendanceInfo/dormAttend/otherSetting.vue' /* webpackChunkName: "pages/attendanceInfo/dormAttend/otherSetting" */))
 const _4add6a9a = () => interopDefault(import('../pages/attendanceInfo/dormAttend/search.vue' /* webpackChunkName: "pages/attendanceInfo/dormAttend/search" */))
 const _2c4b7dce = () => interopDefault(import('../pages/attendanceInfo/dormAttend/setting.vue' /* webpackChunkName: "pages/attendanceInfo/dormAttend/setting" */))
 const _6ea30060 = () => interopDefault(import('../pages/attendanceInfo/dormAttend/static.vue' /* webpackChunkName: "pages/attendanceInfo/dormAttend/static" */))
@@ -411,6 +412,10 @@ export const routerOptions = {
     path: "/attendanceInfo/dormAttend/now",
     component: _b59a6b58,
     name: "attendanceInfo-dormAttend-now"
+  }, {
+    path: "/attendanceInfo/dormAttend/otherSetting",
+    component: _b9941adc,
+    name: "attendanceInfo-dormAttend-otherSetting"
   }, {
     path: "/attendanceInfo/dormAttend/search",
     component: _4add6a9a,

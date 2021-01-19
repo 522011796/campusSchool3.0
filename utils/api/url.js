@@ -424,4 +424,12 @@ export const common = {
   attend_class_setting: '/proxy/building/rollcall/group/addOrUpdate',//课堂考勤设置
   attend_class_setting_del: '/proxy/building/rollcall/group/del',//课堂考勤设置--删除
 
+  attend_dorm_setting_page: '/proxy/school/checkbed/checkbed/rule/page',//归寝考勤设置分页
+  attend_dorm_setting_delete: '/proxy/school/checkbed/checkbed/rule/delete',//归寝考勤设置--删除
+  attend_dorm_setting_clear: '/proxy/school/checkbed/checkbed/rule/day/clear',//归寝考勤设置--重置时间
+  attend_dorm_setting_sync: '/proxy/course/rollcallbed/checkbedrull/sync/time',//归寝考勤设置--同步
+  attend_dorm_setting_info: '/proxy/school/checkbed/checkbed/rule/day/info',//归寝考勤设置--时间详细
+  attend_dorm_setting_add: '/proxy/school/checkbed/checkbed/rule/add',//归寝考勤设置--保存
+  attend_dorm_setting_edit: '/proxy/school/checkbed/checkbed/rule/edit',//归寝考勤设置--编辑
+
 };

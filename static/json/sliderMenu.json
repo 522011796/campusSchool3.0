@@ -736,6 +736,13 @@
             "id": 4205,
             "top": "attendanceInfo",
             "path": "/attendanceInfo/dormAttend/setting"
+          },
+          {
+            "name": "例外规则",
+            "key": "dormAttendOtherSetting",
+            "id": 4206,
+            "top": "attendanceInfo",
+            "path": "/attendanceInfo/dormAttend/otherSetting"
           }
         ]
       },

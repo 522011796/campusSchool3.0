@@ -1,12 +1,12 @@
 <template>
   <div class="container">
     <layout-tb>
-      <template slot="tag">考勤设置</template>
+      <template slot="tag">例外设置</template>
 
       <div slot="tab">
         <el-row>
           <el-col :span="18">
-            <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo($event)">{{$t("添加规则")}}</el-button>
+            <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo($event)">{{$t("添加例外规则")}}</el-button>
             <el-button size="small" type="warning"  icon="el-icon-s-help" @click="syncInfo($event)">{{$t("同步生效")}}</el-button>
             <!--<el-button size="small" type="warning"  icon="el-icon-s-help" @click="otherInfo($event)">{{$t("例外规则")}}</el-button>-->
           </el-col>
@@ -44,15 +44,14 @@
           </el-table-column>
           <el-table-column
             align="center"
-            :label="$t('考勤地点')">
+            :label="$t('例外人员')">
             <template slot-scope="scope">
-              <span v-if="scope.row.rull_type == 0" class="color-muted">{{$t("全校")}}</span>
-              <el-popover v-if="scope.row.rull_type != 0" trigger="hover" placement="top" popper-class="custom-table-popover">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                 <div class="text-center">
-                  <el-tag size="mini" type="success" v-for="(item, index) in scope.row.dormitory_no_list.split(',')" :key="index">{{item}}</el-tag>
+                  <el-tag size="mini" type="success" v-for="(item, index) in scope.row.real_name_list.split(',')" :key="index">{{item}}</el-tag>
                 </div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <el-tag size="mini" type="success" v-for="(item, index) in scope.row.dormitory_no_list.split(',')" :key="index">{{item}}</el-tag>
+                  <el-tag size="mini" type="success" v-for="(item, index) in scope.row.real_name_list.split(',')" :key="index">{{item}}</el-tag>
                 </div>
               </el-popover>
             </template>
@@ -61,8 +60,7 @@
             align="center"
             :label="$t('考勤时间')">
             <template slot-scope="scope">
-              <span v-if="scope.row.rull_type == 0" class="color-muted">{{scope.row.start_time}}-{{scope.row.end_time}}</span>
-              <span v-if="scope.row.rull_type != 0">{{scope.row.start_time}}-{{scope.row.end_time}}</span>
+              <span>{{scope.row.start_time}}-{{scope.row.end_time}}</span>
             </template>
           </el-table-column>
           <el-table-column
@@ -72,7 +70,6 @@
             width="120">
             <template slot-scope="scope">
               <i class="fa fa-edit color-grand margin-right-5" @click="editInfo(scope.row)"></i>
-              <i class="fa fa-clock-o color-warning margin-right-5" @click="resetInfo(scope.row)"></i>
               <i v-if="scope.row.rull_type != 0" class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
             </template>
           </el-table-column>
@@ -145,20 +142,20 @@
           <el-form-item :label="$t('组名')" prop="delay">
             <span>{{$t("超过考勤时间")}}</span><el-input v-model="form.delay" style="width:80px"></el-input><span>{{$t("分钟标记为晚归")}}</span>
           </el-form-item>
-          <el-form-item :label="$t('考勤地点')" prop="dormitoryIdList">
+          <el-form-item :label="$t('例外学生')" prop="dormitoryIdList">
             <el-popover
               placement="top"
               width="700"
               trigger="click"
               @show="handleShowTeacher(3)">
               <div>
-                <dorm-build-tree-and-list ref="popverPartRef" :sel-arr="form.dormitoryIdList" set-type="check" @select="handleSelUser"></dorm-build-tree-and-list>
+                <student-tree-and-list ref="popverPartRef" :sel-arr="form.dormitoryIdList" set-type="check" @select="handleSelUser"></student-tree-and-list>
               </div>
               <el-button slot="reference" type="success" plain size="small">{{$t("添加")}}</el-button>
             </el-popover>
             <span class="color-warning margin-left-10">
               <i class="fa fa-user"></i>
-              {{$t("已选择")}}{{form.dormitoryIdList.length}}{{$t("个宿舍")}}
+              {{$t("已选择")}}{{form.dormitoryIdList.length}}{{$t("个学生")}}
             </span>
           </el-form-item>
         </el-form>
@@ -192,13 +189,14 @@
   import ClassroomTreeAndList from "../../../components/utils/treeAndList/ClassroomTreeAndList";
   import MyCheck from "../../../components/MyCheck";
   import DormBuildTreeAndList from "../../../components/utils/treeAndList/DormBuildTreeAndList";
-  import doorAttendSettingValidater from "../../../utils/validater/doorAttendSettingValidater";
+  import StudentTreeAndList from "../../../components/utils/treeAndList/StudentTreeAndList";
+  import doorAttendOtherSettingValidater from "../../../utils/validater/doorAttendOtherSettingValidater";
   export default {
-    mixins: [mixins, doorAttendSettingValidater],
+    mixins: [mixins, doorAttendOtherSettingValidater],
     components: {
       DormBuildTreeAndList,
       MyCheck,
-      MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal,ClassroomTreeAndList,MyCheck,MySelect,DormBuildTreeAndList},
+      MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal,ClassroomTreeAndList,MyCheck,MySelect,DormBuildTreeAndList,StudentTreeAndList},
     data(){
       return {
         tableData: [],
@@ -240,7 +238,8 @@
       initPage(){
         let params = {
           page: this.page,
-          num: this.num
+          num: this.num,
+          rullType: 10
         };
         this.$axios.get(common.attend_dorm_setting_page, {params:params}).then(res => {
           if (res.data.data){
@@ -277,7 +276,7 @@
         this.modalOtherVisible = true;
       },
       editInfo(row){
-        let roomIds = row.dormitory_id_list ? row.dormitory_id_list.split(",") : [];
+        let roomIds = row.user_id_list ? row.user_id_list.split(","): [];
         let arr = [];
         this.form = {
           id: row.id,
@@ -290,7 +289,7 @@
 
         for (let i = 0; i < roomIds.length; i++){
           arr.push({
-            id: roomIds[i]
+            user_id: roomIds[i]
           });
         }
         this.$set(this.form, 'dormitoryIdList', arr);
@@ -410,7 +409,7 @@
               delay: this.form.delay,
               endTime: this.form.endTime,
               name: this.form.name,
-              startTime: this.form.startTime,
+              startTime: this.form.startTime
             };
 
             this.tableDayInfo.map(function (item,index) {
@@ -433,15 +432,16 @@
 
             if (this.form.dormitoryIdList.length > 0){
               for (let i = 0; i < this.form.dormitoryIdList.length; i ++ ){
-                userIds.push(this.form.dormitoryIdList[i].id);
+                userIds.push(this.form.dormitoryIdList[i].user_id);
               }
-              params['dormitoryIdList'] = userIds;
+              params['userIdList'] = userIds;
             }
             if (this.form.id != ""){
               params['id'] = this.form.id;
               url = common.attend_dorm_setting_edit;
             }else {
               url = common.attend_dorm_setting_add;
+              params['rullType'] = 10;
             }
 
             //params = this.$qs.stringify(params);
