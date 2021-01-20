@@ -435,5 +435,8 @@ export const common = {
 
   attend_admin_setting_page: '/proxy/user/attend/group/page',//行政考勤设置分页
   attend_admin_setting_delete: '/proxy/user/attend/group/del',//行政考勤设置删除
+  attend_admin_setting_device: '/proxy/school/device/query-rela-device-page',//行政考勤设置--设备列表
+  attend_admin_setting_edit: '/proxy/user/attend/group/edit',//行政考勤设置--编辑
+  attend_admin_setting_add: '/proxy/user/attend/group/add',//行政考勤设置--添加
 
 };

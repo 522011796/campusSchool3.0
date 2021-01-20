@@ -143,34 +143,321 @@
       </div>
     </layout-tb>
 
-    <dialog-normal width-style="750px" :visible="modalVisible" :title="$t('设置分组')" @close="closeDialog" @right-close="cancelDialog">
+    <dialog-normal width-style="1200px" :visible="modalVisible" :title="$t('设置分组')" @close="closeDialog" @right-close="cancelDialog">
       <div class="margin-top-10">
-        <el-form :model="form" :rules="rules" ref="form" label-width="140px">
+        <el-form :model="form" :rules="rules" ref="form" label-width="120px">
           <el-form-item :label="$t('组名')" prop="name">
             <el-input v-model="form.name" class="width-260"></el-input>
           </el-form-item>
+          <el-form-item :label="$t('参与考勤')" prop="partUserIds">
+            <el-popover
+              placement="top"
+              width="700"
+              trigger="click"
+              @show="handleShowTeacher(1)">
+              <div>
+                <teacher-tree-and-list ref="popverPartRef" :sel-arr="form.partUserIds" set-type="check" @select="handleSelUser($event,1)"></teacher-tree-and-list>
+              </div>
+              <el-button slot="reference" type="success" plain size="small">{{$t("添加")}}</el-button>
+            </el-popover>
+            <span class="color-warning margin-left-10">
+              <i class="fa fa-user"></i>
+              {{$t("已选择")}}{{form.partUserIds.length}}{{$t("人员")}}
+            </span>
+          </el-form-item>
+          <el-form-item :label="$t('监督员')" prop="auditUserIds">
+            <el-popover
+              placement="top"
+              width="700"
+              trigger="click"
+              @show="handleShowTeacher(2)">
+              <div>
+                <teacher-tree-and-list ref="popverAuditRef" :sel-arr="form.auditUserIds" set-type="check" @select="handleSelUser($event,2)"></teacher-tree-and-list>
+              </div>
+              <el-button slot="reference" type="success" plain size="small">{{$t("添加")}}</el-button>
+            </el-popover>
+            <span class="color-warning margin-left-10">
+              <i class="fa fa-user"></i>
+              {{$t("已选择")}}{{form.auditUserIds.length}}{{$t("人员")}}
+            </span>
+          </el-form-item>
           <el-form-item :label="$t('时间设置')">
-            <el-time-picker
-              :clearable="false"
-              value-format="HH:mm"
-              format="HH:mm"
-              v-model="form.startTime"
-              :placeholder="$t('选择时间')"
-              class="layout-item"
-              style="width: 128px"
-              @change="handleChangeTime($event, 1)">
-            </el-time-picker>
-            -
-            <el-time-picker
-              :clearable="false"
-              value-format="HH:mm"
-              format="HH:mm"
-              v-model="form.endTime"
-              :placeholder="$t('选择时间')"
-              class="layout-item"
-              style="width: 128px"
-              @change="handleChangeTime($event, 2)">
-            </el-time-picker>
+            <div class="margin-bottom-5">
+              <el-button-group>
+                <el-button size="mini" :type="form.workTimes == 1 ? 'primary' : 'default'" @click="handleChange($event, 1)">{{$t('一天1次上下班')}}</el-button>
+                <el-button size="mini" :type="form.workTimes == 2 ? 'primary' : 'default'" @click="handleChange($event, 2)">{{$t('一天2次上下班')}}</el-button>
+                <el-button size="mini" :type="form.workTimes == 3 ? 'primary' : 'default'" @click="handleChange($event, 3)">{{$t('一天3次上下班')}}</el-button>
+              </el-button-group>
+              <span>
+                <my-check :sel-value="form.workTimesSwitch" @change="handleChange($event, 4)">
+                  <span>{{$t('打卡时间短设置')}}</span>
+                </my-check>
+              </span>
+            </div>
+            <div v-for="(item, index) in form.timeTimes" :key="index">
+              <span class="font-size-12 color-muted margin-right-5">{{$t("第")}}{{index+1}}{{$t("次")}}{{$t("默认班次时间")}}</span>
+              <el-time-picker
+                size="mini"
+                :clearable="false"
+                value-format="HH:mm"
+                format="HH:mm"
+                v-model="item.startTime"
+                :placeholder="$t('选择时间')"
+                class="layout-item"
+                style="width: 95px"
+                @change="handleChangeTime($event, item, index, 1)">
+              </el-time-picker>
+              -
+              <el-time-picker
+                size="mini"
+                :clearable="false"
+                value-format="HH:mm"
+                format="HH:mm"
+                v-model="item.endTime"
+                :placeholder="$t('选择时间')"
+                class="layout-item"
+                style="width: 95px"
+                @change="handleChangeTime($event, item, index, 2)">
+              </el-time-picker>
+              <span v-if="form.workTimesSwitch == true">
+                <label class="font-size-12 color-muted">
+                {{$t("上班前")}}
+                  <el-input size="mini" v-model="item.upBefore" style="width: 50px"></el-input>
+                  {{$t("分钟")}}
+                </label>
+                <label class="font-size-12 color-muted">
+                  {{$t("下班后")}}
+                  <el-input size="mini" v-model="item.downAfter" style="width: 50px"></el-input>
+                  {{$t("分钟")}}
+                </label>
+              </span>
+            </div>
+          </el-form-item>
+          <el-form-item :label="$t('工作日设置')">
+            <el-row :gutter="4" style="margin-left: 0px !important;margin-right: 0px !important;">
+              <el-col :span="8" v-if="form.workTimes == 1 || form.workTimes == 2 || form.workTimes == 3">
+                <el-card :body-style="{padding: '0px 5px'}">
+                  <div>
+                    <span class="font-size-12 color-muted">{{$t("第一次上下班")}}</span>
+                  </div>
+                  <div class="margin-top-5">
+                    <ul>
+                      <li class="font-size-12 color-muted" v-for="(item, index) in form.workTimeWeek1" :key="index">
+                        <my-check :sel-value="item.weekSwitch">
+                          <span class="font-size-12 color-muted" style="font-weight: normal">{{weekNoText2Info(index+1)}}</span>
+                        </my-check>
+                        <span>
+                          <el-time-picker
+                            size="mini"
+                            :clearable="false"
+                            value-format="HH:mm"
+                            format="HH:mm"
+                            v-model="item.startTime"
+                            :placeholder="$t('选择时间')"
+                            class="layout-item"
+                            style="width: 95px"
+                            @change="handleChangeTime($event, item, index, 3)">
+                          </el-time-picker>
+                          -
+                          <el-time-picker
+                            size="mini"
+                            :clearable="false"
+                            value-format="HH:mm"
+                            format="HH:mm"
+                            v-model="item.endTime"
+                            :placeholder="$t('选择时间')"
+                            class="layout-item"
+                            style="width: 95px"
+                            @change="handleChangeTime($event, item, index, 4)">
+                          </el-time-picker>
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                </el-card>
+              </el-col>
+              <el-col :span="8" v-if="form.workTimes == 2 || form.workTimes == 3">
+                <el-card :body-style="{padding: '0px 5px'}">
+                  <div>
+                    <span class="font-size-12 color-muted">{{$t("第二次上下班")}}</span>
+                  </div>
+                  <div class="margin-top-5">
+                    <ul>
+                      <li class="font-size-12 color-muted" v-for="(item, index) in form.workTimeWeek2" :key="index">
+                        <my-check :sel-value="item.weekSwitch">
+                          <span class="font-size-12 color-muted" style="font-weight: normal">{{weekNoText2Info(index+1)}}</span>
+                        </my-check>
+                        <span>
+                          <el-time-picker
+                            size="mini"
+                            :clearable="false"
+                            value-format="HH:mm"
+                            format="HH:mm"
+                            v-model="item.startTime"
+                            :placeholder="$t('选择时间')"
+                            class="layout-item"
+                            style="width: 95px"
+                            @change="handleChangeTime($event, item, index, 5)">
+                          </el-time-picker>
+                          -
+                          <el-time-picker
+                            size="mini"
+                            :clearable="false"
+                            value-format="HH:mm"
+                            format="HH:mm"
+                            v-model="item.endTime"
+                            :placeholder="$t('选择时间')"
+                            class="layout-item"
+                            style="width: 95px"
+                            @change="handleChangeTime($event, item, index, 6)">
+                          </el-time-picker>
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                </el-card>
+              </el-col>
+              <el-col :span="8" v-if="form.workTimes == 3">
+                <el-card :body-style="{padding: '0px 5px'}">
+                  <div>
+                    <span class="font-size-12 color-muted">{{$t("第三次上下班")}}</span>
+                  </div>
+                  <div class="margin-top-5">
+                    <ul>
+                      <li class="font-size-12 color-muted" v-for="(item, index) in form.workTimeWeek3" :key="index">
+                        <my-check :sel-value="item.weekSwitch">
+                          <span class="font-size-12 color-muted" style="font-weight: normal">{{weekNoText2Info(index+1)}}</span>
+                        </my-check>
+                        <span>
+                          <el-time-picker
+                            size="mini"
+                            :clearable="false"
+                            value-format="HH:mm"
+                            format="HH:mm"
+                            v-model="item.startTime"
+                            :placeholder="$t('选择时间')"
+                            class="layout-item"
+                            style="width: 95px"
+                            @change="handleChangeTime($event, item, index, 7)">
+                          </el-time-picker>
+                          -
+                          <el-time-picker
+                            size="mini"
+                            :clearable="false"
+                            value-format="HH:mm"
+                            format="HH:mm"
+                            v-model="item.endTime"
+                            :placeholder="$t('选择时间')"
+                            class="layout-item"
+                            style="width: 95px"
+                            @change="handleChangeTime($event, item, index, 8)">
+                          </el-time-picker>
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                </el-card>
+              </el-col>
+            </el-row>
+            <div>
+              <span>
+                <my-check :sel-value="form.autoSwitch" @change="handleChange($event, 5)">
+                  {{$t("法定节假日自动调休")}}
+                </my-check>
+              </span>
+            </div>
+          </el-form-item>
+          <el-form-item :label="$t('特殊日期')">
+            <div>
+              <el-date-picker
+                type="dates"
+                v-model="form.mustTimes"
+                :placeholder="$t('选择一个或多个日期')"
+                style="width: 400px">
+              </el-date-picker>
+              <span class="color-muted">{{$t("必须打卡日期")}}</span>
+            </div>
+            <div class="margin-top-10">
+              <el-date-picker
+                type="dates"
+                v-model="form.noMustTimes"
+                :placeholder="$t('选择一个或多个日期')"
+                style="width: 400px">
+              </el-date-picker>
+              <span class="color-muted">{{$t("不用打卡日期")}}</span>
+            </div>
+          </el-form-item>
+          <el-form-item :label="$t('旷工设置')">
+            <div>
+              <my-radio :sel-value="form.unSignRule" label="1" @change="changeStatus($event,1)">{{$t("旷工半天规则1")}}</my-radio>
+              <span class="color-muted font-size-12">
+                {{$t("上班时间未满")}}
+                <el-input size="small" v-model="form.unSignRuleTime1" style="width: 80px;"></el-input>
+                {{$t("小时/天")}}
+              </span>
+            </div>
+            <div>
+              <my-radio :sel-value="form.unSignRule" label="2" @change="changeStatus($event,2)">{{$t("旷工半天规则2")}}</my-radio>
+              <span class="color-muted font-size-12">
+                {{$t("迟到+早退累计")}}
+                <el-input size="small" v-model="form.unSignRuleTime2" style="width: 80px;"></el-input>
+                {{$t("小时/天")}}
+              </span>
+            </div>
+            <div>
+              <span class="color-muted font-size-12">
+                <label class="color-grand font-size-14" style="font-weight: bold">{{$t("旷工1天规则")}}</label>
+                <span>{{$t("打卡次数<=")}}</span>
+                <el-input size="small" v-model="form.unSignRuleTime3" style="width: 80px;"></el-input>
+                {{$t("次/天")}}
+              </span>
+            </div>
+          </el-form-item>
+          <el-form-item :label="$t('旷工月统计规则')">
+            <div>
+              <label class="color-grand font-size-14" style="font-weight: bold">{{$t("旷工半天统计规则")}}</label>
+              <span class="color-muted font-size-12">
+                {{$t("迟到+早退累计")}}
+                <el-input size="small" v-model="form.unSignStaticRuleTime1" style="width: 80px;"></el-input>
+                {{$t("次/月")}}
+              </span>
+            </div>
+            <div>
+              <div class="layout-inline">
+                <label class="color-grand font-size-14 layout-item" style="font-weight: bold;position: relative; top: -40px;">{{$t("旷工1天统计规则")}}</label>
+                <div class="color-muted font-size-12 layout-item">
+                  <div>
+                    {{$t("迟到+早退累计<=")}}
+                    <el-input size="small" v-model="form.unSignStaticRuleTime2" style="width: 80px;"></el-input>
+                    {{$t("次/月")}}
+                  </div>
+                  <div>
+                    {{$t("迟到+早退累计")}}
+                    <el-input size="small" v-model="form.unSignStaticRuleTime3" style="width: 80px;"></el-input>
+                    {{$t("小时/月")}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </el-form-item>
+          <el-form-item :label="$t('考勤地点')" prop="deviceList">
+            <div>
+              <my-radio :sel-value="form.addrSwitch" label="0" @change="changeStatus($event,3)" :disabled="true">{{$t("LBS地图定位考勤")}}<span class="color-danger">({{$t("暂无开放")}})</span></my-radio>
+            </div>
+            <div>
+              <my-radio :sel-value="form.addrSwitch" label="1" @change="changeStatus($event,4)">{{$t("人脸识别机考勤")}}</my-radio>
+              <span>
+                <el-card :body-style="{padding: '5px 5px'}" style="width: 240px; max-height: 200px; overflow: auto">
+                  <ul>
+                    <el-checkbox-group v-model="form.deviceList">
+                      <li v-for="(item, index) in tableDeviceList" :key="index">
+                        <el-checkbox :label="item.value" :key="index">{{item.label}}</el-checkbox>
+                      </li>
+                    </el-checkbox-group>
+                  </ul>
+                </el-card>
+              </span>
+            </div>
           </el-form-item>
         </el-form>
       </div>
@@ -193,7 +480,7 @@
   import MyPagination from "../../../components/MyPagination";
   import mixins from "../../../utils/mixins";
   import {common} from "../../../utils/api/url";
-  import {MessageError, MessageSuccess} from "../../../utils/utils";
+  import {auditStatusText, MessageError, MessageSuccess, MessageWarning, weekNoText2} from "../../../utils/utils";
   import LayoutTb from "../../../components/Layout/LayoutTb";
   import MySelect from "../../../components/MySelect";
   import MyUserType from "../../../components/utils/MyUserType";
@@ -203,10 +490,12 @@
   import ClassroomTreeAndList from "../../../components/utils/treeAndList/ClassroomTreeAndList";
   import MyCheck from "../../../components/MyCheck";
   import DormBuildTreeAndList from "../../../components/utils/treeAndList/DormBuildTreeAndList";
-  import doorAttendSettingValidater from "../../../utils/validater/doorAttendSettingValidater";
+  import MyRadio from "../../../components/MyRadio";
+  import adminSettingValidater from "../../../utils/validater/adminSettingValidater";
   export default {
-    mixins: [mixins, doorAttendSettingValidater],
+    mixins: [mixins, adminSettingValidater],
     components: {
+      MyRadio,
       DormBuildTreeAndList,
       MyCheck,
       MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal,ClassroomTreeAndList,MyCheck,MySelect,DormBuildTreeAndList},
@@ -229,19 +518,71 @@
         subTitle: '',
         errorTips: '',
         tips: '',
+        tableDeviceList: [],
         form: {
           id: '',
           name: '',
-          startTime: '',
-          endTime: '',
-          delay: 60,
-          dormitoryIdList: [],
-          checkbedRuleDay: []
+          workTimes: 1,
+          workTimesSwitch: false,
+          timeTimes: [
+            {
+              startTime: '00:00',
+              endTime: '00:00',
+              upBefore: '',
+              downAfter: ''
+            }
+          ],
+          workTimeWeek1: [
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'}
+          ],
+          workTimeWeek2: [
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'}
+          ],
+          workTimeWeek3: [
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'}
+          ],
+          autoSwitch: false,
+          mustTimes: [],
+          noMustTimes: [],
+          unSignRule: "1",
+          unSignRule1: false,
+          unSignRule2: false,
+          unSignRuleTime1: '',
+          unSignRuleTime2: '',
+          unSignRuleTime3: '',
+          unSignStaticRule1: false,
+          unSignStaticRule2: false,
+          unSignStaticRuleTime1: '',
+          unSignStaticRuleTime2: '',
+          unSignStaticRuleTime3: '',
+          addrSwitch: "1",
+          deviceList: [],
+          partUserIds: [],
+          auditUserIds: []
         }
       }
     },
     created() {
       this.init();
+      this.initDevice();
     },
     methods: {
       async init(){
@@ -259,6 +600,23 @@
             this.total = res.data.data.totalCount;
             this.num = res.data.data.num;
             this.page = res.data.data.currentPage;
+          }
+        });
+      },
+      initDevice(){
+        let arr = [];
+        let params = {
+          page: 1,
+          num: 999,
+          sceneType: 3
+        };
+        this.$axios.get(common.attend_admin_setting_device, {params:params}).then(res => {
+          if (res.data.data){
+            for (let i = 0; i < res.data.data.list.length; i++){
+              res.data.data.list[i]['label'] = res.data.data.list[i].name ? res.data.data.list[i].name : res.data.data.list[i].sn;
+              res.data.data.list[i]['value'] = res.data.data.list[i].sn;
+            }
+            this.tableDeviceList = res.data.data.list;
           }
         });
       },
@@ -288,23 +646,128 @@
         this.modalOtherVisible = true;
       },
       editInfo(row){
-        let roomIds = row.dormitory_id_list ? row.dormitory_id_list.split(",") : [];
+        let parts = row.add_teachers ? JSON.parse(row.add_teachers) : [];
+        let audtis = row.supervisors ? JSON.parse(row.supervisors) : [];
         let arr = [];
+        let arrAudit = [];
+        let arrTimes = [];
+        let weekSetting1 = row.work_day_setting ? JSON.parse(row.work_day_setting) : '';
+        let weekSetting2 = row.work_day_setting2 ? JSON.parse(row.work_day_setting2) : '';
+        let weekSetting3 = row.work_day_setting3 ? JSON.parse(row.work_day_setting3) : '';
+        let mustTimes = row.must_attend_days ? JSON.parse(row.must_attend_days): [];
+        let notMustTimes = row.not_attend_days ? JSON.parse(row.not_attend_days): [];
+        let deviceList = row.device_sns ? JSON.parse(row.device_sns): [];
         this.form = {
           id: row.id,
-          name: row.name,
-          startTime: row.start_time,
-          endTime: row.end_time,
-          delay: row.delay,
-          checkbedRuleDay: []
+          name: row.group_name,
+          workTimes: row.day_times,
+          workTimesSwitch: row.sign_time_setting,
+          timeTimes: [],
+          workTimeWeek1: [
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'}
+          ],
+          workTimeWeek2: [
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'}
+          ],
+          workTimeWeek3: [
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'}
+          ],
+          autoSwitch: row.auto_holiday,
+          mustTimes: [],
+          noMustTimes: [],
+          unSignRule: ''+row.absent_half_rule_type,
+          unSignRule1: false,
+          unSignRule2: false,
+          unSignRuleTime1: row.absent_half_rule_type == 1 ? row.absent_half_rule_hours : 0,
+          unSignRuleTime2: row.absent_half_rule_type == 2 ? row.absent_half_rule_hours : 0,
+          unSignRuleTime3: row.absent_full_rule_sign_times,
+          unSignStaticRule1: false,
+          unSignStaticRule2: false,
+          unSignStaticRuleTime1: row.absent_half_rule_times,
+          unSignStaticRuleTime2: row.absent_full_rule_times,
+          unSignStaticRuleTime3: row.absent_full_rule_hours,
+          addrSwitch: ''+row.sign_type,
+          deviceList: [],
+          partUserIds: [],
+          auditUserIds: []
         };
 
-        for (let i = 0; i < roomIds.length; i++){
+        for (let i in weekSetting1){
+          this.form.workTimeWeek1[i-1] = {weekSwitch: true, startTime: weekSetting1[i].startTime, endTime: weekSetting1[i].endTime};
+        }
+
+        for (let i in weekSetting2){
+          this.form.workTimeWeek2[i-1] = {weekSwitch: true, startTime: weekSetting2[i].startTime, endTime: weekSetting2[i].endTime};
+        }
+
+        for (let i in weekSetting3){
+          this.form.workTimeWeek3[i-1] = {weekSwitch: true, startTime: weekSetting3[i].startTime, endTime: weekSetting3[i].endTime};
+        }
+
+        for (let i = 0; i < row.day_times; i++){
+          if (i == 0){
+            arrTimes[0] = {
+              startTime: row.upper_time,
+              endTime: row.lower_time,
+              upBefore: row.before_stimer,
+              downAfter: row.after_stimer
+            };
+          }
+          if (i == 1){
+            arrTimes[1] = {
+              startTime: row.upper_time2,
+              endTime: row.lower_time2,
+              upBefore: row.before_stimer2,
+              downAfter: row.after_stimer2
+            };
+          }
+          if (i == 2){
+            arrTimes[2] = {
+              startTime: row.upper_time3,
+              endTime: row.lower_time3,
+              upBefore: row.before_stimer3,
+              downAfter: row.after_stimer3
+            };
+          }
+        }
+
+        for (let i = 0; i < parts.length; i++){
           arr.push({
-            id: roomIds[i]
+            user_id: parts[i]
           });
         }
-        this.$set(this.form, 'dormitoryIdList', arr);
+        for (let i = 0; i < audtis.length; i++){
+          arrAudit.push({
+            user_id: audtis[i].userId,
+            name: audtis[i].name,
+            real_name: audtis[i].name,
+          });
+        }
+
+        this.$set(this.form, 'deviceList', deviceList);
+        this.$set(this.form, 'mustTimes', mustTimes);
+        this.$set(this.form, 'noMustTimes', notMustTimes);
+        this.$set(this.form, 'timeTimes', arrTimes);
+        this.$set(this.form, 'partUserIds', arr);
+        this.$set(this.form, 'auditUserIds', arrAudit);
         this.initSetting(row);
         this.modalVisible = true;
       },
@@ -368,16 +831,69 @@
         this.form = {
           id: '',
           name: '',
-          startTime: '',
-          endTime: '',
-          delay: 60,
-          dormitoryIdList: [],
-          checkbedRuleDay: []
+          workTimes: 1,
+          workTimesSwitch: false,
+          timeTimes: [
+            {
+              startTime: '00:00',
+              endTime: '00:00',
+              upBefore: '',
+              downAfter: ''
+            }
+          ],
+          workTimeWeek1: [
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'}
+          ],
+          workTimeWeek2: [
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'}
+          ],
+          workTimeWeek3: [
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'},
+            {weekSwitch: false, startTime: '00:00', endTime: '00:00'}
+          ],
+          autoSwitch: false,
+          mustTimes: [],
+          noMustTimes: [],
+          unSignRule: "1",
+          unSignRule1: false,
+          unSignRule2: false,
+          unSignRuleTime1: '',
+          unSignRuleTime2: '',
+          unSignRuleTime3: '',
+          unSignStaticRule1: false,
+          unSignStaticRule2: false,
+          unSignStaticRuleTime1: '',
+          unSignStaticRuleTime2: '',
+          unSignStaticRuleTime3: '',
+          addrSwitch: "1",
+          deviceList: [],
+          partUserIds: [],
+          auditUserIds: []
         };
         this.subTitle = "";
         this.oprType == "";
         if (this.$refs['popverPartRef']){
           this.$refs.popverPartRef._handleResetChange();
+        }
+        if (this.$refs['popverAuditRef']){
+          this.$refs.popverAuditRef._handleResetChange();
         }
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
@@ -386,54 +902,157 @@
       okDialog(event){
         let url = "";
         let _self = this;
-        let regNum = /^\d+$|^\d+[.]?\d+$/;
+        let errNum = 0;
+        let regNum = /^[0-9]*$/;
         let userIds = [];
-        let dayInfo = [];
+        let auditIds = [];
+        let weekDay1 = {};
+        let weekDay2 = {};
+        let weekDay3 = {};
         this.errorTips = "";
         this.$refs['form'].validate((valid) => {
           if (valid) {
             this.dialogLoading = true;
             let params = {
-              checkbedRuleDay: this.form.checkbedRuleDay,
-              delay: this.form.delay,
-              endTime: this.form.endTime,
-              name: this.form.name,
-              startTime: this.form.startTime,
+              groupName: this.form.name,
+              departIds: [],
+              dayTimes: this.form.workTimes,
+              signTimeSetting: this.form.workTimesSwitch,
+              autoHoliday: this.form.autoSwitch,
+              mustAttendDays: (this.form.mustTimes && this.form.mustTimes.length > 0) ? JSON.stringify(this.form.mustTimes) : [],
+              notAttendDays: (this.form.noMustTimes && this.form.noMustTimes.length > 0) ? JSON.stringify(this.form.noMustTimes) : [],
+              absentHalfRuleType: this.form.unSignRule,
+              absentHalfRuleHours: this.form.unSignRule == 1 ? this.form.unSignRuleTime1 : this.form.unSignRuleTime2,
+              absentFullRuleSignTimes: this.form.unSignRuleTime3,
+              absentHalfRuleTimes: this.form.unSignStaticRuleTime1,
+              absentFullRuleTimes: this.form.unSignStaticRuleTime2,
+              absentFullRuleHours: this.form.unSignStaticRuleTime3,
+              signType: this.form.addrSwitch,
+              deviceSns: (this.form.deviceList && this.form.deviceList.length > 0) ? JSON.stringify(this.form.deviceList) : []
             };
 
-            this.tableDayInfo.map(function (item,index) {
-              if (item){
-                item.days.map(function (itemDay,indexDay) {
-                  if (itemDay){
-                    dayInfo.push({
-                      busiTime: itemDay.busiTime,
-                      weekNum: itemDay.weekNum,
-                      weekNo: itemDay.weekNo,
-                      rollCall: itemDay.rollCall,
-                      festival: itemDay.festival,
-                      checkbedRuleId: _self.form.id
-                    });
+            for (let i = 0; i < this.form.timeTimes.length; i++){
+              if (regNum.test(this.form.timeTimes[i].upBefore) == false || regNum.test(this.form.timeTimes[i].downAfter) == false){
+                errNum++;
+              }
+              if (i == 0){
+                params['upperTime'] = this.form.timeTimes[0].startTime;
+                params['lowerTime'] = this.form.timeTimes[0].endTime;
+                params['beforeStimer'] = this.form.timeTimes[0].upBefore;
+                params['afterStimer'] = this.form.timeTimes[0].downAfter;
+              }
+              if (i == 1){
+                params['upperTime2'] = this.form.timeTimes[1].startTime;
+                params['lowerTime2'] = this.form.timeTimes[1].endTime;
+                params['beforeStimer2'] = this.form.timeTimes[1].upBefore;
+                params['afterStimer2'] = this.form.timeTimes[1].downAfter;
+              }
+              if (i == 2){
+                params['upperTime3'] = this.form.timeTimes[2].startTime;
+                params['lowerTime3'] = this.form.timeTimes[2].endTime;
+                params['beforeStimer3'] = this.form.timeTimes[2].upBefore;
+                params['afterStimer3'] = this.form.timeTimes[2].downAfter;
+              }
+            }
+
+            for (let i = 0; i < this.form.workTimeWeek1.length; i++){
+              if (i == 0){
+                weekDay1['one'] = this.form.workTimeWeek1[i];
+              }else if (i == 1){
+                weekDay1['two'] = this.form.workTimeWeek1[i];
+              }if (i == 2){
+                weekDay1['three'] = this.form.workTimeWeek1[i];
+              }if (i == 3){
+                weekDay1['four'] = this.form.workTimeWeek1[i];
+              }if (i == 4){
+                weekDay1['five'] = this.form.workTimeWeek1[i];
+              }if (i == 5){
+                weekDay1['six'] = this.form.workTimeWeek1[i];
+              }if (i == 6){
+                weekDay1['seven'] = this.form.workTimeWeek1[i];
+              }
+            }
+            params['workDaySetting'] = JSON.stringify(weekDay1);
+
+            for (let i = 0; i < this.form.workTimeWeek2.length; i++){
+              if (i == 0){
+                weekDay2['one'] = this.form.workTimeWeek2[i];
+              }else if (i == 1){
+                weekDay2['two'] = this.form.workTimeWeek2[i];
+              }if (i == 2){
+                weekDay2['three'] = this.form.workTimeWeek2[i];
+              }if (i == 3){
+                weekDay2['four'] = this.form.workTimeWeek2[i];
+              }if (i == 4){
+                weekDay2['five'] = this.form.workTimeWeek2[i];
+              }if (i == 5){
+                weekDay2['six'] = this.form.workTimeWeek2[i];
+              }if (i == 6){
+                weekDay2['seven'] = this.form.workTimeWeek2[i];
+              }
+            }
+            params['workDaySetting2'] = JSON.stringify(weekDay2);
+
+            for (let i = 0; i < this.form.workTimeWeek3.length; i++){
+              if (i == 0){
+                weekDay3['one'] = this.form.workTimeWeek3[i];
+              }else if (i == 1){
+                weekDay3['two'] = this.form.workTimeWeek3[i];
+              }if (i == 2){
+                weekDay3['three'] = this.form.workTimeWeek3[i];
+              }if (i == 3){
+                weekDay3['four'] = this.form.workTimeWeek3[i];
+              }if (i == 4){
+                weekDay3['five'] = this.form.workTimeWeek3[i];
+              }if (i == 5){
+                weekDay3['six'] = this.form.workTimeWeek3[i];
+              }if (i == 6){
+                weekDay3['seven'] = this.form.workTimeWeek3[i];
+              }
+            }
+            params['workDaySetting3'] = JSON.stringify(weekDay3);
+
+            if (this.form.partUserIds.length > 0){
+              for (let i = 0; i < this.form.partUserIds.length; i ++ ){
+                userIds.push(this.form.partUserIds[i].user_id);
+              }
+              params['addTeachers'] = userIds.length > 0 ? JSON.stringify(userIds) : [];
+            }
+
+            if (this.form.auditUserIds.length > 0){
+              for (let i = 0; i < this.form.auditUserIds.length; i ++ ){
+                auditIds.push(
+                  {
+                    userId: this.form.auditUserIds[i].user_id,
+                    name: this.form.auditUserIds[i].name ? this.form.auditUserIds[i].name : this.form.auditUserIds[i].real_name,
                   }
-                });
+                );
               }
-            });
-            params['checkbedRuleDay'] = dayInfo;
-
-            if (this.form.dormitoryIdList.length > 0){
-              for (let i = 0; i < this.form.dormitoryIdList.length; i ++ ){
-                userIds.push(this.form.dormitoryIdList[i].id);
-              }
-              params['dormitoryIdList'] = userIds;
+              params['supervisors'] = auditIds.length > 0 ? JSON.stringify(auditIds) : [];
             }
+
+            if (regNum.test(this.form.unSignRuleTime1) == false || regNum.test(this.form.unSignRuleTime2) == false){
+              errNum++;
+            }
+
+            if (regNum.test(this.form.unSignStaticRuleTime1) == false || regNum.test(this.form.unSignStaticRuleTime2) == false || regNum.test(this.form.unSignStaticRuleTime3) == false){
+              errNum++;
+            }
+
+            if (errNum > 0){
+              MessageWarning(this.$t("内容有非整数的数据，请检查"));
+              return;
+            }
+
             if (this.form.id != ""){
-              params['id'] = this.form.id;
-              url = common.attend_dorm_setting_edit;
+              params['groupId'] = this.form.id;
+              url = common.attend_admin_setting_edit;
             }else {
-              url = common.attend_dorm_setting_add;
+              url = common.attend_admin_setting_add;
             }
 
-            //params = this.$qs.stringify(params);
-            this.$axios.post(url, JSON.stringify(params), {dataType: 'stringfy'}).then(res => {
+            params = this.$qs.stringify(params);
+            this.$axios.post(url, params).then(res => {
               if (res.data.code == 200){
                 this.modalVisible = false;
                 this.init();
@@ -447,26 +1066,65 @@
         });
       },
       handleShowTeacher(type){
-        this.$refs.popverPartRef._handleOpen();
-      },
-      handleSelUser(data){
-        let arr = [];
-        this.form.dormitoryIdList = data;
-      },
-      handleChange(data, type){
         if (type == 1){
-          this.form.switchContinue = data;
+          this.$refs.popverPartRef._handleOpen();
         }else if (type == 2){
-          this.form.earlyEnable = data;
-        }else if (type == 3){
-          this.form.continueSection = data;
+          this.$refs.popverAuditRef._handleOpen();
         }
       },
-      handleChangeTime(data, type){
+      handleSelUser(data, type){
         if (type == 1){
-          this.form.startTime = data;
+          this.form.partUserIds = data;
         }else if (type == 2){
-          this.form.endTime = data;
+          this.form.auditUserIds = data;
+        }
+      },
+      handleChange(data, type){
+        if (type == 4){
+          this.form.workTimesSwitch = data;
+        }else if (type == 5){
+          this.form.autoSwitch = data;
+        }else {
+          this.form.workTimes = type;
+          this.form.timeTimes = [];
+          for (let i = 0; i < type; i++){
+            this.form.timeTimes.push({
+              startTime: '00:00',
+              endTime: '00:00',
+              upBefore: '',
+              downAfter: ''
+            });
+          }
+        }
+      },
+      handleChangeTime(data, item, index, type){
+        if (type == 1){
+          this.$set(this.form.timeTimes[index],'startTime', data);
+        }else if (type == 2){
+          this.$set(this.form.timeTimes[index],'endTime', data);
+        }else if (type == 3){
+          this.$set(this.form.workTimeWeek1[index],'startTime', data);
+        }else if (type == 4){
+          this.$set(this.form.workTimeWeek1[index],'endTime', data);
+        }else if (type == 5){
+          this.$set(this.form.workTimeWeek2[index],'startTime', data);
+        }else if (type == 6){
+          this.$set(this.form.workTimeWeek2[index],'endTime', data);
+        }else if (type == 7){
+          this.$set(this.form.workTimeWeek3[index],'startTime', data);
+        }else if (type == 8){
+          this.$set(this.form.workTimeWeek3[index],'endTime', data);
+        }
+      },
+      changeStatus(data, type){
+        if (type == 1){
+          this.form.unSignRule = data;
+        }else if (type == 2){
+          this.form.unSignRule = data;
+        }else if (type == 3){
+          this.form.addrSwitch = data;
+        }else if (type == 4){
+          this.form.addrSwitch = data;
         }
       },
       changeRollCall(item){
@@ -481,6 +1139,9 @@
             }
           });
         });
+      },
+      weekNoText2Info(val){
+        return weekNoText2(val)
       }
     }
   }
