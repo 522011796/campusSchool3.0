@@ -442,7 +442,7 @@
           </el-form-item>
           <el-form-item :label="$t('考勤地点')" prop="deviceList">
             <div>
-              <my-radio :sel-value="form.addrSwitch" label="0" @change="changeStatus($event,3)" :disabled="true">{{$t("LBS地图定位考勤")}}<span class="color-danger">({{$t("暂无开放")}})</span></my-radio>
+              <my-radio :sel-value="form.addrSwitch" label="0" @change="changeStatus($event,3)" :disabled="true">{{$t("LBS地图定位考勤")}}<span class="color-danger">({{$t("暂未开放")}})</span></my-radio>
             </div>
             <div>
               <my-radio :sel-value="form.addrSwitch" label="1" @change="changeStatus($event,4)">{{$t("人脸识别机考勤")}}</my-radio>

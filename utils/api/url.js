@@ -439,4 +439,10 @@ export const common = {
   attend_admin_setting_edit: '/proxy/user/attend/group/edit',//行政考勤设置--编辑
   attend_admin_setting_add: '/proxy/user/attend/group/add',//行政考勤设置--添加
 
+
+  student_info_setting: '/proxy/school/person/student/update/and/take/img/add',//学生管理--设置
+  tearcher_info_setting: '/proxy/school/person/teacher/photo/add',//教工管理--设置
+  tearcher_info_setting_page: '/proxy/school/person/teacher/page',//教工管理--设置
+  student_info_warning: '/proxy/user/alarm/list',//学生报警
+
 };

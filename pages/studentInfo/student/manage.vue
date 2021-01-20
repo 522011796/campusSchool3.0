@@ -149,9 +149,12 @@
             <div>
               <el-row>
                 <el-col :span="12">
-                  <div style="height: 90px">
-                    <img v-for="(item, index) in form.imgList" :key="index" :src="item" class="user-header-photo">
+                  <span v-if="form.imgList.length == 0">&nbsp;</span>
+                  <div v-else v-for="(item, index) in form.imgList" :key="index" style="height: 90px;position: relative;float: left;margin-right: 2px">
+                    <i class="fa fa-window-close-o" style="position: absolute;right: 0px;top:-5px;" @click="deleteImg(index)"></i>
+                    <img class="user-header-photo" :src="item" style="height:100%;">
                   </div>
+                  <div class="moon-clearfix"></div>
                 </el-col>
                 <el-col :span="12" class="color-muted">
                   <div class="font-size-12">
@@ -233,7 +236,7 @@
                 </el-col>
                 <el-col :span="12">
                   <div class="text-right layout-inline">
-                    <upload-square class="layout-item" :action="uploadFileUrl" max-size="2" :data="{path: 'studentPhone'}" accept=".png,.jpg,.jpeg" @success="uploadFileSuccess">
+                    <upload-square class="layout-item" :limit="3" :action="uploadFileUrl" max-size="2" :data="{path: 'studentPhone'}" accept=".png,.jpg,.jpeg" @success="uploadFileSuccess">
                       <el-button size="small" type="primary" icon="el-icon-upload">{{$t("本地上传")}}</el-button>
                     </upload-square>
                     <el-button :disabled="this.photoTimer != null" class="layout-item" size="small" type="warning" icon="el-icon-camera-solid" @click="photoChange">
@@ -297,10 +300,10 @@
           <div class="margin-top-5">
             <el-form :model="form" ref="form" label-width="80px">
               <el-form-item :label="$t('学籍状态')" prop="status">
-                <my-select width-style="260" :clearable="true" :sel-value="form.status" :options="studentTeachStatusInfo(null, 'get')" :placeholder="$t('学籍状态')" class="layout-item" @change="handleSelect($event, 1)"></my-select>
+                <my-select width-style="260" :clearable="true" :sel-value="form.studentInfo.status" :options="studentTeachStatusInfo(null, 'get')" :placeholder="$t('学籍状态')" class="layout-item" @change="handleSelect($event, 1)"></my-select>
               </el-form-item>
               <el-form-item :label="$t('就读形式')" prop="attnedType">
-                <my-select width-style="260" :clearable="true" :sel-value="form.attnedType" :options="studyTypeInfo(null, 'get')" :placeholder="$t('学籍状态')" class="layout-item" @change="handleSelect($event, 1)"></my-select>
+                <my-select width-style="260" :clearable="true" :sel-value="form.studentInfo.attendType" :options="studyTypeInfo(null, 'get')" :placeholder="$t('就读形式')" class="layout-item" @change="handleSelect($event, 2)"></my-select>
               </el-form-item>
               <el-form-item :label="$t('班级分配')">
                 <my-cascader ref="selectorClass" :sel-value="form.classData" type="1" sub-type="4" width-style="260" @change="handleCascaderChange($event, 1)"></my-cascader>
@@ -451,7 +454,33 @@
           buildId: '',
           floorNum: '',
           dormId: '',
-          bedId: ''
+          bedId: '',
+          studentInfo: {
+            attendType: "",
+            bedNo: '',
+            birthday: "",
+            certificateNum: "",
+            certificateType: "",
+            className: "",
+            clasz: '',
+            claszDate: "",
+            collegeId: '',
+            dormId: '',
+            email: "",
+            majorId: '',
+            nation: "",
+            nativePlace: "",
+            nickName: "",
+            parentContactInfo: "",
+            parentName: "",
+            phone: "",
+            realName: "",
+            schoolInTime: "",
+            sex: '',
+            status: "",
+            studentId: "",
+            userId: ""
+          }
         }
       }
     },
@@ -496,7 +525,6 @@
           type: this.searchDeviceType
         };
         this.$axios.get(common.device_take_list, {params: params}).then(res => {
-          console.log(3,res);
           if (res.data.data){
             this.deviceAllData = res.data.data;
           }
@@ -510,7 +538,6 @@
           type: 3
         };
         this.$axios.get(common.device_take_list, {params: params}).then(res => {
-          console.log(1,res);
           if (res.data.data){
             this.deviceData = res.data.data;
           }
@@ -523,7 +550,6 @@
           dormitoryId: this.searchDormId
         };
         this.$axios.get(common.bed_select_list, {params: params}).then(res => {
-          console.log(2,res);
           if (res.data.data){
             this.bedData = res.data.data;
           }
@@ -541,6 +567,45 @@
         this.form.attnedType = row.attend_type;
         this.form.classData = [row.college_id, row.major_id, row.grade, row.class_id];
         this.form.dormData = [row.build_id, row.floor_num, row.drom_id];
+        this.form.cardNo = row.face_cards;
+        this.form.imgList = [];
+        if (row.photo && row.photo != ""){
+          this.form.imgList.push(row.photo);
+        }
+        if (row.face_photos && row.face_photos != ""){
+          let img = row.face_photos.split("|");
+          for (let i = 0; i < img.length; i++){
+            this.form.imgList.push(img[i]);
+          }
+        }
+        this.selDormTips = row.build_name +"-"+ row.floor_num+"楼" +"-"+ row.dormitory_no +"-"+ row.bed_no+"号床";
+        this.form.studentInfo = {
+          attendType: row.attend_type,
+          bedNo: row.bed_no,
+          birthday: this.$moment(row.birthday).format("YYYY-MM-DD"),
+          certificateNum: row.certificate_num,
+          certificateType: row.certificate_type,
+          className: row.class_name,
+          clasz: row.clasz,
+          claszDate: this.$moment(row.clasz_date).format("YYYY-MM-DD"),
+          collegeId: row.college_id,
+          dormId: row.dorm_id,
+          email: row.email,
+          majorId: row.major_id,
+          nation: row.nation,
+          nativePlace: row.natice_place,
+          nickName: row.nick_name,
+          parentContactInfo: row.parent_contact_info,
+          parentName: row.parent_name,
+          phone: row.phone,
+          realName: row.real_name,
+          schoolInTime: this.$moment(row.school_in_time).format("YYYY-MM-DD"),
+          sex: row.sex,
+          status: row.status,
+          studentId: row.student_id,
+          userId: row.user_id
+        };
+
         this.drawerVisible = true;
       },
       nodeClick(data){
@@ -583,9 +648,9 @@
       },
       handleSelect(data, type){
         if (type == 1){
-          this.searchStatus = data;
+          this.form.studentInfo.status = data;
         }else if (type == 2){
-          this.searchTeach = data;
+          this.form.studentInfo.attendType = data;
         }
       },
       studyTypeInfo(val, type){
@@ -620,6 +685,10 @@
         }
       },
       handleCascaderChange(data){
+        this.form.studentInfo.collegeId = data[0];
+        this.form.studentInfo.majorId = data[1];
+        //this.form.studentInfo.grade = data[0];
+        this.form.studentInfo.clasz = data[3];
         this.form.classData = data;
       },
       closeDrawerDialog(event){
@@ -635,7 +704,33 @@
           buildId: '',
           floorNum: '',
           dormId: '',
-          bedId: ''
+          bedId: '',
+          studentInfo: {
+            attendType: "",
+            bedNo: '',
+            birthday: "",
+            certificateNum: "",
+            certificateType: "",
+            className: "",
+            clasz: '',
+            claszDate: "",
+            collegeId: '',
+            dormId: '',
+            email: "",
+            majorId: '',
+            nation: "",
+            nativePlace: "",
+            nickName: "",
+            parentContactInfo: "",
+            parentName: "",
+            phone: "",
+            realName: "",
+            schoolInTime: "",
+            sex: '',
+            status: "",
+            studentId: "",
+            userId: ""
+          }
         };
         this.selDormTips = "";
         this.subTitle = "";
@@ -656,7 +751,39 @@
         this.drawerVisible = false;
       },
       okDrawDialog(event){
+        let url = "";
+        let imgUrl = [];
+        this.$refs['form'].validate((valid) => {
+          if (valid) {
+            let params = {
+              cards: this.form.cardNo != '' ? [this.form.cardNo] : [],
+              userId: this.form.studentInfo.userId
+            };
 
+            for (let i = 0; i < this.form.imgList.length; i++){
+              imgUrl.push({
+                cache: true,
+                url: this.form.imgList[i]
+              });
+            }
+            params['urlList']  = imgUrl;
+            params['studentInfo'] = this.form.studentInfo;
+
+            url = common.student_info_setting;
+            //params = this.$qs.stringify(params);
+            this.drawerLoading = true;
+            this.$axios.post(url, JSON.stringify(params), {dataType: 'stringfy'}).then(res => {
+              if (res.data.code == 200){
+                this.drawerVisible = false;
+                this.init();
+                MessageSuccess(res.data.desc);
+              }else {
+                MessageError(res.data.desc);
+              }
+              this.drawerLoading = false;
+            });
+          }
+        });
       },
       uploadFileSuccess(res, file){
         if (res.code == 200){
@@ -783,11 +910,14 @@
         this.form.floorNum = row.floor_num;
         this.form.dormId = row.dormitory_no;
         this.form.bedId = row.bed_id;
+        this.form.studentInfo.bedNo = row.bed_no;
         this.selDormTips = row.build_name +"-"+ row.floor_num+"楼" +"-"+ row.dormitory_no +"-"+ row.bed_no+"号床";
-        console.log(this.selDormTips);
       },
       deviceTypeInfo(val){
         return deviceType(val);
+      },
+      deleteImg(index){
+        this.form.imgList.splice(index, 1);
       }
     }
   }
