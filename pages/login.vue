@@ -25,7 +25,7 @@
         </span>
       </div>
 
-      <div class="login-user-opr">
+      <div class="login-user-opr animated fadeInRightBig">
         <label class="login-user-change-tag" v-if="userType == 1" @click="changeUserType(2)"><i class="fa fa-retweet font-size-12"></i> {{$t("切换教师")}}</label>
         <label class="login-user-change-tag" v-if="userType == 2" @click="changeUserType(1)"><i class="fa fa-retweet font-size-12"></i> {{$t("切换管理员")}}</label>
         <div>
