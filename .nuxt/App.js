@@ -5,6 +5,8 @@ import NuxtError from './components/nuxt-error.vue'
 
 import NuxtBuildIndicator from './components/nuxt-build-indicator'
 
+import '../assets/css/animate.min.css'
+
 import '../node_modules/element-ui/lib/theme-chalk/index.css'
 
 import '../assets/css/common.css'

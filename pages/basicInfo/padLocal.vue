@@ -797,7 +797,7 @@
             }
 
             params = this.$qs.stringify(params);
-            this.$axios.post(common.local_pad_add, params).then(res => {
+            this.$axios.post(common.local_pad_add, params, {loading: false}).then(res => {
               if (res.data.code == 200){
                 this.modalVisible = false;
                 this.init();

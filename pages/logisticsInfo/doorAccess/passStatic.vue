@@ -1071,7 +1071,7 @@
         };
         url = common.dormaccess_pass_static_level_save;
         this.dialogLoading = true;
-        this.$axios.post(url, JSON.stringify(params), {dataType: 'stringfy'}).then(res => {
+        this.$axios.post(url, JSON.stringify(params), {dataType: 'stringfy', loading: false}).then(res => {
           if (res.data.code == 200){
             this.modalVisible = false;
             this.init();

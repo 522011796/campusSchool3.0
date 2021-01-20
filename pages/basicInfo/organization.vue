@@ -226,7 +226,7 @@ export default {
       this.$refs['form'].validate((valid) => {
         if (valid) {
           this.dialogLoading = true;
-          this.$axios.post(url, params).then(res=>{
+          this.$axios.post(url, params, {loading: false}).then(res=>{
             if (res.data.code == 200){
               this.init();
               MessageSuccess(res.data.desc);

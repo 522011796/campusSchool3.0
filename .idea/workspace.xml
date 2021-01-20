@@ -2,16 +2,60 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/css/animate.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/common.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Layout/LayoutLr.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/Layout/LayoutLr.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Layout/LayoutTb.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/Layout/LayoutTb.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layouts/default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/default.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nuxt.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/nuxt.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/administration/setting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/administration/setting.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/student/manage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/student/manage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/student/warning.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/student/warning.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/teachInfo/teacher/empower.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/teachInfo/teacher/empower.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/setting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/setting.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/otherSetting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/otherSetting.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/setting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/setting.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/static.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/static.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/meetAttend/meetting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/meetAttend/meetting.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/build.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/build.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/class.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/class.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/classRoom.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/classRoom.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/college.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/college.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/dorm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/dorm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/dormRoom.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/dormRoom.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/major.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/major.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/organization.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/organization.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/padCloud.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/padCloud.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/padLocal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/padLocal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/stuAuth.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/stuAuth.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/student.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/student.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/teacher.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/teacher.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/yearAndTerm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/yearAndTerm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dataInfo/dataView/myScreen.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dataInfo/dataView/myScreen.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dataInfo/dataView/screenManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dataInfo/dataView/screenManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dataInfo/stuData/stuQuanti.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dataInfo/stuData/stuQuanti.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/doorManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/doorManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/passStatic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/passStatic.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/permission.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/permission.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/settimeout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/settimeout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/class/object.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/class/object.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/class/setting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/class/setting.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/credit/creditApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/credit/creditApply.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/credit/object.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/credit/object.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/credit/scope.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/credit/scope.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/dorm/setting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/dorm/setting.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/homework/object.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/homework/object.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/homework/setting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/homework/setting.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/leave/setting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/leave/setting.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/rp/level.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/rp/level.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/rp/rpApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/rp/rpApply.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/student/stuAuth.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/student/stuAuth.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/teachInfo/teach/courseManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/teachInfo/teach/courseManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/teachInfo/teach/coursePlan.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/teachInfo/teach/coursePlan.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/teachInfo/teach/teachPlan.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/teachInfo/teach/teachPlan.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +82,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/utils/validater" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/css" />
     <property name="list.type.of.created.stylesheet" value="textmate" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
@@ -51,11 +95,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/css" />
       <recent name="$PROJECT_DIR$/utils/validater" />
       <recent name="$PROJECT_DIR$/pages/attendanceInfo/dormAttend" />
       <recent name="$PROJECT_DIR$/static/img" />
       <recent name="$PROJECT_DIR$/components/utils/treeAndList" />
-      <recent name="$PROJECT_DIR$/components/charts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/pages/logisticsInfo/doorAccess" />
@@ -110,14 +154,7 @@
       <workItem from="1608617065213" duration="1941000" />
       <workItem from="1608625084513" duration="122942000" />
       <workItem from="1609379556549" duration="104145000" />
-      <workItem from="1610156986760" duration="257258000" />
-    </task>
-    <task id="LOCAL-00140" summary="1、修改框架和组件样式、细节bug等&#10;2、资讯接口对接完成">
-      <created>1609387039681</created>
-      <option name="number" value="00140" />
-      <option name="presentableId" value="LOCAL-00140" />
-      <option name="project" value="LOCAL" />
-      <updated>1609387039681</updated>
+      <workItem from="1610156986760" duration="259822000" />
     </task>
     <task id="LOCAL-00141" summary="1、修改框架和组件样式、细节bug等&#10;2、通知接口对接完成">
       <created>1609399698552</created>
@@ -455,14 +492,20 @@
       <option name="project" value="LOCAL" />
       <updated>1611126465292</updated>
     </task>
-    <option name="localTasksCounter" value="189" />
+    <task id="LOCAL-00189" summary="1、修改框架和组件样式、细节bug等&#10;2、授权管理接口对接完成">
+      <created>1611135980317</created>
+      <option name="number" value="00189" />
+      <option name="presentableId" value="LOCAL-00189" />
+      <option name="project" value="LOCAL" />
+      <updated>1611135980318</updated>
+    </task>
+    <option name="localTasksCounter" value="190" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、公告接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、资讯接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、通知接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、学生请假接口对接完成" />
@@ -487,7 +530,8 @@
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、课堂考勤接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、归寝考勤设置接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、行政考勤设置接口对接完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、行政考勤设置接口对接完成" />
+    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、授权管理接口对接完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、授权管理接口对接完成" />
   </component>
   <component name="WindowStateProjectService">
     <state x="454" y="235" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602497724708">
@@ -499,11 +543,11 @@
     </state>
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.805@0.23.1440.805" timestamp="1602828707649" />
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1605755081482" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1611126462046">
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1611135977356">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1611126462046" />
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1611135977356" />
     <state x="100" y="124" width="1240" height="600" key="DiffContextDialog" timestamp="1610960482971">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -542,11 +586,11 @@
     </state>
     <state x="221" y="64" key="SettingsEditor/0.23.1440.805@0.23.1440.805" timestamp="1602238031085" />
     <state x="221" y="66" key="SettingsEditor/0.25.1440.798@0.25.1440.798" timestamp="1610450476227" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1611126468976">
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1611135982316">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1611126468976" />
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1611135982316" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1610960568205">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -560,11 +604,11 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="506" y="345" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.1440.798@0.25.1440.798" timestamp="1610180393891" />
-    <state x="378" y="183" width="837" height="550" key="find.popup" timestamp="1611134191749">
+    <state x="378" y="183" width="837" height="550" key="find.popup" timestamp="1611138418639">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="378" y="182" width="837" height="486" key="find.popup/0.23.1440.805@0.23.1440.805" timestamp="1605680757485" />
-    <state x="378" y="183" width="837" height="550" key="find.popup/0.25.1440.798@0.25.1440.798" timestamp="1611134191749" />
+    <state x="378" y="183" width="837" height="550" key="find.popup/0.25.1440.798@0.25.1440.798" timestamp="1611138418639" />
     <state x="385" y="153" width="670" height="671" key="search.everywhere.popup" timestamp="1610521565646">
       <screen x="0" y="25" width="1440" height="798" />
     </state>

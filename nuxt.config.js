@@ -14,6 +14,7 @@ export default {
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
+    '~assets/css/animate.min.css',
     'element-ui/lib/theme-chalk/index.css',
     '~assets/css/common.css',
     '~assets/font-awesome-4.7.0/css/font-awesome.min.css',

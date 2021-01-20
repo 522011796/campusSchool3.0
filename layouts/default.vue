@@ -1,7 +1,7 @@
 <template>
   <div class="moon-container">
     <div class="moon-top-menu">
-      <div class="pull-left moon-top-logo">
+      <div class="pull-left moon-top-logo moon-top-logo-shadow" @click="jumpIndex">
         <span v-if="campusName == ''" class="color-white moon-top-logo-title">
           <i class="fa fa-home"></i>
           智慧校园系统
@@ -1434,6 +1434,9 @@
             this.$router.push("/login");
           }
         });
+      },
+      jumpIndex(){
+        this.$router.push("/");
       }
     },
     watch: {

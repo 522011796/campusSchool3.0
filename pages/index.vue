@@ -3,7 +3,7 @@
     <div>
       <el-row :gutter="16">
         <el-col :span="8">
-          <el-card :body-style="{padding: '0px'}" style="height: 260px">
+          <el-card :body-style="{padding: '0px'}" style="height: 260px" class="animated fadeInUp">
             <div class="padding-lr-10 padding-tb-10 color-muted">
               <el-row>
                 <el-col :span="12">
@@ -35,7 +35,7 @@
           </el-card>
         </el-col>
         <el-col :span="8">
-          <el-card :body-style="{padding: '0px'}" style="height: 260px" v-if="userType == 2">
+          <el-card :body-style="{padding: '0px'}" style="height: 260px" v-if="userType == 2" class="animated fadeInUp">
             <div class="padding-lr-10 padding-tb-10 color-muted">
               <el-row>
                 <el-col :span="12">
@@ -66,7 +66,7 @@
             </div>
           </el-card>
 
-          <el-card :body-style="{padding: '0px'}" style="height: 260px" v-if="userType == 4">
+          <el-card :body-style="{padding: '0px'}" style="height: 260px" v-if="userType == 4" class="animated fadeInUp">
             <div class="padding-lr-10 padding-tb-10 color-muted">
               <el-row>
                 <el-col :span="12">
@@ -98,7 +98,7 @@
           </el-card>
         </el-col>
         <el-col :span="8">
-          <el-card :body-style="{padding: '0px'}" style="height: 260px">
+          <el-card :body-style="{padding: '0px'}" style="height: 260px" class="animated fadeInUp">
             <div class="top-table-content color-muted">
               <table class="custom-table-white margin-top-10">
                 <tbody>
@@ -142,7 +142,7 @@
     <div class="margin-top-20 custom-card-layout">
       <el-row :gutter="16">
         <el-col :span="16">
-          <el-card :body-style="{padding: '0px'}" style="height: 240px">
+          <el-card :body-style="{padding: '0px'}" style="height: 240px" class="animated fadeInUp">
             <div slot="header" class="moon-clearfix padding-tb-10 padding-lr-10">
               <span class="color-muted" style="font-weight: bold;position: relative; top: 5px;">
                 <i class="fa fa-line-chart"></i>
@@ -254,11 +254,11 @@
           </el-card>
 
           <div>
-            <el-tabs :active-name="activeName" type="border-card" class="margin-top-20" style="height: 38px" @tab-click="changeNotice">
+            <el-tabs :active-name="activeName" type="border-card" class="margin-top-20 animated fadeInUp" style="height: 38px" @tab-click="changeNotice">
               <el-tab-pane label="通知" name="1"></el-tab-pane>
               <el-tab-pane label="公告" name="2"></el-tab-pane>
             </el-tabs>
-            <el-card :body-style="{padding: '0px'}" style="height: 320px;border-radius: 0 !important;">
+            <el-card :body-style="{padding: '0px'}" style="height: 320px;border-radius: 0 !important;" class="animated fadeInUp">
               <el-table
                 ref="refTable"
                 :data="noticeData"
@@ -319,7 +319,7 @@
           </div>
         </el-col>
         <el-col :span="8" v-if="userType == 2">
-          <el-card :body-style="{padding: '0px'}" style="height: 140px">
+          <el-card :body-style="{padding: '0px'}" style="height: 140px" class="animated fadeInUp">
             <div slot="header" class="moon-clearfix padding-tb-10 padding-lr-10">
               <span class="color-muted" style="font-weight: bold;position: relative; top: 0px;">
                 <i class="fa fa-line-chart"></i>
@@ -359,7 +359,7 @@
               </el-row>
             </div>
           </el-card>
-          <el-card :body-style="{padding: '0px'}" class="margin-top-20" style="height: 500px;overflow-y: auto">
+          <el-card :body-style="{padding: '0px'}" class="margin-top-20 animated fadeInUp" style="height: 500px;overflow-y: auto">
             <div slot="header" class="moon-clearfix padding-tb-10 padding-lr-10">
               <span class="color-muted" style="font-weight: bold;position: relative; top: 5px;">
                 <i class="fa fa-line-chart"></i>
@@ -402,7 +402,7 @@
         </el-col>
 
         <el-col :span="8" v-if="userType == 4">
-          <el-card :body-style="{padding: '0px'}" style="height: 140px">
+          <el-card :body-style="{padding: '0px'}" style="height: 140px" class="animated fadeInUp">
             <div slot="header" class="moon-clearfix padding-tb-10 padding-lr-10">
               <span class="color-muted" style="font-weight: bold;position: relative; top: 0px;">
                 <i class="fa fa-line-chart"></i>
@@ -449,7 +449,7 @@
             </div>
           </el-card>
 
-          <el-card :body-style="{padding: '0px'}" class="margin-top-20" style="height: 500px;overflow-y: auto" v-if="userType == 4">
+          <el-card :body-style="{padding: '0px'}" class="margin-top-20 animated fadeInUp" style="height: 500px;overflow-y: auto" v-if="userType == 4">
             <div slot="header" class="moon-clearfix padding-tb-10 padding-lr-10">
               <span class="color-muted" style="font-weight: bold;position: relative; top: 5px;">
                 <i class="fa fa-line-chart"></i>

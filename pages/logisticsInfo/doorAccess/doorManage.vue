@@ -591,7 +591,7 @@
             };
 
             params = this.$qs.stringify(params);
-            this.$axios.post(common.dormaccess_control_device_edit, params).then(res => {
+            this.$axios.post(common.dormaccess_control_device_edit, params, {loading: false}).then(res => {
               if (res.data.code == 200){
                 this.modalVisible = false;
                 this.init();

@@ -1052,7 +1052,7 @@
             }
 
             params = this.$qs.stringify(params);
-            this.$axios.post(url, params).then(res => {
+            this.$axios.post(url, params, {loading: false}).then(res => {
               if (res.data.code == 200){
                 this.modalVisible = false;
                 this.init();

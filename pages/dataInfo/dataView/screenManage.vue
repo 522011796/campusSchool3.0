@@ -372,7 +372,7 @@
               params['data'] = this.formModal.dataSet;
             }
             params = this.$qs.stringify(params);
-            this.$axios.post(common.screen_add, params).then(res => {
+            this.$axios.post(common.screen_add, params, {loading: false}).then(res => {
               if (res.data.code == 200){
                 this.modalVisible = false;
                 MessageSuccess(res.data.desc);

@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    <div class="layout-left-menu">
+    <div class="layout-left-menu animated fadeInUp">
       <slot name="left">
 
       </slot>
     </div>
 
-    <div class="layout-right-menu">
+    <div class="layout-right-menu animated fadeInUp">
       <slot name="right"></slot>
     </div>
   </div>

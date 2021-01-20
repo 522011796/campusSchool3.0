@@ -1316,7 +1316,7 @@
             this.dialogLoading = true;
             url = common.qtzt_analysis_static_set;
             params = JSON.stringify(params);
-            this.$axios.post(url, params, {dataType: 'stringfy'}).then(res => {
+            this.$axios.post(url, params, {dataType: 'stringfy', loading: false}).then(res => {
               if (res.data.code == 200){
                 this.modalVisible = false;
                 this.init();

@@ -74,6 +74,10 @@ a{
   position: relative;
   text-align: center;
 }
+.moon-top-logo-shadow{
+  box-shadow: 5px 5px 5px #077DBA;
+  padding: 0px 10px;
+}
 .moon-top-middle-menu{
   margin: 0px 100px 0px 200px;
   height: 100%;

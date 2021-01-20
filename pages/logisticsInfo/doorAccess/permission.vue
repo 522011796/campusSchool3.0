@@ -829,7 +829,7 @@
 
             params = this.$qs.stringify(params);
             this.dialogLoading = true;
-            this.$axios.post(common.dormaccess_role_group_save, params).then(res => {
+            this.$axios.post(common.dormaccess_role_group_save, params, {loading: false}).then(res => {
               if (res.data.code == 200){
                 this.modalVisible = false;
                 this.init();

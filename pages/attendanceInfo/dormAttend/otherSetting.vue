@@ -445,7 +445,7 @@
             }
 
             //params = this.$qs.stringify(params);
-            this.$axios.post(url, JSON.stringify(params), {dataType: 'stringfy'}).then(res => {
+            this.$axios.post(url, JSON.stringify(params), {dataType: 'stringfy', loading: false}).then(res => {
               if (res.data.code == 200){
                 this.modalVisible = false;
                 this.init();
