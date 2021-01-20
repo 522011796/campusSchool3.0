@@ -585,7 +585,7 @@
 
           <div class="moon-menu-toggle-main" style="right: 0px;">
             <div class="moon-menu-toggle-item">
-              <span class="color-white font-size-12">{{$t('固定菜单栏')}}</span>
+              <span class="color-grand font-size-12">{{$t('固定菜单栏')}}</span>
               <el-switch
                 v-model="menuToggle"
                 active-color="#13ce66"
@@ -596,8 +596,7 @@
         </div>
 
         <div class="moon-right-menu" :style="rightWidth">
-          <div class="moon-right-item-menu">
-            <!--<el-tag closable size="medium" color="#ffffff" v-for="n in 6" :key="n" class="margin-right-5">{{n}}</el-tag>-->
+          <div id="moon-right-item-menu" class="moon-right-item-menu" style="user-select: none">
             <el-popover
               v-show="!isCollapse"
               v-model="popMenuCollapse"
@@ -605,7 +604,8 @@
               popper-class="custom-popover-menu"
               width="240"
               :visible-arrow="false"
-              trigger="hover">
+              trigger="hover"
+              class="pull-left margin-right-5">
 
               <div>
                 <div class="moon-right-pop-menu" :style="popMenuHeight">
@@ -649,10 +649,31 @@
               </div>
 
               <span slot="reference" class="moon-menu-tab">
-              <i class="fa fa-indent"></i>
-              <label>{{$t("菜单列表")}}</label>
-            </span>
+                <i class="fa fa-indent"></i>
+                <label>{{$t("菜单列表")}}</label>
+              </span>
             </el-popover>
+
+            <span v-if="rightItemAllWidth.width != '0px'" class="pull-left" style="height: 40px; width: 10px;display: inline-block;background: #f5f5f5;text-align: center;position: relative;z-index: 999" @click="moveTabLeft">
+              <i class="fa fa-angle-left color-muted"></i>
+            </span>
+            <div ref="menuTagDiv" id="menuTagDiv" class="pull-left margin-left-5" style="position: relative;overflow-x: hidden;height: 40px;" :style="rightNowWidth">
+              <div style="position:absolute;height: 40px;" :style="rightItemAllWidth">
+                <span v-for="(item,index) in menuTabList" :key="index" style="cursor:default;">
+                  <el-tag closable size="medium" color="#ffffff"
+                          class="margin-right-5"
+                          :disable-transitions="false"
+                          @click="routerUrl($event, item.menuList, item.menuKeyList)"
+                          @close="handleTabClose(index)">
+                    {{item.menuList.name}}
+                  </el-tag>
+                </span>
+              </div>
+            </div>
+            <span v-if="rightItemAllWidth.width != '0px'" class="pull-left" style="height: 40px; width: 10px;display: inline-block;background: #f5f5f5;text-align: center;" :style="isCollapse ? 'right: 15px' : 'right: -2px'" @click="moveTabRight">
+              <i class="fa fa-angle-right color-muted"></i>
+            </span>
+            <div class="moon-clearfix"></div>
           </div>
           <div class="moon-right-content" :style="rightHeight">
             <Nuxt ref="child"/>
@@ -729,7 +750,7 @@
   import TimeoutButton from "../components/utils/button/TimeoutButton";
   import UploadSquare from "../components/utils/upload/UploadSquare";
   import QuillBlock from "../components/utils/upload/QuillBlock";
-  import {auditStatusColor, weekNoText, MessageSuccess, MessageError, MessageWarning} from "../utils/utils";
+  import {auditStatusColor, weekNoText, MessageSuccess, MessageError, MessageWarning, inArray} from "../utils/utils";
   import {common} from "../utils/api/url";
   export default {
     name: 'default',
@@ -739,6 +760,7 @@
       return {
         layout: 'lr',
         activeTabName: 'all',
+        menuTabList: [],
         showMenu: false,
         isCollapse: true,
         drawer: false,
@@ -788,6 +810,12 @@
         calendarData: [],
         defaultCourseList: [],
         defaultCourseDay: '',
+        rightNowWidth: {
+          width: '0px'
+        },
+        rightItemAllWidth: {
+          width: '0px'
+        },
         topWidth: {
           width: '0px'
         },
@@ -862,6 +890,7 @@
       this.widthIndex = (width - 400) / 100 - 2;
       // 监听窗口大小
       window.onresize = () => {
+        this.getMenuTabWdith();
         if (document.querySelector(".moon-top-middle-menu-title")){
           width = document.querySelector(".moon-top-middle-menu-title").clientWidth;
           return (() => {
@@ -871,12 +900,21 @@
           })()
         }
       };
+
+      this.getMenuTabWdith();
     },
     created() {
       if (this.$route.name == "index" || this.$route.name == null){
         this.layout = "full";
       }
-
+      //获取menuTab
+      if (process.client){
+        let menuTabList = localStorage.getItem("menuTabList");
+        if (menuTabList && menuTabList != ''){
+          this.menuTabList = JSON.parse(menuTabList);
+        }
+      }
+      this.$set(this.rightItemAllWidth,'width', this.menuTabList.length * 100 +'px');
       this.hh();
       this.init();
       this.getBell();
@@ -899,6 +937,30 @@
           this.drawerSetHeight.height = window.innerHeight - 60 + 'px';
           this.popMenuHeight.height = window.innerHeight - 60 - 100 + 'px';
         }
+      },
+      getMenuTabWdith(){
+        //获取menuTab的宽度
+        this.$nextTick(() => {
+          let menuTabWidth = document.querySelector("#menuTagDiv") ? document.querySelector("#menuTagDiv").clientWidth : 0;
+          let menuRightWidth = document.querySelector(".moon-right-menu") ? document.querySelector(".moon-right-menu").clientWidth : 0;
+          let menuPopMenu = 128;
+          let rightNowWidth = menuRightWidth;
+          if (!this.isCollapse){
+            rightNowWidth = menuRightWidth - menuPopMenu;
+          }else {
+            rightNowWidth = menuRightWidth - 37;
+          }
+          this.rightNowWidth.width = rightNowWidth + "px";
+        });
+      },
+      moveTabRight(){
+        let scrollWith =  document.querySelector("#menuTagDiv").scrollWidth;
+        document.getElementById("menuTagDiv").scrollLeft += 100;
+      },
+      moveTabLeft(){
+        console.log(111);
+        let scrollWith =  document.querySelector("#menuTagDiv").scrollWidth;
+        document.getElementById("menuTagDiv").scrollLeft -= 100;
       },
       async init() {
         await this.getSessionInfo();
@@ -955,6 +1017,19 @@
         }
       },
       routerUrl(event, item, itemSub){
+        //设置tab
+        let tabArr = this.inArrayPrivate(item.id, this.menuTabList);
+
+        if (tabArr == -1){
+          this.menuTabList.push({
+            menuList: item,
+            menuKeyList: itemSub
+          });
+          let width = parseInt(this.rightItemAllWidth.width.substr(0,this.rightItemAllWidth.width.length-2)) + 100;
+          this.$set(this.rightItemAllWidth,'width', width +'px');
+        }
+        localStorage.setItem("menuTabList", JSON.stringify(this.menuTabList));
+
         this.activeSliderIndex = item.key;
         this.activeSubSlider = itemSub.key;
         this.$router.push({
@@ -1032,6 +1107,12 @@
       handleClose(done) {
         done();
       },
+      handleTabClose(index){
+        this.menuTabList.splice(index, 1);
+        let width = parseInt(this.rightItemAllWidth.width.substr(0,this.rightItemAllWidth.width.length-2)) - 100;
+        this.$set(this.rightItemAllWidth,'width', width +'px');
+        localStorage.setItem("menuTabList", JSON.stringify(this.menuTabList));
+      },
       tabChange(event, type){
         this.tabVal = type;
         this.showMsg(type);
@@ -1054,6 +1135,7 @@
         this.leftHeight.width = "0px";
         this.leftHeight['padding'] = "0px";
         this.toggleTag['left'] = "0px";
+        this.getMenuTabWdith();
       },
       toggleRightMenu(event){
         this.isCollapse = true;
@@ -1063,6 +1145,7 @@
         this.leftHeight.width = "200px";
         this.leftHeight['padding'] = "10px";
         this.toggleTag['left'] = "220px";
+        this.getMenuTabWdith();
       },
       settingTypeOpr(event, type){
         this.settingType = type;
@@ -1437,6 +1520,14 @@
       },
       jumpIndex(){
         this.$router.push("/");
+      },
+      inArrayPrivate(search, array){
+        for(var i in array){
+          if(array[i]['menuList']['id'] == search){
+            return i;
+          }
+        }
+        return -1;
       }
     },
     watch: {
@@ -1451,6 +1542,10 @@
             this.getSliderMenu(this.$route.query.top);
           }
           this.setSliderSubToggle();
+          let width = parseInt(this.rightItemAllWidth.width.substr(0,this.rightItemAllWidth.width.length-2));
+          if (width <= 0){
+            this.getMenuTabWdith();
+          }
         });
       },
       screenWidth(val) {

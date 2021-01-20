@@ -97,6 +97,7 @@ a{
   border-bottom: 1px solid #dcdee2;
   padding: 0px 5px;
   background: #FFFFFF;
+  overflow: hidden;
 }
 .moon-right-content{
   overflow-y: hidden;
