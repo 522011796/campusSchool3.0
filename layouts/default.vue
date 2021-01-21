@@ -1938,7 +1938,7 @@
   left: calc(50% - 40px);
   width: 80px;
   height: 3px;
-  background: #409eff;
+  background: #E6A23C;
 }
 .moon-top-user-info-container{
   padding: 10px 15px;
