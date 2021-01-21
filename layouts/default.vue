@@ -3,8 +3,7 @@
     <div class="moon-top-menu">
       <div class="pull-left moon-top-logo moon-top-logo-shadow animated fadeInLeftBig" @click="jumpIndex">
         <span v-if="campusName == ''" class="color-white moon-top-logo-title">
-          <i class="fa fa-home"></i>
-          智慧校园系统
+          <img src="~static/img/login-logo.png" style="height: 50px;width: 220px;position: relative; top: -10px;left: -10px">
         </span>
         <span v-if="campusName != ''" class="color-white moon-top-logo-title">
           <el-avatar shape="square" :size="30" :src="campusLogo" style="margin-left: 2px"></el-avatar>
@@ -522,7 +521,11 @@
 
     <!--左右布局-->
     <div v-if="layout == 'lr'">
-      <div style="position: relative">
+      <div v-if="showContent == false" style="position: relative">
+        <layout-lr-before></layout-lr-before>
+      </div>
+
+      <div v-if="showContent == true" style="position: relative">
         <div class="moon-left-menu-tag" :style="toggleTag">
           <div class="moon-left-menu-tag-container">
             <div class="moon-left-menu-tag_indicator" @click="isCollapse == true ? toggleLeftMenu($event) : toggleRightMenu($event)">
@@ -728,17 +731,19 @@
   import TimeoutButton from "../components/utils/button/TimeoutButton";
   import UploadSquare from "../components/utils/upload/UploadSquare";
   import QuillBlock from "../components/utils/upload/QuillBlock";
+  import LayoutLrBefore from "../components/Layout/LayoutLrBefore";
   import {auditStatusColor, weekNoText, MessageSuccess, MessageError, MessageWarning, inArray} from "../utils/utils";
   import {common} from "../utils/api/url";
   export default {
     name: 'default',
     mixins: [mixins],
-    components: {MyPagination, DrawerLayoutRight,MyAuditDetail,AuditButton,TimeoutButton,UploadSquare},
+    components: {MyPagination, DrawerLayoutRight,MyAuditDetail,AuditButton,TimeoutButton,UploadSquare,LayoutLrBefore},
     data(){
       return {
         layout: 'lr',
         activeTabName: 'all',
         menuTabList: [],
+        showContent: false,
         showMenu: false,
         isCollapse: true,
         drawer: false,
@@ -881,6 +886,11 @@
       };
 
       this.getMenuTabWdith();
+
+      this.showContent = true;
+    },
+    beforeCreate: function(){
+      this.showContent = false;
     },
     created() {
       if (this.$route.name == "index" || this.$route.name == null){
