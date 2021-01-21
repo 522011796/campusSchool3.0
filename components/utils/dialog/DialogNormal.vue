@@ -2,7 +2,7 @@
   <div>
     <el-dialog
       :top="top"
-      custom-class="custom-normal-dialog"
+      custom-class="custom-normal-dialog animated fadeInDownBig"
       :visible.sync="visible"
       :width="widthStyle"
       :show-close="false"

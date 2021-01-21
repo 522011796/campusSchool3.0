@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <el-drawer
+      tabindex="0"
       custom-class="drawer-normal-drawer"
       :visible.sync="drawer_"
       :direction="direction"
@@ -11,6 +12,7 @@
       @close="handleColse">
 
       <div slot="title" class="drawer-normal-title">
+        <span tabindex="1"></span>
         <el-row v-if="!header">
           <el-col :span="12">
             <div class="drawer-normal-header">

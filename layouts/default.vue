@@ -574,7 +574,7 @@
         </div>
 
         <div class="moon-right-menu" :style="rightWidth">
-          <div id="moon-right-item-menu" class="moon-right-item-menu" style="user-select: none">
+          <div id="moon-right-item-menu" class="moon-right-item-menu select-none">
             <el-popover
               v-show="!isCollapse"
               v-model="popMenuCollapse"
@@ -958,6 +958,10 @@
       test1() {
       },
       handleTopSelect(event, item) {
+        this.drawerAudit = false;
+        this.drawerSet = false;
+        this.drawerMenu = false;
+        this.drawer = false;
         this.getSliderMenu(item.key, 'click');
       },
       getTopMenu(){

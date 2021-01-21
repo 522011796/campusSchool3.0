@@ -31,8 +31,8 @@
         <div class="right-bottom-triangle"></div>
         <div class="left-bottom-triangle"></div>
 
-        <label class="login-user-change-tag" v-if="userType == 1" @click="changeUserType(2)"><i class="fa fa-retweet font-size-12"></i> {{$t("切换教师")}}</label>
-        <label class="login-user-change-tag" v-if="userType == 2" @click="changeUserType(1)"><i class="fa fa-retweet font-size-12"></i> {{$t("切换管理员")}}</label>
+        <label class="login-user-change-tag select-none" v-if="userType == 1" @click="changeUserType(2)"><i class="fa fa-retweet font-size-12"></i> {{$t("切换教师")}}</label>
+        <label class="login-user-change-tag select-none" v-if="userType == 2" @click="changeUserType(1)"><i class="fa fa-retweet font-size-12"></i> {{$t("切换管理员")}}</label>
         <div>
           <span class="login-user-title">{{$t("用户登录")}}</span>
           ｜
@@ -41,7 +41,7 @@
         </div>
         <div class="line-height"></div>
         <div class="margin-top-30">
-          <div v-if="userType == 1">
+          <div class="animated fadeInLeft" v-show="userType == 1">
             <div>
               <div>
                 <span class="login-title-label">{{$t("用户名")}}</span>
@@ -60,7 +60,7 @@
             </div>
           </div>
 
-          <div v-if="userType == 2">
+          <div class="animated fadeInLeft" v-show="userType == 2">
             <div v-if="userSubType == 1">
               <div>
                 <div>

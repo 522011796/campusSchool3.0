@@ -22,6 +22,9 @@ p{
 a{
   text-decoration: none;
 }
+.select-none{
+  user-select:  none;
+}
 .moon-container{
 
 }
@@ -606,6 +609,41 @@ ul{
   padding: 0px;
 }
 /***dialog***/
+/*.dialog-fade-enter-active .el-dialog.custom-normal-dialog{
+  animation: anim-open .5s;
+  -moz-animation:anim-open .5s; !* Firefox *!
+  -webkit-animation:anim-open .5s; !* Safari and Chrome *!
+  -o-animation:anim-open .5s; !* Opera *!
+}*/
+.dialog-fade-leave-active .el-dialog.custom-normal-dialog{
+  animation-name: anim-close;
+  animation-duration: .5s;
+  -moz-animation:anim-close .5s; /* Firefox */
+  -webkit-animation:anim-close .5s; /* Safari and Chrome */
+  -o-animation:anim-close .5s; /* Opera */
+
+}
+@keyframes anim-open {
+  0% {
+    transform: translate3d(0, -100%, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0%, 0);
+    opacity: 1;
+  }
+}
+@keyframes anim-close {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, -100%, 0);
+    opacity: 0;
+  }
+}
+
 .custom-normal-dialog{
   background: rgba(238,238,238, 0.7);
   box-shadow: 1px 1px 0px 1px rgba(51,51,51, 0.5);

@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <el-drawer
+      tabindex="0"
       custom-class="drawer-normal-drawer"
       style="margin-top: 60px"
       :visible.sync="drawer_"
@@ -11,6 +12,7 @@
       :size="size">
 
       <div slot="title" class="drawer-normal-title">
+        <span tabindex="1"></span>
         <el-row v-if="!header">
           <el-col :span="12">
             <div class="drawer-normal-header">
