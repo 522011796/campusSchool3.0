@@ -3,7 +3,7 @@
     <img src="~static/img/login-bg.png" class="login-bg-class">
     <div class="login-block">
       <!--<img src="~static/img/screen-all-class.png" class="login-bg-class">-->
-      <div class="login-title">
+      <div class="login-title animated fadeInLeftBig">
         <span class="login-title-logo-block">
           <img src="~static/img/login-logo.png" class="login-logo">
         </span>
@@ -26,6 +26,11 @@
       </div>
 
       <div class="login-user-opr animated fadeInRightBig">
+        <div class="left-top-triangle"></div>
+        <div class="right-top-triangle"></div>
+        <div class="right-bottom-triangle"></div>
+        <div class="left-bottom-triangle"></div>
+
         <label class="login-user-change-tag" v-if="userType == 1" @click="changeUserType(2)"><i class="fa fa-retweet font-size-12"></i> {{$t("切换教师")}}</label>
         <label class="login-user-change-tag" v-if="userType == 2" @click="changeUserType(1)"><i class="fa fa-retweet font-size-12"></i> {{$t("切换管理员")}}</label>
         <div>
@@ -448,5 +453,41 @@ export default {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   padding: 2px 8px;
+}
+.left-bottom-triangle{
+  width: 0;
+  height: 0;
+  border-top: 23px solid #909399;
+  border-right: 18px solid transparent;
+  position: absolute;
+  bottom: 0px;
+  right: -19px;
+}
+.right-bottom-triangle{
+  width: 0;
+  height: 0;
+  border-top: 23px solid #909399;
+  border-left: 18px solid transparent;
+  position: absolute;
+  bottom: 0px;
+  left: -19px;
+}
+.right-top-triangle{
+  width: 0;
+  height: 0;
+  border-bottom: 27px solid #909399;
+  border-right: 18px solid transparent;
+  position: absolute;
+  top: 0px;
+  right: -18px;
+}
+.left-top-triangle{
+  width: 0;
+  height: 0;
+  border-bottom: 27px solid #909399;
+  border-left: 18px solid transparent;
+  position: absolute;
+  top: 0px;
+  left: -18px;
 }
 </style>

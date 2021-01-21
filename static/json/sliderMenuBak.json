@@ -125,6 +125,20 @@
         "key": "device",
         "list": [
           {
+            "name": "AI终端机管理",
+            "key": "terminal",
+            "id": 501,
+            "top": "basicInfo",
+            "path": "/basicInfo/terminal"
+          },
+          {
+            "name": "AI摄像机",
+            "key": "video",
+            "id": 502,
+            "top": "basicInfo",
+            "path": "/basicInfo/video"
+          },
+          {
             "name": "AI一体机-云端版",
             "key": "padCloud",
             "id": 503,
@@ -271,6 +285,13 @@
             "id": 1001,
             "top": "basicInfo",
             "path": "/basicInfo/webAuth"
+          },
+          {
+            "name": "APP权限",
+            "key": "appAuth",
+            "id": 1002,
+            "top": "basicInfo",
+            "path": "/basicInfo/appAuth"
           },
           {
             "name": "认证管理",
@@ -870,6 +891,64 @@
             "id": 6007,
             "top": "logisticsInfo",
             "path": "/logisticsInfo/doorAccess/doorManage"
+          }
+        ]
+      },
+      {
+        "name": "一卡通",
+        "icon": "fa fa-vcard",
+        "toggle": false,
+        "id": 6100,
+        "key": "onecard",
+        "list": [
+          {
+            "name": "商家管理",
+            "key": "merchant",
+            "id": 6101,
+            "top": "logisticsInfo",
+            "path": "/logisticsInfo/onecard/merchant"
+          },
+          {
+            "name": "交易明细",
+            "key": "billList",
+            "id": 6102,
+            "top": "logisticsInfo",
+            "path": "/logisticsInfo/onecard/billList"
+          },
+          {
+            "name": "学生一卡通",
+            "key": "stuOnecard",
+            "id": 6103,
+            "top": "logisticsInfo",
+            "path": "/logisticsInfo/onecard/stuOnecard"
+          },
+          {
+            "name": "教师一卡通",
+            "key": "terOnecard",
+            "id": 6104,
+            "top": "logisticsInfo",
+            "path": "/logisticsInfo/onecard/terOnecard"
+          },
+          {
+            "name": "一卡通结算",
+            "key": "terDoorApply",
+            "id": 6105,
+            "top": "logisticsInfo",
+            "path": "/logisticsInfo/onecard/onecardPay"
+          },
+          {
+            "name": "校园收款",
+            "key": "Collection",
+            "id": 6106,
+            "top": "logisticsInfo",
+            "path": "/logisticsInfo/onecard/collection"
+          },
+          {
+            "name": "收款管理",
+            "key": "collectionManage",
+            "id": 6107,
+            "top": "logisticsInfo",
+            "path": "/logisticsInfo/onecard/collectionManage"
           }
         ]
       }

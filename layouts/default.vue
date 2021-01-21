@@ -428,47 +428,25 @@
                 <div id="version-info" class="campus-info-container" v-if="settingType == 2">
                   <div>
                     <el-timeline>
-                      <el-timeline-item v-for="n in 10" :key="n">
+                      <el-timeline-item v-for="(item,index) in versionData" :key="index">
                         <el-card :body-style="{padding: '10px'}">
                           <div slot="header" class="clearfix">
-                            <span class="font-size-15  color-warning" style="font-weight: bold">v1.0.0</span>
-                            <el-button style="float: right; padding: 3px 0" type="text">2020-11-11 11:11:11</el-button>
+                            <span class="font-size-15  color-warning" style="font-weight: bold">{{item.version}}</span>
+                            <el-button style="float: right; padding: 3px 0" type="text">{{item.time}}</el-button>
                           </div>
 
                           <div>
-                            <div>
+                            <div class="margin-bottom-20" v-for="(itemChild, indexChild) in item.list" :key="indexChild">
                               <div>
-                                <span class="font-size-15 color-warning" style="font-weight: bold">新功能</span>
+                                <span class="font-size-15 color-warning" style="font-weight: bold">{{itemChild.title}}</span>
                               </div>
-                              <div class="margin-top-5">
-                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
-                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
-                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
-                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
-                              </div>
-                            </div>
-
-                            <div class="margin-top-20">
-                              <div>
-                                <span class="font-size-15 color-warning" style="font-weight: bold">BUG修复</span>
-                              </div>
-                              <div class="margin-top-5">
-                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
-                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
-                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
-                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
-                              </div>
-                            </div>
-
-                            <div class="margin-top-20">
-                              <div>
-                                <span class="font-size-15 color-warning" style="font-weight: bold">其他说明</span>
-                              </div>
-                              <div class="margin-top-5">
-                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
-                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
-                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
-                                jasljflajskfjasjflakljsf;ajsljfkasjklfjaklsjdkfalks;
+                              <div class="margin-top-10">
+                                <div class="margin-bottom-5" v-for="(itemDesc, indexDesc) in itemChild.desc" :key="indexDesc">
+                                  <div class="color-muted font-size-12">
+                                    <i class="fa fa-bookmark color-disabeld margin-right-5"></i>
+                                    {{itemDesc}}
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -654,9 +632,9 @@
               </span>
             </el-popover>
 
-            <span v-if="rightItemAllWidth.width != '0px'" class="pull-left" style="height: 40px; width: 10px;display: inline-block;background: #f5f5f5;text-align: center;position: relative;z-index: 999" @click="moveTabLeft">
-              <i class="fa fa-angle-left color-muted"></i>
-            </span>
+            <div v-show="menuTabList.length != '0'" class="pull-left" style="height: 40px; width: 10px;display: inline-block;background: #f5f5f5;text-align: center;position: relative;z-index: 999" @click="moveTabLeft">
+              <span><i class="fa fa-angle-left color-muted"></i></span>
+            </div>
             <div ref="menuTagDiv" id="menuTagDiv" class="pull-left margin-left-5" style="position: relative;overflow-x: hidden;height: 40px;" :style="rightNowWidth">
               <div style="position:absolute;height: 40px;" :style="rightItemAllWidth">
                 <span v-for="(item,index) in menuTabList" :key="index" style="cursor:default;">
@@ -670,9 +648,9 @@
                 </span>
               </div>
             </div>
-            <span v-if="rightItemAllWidth.width != '0px'" class="pull-left" style="height: 40px; width: 10px;display: inline-block;background: #f5f5f5;text-align: center;" :style="isCollapse ? 'right: 15px' : 'right: -2px'" @click="moveTabRight">
-              <i class="fa fa-angle-right color-muted"></i>
-            </span>
+            <div v-show="menuTabList.length != '0'" class="pull-left" style="height: 40px; width: 10px;display: inline-block;background: #f5f5f5;text-align: center;" :style="isCollapse ? 'right: 15px' : 'right: -2px'" @click="moveTabRight">
+              <span><i class="fa fa-angle-right color-muted"></i></span>
+            </div>
             <div class="moon-clearfix"></div>
           </div>
           <div class="moon-right-content" :style="rightHeight">
@@ -803,8 +781,8 @@
         dataAudit: {},
         objectId: '',
         auditObjectItem: {},
-        updatePhoneMms: common.updatephone_mms,
-        updatePwdMms: common.updatepwd_mms,
+        updatePhoneMms: common.updatephone_admin_save,
+        updatePwdMms: common.updatepwd_admin_save,
         uploadFileUrl: common.upload_file,
         uploadFileListUrl: common.upload_imglist_file,
         calendarData: [],
@@ -879,15 +857,16 @@
           phoneCode: '',
           pwd: ''
         },
-        setData: {}
+        setData: {},
       }
     },
     mounted () {
+      let rightWidth = this.userType == 2 ? 400 : 410;
       this.screenWidth = document.body.clientWidth;
       let width = document.querySelector(".moon-top-middle-menu-title").clientWidth;
-      this.topWidth.width = width - 400 + 'px';
+      this.topWidth.width = width - rightWidth + 'px';
       this.topDrawerWidth.width = width + 'px';
-      this.widthIndex = (width - 400) / 100 - 2;
+      this.widthIndex = (width - rightWidth) / 100 - 2;
       // 监听窗口大小
       window.onresize = () => {
         this.getMenuTabWdith();
@@ -895,8 +874,8 @@
           width = document.querySelector(".moon-top-middle-menu-title").clientWidth;
           return (() => {
             this.screenWidth = document.body.clientWidth;
-            this.topWidth.width = width - 400 + 'px';
-            this.widthIndex = (width - 400) / 150;
+            this.topWidth.width = width - rightWidth + 'px';
+            this.widthIndex = (width - rightWidth) / 150;
           })()
         }
       };
@@ -908,13 +887,7 @@
         this.layout = "full";
       }
       //获取menuTab
-      if (process.client){
-        let menuTabList = localStorage.getItem("menuTabList");
-        if (menuTabList && menuTabList != ''){
-          this.menuTabList = JSON.parse(menuTabList);
-        }
-      }
-      this.$set(this.rightItemAllWidth,'width', this.menuTabList.length * 100 +'px');
+      this.getLocastorage();
       this.hh();
       this.init();
       this.getBell();
@@ -938,6 +911,15 @@
           this.popMenuHeight.height = window.innerHeight - 60 - 100 + 'px';
         }
       },
+      getLocastorage(){
+        if (process.client){
+          let menuTabList = localStorage.getItem("menuTabList");
+          if (menuTabList && menuTabList != ''){
+            this.menuTabList = JSON.parse(menuTabList);
+          }
+        }
+        this.$set(this.rightItemAllWidth,'width', this.menuTabList.length * 100 +'px');
+      },
       getMenuTabWdith(){
         //获取menuTab的宽度
         this.$nextTick(() => {
@@ -958,7 +940,6 @@
         document.getElementById("menuTagDiv").scrollLeft += 100;
       },
       moveTabLeft(){
-        console.log(111);
         let scrollWith =  document.querySelector("#menuTagDiv").scrollWidth;
         document.getElementById("menuTagDiv").scrollLeft -= 100;
       },
@@ -967,12 +948,14 @@
         await this.getCurrentWeekInfo(this.campusId);
         await this.getNoReadNum();
         this.initCourseDate(this.loginUserId);
+        await this.initVersionData();
         this.year = this.currentYear;
         this.weekNum = this.currentWeekNum;
         this.week = this.currentWeekNo;
+        this.updatePhoneMms = this.userType == 2 ? common.updatephone_admin_save : common.updatephone_teacher_save;
+        this.updatePwdMms = this.userType == 2 ? common.updatepwd_admin_save : common.updatepwd_mms;
       },
       test1() {
-        console.log(this.value, this.testDefault);
       },
       handleTopSelect(event, item) {
         this.getSliderMenu(item.key, 'click');
@@ -1544,6 +1527,10 @@
           this.setSliderSubToggle();
           let width = parseInt(this.rightItemAllWidth.width.substr(0,this.rightItemAllWidth.width.length-2));
           if (width <= 0){
+            this.getMenuTabWdith();
+          }
+          if (this.menuTabList.length > 0){
+            this.getLocastorage();
             this.getMenuTabWdith();
           }
         });

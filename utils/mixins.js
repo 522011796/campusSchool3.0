@@ -80,6 +80,8 @@ export default {
       currentTermData: '',
       currentWeekData: '',
       currentSetWeekNum: 0,
+      currentVersion: '',
+      versionData: [],
       tableHeight: {
         'height': ''
       },
@@ -172,6 +174,17 @@ export default {
         this.drawHeight.height = window.innerHeight - 80 + 'px';
       }
     },
+    async initVersionData(){
+      let params = {
+        campusName: this.campusName
+      };
+      await this.$axios.get("http://campus.9451.com/campusmanage/appapi/system-version", {params: params}).then(res => {
+        if (res.data.data){
+          this.currentVersion = res.data.data.version;
+          this.versionData = res.data.data.logs;
+        }
+      });
+    },
     /**
      * 获取用户未读消息数量
      */
@@ -198,19 +211,21 @@ export default {
         keys:'campusId,userType,campusType,userId,username,campusName,campusLogo,realName,externalSystemName,externalSystem,termId,externalSystemName,externalSystem'
       };
       await this.$axios.get(common.session_url, {params: params}).then(res => {
-        this.campusId = res.data.data.campusId;
-        this.campusName = res.data.data.LOGIN_RETURN_INFO.campusName;
-        this.loginUserName = res.data.data.LOGIN_RETURN_INFO.username;
-        this.loginUserType = res.data.data.userType;
-        this.campusLogo = res.data.data.LOGIN_RETURN_INFO.logo;
-        this.currentTermId = res.data.data.currentTermWeek ? res.data.data.currentTermWeek.id : '';
-        this.currentYearId = res.data.data.currentTermWeek ? res.data.data.currentTermWeek.schYearId : '';
-        this.userJobNum = res.data.data.LOGIN_RETURN_INFO.jobNum;
-        this.realName = res.data.data.realName;
-        this.headImage = res.data.data.LOGIN_RETURN_INFO.teacherPhoto;
-        this.organizeName = res.data.data.LOGIN_RETURN_INFO.organize ? res.data.data.LOGIN_RETURN_INFO.organize.departmentName : '';
-        this.headImage = res.data.data.headImage;
-        this.loginUserId = res.data.data.LOGIN_RETURN_INFO.userInfo ? res.data.data.LOGIN_RETURN_INFO.userInfo.userId : res.data.data.userId;
+        if (res.data.data){
+          this.campusId = res.data.data.campusId;
+          this.campusName = res.data.data.LOGIN_RETURN_INFO.campusName;
+          this.loginUserName = res.data.data.LOGIN_RETURN_INFO.username;
+          this.loginUserType = res.data.data.userType;
+          this.campusLogo = res.data.data.LOGIN_RETURN_INFO.logo;
+          this.currentTermId = res.data.data.currentTermWeek ? res.data.data.currentTermWeek.id : '';
+          this.currentYearId = res.data.data.currentTermWeek ? res.data.data.currentTermWeek.schYearId : '';
+          this.userJobNum = res.data.data.LOGIN_RETURN_INFO.jobNum;
+          this.realName = res.data.data.realName;
+          this.headImage = res.data.data.LOGIN_RETURN_INFO.teacherPhoto;
+          this.organizeName = res.data.data.LOGIN_RETURN_INFO.organize ? res.data.data.LOGIN_RETURN_INFO.organize.departmentName : '';
+          this.headImage = res.data.data.headImage;
+          this.loginUserId = res.data.data.LOGIN_RETURN_INFO.userInfo ? res.data.data.LOGIN_RETURN_INFO.userInfo.userId : res.data.data.userId;
+        }
       });
     },
     /**

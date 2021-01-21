@@ -104,7 +104,7 @@
                 <tbody>
                   <tr>
                     <td width="30%">{{$t("系统版本")}}</td>
-                    <td>V0.0.1</td>
+                    <td>{{currentVersion}}</td>
                   </tr>
                   <tr>
                     <td width="30%">{{$t("当前学年")}}</td>
@@ -583,6 +583,7 @@
       async init(){
         await this.getSessionInfo();
         await this.getCurrentWeekInfo(this.campusId);
+        await this.initVersionData();
         this.initStudentSex();
         this.initTeacherSex();
         this.initDeviceType();
