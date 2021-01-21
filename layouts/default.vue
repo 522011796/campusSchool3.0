@@ -564,7 +564,7 @@
             </div>
           </div>
 
-          <div class="moon-menu-toggle-main" style="right: 0px;">
+          <div v-show="isCollapse" class="moon-menu-toggle-main" style="right: 0px;">
             <div class="moon-menu-toggle-item">
               <span class="color-grand font-size-12">{{$t('固定菜单栏')}}</span>
               <el-switch
