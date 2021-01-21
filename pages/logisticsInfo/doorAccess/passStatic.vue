@@ -321,6 +321,7 @@
           <el-table
             class="margin-top-10"
             ref="refTable"
+            v-loading="showDetailLoading"
             :data="tableStudentData"
             header-cell-class-name="custom-table-cell-bg"
             size="medium"
@@ -471,6 +472,7 @@
         visibleConfim: false,
         drawerVisible: false,
         drawerLoading: false,
+        showDetailLoading: false,
         searchCollege: '',
         searchMajor: '',
         searchGrade: '',
@@ -706,13 +708,15 @@
           params['timeUnit'] = 3;
         }
         params = this.clearDataInfo(params);
-        this.$axios.get(url, {params: params}).then(res => {
+        this.showDetailLoading = true;
+        this.$axios.get(url, {params: params,loading: false}).then(res => {
           if (res.data.data){
             this.tableStudentData = res.data.data.list;
             this.totalStudent = res.data.data.totalCount;
             this.numStudent = res.data.data.num;
             this.pageStudent = res.data.data.currentPage;
           }
+          this.showDetailLoading = false;
         });
       },
       addInfo(){
@@ -1001,11 +1005,11 @@
       sizeStudentChange(event){
         this.pageStudent = 1;
         this.numStudent = event;
-        this.initRecord();
+        this.initDetail();
       },
       currentStudentPage(event){
         this.pageStudent = event;
-        this.initRecord();
+        this.initDetail();
       },
       handleTime(data){
         this.searchDate = data;

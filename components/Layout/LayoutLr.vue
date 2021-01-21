@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="layout-left-menu animated fadeInUp">
+    <div class="layout-left-menu animated fadeInLeft">
       <slot name="left">
 
       </slot>
