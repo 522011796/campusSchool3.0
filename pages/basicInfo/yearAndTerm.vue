@@ -24,7 +24,7 @@
           @cell-click="cellClick"
           :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
           <el-table-column
-            align="center"
+            align="left"
             prop="name"
             :label="$t('学年/学期')">
           </el-table-column>
@@ -379,7 +379,7 @@
           num: 999,
           schYearId: year
         };
-        this.$axios.get(common.term_list, {params: params}).then(res => {
+        this.$axios.get(common.term_list, {params: params, loading: false}).then(res => {
           if (res.data.data){
             resolve(res.data.data.list);
           }

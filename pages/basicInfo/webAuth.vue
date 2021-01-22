@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    webAuth
+    请先测试和确认模块功能点，没有问题后再单独进行权限测试。
   </div>
 </template>
 

@@ -26,7 +26,7 @@
           style="width: 100%"
           @cell-click="cellClick">
           <el-table-column
-            align="center"
+            align="left"
             prop="department_name"
             :label="$t('名称')">
           </el-table-column>

@@ -5,7 +5,7 @@
         <span v-if="campusName == ''" class="color-white moon-top-logo-title">
           <img src="~static/img/login-logo.png" style="height: 50px;width: 220px;position: relative; top: -10px;left: -10px">
         </span>
-        <span v-if="campusName != ''" class="color-white moon-top-logo-title">
+        <span v-if="campusName != ''" class="color-white moon-top-logo-title animated fadeInLeft">
           <el-avatar shape="square" :size="30" :src="campusLogo" style="margin-left: 2px"></el-avatar>
           <label style="position: relative; top: -10px;">{{campusName}}</label>
         </span>
@@ -107,7 +107,7 @@
             </el-popover>
 
             <span class="moon-top-middle-menu-item-text-plus">
-              <label class="item">
+              <label class="item" @click="addMenuItem">
                 <i class="fa fa-plus-circle"></i>
               </label>
             </span>
@@ -1525,6 +1525,9 @@
           }
         }
         return -1;
+      },
+      addMenuItem(){
+        MessageWarning("请先测试和确认模块功能点。");
       }
     },
     watch: {
