@@ -66,5 +66,6 @@ export default {
   },
   router: {
     middleware: ['i18n']
-  }
+  },
+  telemetry: false
 }

@@ -48,8 +48,6 @@ export { default as DrawerLayoutRight } from '../../components/utils/dialog/Draw
 export { default as DrawerRight } from '../../components/utils/dialog/DrawerRight.vue'
 export { default as MyNormalDialog } from '../../components/utils/dialog/MyNormalDialog.vue'
 export { default as MyCascader } from '../../components/utils/select/MyCascader.vue'
-export { default as QuillBlock } from '../../components/utils/upload/QuillBlock.vue'
-export { default as UploadSquare } from '../../components/utils/upload/UploadSquare.vue'
 export { default as MyAdminAtten } from '../../components/utils/status/MyAdminAtten.vue'
 export { default as MyClassAtten } from '../../components/utils/status/MyClassAtten.vue'
 export { default as MyDeviceOnlineStatus } from '../../components/utils/status/MyDeviceOnlineStatus.vue'
@@ -69,6 +67,8 @@ export { default as StudentTreeAndListNoPage } from '../../components/utils/tree
 export { default as TeacherTreeAndList } from '../../components/utils/treeAndList/TeacherTreeAndList.vue'
 export { default as TeacherTreeAndListBak } from '../../components/utils/treeAndList/TeacherTreeAndListBak.vue'
 export { default as TeacherTreeAndListNoPage } from '../../components/utils/treeAndList/TeacherTreeAndListNoPage.vue'
+export { default as QuillBlock } from '../../components/utils/upload/QuillBlock.vue'
+export { default as UploadSquare } from '../../components/utils/upload/UploadSquare.vue'
 
 export const LazyLogo = import('../../components/Logo.vue' /* webpackChunkName: "components/Logo" */).then(c => c.default || c)
 export const LazyMyBlockTree = import('../../components/MyBlockTree.vue' /* webpackChunkName: "components/MyBlockTree" */).then(c => c.default || c)
@@ -120,8 +120,6 @@ export const LazyDrawerLayoutRight = import('../../components/utils/dialog/Drawe
 export const LazyDrawerRight = import('../../components/utils/dialog/DrawerRight.vue' /* webpackChunkName: "components/utils/dialog/DrawerRight" */).then(c => c.default || c)
 export const LazyMyNormalDialog = import('../../components/utils/dialog/MyNormalDialog.vue' /* webpackChunkName: "components/utils/dialog/MyNormalDialog" */).then(c => c.default || c)
 export const LazyMyCascader = import('../../components/utils/select/MyCascader.vue' /* webpackChunkName: "components/utils/select/MyCascader" */).then(c => c.default || c)
-export const LazyQuillBlock = import('../../components/utils/upload/QuillBlock.vue' /* webpackChunkName: "components/utils/upload/QuillBlock" */).then(c => c.default || c)
-export const LazyUploadSquare = import('../../components/utils/upload/UploadSquare.vue' /* webpackChunkName: "components/utils/upload/UploadSquare" */).then(c => c.default || c)
 export const LazyMyAdminAtten = import('../../components/utils/status/MyAdminAtten.vue' /* webpackChunkName: "components/utils/status/MyAdminAtten" */).then(c => c.default || c)
 export const LazyMyClassAtten = import('../../components/utils/status/MyClassAtten.vue' /* webpackChunkName: "components/utils/status/MyClassAtten" */).then(c => c.default || c)
 export const LazyMyDeviceOnlineStatus = import('../../components/utils/status/MyDeviceOnlineStatus.vue' /* webpackChunkName: "components/utils/status/MyDeviceOnlineStatus" */).then(c => c.default || c)
@@ -141,3 +139,5 @@ export const LazyStudentTreeAndListNoPage = import('../../components/utils/treeA
 export const LazyTeacherTreeAndList = import('../../components/utils/treeAndList/TeacherTreeAndList.vue' /* webpackChunkName: "components/utils/treeAndList/TeacherTreeAndList" */).then(c => c.default || c)
 export const LazyTeacherTreeAndListBak = import('../../components/utils/treeAndList/TeacherTreeAndListBak.vue' /* webpackChunkName: "components/utils/treeAndList/TeacherTreeAndListBak" */).then(c => c.default || c)
 export const LazyTeacherTreeAndListNoPage = import('../../components/utils/treeAndList/TeacherTreeAndListNoPage.vue' /* webpackChunkName: "components/utils/treeAndList/TeacherTreeAndListNoPage" */).then(c => c.default || c)
+export const LazyQuillBlock = import('../../components/utils/upload/QuillBlock.vue' /* webpackChunkName: "components/utils/upload/QuillBlock" */).then(c => c.default || c)
+export const LazyUploadSquare = import('../../components/utils/upload/UploadSquare.vue' /* webpackChunkName: "components/utils/upload/UploadSquare" */).then(c => c.default || c)
