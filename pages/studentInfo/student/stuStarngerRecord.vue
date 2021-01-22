@@ -54,7 +54,7 @@
 
             <template slot-scope="scope">
               <span>
-                <el-avatar shape="square" :size="50" :src="scope.row.path" style="width: 100%; height: 100%;"></el-avatar>
+                <img :src="scope.row.path" style="width: 30px; height: 30px; border-radius: 30px" />
               </span>
             </template>
           </el-table-column>
