@@ -86,7 +86,7 @@
               :data="tableData"
               header-cell-class-name="custom-table-cell-bg"
               size="medium"
-              :max-height="tableHeight3.height"
+              :max-height="tableHeight6.height"
               style="width: 100%">
               <el-table-column
                 fixed

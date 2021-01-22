@@ -55,11 +55,11 @@ export default function({ $axios, redirect }) {
         } else if (res.data.code === 403) {
           hideLoading();
           redirect('/noPermission');
-          return;
+          return res;
         } else if (res.data.code === 404) {
           hideLoading();
           redirect('/404');
-          return;
+          return res;
         }else {
           hideLoading();
           return res;
