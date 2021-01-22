@@ -176,8 +176,8 @@
       setWidth(){
         this.$nextTick(function () {
           if (process.client){
-            this.widthStyle = document.querySelector(".ellipsis-tag").clientWidth;
-            this.widthDesStyle = document.querySelector(".ellipsis-long-tag").clientWidth;
+            this.widthStyle = document.querySelector(".ellipsis-tag") ? document.querySelector(".ellipsis-tag").clientWidth : 0;
+            this.widthDesStyle = document.querySelector(".ellipsis-long-tag") ? document.querySelector(".ellipsis-long-tag").clientWidth : 0;
           }
         });
       }
