@@ -47,7 +47,7 @@
                 <span class="login-title-label">{{$t("用户名")}}</span>
               </div>
               <div class="margin-top-5">
-                <el-input v-model="form.username"></el-input>
+                <el-input v-model="form.username" @keyup.enter.native="login"></el-input>
               </div>
             </div>
             <div class="margin-top-20">
@@ -55,7 +55,7 @@
                 <span class="login-title-label">{{$t("密码")}}</span>
               </div>
               <div class="margin-top-5">
-                <el-input :show-password="true" v-model="form.password"></el-input>
+                <el-input :show-password="true" v-model="form.password" @keyup.enter.native="login"></el-input>
               </div>
             </div>
           </div>
@@ -67,7 +67,7 @@
                   <span class="login-title-label">{{$t("用户名/手机号")}}</span>
                 </div>
                 <div class="margin-top-5">
-                  <el-input v-model="form.username"></el-input>
+                  <el-input v-model="form.username" @keyup.enter.native="login"></el-input>
                 </div>
               </div>
               <div class="margin-top-20">
@@ -75,7 +75,7 @@
                   <span class="login-title-label">{{$t("密码")}}</span>
                 </div>
                 <div class="margin-top-5">
-                  <el-input :show-password="true" v-model="form.password"></el-input>
+                  <el-input :show-password="true" v-model="form.password" @keyup.enter.native="login"></el-input>
                 </div>
               </div>
             </div>
@@ -86,7 +86,7 @@
                   <span class="login-title-label">{{$t("学校编号")}}</span>
                 </div>
                 <div class="margin-top-5">
-                  <el-input v-model="form.campusNo"></el-input>
+                  <el-input v-model="form.campusNo" @keyup.enter.native="login"></el-input>
                 </div>
               </div>
               <div class="margin-top-20">
@@ -94,7 +94,7 @@
                   <span class="login-title-label">{{$t("工号")}}</span>
                 </div>
                 <div class="margin-top-5">
-                  <el-input v-model="form.username"></el-input>
+                  <el-input v-model="form.username" @keyup.enter.native="login"></el-input>
                 </div>
               </div>
               <div class="margin-top-20">
@@ -102,7 +102,7 @@
                   <span class="login-title-label">{{$t("密码")}}</span>
                 </div>
                 <div class="margin-top-5">
-                  <el-input :show-password="true" v-model="form.password"></el-input>
+                  <el-input :show-password="true" v-model="form.password" @keyup.enter.native="login"></el-input>
                 </div>
               </div>
             </div>
@@ -110,7 +110,7 @@
             <div v-if="userSubType == 2">
               <div>
                 <div>
-                  <span class="login-title-label">{{$t("身份证号码")}}</span>
+                  <span class="login-title-label" @keyup.enter.native="login">{{$t("身份证号码")}}</span>
                 </div>
                 <div class="margin-top-5">
                   <el-input v-model="form.username"></el-input>
@@ -121,7 +121,7 @@
                   <span class="login-title-label">{{$t("密码")}}</span>
                 </div>
                 <div class="margin-top-5">
-                  <el-input v-model="form.password"></el-input>
+                  <el-input v-model="form.password" @keyup.enter.native="login"></el-input>
                 </div>
               </div>
             </div>

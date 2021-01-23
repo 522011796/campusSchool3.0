@@ -68,6 +68,16 @@
               </el-popover>
             </template>
           </el-table-column>
+          <el-table-column
+            align="center"
+            prop="class_name"
+            width="80"
+            :label="$t('操作')">
+
+            <template slot-scope="scope">
+              <i class="fa fa-eye color-grand" @click="showDetail(scope.row)"></i>
+            </template>
+          </el-table-column>
         </el-table>
 
         <div class="layout-right-footer text-right">
@@ -75,6 +85,94 @@
         </div>
       </div>
     </layout-tb>
+
+    <dialog-normal width-style="1100px" :visible="modalVisible" :show-footer="false" :title="$t('学生报警')" @close="closeDialog" @right-close="cancelDialog">
+      <el-row>
+        <el-col :span="6">
+          <div class="margin-right-10">
+            <el-card :body-style="{padding: '10px'}">
+              <div class="font-size-12 color-muted">
+                <div>
+                  <span>{{$t("学生")}}: </span>
+                  <span>{{alarmInfo ? alarmInfo.studentName : ''}}</span>
+                </div>
+                <div class="margin-top-5">
+                  <span>{{$t("联系方式")}}: </span>
+                  <span>{{alarmInfo ? alarmInfo.studentPhone : ''}}</span>
+                </div>
+                <div class="margin-top-5">
+                  <span>{{$t("班级")}}: </span>
+                  <span>{{alarmInfo ? alarmInfo.className : ''}}</span>
+                </div>
+                <div class="margin-top-5">
+                  <span>{{$t("班主任")}}: </span>
+                  <span>{{alarmInfo ? alarmInfo.realName : ''}}</span>
+                </div>
+                <div class="margin-top-5">
+                  <span>{{$t("班主任联系方式")}}: </span>
+                  <span>{{alarmInfo ? alarmInfo.phone : ''}}</span>
+                </div>
+              </div>
+            </el-card>
+          </div>
+
+          <div class="margin-top-20">
+            <span class="color-warning font-size-12">
+              <i class="fa fa-location-arrow"></i> {{$t("点击下面地址右侧地图可以进行位置查看")}}
+            </span>
+          </div>
+          <el-card :body-style="{padding: '10px'}" class="margin-right-10 margin-top-5" style="position: relative">
+            <label style="position: absolute; right: 10px; top: 5px; z-index: 999">
+              <i class="fa fa-refresh color-warning" :class="refreshStatus == true ? 'fa-spin' : ''" @click="refreshDetail"></i>
+            </label>
+            <div class="font-size-12 color-muted">
+              <div class="map-item" v-for="(item, index) in addrData" :key="index" @click="detailItem(item)">
+                <div class="map-item-child">
+                  <el-row>
+                    <el-col :span="18">
+                      <el-popover trigger="hover" placement="right" popper-class="custom-table-popover">
+                        <div class="text-center">
+                          <div class="moon-content-text-ellipsis-class">{{item.address}}</div>
+                        </div>
+                        <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                          <div class="moon-content-text-ellipsis-class">
+                            <label>{{item.address}}</label>
+                          </div>
+                        </div>
+                      </el-popover>
+                    </el-col>
+                    <el-col :span="6">
+                      <el-popover trigger="hover" placement="right" popper-class="custom-table-popover">
+                        <div class="text-center">
+                          <div class="moon-content-text-ellipsis-class">{{$moment(item.create_time).format("YYYY-MM-DD hh:mm:ss")}}</div>
+                        </div>
+                        <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                          <div class="moon-content-text-ellipsis-class">
+                            <label>{{$moment(item.create_time).format("YYYY-MM-DD hh:mm:ss")}}</label>
+                          </div>
+                        </div>
+                      </el-popover>
+                    </el-col>
+                  </el-row>
+                </div>
+                <div v-if="item.voice_url" class="font-size-12 color-disabeld" style="position: relative">
+                  <div style="background: rgb(241,243, 244); height: 30px; width: 40px; position: absolute; right: 10px; top: 0px; z-index: 999;"></div>
+                  <audio class="audit-item" controls>
+                    <source :src="item.voice_url" type="audio/mpeg">
+                    {{$t("浏览器不支持播放器")}}
+                  </audio>
+                </div>
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+        <el-col :span="18">
+          <div id="roadmap" style="height: 450px;overflow-y: auto">
+
+          </div>
+        </el-col>
+      </el-row>
+    </dialog-normal>
   </div>
 </template>
 
@@ -88,9 +186,10 @@
   import MyUserType from "../../../components/utils/MyUserType";
   import MyDatePicker from "../../../components/MyDatePicker";
   import MyInputButton from "../../../components/search/MyInputButton";
+  import DialogNormal from "../../../components/utils/dialog/DialogNormal";
   export default {
     mixins: [mixins],
-    components: {MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton},
+    components: {MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal},
     data(){
       return {
         tableData: [],
@@ -99,8 +198,19 @@
         searchKey: '',
         visible: false,
         clearTime: '',
-        action: ''
+        action: '',
+        modalVisible: false,
+        map: {},
+        marker: {},
+        addrLineArr: [],
+        alarmInfo: {},
+        addrData: [],
+        rowData: {},
+        refreshStatus: false
       }
+    },
+    mounted() {
+
     },
     created() {
       this.init();
@@ -147,6 +257,64 @@
             this.typeList = arr;
           }
         });
+      },
+      initDetail(row){
+        let params = {
+          alarmId: row.id,
+          classId: row.class_id
+        };
+        this.rowData = row;
+        this.$axios.get(common.student_info_warning_detail_list, {params: params}).then(res => {
+          if (res.data.data){
+            res.data.data['studentName'] = row.name;
+            res.data.data['studentPhone'] = row.phone;
+            res.data.data['className'] = row.class_name;
+            this.alarmInfo = res.data.data;
+          }
+        });
+      },
+      initMap(row, type){
+        this.map = new AMap.Map("roadmap", {
+          resizeEnable: true,
+          zoom: 15
+        });
+        this.initAddrList(row, type);
+      },
+      addMarker(longitude, latitude){
+        this.marker = new AMap.Marker({
+          position: [longitude, latitude],
+          content: '<div class="marker-route marker-marker-bus-from"></div>'
+        });
+        this.marker.setMap(this.map);
+      },
+      initAddrList(row, type){
+        let lineArr = [];
+        let params = {
+          page : 1,
+          num: 999,
+          alarmId: row.id
+        };
+        if (type == 'local'){
+          this.addrLineArr[this.addrLineArr.length-1];
+          this.map.setCenter(this.addrLineArr[this.addrLineArr.length-1]);
+          this.addMarker(this.addrLineArr[this.addrLineArr.length-1][0], this.addrLineArr[this.addrLineArr.length-1][1]);
+        }else {
+          this.$axios.get(common.student_info_warning_detail_map_list, {params: params}).then(res => {
+            if (res.data.data){
+              if (type == 'refresh'){
+                this.addrData = res.data.data.locationPage.list;
+              }else {
+                this.addrData = res.data.data.locationPage.list;
+                for (let i = 0; i < res.data.data.locationPage.list.length; i++){
+                  lineArr.push([res.data.data.locationPage.list[i].longitude, res.data.data.locationPage.list[i].latitude]);
+                }
+                this.addrLineArr = lineArr;
+                this.map.setCenter(this.addrLineArr[this.addrLineArr.length-1]);
+                this.addMarker(this.addrLineArr[this.addrLineArr.length-1][0], this.addrLineArr[this.addrLineArr.length-1][1]);
+              }
+            }
+          });
+        }
       },
       clearInfo(){
         if (this.clearTime == ""){
@@ -195,6 +363,32 @@
       handleSelect(data){
         this.action = data;
         this.init();
+      },
+      cancelDialog(){
+        this.modalVisible = false;
+      },
+      closeDialog(event){
+        this.modalVisible = false;
+      },
+      showDetail(row){
+        this.modalVisible = true;
+        this.initDetail(row);
+        this.$nextTick(()=>{
+          this.initMap(row);
+        });
+      },
+      detailItem(row){
+        this.$nextTick(()=>{
+          this.addrLineArr = [[row.longitude, row.latitude]];
+          this.initMap(row, 'local');
+        });
+      },
+      refreshDetail(){
+        this.refreshStatus = true;
+        setTimeout(() => {
+          this.refreshStatus = false;
+          this.initAddrList(this.rowData, 'refresh');
+        },1500);
       }
     }
   }
@@ -203,5 +397,17 @@
 <style scoped>
   .container {
     padding: 10px 15px;
+  }
+  .map-item{
+    border-bottom: 1px solid #dddddd;
+  }
+  .map-item-child{
+    height: 45px;
+    line-height: 45px;
+  }
+  .audit-item{
+    height: 30px !important;
+    width: 100% !important;
+    border-radius: 0px !important;
   }
 </style>

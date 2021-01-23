@@ -446,6 +446,9 @@ export const common = {
   student_info_setting: '/proxy/school/person/student/update/and/take/img/add',//学生管理--设置
   tearcher_info_setting: '/proxy/school/person/teacher/photo/add',//教工管理--设置
   tearcher_info_setting_page: '/proxy/school/person/teacher/page',//教工管理--设置
+
   student_info_warning: '/proxy/user/alarm/list',//学生报警
+  student_info_warning_detail_list: '/proxy/user/masterTeacher/userinfo/get',//学生报警
+  student_info_warning_detail_map_list: '/proxy/user/alarm/track',//学生报警
 
 };

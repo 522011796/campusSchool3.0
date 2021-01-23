@@ -9,6 +9,9 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script:[
+      {src:"//webapi.amap.com/maps?v=1.3&key=5d85fdda2266f84f512709656648c856&plugin=AMap.Autocomplete,AMap.PlaceSearch,AMap.MouseTool,AMap.PolyEditor,AMap.CitySearch"},
     ]
   },
 

@@ -32,9 +32,9 @@
         <slot></slot>
       </div>
 
-      <div slot="footer">
+      <div slot="footer" v-if="showFooter == true">
         <div class="dialog-normal-footer">
-          <slot v-if="footer" name="footer"></slot>
+          <slot v-if="footer && showFooter == true" name="footer"></slot>
           <div v-if="!footer">
             <el-button size="small" @click="handleCancel">取 消</el-button>
             <el-button size="small" type="primary" @click="handleOk">确 定</el-button>
@@ -68,6 +68,10 @@ export default {
     visible: {
       default: false,
       type: Boolean
+    },
+    showFooter: {
+      default: true,
+      type: Boolean
     }
   },
   data(){
@@ -93,7 +97,7 @@ export default {
       this.$emit("before-close", data);
     },
     handleClose(data){
-      if (this.footer){
+      if (this.footer || this.showFooter == false){
         this.$emit("right-close", data);
       }else {
         this.handleCancel();
