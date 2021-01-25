@@ -67,15 +67,52 @@
                   <div v-if="scope.row.upper_time3">{{scope.row.upper_time3}}-{{scope.row.lower_time3}}</div>
                 </div>
               </el-popover>-->
-              <div v-if="scope.row.upper_time">
-                {{scope.row.upper_time}}-{{scope.row.lower_time}}
-              </div>
-              <div v-if="scope.row.upper_time2">
-                {{scope.row.upper_time2}}-{{scope.row.lower_time2}}
-              </div>
-              <div v-if="scope.row.upper_time3">
-                {{scope.row.upper_time3}}-{{scope.row.lower_time3}}
-              </div>
+
+
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-left">
+                  <div v-if="scope.row.work_day_setting" v-for="(item, index) in JSON.parse(scope.row.work_day_setting)" :key="index">
+                    <div>
+                      <span>
+                        {{weekNoText2Info(index)}}:{{JSON.parse(scope.row.work_day_setting)[index].startTime}}-{{JSON.parse(scope.row.work_day_setting)[index].endTime}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  <span class="color-grand">{{scope.row.upper_time}}-{{scope.row.lower_time}}</span>
+                </div>
+              </el-popover>
+
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-left">
+                  <div v-if="scope.row.work_day_setting2" v-for="(item, index) in JSON.parse(scope.row.work_day_setting2)" :key="index">
+                    <div>
+                      <span>
+                        {{weekNoText2Info(index)}}:{{JSON.parse(scope.row.work_day_setting2)[index].startTime}}-{{JSON.parse(scope.row.work_day_setting2)[index].endTime}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  <span class="color-grand">{{scope.row.upper_time2}}-{{scope.row.lower_time2}}</span>
+                </div>
+              </el-popover>
+
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-left">
+                  <div v-if="scope.row.work_day_setting3" v-for="(item, index) in JSON.parse(scope.row.work_day_setting3)" :key="index">
+                    <div>
+                      <span>
+                        {{weekNoText2Info(index)}}:{{JSON.parse(scope.row.work_day_setting3)[index].startTime}}-{{JSON.parse(scope.row.work_day_setting3)[index].endTime}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  <span class="color-grand">{{scope.row.upper_time3}}-{{scope.row.lower_time3}}</span>
+                </div>
+              </el-popover>
             </template>
           </el-table-column>
           <el-table-column
@@ -243,7 +280,7 @@
                   <div class="margin-top-5">
                     <ul>
                       <li class="font-size-12 color-muted" v-for="(item, index) in form.workTimeWeek1" :key="index">
-                        <my-check :sel-value="item.weekSwitch">
+                        <my-check :sel-value="item.weekSwitch" @change="handleWeekSwitch($event, item, index)">
                           <span class="font-size-12 color-muted" style="font-weight: normal">{{weekNoText2Info(index+1)}}</span>
                         </my-check>
                         <span>
@@ -284,7 +321,7 @@
                   <div class="margin-top-5">
                     <ul>
                       <li class="font-size-12 color-muted" v-for="(item, index) in form.workTimeWeek2" :key="index">
-                        <my-check :sel-value="item.weekSwitch">
+                        <my-check :sel-value="item.weekSwitch" @change="handleWeekSwitch($event, item, index)">
                           <span class="font-size-12 color-muted" style="font-weight: normal">{{weekNoText2Info(index+1)}}</span>
                         </my-check>
                         <span>
@@ -325,7 +362,7 @@
                   <div class="margin-top-5">
                     <ul>
                       <li class="font-size-12 color-muted" v-for="(item, index) in form.workTimeWeek3" :key="index">
-                        <my-check :sel-value="item.weekSwitch">
+                        <my-check :sel-value="item.weekSwitch" @change="handleWeekSwitch($event, item, index)">
                           <span class="font-size-12 color-muted" style="font-weight: normal">{{weekNoText2Info(index+1)}}</span>
                         </my-check>
                         <span>
@@ -956,57 +993,57 @@
             }
 
             for (let i = 0; i < this.form.workTimeWeek1.length; i++){
-              if (i == 0){
+              if (i == 0 && this.form.workTimeWeek1[i].weekSwitch == true){
                 weekDay1['one'] = this.form.workTimeWeek1[i];
-              }else if (i == 1){
+              }else if (i == 1 && this.form.workTimeWeek1[i].weekSwitch == true){
                 weekDay1['two'] = this.form.workTimeWeek1[i];
-              }if (i == 2){
+              }else if (i == 2 && this.form.workTimeWeek1[i].weekSwitch == true){
                 weekDay1['three'] = this.form.workTimeWeek1[i];
-              }if (i == 3){
+              }else if (i == 3 && this.form.workTimeWeek1[i].weekSwitch == true){
                 weekDay1['four'] = this.form.workTimeWeek1[i];
-              }if (i == 4){
+              }else if (i == 4 && this.form.workTimeWeek1[i].weekSwitch == true){
                 weekDay1['five'] = this.form.workTimeWeek1[i];
-              }if (i == 5){
+              }else if (i == 5 && this.form.workTimeWeek1[i].weekSwitch == true){
                 weekDay1['six'] = this.form.workTimeWeek1[i];
-              }if (i == 6){
+              }else if (i == 6 && this.form.workTimeWeek1[i].weekSwitch == true){
                 weekDay1['seven'] = this.form.workTimeWeek1[i];
               }
             }
             params['workDaySetting'] = JSON.stringify(weekDay1);
 
             for (let i = 0; i < this.form.workTimeWeek2.length; i++){
-              if (i == 0){
+              if (i == 0 && this.form.workTimeWeek2[i].weekSwitch == true){
                 weekDay2['one'] = this.form.workTimeWeek2[i];
-              }else if (i == 1){
+              }else if (i == 1 && this.form.workTimeWeek2[i].weekSwitch == true){
                 weekDay2['two'] = this.form.workTimeWeek2[i];
-              }if (i == 2){
+              }else if (i == 2 && this.form.workTimeWeek2[i].weekSwitch == true){
                 weekDay2['three'] = this.form.workTimeWeek2[i];
-              }if (i == 3){
+              }else if (i == 3 && this.form.workTimeWeek2[i].weekSwitch == true){
                 weekDay2['four'] = this.form.workTimeWeek2[i];
-              }if (i == 4){
+              }else if (i == 4 && this.form.workTimeWeek2[i].weekSwitch == true){
                 weekDay2['five'] = this.form.workTimeWeek2[i];
-              }if (i == 5){
+              }else if (i == 5 && this.form.workTimeWeek2[i].weekSwitch == true){
                 weekDay2['six'] = this.form.workTimeWeek2[i];
-              }if (i == 6){
+              }else if (i == 6 && this.form.workTimeWeek2[i].weekSwitch == true){
                 weekDay2['seven'] = this.form.workTimeWeek2[i];
               }
             }
             params['workDaySetting2'] = JSON.stringify(weekDay2);
 
             for (let i = 0; i < this.form.workTimeWeek3.length; i++){
-              if (i == 0){
+              if (i == 0 && this.form.workTimeWeek3[i].weekSwitch == true){
                 weekDay3['one'] = this.form.workTimeWeek3[i];
-              }else if (i == 1){
+              }else if (i == 1 && this.form.workTimeWeek3[i].weekSwitch == true){
                 weekDay3['two'] = this.form.workTimeWeek3[i];
-              }if (i == 2){
+              }else if (i == 2 && this.form.workTimeWeek3[i].weekSwitch == true){
                 weekDay3['three'] = this.form.workTimeWeek3[i];
-              }if (i == 3){
+              }else if (i == 3 && this.form.workTimeWeek3[i].weekSwitch == true){
                 weekDay3['four'] = this.form.workTimeWeek3[i];
-              }if (i == 4){
+              }else if (i == 4 && this.form.workTimeWeek3[i].weekSwitch == true){
                 weekDay3['five'] = this.form.workTimeWeek3[i];
-              }if (i == 5){
+              }else if (i == 5 && this.form.workTimeWeek3[i].weekSwitch == true){
                 weekDay3['six'] = this.form.workTimeWeek3[i];
-              }if (i == 6){
+              }else if (i == 6 && this.form.workTimeWeek3[i].weekSwitch == true){
                 weekDay3['seven'] = this.form.workTimeWeek3[i];
               }
             }
@@ -1142,6 +1179,9 @@
       },
       weekNoText2Info(val){
         return weekNoText2(val)
+      },
+      handleWeekSwitch(data, item, index){
+        item.weekSwitch = data;
       }
     }
   }
