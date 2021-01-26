@@ -54,7 +54,7 @@
 
             <template slot-scope="scope">
               <span>
-                <img :src="scope.row.path" style="width: 30px; height: 30px; border-radius: 30px" />
+                <my-head-img :head-img="scope.row"></my-head-img>
               </span>
             </template>
           </el-table-column>

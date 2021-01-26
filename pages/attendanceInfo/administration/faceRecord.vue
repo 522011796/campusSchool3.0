@@ -132,12 +132,13 @@
               align="center"
               :label="$t('照片抓拍')">
               <template slot-scope="scope">
-                <div v-if="scope.row.photo_status == 0">
+                <my-head-img :head-img="scope.row"></my-head-img>
+                <!--<div v-if="scope.row.photo_status == 0">
                   <i class="fa fa-refresh color-grand" style="font-size: 15px"></i>
                 </div>
                 <div v-if="scope.row.photo_status != 0">
                   <img :src="scope.row.photourl" style="width: 30px; height: 30px; border-radius: 30px" />
-                </div>
+                </div>-->
               </template>
             </el-table-column>
             <el-table-column
@@ -174,13 +175,14 @@
   import DrawerRight from "../../../components/utils/dialog/DrawerRight";
   import MySearchOfDate from "../../../components/search/MySearchOfDate";
   import DrawerLayoutRight from "../../../components/utils/dialog/DrawerLayoutRight";
+  import MyHeadImg from "../../../components/utils/common/MyHeadImg";
   import {
     clearData, deviceType,
     dormStatus
   } from "../../../utils/utils";
   export default {
     mixins: [mixins],
-    components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,MySearchOfDate,DrawerLayoutRight},
+    components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,MySearchOfDate,DrawerLayoutRight,MyHeadImg},
     data(){
       return {
         searchTimeData: {},

@@ -703,6 +703,21 @@ ul{
 .custom-normal-dialog .dialog-normal-body{
 
 }
+.custom-head-black-class .el-dialog {
+  position: relative;
+  margin: 0 auto 50px;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.3);
+  box-sizing: border-box;
+  width: 50%;
+  z-index: 99999;
+}
+.custom-head-black-class .el-dialog__body {
+  padding: 0px 0px;
+}
+.custom-head-black-class .el-dialog__header {
+  padding: 0px 10px;
+}
 /***drawer***/
 .drawer-normal-drawer{
   background: rgba(238,238,238, 0.6);

@@ -65,9 +65,10 @@
           <el-col :span="8" class="ellipsis-tag" v-if="value.apply_file && value.apply_file != ''">
             <div>
               <div>
-                <span class="title-class color-disabeld">{{$t("附件")}}:</span>
+                <span class="title-class color-disabeld" style="position: relative; top: -15px;">{{$t("附件")}}:</span>
                 <span>
-                  <el-image style="width: 20px; height: 20px" :src="value.apply_file"></el-image>
+                  <!--<el-image style="width: 20px; height: 20px" :src="value.apply_file"></el-image>-->
+                  <my-head-img :head-img="value.apply_file" style="display: inline-block"></my-head-img>
                 </span>
               </div>
             </div>
@@ -94,8 +95,10 @@
 
 <script>
   import {oneOf} from '../../../utils/utils';
+  import MyHeadImg from "../common/MyHeadImg";
   export default {
     name: 'rePuDetail',
+    components: {MyHeadImg},
     props: {
       selValue: {
         default: function () {
