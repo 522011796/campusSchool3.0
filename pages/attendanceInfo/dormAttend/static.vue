@@ -141,7 +141,7 @@
           :data="tableDetailData"
           header-cell-class-name="custom-table-cell-bg"
           size="medium"
-          :max-height="tableHeight2.height"
+
           style="width: 100%"
           class="margin-top-20"
           @filter-change="fliterTable">

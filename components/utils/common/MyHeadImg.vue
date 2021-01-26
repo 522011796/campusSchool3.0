@@ -18,7 +18,7 @@
     <el-dialog
       custom-class="custom-head-black-class"
       :visible.sync="headImgCenterDialogVisible"
-      width="240px"
+      width="340px"
       top="10vh"
       :modal="false"
       :show-close="false">
@@ -81,8 +81,8 @@
 
 <style scoped>
   .head-img-block{
-    height: 240px;
-    width: 240px;
+    height: 340px;
+    width: 340px;
   }
   .head-img-class{
     height: 100%;
