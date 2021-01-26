@@ -871,7 +871,7 @@
       let width = document.querySelector(".moon-top-middle-menu-title").clientWidth;
       this.topWidth.width = width - rightWidth + 'px';
       this.topDrawerWidth.width = width + 'px';
-      this.widthIndex = (width - rightWidth) / 100 - 2;
+      this.widthIndex = (width - rightWidth) / 110 - 2;
       // 监听窗口大小
       window.onresize = () => {
         this.getMenuTabWdith();
@@ -880,7 +880,7 @@
           return (() => {
             this.screenWidth = document.body.clientWidth;
             this.topWidth.width = width - rightWidth + 'px';
-            this.widthIndex = (width - rightWidth) / 150;
+            this.widthIndex = (width - rightWidth) / 110 - 2;
           })()
         }
       };
