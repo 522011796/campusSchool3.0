@@ -101,10 +101,10 @@
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                 <div class="text-center">
-                  <span>{{$moment(scope.row.add_time).format("YYYY-MM-DD hh:mm:ss")}}</span>
+                  <span>{{$moment(scope.row.add_time).format("YYYY-MM-DD HH:mm:ss")}}</span>
                 </div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <span>{{$moment(scope.row.add_time).format("YYYY-MM-DD hh:mm:ss")}}</span>
+                  <span>{{$moment(scope.row.add_time).format("YYYY-MM-DD HH:mm:ss")}}</span>
                 </div>
               </el-popover>
             </template>

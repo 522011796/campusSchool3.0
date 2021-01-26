@@ -48,9 +48,9 @@
             :label="$t('发布时间')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.release_time ? $moment(scope.row.release_time).format("YYYY-MM-DD hh:mm:ss") : '--'}}</div>
+                <div class="text-center">{{scope.row.release_time ? $moment(scope.row.release_time).format("YYYY-MM-DD HH:mm:ss") : '--'}}</div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  {{scope.row.release_time ? $moment(scope.row.release_time).format("YYYY-MM-DD hh:mm:ss") : '--'}}
+                  {{scope.row.release_time ? $moment(scope.row.release_time).format("YYYY-MM-DD HH:mm:ss") : '--'}}
                 </div>
               </el-popover>
             </template>

@@ -224,9 +224,9 @@
 
                   <template slot-scope="scope">
                     <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                      <div class="text-center">{{ $moment(scope.row.rollCallTime).format("YYYY-MM-DD hh:mm") }}</div>
+                      <div class="text-center">{{ $moment(scope.row.rollCallTime).format("YYYY-MM-DD HH:mm") }}</div>
                       <span slot="reference" class="name-wrapper">
-                      {{ $moment(scope.row.rollCallTime).format("YYYY-MM-DD hh:mm") }}
+                      {{ $moment(scope.row.rollCallTime).format("YYYY-MM-DD HH:mm") }}
                     </span>
                     </el-popover>
                   </template>

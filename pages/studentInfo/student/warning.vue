@@ -29,9 +29,9 @@
 
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{$moment(scope.row.created_time).format("YYYY-MM-DD hh:mm:ss")}}</div>
+                <div class="text-center">{{$moment(scope.row.created_time).format("YYYY-MM-DD HH:mm:ss")}}</div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  {{$moment(scope.row.created_time).format("YYYY-MM-DD hh:mm:ss")}}
+                  {{$moment(scope.row.created_time).format("YYYY-MM-DD HH:mm:ss")}}
                 </div>
               </el-popover>
             </template>
@@ -144,11 +144,11 @@
                     <el-col :span="6">
                       <el-popover trigger="hover" placement="right" popper-class="custom-table-popover">
                         <div class="text-center">
-                          <div class="moon-content-text-ellipsis-class">{{$moment(item.create_time).format("YYYY-MM-DD hh:mm:ss")}}</div>
+                          <div class="moon-content-text-ellipsis-class">{{$moment(item.create_time).format("YYYY-MM-DD HH:mm:ss")}}</div>
                         </div>
                         <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                           <div class="moon-content-text-ellipsis-class">
-                            <label>{{$moment(item.create_time).format("YYYY-MM-DD hh:mm:ss")}}</label>
+                            <label>{{$moment(item.create_time).format("YYYY-MM-DD HH:mm:ss")}}</label>
                           </div>
                         </div>
                       </el-popover>

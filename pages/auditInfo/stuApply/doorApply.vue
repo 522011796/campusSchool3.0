@@ -103,18 +103,18 @@
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                 <div class="text-center">
                   <div>
-                    {{$moment(scope.row.date1).format("YYYY-MM-DD hh:mm:ss")}}
+                    {{$moment(scope.row.date1).format("YYYY-MM-DD HH:mm:ss")}}
                   </div>
                   <div>
-                    {{$moment(scope.row.date2).format("YYYY-MM-DD hh:mm:ss")}}
+                    {{$moment(scope.row.date2).format("YYYY-MM-DD HH:mm:ss")}}
                   </div>
                 </div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                   <div>
-                    {{$moment(scope.row.date1).format("YYYY-MM-DD hh:mm:ss")}}
+                    {{$moment(scope.row.date1).format("YYYY-MM-DD HH:mm:ss")}}
                   </div>
                   <div>
-                    {{$moment(scope.row.date2).format("YYYY-MM-DD hh:mm:ss")}}
+                    {{$moment(scope.row.date2).format("YYYY-MM-DD HH:mm:ss")}}
                   </div>
                 </div>
               </el-popover>

@@ -27,9 +27,9 @@
             :label="$t('日期')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{$moment(scope.row.add_time).format("YYYY-MM-DD hh:mm")}}</div>
+                <div class="text-center">{{$moment(scope.row.add_time).format("YYYY-MM-DD HH:mm")}}</div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  {{$moment(scope.row.add_time).format("YYYY-MM-DD hh:mm")}}
+                  {{$moment(scope.row.add_time).format("YYYY-MM-DD HH:mm")}}
                 </div>
               </el-popover>
             </template>

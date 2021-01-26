@@ -88,9 +88,9 @@
               width="100">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.work1Time ? $moment(scope.row.work1Time).format("YYYY-MM-DD hh:mm:ss") : '--'}}</div>
+                  <div class="text-center">{{scope.row.work1Time ? $moment(scope.row.work1Time).format("YYYY-MM-DD HH:mm:ss") : '--'}}</div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.work1Time ? $moment(scope.row.work1Time).format("YYYY-MM-DD hh:mm:ss") : '--'}}
+                    {{scope.row.work1Time ? $moment(scope.row.work1Time).format("YYYY-MM-DD HH:mm:ss") : '--'}}
                   </div>
                 </el-popover>
               </template>
@@ -101,9 +101,9 @@
               width="100">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.work1UpperTime ? $moment(scope.row.work1UpperTime).format("YYYY-MM-DD hh:mm:ss") : '--'}}</div>
+                  <div class="text-center">{{scope.row.work1UpperTime ? $moment(scope.row.work1UpperTime).format("YYYY-MM-DD HH:mm:ss") : '--'}}</div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.work1UpperTime ? $moment(scope.row.work1UpperTime).format("YYYY-MM-DD hh:mm:ss") : '--'}}
+                    {{scope.row.work1UpperTime ? $moment(scope.row.work1UpperTime).format("YYYY-MM-DD HH:mm:ss") : '--'}}
                   </div>
                 </el-popover>
               </template>
@@ -127,9 +127,9 @@
               width="100">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.work1lowerTime ? $moment(scope.row.work1lowerTime).format("YYYY-MM-DD hh:mm:ss") : '--'}}</div>
+                  <div class="text-center">{{scope.row.work1lowerTime ? $moment(scope.row.work1lowerTime).format("YYYY-MM-DD HH:mm:ss") : '--'}}</div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.work1lowerTime ? $moment(scope.row.work1lowerTime).format("YYYY-MM-DD hh:mm:ss") : '--'}}
+                    {{scope.row.work1lowerTime ? $moment(scope.row.work1lowerTime).format("YYYY-MM-DD HH:mm:ss") : '--'}}
                   </div>
                 </el-popover>
               </template>
@@ -153,9 +153,9 @@
               width="100">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.work2Time ? $moment(scope.row.work2Time).format("YYYY-MM-DD hh:mm:ss") : '--'}}</div>
+                  <div class="text-center">{{scope.row.work2Time ? $moment(scope.row.work2Time).format("YYYY-MM-DD HH:mm:ss") : '--'}}</div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.work2Time ? $moment(scope.row.work2Time).format("YYYY-MM-DD hh:mm:ss") : '--'}}
+                    {{scope.row.work2Time ? $moment(scope.row.work2Time).format("YYYY-MM-DD HH:mm:ss") : '--'}}
                   </div>
                 </el-popover>
               </template>
@@ -166,9 +166,9 @@
               width="100">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.work2UpperTime ? $moment(scope.row.work2UpperTime).format("YYYY-MM-DD hh:mm:ss") : '--'}}</div>
+                  <div class="text-center">{{scope.row.work2UpperTime ? $moment(scope.row.work2UpperTime).format("YYYY-MM-DD HH:mm:ss") : '--'}}</div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.work2UpperTime ? $moment(scope.row.work2UpperTime).format("YYYY-MM-DD hh:mm:ss") : '--'}}
+                    {{scope.row.work2UpperTime ? $moment(scope.row.work2UpperTime).format("YYYY-MM-DD HH:mm:ss") : '--'}}
                   </div>
                 </el-popover>
               </template>
@@ -192,9 +192,9 @@
               width="100">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.work2lowerTime ? $moment(scope.row.work2lowerTime).format("YYYY-MM-DD hh:mm:ss") : '--'}}</div>
+                  <div class="text-center">{{scope.row.work2lowerTime ? $moment(scope.row.work2lowerTime).format("YYYY-MM-DD HH:mm:ss") : '--'}}</div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.work2lowerTime ? $moment(scope.row.work2lowerTime).format("YYYY-MM-DD hh:mm:ss") : '--'}}
+                    {{scope.row.work2lowerTime ? $moment(scope.row.work2lowerTime).format("YYYY-MM-DD HH:mm:ss") : '--'}}
                   </div>
                 </el-popover>
               </template>
@@ -218,9 +218,9 @@
               width="100">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.work3Time ? $moment(scope.row.work3Time).format("YYYY-MM-DD hh:mm:ss") : '--'}}</div>
+                  <div class="text-center">{{scope.row.work3Time ? $moment(scope.row.work3Time).format("YYYY-MM-DD HH:mm:ss") : '--'}}</div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.work3Time ? $moment(scope.row.work3Time).format("YYYY-MM-DD hh:mm:ss") : '--'}}
+                    {{scope.row.work3Time ? $moment(scope.row.work3Time).format("YYYY-MM-DD HH:mm:ss") : '--'}}
                   </div>
                 </el-popover>
               </template>
@@ -231,9 +231,9 @@
               width="100">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.work3UpperTime ? $moment(scope.row.work3UpperTime).format("YYYY-MM-DD hh:mm:ss") : '--'}}</div>
+                  <div class="text-center">{{scope.row.work3UpperTime ? $moment(scope.row.work3UpperTime).format("YYYY-MM-DD HH:mm:ss") : '--'}}</div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.work3UpperTime ? $moment(scope.row.work3UpperTime).format("YYYY-MM-DD hh:mm:ss") : '--'}}
+                    {{scope.row.work3UpperTime ? $moment(scope.row.work3UpperTime).format("YYYY-MM-DD HH:mm:ss") : '--'}}
                   </div>
                 </el-popover>
               </template>
@@ -257,9 +257,9 @@
               width="100">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.work3lowerTime ? $moment(scope.row.work3lowerTime).format("YYYY-MM-DD hh:mm:ss") : '--'}}</div>
+                  <div class="text-center">{{scope.row.work3lowerTime ? $moment(scope.row.work3lowerTime).format("YYYY-MM-DD HH:mm:ss") : '--'}}</div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.work3lowerTime ? $moment(scope.row.work3lowerTime).format("YYYY-MM-DD hh:mm:ss") : '--'}}
+                    {{scope.row.work3lowerTime ? $moment(scope.row.work3lowerTime).format("YYYY-MM-DD HH:mm:ss") : '--'}}
                   </div>
                 </el-popover>
               </template>

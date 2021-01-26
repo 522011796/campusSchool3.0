@@ -61,7 +61,7 @@
                     <el-row>
                       <el-col :span="12">
                         <div class="color-warning">
-                          <span>{{$moment(itemChild.expire_time).format("YYYY-MM-DD hh:mm:ss")}}</span>
+                          <span>{{$moment(itemChild.expire_time).format("YYYY-MM-DD HH:mm:ss")}}</span>
                         </div>
                       </el-col>
                       <el-col :span="12">
@@ -269,7 +269,7 @@
           content: ''+row.comment,
           userUnit: row.user_unit,
           code: row.code,
-          codeTime: this.$moment(row.expire_time).format("YYYY-MM-DD hh:mm:ss"),
+          codeTime: this.$moment(row.expire_time).format("YYYY-MM-DD HH:mm:ss"),
           longTime: 0,
           type: type
         };

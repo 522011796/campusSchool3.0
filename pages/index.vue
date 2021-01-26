@@ -283,9 +283,9 @@
 
                   <template slot-scope="scope">
                     <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                      <div class="text-center">{{$moment(scope.row.push_time).format("YYYY-MM-DD hh:mm:ss")}}</div>
+                      <div class="text-center">{{$moment(scope.row.push_time).format("YYYY-MM-DD HH:mm:ss")}}</div>
                       <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                        {{$moment(scope.row.push_time).format("YYYY-MM-DD hh:mm:ss")}}
+                        {{$moment(scope.row.push_time).format("YYYY-MM-DD HH:mm:ss")}}
                       </div>
                     </el-popover>
                   </template>
@@ -392,7 +392,7 @@
                     </div>
                     <div class="margin-top-5">
                       <i class="fa fa-times-circle"></i>
-                      <span class="color-disabeld">{{$moment(item.uptime).format("YYYY-MM-DD hh:mm:ss")}}</span>
+                      <span class="color-disabeld">{{$moment(item.uptime).format("YYYY-MM-DD HH:mm:ss")}}</span>
                     </div>
                   </el-card>
                 </el-timeline-item>
@@ -481,7 +481,7 @@
                     </div>
                     <div class="margin-top-5 color-disabeld">
                       <i class="fa fa-clock-o"></i>
-                      <span>{{$moment(item.apply_time).format("YYYY-MM-DD hh:mm:ss")}}</span>
+                      <span>{{$moment(item.apply_time).format("YYYY-MM-DD HH:mm:ss")}}</span>
                     </div>
                   </el-card>
                 </el-timeline-item>

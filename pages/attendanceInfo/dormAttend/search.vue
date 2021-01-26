@@ -72,7 +72,7 @@
                         <span v-if="itemChild.signStatus == 1">
                           <label>{{$t("签到")}}</label>
                         </span>
-                        <span>{{$moment(itemChild.rollCallTime).format("YYYY-MM-DD hh:mm")}}</span>
+                        <span>{{$moment(itemChild.rollCallTime).format("YYYY-MM-DD HH:mm")}}</span>
                       </div>
                       <div class="leave-sub-title color-muted">
                         <span>{{$t("类型")}}</span>

@@ -53,11 +53,11 @@
                     </div>
                     <div class="leave-sub-title color-muted">
                       <span>{{$t("开始")}}</span>
-                      <span>{{$moment(item.date1).format("YYYY-MM-DD hh:mm")}}</span>
+                      <span>{{$moment(item.date1).format("YYYY-MM-DD HH:mm")}}</span>
                     </div>
                     <div class="leave-sub-title color-muted">
                       <span>{{$t("结束")}}</span>
-                      <span>{{$moment(item.date2).format("YYYY-MM-DD hh:mm")}}</span>
+                      <span>{{$moment(item.date2).format("YYYY-MM-DD HH:mm")}}</span>
                     </div>
                     <div class="leave-sub-title color-muted">
                       <span>{{$t("类型")}}</span>

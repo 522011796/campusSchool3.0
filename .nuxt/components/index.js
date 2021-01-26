@@ -44,11 +44,11 @@ export { default as StudoorDetail } from '../../components/utils/auditDetail/Stu
 export { default as StuleaveDetail } from '../../components/utils/auditDetail/StuleaveDetail.vue'
 export { default as TerdoorDetail } from '../../components/utils/auditDetail/TerdoorDetail.vue'
 export { default as TerleaveDetail } from '../../components/utils/auditDetail/TerleaveDetail.vue'
-export { default as MyHeadImg } from '../../components/utils/common/MyHeadImg.vue'
 export { default as DialogNormal } from '../../components/utils/dialog/DialogNormal.vue'
 export { default as DrawerLayoutRight } from '../../components/utils/dialog/DrawerLayoutRight.vue'
 export { default as DrawerRight } from '../../components/utils/dialog/DrawerRight.vue'
 export { default as MyNormalDialog } from '../../components/utils/dialog/MyNormalDialog.vue'
+export { default as MyHeadImg } from '../../components/utils/common/MyHeadImg.vue'
 export { default as MyCascader } from '../../components/utils/select/MyCascader.vue'
 export { default as MyAdminAtten } from '../../components/utils/status/MyAdminAtten.vue'
 export { default as MyClassAtten } from '../../components/utils/status/MyClassAtten.vue'
@@ -118,11 +118,11 @@ export const LazyStudoorDetail = import('../../components/utils/auditDetail/Stud
 export const LazyStuleaveDetail = import('../../components/utils/auditDetail/StuleaveDetail.vue' /* webpackChunkName: "components/utils/auditDetail/StuleaveDetail" */).then(c => c.default || c)
 export const LazyTerdoorDetail = import('../../components/utils/auditDetail/TerdoorDetail.vue' /* webpackChunkName: "components/utils/auditDetail/TerdoorDetail" */).then(c => c.default || c)
 export const LazyTerleaveDetail = import('../../components/utils/auditDetail/TerleaveDetail.vue' /* webpackChunkName: "components/utils/auditDetail/TerleaveDetail" */).then(c => c.default || c)
-export const LazyMyHeadImg = import('../../components/utils/common/MyHeadImg.vue' /* webpackChunkName: "components/utils/common/MyHeadImg" */).then(c => c.default || c)
 export const LazyDialogNormal = import('../../components/utils/dialog/DialogNormal.vue' /* webpackChunkName: "components/utils/dialog/DialogNormal" */).then(c => c.default || c)
 export const LazyDrawerLayoutRight = import('../../components/utils/dialog/DrawerLayoutRight.vue' /* webpackChunkName: "components/utils/dialog/DrawerLayoutRight" */).then(c => c.default || c)
 export const LazyDrawerRight = import('../../components/utils/dialog/DrawerRight.vue' /* webpackChunkName: "components/utils/dialog/DrawerRight" */).then(c => c.default || c)
 export const LazyMyNormalDialog = import('../../components/utils/dialog/MyNormalDialog.vue' /* webpackChunkName: "components/utils/dialog/MyNormalDialog" */).then(c => c.default || c)
+export const LazyMyHeadImg = import('../../components/utils/common/MyHeadImg.vue' /* webpackChunkName: "components/utils/common/MyHeadImg" */).then(c => c.default || c)
 export const LazyMyCascader = import('../../components/utils/select/MyCascader.vue' /* webpackChunkName: "components/utils/select/MyCascader" */).then(c => c.default || c)
 export const LazyMyAdminAtten = import('../../components/utils/status/MyAdminAtten.vue' /* webpackChunkName: "components/utils/status/MyAdminAtten" */).then(c => c.default || c)
 export const LazyMyClassAtten = import('../../components/utils/status/MyClassAtten.vue' /* webpackChunkName: "components/utils/status/MyClassAtten" */).then(c => c.default || c)

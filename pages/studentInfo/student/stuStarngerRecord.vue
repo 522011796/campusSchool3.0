@@ -45,7 +45,7 @@
             align="center"
             :label="$t('识别时间')">
             <template slot-scope="scope">
-              <span>{{$moment(scope.row.time).format("YYYY-MM-DD hh:mm:ss")}}</span>
+              <span>{{$moment(scope.row.time).format("YYYY-MM-DD HH:mm:ss")}}</span>
             </template>
           </el-table-column>
           <el-table-column

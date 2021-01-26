@@ -80,7 +80,7 @@
                       <i class="fa fa-calendar-check-o color-disabeld"></i>
                       <span class="color-muted" v-if="item.check_time">
                         <el-tag size="small" type="warning">
-                          {{$moment(item.check_time).format("YYYY-MM-DD hh:mm")}}
+                          {{$moment(item.check_time).format("YYYY-MM-DD HH:mm")}}
                         </el-tag>
                       </span>
                       <span v-else>--</span>
