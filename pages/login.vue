@@ -1,156 +1,161 @@
 <template>
-  <div class="container">
-    <img src="~static/img/login-bg.png" class="login-bg-class">
-    <div class="login-block">
-      <!--<img src="~static/img/screen-all-class.png" class="login-bg-class">-->
-      <div class="login-title animated fadeInLeftBig">
+  <div class="container" style="overflow-y: auto; background: url(/img/login-bg.png) no-repeat;background-size: cover;" :style="fullHeight">
+    <div v-if="showContent == false" style="position: relative">
+      <layout-lr-before></layout-lr-before>
+    </div>
+
+    <div v-else style="position: relative;top:13%;">
+      <div class=" animated fadeInLeftBig">
+        <div>
         <span class="login-title-logo-block">
           <img src="~static/img/login-logo.png" class="login-logo">
         </span>
-        <span class="color-sub-grand login-tag-info">
+          <span class="color-sub-grand login-tag-info">
           <label>{{$t("官网")}}</label>
            |
           <label>{{$t("帮助中心")}}</label>
            |
           <label>{{$t("关于我们")}}</label>
         </span>
+        </div>
       </div>
-
-      <div>
-        <img src="~static/img/login-screen-icon.png" class="login-bg-icon-class">
-        <span class="login-main-title-class">
+      <div class="login-block">
+        <div>
+          <img src="~static/img/login-screen-icon.png" class="login-bg-icon-class">
+          <span class="login-main-title-class">
           <img src="~static/img/login-text-left-icon.png" class="login-main-title-icon-left-class">
           <img src="~static/img/login-icon-left-text.png" class="login-main-title-text-class">
           <img src="~static/img/login-text-right-icon.png" class="login-main-title-icon-right-class">
         </span>
-      </div>
-
-      <div class="login-user-opr animated fadeInRightBig">
-        <div class="left-top-triangle"></div>
-        <div class="right-top-triangle"></div>
-        <div class="right-bottom-triangle"></div>
-        <div class="left-bottom-triangle"></div>
-
-        <label class="login-user-change-tag select-none" v-if="userType == 1" @click="changeUserType(2)"><i class="fa fa-retweet font-size-12"></i> {{$t("切换教师")}}</label>
-        <label class="login-user-change-tag select-none" v-if="userType == 2" @click="changeUserType(1)"><i class="fa fa-retweet font-size-12"></i> {{$t("切换管理员")}}</label>
-        <div>
-          <span class="login-user-title">{{$t("用户登录")}}</span>
-          ｜
-          <span class="color-muted font-size-12" v-if="userType == 1">{{$t("管理员登录")}}</span>
-          <span class="color-muted font-size-12" v-if="userType == 2">{{$t("教师登录")}}</span>
         </div>
-        <div class="line-height"></div>
-        <div class="margin-top-30">
-          <div class="animated fadeInLeft" v-show="userType == 1">
-            <div>
+
+        <div class="login-user-opr animated fadeInRightBig">
+          <div class="left-top-triangle"></div>
+          <div class="right-top-triangle"></div>
+          <div class="right-bottom-triangle"></div>
+          <div class="left-bottom-triangle"></div>
+
+          <label class="login-user-change-tag select-none" v-if="userType == 1" @click="changeUserType(2)"><i class="fa fa-retweet font-size-12"></i> {{$t("切换教师")}}</label>
+          <label class="login-user-change-tag select-none" v-if="userType == 2" @click="changeUserType(1)"><i class="fa fa-retweet font-size-12"></i> {{$t("切换管理员")}}</label>
+          <div>
+            <span class="login-user-title">{{$t("用户登录")}}</span>
+            ｜
+            <span class="color-muted font-size-12" v-if="userType == 1">{{$t("管理员登录")}}</span>
+            <span class="color-muted font-size-12" v-if="userType == 2">{{$t("教师登录")}}</span>
+          </div>
+          <div class="line-height"></div>
+          <div class="margin-top-30">
+            <div class="animated fadeInLeft" v-show="userType == 1">
               <div>
-                <span class="login-title-label">{{$t("用户名")}}</span>
+                <div>
+                  <span class="login-title-label">{{$t("用户名")}}</span>
+                </div>
+                <div class="margin-top-5">
+                  <el-input v-model="form.username" @keyup.enter.native="login"></el-input>
+                </div>
               </div>
-              <div class="margin-top-5">
-                <el-input v-model="form.username" @keyup.enter.native="login"></el-input>
+              <div class="margin-top-20">
+                <div>
+                  <span class="login-title-label">{{$t("密码")}}</span>
+                </div>
+                <div class="margin-top-5">
+                  <el-input :show-password="true" v-model="form.password" @keyup.enter.native="login"></el-input>
+                </div>
               </div>
             </div>
+
+            <div class="animated fadeInLeft" v-show="userType == 2">
+              <div v-if="userSubType == 1">
+                <div>
+                  <div>
+                    <span class="login-title-label">{{$t("用户名/手机号")}}</span>
+                  </div>
+                  <div class="margin-top-5">
+                    <el-input v-model="form.username" @keyup.enter.native="login"></el-input>
+                  </div>
+                </div>
+                <div class="margin-top-20">
+                  <div>
+                    <span class="login-title-label">{{$t("密码")}}</span>
+                  </div>
+                  <div class="margin-top-5">
+                    <el-input :show-password="true" v-model="form.password" @keyup.enter.native="login"></el-input>
+                  </div>
+                </div>
+              </div>
+
+              <div v-if="userSubType == 3">
+                <div>
+                  <div>
+                    <span class="login-title-label">{{$t("学校编号")}}</span>
+                  </div>
+                  <div class="margin-top-5">
+                    <el-input v-model="form.campusNo" @keyup.enter.native="login"></el-input>
+                  </div>
+                </div>
+                <div class="margin-top-20">
+                  <div>
+                    <span class="login-title-label">{{$t("工号")}}</span>
+                  </div>
+                  <div class="margin-top-5">
+                    <el-input v-model="form.username" @keyup.enter.native="login"></el-input>
+                  </div>
+                </div>
+                <div class="margin-top-20">
+                  <div>
+                    <span class="login-title-label">{{$t("密码")}}</span>
+                  </div>
+                  <div class="margin-top-5">
+                    <el-input :show-password="true" v-model="form.password" @keyup.enter.native="login"></el-input>
+                  </div>
+                </div>
+              </div>
+
+              <div v-if="userSubType == 2">
+                <div>
+                  <div>
+                    <span class="login-title-label" @keyup.enter.native="login">{{$t("身份证号码")}}</span>
+                  </div>
+                  <div class="margin-top-5">
+                    <el-input v-model="form.username"></el-input>
+                  </div>
+                </div>
+                <div class="margin-top-20">
+                  <div>
+                    <span class="login-title-label">{{$t("密码")}}</span>
+                  </div>
+                  <div class="margin-top-5">
+                    <el-input v-model="form.password" @keyup.enter.native="login"></el-input>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="margin-top-20">
               <div>
-                <span class="login-title-label">{{$t("密码")}}</span>
-              </div>
-              <div class="margin-top-5">
-                <el-input :show-password="true" v-model="form.password" @keyup.enter.native="login"></el-input>
-              </div>
-            </div>
-          </div>
-
-          <div class="animated fadeInLeft" v-show="userType == 2">
-            <div v-if="userSubType == 1">
-              <div>
-                <div>
-                  <span class="login-title-label">{{$t("用户名/手机号")}}</span>
-                </div>
-                <div class="margin-top-5">
-                  <el-input v-model="form.username" @keyup.enter.native="login"></el-input>
-                </div>
-              </div>
-              <div class="margin-top-20">
-                <div>
-                  <span class="login-title-label">{{$t("密码")}}</span>
-                </div>
-                <div class="margin-top-5">
-                  <el-input :show-password="true" v-model="form.password" @keyup.enter.native="login"></el-input>
-                </div>
+                <el-button type="primary" :loading="dialogLoading" class="login-btn" @click="login">
+                  {{$t("登录")}}
+                </el-button>
               </div>
             </div>
-
-            <div v-if="userSubType == 3">
-              <div>
-                <div>
-                  <span class="login-title-label">{{$t("学校编号")}}</span>
-                </div>
-                <div class="margin-top-5">
-                  <el-input v-model="form.campusNo" @keyup.enter.native="login"></el-input>
-                </div>
+            <div class="login-bottom-other-block margin-top-40" v-if="userType == 2">
+              <div class="line-height"></div>
+              <div class="text-center login-bottom-other margin-top-10">
+                <label class="color-muted" @click="changeSubType(1)"><i class="fa fa-user-circle-o"></i> {{$t("账号/手机号")}}</label>
+                <label class="color-muted" @click="changeSubType(2)"><i class="fa fa-id-card-o"></i> {{$t("身份证")}}</label>
+                <label class="color-muted" @click="changeSubType(3)"><i class="fa fa-credit-card"></i> {{$t("工号")}}</label>
               </div>
-              <div class="margin-top-20">
-                <div>
-                  <span class="login-title-label">{{$t("工号")}}</span>
-                </div>
-                <div class="margin-top-5">
-                  <el-input v-model="form.username" @keyup.enter.native="login"></el-input>
-                </div>
-              </div>
-              <div class="margin-top-20">
-                <div>
-                  <span class="login-title-label">{{$t("密码")}}</span>
-                </div>
-                <div class="margin-top-5">
-                  <el-input :show-password="true" v-model="form.password" @keyup.enter.native="login"></el-input>
-                </div>
-              </div>
-            </div>
-
-            <div v-if="userSubType == 2">
-              <div>
-                <div>
-                  <span class="login-title-label" @keyup.enter.native="login">{{$t("身份证号码")}}</span>
-                </div>
-                <div class="margin-top-5">
-                  <el-input v-model="form.username"></el-input>
-                </div>
-              </div>
-              <div class="margin-top-20">
-                <div>
-                  <span class="login-title-label">{{$t("密码")}}</span>
-                </div>
-                <div class="margin-top-5">
-                  <el-input v-model="form.password" @keyup.enter.native="login"></el-input>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="margin-top-20">
-            <div>
-              <el-button type="primary" :loading="dialogLoading" class="login-btn" @click="login">
-                {{$t("登录")}}
-              </el-button>
-            </div>
-          </div>
-          <div class="login-bottom-other-block margin-top-40" v-if="userType == 2">
-            <div class="line-height"></div>
-            <div class="text-center login-bottom-other margin-top-10">
-              <label class="color-muted" @click="changeSubType(1)"><i class="fa fa-user-circle-o"></i> {{$t("账号/手机号")}}</label>
-              <label class="color-muted" @click="changeSubType(2)"><i class="fa fa-id-card-o"></i> {{$t("身份证")}}</label>
-              <label class="color-muted" @click="changeSubType(3)"><i class="fa fa-credit-card"></i> {{$t("工号")}}</label>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="login-footer">
-      <div class="color-muted text-center">
-        <span class="font-size-15">Copyright © 2006-2017 All Rights Reserved. 大连网月科技股份有限公司 版权所有 辽ICP备12008717号</span>
+
+      <div class="login-footer">
+        <div class="color-muted text-center">
+          <span class="font-size-15">Copyright © 2006-2017 All Rights Reserved. 大连网月科技股份有限公司 版权所有 辽ICP备12008717号</span>
+        </div>
       </div>
     </div>
-
 
     <dialog-normal tabindex="0" :visible="modalVisible" width-style="450px" :title="$t('账户设置')" @close="closeDialog" @right-close="cancelDialog">
       <span tabindex="1"></span>
@@ -169,9 +174,9 @@
           <el-form-item :label="$t('验证码')" prop="code">
             <el-input v-model="formAuth.code" class="width-260">
               <template slot="append">
-                <!--<timeout-button :action="updatePhoneMms" :data="{newPhone: this.formAuth.phone, userId: this.formAuth.userId}" :auth-before="authBefore">
-                  <template>{{$t("获取验证码")}}</template>
-                </timeout-button>-->
+                &lt;!&ndash;<timeout-button :action="updatePhoneMms" :data="{newPhone: this.formAuth.phone, userId: this.formAuth.userId}" :auth-before="authBefore">
+                <template>{{$t("获取验证码")}}</template>
+              </timeout-button>&ndash;&gt;
               </template>
             </el-input>
           </el-form-item>
@@ -206,6 +211,7 @@
         userSubType: '1',
         dialogLoading: false,
         modalVisible: false,
+        showContent: false,
         updatePhoneMms: common.send_active_account,
         form: {
           username: '',
@@ -216,13 +222,32 @@
           phone: '',
           code: '',
           userId: ''
+        },
+        fullHeight: {
+          height: ''
         }
       }
     },
-    created() {
+    mounted() {
+      // 监听窗口大小
+      window.onresize = () => {
+        this.hh();
+      };
 
+      this.showContent = true;
+    },
+    beforeCreate: function(){
+      this.showContent = false;
+    },
+    created() {
+      this.hh();
     },
     methods: {
+      hh(){
+        if (process.browser) {
+          this.fullHeight.height = window.innerHeight + 20 + 'px';
+        }
+      },
       changeUserType(type){
         this.form.username = "";
         this.form.password = "";
@@ -360,9 +385,8 @@
     height: 450px;
     width: 100%;
     min-width: 1200px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    position: relative;
+    top: 13%;
     background: #00CDFF;
     background-image: linear-gradient(to bottom, #00CDFF , #0089D4);
   }
@@ -383,8 +407,8 @@
     line-height: 80px;
     width: 100%;
     min-width: 1200px;
-    position: absolute;
-    bottom:5%;
+    position: relative;
+    top:18%;
     left: 0px;
     z-index: 9;
   }
