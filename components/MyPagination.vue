@@ -10,6 +10,8 @@
       :total="total"
       :background="background"
       :small="small">
+
+      <label v-if="showJump == true" class="pagination-jump" @click="handleJumpSizeChange">{{$t("跳转")}}</label>
     </el-pagination>
   </div>
 </template>
@@ -44,8 +46,12 @@
         default: false,
         type: Boolean
       },
+      showJump: {
+        default: true,
+        type: Boolean
+      },
       layout: {
-        default: 'total, sizes, prev, pager, next, jumper',
+        default: 'total, sizes, prev, pager, next, jumper, slot',
         type: String
       }
     },
@@ -60,7 +66,26 @@
       },
       handleCurrentChange(data) {
         this.$emit('currentPage', data);
+      },
+      handleJumpSizeChange(data){
+
       }
     }
   }
 </script>
+
+<style scoped>
+  .pagination-jump{
+    display: inline-block;
+    font-size: 13px;
+    height: 28px;
+    line-height: 28px;
+    vertical-align: top;
+    box-sizing: border-box;
+    font-weight: normal;
+    position: relative;
+    top: 1px;
+    padding: 0px 0px 0px 8px;
+    user-select: none;
+  }
+</style>
