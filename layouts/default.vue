@@ -88,6 +88,7 @@
 
             <el-popover
               v-if="topMenuList.length > widthIndex"
+              v-model="moreVisible"
               popper-class="custom-user-popover custom-more-popover"
               placement="bottom"
               trigger="click"
@@ -756,6 +757,7 @@
         drawerVisible: false,
         drawerCourseVisible: false,
         drawerLoading: false,
+        moreVisible: false,
         settingType: 1,
         direction: 'ttb',
         screenWidth: 0,
@@ -972,6 +974,7 @@
         this.drawerSet = false;
         this.drawerMenu = false;
         this.drawer = false;
+        this.moreVisible = false;
         this.getSliderMenu(item.key, 'click');
       },
       getTopMenu(){
