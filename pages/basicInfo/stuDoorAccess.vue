@@ -186,7 +186,7 @@
   import DrawerRight from "../../components/utils/dialog/DrawerRight";
   import DrawerLayoutRight from "../../components/utils/dialog/DrawerLayoutRight";
   import {common} from "../../utils/api/url";
-  import {MessageSuccess, MessageError} from "../../utils/utils";
+  import {MessageSuccess, MessageError, MessageWarning} from "../../utils/utils";
   import MyFlowType from "../../components/utils/status/MyFlowType";
   import MyFlowCondition from "../../components/utils/status/MyFlowCondition";
   import MyFlowProcess from "../../components/utils/status/MyFlowProcess";
@@ -358,6 +358,7 @@
       okDrawDialog(event){
         let url = "";
         this.errorTips = "";
+        let errNum = 0;
         this.$refs['form'].validate((valid) => {
           if (valid) {
             if (this.form.conditionType == 2 && (this.form.conditionDay1 == "" || this.form.conditionDay2 == "")){
@@ -406,7 +407,15 @@
                 nid: shareArr.join(),
                 andor: processList[i].notice
               });
+              if (processList[i].type == 'AnyUser' && auditArr.length == 0){
+                errNum++;
+              }
             }
+            if (errNum > 0){
+              MessageWarning("请设置固定教师中的审批教师");
+              return;
+            }
+
             params['handleProcess'] = processData;
             if (this.form.id != ''){
               params['id'] = this.form.id;

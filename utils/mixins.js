@@ -317,14 +317,14 @@ export default {
      * 主要用于树形菜单，下来菜单等
      * @returns {Promise<void>}
      */
-    async getDeptInfo() {
+    async getDeptInfo(type) {
       let params = {
         superDeptId: 0
       };
       await this.$axios.get(common.hierarchical_dept, {params: params}).then(res => {
         let arr = [];
         if (res.data.data){
-          this.dataDept = setDeptChildren(res.data.data[0].child_list, arr, 'child_list', 'children');
+          this.dataDept = setDeptChildren(res.data.data[0].child_list, arr, 'child_list', 'children', type);
         }
       });
     },

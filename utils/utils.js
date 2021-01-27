@@ -36,17 +36,21 @@ export function setChildren(tree, obj, param, param2){//迭代方法
   }
 }
 
-export function setDeptChildren(tree, obj, param, param2){//迭代方法--部门
+export function setDeptChildren(tree, obj, param, param2, type){//迭代方法--部门
   let _self = this;
   if (tree && tree.length > 0){
     tree.map(function (item,index) {
       item['label'] = item.department_name;
-      item['value'] = item.department_path;
+      if (type == 'id'){
+        item['value'] = item.id;
+      }else {
+        item['value'] = item.department_path;
+      }
       obj.push(item);
 
       if(item[param] != undefined && item[param].length > 0){
         obj[index][param2] = [];
-        setDeptChildren(item[param], obj[index][param2], param, param2);
+        setDeptChildren(item[param], obj[index][param2], param, param2, type);
       }
     });
     return obj;

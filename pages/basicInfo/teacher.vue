@@ -197,7 +197,7 @@
             <el-col :span="12">
               <el-form-item :label="$t('所属部门')" prop="deptData">
                 <!--<my-select width-style="220" @change="handeChangeSelect($event, 5)"></my-select>-->
-                <my-cascader ref="selectorDept" :sel-value="form.deptData" type="4" sub-type="" width-style="220" @change="handleCascaderChange($event)"></my-cascader>
+                <my-cascader ref="selectorDept" :sel-value="form.deptData" type="4" sub-type="id" width-style="220" @change="handleCascaderChange($event)"></my-cascader>
               </el-form-item>
             </el-col>
             <el-col :span="12">
