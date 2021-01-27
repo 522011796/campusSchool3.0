@@ -3,15 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/MyAuditDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/MyAuditDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/common/MyHeadImg.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/common/MyHeadImg.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/basicInfo/circular.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/circular.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/basicInfo/info.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/info.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/basicInfo/news.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/news.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/basicInfo/notice.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/notice.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/padCloud.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/padCloud.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/padLocal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/padLocal.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/basicInfo/stuCredit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/stuCredit.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/basicInfo/stuDoorAccess.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/stuDoorAccess.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/stuLeave.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/stuLeave.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/basicInfo/stuRepu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/stuRepu.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/basicInfo/terAddCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/terAddCard.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/basicInfo/terDoorAccess.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/terDoorAccess.vue" afterDir="false" />
@@ -116,14 +112,7 @@
       <workItem from="1608625084513" duration="122942000" />
       <workItem from="1609379556549" duration="104145000" />
       <workItem from="1610156986760" duration="338962000" />
-      <workItem from="1611544756423" duration="60005000" />
-    </task>
-    <task id="LOCAL-00174" summary="1、修改框架和组件样式、细节bug等&#10;2、教学排课接口对接完成">
-      <created>1610709064206</created>
-      <option name="number" value="00174" />
-      <option name="presentableId" value="LOCAL-00174" />
-      <option name="project" value="LOCAL" />
-      <updated>1610709064206</updated>
+      <workItem from="1611544756423" duration="60654000" />
     </task>
     <task id="LOCAL-00175" summary="1、修改框架和组件样式、细节bug等&#10;2、教学排课接口对接完成">
       <created>1610766546901</created>
@@ -461,7 +450,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611734126814</updated>
     </task>
-    <option name="localTasksCounter" value="223" />
+    <task id="LOCAL-00223" summary="1、修改框架和组件样式、细节bug等&#10;2、批量操作未清除前一步的操作数据修改完成">
+      <created>1611742671914</created>
+      <option name="number" value="00223" />
+      <option name="presentableId" value="LOCAL-00223" />
+      <option name="project" value="LOCAL" />
+      <updated>1611742671915</updated>
+    </task>
+    <option name="localTasksCounter" value="224" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -500,11 +496,11 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1605755081482" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1611734124885">
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1611742670146">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1611734124885" />
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1611742670146" />
     <state x="100" y="124" width="1240" height="600" key="DiffContextDialog" timestamp="1611295606319">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -534,11 +530,11 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="221" y="66" key="SettingsEditor/0.25.1440.798@0.25.1440.798" timestamp="1610450476227" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1611734128633">
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1611742674092">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1611734128633" />
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1611742674092" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1611203372469">
       <screen x="0" y="25" width="1440" height="798" />
     </state>

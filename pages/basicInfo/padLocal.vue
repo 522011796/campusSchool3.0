@@ -125,8 +125,14 @@
             align="center"
             :label="$t('设备位置')">
             <template slot-scope="scope">
-              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.location_name ? scope.row.location_name : '--'}}</div>
+              <el-popover trigger="hover" placement="top" width="400" popper-class="custom-table-popover">
+                <div class="text-center">
+                  <!--<el-tag class="" v-if="scope.row.location_name" size="mini" type="success" v-for="(item, index) in scope.row.location_name.split(',')" :key="index">
+                    {{item}}
+                  </el-tag>
+                  <span v-else>&#45;&#45;</span>-->
+                  {{scope.row.location_name ? scope.row.location_name : '--'}}
+                </div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                   {{scope.row.location_name ? scope.row.location_name : '--'}}
                 </div>

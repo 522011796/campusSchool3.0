@@ -127,7 +127,7 @@
       </div>
     </layout-tb>
 
-    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :hide-footer="false" :visible="drawerVisible" size="650px" :title="$t('发布新闻')" @right-close="cancelDrawDialog" @close="handleCloseDrawer">
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :hide-footer="false" :visible="drawerVisible" size="650px" :title="$t('流程设置')" @right-close="cancelDrawDialog" @close="handleCloseDrawer">
       <div slot="content">
         <span tabindex="1"></span>
         <el-form ref="form" :rules="rules" :model="form" label-width="80px">
