@@ -4,13 +4,13 @@
       <el-select v-model="item.type" @change="handleChangeSlect($event, item)" :style="{width: widthStyle}">
         <el-option :label="options[0].label" :value="options[0].value" v-if="conditionProcessList.length-1 == index"></el-option>
         <el-option :label="options[1].label" :value="options[1].value"></el-option>
-        <el-option :label="options[2].label" :value="options[2].value"></el-option>
-        <el-option :label="options[3].label" :value="options[3].value"></el-option>
-        <el-option :label="options[4].label" :value="options[4].value"></el-option>
-        <el-option :label="options[5].label" :value="options[5].value"></el-option>
-        <el-option :label="options[6].label" :value="options[6].value"></el-option>
-        <el-option :label="options[7].label" :value="options[7].value"></el-option>
-        <el-option :label="options[8].label" :value="options[8].value"></el-option>
+        <el-option v-if="userType != 'teacher'" :label="options[2].label" :value="options[2].value"></el-option>
+        <el-option v-if="userType != 'teacher'" :label="options[3].label" :value="options[3].value"></el-option>
+        <el-option v-if="userType != 'teacher'" :label="options[4].label" :value="options[4].value"></el-option>
+        <el-option v-if="userType != 'teacher'" :label="options[5].label" :value="options[5].value"></el-option>
+        <el-option v-if="userType != 'teacher'" :label="options[6].label" :value="options[6].value"></el-option>
+        <el-option v-if="userType != 'teacher'" :label="options[7].label" :value="options[7].value"></el-option>
+        <el-option v-if="userType != 'teacher'" :label="options[8].label" :value="options[8].value"></el-option>
       </el-select>
       <span class="layout-item">
         <i class="fa fa-plus-circle color-grand" style="font-size: 20px" @click="addProcess(item, index)"></i>
@@ -81,6 +81,10 @@
           return [];
         },
         type: Array
+      },
+      userType: {
+        default: '',
+        type: String
       }
     },
     computed: {

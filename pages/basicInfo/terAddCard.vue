@@ -165,7 +165,7 @@
             <my-radio :sel-value="form.status" :label="false" @change="changeStatus($event, false)">{{$t("禁用")}}</my-radio>
           </el-form-item>
           <el-form-item label="流程">
-            <my-flow-process-list ref="flowProcessRef" :process-data="form.handleProcess" width-style="200"></my-flow-process-list>
+            <my-flow-process-list ref="flowProcessRef" user-type="teacher" :process-data="form.handleProcess" width-style="200"></my-flow-process-list>
           </el-form-item>
         </el-form>
       </div>
