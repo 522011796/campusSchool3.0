@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-pagination
+      ref="paginationRef"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page="currentPage"
@@ -68,7 +69,7 @@
         this.$emit('currentPage', data);
       },
       handleJumpSizeChange(data){
-
+        this.$emit('jumpChange', this.currentPage);
       }
     }
   }
@@ -87,5 +88,6 @@
     top: 1px;
     padding: 0px 0px 0px 8px;
     user-select: none;
+    color: #606266;
   }
 </style>

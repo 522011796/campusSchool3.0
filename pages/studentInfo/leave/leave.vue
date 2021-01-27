@@ -79,7 +79,7 @@
           </div>
 
           <div class="layout-right-footer text-right">
-            <my-pagination :total="total" :current-page="page" :page-size="num" @currentPage="currentPage" @sizeChange="sizeChange" class="layout-pagination"></my-pagination>
+            <my-pagination :total="total" :current-page="page" :page-size="num" @currentPage="currentPage" @sizeChange="sizeChange" @jumpChange="jumpPage" class="layout-pagination"></my-pagination>
           </div>
         </div>
       </div>
@@ -218,6 +218,10 @@ export default {
     },
     currentPage(event){
       this.page = event;
+      this.init();
+    },
+    jumpPage(data){
+      this.page = data;
       this.init();
     },
     changeTime(type){

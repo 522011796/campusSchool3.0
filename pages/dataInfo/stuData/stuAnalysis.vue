@@ -93,7 +93,7 @@
         </div>
 
         <div class="layout-right-footer text-right">
-          <my-pagination :total="total" :current-page="page" :page-size="num" @currentPage="currentPage" @sizeChange="sizeChange" class="layout-pagination"></my-pagination>
+          <my-pagination :total="total" :current-page="page" :page-size="num" @currentPage="currentPage" @sizeChange="sizeChange" @jumpChange="jumpPage" class="layout-pagination"></my-pagination>
         </div>
       </div>
     </layout-lr>
@@ -378,7 +378,7 @@
           </div>
 
           <div class="layout-right-footer text-right">
-            <my-pagination :total="totalClass" :current-page="pageClass" :page-size="numClass" @currentPage="currentClassPage" @sizeChange="sizeClassChange" class="layout-pagination"></my-pagination>
+            <my-pagination :total="totalClass" :current-page="pageClass" :page-size="numClass" @currentPage="currentClassPage" @sizeChange="sizeClassChange" @jumpChange="jumpClassPage" class="layout-pagination"></my-pagination>
           </div>
         </div>
       </div>
@@ -805,6 +805,10 @@
         this.page = event;
         this.init();
       },
+      jumpPage(data){
+        this.page = data;
+        this.init();
+      },
       sizeClassChange(event){
         this.pageClass = 1;
         this.numClass = event;
@@ -814,6 +818,12 @@
       },
       currentClassPage(event){
         this.pageClass = event;
+        this.initClassRecord();
+        this.initClassCountRecord();
+        this.initDormRecord();
+      },
+      jumpClassPage(data){
+        this.pageClass = data;
         this.initClassRecord();
         this.initClassCountRecord();
         this.initDormRecord();

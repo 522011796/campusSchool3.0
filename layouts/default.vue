@@ -211,7 +211,7 @@
             </div>
 
             <div class="text-right padding-tb-5">
-              <my-pagination :total="total" @currentPage="currentPage" @sizeChange="sizeChange"></my-pagination>
+              <my-pagination :total="total" @currentPage="currentPage" @sizeChange="sizeChange" @jumpChange="jumpPage"></my-pagination>
             </div>
           </div>
         </el-drawer>
@@ -279,7 +279,7 @@
             </div>
 
             <div class="text-right padding-tb-5">
-              <my-pagination :total="total" @currentPage="currentAuditPage" @sizeChange="sizeAuditChange"></my-pagination>
+              <my-pagination :total="total" @currentPage="currentAuditPage" @sizeChange="sizeAuditChange" @jumpChange="jumpAuditPage"></my-pagination>
             </div>
           </div>
         </el-drawer>
@@ -1182,6 +1182,10 @@
         this.num = event;
         this.showMsg(this.tabVal);
       },
+      jumpPage(data){
+        this.page = data;
+        this.showMsg(this.tabVal);
+      },
       currentAuditPage(event){
         this.page = event;
         this.showAuditMsg(this.tabVal);
@@ -1189,6 +1193,10 @@
       sizeAuditChange(event){
         this.page = 1;
         this.num = event;
+        this.showAuditMsg(this.tabVal);
+      },
+      jumpAuditPage(data){
+        this.page = data;
         this.showAuditMsg(this.tabVal);
       },
       closeModalDrawer(){

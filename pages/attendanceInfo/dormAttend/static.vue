@@ -117,7 +117,7 @@
           </el-table>
 
           <div class="layout-right-footer text-right">
-            <my-pagination :total="total" :current-page="page" :page-size="num" @currentPage="currentPage" @sizeChange="sizeChange" class="layout-pagination"></my-pagination>
+            <my-pagination :total="total" :current-page="page" :page-size="num" @currentPage="currentPage" @sizeChange="sizeChange" @jumpChange="jumpPage" class="layout-pagination"></my-pagination>
           </div>
         </div>
       </div>
@@ -184,7 +184,7 @@
       </div>
       <div slot="footer">
         <div class="layout-right-footer text-right">
-          <my-pagination :total="totalDetail" :current-page="pageDetail" :page-size="numDetail" @currentPage="currentDetailPage" @sizeChange="sizeDetailChange" class="layout-pagination"></my-pagination>
+          <my-pagination :total="totalDetail" :current-page="pageDetail" :page-size="numDetail" @currentPage="currentDetailPage" @sizeChange="sizeDetailChange" @jumpChange="jumpPage" class="layout-pagination"></my-pagination>
         </div>
       </div>
     </drawer-layout-right>
@@ -390,6 +390,10 @@
         this.page = event;
         this.init();
       },
+      jumpPage(data){
+        this.page = data;
+        this.init();
+      },
       sizeDetailChange(event){
         this.pageDetail = 1;
         this.numDetail = event;
@@ -397,6 +401,10 @@
       },
       currentDetailPage(event){
         this.pageDetail = event;
+        this.initDetail();
+      },
+      jumpPage(data){
+        this.pageDetail = data;
         this.initDetail();
       },
       workTitleInfo(val, type){
