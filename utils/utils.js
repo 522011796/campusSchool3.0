@@ -482,8 +482,8 @@ export function doorExceptionStatus(type, str){
 
 export function examMethod(type, str){
   let examMethod = {
-    "2": "考试",
-    "1": "考查"
+    "1": "考试",
+    "2": "考查"
   };
   if (str && type == 'set') {
     return examMethod[str];

@@ -714,6 +714,7 @@
           if (res.data.code == 200){
             this.init();
             this.deviceList = [];
+            this.$refs.refTable.clearSelection();
             MessageSuccess(res.data.desc);
           }else {
             MessageError(res.data.desc);
@@ -734,6 +735,8 @@
         this.$axios.post(common.local_pad_muti_reset, params).then(res => {
           if (res.data.code == 200){
             this.init();
+            this.deviceList = [];
+            this.$refs.refTable.clearSelection();
             MessageSuccess(res.data.desc);
           }else {
             MessageError(res.data.desc);
@@ -755,6 +758,8 @@
         this.$axios.post(common.local_pad_muti_delete, params).then(res => {
           if (res.data.code == 200){
             this.init();
+            this.deviceList = [];
+            this.$refs.refTable.clearSelection();
             MessageSuccess(res.data.desc);
           }else {
             MessageError(res.data.desc);

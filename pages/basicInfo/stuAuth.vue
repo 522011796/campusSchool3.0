@@ -496,6 +496,8 @@
             if (res.data.code == 200){
               MessageSuccess(res.data.desc);
               this.init();
+              this.selData = [];
+              this.$refs.refTable.clearSelection();
             }else {
               MessageError(res.data.desc);
             }
@@ -510,6 +512,8 @@
             if (res.data.code == 200){
               MessageSuccess(res.data.desc);
               this.init();
+              this.selData = [];
+              this.$refs.refTable.clearSelection();
             }else {
               MessageError(res.data.desc);
             }
@@ -524,6 +528,8 @@
             if (res.data.code == 200){
               MessageSuccess(res.data.desc);
               this.init();
+              this.selData = [];
+              this.$refs.refTable.clearSelection();
             }else {
               MessageError(res.data.desc);
             }

@@ -13,7 +13,7 @@ let all1_20Reg = /^[\u4e00-\u9fa5a-zA-Z0-9]{1,20}$/;
 //1-10位字母、数字
 let sn1_10Reg = /^[a-zA-Z0-9]{1,10}$/;
 //1-20位字母、数字、中文及特殊字符
-let allOther1_20Reg = /^[\u4e00-\u9fa5a-zA-Z0-9!@#$%^&*-_,()（）\.]{1,20}$/;
+let allOther1_20Reg = /^[\u4e00-\u9fa5a-zA-Z0-9!@#$%^&*-_,，、。；;()（）\.]{1,20}$/;
 //1-30位字母、数字、中文及特殊字符，不能数字、空格、点开头
 let allRealName1_30Reg = /^[\u4e00-\u9fa5a-zA-Z][\u4e00-\u9fa5\.\sa-zA-Z0-9]{0,29}$/;
 //身份证
@@ -153,7 +153,7 @@ let FormValidate = (function () {
       // 1-20位字母、数字、中文、特殊字符
       validatenallOther1_20Reg (rule, value, callback) {
         if (value && !allOther1_20Reg.test(value)) {
-          callback(new Error('请输入1-20位字符'))
+          callback(new Error('请输入1-20位字符(包含特殊字符)'))
         } else {
           callback()
         }

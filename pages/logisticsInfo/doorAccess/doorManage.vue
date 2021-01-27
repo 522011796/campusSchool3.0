@@ -557,6 +557,7 @@
           if (res.data.code == 200){
             this.init();
             this.deviceList = [];
+            this.$refs.refTable.clearSelection();
             MessageSuccess(res.data.desc);
           }else {
             MessageError(res.data.desc);

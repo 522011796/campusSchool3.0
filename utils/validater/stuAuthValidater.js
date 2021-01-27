@@ -11,7 +11,7 @@ export default {
       rulesAuth: {
         content: [
           { required: true, message: this.$t("请输入提示信息"), trigger: 'blur' },
-          { validator: rules.FormValidate.Form().validatenall1_20Reg, trigger: 'blur' }
+          { validator: rules.FormValidate.Form().validatenallOther1_20Reg, trigger: 'blur' }
         ]
       }
     }

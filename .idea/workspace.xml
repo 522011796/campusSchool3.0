@@ -3,7 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/teachInfo/teach/coursePlan.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/teachInfo/teach/coursePlan.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/padCloud.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/padCloud.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/padLocal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/padLocal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/stuAuth.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/stuAuth.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/doorManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/doorManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/exception.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/exception.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/validater/rules.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/rules.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/validater/stuAuthValidater.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/stuAuthValidater.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,14 +110,7 @@
       <workItem from="1608625084513" duration="122942000" />
       <workItem from="1609379556549" duration="104145000" />
       <workItem from="1610156986760" duration="338962000" />
-      <workItem from="1611544756423" duration="54111000" />
-    </task>
-    <task id="LOCAL-00172" summary="1、修改框架和组件样式、细节bug等&#10;2、任课安排接口对接完成">
-      <created>1610619819984</created>
-      <option name="number" value="00172" />
-      <option name="presentableId" value="LOCAL-00172" />
-      <option name="project" value="LOCAL" />
-      <updated>1610619819985</updated>
+      <workItem from="1611544756423" duration="57824000" />
     </task>
     <task id="LOCAL-00173" summary="1、修改框架和组件样式、细节bug等&#10;2、教学排课接口对接完成">
       <created>1610703351442</created>
@@ -448,14 +448,20 @@
       <option name="project" value="LOCAL" />
       <updated>1611728592870</updated>
     </task>
-    <option name="localTasksCounter" value="221" />
+    <task id="LOCAL-00221" summary="1、修改框架和组件样式、细节bug等&#10;2、任课安排添加老是错误修改完成">
+      <created>1611729133180</created>
+      <option name="number" value="00221" />
+      <option name="presentableId" value="LOCAL-00221" />
+      <option name="project" value="LOCAL" />
+      <updated>1611729133181</updated>
+    </task>
+    <option name="localTasksCounter" value="222" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、定时任务接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、定时频率接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、通行分析接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、门禁控制器接口对接完成" />
@@ -480,18 +486,19 @@
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、审批流程-固定教师不选择审批老师不能保存完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、审批流程-教师仅保留教师和不需审核完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、增加分页跳转完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、增加分页跳转完成" />
+    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、任课安排添加老是错误修改完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、任课安排添加老是错误修改完成" />
   </component>
   <component name="WindowStateProjectService">
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605755081482">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1605755081482" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1611728587365">
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1611729131198">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1611728587365" />
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1611729131198" />
     <state x="100" y="124" width="1240" height="600" key="DiffContextDialog" timestamp="1611295606319">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -521,11 +528,11 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="221" y="66" key="SettingsEditor/0.25.1440.798@0.25.1440.798" timestamp="1610450476227" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1611728594509">
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1611729135138">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1611728594509" />
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1611729135138" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1611203372469">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -539,11 +546,11 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="506" y="345" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.1440.798@0.25.1440.798" timestamp="1611389592729" />
-    <state x="378" y="183" width="837" height="550" key="find.popup" timestamp="1611728169767">
+    <state x="378" y="183" width="837" height="550" key="find.popup" timestamp="1611733998803">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="378" y="182" width="837" height="486" key="find.popup/0.23.1440.805@0.23.1440.805" timestamp="1605680757485" />
-    <state x="378" y="183" width="837" height="550" key="find.popup/0.25.1440.798@0.25.1440.798" timestamp="1611728169767" />
+    <state x="378" y="183" width="837" height="550" key="find.popup/0.25.1440.798@0.25.1440.798" timestamp="1611733998803" />
     <state x="385" y="153" width="670" height="671" key="search.everywhere.popup" timestamp="1611727354332">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
