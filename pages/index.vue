@@ -391,7 +391,7 @@
                       <span class="color-muted">{{$t("位置")}}: {{item.location_name ? item.location_name : '--'}}</span>
                     </div>
                     <div class="margin-top-5">
-                      <i class="fa fa-times-circle"></i>
+                      <i class="fa fa-clock-o color-disabeld"></i>
                       <span class="color-disabeld">{{$moment(item.uptime).format("YYYY-MM-DD HH:mm:ss")}}</span>
                     </div>
                   </el-card>
@@ -480,7 +480,7 @@
                       <span class="color-muted">{{item.des}}</span>
                     </div>
                     <div class="margin-top-5 color-disabeld">
-                      <i class="fa fa-clock-o"></i>
+                      <i class="fa fa-clock-o color-disabeld"></i>
                       <span>{{$moment(item.apply_time).format("YYYY-MM-DD HH:mm:ss")}}</span>
                     </div>
                   </el-card>
