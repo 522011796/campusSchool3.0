@@ -83,7 +83,7 @@
               <i class="fa fa-close" style="position: absolute;top: -6px;right: -5px;" @click="closeImg"></i>
               <img :src="form.thumnbnail" class="news-img"/>
             </span>
-            <upload-square class="pull-left margin-left-10 margin-top-5" :action="uploadFile" max-size="8" :data="{path: 'news'}" accept=".png,.jpg,.jpeg" @success="uploadFileSuccess">
+            <upload-square class="pull-left margin-left-10 margin-top-5" :limit="9999" :action="uploadFile" max-size="8" :data="{path: 'news'}" accept=".png,.jpg,.jpeg" @success="uploadFileSuccess">
               <el-button size="small" type="primary">{{$t("点击上传")}}</el-button>
             </upload-square>
           </el-form-item>
@@ -122,10 +122,11 @@
   import {common} from "../../utils/api/url";
   import {MessageSuccess, MessageError} from "../../utils/utils";
   import newsValidater from "../../utils/validater/newsValidater";
+  import UploadSquare from "../../components/utils/upload/UploadSquare";
 
   export default {
     mixins: [mixins, newsValidater],
-    components: {LayoutTb,MyInputButton,MyPagination,DialogNormal,MyNormalDialog,DrawerRight,DrawerLayoutRight},
+    components: {LayoutTb,MyInputButton,MyPagination,DialogNormal,MyNormalDialog,DrawerRight,DrawerLayoutRight,UploadSquare},
     data(){
       return {
         modalVisible: false,
@@ -310,7 +311,7 @@
         if (res.code == 200){
           this.form.thumnbnail = res.data.url;
         }else {
-
+          //MessageError(res.data);
         }
       },
       closeImg(){

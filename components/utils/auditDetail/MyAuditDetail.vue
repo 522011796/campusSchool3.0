@@ -22,7 +22,7 @@
           </span>
           <div class="text-center" style="position: absolute; left: 8px; top: 25px;">
             <div class="tag-min-div color-muted" v-if="item.andor == 'or'">{{$t("或签")}}</div>
-            <div class="tag-min-div color-muted" size="mini" v-if="item.andor == 'and'">{{$t("与签")}}</div>
+            <div class="tag-min-div color-muted" size="mini" v-if="item.andor == 'and'">{{$t("会签")}}</div>
             <i class="el-icon-bottom color-disabeld"></i>
           </div>
           <el-card :body-style="{'padding': '12px'}" v-for="(itemChild, index) in item.handleUsers" :key="itemChild.id">

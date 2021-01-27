@@ -42,7 +42,7 @@
         default:function () {
           return {};
         },
-        type: Object,
+        type: [Object, String],
       }
     },
     computed: {

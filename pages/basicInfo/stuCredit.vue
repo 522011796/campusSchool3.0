@@ -132,7 +132,7 @@
         <span tabindex="1"></span>
         <el-form ref="form" :rules="rules" :model="form" label-width="80px">
           <el-form-item label="申请类型">
-            <label class="color-success">{{$t("学生请假申请")}}</label>
+            <label class="color-success">{{$t("学生素质学分申请")}}</label>
           </el-form-item>
           <el-form-item label="名称" prop="name">
             <el-input v-model="form.name" class="width-300"></el-input>
