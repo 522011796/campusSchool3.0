@@ -400,7 +400,7 @@
         });
       },
       nodeClick(data){
-        this.searchDept = data.value;
+        this.searchDept = data;
         this.init();
       },
       sizeChange(event){

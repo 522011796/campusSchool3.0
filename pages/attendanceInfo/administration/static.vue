@@ -357,7 +357,7 @@
         let params = {
           page: this.page,
           num: this.num,
-          departmentPath: this.searchDept,
+          departmentPath: this.searchDept.value,
           keyWord: this.searchKey,
           staticType: 1
         };
