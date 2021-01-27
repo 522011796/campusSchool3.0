@@ -356,12 +356,7 @@
               MessageWarning(this.$t("请选择教师"));
               return;
             }
-            if (this.form.teacherId.length > 0){
-              for (let i = 0; i < this.form.teacherId.length; i ++ ){
-                userIds[this.form.teacherId[i].user_id] = this.form.teacherId[i].real_name;
-              }
-              params['teacher'] = JSON.stringify(userIds);
-            }
+
             if (this.form.id != ""){
               url = common.course_plan_change_teacher;
               params['id'] = this.form.id;
@@ -377,6 +372,12 @@
                 termId: this.selTerm
               };
               url = common.course_plan_add;
+            }
+            if (this.form.teacherId.length > 0){
+              for (let i = 0; i < this.form.teacherId.length; i ++ ){
+                userIds[this.form.teacherId[i].user_id] = this.form.teacherId[i].real_name;
+              }
+              params['teacher'] = JSON.stringify(userIds);
             }
             params = this.$qs.stringify(params);
             this.dialogLoading = true;
