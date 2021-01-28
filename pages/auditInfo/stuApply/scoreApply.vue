@@ -153,7 +153,7 @@
     </layout-tb>
 
     <!--审批详细-->
-    <drawer-layout-right @changeDrawer="closeDrawerDialog" :hide-footer="false" :visible="drawerVisible" size="550px" :title="$t('申请单')" @right-close="cancelDrawDialog">
+    <drawer-layout-right @changeDrawer="closeDrawerDialog" :hide-footer="false" :visible="drawerVisible" size="550px" :title="$t('学分审批')" @right-close="cancelDrawDialog">
       <div slot="content">
         <my-audit-detail type="ScoreApply" :sel-value="dataAudit"></my-audit-detail>
       </div>
