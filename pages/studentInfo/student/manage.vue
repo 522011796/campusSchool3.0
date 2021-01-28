@@ -134,8 +134,12 @@
                     placement="left"
                     width="400"
                     trigger="click"
-                    @show="userInfoDetail">
-                    <div>
+                    @show="userInfoDetail"
+                    @hide="hideUserIndefoDetail">
+                    <div v-show="showIframe == false" v-loading="showIframe == false" style="height: 600px">
+
+                    </div>
+                    <div v-show="showIframe == true">
                       <iframe :src="userInfoRul" frameborder="0" scrolling="no" style="width: 100%; height: 600px"></iframe>
                     </div>
                     <el-button slot="reference" type="success" size="mini">
@@ -423,6 +427,7 @@
         drawerLoading: false,
         maskShow: false,
         timerVisible: false,
+        showIframe: false,
         searchCollege: '',
         searchMajor: '',
         searchGrade: '',
@@ -957,14 +962,21 @@
         let host = window.location.host;
         host = "http://" + host.split(":")[0];
         let hostEncodeURIComponent = encodeURIComponent(host+":10201");
+        this.showIframe = false;
         this.$axios(common.userinfo_cookie_auth).then(res => {
           if (res.data.data){
             authCookie = res.data.data.cookie;
             let url = 'http://campus.9451.com:9999/userDetail?userId='+ this.userData.user_id + "&campusUrl="+ hostEncodeURIComponent + "&campusType="+ "jump" + "&cookie=" + authCookie;
-            //window.open(url, '_self');
             this.userInfoRul = url;
+            setTimeout(() => {
+              this.showIframe = true;
+            }, 1000);
           }
         });
+      },
+      hideUserIndefoDetail(){
+        this.userInfoRul = "";
+        this.showIframe = false;
       },
       timerFormat(val){
         return val + "s";
