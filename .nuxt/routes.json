@@ -490,6 +490,13 @@
     "_name": "_b0297b28"
   },
   {
+    "name": "auditInfo-stuApply-faceApply",
+    "path": "/auditInfo/stuApply/faceApply",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/auditInfo/stuApply/faceApply.vue",
+    "chunkName": "pages/auditInfo/stuApply/faceApply",
+    "_name": "_9271b6c6"
+  },
+  {
     "name": "auditInfo-stuApply-leaveApply",
     "path": "/auditInfo/stuApply/leaveApply",
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/auditInfo/stuApply/leaveApply.vue",

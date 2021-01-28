@@ -2,24 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/pages/auditInfo/stuApply/faceApply.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/search/MySearchOfDate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/search/MySearchOfDate.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/select/MyCascader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/select/MyCascader.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/credit/creditApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/credit/creditApply.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/credit/creditStatic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/credit/creditStatic.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/credit/object.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/credit/object.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/credit/scope.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/credit/scope.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/dorm/setting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/dorm/setting.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/leave/leave.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/leave/leave.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/leave/manage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/leave/manage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/leave/setting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/leave/setting.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/rp/rpApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/rp/rpApply.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/student/manage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/student/manage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/teachInfo/teacher/empower.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/teachInfo/teacher/empower.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/auditInfo/stuApply/leaveApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/auditInfo/stuApply/leaveApply.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/json/sliderMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/sliderMenu.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +34,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/utils/common" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pages/auditInfo/stuApply" />
     <property name="list.type.of.created.stylesheet" value="textmate" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
@@ -66,11 +54,11 @@
       <recent name="$PROJECT_DIR$/components/tree" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pages/auditInfo/stuApply" />
       <recent name="$PROJECT_DIR$/components/utils/common" />
       <recent name="$PROJECT_DIR$/components/utils/button" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/components/Layout" />
-      <recent name="$PROJECT_DIR$/static" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -119,14 +107,7 @@
       <workItem from="1608625084513" duration="122942000" />
       <workItem from="1609379556549" duration="104145000" />
       <workItem from="1610156986760" duration="338962000" />
-      <workItem from="1611544756423" duration="82000000" />
-    </task>
-    <task id="LOCAL-00177" summary="1、修改框架和组件样式、细节bug等&#10;2、登录接口对接完成">
-      <created>1610964472819</created>
-      <option name="number" value="00177" />
-      <option name="presentableId" value="LOCAL-00177" />
-      <option name="project" value="LOCAL" />
-      <updated>1610964472823</updated>
+      <workItem from="1611544756423" duration="82707000" />
     </task>
     <task id="LOCAL-00178" summary="1、修改框架和组件样式、细节bug等&#10;2、登录接口对接完成">
       <created>1610966606650</created>
@@ -464,14 +445,20 @@
       <option name="project" value="LOCAL" />
       <updated>1611802190869</updated>
     </task>
-    <option name="localTasksCounter" value="226" />
+    <task id="LOCAL-00226" summary="1、修改框架和组件样式、细节bug等&#10;2、各种问题修改完成">
+      <created>1611825197769</created>
+      <option name="number" value="00226" />
+      <option name="presentableId" value="LOCAL-00226" />
+      <option name="project" value="LOCAL" />
+      <updated>1611825197770</updated>
+    </task>
+    <option name="localTasksCounter" value="227" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、门禁控制器接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、课程限制接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、查询课表接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、任课安排接口对接完成" />
@@ -496,18 +483,19 @@
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、任课安排添加老是错误修改完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、批量操作未清除前一步的操作数据修改完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、通知公告预览和回复消息修改完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、通知公告预览和回复消息修改完成" />
+    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、各种问题修改完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、各种问题修改完成" />
   </component>
   <component name="WindowStateProjectService">
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605755081482">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1605755081482" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1611802189400">
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1611825195867">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1611802189400" />
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1611825195867" />
     <state x="100" y="124" width="1240" height="600" key="DiffContextDialog" timestamp="1611295606319">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -537,11 +525,11 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="221" y="66" key="SettingsEditor/0.25.1440.798@0.25.1440.798" timestamp="1610450476227" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1611802192772">
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1611825199763">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1611802192772" />
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1611825199763" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1611203372469">
       <screen x="0" y="25" width="1440" height="798" />
     </state>

@@ -73,6 +73,7 @@ const _52805ec0 = () => interopDefault(import('../pages/attendanceInfo/leaveMana
 const _6a958da4 = () => interopDefault(import('../pages/attendanceInfo/leaveManage/static.vue' /* webpackChunkName: "pages/attendanceInfo/leaveManage/static" */))
 const _67fc71c6 = () => interopDefault(import('../pages/attendanceInfo/meetAttend/meetting.vue' /* webpackChunkName: "pages/attendanceInfo/meetAttend/meetting" */))
 const _b0297b28 = () => interopDefault(import('../pages/auditInfo/stuApply/doorApply.vue' /* webpackChunkName: "pages/auditInfo/stuApply/doorApply" */))
+const _9271b6c6 = () => interopDefault(import('../pages/auditInfo/stuApply/faceApply.vue' /* webpackChunkName: "pages/auditInfo/stuApply/faceApply" */))
 const _43530dca = () => interopDefault(import('../pages/auditInfo/stuApply/leaveApply.vue' /* webpackChunkName: "pages/auditInfo/stuApply/leaveApply" */))
 const _5033a43c = () => interopDefault(import('../pages/auditInfo/stuApply/repuApply.vue' /* webpackChunkName: "pages/auditInfo/stuApply/repuApply" */))
 const _0ade1ddd = () => interopDefault(import('../pages/auditInfo/stuApply/resultApply.vue' /* webpackChunkName: "pages/auditInfo/stuApply/resultApply" */))
@@ -444,6 +445,10 @@ export const routerOptions = {
     path: "/auditInfo/stuApply/doorApply",
     component: _b0297b28,
     name: "auditInfo-stuApply-doorApply"
+  }, {
+    path: "/auditInfo/stuApply/faceApply",
+    component: _9271b6c6,
+    name: "auditInfo-stuApply-faceApply"
   }, {
     path: "/auditInfo/stuApply/leaveApply",
     component: _43530dca,

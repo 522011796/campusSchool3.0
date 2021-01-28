@@ -782,6 +782,13 @@
             "id": 5004,
             "top": "auditInfo",
             "path": "/auditInfo/stuApply/doorApply"
+          },
+          {
+            "name": "人脸审批",
+            "key": "faceApply",
+            "id": 5005,
+            "top": "auditInfo",
+            "path": "/auditInfo/stuApply/faceApply"
           }
         ]
       },

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <layout-tb>
-      <template slot="tag">请假审批</template>
+      <template slot="tag">人脸审批</template>
 
       <div slot="tab">
         <el-row>
@@ -98,30 +98,6 @@
           </el-table-column>
           <el-table-column
             align="center"
-            :label="$t('请假时长')">
-            <template slot-scope="scope">
-              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.double1_str}}</div>
-                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  {{scope.row.double1_str}}
-                </div>
-              </el-popover>
-            </template>
-          </el-table-column>
-          <el-table-column
-            align="center"
-            :label="$t('累计请假')">
-            <template slot-scope="scope">
-              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.all_time_length_str}}</div>
-                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  {{scope.row.all_time_length_str}}
-                </div>
-              </el-popover>
-            </template>
-          </el-table-column>
-          <el-table-column
-            align="center"
             prop="level_name"
             :label="$t('状态/审核人')">
             <template slot-scope="scope">
@@ -153,9 +129,9 @@
     </layout-tb>
 
     <!--审批详细-->
-    <drawer-layout-right @changeDrawer="closeDrawerDialog" :hide-footer="false" :visible="drawerVisible" size="550px" :title="$t('申请单')" @right-close="cancelDrawDialog">
+    <drawer-layout-right @changeDrawer="closeDrawerDialog" :hide-footer="false" :visible="drawerVisible" size="550px" :title="$t('人脸审批')" @right-close="cancelDrawDialog">
       <div slot="content">
-        <my-audit-detail type="LeaveApply" :sel-value="dataAudit"></my-audit-detail>
+        <my-audit-detail type="FacePhotoApply" :sel-value="dataAudit"></my-audit-detail>
       </div>
       <div slot="footer">
         <audit-button :sel-value="dataAudit" @ok="handleOk" @no="handleNo" @cancel="handleCancel"></audit-button>
@@ -215,7 +191,7 @@
         let params = {
           page: this.page,
           num: this.num,
-          applyTypeCode: 'LeaveApply',
+          applyTypeCode: 'FacePhotoApply',
           applyTimeBegin: this.searchDate ? this.searchDate[0] : '',
           applyTimeEnd: this.searchDate ? this.searchDate[1] : '',
           status: this.status,
