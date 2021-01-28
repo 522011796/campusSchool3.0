@@ -456,4 +456,6 @@ export const common = {
   detail_circle_search_reply: '/proxy/user/message/comment/page',//查询公告详细--回复
   detail_info_search: '/proxy/school/school/information/detail',//查询资讯详细
 
+  userinfo_cookie_auth: '/proxy/course/quantization/get-auth',//个人报告cookie
+
 };

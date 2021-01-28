@@ -220,13 +220,13 @@
             @filter-change="fliterTable">
             <el-table-column
               align="center"
-              :label="$t('姓名')">
+              :label="$t('日期')">
 
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.real_name}}</div>
+                  <div class="text-center">{{scope.row.apply_time ? $moment(scope.row.apply_time).format("YYYY-MM-DD") : '--'}}</div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.real_name}}
+                    {{scope.row.apply_time ? $moment(scope.row.apply_time).format("YYYY-MM-DD") : '--'}}
                   </div>
                 </el-popover>
               </template>
@@ -297,7 +297,7 @@
 
               <template slot-scope="scope">
                 <span v-if="!scope.row.apply_file">--</span>
-                <img v-else :src="scope.row.apply_file" style="height: 25px;width: 25px">
+                <my-head-img v-else :head-img="scope.row.apply_file"></my-head-img>
               </template>
             </el-table-column>
           </el-table>
@@ -334,12 +334,13 @@
   import TableBarChart from "../../../components/charts/TableBarChart";
   import MyDatePicker from "../../../components/MyDatePicker";
   import MySearchOfDate from "../../../components/search/MySearchOfDate";
+  import MyHeadImg from "../../../components/utils/common/MyHeadImg";
   import {common} from "../../../utils/api/url";
   import {auditStatusText, MessageError, MessageSuccess, MessageWarning} from "../../../utils/utils";
   import rpApplyValidater from "../../../utils/validater/rpApplyValidater";
   export default {
     mixins: [mixins, rpApplyValidater],
-    components: {LayoutLr,MyElTree,MySelect,DrawerLayoutRight,MyPagination,CircleChart,DialogNormal,MyInputButton,TableBarChart,MyDatePicker,MySearchOfDate},
+    components: {LayoutLr,MyElTree,MySelect,DrawerLayoutRight,MyPagination,CircleChart,DialogNormal,MyInputButton,TableBarChart,MyDatePicker,MySearchOfDate,MyHeadImg},
     data(){
       return {
         pageStudent: 1,

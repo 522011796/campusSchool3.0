@@ -86,7 +86,7 @@
       </div>
     </layout-lr>
 
-    <drawer-layout-right  @changeDrawer="closeDrawerDialog" :visible="drawerVisible" size="550px" :title="$t('学生管理')" @right-close="cancelDrawDialog">
+    <drawer-layout-right  @changeDrawer="closeDrawerDialog" :visible="drawerVisible" size="550px" :title="$t('教师授权管理')" @right-close="cancelDrawDialog">
       <div slot="content" class="bg-white padding-lr-10 padding-tb-10" style="border-radius: 5px">
         <div>
           <div>
@@ -125,16 +125,17 @@
                     <el-input size="small" v-model="form.cardNo" class="width-150"></el-input>
 
                     <el-popover
+                      v-model="timerVisible"
                       placement="right"
                       width="500"
                       trigger="click">
                       <div style="position: relative">
                         <div class="popover-mask" v-if="maskShow">
                           <div class="text-center margin-top-30">
-                            <el-progress type="circle" :percentage="loopTimerCount"></el-progress>
+                            <el-progress type="circle" :percentage="loopTimerCount" :format="timerFormat"></el-progress>
                           </div>
                           <div class="text-center color-muted margin-top-10" style="font-weight: bold">
-                            <span>{{$t("请假IC卡/身份证放在刷卡区域")}}</span>
+                            <span>{{$t("请将IC卡/身份证放在刷卡区域")}}</span>
                           </div>
                           <div class="text-center color-muted margin-top-20">
                             <a href="javascript:;" class="color-warning" @click="closeKeyModal">{{$t("手动关闭")}}</a>
@@ -184,7 +185,7 @@
                 </el-col>
                 <el-col :span="12">
                   <div class="text-right layout-inline">
-                    <upload-square class="layout-item" :limit="3" :action="uploadFileUrl" max-size="2" :data="{path: 'studentPhone'}" accept=".png,.jpg,.jpeg" @success="uploadFileSuccess">
+                    <upload-square class="layout-item" :limit="9999" :action="uploadFileUrl" max-size="2" :data="{path: 'studentPhone'}" accept=".png,.jpg,.jpeg" @success="uploadFileSuccess">
                       <el-button size="small" type="primary" icon="el-icon-upload">{{$t("本地上传")}}</el-button>
                     </upload-square>
                     <el-button :disabled="this.photoTimer != null" class="layout-item" size="small" type="warning" icon="el-icon-camera-solid" @click="photoChange">
@@ -295,6 +296,7 @@
         drawerVisible: false,
         drawerLoading: false,
         maskShow: false,
+        timerVisible: false,
         searchCollege: '',
         searchMajor: '',
         searchGrade: '',
@@ -419,7 +421,7 @@
         if (row.photo && row.photo != ""){
           this.form.imgList.push(row.photo);
         }
-        if (row.face_photos && row.face_photos != ""){
+        if (row.face_photos && row.face_photos != "" && row.face_photos != "|"){
           let img = row.face_photos.split("|");
           for (let i = 0; i < img.length; i++){
             this.form.imgList.push(img[i]);
@@ -562,7 +564,11 @@
       },
       uploadFileSuccess(res, file){
         if (res.code == 200){
-          this.form.imgList.push(res.data.url);
+          if (this.form.imgList.length < 3){
+            this.form.imgList.push(res.data.url);
+          }else {
+            MessageWarning(this.$t("头像最多只能3张"));
+          }
         }else {
 
         }
@@ -614,6 +620,7 @@
         this.$axios.post(common.device_take_face, params).then(res => {
           if (res.data.code == 200){
             clearTimeout(this.photoTimer);
+            this.photoTimer = null;
             this.loopPhotoTime();
           }else {
             MessageError(res.data.desc);
@@ -628,10 +635,12 @@
         this.$axios.get(common.device_take_get_face, {params: params}).then(res => {
           if (res.data.code == 201){
             clearTimeout(this.photoTimer);
+            this.photoTimer = null;
             this.photoTimer = setTimeout(() => {
               this.loopTimerCount--;
               if (this.loopTimerCount <= 0){
                 clearTimeout(this.photoTimer);
+                this.photoTimer = null;
                 this.loopTimerCount = 60;
                 return;
               }
@@ -639,10 +648,12 @@
             },1000);
           }else if (res.data.code == 200){
             clearTimeout(this.photoTimer);
+            this.photoTimer = null;
             this.loopTimerCount = 60;
             this.form.imgList.push(res.data.data.imgUrl)
           }else {
             clearTimeout(this.photoTimer);
+            this.photoTimer = null;
             this.loopTimerCount = 60;
             MessageError(res.data.desc);
           }
@@ -662,6 +673,7 @@
                 clearTimeout(this.keyTimer);
                 this.loopTimerCount = 60;
                 this.maskShow = false;
+                this.timerVisible = false;
                 return;
               }
               this.loopKeyTime();
@@ -671,11 +683,14 @@
             this.loopTimerCount = 60;
             this.form.cardNo = res.data.data.idcardNum;
             this.maskShow = false;
+            this.timerVisible = false;
             this.keyDeviceSn = "";
           }else {
             clearTimeout(this.keyTimer);
             this.loopTimerCount = 60;
             this.keyDeviceSn = "";
+            this.maskShow = false;
+            this.timerVisible = false;
             MessageError(res.data.desc);
           }
         });
@@ -693,6 +708,9 @@
       },
       deleteImg(index){
         this.form.imgList.splice(index, 1);
+      },
+      timerFormat(val){
+        return val + "s";
       }
     }
   }

@@ -10,6 +10,7 @@
       :disabled="disabled"
       :clearable="clearable"
       :size="size"
+      :props="props"
       @change="handleChange"></el-cascader>
   </div>
 </template>
@@ -26,6 +27,12 @@
           return [];
         },
         type: Array
+      },
+      props: {
+        default: function () {
+          return {};
+        },
+        type: Object
       },
       label: {
         default: '',

@@ -119,7 +119,7 @@
       </div>
     </layout-tb>
 
-    <dialog-normal :visible="modalVisible" :title="$t('项目设置')" @close="closeDialog" @right-close="cancelDialog">
+    <dialog-normal :visible="modalVisible" :title="$t('类型管理')" @close="closeDialog" @right-close="cancelDialog">
       <div class="margin-top-10">
         <el-form :model="form" :rules="rules" ref="form" label-width="140px">
           <el-form-item :label="$t('类型')" prop="typeName" v-if="type == 'setType'">
@@ -339,6 +339,13 @@
             let params = {};
             if (this.type == 'setType'){
               params['typeName'] = this.form.typeName;
+              params['freeSwich'] = this.form.freeSwich;
+              params['freeWeekNo1'] = this.form.freeWeekNo1;
+              params['freeHour1'] = this.form.freeHour1;
+              params['freeMinuts1'] = this.form.freeMinuts1;
+              params['freeWeekNo2'] = this.form.freeWeekNo2;
+              params['freeHour2'] = this.form.freeHour2;
+              params['freeMinuts2'] = this.form.freeMinuts2;
             }else if (this.type == 'setTime'){
               params['typeName'] = this.form.typeName;
               params['freeSwich'] = this.form.freeSwich;

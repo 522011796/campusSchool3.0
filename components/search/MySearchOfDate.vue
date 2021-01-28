@@ -152,7 +152,7 @@
         if (this.nowDataObj && this.nowDataObj.weekNumsOfTerm){
           for (let i = 0; i < this.nowDataObj.weekNumsOfTerm.length; i++){
             arr.push({
-              label: this.nowDataObj.weekNumsOfTerm[i],
+              label: this.$t("第")+this.nowDataObj.weekNumsOfTerm[i]+this.$t("周"),
               value: this.nowDataObj.weekNumsOfTerm[i]
             });
           }

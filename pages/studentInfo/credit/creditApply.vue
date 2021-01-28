@@ -149,7 +149,7 @@
       </div>
     </layout-lr>
 
-    <dialog-normal width-style="700px" top="10vh" :visible="modalVisible" :title="$t('奖惩申请')" @close="closeDialog" @right-close="cancelDialog">
+    <dialog-normal width-style="700px" top="10vh" :visible="modalVisible" :title="$t('学分申请')" @close="closeDialog" @right-close="cancelDialog">
       <div class="margin-top-10">
         <el-form :model="form" :rules="rules" ref="form" label-width="140px">
           <el-form-item :label="$t('类型')" prop="type">
@@ -189,8 +189,11 @@
             <div><span class="color-danger font-size-12">{{errorStudent}}</span></div>
           </el-form-item>
           <el-form-item :label="$t('附件')">
-            <img v-if="form.file != ''" :src="form.file" class="credit-img pull-left"/>
-            <upload-square class="pull-left margin-left-10 margin-top-5" :action="uploadFileAction" max-size="8" :data="{path: 'creditFile'}" accept=".png,.jpg,.jpeg" @success="uploadSuccess">
+            <div v-if="form.file != ''" class="pull-left" style="position: relative">
+              <i class="fa fa-close" style="position: absolute; right: -5px; top: -5px;" @click="deleteImg"></i>
+              <img :src="form.file" class="credit-img"/>
+            </div>
+            <upload-square class="pull-left margin-left-10 margin-top-5" :limit="9999" :action="uploadFileAction" max-size="8" :data="{path: 'creditFile'}" accept=".png,.jpg,.jpeg" @success="uploadSuccess">
               <el-button size="small" type="primary">{{$t("点击上传")}}</el-button>
             </upload-square>
             <span class="pull-left color-danger font-size-12 margin-left-10 margin-top-5">{{$t("文件不超过8M")}}</span>
@@ -313,6 +316,7 @@ export default {
       if (typeName){
         params['socreName'] = typeName;
       }
+      console.log(params);
       params = this.$qs.stringify(params);
       this.$axios.post(common.audit_credit_type_fliter, params).then(res => {
         if (res.data.data){
@@ -321,8 +325,9 @@ export default {
               res.data.data[i]['label'] = res.data.data[i].socre_name_sub;
               res.data.data[i]['value'] = res.data.data[i].socre_name_sub;
             }
-            this.objectOne = res.data.data;
+            //this.objectOne = res.data.data;
             this.objectTwo = res.data.data;
+            this.form.object2 = "";
           }else {
             for (let i = 0; i < res.data.data.length; i++){
               res.data.data[i]['label'] = res.data.data[i].socre_name;
@@ -455,11 +460,12 @@ export default {
             arr.push(this.form.userId[i].user_id);
           }
           this.dialogLoading = true;
+          console.log(this.form.type);
           let params = {
             applyFile: this.form.file,
             applyTypeCode: "ScoreApply",
             des: this.form.des,
-            str1: this.form.type == false ? "减分" : "加分",
+            str1: this.form.type == "false" ? "减分" : "加分",
             str2: this.form.object1,
             str3: this.form.object2,
             userId: arr.join(),
@@ -556,6 +562,9 @@ export default {
     searchStudent(data){
       this.searchStudentKey = data;
       this.initStudent();
+    },
+    deleteImg(){
+      this.form.file = "";
     }
   }
 }

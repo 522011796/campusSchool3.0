@@ -18,9 +18,9 @@
         <div class="layout-right-tab">
           <el-row>
             <el-col :span="10">
-              <el-button size="small" :type="searchType == 1 ? 'primary' : 'default'"  icon="el-icon-date" @click="changeTime(1)">{{$t("今天")}}</el-button>
-              <el-button size="small" :type="searchType == 2 ? 'primary' : 'default'" plain  icon="el-icon-date" @click="changeTime(2)">{{$t("昨天")}}</el-button>
-              <el-button size="small" :type="searchType == 3 ? 'primary' : 'default'" plain  icon="el-icon-date" @click="changeTime(3)">{{$t("本周")}}</el-button>
+              <el-button size="small" :type="searchType == 1 && showNowBtn == true ? 'primary' : 'default'"  icon="el-icon-date" @click="changeTime(1)">{{$t("今天")}}</el-button>
+              <el-button size="small" :type="searchType == 2 && showNowBtn == true ? 'primary' : 'default'" plain  icon="el-icon-date" @click="changeTime(2)">{{$t("昨天")}}</el-button>
+              <el-button size="small" :type="searchType == 3 && showNowBtn == true ? 'primary' : 'default'" plain  icon="el-icon-date" @click="changeTime(3)">{{$t("本周")}}</el-button>
               <el-button size="small" type="warning"  icon="el-icon-download" @click="expandInfo()">{{$t("导出")}}</el-button>
             </el-col>
             <el-col :span="14" class="text-right">
@@ -72,7 +72,8 @@
                       </span>
                     </div>
                   </div>
-                  <img src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" class="leave-header-logo">
+                  <img v-if="item.photo" :src="item.photo" class="leave-header-logo">
+                  <el-avatar v-if="!item.photo" icon="el-icon-user-solid" :size="70" class="leave-header-logo"></el-avatar>
                 </el-card>
               </el-col>
             </el-row>
@@ -112,7 +113,8 @@ export default {
       searchDate: [this.$moment(new Date()).format("YYYY-MM-DD"), this.$moment(new Date()).format("YYYY-MM-DD")],
       searchKey: '',
       searchStartTime: this.$moment(new Date()).format("YYYY-MM-DD"),
-      searchEndTime: this.$moment(new Date()).format("YYYY-MM-DD")
+      searchEndTime: this.$moment(new Date()).format("YYYY-MM-DD"),
+      showNowBtn: true,
     }
   },
   created() {
@@ -209,6 +211,7 @@ export default {
     },
     search(data){
       this.searchKey = data.input;
+      this.showNowBtn = false;
       this.init();
     },
     sizeChange(event){
@@ -242,6 +245,7 @@ export default {
       }
       this.$set(this.searchDate,[0],this.searchStartTime);
       this.$set(this.searchDate,[1],this.searchEndTime);
+      this.showNowBtn = true;
       this.init();
     },
     changeTree(mainType, subType){
@@ -289,8 +293,8 @@ export default {
   max-width: 150px;
 }
 .leave-header-logo{
-  height: 80px;
-  width: 80px;
+  height: 70px;
+  width: 70px;
   border-radius: 100%;
   border: 1px solid #C0C4CC;
   position: absolute;

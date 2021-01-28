@@ -95,7 +95,7 @@
                 </span>
               </div>
               <div class="layout-item" style="position: relative; top: -25px;">
-                <upload-square class="layout-item" :action="uploadFileUrl" max-size="4" :data="{path: 'dormPhone'}" accept=".png,.jpg,.jpeg" @success="uploadFileSuccess">
+                <upload-square class="layout-item" :limit="9999" :action="uploadFileUrl" max-size="4" :data="{path: 'dormPhone'}" accept=".png,.jpg,.jpeg" @success="uploadFileSuccess">
                   <el-button size="small" type="primary" icon="el-icon-upload">{{$t("本地上传")}}</el-button>
                 </upload-square>
               </div>
@@ -161,7 +161,14 @@
   import DrawerRight from "../../../components/utils/dialog/DrawerRight";
   import MyCascader from "../../../components/utils/select/MyCascader";
   import MySelect from "../../../components/MySelect";
-  import {dormTypeText, inArray, MessageError, MessageSuccess, paddingChecked} from "../../../utils/utils";
+  import {
+    dormTypeText,
+    inArray,
+    MessageError,
+    MessageSuccess,
+    MessageWarning,
+    paddingChecked
+  } from "../../../utils/utils";
   import mixins from "../../../utils/mixins";
   import dormroomValidater from "../../../utils/validater/dormroomValidater";
   import MyElTree from "../../../components/tree/MyElTree";
@@ -569,7 +576,11 @@
       },
       uploadFileSuccess(res, file){
         if (res.code == 200){
-          this.form.imgList.push(res.data.url);
+          if (this.form.imgList.length < 3){
+            this.form.imgList.push(res.data.url);
+          }else {
+            MessageWarning(this.$t("头像最多只能3张"));
+          }
         }else {
 
         }

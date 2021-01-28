@@ -130,10 +130,19 @@
                   <span class="color-muted">{{$t("分")}}</span>
                 </div>
                 <div class="margin-top-5">
-                  <el-button type="success" size="mini">
-                    <i class="fa fa-id-badge"></i>
-                    {{$t("个人报告")}}
-                  </el-button>
+                  <el-popover
+                    placement="left"
+                    width="400"
+                    trigger="click"
+                    @show="userInfoDetail">
+                    <div>
+                      <iframe :src="userInfoRul" frameborder="0" scrolling="no" style="width: 100%; height: 600px"></iframe>
+                    </div>
+                    <el-button slot="reference" type="success" size="mini">
+                      <i class="fa fa-id-badge"></i>
+                      {{$t("个人报告")}}
+                    </el-button>
+                  </el-popover>
                 </div>
               </div>
             </el-col>
@@ -177,16 +186,17 @@
                     <el-input size="small" v-model="form.cardNo" class="width-150"></el-input>
 
                     <el-popover
+                      v-model="timerVisible"
                       placement="right"
                       width="500"
                       trigger="click">
                       <div style="position: relative">
                         <div class="popover-mask" v-if="maskShow">
                           <div class="text-center margin-top-30">
-                            <el-progress type="circle" :percentage="loopTimerCount"></el-progress>
+                            <el-progress type="circle" :percentage="loopTimerCount" :format="timerFormat"></el-progress>
                           </div>
                           <div class="text-center color-muted margin-top-10" style="font-weight: bold">
-                            <span>{{$t("请假IC卡/身份证放在刷卡区域")}}</span>
+                            <span>{{$t("请将IC卡/身份证放在刷卡区域")}}</span>
                           </div>
                           <div class="text-center color-muted margin-top-20">
                             <a href="javascript:;" class="color-warning" @click="closeKeyModal">{{$t("手动关闭")}}</a>
@@ -236,7 +246,7 @@
                 </el-col>
                 <el-col :span="12">
                   <div class="text-right layout-inline">
-                    <upload-square class="layout-item" :limit="3" :action="uploadFileUrl" max-size="2" :data="{path: 'studentPhone'}" accept=".png,.jpg,.jpeg" @success="uploadFileSuccess">
+                    <upload-square class="layout-item" :limit="9999" :action="uploadFileUrl" max-size="2" :data="{path: 'studentPhone'}" accept=".png,.jpg,.jpeg" @success="uploadFileSuccess">
                       <el-button size="small" type="primary" icon="el-icon-upload">{{$t("本地上传")}}</el-button>
                     </upload-square>
                     <el-button :disabled="this.photoTimer != null" class="layout-item" size="small" type="warning" icon="el-icon-camera-solid" @click="photoChange">
@@ -412,6 +422,7 @@
         drawerVisible: false,
         drawerLoading: false,
         maskShow: false,
+        timerVisible: false,
         searchCollege: '',
         searchMajor: '',
         searchGrade: '',
@@ -442,6 +453,7 @@
         keySign: '',
         loopTimerCount: 60,
         selDormTips: '',
+        userInfoRul: '',
         form: {
           status: '',
           attnedType: '',
@@ -572,17 +584,19 @@
         if (row.photo && row.photo != ""){
           this.form.imgList.push(row.photo);
         }
-        if (row.face_photos && row.face_photos != ""){
+        if (row.face_photos && row.face_photos != "" && row.face_photos != "|"){
           let img = row.face_photos.split("|");
           for (let i = 0; i < img.length; i++){
             this.form.imgList.push(img[i]);
           }
         }
-        this.selDormTips = row.build_name +"-"+ row.floor_num+"楼" +"-"+ row.dormitory_no +"-"+ row.bed_no+"号床";
+        if (row.floor_num){
+          this.selDormTips = row.build_name +"-"+ row.floor_num+"楼" +"-"+ row.dormitory_no +"-"+ row.bed_no+"号床";
+        }
         this.form.studentInfo = {
           attendType: row.attend_type,
           bedNo: row.bed_no,
-          birthday: this.$moment(row.birthday).format("YYYY-MM-DD"),
+          birthday: row.birthday ? this.$moment(row.birthday).format("YYYY-MM-DD") : '',
           certificateNum: row.certificate_num,
           certificateType: row.certificate_type,
           className: row.class_name,
@@ -590,14 +604,13 @@
           claszDate: this.$moment(row.clasz_date).format("YYYY-MM-DD"),
           collegeId: row.college_id,
           dormId: row.dorm_id,
-          email: row.email,
           majorId: row.major_id,
           nation: row.nation,
           nativePlace: row.natice_place,
           nickName: row.nick_name,
           parentContactInfo: row.parent_contact_info,
           parentName: row.parent_name,
-          phone: row.phone,
+          phone: row.phone ? row.phone : '',
           realName: row.real_name,
           schoolInTime: this.$moment(row.school_in_time).format("YYYY-MM-DD"),
           sex: row.sex,
@@ -605,6 +618,9 @@
           studentId: row.student_id,
           userId: row.user_id
         };
+        if (row.email){
+          this.form.studentInfo['email'] = row.email;
+        }
 
         this.drawerVisible = true;
       },
@@ -791,15 +807,19 @@
       },
       uploadFileSuccess(res, file){
         if (res.code == 200){
-          this.form.imgList.push(res.data.url);
+          if (this.form.imgList.length < 3){
+            this.form.imgList.push(res.data.url);
+          }else {
+            MessageWarning(this.$t("头像最多只能3张"));
+          }
         }else {
 
         }
       },
       selPhoteDevice(row){
         this.photoDeviceSn = row.sn;
-        //this.photoDevicePwd = row.sn;
-        //this.photoDeviceIp = row.sn;
+        this.photoDevicePwd = row.password;
+        this.photoDeviceIp = row.ip;
       },
       selKeyDevice(row){
         this.keyDeviceSn = row.sn;
@@ -843,6 +863,7 @@
         this.$axios.post(common.device_take_face, params).then(res => {
           if (res.data.code == 200){
             clearTimeout(this.photoTimer);
+            this.photoTimer = null;
             this.loopPhotoTime();
           }else {
             MessageError(res.data.desc);
@@ -857,10 +878,12 @@
         this.$axios.get(common.device_take_get_face, {params: params}).then(res => {
           if (res.data.code == 201){
             clearTimeout(this.photoTimer);
+            this.photoTimer = null;
             this.photoTimer = setTimeout(() => {
               this.loopTimerCount--;
               if (this.loopTimerCount <= 0){
                 clearTimeout(this.photoTimer);
+                this.photoTimer = null;
                 this.loopTimerCount = 60;
                 return;
               }
@@ -868,10 +891,12 @@
             },1000);
           }else if (res.data.code == 200){
             clearTimeout(this.photoTimer);
+            this.photoTimer = null;
             this.loopTimerCount = 60;
             this.form.imgList.push(res.data.data.imgUrl)
           }else {
             clearTimeout(this.photoTimer);
+            this.photoTimer = null;
             this.loopTimerCount = 60;
             MessageError(res.data.desc);
           }
@@ -891,6 +916,7 @@
                 clearTimeout(this.keyTimer);
                 this.loopTimerCount = 60;
                 this.maskShow = false;
+                this.timerVisible = false;
                 return;
               }
               this.loopKeyTime();
@@ -900,11 +926,14 @@
             this.loopTimerCount = 60;
             this.form.cardNo = res.data.data.idcardNum;
             this.maskShow = false;
+            this.timerVisible = false;
             this.keyDeviceSn = "";
           }else {
             clearTimeout(this.keyTimer);
             this.loopTimerCount = 60;
             this.keyDeviceSn = "";
+            this.maskShow = false;
+            this.timerVisible = false;
             MessageError(res.data.desc);
           }
         });
@@ -918,11 +947,28 @@
         this.selDormTips = row.build_name +"-"+ row.floor_num+"楼" +"-"+ row.dormitory_no +"-"+ row.bed_no+"号床";
       },
       deviceTypeInfo(val){
-        return deviceType(val);
+        return deviceType('set',val);
       },
       deleteImg(index){
         this.form.imgList.splice(index, 1);
-      }
+      },
+      userInfoDetail(){
+        let authCookie = "";
+        let host = window.location.host;
+        host = "http://" + host.split(":")[0];
+        let hostEncodeURIComponent = encodeURIComponent(host+":10201");
+        this.$axios(common.userinfo_cookie_auth).then(res => {
+          if (res.data.data){
+            authCookie = res.data.data.cookie;
+            let url = 'http://campus.9451.com:9999/userDetail?userId='+ this.userData.user_id + "&campusUrl="+ hostEncodeURIComponent + "&campusType="+ "jump" + "&cookie=" + authCookie;
+            //window.open(url, '_self');
+            this.userInfoRul = url;
+          }
+        });
+      },
+      timerFormat(val){
+        return val + "s";
+      },
     }
   }
 </script>
@@ -943,7 +989,7 @@
   width: 75px;
   border: 1px solid #dddddd;
   border-radius: 5px;
-  margin-right: 5px;
+  margin-right: 0px;
 }
 .popover-mask{
   position: absolute;

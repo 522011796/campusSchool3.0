@@ -29,13 +29,18 @@
           style="width: 100%">
           <el-table-column
             align="center"
-            prop="college_name"
             :label="$t('院系')">
+            <template slot-scope="scope">
+              <span>{{scope.row.college_name ? scope.row.college_name : '--'}}</span>
+            </template>
           </el-table-column>
           <el-table-column
             align="center"
             prop="major_name"
             :label="$t('专业')">
+            <template slot-scope="scope">
+              <span>{{scope.row.major_name ? scope.row.major_name : '--'}}</span>
+            </template>
           </el-table-column>
           <el-table-column
             align="center"
@@ -43,7 +48,7 @@
             :label="$t('年级')">
 
             <template slot-scope="scope">
-              <span>{{gradeTextInfo(scope.row.grade)}}</span>
+              <span>{{scope.row.grade ? gradeTextInfo(scope.row.grade) : '--'}}</span>
             </template>
           </el-table-column>
           <el-table-column
@@ -73,7 +78,7 @@
       <div class="margin-top-10">
         <el-form :model="form" :rules="rules" ref="form" label-width="140px">
           <el-form-item :label="$t('学院/专业/年级')" prop="classData">
-            <my-cascader ref="selectorCollege" :sel-value="form.classData" type="1" sub-type="3" width-style="260" @change="handleCascaderChange($event)"></my-cascader>
+            <my-cascader ref="selectorCollege" :props="{ checkStrictly: true }" :sel-value="form.classData" type="1" sub-type="3" width-style="260" @change="handleCascaderChange($event)"></my-cascader>
           </el-form-item>
           <el-form-item  :label="$t('分值')" prop="score">
             <el-input v-model="form.score" class="width-260"></el-input>
@@ -208,6 +213,7 @@
         this.visibleConfim = false;
       },
       handleCascaderChange(data){
+        console.log(data);
         this.form.classData = data;
       },
       cancelDialog(){

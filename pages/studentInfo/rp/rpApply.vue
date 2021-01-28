@@ -19,7 +19,7 @@
                     <div class="rpStatic-top-item color-muted">
                       <div class="title">
                         {{$t("学生人数")}}:
-                        <el-tooltip class="item" effect="dark" :content="$t('同一人建立多次算一次，处罚多次酸1次，既有奖励和处罚各算一次')" placement="top-start">
+                        <el-tooltip class="item" effect="dark" :content="$t('同一人奖励多次算一次，处罚多次算1次，既有奖励和处罚，分别各算一次')" placement="top-start">
                           <i class="fa fa-info-circle"></i>
                         </el-tooltip>
                       </div>
@@ -250,8 +250,11 @@
             <div><span class="color-danger font-size-12">{{errorStudent}}</span></div>
           </el-form-item>
           <el-form-item :label="$t('附件')">
-            <img v-if="form.file != ''" :src="form.file" class="rp-img pull-left"/>
-            <upload-square class="pull-left margin-left-10 margin-top-5" :action="uploadFileAction" max-size="8" :data="{path: 'reFile'}" accept=".png,.jpg,.jpeg" @success="uploadSuccess">
+            <div v-if="form.file != ''" class="pull-left" style="position: relative">
+              <i class="fa fa-close" style="position: absolute; right: -5px; top: -5px;" @click="deleteImg"></i>
+              <img :src="form.file" class="rp-img"/>
+            </div>
+            <upload-square class="pull-left margin-left-10 margin-top-5" :limit="9999" :action="uploadFileAction" max-size="8" :data="{path: 'reFile'}" accept=".png,.jpg,.jpeg" @success="uploadSuccess">
               <el-button size="small" type="primary">{{$t("点击上传")}}</el-button>
             </upload-square>
             <span class="pull-left color-danger font-size-12 margin-left-10 margin-top-5">{{$t("文件不超过8M")}}</span>
@@ -654,6 +657,9 @@
       },
       uploadError(res, file){
         MessageError(res.data.desc);
+      },
+      deleteImg(){
+        this.form.file = "";
       }
     }
   }

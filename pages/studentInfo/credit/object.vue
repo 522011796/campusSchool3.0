@@ -44,6 +44,11 @@
           </el-table-column>
           <el-table-column
             align="center"
+            prop="quality_score"
+            :label="$t('分值')">
+          </el-table-column>
+          <el-table-column
+            align="center"
             fixed="right"
             label="操作"
             width="120">
