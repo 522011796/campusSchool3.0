@@ -451,4 +451,9 @@ export const common = {
   student_info_warning_detail_list: '/proxy/user/masterTeacher/userinfo/get',//学生报警
   student_info_warning_detail_map_list: '/proxy/user/alarm/track',//学生报警
 
+  detail_news_search: '/proxy/school/school/news/search',//查询新闻详细
+  detail_circle_search: '/proxy/user/message/info',//查询公告详细
+  detail_circle_search_reply: '/proxy/user/message/comment/page',//查询公告详细--回复
+  detail_info_search: '/proxy/school/school/information/detail',//查询资讯详细
+
 };

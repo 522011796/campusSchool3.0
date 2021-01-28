@@ -29,7 +29,7 @@
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                 <div class="text-center">{{scope.row.title ? scope.row.title : '--'}}</div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  {{scope.row.title ? scope.row.title : '--'}}
+                  <label class="color-grand"@click="detailMsg(scope.row)">{{scope.row.title ? scope.row.title : '--'}}</label>
                 </div>
               </el-popover>
             </template>
@@ -105,6 +105,20 @@
       </div>
     </drawer-layout-right>
 
+    <!--消息中心使用的右侧层-->
+    <drawer-layout-right @changeDrawer="closeDrawerDialog" :visible="drawerViewVisible" size="550px" :title="$t('消息详细')" @right-close="cancelDrawDialog">
+      <div slot="content">
+        <div class="text-center font-size-18" style="font-weight: bold">
+          <my-head-img v-if="noticeContentDetail.thumbnail" :head-img="noticeContentDetail.thumbnail" style="display: inline-block;position: relative; top: 8px;"></my-head-img>
+          <span>{{noticeContentDetail ? noticeContentDetail.title : ''}}</span>
+        </div>
+        <div class="line-height"></div>
+        <div class="ql-editor" v-html="noticeContentDetail ? noticeContentDetail.content : ''">
+
+        </div>
+      </div>
+    </drawer-layout-right>
+
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" content="确认需要删除该信息？" :detail="subTitle" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
 
   </div>
@@ -135,7 +149,9 @@
         dialogLoading: false,
         loading: false,
         drawerLoading: false,
+        drawerViewVisible: false,
         subTitle: '',
+        noticeContentDetail: '',
         uploadFile: common.upload_file,
         uploadResult: {},
         uploadProcess: '',
@@ -220,6 +236,7 @@
           this.$refs['form'].resetFields();
         }
         this.drawerVisible = event;
+        this.drawerViewVisible = event;
       },
       handleCloseDrawer(){
         this.form = {
@@ -316,6 +333,18 @@
       },
       closeImg(){
         this.form.thumnbnail = "";
+      },
+      detailMsg(row){
+        let url = common.detail_news_search;
+        let params = {
+          newsId: row.id
+        };
+        this.$axios.get(url, {params: params}).then(res => {
+          if (res.data.data){
+            this.noticeContentDetail = res.data.data;
+          }
+        });
+        this.drawerViewVisible = true;
       }
     }
   }

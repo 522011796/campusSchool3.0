@@ -821,3 +821,11 @@ export function secondsFormat(min) {
     return '--';
   }
 }
+
+export function decodeUTF8(str){
+  if(str){
+    return decodeURIComponent(str);
+  }else {
+    return '';
+  }
+}

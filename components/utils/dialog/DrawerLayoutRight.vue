@@ -27,7 +27,7 @@
         </el-row>
       </div>
 
-      <div class="drawer-normal-body" :style="hideFooter == false ? drawHeight : ''">
+      <div class="drawer-normal-body" :style="hideFooter == false ? drawHeight : drawHeight2">
         <slot name="content"></slot>
       </div>
 

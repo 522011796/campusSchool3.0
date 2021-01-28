@@ -56,6 +56,15 @@
           </el-table-column>
           <el-table-column
             align="center"
+            prop="sender_name"
+            :label="$t('回复消息')">
+
+            <template slot-scope="scope">
+              <label class="color-grand" @click="detailMsg(scope.row)">{{$t('共')}}{{scope.row.comment_total}}{{$t('条')}}</label>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
             prop="department_no"
             :label="$t('发布时间')">
             <template slot-scope="scope">
@@ -123,6 +132,38 @@
       </div>
     </drawer-layout-right>
 
+    <!--消息中心使用的右侧层-->
+    <drawer-layout-right :hide-footer="true" @changeDrawer="closeDrawerDialog" :visible="drawerViewVisible" size="550px" :title="$t('消息详细')" @right-close="cancelDrawDialog">
+      <div slot="content">
+        <div class="text-center font-size-18" style="font-weight: bold">
+          <span>{{noticeContentDetail ? noticeContentDetail.message.title : ''}}</span>
+        </div>
+        <div class="line-height"></div>
+        <div class="ql-editor" v-html="noticeContentDetail ? noticeContentDetail.message.content : ''">
+        </div>
+        <div class="font-size-12 color-muted padding-lr-10">
+          <span>{{$t("全部")}}</span>
+          <span>{{noticeContentDetailData.length}}</span>
+          <span>{{$t("条评论")}}</span>
+        </div>
+        <div class="line-height"></div>
+        <div class="reply-detail-list margin-top-10">
+          <ul>
+            <li v-for="(item, index) in noticeContentDetailData" :key="index">
+              <div>
+                <i class="fa fa-user-circle font-size-12 margin-right-5"></i>
+                <span class="color-muted font-size-12">{{item.com_real_name}}</span>
+              </div>
+              <div class="color-muted margin-top-5">
+                {{decodeUTF8Info(item.comment)}}
+              </div>
+              <div class="line-height"></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </drawer-layout-right>
+
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" content="确认需要删除该信息？" :detail="subTitle" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
 
   </div>
@@ -138,7 +179,7 @@
   import DrawerRight from "../../components/utils/dialog/DrawerRight";
   import DrawerLayoutRight from "../../components/utils/dialog/DrawerLayoutRight";
   import {common} from "../../utils/api/url";
-  import {MessageSuccess, MessageError, MessageWarning} from "../../utils/utils";
+  import {MessageSuccess, MessageError, MessageWarning, decodeUTF8} from "../../utils/utils";
   import newsValidater from "../../utils/validater/newsValidater";
   import MyRadio from "../../components/MyRadio";
   import MyCheck from "../../components/MyCheck";
@@ -154,7 +195,10 @@
         dialogLoading: false,
         loading: false,
         drawerLoading: false,
+        drawerViewVisible: false,
         subTitle: '',
+        noticeContentDetail: '',
+        noticeContentDetailData: [],
         uploadFile: common.upload_file,
         uploadResult: {},
         uploadProcess: '',
@@ -196,6 +240,17 @@
             this.total = res.data.data.totalCount;
             this.num = res.data.data.num;
             this.page = res.data.data.currentPage;
+          }
+        });
+      },
+      initDetail(row){
+        let params = {
+          msgId: row.id,
+          needComment: true
+        };
+        this.$axios.get(common.detail_circle_search, {params: params}).then(res => {
+          if (res.data.data){
+            this.noticeContentDetail = res.data.data;
           }
         });
       },
@@ -244,6 +299,7 @@
           this.$refs['form'].resetFields();
         }
         this.drawerVisible = event;
+        this.drawerViewVisible = event;
       },
       handleCloseDrawer(){
         this.form = {
@@ -353,6 +409,9 @@
       closeImg(){
         this.form.thumnbnail = "";
       },
+      decodeUTF8Info(val){
+        return decodeUTF8(val);
+      },
       changeReceipt(event, data){
         this.form.receipt = data;
       },
@@ -361,6 +420,23 @@
       },
       handleChangeStuCheck(data){
         this.checkModelStucher = data;
+      },
+      detailMsg(row){
+        let url = common.detail_circle_search_reply;
+        let params = {
+          page: 1,
+          num: 999,
+          msgId: row.id,
+          userId: this.loginUserId
+        };
+
+        this.$axios.get(url, {params: params}).then(res => {
+          if (res.data.data){
+            this.noticeContentDetailData = res.data.data.list;
+          }
+        });
+        this.initDetail(row);
+        this.drawerViewVisible = true;
       }
     }
   }
@@ -373,5 +449,12 @@
   .news-img{
     height: 50px;
     width: 50px;
+  }
+  .reply-detail-list ul{
+    list-style: none;
+  }
+  .reply-detail-list ul li{
+    padding: 0px 10px;
+    font-size: 12px;
   }
 </style>
