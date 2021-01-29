@@ -970,7 +970,7 @@
             this.userInfoRul = url;
             setTimeout(() => {
               this.showIframe = true;
-            }, 1000);
+            }, 2000);
           }
         });
       },
