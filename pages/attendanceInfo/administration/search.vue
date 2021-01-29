@@ -13,14 +13,22 @@
         <div class="layout-right-tab">
           <el-row>
             <el-col :span="24">
-              <my-search-of-date size="small" :show-week="false" :show-term="false" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType">
+              <!--<my-search-of-date size="small" :show-week="false" :show-term="false" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType">
                 <span slot="opr" class="layout-inline">
                   <my-select :sel-value="searchAttendType" class="layout-item" :clearable="false" size="small" width-style="150" :options="filterAttendTypes" @change="handleChange"></my-select>
                 </span>
                 <span slot="other">
                   <el-input size="small" class="width-150" v-model="searchKey" :clearable="true" :placeholder="$t('姓名/工号')"></el-input>
                 </span>
-              </my-search-of-date>
+              </my-search-of-date>-->
+              <my-search-of-date-group size="small" :show-week="false" :show-term="false" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType">
+                <span slot="opr" class="layout-inline">
+                  <my-select :sel-value="searchAttendType" class="layout-item" :clearable="false" size="small" width-style="150" :options="filterAttendTypes" @change="handleChange"></my-select>
+                </span>
+                <span slot="other">
+                  <el-input size="small" class="width-150" v-model="searchKey" :clearable="true" :placeholder="$t('姓名/工号')"></el-input>
+                </span>
+              </my-search-of-date-group>
             </el-col>
           </el-row>
         </div>

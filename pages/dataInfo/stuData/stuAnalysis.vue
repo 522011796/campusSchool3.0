@@ -107,7 +107,8 @@
             </span>
           </el-col>
           <el-col :span="22">
-            <my-search-of-date ref="searchDate" size="small" :show-day="showType == 1 ? true : false" :show-year="false" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType"></my-search-of-date>
+            <!--<my-search-of-date ref="searchDate" size="small" :show-day="showType == 1 ? true : false" :show-year="false" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType"></my-search-of-date>-->
+            <my-search-of-date-group ref="searchDate" size="small" :show-day="showType == 1 ? true : false" :show-year="false" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType"></my-search-of-date-group>
           </el-col>
         </el-row>
       </div>

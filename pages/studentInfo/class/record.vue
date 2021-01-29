@@ -4,12 +4,18 @@
       <template slot="tag">检查记录</template>
 
       <div slot="tab">
-        <my-search-of-date size="small" :show-year="false" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType">
+        <!--<my-search-of-date size="small" :show-year="false" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType">
           <span slot="other" class="layout-inline">
             <my-select size="small" :sel-value="checkStatus" :options="filterCheckStatus" :clearable="true" class="layout-item width-150" @change="handleSelect"></my-select>
             <el-input size="small" :placeholder="$t('班级名称')" :clearable="true" v-model="searchKey" class="layout-item width-150"></el-input>
           </span>
-        </my-search-of-date>
+        </my-search-of-date>-->
+        <my-search-of-date-group size="small" :show-year="false" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType">
+          <span slot="other" class="layout-inline">
+            <my-select size="small" :sel-value="checkStatus" :options="filterCheckStatus" :clearable="true" class="layout-item width-150" @change="handleSelect"></my-select>
+            <el-input size="small" :placeholder="$t('班级名称')" :clearable="true" v-model="searchKey" class="layout-item width-150"></el-input>
+          </span>
+        </my-search-of-date-group>
       </div>
 
       <div slot="content">

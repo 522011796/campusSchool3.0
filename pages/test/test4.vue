@@ -3,15 +3,19 @@
     <div class="margin-top-5">
       <tab-group-button size="small" :options="options" @click="handleClickTab"></tab-group-button>
     </div>
+    <div class="margin-top-5">
+      <my-search-of-date-group size="medium"></my-search-of-date-group>
+    </div>
   </div>
 </template>
 
 <script>
   import TabGroupButton from "../../components/utils/button/TabGroupButton";
+  import MySearchOfDateGroup from "../../components/search/MySearchOfDateGroup";
   export default {
     layout: 'defaultFullScreen',
     name: 'test4',
-    components: {TabGroupButton},
+    components: {TabGroupButton,MySearchOfDateGroup},
     data(){
       return {
         options: [

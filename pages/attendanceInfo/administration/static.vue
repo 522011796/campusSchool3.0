@@ -12,9 +12,10 @@
 
         <div slot="right">
           <div>
-            <my-search-of-date size="small" :show-year="true" :show-term="false" :show-week="false" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType">
+            <!--<my-search-of-date size="small" :show-year="true" :show-term="false" :show-week="false" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType">
 
-            </my-search-of-date>
+            </my-search-of-date>-->
+            <my-search-of-date-group size="small" :show-year="true" :show-term="false" :show-week="false" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType"></my-search-of-date-group>
           </div>
           <div class="margin-top-10">
             <div>

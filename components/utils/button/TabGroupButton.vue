@@ -3,6 +3,7 @@
     <div class="btn-group-item-active" :style="[transformBtnGroup,setActiveColor]"></div>
     <div class="btn-group-item">
       <div class="btn-group-item-default pull-left" v-for="(item, index) in options" :class="isActive == index ? 'is-active' : ''" :key="index" @click="handelChange($event , item, index)">{{item.label}}</div>
+      <div class="moon-clearfix"></div>
     </div>
   </div>
 </template>
@@ -114,7 +115,6 @@
     vertical-align: middle;
     white-space: nowrap;
     transition: transform .3s;
-    float: left;
     z-index: 2;
   }
   .btn-group-item{

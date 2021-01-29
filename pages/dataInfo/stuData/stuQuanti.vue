@@ -12,14 +12,22 @@
 
         <div slot="right">
           <div>
-            <my-search-of-date size="small" :show-year="false" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType">
+            <!--<my-search-of-date size="small" :show-year="false" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType">
               <span slot="opr">
                 <el-button type="warning" size="small" @click="addInfo">
                   <i class="fa fa-cog"></i>
                   {{$t("设置")}}
                 </el-button>
               </span>
-            </my-search-of-date>
+            </my-search-of-date>-->
+            <my-search-of-date-group size="small" :show-year="false" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType">
+              <span slot="opr">
+                <el-button type="warning" size="small" @click="addInfo">
+                  <i class="fa fa-cog"></i>
+                  {{$t("设置")}}
+                </el-button>
+              </span>
+            </my-search-of-date-group>
           </div>
           <div class="margin-top-10">
             <div>

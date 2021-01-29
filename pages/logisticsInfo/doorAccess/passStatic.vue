@@ -16,12 +16,18 @@
 
       <div slot="right">
         <div>
-          <my-search-of-date size="small" :show-year="true" :show-term="false" :show-week="false" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType">
+          <!--<my-search-of-date size="small" :show-year="true" :show-term="false" :show-week="false" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType">
             <span slot="other">
               <my-select class="layout-item" size="small" width-style="100" :sel-value="searchUserType" :options="filterUserTypes" @change="handleChangeUserType"></my-select>
               <my-cascader class="layout-item" ref="SelectorDoorAccess" size="small" width-style="160" :clearable="true" :sel-value="searchCommDeptData" :type="selType" :sub-type="selSubType" @change="_handleCascaderChange($event)"></my-cascader>
             </span>
-          </my-search-of-date>
+          </my-search-of-date>-->
+          <my-search-of-date-group size="small" :show-year="true" :show-term="false" :show-week="false" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType">
+            <span slot="other">
+              <my-select class="layout-item" size="small" width-style="100" :sel-value="searchUserType" :options="filterUserTypes" @change="handleChangeUserType"></my-select>
+              <my-cascader class="layout-item" ref="SelectorDoorAccess" size="small" width-style="160" :clearable="true" :sel-value="searchCommDeptData" :type="selType" :sub-type="selSubType" @change="_handleCascaderChange($event)"></my-cascader>
+            </span>
+          </my-search-of-date-group>
         </div>
         <div class="margin-top-10">
           <div>

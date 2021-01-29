@@ -13,11 +13,17 @@
         <div class="layout-top-tab margin-top-5">
           <el-row>
             <el-col :span="24">
-              <my-search-of-date size="small" :show-year="false" :show-search-btn="true" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType">
+              <!--<my-search-of-date size="small" :show-year="false" :show-search-btn="true" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType">
                 <span slot="other">
                   <el-input size="small" :placeholder="$t('姓名/学号')" :clearable="true" v-model="searchKey" class="layout-item width-150"></el-input>
                 </span>
-              </my-search-of-date>
+              </my-search-of-date>-->
+
+              <my-search-of-date-group size="small" :show-year="false" :show-search-btn="true" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType">
+                <span slot="other">
+                  <el-input size="small" :placeholder="$t('姓名/学号')" :clearable="true" v-model="searchKey" class="layout-item width-150"></el-input>
+                </span>
+              </my-search-of-date-group>
             </el-col>
           </el-row>
         </div>

@@ -2,13 +2,21 @@
   <div>
     <el-row>
       <el-col :span="8">
-        <el-button-group>
+        <!--<el-button-group>
           <el-button v-if="showDay" :size="size" :type="searchDateType == 1 ? 'primary' : 'default'" @click="handeleSearchDateType(1)">{{$t("日")}}</el-button>
           <el-button v-if="showWeek" :size="size" :type="searchDateType == 2 ? 'primary' : 'default'" @click="handeleSearchDateType(2)">{{$t("周")}}</el-button>
           <el-button :size="size" :type="searchDateType == 3 ? 'primary' : 'default'" @click="handeleSearchDateType(3)">{{$t("月")}}</el-button>
           <el-button v-if="showYear" :size="size" :type="searchDateType == 4 ? 'primary' : 'default'" @click="handeleSearchDateType(4)">{{$t("年")}}</el-button>
           <el-button v-if="showTerm" :size="size" :type="searchDateType == 5 ? 'primary' : 'default'" @click="handeleSearchDateType(5)">{{$t("学期")}}</el-button>
-        </el-button-group>
+        </el-button-group>-->
+        <div class="btn-date-group-block select-none" :class="setClass" :style="setBgColor">
+          <div class="btn-date-group-item-active" :style="[transformBtnGroup,setActiveColor]"></div>
+          <div class="btn-date-group-item">
+            <div class="btn-date-group-item-default pull-left" v-for="(item, index) in options" :class="isActive == index ? 'is-date-active' : ''" :key="index" @click="handeleSearchDateType($event , item, index)">{{item.label}}</div>
+            <div class="moon-clearfix"></div>
+          </div>
+        </div>
+
         <slot name="opr"></slot>
       </el-col>
 
@@ -100,19 +108,36 @@
         default: false,
         type: Boolean
       },
-      options: {
-        default: function () {
-          return [];
-        },
-        type: Array
-      },
       showSearchBtn: {
         default: true,
         type: Boolean
+      },
+      bgColor: {
+        default: '#409EFF',
+        type: String
+      },
+      activeColor: {
+        default: '#FFFFFF',
+        type: String
       }
     },
     computed: {
-
+      setClass(){
+        return [
+          {
+            ['tab-date-group-button-medium']: !this.size,
+            [`tab-date-group-button-${this.size}`]: !!this.size,
+          }
+        ]
+      },
+      setBgColor(){
+        this.bgGroupColor.background = this.bgColor;
+        return this.bgGroupColor;
+      },
+      setActiveColor(){
+        this.activeGroupColor.background = this.activeColor;
+        return this.activeGroupColor;
+      }
     },
     mounted() {
       this.showIcon = this.iconStyle !== '';
@@ -132,8 +157,51 @@
         monthList: [],
         yearList: [],
         nowDataObj: {},
-        showSearch: true
+        showSearch: true,
+        selVal: 1,
+        widthAll: 0,
+        isActive: '',
+        transformBtnGroup: {
+          transform: 'translateX(0px)',
+          transition: '0.5s',
+          width: '',
+        },
+        activeGroupColor:{
+          background: "#FFFFFF"
+        },
+        bgGroupColor:{
+          background: "#409EFF"
+        },
+        options: [
+          {
+            label: '日',
+            value: '1'
+          },
+          {
+            label: '周',
+            value: '2'
+          },
+          {
+            label: '月',
+            value: '3'
+          },
+          {
+            label: '年',
+            value: '4'
+          },
+          {
+            label: '学期',
+            value: '5'
+          }
+        ]
       }
+    },
+    mounted() {
+      let widthAll = 0;
+      let translateX = widthAll + 10 + "px";
+      let groupItem = document.querySelectorAll(".btn-date-group-item-default");
+      this.transformBtnGroup.width = groupItem[0].clientWidth + "px";
+      this.transformBtnGroup.transform = 'translateX(' + translateX + ')';
     },
     created() {
       this.initSearchTopDateInfo();
@@ -146,6 +214,21 @@
         this.initMonth();
         this.initYear();
         this.initWeek();
+        this.initDateOptions();
+      },
+      initDateOptions(){
+        let arr = [];
+        for (let i = 0; i < this.options.length; i++){
+          if (this.showDay == false && this.options[i].value == 1){
+            this.options.splice(i, 1);
+          }else if (this.showWeek == false && this.options[i].value == 2){
+            this.options.splice(i, 1);
+          }else if (this.showYear == false && this.options[i].value == 4){
+            this.options.splice(i, 1);
+          }else if (this.showTerm == false && this.options[i].value == 5){
+            this.options.splice(i, 1);
+          }
+        }
       },
       initWeek(){
         let arr = [];
@@ -226,10 +309,11 @@
       selectChange(data) {
         this.selectValue = data;
       },
-      handeleSearchDateType(type){
-        this.searchDateType = type;
+      handeleSearchDateType(data , item, index){
+        this.searchDateType = item.value;
         this.handleClick();
-        this.$emit('type-click', type);
+        this.handelChange(data, item, index);
+        this.$emit('type-click', item.value);
       },
       handleSearchChangeTime(data){
         this.searchCurrentDatteTime = data;
@@ -246,7 +330,108 @@
             this.searchCurrentYearData = data;
             break;
         }
+      },
+      handelChange(data, item, index) {
+        let padding = 10;
+        let widthAll = 0;
+        this.selVal = item;
+        let groupItem = document.querySelectorAll(".btn-date-group-item-default");
+        for (let i = 0; i < groupItem.length; i++) {
+          if (i < index) {
+            widthAll += groupItem[i].clientWidth;
+          }
+          if (index == i) {
+            this.transformBtnGroup.width = groupItem[i].clientWidth + "px";
+            console.log(groupItem[i].clientWidth);
+            break;
+          }
+        }
+        let translateX = widthAll + 10 + "px";
+        this.transformBtnGroup.transform = 'translateX(' + translateX + ')';
+        this.isActive = index;
       }
     }
   }
 </script>
+
+<style scoped>
+  .btn-date-group-block{
+    padding: 10px 5px;
+    position:relative;
+    border-radius: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    white-space: nowrap;
+    transition: transform .3s;
+    z-index: 2;
+    line-height: 15px;
+  }
+  .btn-date-group-item{
+    position: relative;
+  }
+  .btn-date-group-item-default{
+    padding: 0px 10px;
+    border-radius: 5px;
+    display: inline-block;
+    cursor: default;
+    color: #FFFFFF;
+  }
+  /*.btn-date-group-item-active{
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    height: 30px;
+    transform: translateX(0px);
+    border-radius: 5px;
+  }*/
+  .is-date-active{
+    color: #595959;
+  }
+  .tab-date-group-button-medium{
+    padding: 10px 10px;
+    font-size: 12px;
+  }
+  .tab-date-group-button-small{
+    padding: 9px 10px;
+    font-size: 12px;
+  }
+  .tab-date-group-button-mini{
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+  .tab-date-group-button-large{
+    padding: 14px 10px;
+  }
+  .tab-date-group-button-medium .btn-date-group-item-active{
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    height: 24px;
+    transform: translateX(0px);
+    border-radius: 5px;
+  }
+  .tab-date-group-button-small .btn-date-group-item-active{
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    height: 22px;
+    transform: translateX(0px);
+    border-radius: 5px;
+  }
+  .tab-date-group-button-mini .btn-date-group-item-active{
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    height: 18px;
+    transform: translateX(0px);
+    border-radius: 5px;
+  }
+  .tab-date-group-button-large .btn-date-group-item-active{
+    position: absolute;
+    top: 8px;
+    left: 0px;
+    height: 28px;
+    transform: translateX(0px);
+    border-radius: 5px;
+  }
+</style>
