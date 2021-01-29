@@ -98,7 +98,6 @@
           }
           if (index == i) {
             this.transformBtnGroup.width = groupItem[i].clientWidth + "px";
-            console.log(groupItem[i].clientWidth);
             break;
           }
         }

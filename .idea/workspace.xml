@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/utils/button/DormAttendStatusButtonGroup.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/button/AuditStatusButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/button/AuditStatusButton.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/utils/button/TabGroupButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/button/TabGroupButton.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/search.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/search.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/dataInfo/dataView/myScreen.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dataInfo/dataView/myScreen.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/class/classChecked.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/class/classChecked.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/homework/homework.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/homework/homework.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,14 +103,7 @@
       <workItem from="1608625084513" duration="122942000" />
       <workItem from="1609379556549" duration="104145000" />
       <workItem from="1610156986760" duration="338962000" />
-      <workItem from="1611544756423" duration="97289000" />
-    </task>
-    <task id="LOCAL-00184" summary="1、修改框架和组件样式、细节bug等&#10;2、归寝考勤设置接口对接完成">
-      <created>1611055817572</created>
-      <option name="number" value="00184" />
-      <option name="presentableId" value="LOCAL-00184" />
-      <option name="project" value="LOCAL" />
-      <updated>1611055817574</updated>
+      <workItem from="1611544756423" duration="97450000" />
     </task>
     <task id="LOCAL-00185" summary="1、修改框架和组件样式、细节bug等&#10;2、归寝考勤设置接口对接完成">
       <created>1611058044155</created>
@@ -456,14 +441,20 @@
       <option name="project" value="LOCAL" />
       <updated>1611891876201</updated>
     </task>
-    <option name="localTasksCounter" value="233" />
+    <task id="LOCAL-00233" summary="1、修改框架和组件样式、细节bug等&#10;2、按钮组带动画版本完成">
+      <created>1611900242579</created>
+      <option name="number" value="00233" />
+      <option name="presentableId" value="LOCAL-00233" />
+      <option name="project" value="LOCAL" />
+      <updated>1611900242579</updated>
+    </task>
+    <option name="localTasksCounter" value="234" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、任课安排接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、教学排课接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、登录接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、首页接口对接完成" />
@@ -488,18 +479,19 @@
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、各种问题修改完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、人脸识别审批中心完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、时间搜索按钮组带动画版本完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、时间搜索按钮组带动画版本完成" />
+    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、按钮组带动画版本完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、按钮组带动画版本完成" />
   </component>
   <component name="WindowStateProjectService">
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605755081482">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1605755081482" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1611891874613">
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1611900240888">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1611891874613" />
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1611900240888" />
     <state x="100" y="124" width="1240" height="600" key="DiffContextDialog" timestamp="1611295606319">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -529,11 +521,11 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="221" y="66" key="SettingsEditor/0.25.1440.798@0.25.1440.798" timestamp="1610450476227" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1611891878313">
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1611900244284">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1611891878313" />
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1611900244284" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1611203372469">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
