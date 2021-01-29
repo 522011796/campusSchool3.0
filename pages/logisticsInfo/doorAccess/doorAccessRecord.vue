@@ -17,9 +17,11 @@
       <div slot="right">
         <div class="layout-top-tab margin-top-5">
           <el-row>
-            <el-col :span="12" class="layout-inline">
-              <my-select class="layout-item" size="small" :sel-value="searchUserType" :options="filterUserTypes" @change="handleChangeUserType"></my-select>
-              <my-cascader class="layout-item" ref="SelectorDoorAccess" size="small" width-style="160" :clearable="true" :sel-value="searchCommDeptData" :type="selType" :sub-type="selSubType" @change="_handleCascaderChange($event)"></my-cascader>
+            <el-col :span="12">
+              <div class="layout-inline">
+                <my-select class="layout-item" size="small" :sel-value="searchUserType" :options="filterUserTypes" @change="handleChangeUserType"></my-select>
+                <my-cascader class="layout-item" ref="SelectorDoorAccess" size="small" width-style="160" :clearable="true" :sel-value="searchCommDeptData" :type="selType" :sub-type="selSubType" @change="_handleCascaderChange($event)"></my-cascader>
+              </div>
             </el-col>
             <el-col :span="12" class="text-right">
               <my-date-picker :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChange" style="position: relative; top: 1px;"></my-date-picker>

@@ -12,11 +12,11 @@
       <div slot="right">
         <div class="layout-right-tab">
           <el-row>
-            <el-col :span="6">
-              <!--<el-button size="small" type="primary"  icon="el-icon-upload" @click="importInfo($event)">{{$t("导入")}}</el-button>
-              <el-button size="small" type="warning"  icon="el-icon-download" @click="exportInfo($event)">{{$t("导出")}}</el-button>-->
-            </el-col>
-            <el-col :span="18">
+            <!--<el-col :span="6">
+              &lt;!&ndash;<el-button size="small" type="primary"  icon="el-icon-upload" @click="importInfo($event)">{{$t("导入")}}</el-button>
+              <el-button size="small" type="warning"  icon="el-icon-download" @click="exportInfo($event)">{{$t("导出")}}</el-button>&ndash;&gt;
+            </el-col>-->
+            <el-col :span="24">
               <div class="text-right layout-inline">
                 <my-select width-style="100" :clearable="true" :sel-value="searchStatus" :options="studentTeachStatusInfo(null, 'get')" :placeholder="$t('学籍状态')" class="layout-item" size="small" @change="handleSelect($event, 1)"></my-select>
                 <my-select width-style="100" :clearable="true" :sel-value="searchTeach" :options="studyTypeInfo(null, 'get')" :placeholder="$t('就读形式')" class="layout-item" size="small" @change="handleSelect($event, 2)"></my-select>
