@@ -13,14 +13,15 @@
         <div class="layout-right-tab">
           <el-row>
             <el-col :span="14">
-              <el-button-group>
+              <!--<el-button-group>
                 <el-button size="small" :type="searchType == -1 ? 'primary' : 'default'" @click="changeStatus(-1)">{{$t("全部")}}</el-button>
                 <el-button size="small" :type="searchType == 1 ? 'primary' : 'default'" @click="changeStatus(1)">{{$t("已归寝")}}</el-button>
                 <el-button size="small" :type="searchType == 3 ? 'primary' : 'default'" @click="changeStatus(3)">{{$t("晚归")}}</el-button>
                 <el-button size="small" :type="searchType == 0 ? 'primary' : 'default'" @click="changeStatus(0)">{{$t("未归")}}</el-button>
                 <el-button size="small" :type="searchType == 4 ? 'primary' : 'default'" @click="changeStatus(4)">{{$t("超长未归")}}</el-button>
                 <el-button size="small" :type="searchType == 2 ? 'primary' : 'default'" @click="changeStatus(2)">{{$t("请假")}}</el-button>
-              </el-button-group>
+              </el-button-group>-->
+              <dorm-attend-status-button-group size="small" @click="changeStatus"></dorm-attend-status-button-group>
             </el-col>
             <el-col :span="10" class="text-right">
               <my-date-picker :clearable="true" :sel-value="searchDate" size="small" width-style="130" @change="handleTime"></my-date-picker>
@@ -140,12 +141,13 @@
   import MyDatePicker from "../../../components/MyDatePicker";
   import MyPagination from "../../../components/MyPagination";
   import MyDormAttenStatus from "../../../components/utils/status/MyDormAttenStatus";
+  import DormAttendStatusButtonGroup from "../../../components/utils/button/DormAttendStatusButtonGroup";
   import mixins from "../../../utils/mixins";
   import {common} from "../../../utils/api/url";
   import {secondsFormat} from "../../../utils/utils";
   export default {
     mixins: [mixins],
-    components: {MyElTree,MyDatePicker,MyPagination,LayoutLr,MyDormAttenStatus},
+    components: {MyElTree,MyDatePicker,MyPagination,LayoutLr,MyDormAttenStatus,DormAttendStatusButtonGroup},
     data(){
       return {
         tableData: [],

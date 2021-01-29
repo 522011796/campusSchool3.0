@@ -35,19 +35,27 @@
         options: [
           {
             label: '全部',
-            value: null
+            value: '-1'
           },
           {
-            label: '待审批',
-            value: '0'
+            label: '已归寝',
+            value: '1'
           },
           {
-            label: '已通过',
+            label: '晚归',
             value: '3'
           },
           {
-            label: '已驳回',
+            label: '未归',
+            value: '0'
+          },
+          {
+            label: '超长未归',
             value: '4'
+          },
+          {
+            label: '请假',
+            value: '2'
           }
         ]
       }

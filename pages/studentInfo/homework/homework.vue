@@ -14,7 +14,7 @@
           <div class="layout-right-tab">
             <el-row>
               <el-col :span="8">
-                <el-button-group>
+                <!--<el-button-group>
                   <el-button :type="checkedType == 1 ? 'primary' : 'default'" size="small" @click="checkTypeInfo(1)">
                     <span>{{$t("全部")}}</span>
                     |
@@ -30,7 +30,8 @@
                     |
                     <span>{{checkData.checkStatusFalse}}</span>
                   </el-button>
-                </el-button-group>
+                </el-button-group>-->
+                <tab-group-button size="small" :options='[{label:$t("全部"), value:"1", extra: checkData.checkStatusTotal},{label:$t("已检查"), value: "2", extra: checkData.checkStatusTrue},{label:$t("未检查"), value: "3", extra: checkData.checkStatusFalse}]' @click="checkTypeInfo"></tab-group-button>
               </el-col>
               <el-col :span="16" class="text-right">
                 <my-date-picker size="small" :sel-value="searchTime" @change="handleChangeTime($event,1)"></my-date-picker>
@@ -263,11 +264,12 @@ import LayoutLr from "../../../components/Layout/LayoutLr";
 import MyInputButton from "../../../components/search/MyInputButton";
 import MyDatePicker from "../../../components/MyDatePicker";
 import DrawerLayoutRight from "../../../components/utils/dialog/DrawerLayoutRight";
+import TabGroupButton from "../../../components/utils/button/TabGroupButton";
 import {common} from "../../../utils/api/url";
 import {dormTypeText, MessageError} from "../../../utils/utils";
 export default {
   mixins: [mixins],
-  components: {LayoutLr,MyInputButton,MyDatePicker,DrawerLayoutRight},
+  components: {LayoutLr,MyInputButton,MyDatePicker,DrawerLayoutRight,TabGroupButton},
   data(){
     return {
       pageStudent: 1,
@@ -408,7 +410,7 @@ export default {
       this.init();
     },
     checkTypeInfo(type){
-      this.checkedType = type;
+      this.checkedType = type.value;
       this.init();
     },
     sizeChange(event){

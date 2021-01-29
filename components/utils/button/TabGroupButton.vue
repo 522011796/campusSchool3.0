@@ -2,7 +2,9 @@
   <div class="btn-group-block select-none" :class="setClass" :style="setBgColor">
     <div class="btn-group-item-active" :style="[transformBtnGroup,setActiveColor]"></div>
     <div class="btn-group-item">
-      <div class="btn-group-item-default pull-left" v-for="(item, index) in options" :class="isActive == index ? 'is-active' : ''" :key="index" @click="handelChange($event , item, index)">{{item.label}}</div>
+      <div class="btn-group-item-default pull-left" v-for="(item, index) in options" :class="isActive == index ? 'is-active' : ''" :key="index" @click="handelChange($event , item, index)">
+        {{item.label}}<template v-if="item.extra || item.extra == 0"> | {{item.extra}}</template>
+      </div>
       <div class="moon-clearfix"></div>
     </div>
   </div>
@@ -72,10 +74,14 @@
     },
     mounted() {
       let widthAll = 0;
-      let translateX = widthAll + 5 + "px";
+      let translateX = widthAll + 8 + "px";
       let groupItem = document.querySelectorAll(".btn-group-item-default");
-      this.transformBtnGroup.width = groupItem[0].clientWidth + "px";
-      this.transformBtnGroup.transform = 'translateX(' + translateX + ')';
+      /*this.transformBtnGroup.width = groupItem[0].clientWidth + "px";
+      this.transformBtnGroup.transform = 'translateX(' + translateX + ')';*/
+      setTimeout(() => {
+        this.transformBtnGroup.width = groupItem[0].clientWidth + "px";
+        this.transformBtnGroup.transform = 'translateX(' + translateX + ')';
+      },1000);
     },
     created() {
       //this.initConfig();
@@ -96,7 +102,7 @@
             break;
           }
         }
-        let translateX = widthAll + 5 + "px";
+        let translateX = widthAll + 8 + "px";
         this.transformBtnGroup.transform = 'translateX(' + translateX + ')';
         this.isActive = index;
 
@@ -108,7 +114,7 @@
 
 <style scoped>
   .btn-group-block{
-    padding: 10px 5px;
+    padding: 10px 8px;
     position:relative;
     border-radius: 5px;
     display: inline-block;
@@ -116,12 +122,13 @@
     white-space: nowrap;
     transition: transform .3s;
     z-index: 2;
+    line-height: 15px;
   }
   .btn-group-item{
     position: relative;
   }
   .btn-group-item-default{
-    padding: 0px 5px;
+    padding: 0px 8px;
     border-radius: 5px;
     display: inline-block;
     cursor: default;
@@ -139,25 +146,25 @@
     color: #595959;
   }
   .tab-group-button-medium{
-    padding: 12px 5px;
+    padding: 12px 8px;
     font-size: 12px;
   }
   .tab-group-button-small{
-    padding: 9px 5px;
+    padding: 9px 8px;
     font-size: 12px;
   }
   .tab-group-button-mini{
-    padding: 7px 5px;
+    padding: 7px 8px;
     font-size: 12px;
   }
   .tab-group-button-large{
-    padding: 14px 5px;
+    padding: 14px 8px;
   }
   .tab-group-button-medium .btn-group-item-active{
     position: absolute;
     top: 5px;
     left: 0px;
-    height: 30px;
+    height: 24px;
     transform: translateX(0px);
     border-radius: 5px;
   }
@@ -165,7 +172,7 @@
     position: absolute;
     top: 5px;
     left: 0px;
-    height: 25px;
+    height: 22px;
     transform: translateX(0px);
     border-radius: 5px;
   }
@@ -173,7 +180,7 @@
     position: absolute;
     top: 5px;
     left: 0px;
-    height: 22px;
+    height: 18px;
     transform: translateX(0px);
     border-radius: 5px;
   }
@@ -181,7 +188,7 @@
     position: absolute;
     top: 8px;
     left: 0px;
-    height: 34px;
+    height: 28px;
     transform: translateX(0px);
     border-radius: 5px;
   }

@@ -7,10 +7,11 @@
         <el-row>
           <el-col :span="24">
             <div class="text-right">
-              <el-button-group>
+              <!--<el-button-group>
                 <el-button size="small" :type="expire == '' ? 'primary' : 'default'" @click="handleChange('')">{{$t("全部")}}</el-button>
                 <el-button size="small" :type="expire == true ? 'primary' : 'default'" @click="handleChange(true)">{{$t("到期大屏")}}</el-button>
-              </el-button-group>
+              </el-button-group>-->
+              <tab-group-button size="small" :options='[{label:$t("全部"), value:""},{label:$t("到期大屏"), value: true}]' @click="handleChange"></tab-group-button>
               <my-input-button size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('大屏名称')" @click="search"></my-input-button>
             </div>
           </el-col>
@@ -147,9 +148,10 @@
   import DrawerLayoutRight from "../../../components/utils/dialog/DrawerLayoutRight";
   import screenManageValidater from "../../../utils/validater/screenManageValidater";
   import MyNormalDialog from "../../../components/utils/dialog/MyNormalDialog";
+  import TabGroupButton from "../../../components/utils/button/TabGroupButton";
   export default {
     mixins: [mixins, screenManageValidater],
-    components: {MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal,DrawerLayoutRight,MyNormalDialog},
+    components: {MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal,DrawerLayoutRight,MyNormalDialog,TabGroupButton},
     data(){
       return {
         pageStudent: 1,
@@ -306,7 +308,7 @@
       },
       handleChange(type){
         this.page = 1;
-        this.expire = type;
+        this.expire = type.value;
         this.init();
       },
       handleChangeEnable(data, row){
