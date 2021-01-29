@@ -102,7 +102,7 @@
       </div>
     </layout-tb>
 
-    <dialog-normal tabindex="0" :visible="modalVisible" :title="$t('项目设置')" @close="closeDialog" @right-close="cancelDialog">
+    <dialog-normal tabindex="0" :visible="modalVisible" :title="$t('检查人设置')" @close="closeDialog" @right-close="cancelDialog">
       <span tabindex="1"></span>
       <div class="margin-top-10">
         <el-form :model="formPer" :rules="rules" ref="formPer" label-width="100px">

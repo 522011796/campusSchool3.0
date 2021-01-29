@@ -142,7 +142,7 @@
         applyTimeBegin: '',
         applyTimeEnd: '',
         searchTime: '',
-        searchTopTime: this.$moment().subtract(1, 'days').format("YYYY-MM-DD"),
+        searchTopTime: this.$moment(new Date()).format("YYYY-MM-DD"),
         searchData: {},
         searchTimeDate: [],
         tableTypeData: [],
@@ -162,10 +162,10 @@
         let params = {
           page: this.page,
           num: this.num,
-          buildId: this.searchCollege,
+          /*buildId: this.searchCollege,
           floorNum: this.searchMajor,
           roomNo: this.searchKey,
-          termId: this.currentTermId,
+          termId: this.currentTermId,*/
           isRecord: true,
           checkType: 2,
           checkStatus: this.checkStatus
@@ -173,19 +173,19 @@
         //时间类型
         if (this.searchData.timeUnit == 1){
           params['busiTime'] = this.searchData.value;
-          params['chekcItervalType'] = 3;
+          params['checkIntervalType'] = 3;
         }else if (this.searchData.timeUnit == 2){
           params['weekNum'] = this.searchData.value;
-          params['chekcItervalType'] = 2;
+          params['checkIntervalType'] = 2;
         }else if (this.searchData.timeUnit == 3){
           params['year'] = this.searchData.value.split("-")[0];
           params['month'] = this.searchData.value.split("-")[1];
-          params['chekcItervalType'] = 4;
+          params['checkIntervalType'] = 4;
         }else if (this.searchData.timeUnit == 5){
-          params['chekcItervalType'] = 1;
+          params['checkIntervalType'] = 1;
         }else {
-          params['busiTime'] = this.$moment().subtract(1, 'days').format("YYYY-MM-DD");
-          params['chekcItervalType'] = 3;
+          params['busiTime'] = this.$moment(new Date()).format("YYYY-MM-DD");
+          params['checkIntervalType'] = 3;
         }
         this.$axios.get(common.housework_query_page, {params: params}).then(res => {
           if (res.data.data){

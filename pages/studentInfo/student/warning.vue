@@ -221,8 +221,8 @@
         let params = {
           page: this.page,
           num: this.num,
-          timeStart: (this.searchDate && this.searchDate.length > 0) ? (this.searchDate[0] + ' 00:00') : '',
-          timeEnd: (this.searchDate && this.searchDate.length > 0) ? (this.searchDate[1] + ' 23:59') : '',
+          timeStart: (this.searchDate && this.searchDate.length > 0) ? (this.searchDate[0] + ' 00:00:00') : '',
+          timeEnd: (this.searchDate && this.searchDate.length > 0) ? (this.searchDate[1] + ' 23:59:00') : '',
         };
         this.$axios.get(common.student_info_warning, {params: params}).then(res => {
           if (res.data.data){

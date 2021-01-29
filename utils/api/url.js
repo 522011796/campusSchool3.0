@@ -148,10 +148,10 @@ export const common = {
   housework_query_count: '/proxy/course/quantization/qtzt-query-count',//内务评比统计
   housework_query_info: '/proxy/course/quantization/qtzt-query-info',//内务评比公共区域
   housework_query_student_page: '/proxy/course/quantization/qtzt-user-query-page',//内务评比个人区域
-  housework_query_edit_info: 'proxy/course/quantization/qtzt-edit-status',//内务评比设置合格不合格
-  housework_query_edit_all_info: 'proxy/course/quantization/qtzt-all-priv-edit-status',//内务评比设置合格不合格--公共全部
-  housework_query_edit_private_info: 'proxy/course/quantization/qtzt-all-priv-edit-status',//内务评比设置合格不合格--个人全部
-  housework_query_save: 'proxy/course/quantization/qtzt-finish',//内务评比设置完成设置
+  housework_query_edit_info: '/proxy/course/quantization/qtzt-edit-status',//内务评比设置合格不合格
+  housework_query_edit_all_info: '/proxy/course/quantization/qtzt-all-pub-edit-status',//内务评比设置合格不合格--公共全部
+  housework_query_edit_private_info: '/proxy/course/quantization/qtzt-all-priv-edit-status',//内务评比设置合格不合格--个人全部
+  housework_query_save: '/proxy/course/quantization/qtzt-finish',//内务评比设置完成设置
   housework_query_setting: '/proxy/course/quantization/checkconf-query',//内务评比设置完成设置
   housework_query_person_change: '/proxy/course/quantization/qtzt-uncheck-query-page',//内务评比人员变更记录
   housework_query_check_item_page: '/proxy/course/quantization/checkitem-query-page',//内务评比项目列表

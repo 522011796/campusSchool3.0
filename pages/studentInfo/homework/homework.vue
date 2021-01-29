@@ -48,7 +48,7 @@
             </div>
             <el-row v-else :gutter="16">
               <el-col :span="6" v-for="(item, index) in tableData" :key="index" class="margin-bottom-20" @click.native="detailItem($event, item)">
-                <el-card :body-style="{padding: '10px'}" style="position: relative">
+                <el-card :body-style="{padding: '10px'}" style="position: relative; height: 145px">
                   <span v-if="item.checkStatus" class="title-tag bg-success">
                     {{$t("已检查")}}
                   </span>
@@ -73,15 +73,18 @@
                       <i class="fa fa-flag color-disabeld"></i>
                       <span class="color-muted">{{dormTypeInfo(item.roomType)}}</span>
                     </div>
+
                     <div class="font-size-12 margin-top-5">
                       <i class="fa fa-bookmark color-disabeld"></i>
-                      <span class="color-muted">{{item.checkItemMap.length}}{{$t("个项目")}}</span>
+                      <span class="color-muted">
+                        {{$t("公共区域项目")}}{{item.checkItemMap.length}}{{$t("个")}}
+                      </span>
                     </div>
                     <div class="font-size-12 margin-top-5">
                       <i class="fa fa-calendar-check-o color-disabeld"></i>
-                      <span class="color-muted" v-if="item.check_time">
+                      <span class="color-muted" v-if="item.checkTime">
                         <el-tag size="small" type="warning">
-                          {{$moment(item.check_time).format("YYYY-MM-DD HH:mm")}}
+                          {{$moment(item.checkTime).format("YYYY-MM-DD HH:mm")}}
                         </el-tag>
                       </span>
                       <span v-else>--</span>
@@ -149,8 +152,8 @@
           <div class="bg-f5f5f5 padding-tb-5 padding-lr-5 margin-top-10">
             <div class="color-success font-size-12">
               <span v-if="tableShareData.editStatus">
-                <el-button size="mini" :type="tableShareData.checkStatus == 1 ? 'success' : 'default'" class="font-size-12" style="cursor: default" @click="selAllItem(tableShareData, 1)">{{$t("合格")}}</el-button>
-                <el-button size="mini" :type="tableShareData.checkStatus == 2 ? 'success' : 'default'" class="font-size-12" style="cursor: default" @click="selAllItem(tableShareData, 2)">{{$t("不合格")}}</el-button>
+                <el-button size="mini" :type="checkShareStatus == 1 ? 'success' : 'default'" class="font-size-12" style="cursor: default" @click="selAllItem(tableShareData, 1)">{{$t("合格")}}</el-button>
+                <el-button size="mini" :type="checkShareStatus == 2 ? 'success' : 'default'" class="font-size-12" style="cursor: default" @click="selAllItem(tableShareData, 2)">{{$t("不合格")}}</el-button>
               </span>
               <span class="margin-left-10">
                 <label>
@@ -165,12 +168,21 @@
               <el-col :span="8" v-for="(item, index) in tableShareData.checkItemMap" :key="index">
                 <el-card class="margin-top-5" :body-style="{padding:'10px',height: '20px'}">
                   <div>
-                    <span class="color-grand checkitem-text moon-content-text-ellipsis-class">{{item.checkItem}}</span>
+                    <span class="">
+                      <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                        <div class="text-center">
+                          {{item.checkItem}}
+                        </div>
+                        <div slot="reference" class="color-grand checkitem-text moon-content-text-ellipsis-class">
+                          {{item.checkItem}}
+                        </div>
+                      </el-popover>
+                    </span>
                     <span class="pull-right">
                       <span v-if="tableShareData.editStatus == false" class="color-disabeld">{{$t("未打分")}}</span>
                       <template v-if="tableShareData.editStatus">
-                        <el-tag size="mini" :type="item.checkStatus == 1 ? 'success' : 'info'" class="font-size-12" style="cursor: default" @click="selItem(item ,1)">{{$t("合格")}}</el-tag>
-                        <el-tag size="mini" :type="item.checkStatus == 2 ? 'danger' : 'info'" class="font-size-12" style="cursor: default" @click="selItem(item, 2)">{{$t("不合格")}}</el-tag>
+                        <el-tag size="mini" :type="item.checkStatus == 1 ? 'success' : 'info'" class="font-size-12" style="cursor: default" @click="selItem(item ,1, 2)">{{$t("合格")}}</el-tag>
+                        <el-tag size="mini" :type="item.checkStatus == 2 ? 'danger' : 'info'" class="font-size-12" style="cursor: default" @click="selItem(item, 2, 2)">{{$t("不合格")}}</el-tag>
                       </template>
                     </span>
                   </div>
@@ -187,8 +199,8 @@
               <label class="homework-title-text color-warning">{{$t("个人区域")}}</label>
             </span>
             <span class="homework-title-text" v-if="tableShareData.editStatus">
-              <el-button size="mini" :type="tableShareData.checkStatus == 1 ? 'success' : 'default'" class="font-size-12" style="cursor: default" @click="selAllStudentItem(tableShareData, 1)">{{$t("合格")}}</el-button>
-              <el-button size="mini" :type="tableShareData.checkStatus == 2 ? 'success' : 'default'" class="font-size-12" style="cursor: default" @click="selAllStudentItem(tableShareData, 2)">{{$t("不合格")}}</el-button>
+              <el-button size="mini" :type="checkPriStatus == 1 ? 'success' : 'default'" class="font-size-12" style="cursor: default" @click="selAllStudentItem(tableShareData, 1)">{{$t("合格")}}</el-button>
+              <el-button size="mini" :type="checkPriStatus == 2 ? 'success' : 'default'" class="font-size-12" style="cursor: default" @click="selAllStudentItem(tableShareData, 2)">{{$t("不合格")}}</el-button>
             </span>
           </div>
 
@@ -211,22 +223,40 @@
                         <span class="color-grand" style="height: 25px;line-height: 25px">{{item.realName}}</span>
                       </div>
                       <div>
-                        <span class="checkitem-student-text moon-content-text-ellipsis-class color-muted font-size-12">{{item.className}}</span>
+                        <span class="">
+                          <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                            <div class="text-center">
+                              {{item.className}}
+                            </div>
+                            <div slot="reference" class="checkitem-student-text moon-content-text-ellipsis-class color-muted font-size-12">
+                              {{item.className}}
+                            </div>
+                          </el-popover>
+                        </span>
                       </div>
                     </div>
                   </div>
                   <div class="line-height"></div>
                   <div class="padding-lr-5">
                     <el-row :gutter="8">
-                      <el-col class="margin-bottom-10" :span="12" v-for="(itemChild, index) in item.checkItemMap" :key="index" v-if="index < 3">
+                      <el-col class="margin-bottom-10" :span="12" v-for="(itemChild, index) in item.checkItemMap" :key="index">
                         <el-card :body-style="{padding:'10px 5px',height: '20px'}">
                           <div>
-                            <span class="color-grand checkitem-text moon-content-text-ellipsis-class">{{itemChild.checkItem}}111111</span>
+                            <span class="">
+                              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                                <div class="text-center">
+                                  {{itemChild.checkItem}}
+                                </div>
+                                <div slot="reference" class="color-grand checkitem-text moon-content-text-ellipsis-class">
+                                  {{itemChild.checkItem}}
+                                </div>
+                              </el-popover>
+                            </span>
                             <span class="pull-right">
                               <label v-if="tableShareData.editStatus == false" class="color-disabeld">{{$t("未打分")}}</label>
                               <template v-if="tableShareData.editStatus">
-                                <el-tag size="mini" :type="itemChild.checkStatus == 1 ? 'success' : 'info'" class="font-size-12" style="cursor: default" @click="selItem(itemChild ,1)">{{$t("合格")}}</el-tag>
-                                <el-tag size="mini" :type="itemChild.checkStatus == 2 ? 'danger' : 'info'" class="font-size-12" style="cursor: default" @click="selItem(itemChild, 2)">{{$t("不合格")}}</el-tag>
+                                <el-tag size="mini" :type="itemChild.checkStatus == 1 ? 'success' : 'info'" class="font-size-12" style="cursor: default" @click="selStudentItem(item, itemChild ,1, 1)">{{$t("合格")}}</el-tag>
+                                <el-tag size="mini" :type="itemChild.checkStatus == 2 ? 'danger' : 'info'" class="font-size-12" style="cursor: default" @click="selStudentItem(item, itemChild, 2, 1)">{{$t("不合格")}}</el-tag>
                               </template>
                             </span>
                           </div>
@@ -280,13 +310,16 @@ export default {
       tableStudentData: [],
       tableRecordData: [],
       drawerVisible: false,
+      checkPriStatus: '',
+      checkShareStatus: '',
       allNum: 0,
       checkedNum: 0,
       uncheckedNum: 0,
       checkedType: 1,
       searchKey: '',
       itemId: '',
-      searchTime: this.$moment().subtract(1, 'days').format("YYYY-MM-DD"),
+      //searchTime: this.$moment().subtract(1, 'days').format("YYYY-MM-DD"),
+      searchTime: this.$moment(new Date()).format("YYYY-MM-DD"),
       searchBuild: '',
       searchFloor: '',
       checkData: {},
@@ -320,9 +353,14 @@ export default {
         buildId: this.searchBuild,
         floorNum: this.searchFloor,
         busiTime: this.searchTime,
-        checkType: 1,
-        checkStatus: this.checkedType == 2 ? true : false,
+        checkType: 1
       };
+      if (this.checkedType == 2){
+        params['checkStatus'] = true;
+      }else if (this.checkedType == 3){
+        params['checkStatus'] = false;
+      }
+
       this.$axios.get(common.housework_query_page, {params: params}).then(res => {
         console.log(res);
         if (res.data.data){
@@ -401,6 +439,7 @@ export default {
     },
     detailItem(event, data){
       this.itemId= data.id;
+      this.saveStatus = data.editStatus;
       this.initShare(data.id);
       this.initStudent(data.id);
       this.drawerVisible = true;
@@ -434,9 +473,13 @@ export default {
     },
     closeDrawerDialog(event){
       this.itemId = "";
+      this.checkPriStatus = '';
+      this.checkShareStatus = '';
       this.drawerVisible = event;
     },
     cancelDrawDialog(){
+      this.checkPriStatus = '';
+      this.checkShareStatus = '';
       this.drawerVisible = false;
     },
     sizeStudentChange(event){
@@ -445,14 +488,32 @@ export default {
       this.initStudent(this.itemId);
     },
     currentStudentPage(event){
-      this.pageStudent = this.itemId;
-      this.initStudent();
+      this.pageStudent = event;
+      this.initStudent(this.itemId);
     },
-    selItem(item, status){
+    selItem(item, status, type){
       let params = {
         id: this.itemId,
-        scopeType: 1,
+        scopeType: type,
         checkitemId: item.id,
+        checkStatus: status
+      };
+      params = this.$qs.stringify(params);
+      this.$axios.post(common.housework_query_edit_info, params).then(res => {
+        if (res.data.code == 200){
+          item.checkStatus = status;
+          this.initShare(this.itemId);
+          this.initStudent(this.itemId);
+        }else{
+          MessageError(res.data.desc);
+        }
+      });
+    },
+    selStudentItem(item, itemChild, status, type){
+      let params = {
+        id: item.id,
+        scopeType: type,
+        checkitemId: itemChild.id,
         checkStatus: status
       };
       params = this.$qs.stringify(params);
@@ -476,6 +537,7 @@ export default {
       this.$axios.post(common.housework_query_edit_all_info, params).then(res => {
         if (res.data.code == 200){
           item.checkStatus = status;
+          this.checkShareStatus = status;
           this.initShare(this.itemId);
         }else{
           MessageError(res.data.desc);
@@ -492,6 +554,7 @@ export default {
       this.$axios.post(common.housework_query_edit_private_info, params).then(res => {
         if (res.data.code == 200){
           item.checkStatus = status;
+          this.checkPriStatus = status;
           this.initStudent(this.itemId);
         }else{
           MessageError(res.data.desc);
@@ -507,7 +570,9 @@ export default {
         if (res.data.code == 200){
           this.initShare(this.itemId);
           this.initStudent(this.itemId);
+          this.init();
           this.saveStatus = false;
+          this.drawerVisible = false;
         }else{
           MessageError(res.data.desc);
         }

@@ -75,13 +75,13 @@
     mounted() {
       let widthAll = 0;
       let translateX = widthAll + 8 + "px";
-      let groupItem = document.querySelectorAll(".btn-group-item-default");
       /*this.transformBtnGroup.width = groupItem[0].clientWidth + "px";
       this.transformBtnGroup.transform = 'translateX(' + translateX + ')';*/
       setTimeout(() => {
+        let groupItem = document.querySelectorAll(".btn-group-item-default");
         this.transformBtnGroup.width = groupItem[0].clientWidth + "px";
         this.transformBtnGroup.transform = 'translateX(' + translateX + ')';
-      },1000);
+      },1500);
     },
     created() {
       //this.initConfig();
