@@ -57,8 +57,10 @@
     data() {
       return {
         selVal: 1,
+        selIndex: 0,
         widthAll: 0,
         isActive: '',
+        selStatus: -1,
         transformBtnGroup: {
           transform: 'translateX(0px)',
           transition: '0.5s',
@@ -73,24 +75,28 @@
       }
     },
     mounted() {
-      let widthAll = 0;
-      let translateX = widthAll + 8 + "px";
-      /*this.transformBtnGroup.width = groupItem[0].clientWidth + "px";
-      this.transformBtnGroup.transform = 'translateX(' + translateX + ')';*/
-      setTimeout(() => {
-        let groupItem = document.querySelectorAll(".btn-group-item-default");
-        this.transformBtnGroup.width = groupItem[0].clientWidth + "px";
-        this.transformBtnGroup.transform = 'translateX(' + translateX + ')';
-      },1500);
+      this.initTabGroupDefaultSel();
     },
     created() {
       //this.initConfig();
     },
     methods: {
+      initTabGroupDefaultSel(){
+        let widthAll = 0;
+        let translateX = widthAll + 8 + "px";
+        /*this.transformBtnGroup.width = groupItem[0].clientWidth + "px";
+        this.transformBtnGroup.transform = 'translateX(' + translateX + ')';*/
+        setTimeout(() => {
+          let groupItem = document.querySelectorAll(".btn-group-item-default");
+          this.transformBtnGroup.width = groupItem[0].clientWidth + "px";
+          this.transformBtnGroup.transform = 'translateX(' + translateX + ')';
+        },800);
+      },
       handelChange(data, item, index) {
         let padding = 10;
         let widthAll = 0;
         this.selVal = item;
+        this.selIndex = index;
         let groupItem = document.querySelectorAll(".btn-group-item-default");
         for (let i = 0; i < groupItem.length; i++) {
           if (i < index) {
@@ -106,6 +112,26 @@
         this.isActive = index;
 
         this.$emit('click', item);
+      }
+    },
+    watch: {
+      options: function (newQuestion, oldQuestion) {
+        setTimeout(() => {
+          let widthAll = 0;
+          let groupItem = document.querySelectorAll(".btn-group-item-default");
+          for (let i = 0; i < groupItem.length; i++) {
+            if (i < this.selIndex) {
+              widthAll += groupItem[i].clientWidth;
+            }
+            if (this.selIndex == i) {
+              this.transformBtnGroup.width = groupItem[i].clientWidth + "px";
+              break;
+            }
+          }
+          let translateX = widthAll + 8 + "px";
+          this.transformBtnGroup.transform = 'translateX(' + translateX + ')';
+          this.isActive = this.selIndex;
+        },800);
       }
     }
   }

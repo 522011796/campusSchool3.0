@@ -359,6 +359,7 @@
           page: this.page,
           num: this.num,
           className: this.searchKey,
+          realName: this.searchKey,
           collegeId: this.searchCollege,
           majorId: this.searchMajor,
           grade: this.searchGrade,
@@ -384,6 +385,15 @@
         });
       },
       initCount(params){
+        params = {
+          realName: this.searchKey,
+          collegeId: this.searchCollege,
+          majorId: this.searchMajor,
+          grade: this.searchGrade,
+          classId: this.searchClass,
+          busiTime: this.searchTime,
+          checkType: 2
+        };
         this.$axios.get(common.housework_query_count, {params: params}).then(res => {
           if (res.data.data){
             this.checkData = res.data.data;

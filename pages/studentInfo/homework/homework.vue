@@ -362,7 +362,6 @@ export default {
       }
 
       this.$axios.get(common.housework_query_page, {params: params}).then(res => {
-        console.log(res);
         if (res.data.data){
           this.tableData = res.data.data.list;
           this.total = res.data.data.totalCount;
@@ -374,8 +373,14 @@ export default {
       });
     },
     initCount(params){
+      params = {
+        realName: this.searchKey,
+        buildId: this.searchBuild,
+        floorNum: this.searchFloor,
+        busiTime: this.searchTime,
+        checkType: 1
+      };
       this.$axios.get(common.housework_query_count, {params: params}).then(res => {
-        console.log(res);
         if (res.data.data){
           this.checkData = res.data.data;
         }
@@ -388,7 +393,6 @@ export default {
         wholeId: this.itemId
       };
       this.$axios.get(common.housework_query_person_change, {params: params}).then(res => {
-        console.log(res);
         if (res.data.data){
           this.tableRecordData = res.data.data.list;
         }
@@ -414,7 +418,6 @@ export default {
       this.$axios.get(common.housework_query_info, {params: params}).then(res => {
         if (res.data.data){
           this.tableShareData = res.data.data;
-          console.log(this.tableShareData);
         }
       });
     },
@@ -432,8 +435,6 @@ export default {
           this.totalStudent = res.data.data.totalCount;
           this.numStudent = res.data.data.num;
           this.pageStudent = res.data.data.currentPage;
-
-          console.log(this.tableStudentData);
         }
       });
     },
