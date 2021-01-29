@@ -47,12 +47,12 @@
             :label="$t('考勤地点')">
             <template slot-scope="scope">
               <span v-if="scope.row.rull_type == 0" class="color-muted">{{$t("全校")}}</span>
-              <el-popover v-if="scope.row.rull_type != 0" trigger="hover" placement="top" popper-class="custom-table-popover">
+              <el-popover v-if="scope.row.rull_type != 0" width="400" trigger="hover" placement="top" popper-class="custom-table-popover">
                 <div class="text-center">
-                  <el-tag size="mini" type="success" v-for="(item, index) in scope.row.dormitory_no_list.split(',')" :key="index">{{item}}</el-tag>
+                  <el-tag class="margin-right-5 margin-bottom-5" size="mini" type="success" v-for="(item, index) in scope.row.dormitory_no_list.split(',')" :key="index">{{item}}</el-tag>
                 </div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <el-tag size="mini" type="success" v-for="(item, index) in scope.row.dormitory_no_list.split(',')" :key="index">{{item}}</el-tag>
+                  <el-tag class="margin-right-5" size="mini" type="success" v-for="(item, index) in scope.row.dormitory_no_list.split(',')" :key="index">{{item}}</el-tag>
                 </div>
               </el-popover>
             </template>

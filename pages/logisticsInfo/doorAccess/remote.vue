@@ -105,7 +105,7 @@
     </layout-lr>
 
     <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerVisible" size="650px" :title="$t('开门记录')" @right-close="cancelDrawDialog">
-      <div slot="content">
+      <div slot="content" v-loading="showDetailLoading">
         <span tabindex="1"></span>
         <div>
           <div>
@@ -227,6 +227,7 @@
         visibleConfim: false,
         drawerVisible: false,
         drawerLoading: false,
+        showDetailLoading: false,
         searchOpenType: '',
         searchOnlineType: '',
         searchCollege: '',
@@ -310,13 +311,15 @@
           searchKey: this.searchRecordKey
         };
         params = this.$qs.stringify(params);
-        this.$axios.post(common.dormaccess_remote_record, params).then(res => {
+        this.showDetailLoading = true;
+        this.$axios.post(common.dormaccess_remote_record, params, {loading: false}).then(res => {
           if (res.data.data){
             this.tableStudentData = res.data.data.list;
             this.totalStudent = res.data.data.totalCount;
             this.numStudent = res.data.data.num;
             this.pageStudent = res.data.data.currentPage;
           }
+          this.showDetailLoading = false;
         });
       },
       detailInfo(){

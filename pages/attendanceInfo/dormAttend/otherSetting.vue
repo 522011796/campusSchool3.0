@@ -46,12 +46,12 @@
             align="center"
             :label="$t('例外人员')">
             <template slot-scope="scope">
-              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+              <el-popover trigger="hover" width="400" placement="top" popper-class="custom-table-popover">
                 <div class="text-center">
-                  <el-tag size="mini" type="success" v-for="(item, index) in scope.row.real_name_list.split(',')" :key="index">{{item}}</el-tag>
+                  <el-tag size="mini" class="margin-right-5 margin-bottom-5" type="success" v-for="(item, index) in scope.row.real_name_list.split(',')" :key="index">{{item}}</el-tag>
                 </div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <el-tag size="mini" type="success" v-for="(item, index) in scope.row.real_name_list.split(',')" :key="index">{{item}}</el-tag>
+                  <el-tag size="mini" class="margin-right-5" type="success" v-for="(item, index) in scope.row.real_name_list.split(',')" :key="index">{{item}}</el-tag>
                 </div>
               </el-popover>
             </template>

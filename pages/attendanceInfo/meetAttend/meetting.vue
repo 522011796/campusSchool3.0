@@ -428,11 +428,11 @@
           <el-form-item :label="$t('上传附件')" prop="classNo">
             <div class="pull-left" v-if="form.filePaths.length > 0">
               <div class="pull-left margin-left-5" style="position: relative;" v-for="(item, index) in form.filePaths" :key="index">
-                <i class="fa fa-close" style="position: absolute; right: -5px; top: -5px;"></i>
+                <i class="fa fa-close" style="position: absolute; right: -5px; top: -5px;" @click="deleteImg(index)"></i>
                 <img :src="item" class="rp-img"/>
               </div>
             </div>
-            <upload-square class="pull-left margin-left-10 margin-top-5" :limit="3" :action="uploadFileAction" max-size="8" :data="{path: 'meetingFile'}" accept=".png,.jpg,.jpeg" @success="uploadSuccess" @error="uploadError">
+            <upload-square class="pull-left margin-left-10 margin-top-5" :limit="9999" :action="uploadFileAction" max-size="8" :data="{path: 'meetingFile'}" accept=".png,.jpg,.jpeg" @success="uploadSuccess" @error="uploadError">
               <el-button size="small" type="primary">{{$t("点击上传")}}</el-button>
             </upload-square>
             <span class="pull-left color-danger font-size-12 margin-left-10 margin-top-5">{{$t("文件不超过8M,3张")}}</span>
@@ -981,7 +981,11 @@
       },
       uploadSuccess(res, file){
         if (res.code == 200){
-          this.form.filePaths.push(res.data.url);
+          if (this.form.filePaths.length < 3){
+            this.form.filePaths.push(res.data.url);
+          }else {
+            MessageWarning(this.$t("附件最多只能3张"));
+          }
         }else {
 
         }
@@ -1037,6 +1041,9 @@
       },
       handleCancelChange(data) {
         this.visibleConfim = false;
+      },
+      deleteImg(index){
+        this.form.filePaths.splice(index, 1);
       }
     }
   }

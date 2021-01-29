@@ -122,7 +122,7 @@
             <th width="20%">{{$t("手机")}}</th>
             <th width="15%">{{$t("性别")}}</th>
           </tr>
-          <tbody v-loading="loadingList" :element-loading-text="$t('加载中...')" element-loading-spinner="el-icon-loading">
+          <tbody v-loading="loadingList">
           <tr v-for="(item, index) in tableTeacherData" :key="item.id">
             <td>
               <my-check :sel-value="item._teacherId" @change="handleBoxChange($event, item, 1)"></my-check>
@@ -216,7 +216,7 @@
         };
         params['realName'] = this.searchTeacherName;
         this.loadingList = true;
-        this.$axios(common.teacher_list, {params: params}).then(res => {
+        this.$axios(common.teacher_list, {params: params, loading: false}).then(res => {
           if (res.data.data){
             for (let i = 0; i < res.data.data.page.list.length; i++){
               res.data.data.page.list[i]['_teacherId'] = false;

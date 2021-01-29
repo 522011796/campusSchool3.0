@@ -579,7 +579,7 @@
           if (this.form.imgList.length < 3){
             this.form.imgList.push(res.data.url);
           }else {
-            MessageWarning(this.$t("头像最多只能3张"));
+            MessageWarning(this.$t("户型图最多只能3张"));
           }
         }else {
 

@@ -298,7 +298,8 @@
 
               <template slot-scope="scope">
                 <span v-if="!scope.row.apply_file">--</span>
-                <img v-else :src="scope.row.apply_file" style="height: 25px;width: 25px">
+                <my-head-img v-if="scope.row.apply_file" :head-img="scope.row.apply_file" style="display: inline-block"></my-head-img>
+                <!--<img v-else :src="scope.row.apply_file" style="height: 25px;width: 25px">-->
               </template>
             </el-table-column>
           </el-table>
@@ -334,12 +335,13 @@
   import MyInputButton from "../../../components/search/MyInputButton";
   import TableBarChart from "../../../components/charts/TableBarChart";
   import MyDatePicker from "../../../components/MyDatePicker";
+  import MyHeadImg from "../../../components/utils/common/MyHeadImg";
   import {common} from "../../../utils/api/url";
   import {MessageError, MessageSuccess, MessageWarning} from "../../../utils/utils";
   import rpApplyValidater from "../../../utils/validater/rpApplyValidater";
   export default {
     mixins: [mixins, rpApplyValidater],
-    components: {LayoutLr,MyElTree,MySelect,DrawerLayoutRight,MyPagination,CircleChart,DialogNormal,MyInputButton,TableBarChart,MyDatePicker},
+    components: {LayoutLr,MyElTree,MySelect,DrawerLayoutRight,MyPagination,CircleChart,DialogNormal,MyInputButton,TableBarChart,MyDatePicker,MyHeadImg},
     data(){
       return {
         pageStudent: 1,

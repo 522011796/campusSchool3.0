@@ -288,7 +288,7 @@
           studentId: userId,
           termId: this.selTerm
         };
-        this.$axios.get(common.attend_class_static_stu_detail, {params: params}).then(res => {
+        this.$axios.get(common.attend_class_static_stu_detail, {params: params, loading: false}).then(res => {
           if (res.data.data){
             this.detailData = res.data.data;
           }
