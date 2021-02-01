@@ -296,6 +296,9 @@ export const common = {
   attend_teacher_static_list_attend_detail: '/proxy/course/employee/summary/stat/page',//综合考勤--行政查询详细
   attend_teacher_static_list_meeting_detail: '/proxy/course/employee/summary/stat/page',//综合考勤--会议查询详细
   attend_teacher_static_list_leave_detail: '/proxy/course/employee/summary/stat/page',//综合考勤--请假查询详细
+  attend_teacher_static_list_admin_detail_export: '/proxy/user/attendRecords/detail/export',//综合考勤--请假查询详细导出
+  attend_teacher_static_list_meeting_detail_export: '/proxy/school/meeting/query-meeting-anyuser-export',//综合考勤--请假查询详细导出
+  attend_teacher_static_list_leave_detail_export: '/proxy/user/unionapply/apply/download',//综合考勤--请假查询详细导出
 
   attend_teacher_static_record_page: '/proxy/course/employee/summary/signDay/page',//综合考勤--考勤记录
   attend_teacher_static_record_export: '/proxy/course/employee/summary/signDay/export',//综合考勤--考勤记录导出
@@ -441,6 +444,9 @@ export const common = {
   attend_admin_setting_device: '/proxy/school/device/query-rela-device-page',//行政考勤设置--设备列表
   attend_admin_setting_edit: '/proxy/user/attend/group/edit',//行政考勤设置--编辑
   attend_admin_setting_add: '/proxy/user/attend/group/add',//行政考勤设置--添加
+  attend_admin_setting_admin: '/proxy/user/attendRecords/detail/page',//行政查询--行政考勤
+  attend_admin_setting_meeting: '/proxy/school/meeting/query-meeting-anyuser-page',//行政查询--会议考勤
+  attend_admin_setting_leave: '/proxy/user/unionapply/apply/page',//行政查询--请假考勤
 
 
   student_info_setting: '/proxy/school/person/student/update/and/take/img/add',//学生管理--设置
@@ -459,5 +465,6 @@ export const common = {
   userinfo_cookie_auth: '/proxy/course/quantization/get-auth',//个人报告cookie
 
   dorm_stat_count: '/proxy/course/rollcallbed/rollcallbed/build/stat',//归寝统计数量
+
 
 };
