@@ -17,7 +17,7 @@
                 <div class="layout-inline text-right">
                   <my-select class="layout-item" :clearable="true" width-style="120" size="small" :sel-value="searchStatus" :options="filterBillStatus" @change="handeSelect"></my-select>
                   <my-date-picker class="layout-item" style="position: relative; top: 1px;" type="daterange" :sel-value="searchDate" size="small" width-style="240" @change="handleTime"></my-date-picker>
-                  <my-input-button class="layout-item" size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('房间号')" @click="search"></my-input-button>
+                  <my-input-button class="layout-item" size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('手机号/姓名')" @click="search"></my-input-button>
                 </div>
               </div>
             </el-col>
@@ -173,7 +173,7 @@
       </div>
     </layout-lr>
 
-    <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" content="确认需要执行操作吗？" :detail="subDetail" @ok-click="handleOkChange" @cancel-click="handleCancelChange"></my-normal-dialog>
+    <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" content="确认该学生已缴费？" :detail="subDetail" @ok-click="handleOkChange" @cancel-click="handleCancelChange"></my-normal-dialog>
   </div>
 </template>
 
@@ -307,7 +307,7 @@
       },
       setInfo(row){
         this.form.id = row.id;
-        this.subDetail = row.real_name + "(" +row.dormitory_no + ")" ;
+        this.subDetail = row.real_name ;
         this.visibleConfim = true;
       },
       search(data){

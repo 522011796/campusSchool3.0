@@ -126,7 +126,7 @@
 
                 <el-popover trigger="hover" placement="top">
                   <div class="text-center">{{year}}</div>
-                  <label slot="reference" class="name-wrapper moon-top-right-item-eliplse">
+                  <label slot="reference" class="name-wrapper moon-top-right-item-eliplse" style="position: relative; top: 4px;">
                     {{year}}
                   </label>
                 </el-popover>

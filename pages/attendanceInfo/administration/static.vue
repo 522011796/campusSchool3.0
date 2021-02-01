@@ -229,7 +229,7 @@
               <el-table-column
                 align="center"
                 width="150"
-                :label="$t('连续缺勤次数')">
+                :label="$t('会议缺勤次数')">
 
                 <template slot-scope="scope">
                   <span>{{scope.row.meetingMap.unSignNum}}</span>
