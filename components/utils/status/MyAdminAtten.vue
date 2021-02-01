@@ -9,7 +9,7 @@
     <label v-else-if="status == 100">{{$t("不在考勤区域")}}</label>
     <label v-else-if="status == 101">{{$t("请假")}}</label>
     <label v-else-if="status == 102">{{$t("出差")}}</label>
-    <label v-else="status == 4">--</label>
+    <label v-else>--</label>
   </span>
 </template>
 

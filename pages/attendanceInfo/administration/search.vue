@@ -201,7 +201,7 @@
     </layout-lr>
 
     <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerVisible" size="750px" :title="$t('个人记录')" @right-close="cancelDrawDialog">
-      <div slot="content">
+      <div slot="content" v-loading="studentLoading">
         <span tabindex="1"></span>
         <div>
           <el-row>
@@ -269,10 +269,10 @@
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                   <div class="text-center">
-                    {{scope.row.upper_status}}
+                    <my-admin-atten :status="scope.row.upper_status"></my-admin-atten>
                   </div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.upper_status}}
+                    <my-admin-atten :status="scope.row.upper_status"></my-admin-atten>
                   </div>
                 </el-popover>
               </template>
@@ -297,9 +297,11 @@
               :label="$t('下班打卡结果')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.lower_status}}</div>
+                  <div class="text-center">
+                    <my-admin-atten :status="scope.row.lower_status"></my-admin-atten>
+                  </div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.lower_status}}
+                    <my-admin-atten :status="scope.row.lower_status"></my-admin-atten>
                   </div>
                 </el-popover>
               </template>
@@ -310,9 +312,11 @@
               :label="$t('考勤状态')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.status}}</div>
+                  <div class="text-center">
+                    <my-admin-atten :status="scope.row.status"></my-admin-atten>
+                  </div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.status}}
+                    <my-admin-atten :status="scope.row.status"></my-admin-atten>
                   </div>
                 </el-popover>
               </template>
@@ -397,9 +401,9 @@
 
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.status}}</div>
+                  <div class="text-center">{{meetingJoinStatusInfo(scope.row.sign_status)}}</div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.status}}
+                    {{meetingJoinStatusInfo(scope.row.sign_status)}}
                   </div>
                 </el-popover>
               </template>
@@ -431,28 +435,6 @@
               :label="$t('请假时长')">
 
               <template slot-scope="scope">
-
-              </template>
-            </el-table-column>
-            <el-table-column
-              align="center"
-              :label="$t('请假类型')">
-
-              <template slot-scope="scope">
-                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.meeting_name}}</div>
-                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.meeting_name}}
-                  </div>
-                </el-popover>
-              </template>
-            </el-table-column>
-
-            <el-table-column
-              align="center"
-              :label="$t('签到时间')">
-
-              <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                   <div class="text-center">{{scope.row.sign_time ? $moment(scope.row.sign_time).format("YYYY-MM-DD HH:mm") : '--'}}</div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
@@ -472,10 +454,29 @@
                         </el-tooltip>
                       </div>
                       <div v-if="scope.row.apply_type_sub_code == 'TeacherLeaveApplyTime'">
-                        <span class="title-class color-disabeld" style="position: relative; top: 0px">{{$t("时长")}}:</span>
+                        <span class="title-class color-disabeld font-size-12" style="position: relative; top: 0px">{{$t("时长")}}:</span>
                         <span class="moon-content-text-ellipsis-class">{{scope.row.double1}}天</span>
                       </div>
                     </div>
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('请假类型')">
+
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">
+                    <span v-if="scope.row.apply_type_code == 'TeacherLeaveApply'">{{$t("请假")}}</span>
+                    <span v-if="scope.row.apply_type_code == 'TeacherBusiTripApply'">{{$t("出差")}}</span>
+                    <span v-if="scope.row.apply_type_code == 'TeacherAmendSignApply'">{{$t("补卡")}}</span>
+                  </div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    <span v-if="scope.row.apply_type_code == 'TeacherLeaveApply'">{{$t("请假")}}</span>
+                    <span v-if="scope.row.apply_type_code == 'TeacherBusiTripApply'">{{$t("出差")}}</span>
+                    <span v-if="scope.row.apply_type_code == 'TeacherAmendSignApply'">{{$t("补卡")}}</span>
                   </div>
                 </el-popover>
               </template>
@@ -499,9 +500,11 @@
 
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.status}}</div>
+                  <div class="text-center">
+                    <my-audit-status :status="scope.row.status"></my-audit-status>
+                  </div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.status}}
+                    <my-audit-status :status="scope.row.status"></my-audit-status>
                   </div>
                 </el-popover>
               </template>
@@ -543,13 +546,17 @@
   import DrawerRight from "../../../components/utils/dialog/DrawerRight";
   import MySearchOfDate from "../../../components/search/MySearchOfDate";
   import DrawerLayoutRight from "../../../components/utils/dialog/DrawerLayoutRight";
+  import MyAuditStatus from "../../../components/utils/MyAuditStatus";
   import {
     clearData, deviceType,
-    dormStatus
+    dormStatus, meetingStatusText
   } from "../../../utils/utils";
+  import MyAdminAtten from "../../../components/utils/status/MyAdminAtten";
   export default {
     mixins: [mixins],
-    components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,MySearchOfDate,DrawerLayoutRight},
+    components: {
+      MyAdminAtten,
+      LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,MySearchOfDate,DrawerLayoutRight,MyAuditStatus},
     data(){
       return {
         pageStudent: 1,
@@ -561,7 +568,6 @@
         tableDetailData: [],
         searchDate: [],
         filtersDeviceType: [],
-        searchDate: [],
         studentLoading: false,
         modalVisible: false,
         dialogLoading: false,
@@ -673,6 +679,7 @@
           params['applyUserId'] = this.detailData.userId;
         }
         params = this.clearDataInfo(params);
+        this.studentLoading = true;
         this.$axios.get(url, {params: params}).then(res => {
           if (res.data.data){
             this.studentData = res.data.data.list;
@@ -680,6 +687,7 @@
             this.numStudent = res.data.data.num;
             this.pageStudent = res.data.data.currentPage;
           }
+          this.studentLoading = false;
         });
       },
       recordDetail(data, type){
@@ -742,6 +750,7 @@
         this.userType = "";
         this.detailData = {};
         this.searchDate = [];
+        this.studentData = [];
         this.drawerVisible = event;
       },
       closeDrawDialog(event){
@@ -751,6 +760,7 @@
         this.userType = "";
         this.detailData = {};
         this.searchDate = [];
+        this.studentData = [];
         this.drawerVisible = false;
       },
       cancelDrawDialog(){
@@ -760,6 +770,7 @@
         this.userType = "";
         this.detailData = {};
         this.searchDate = [];
+        this.studentData = [];
         this.drawerVisible = false;
       },
       searchTopDate(data){
@@ -851,6 +862,9 @@
         params = this.clearDataInfo(params);
         params = this.$qs.stringify(params);
         window.open(url+"?"+params, "_self");
+      },
+      meetingJoinStatusInfo(val){
+        return meetingStatusText('set', val);
       }
     }
   }
