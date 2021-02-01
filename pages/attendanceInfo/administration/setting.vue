@@ -152,8 +152,8 @@
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                 <div class="text-center">
-                  <el-tag v-if="scope.row.sign_type == 0" class="margin-right-5" size="mini" type="success" v-for="(item, index) in JSON.parse(scope.row.area_range)" :key="index">{{item.name}}</el-tag>
-                  <el-tag v-if="scope.row.sign_type == 1" class="margin-right-5" size="mini" type="success" v-for="(item, index) in JSON.parse(scope.row.device_sns)" :key="index">{{item}}</el-tag>
+                  <el-tag v-if="scope.row.sign_type == 0" class="margin-right-5 margin-bottom-5" size="mini" type="success" v-for="(item, index) in JSON.parse(scope.row.area_range)" :key="index">{{item.name}}</el-tag>
+                  <el-tag v-if="scope.row.sign_type == 1" class="margin-right-5 margin-bottom-5" size="mini" type="success" v-for="(item, index) in JSON.parse(scope.row.device_sns)" :key="index">{{item}}</el-tag>
                 </div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                   <el-tag v-if="scope.row.sign_type == 0" class="margin-right-5" size="mini" type="success" v-for="(item, index) in JSON.parse(scope.row.area_range)" :key="index">{{item.name}}</el-tag>
@@ -227,7 +227,7 @@
               </el-button-group>
               <span>
                 <my-check :sel-value="form.workTimesSwitch" @change="handleChange($event, 4)">
-                  <span>{{$t('打卡时间短设置')}}</span>
+                  <span>{{$t('打卡时间段设置')}}</span>
                 </my-check>
               </span>
             </div>
@@ -408,6 +408,7 @@
             <div>
               <el-date-picker
                 type="dates"
+                value-format="yyyy-MM-dd"
                 v-model="form.mustTimes"
                 :placeholder="$t('选择一个或多个日期')"
                 style="width: 400px">
@@ -417,6 +418,7 @@
             <div class="margin-top-10">
               <el-date-picker
                 type="dates"
+                value-format="yyyy-MM-dd"
                 v-model="form.noMustTimes"
                 :placeholder="$t('选择一个或多个日期')"
                 style="width: 400px">
@@ -953,7 +955,6 @@
         this.errorTips = "";
         this.$refs['form'].validate((valid) => {
           if (valid) {
-            this.dialogLoading = true;
             let params = {
               groupName: this.form.name,
               departIds: [],
@@ -1072,7 +1073,7 @@
               params['supervisors'] = auditIds.length > 0 ? JSON.stringify(auditIds) : [];
             }
 
-            if (regNum.test(this.form.unSignRuleTime1) == false || regNum.test(this.form.unSignRuleTime2) == false){
+            if (regNum.test("") == false || regNum.test(this.form.unSignRuleTime2) == false){
               errNum++;
             }
 
@@ -1092,6 +1093,7 @@
               url = common.attend_admin_setting_add;
             }
 
+            this.dialogLoading = true;
             params = this.$qs.stringify(params);
             this.$axios.post(url, params, {loading: false}).then(res => {
               if (res.data.code == 200){

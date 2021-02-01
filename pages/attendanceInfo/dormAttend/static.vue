@@ -30,6 +30,7 @@
 
         <div class="margin-top-10">
           <el-table
+            v-show="!searchTimeData.timeUnit || searchTimeData.timeUnit == 1"
             ref="refTable"
             :data="tableData"
             header-cell-class-name="custom-table-cell-bg"
@@ -70,56 +71,96 @@
                 </el-popover>
               </template>
             </el-table-column>
-            <template v-if="!searchTimeData.timeUnit || searchTimeData.timeUnit == 1">
-              <el-table-column
-                align="center"
-                :label="$t('状态')"
-                :filter-multiple="false"
-                column-key="status"
-                :filters="filterDormBackStatus">
-                <template slot-scope="scope">
-                  <span v-if="scope.row.signStatus">{{dormStatusInfo(scope.row.signStatus, 'set')}}</span>
-                  <span v-else>--</span>
-                </template>
-              </el-table-column>
-            </template>
-            <template v-if="searchTimeData.timeUnit && searchTimeData.timeUnit != 1">
-              <el-table-column
-                align="center"
-                :label="$t('正常归寝')">
-                <template slot-scope="scope">
-                  <span>{{scope.row.actualNum}}</span>
-                </template>
-              </el-table-column>
-              <el-table-column
-                align="center"
-                :label="$t('晚归')">
-                <template slot-scope="scope">
-                  <span>{{scope.row.lateNum}}</span>
-                </template>
-              </el-table-column>
-              <el-table-column
-                align="center"
-                :label="$t('未归')">
-                <template slot-scope="scope">
-                  <span>{{scope.row.unSignNum}}</span>
-                </template>
-              </el-table-column>
-              <el-table-column
-                align="center"
-                :label="$t('请假')">
-                <template slot-scope="scope">
-                  <span>{{scope.row.leaveNum}}</span>
-                </template>
-              </el-table-column>
-              <el-table-column
-                align="center"
-                :label="$t('超长未归')">
-                <template slot-scope="scope">
-                  <span>{{scope.row.lateLongNum}}</span>
-                </template>
-              </el-table-column>
-            </template>
+            <el-table-column
+              align="center"
+              :label="$t('状态')"
+              :filter-multiple="false"
+              column-key="status"
+              :filters="filterDormBackStatus">
+              <template slot-scope="scope">
+                <span v-if="scope.row.signStatus || scope.row.signStatus == 0">{{dormStatusInfo(scope.row.signStatus)}}</span>
+                <span v-else>--</span>
+              </template>
+            </el-table-column>
+          </el-table>
+
+          <el-table
+            v-show="searchTimeData.timeUnit && searchTimeData.timeUnit != 1"
+            ref="refTable"
+            :data="tableData"
+            header-cell-class-name="custom-table-cell-bg"
+            size="medium"
+            :max-height="tableHeight2.height"
+            style="width: 100%"
+            @filter-change="fliterTable">
+            <el-table-column
+              align="center"
+              :label="$t('姓名')">
+
+              <template slot-scope="scope">
+                <label class="color-grand" v-if="!searchTimeData.timeUnit || searchTimeData.timeUnit == 1" @click="detailInfo(scope.row)">{{scope.row.realName}}</label>
+                <label class="color-grand" v-if="searchTimeData.timeUnit && searchTimeData.timeUnit != 1" @click="detailInfo(scope.row)">{{scope.row.studentName}}</label>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="studentNo"
+              :label="$t('学号')">
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('性别')">
+              <template slot-scope="scope">
+                <my-sex :sex="scope.row.sex" tag="text"></my-sex>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('班级')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.className ? scope.row.className : '--'}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.className ? scope.row.className : '--'}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('正常归寝')">
+              <template slot-scope="scope">
+                <span>{{scope.row.actualNum}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('晚归')">
+              <template slot-scope="scope">
+                <span>{{scope.row.lateNum}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('未归')">
+              <template slot-scope="scope">
+                <span>{{scope.row.unSignNum}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('请假')">
+              <template slot-scope="scope">
+                <span>{{scope.row.leaveNum}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('超长未归')">
+              <template slot-scope="scope">
+                <span>{{scope.row.lateLongNum}}</span>
+              </template>
+            </el-table-column>
           </el-table>
 
           <div class="layout-right-footer text-right">

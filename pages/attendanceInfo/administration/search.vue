@@ -48,6 +48,11 @@
                       <span>{{item.realName}}</span>
                       <span>|</span>
                       <span>{{item.jobNum}}</span>
+                      <span>|</span>
+                      <el-tag size="mini" type="warning" @click="recordDetail(item, 1)">
+                        <i class="fa fa-search"></i>
+                        {{$t("记录查询")}}
+                      </el-tag>
                     </div>
                     <div class="color-muted font-size-14 margin-top-5">
                       <span>{{item.departName}}</span>
@@ -109,6 +114,11 @@
                       <span>{{item.realName}}</span>
                       <span>|</span>
                       <span>{{item.jobNum}}</span>
+                      <span>|</span>
+                      <el-tag size="mini" type="warning" @click="recordDetail(item, 3)">
+                        <i class="fa fa-search"></i>
+                        {{$t("记录查询")}}
+                      </el-tag>
                     </div>
                     <div class="color-muted font-size-14 margin-top-5">
                       <span>{{item.departName}}</span>
@@ -152,6 +162,11 @@
                       <span>{{item.realName}}</span>
                       <span>|</span>
                       <span>{{item.jobNum}}</span>
+                      <span>|</span>
+                      <el-tag size="mini" type="warning" @click="recordDetail(item, 4)">
+                        <i class="fa fa-search"></i>
+                        {{$t("记录查询")}}
+                      </el-tag>
                     </div>
                     <div class="color-muted font-size-14 margin-top-5">
                       <span>{{item.departName}}</span>
@@ -250,16 +265,21 @@
       }
     },
     created() {
-      this.init();
+      this.initInfo();
       this.deviceTypeGetInfo();
     },
     methods: {
+      async initInfo() {
+        await this.getSessionInfo();
+        this.init();
+      },
       init(){
         let params = {
           page: this.page,
           num: this.num,
           keyWord: this.searchKey,
-          staticType: this.searchStaticType
+          staticType: this.searchStaticType,
+          termId: this.currentTermId
         };
         //时间类型
         if (this.searchTimeData.timeUnit == 1){
@@ -295,6 +315,9 @@
             this.page = res.data.data.currentPage;
           }
         });
+      },
+      recordDetail(data, type){
+
       },
       nodeClick(data){
         this.searchDept = data;

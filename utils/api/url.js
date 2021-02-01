@@ -458,4 +458,6 @@ export const common = {
 
   userinfo_cookie_auth: '/proxy/course/quantization/get-auth',//个人报告cookie
 
+  dorm_stat_count: '/proxy/course/rollcallbed/rollcallbed/build/stat',//归寝统计数量
+
 };

@@ -93,7 +93,11 @@
                 </el-col>
                 <el-col :span="18">
                   <div class="text-right layout-inline">
-                    <span class="layout-item"><my-check :sel-value="form.switchContinue" @change="handleChange($event, 1)"></my-check></span>
+                    <span class="layout-item">
+                      <my-check :sel-value="form.switchContinue" @change="handleChange($event, 1)">
+                        {{$t("连堂签到")}}
+                      </my-check>
+                    </span>
                     <span class="layout-item">
                       <my-select size="small" width-style="120" :sel-value="form.continueSection" :options="sectionList" @change="handleChange($event, 3)"></my-select>
                     </span>
@@ -281,10 +285,12 @@
         this.$axios.get(common.week_list, {params:params}).then(res => {
           if (res.data.data){
             for (let i = 0; i < res.data.data.period.length; i++){
-              this.sectionList.push({
-                label: res.data.data.period[i].sect + this.$t("节连堂"),
-                value: res.data.data.period[i].sect
-              });
+              if (i != 0){
+                this.sectionList.push({
+                  label: res.data.data.period[i].sect + this.$t("节连堂"),
+                  value: res.data.data.period[i].sect
+                });
+              }
             }
             this.tableSettingData = res.data.data.period;
           }
@@ -395,20 +401,26 @@
         this.errorTips = "";
         this.$refs['form'].validate((valid) => {
           if (valid) {
-            if (!regNum.test(this.form.upBefore) || !regNum.test(this.form.late) || !regNum.test(this.form.downBefore) || !regNum.test(this.form.downAfter)){
+            if (!regNum.test(this.form.upBefore) || !regNum.test(this.form.late)){
               this.errorTips = this.$t("请设置考勤相关的信息，并只能为整数");
               return;
+            }
+            if (this.form.earlyEnable){
+              if (!regNum.test(this.form.downBefore) || !regNum.test(this.form.downAfter)){
+                this.errorTips = this.$t("请设置考勤相关的信息，并只能为整数");
+                return;
+              }
             }
             this.dialogLoading = true;
             let params = {
               groupName: this.form.name,
-              switchContinue: false,
               beginClassMinute: this.form.upBefore,
               overClassMinute: this.form.downAfter,
-              leaveClassMinute: this.form.late,
-              lateClassMinute: this.form.upBefore,
+              leaveClassMinute: this.form.downBefore,
+              lateClassMinute: this.form.late,
               switchOverClass: this.form.earlyEnable,
               continueSection: this.form.continueSection,
+              switchContinue: this.form.switchContinue,
             };
             if (this.form.classList.length > 0){
               for (let i = 0; i < this.form.classList.length; i ++ ){

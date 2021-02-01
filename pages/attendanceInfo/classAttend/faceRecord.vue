@@ -121,9 +121,9 @@
               :label="$t('上报时间')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{$moment(scope.row.add_time).format("YYYY-MM-DD HH:mm:ss")}}</div>
+                  <div class="text-center">{{scope.row.add_time ? $moment(scope.row.add_time).format("YYYY-MM-DD HH:mm:ss") : '--'}}</div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{$moment(scope.row.add_time).format("YYYY-MM-DD HH:mm:ss")}}
+                    {{scope.row.add_time? $moment(scope.row.add_time).format("YYYY-MM-DD HH:mm:ss") : '--'}}
                   </div>
                 </el-popover>
               </template>
@@ -133,9 +133,9 @@
               :label="$t('识别时间')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{$moment(scope.row.time).format("YYYY-MM-DD HH:mm:ss")}}</div>
+                  <div class="text-center">{{scope.row.time ? $moment(scope.row.time).format("YYYY-MM-DD HH:mm:ss") : '--'}}</div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{$moment(scope.row.time).format("YYYY-MM-DD HH:mm:ss")}}
+                    {{scope.row.time ? $moment(scope.row.time).format("YYYY-MM-DD HH:mm:ss") : '--'}}
                   </div>
                 </el-popover>
               </template>

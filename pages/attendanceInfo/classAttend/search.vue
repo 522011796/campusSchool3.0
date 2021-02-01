@@ -137,18 +137,18 @@
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                   <div class="text-center">
                     <div>
-                      <span>{{$moment(scope.row.rollCallTime).format("YYYY-MM-DD HH:mm:ss")}}</span>
+                      <span>{{scope.row.rollCallTime ? $moment(scope.row.rollCallTime).format("YYYY-MM-DD HH:mm:ss") : '--'}}</span>
                     </div>
                     <div>
-                      <span>{{$moment(scope.row.rollCallTime2).format("YYYY-MM-DD HH:mm:ss")}}</span>
+                      <span>{{scope.row.rollCallTime2 ? $moment(scope.row.rollCallTime2).format("YYYY-MM-DD HH:mm:ss") : '--'}}</span>
                     </div>
                   </div>
                   <div slot="reference">
                     <div class="name-wrapper moon-content-text-ellipsis-class">
-                      <span>{{$moment(scope.row.rollCallTime).format("YYYY-MM-DD HH:mm:ss")}}</span>
+                      <span>{{scope.row.rollCallTime ? $moment(scope.row.rollCallTime).format("YYYY-MM-DD HH:mm:ss") : '--'}}</span>
                     </div>
                     <div class="name-wrapper moon-content-text-ellipsis-class">
-                      <span>{{$moment(scope.row.rollCallTime2).format("YYYY-MM-DD HH:mm:ss")}}</span>
+                      <span>{{scope.row.rollCallTime2 ? $moment(scope.row.rollCallTime2).format("YYYY-MM-DD HH:mm:ss") : '--'}}</span>
                     </div>
                   </div>
                 </el-popover>

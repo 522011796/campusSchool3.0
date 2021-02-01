@@ -110,7 +110,7 @@
       async selectTermChange(data) {
         this.selectTermValue = data;
         this.selectWeekValue = "";
-        await this.initCurrentWeekList(this.currentYearData, data);
+        await this.initCurrentWeekList(this.selectYearValue, data);
         await this.selectWeekChange(this.currentWeekData);
         this.selectWeekValue = this.currentWeekData;
 
@@ -121,7 +121,7 @@
       },
       async selectWeekChange(data) {
         this.selectWeekValue = data;
-        this.selectCurrentSetData['year'] = this.currentYearData;
+        this.selectCurrentSetData['year'] = this.selectYearValue;
         this.selectCurrentSetData['term'] = this.currentTermData;
         this.selectCurrentSetData['week'] = data;
         this.$emit("changeWeek", this.selectCurrentSetData);

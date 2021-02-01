@@ -256,7 +256,7 @@
           params['grade'] = this.searchGrade;
           params['classId'] = this.searchClass;
         }else if (this.showType == 2){
-          params['buildingId'] = this.searchBuild;
+          params['buildId'] = this.searchBuild;
           params['floorNum'] = this.searchFloor;
         }
         params = this.clearDataInfo(params);

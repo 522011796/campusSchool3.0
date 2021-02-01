@@ -21,7 +21,14 @@
                 <el-button size="small" :type="searchType == 4 ? 'primary' : 'default'" @click="changeStatus(4)">{{$t("超长未归")}}</el-button>
                 <el-button size="small" :type="searchType == 2 ? 'primary' : 'default'" @click="changeStatus(2)">{{$t("请假")}}</el-button>
               </el-button-group>-->
-              <dorm-attend-status-button-group size="small" @click="changeStatus"></dorm-attend-status-button-group>
+              <!--<dorm-attend-status-button-group size="small" @click="changeStatus"></dorm-attend-status-button-group>-->
+              <tab-group-button size="small" :options='[
+                {label:$t("全部"), value:"-1"},
+                {label:$t("已归寝"), value: "1", extra: checkData.actualNum},
+                {label:$t("晚归"), value: "3", extra: checkData.lateNum},
+                {label:$t("未归"), value: "0", extra: checkData.unSignNum},
+                {label:$t("超长未归"), value: "4", extra: checkData.lateLongNum},
+                {label:$t("请假"), value: "2", extra: checkData.leaveNum}]' @click="changeStatus"></tab-group-button>
             </el-col>
             <el-col :span="10" class="text-right">
               <my-date-picker :clearable="true" :sel-value="searchDate" size="small" width-style="130" @change="handleTime"></my-date-picker>
@@ -81,7 +88,7 @@
                         <el-tag size="small" type="warning" v-if="itemChild.signStatus == 0">
                           {{$t("未归")}}
                         </el-tag>
-                          <el-tag size="small" type="warning" v-if="itemChild.signStatus == 1">
+                          <el-tag size="small" type="success" v-if="itemChild.signStatus == 1">
                           {{$t("已归")}}
                         </el-tag>
                           <el-tag size="small" type="warning" v-if="itemChild.signStatus == 2">
@@ -164,7 +171,8 @@
         searchKey: '',
         searchUnit: '1',
         searchStartTime: this.$moment(new Date()).format("YYYY-MM-DD"),
-        searchEndTime: this.$moment(new Date()).format("YYYY-MM-DD")
+        searchEndTime: this.$moment(new Date()).format("YYYY-MM-DD"),
+        checkData: {},
       }
     },
     created() {
@@ -191,6 +199,21 @@
             this.total = res.data.data.totalCount;
             this.num = res.data.data.num;
             this.page = res.data.data.currentPage;
+
+            this.initCount();
+          }
+        });
+      },
+      initCount(){
+        let params = {
+          buildId: this.searchBuild,
+          floorNum: this.searchFloor,
+          busiTime: this.searchDate,
+          userUnit: this.searchUnit
+        };
+        this.$axios.get(common.dorm_stat_count, {params: params}).then(res => {
+          if (res.data.data){
+            this.checkData = res.data.data;
           }
         });
       },
@@ -230,7 +253,7 @@
         this.init();
       },
       changeStatus(type){
-        this.searchType = type;
+        this.searchType = type.value;
         this.init();
       },
       changeTree(mainType, subType){
