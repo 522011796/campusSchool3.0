@@ -15,7 +15,8 @@ export default {
       },
       rulesTerm: {
         no: [
-          { required: true, message: this.$t("请输入学期编码"), trigger: 'blur' }
+          { required: true, message: this.$t("请输入学期编码"), trigger: 'blur' },
+          { validator: rules.FormValidate.Form().validatesn1_10Reg, trigger: 'blur' }
         ],
         name: [
           { required: true, message: this.$t("请输入学期名称"), trigger: 'blur' }

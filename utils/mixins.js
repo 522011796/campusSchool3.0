@@ -82,6 +82,7 @@ export default {
       currentSetWeekNum: 0,
       currentVersion: '',
       versionData: [],
+      currentDateStatus: null,
       tableHeight: {
         'height': ''
       },
@@ -262,6 +263,12 @@ export default {
           this.currentWeekNum = res.data.data.weekNum;
           this.currentWeekNo = res.data.data.weekNo;
           //this.currentSeciton = res.data.data.section;
+        }else{
+          if (res.data.code == 466){
+            this.currentDateStatus = res.data.desc;
+          }else if (res.data.code == 459){
+            this.currentDateStatus = this.$t("缺失学年学期相关数据");
+          }
         }
       });
     },

@@ -116,18 +116,28 @@
 
           <div class="pull-right">
             <span class="moon-top-middle-menu-info" @click="handeCourse">
-              <label>
-                <i class="fa fa-calendar"></i>
+              <label v-if="currentDateStatus != null">
+                <span class="color-danger">{{currentDateStatus}}</span>
               </label>
-              <label>
-                {{year}}
-              </label>
-              <label>
-                {{$t("第")}}{{weekNum}}{{$t("周")}}
-              </label>
-              <label>
-                {{weekToText(week)}}
-              </label>
+              <span v-else>
+                <label>
+                  <i class="fa fa-calendar"></i>
+                </label>
+
+                <el-popover trigger="hover" placement="top">
+                  <div class="text-center">{{year}}</div>
+                  <label slot="reference" class="name-wrapper moon-top-right-item-eliplse">
+                    {{year}}
+                  </label>
+                </el-popover>
+
+                <label>
+                  {{$t("第")}}{{weekNum}}{{$t("周")}}
+                </label>
+                <label>
+                  {{weekToText(week)}}
+                </label>
+              </span>
             </span>
             <span class="moon-top-middle-menu-title-icon">
               <el-badge :is-dot="auditCount > 0" class="item" v-if="loginUserType != 2">
