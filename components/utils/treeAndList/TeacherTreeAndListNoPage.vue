@@ -7,7 +7,7 @@
     <el-table ref="commTableRef" :data="tableTeacherCommData"
               :max-height="maxHeight"
               size="mini"
-              :loading="commLoading">
+              v-loading="commLoading">
       <el-table-column
         v-if="setType == 'check'"
         align="center"
@@ -141,6 +141,7 @@
         params['realName'] = this.commSearchKey['input'];
         //this.commSelUserArr = [];
         //this.commSelUserNameArr = [];
+        this.commLoading = true;
         this.$axios.get(common.dormaccess_teacher_select_status_page, {params: params}).then(res => {
           if (res.data.data){
             //this.$refs.commTableRef.clearSelection();
@@ -167,6 +168,7 @@
             //this._handleSelect();
           }
           this.commTalbeLoading = false;
+          this.commLoading = false;
         });
       },
       _handleOpen(){

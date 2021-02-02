@@ -26,12 +26,36 @@
           style="width: 100%">
           <el-table-column
             align="center"
+            :label="$t('日期')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.apply_time ? $moment(scope.row.apply_time).format("YYYY-MM-DD") : '--'}}</div>
+                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{scope.row.apply_time ? $moment(scope.row.apply_time).format("YYYY-MM-DD") : '--'}}
+                </div>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
             :label="$t('学生')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                 <div class="text-center">{{scope.row.real_name}}</div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                   {{scope.row.real_name}}
+                </div>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            :label="$t('学号')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.student_id}}</div>
+                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{scope.row.student_id}}
                 </div>
               </el-popover>
             </template>

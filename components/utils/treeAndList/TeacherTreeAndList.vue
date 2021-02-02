@@ -7,7 +7,7 @@
     <el-table ref="commTableRef" :data="tableTeacherCommData"
               :max-height="maxHeight"
               size="mini"
-              :loading="commLoading">
+              v-loading="commLoading">
       <el-table-column
         v-if="setType == 'check'"
         align="center"

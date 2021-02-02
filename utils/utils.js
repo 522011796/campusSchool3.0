@@ -717,6 +717,20 @@ export function meetingStatusText(type, str){
   }
 }
 
+export function meetingUserStatusText(type, str){
+  let meetingUserStatus = {
+    "1": "缺勤",
+    "2": "请假",
+    "3": "正常出勤"
+  };
+  if (str && type == 'set') {
+    return meetingUserStatus[str];
+  }
+  if (!str && type == 'get'){
+    return meetingUserStatus;
+  }
+}
+
 export function meetingJoinStatusText(type, str){
   let meetingJoinStatus = {
     "1": "缺席",

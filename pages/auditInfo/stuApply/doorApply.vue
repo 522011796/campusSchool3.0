@@ -26,6 +26,18 @@
           style="width: 100%">
           <el-table-column
             align="center"
+            :label="$t('日期')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.apply_time ? $moment(scope.row.apply_time).format("YYYY-MM-DD") : '--'}}</div>
+                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{scope.row.apply_time ? $moment(scope.row.apply_time).format("YYYY-MM-DD") : '--'}}
+                </div>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
             :label="$t('学生')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
@@ -109,11 +121,11 @@
                     {{$moment(scope.row.date2).format("YYYY-MM-DD HH:mm:ss")}}
                   </div>
                 </div>
-                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <div>
+                <div slot="reference">
+                  <div class="name-wrapper moon-content-text-ellipsis-class">
                     {{$moment(scope.row.date1).format("YYYY-MM-DD HH:mm:ss")}}
                   </div>
-                  <div>
+                  <div class="name-wrapper moon-content-text-ellipsis-class">
                     {{$moment(scope.row.date2).format("YYYY-MM-DD HH:mm:ss")}}
                   </div>
                 </div>

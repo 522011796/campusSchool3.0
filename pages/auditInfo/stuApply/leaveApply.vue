@@ -26,6 +26,18 @@
           style="width: 100%">
           <el-table-column
             align="center"
+            :label="$t('申请时间')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.apply_time ? $moment(scope.row.apply_time).format("YYYY-MM-DD HH:mm") : '--'}}</div>
+                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{scope.row.apply_time ? $moment(scope.row.apply_time).format("YYYY-MM-DD HH:mm") : '--'}}
+                </div>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
             :label="$t('申请人')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">

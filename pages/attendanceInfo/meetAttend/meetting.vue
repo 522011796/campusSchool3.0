@@ -207,9 +207,9 @@
             </el-col>
             <el-col :span="8">
               <div class="rpStatic-top-item color-muted">
-                <div class="title">{{$t("出席率")}}: </div>
+                <div class="title">{{$t("达标率")}}: </div>
                 <div style="height: 140px">
-                  <table-bar-chart chart-id="typeId" :chart-title='$t("出席率")' :data="staticData.signRate"></table-bar-chart>
+                  <table-bar-chart chart-id="typeId" :chart-title='$t("达标率")' :data="staticData.signRate"></table-bar-chart>
                 </div>
               </div>
             </el-col>
@@ -316,11 +316,11 @@
             align="center"
             :filter-multiple="false"
             column-key="signStatus"
-            :filters="mettingJoinStatusFilter"
+            :filters="mettingUserJoinStatusFilter"
             :label="$t('出席状态')">
 
             <template slot-scope="scope">
-              <span>{{meetingJoinStatusInfo(scope.row.sign_status)}}</span>
+              <span>{{meetingUserStatusTextInfo(scope.row.sign_status)}}</span>
             </template>
           </el-table-column>
         </el-table>
@@ -489,7 +489,14 @@
   import MyPagination from "../../../components/MyPagination";
   import mixins from "../../../utils/mixins";
   import {common} from "../../../utils/api/url";
-  import {inArray, meetingStatusText, MessageError, MessageSuccess, MessageWarning} from "../../../utils/utils";
+  import {
+    inArray,
+    meetingStatusText,
+    meetingUserStatusText,
+    MessageError,
+    MessageSuccess,
+    MessageWarning
+  } from "../../../utils/utils";
   import LayoutTb from "../../../components/Layout/LayoutTb";
   import MySelect from "../../../components/MySelect";
   import MyUserType from "../../../components/utils/MyUserType";
@@ -537,6 +544,7 @@
         mettingStatusFilter: [],
         mettingStatusOptions: [],
         mettingJoinStatusFilter: [],
+        mettingUserJoinStatusFilter: [],
         searchStatusKey: '',
         signStatus: '',
         statusChartDataKey: [],
@@ -708,6 +716,7 @@
         this.showDetail = true;
         this.detailData = row;
         this.meetingJoinStatusGetInfo();
+        this.meetingUserStatusTextGetInfo();
         this.initStatic(row);
         this.initStaticPage(row);
       },
@@ -846,6 +855,20 @@
           });
         }
         this.mettingJoinStatusFilter = arr;
+      },
+      meetingUserStatusTextInfo(val){
+        return meetingUserStatusText('set', val);
+      },
+      meetingUserStatusTextGetInfo(){
+        let arrStatus = meetingUserStatusText('get', null);
+        let arr = [];
+        for (let item in arrStatus){
+          arr.push({
+            text: arrStatus[item],
+            value: item
+          });
+        }
+        this.mettingUserJoinStatusFilter = arr;
       },
       handleChangeDate(data, type){
         if (type == 1){
