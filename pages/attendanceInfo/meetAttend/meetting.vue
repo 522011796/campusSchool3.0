@@ -31,7 +31,7 @@
             :label="$t('创建日期')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{$moment(scope.row.create_time).format("YYYY-MM-DD HH:mm:ss")}}}</div>
+                <div class="text-center">{{$moment(scope.row.create_time).format("YYYY-MM-DD HH:mm:ss")}}</div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                   {{$moment(scope.row.create_time).format("YYYY-MM-DD HH:mm:ss")}}
                 </div>
@@ -149,9 +149,7 @@
                   </div>
                 </div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <div>
-                    {{scope.row.classroom_name}}
-                  </div>
+                  {{scope.row.classroom_name}}
                 </div>
               </el-popover>
             </template>

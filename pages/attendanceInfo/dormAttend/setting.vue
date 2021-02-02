@@ -145,7 +145,7 @@
           <el-form-item :label="$t('晚归设置')" prop="delay">
             <span>{{$t("超过考勤时间")}}</span><el-input v-model="form.delay" style="width:80px"></el-input><span>{{$t("分钟标记为晚归")}}</span>
           </el-form-item>
-          <el-form-item :label="$t('考勤地点')" prop="dormitoryIdList">
+          <el-form-item v-if="form.id != -1" :label="$t('考勤地点')" prop="dormitoryIdList">
             <el-popover
               placement="top"
               width="700"
@@ -225,7 +225,8 @@
           endTime: '',
           delay: 60,
           dormitoryIdList: [],
-          checkbedRuleDay: []
+          checkbedRuleDay: [],
+          rullType: ''
         }
       }
     },
@@ -277,6 +278,7 @@
         this.modalOtherVisible = true;
       },
       editInfo(row){
+        console.log(row);
         let roomIds = row.dormitory_id_list ? row.dormitory_id_list.split(",") : [];
         let arr = [];
         this.form = {
@@ -285,7 +287,8 @@
           startTime: row.start_time,
           endTime: row.end_time,
           delay: row.delay,
-          checkbedRuleDay: []
+          checkbedRuleDay: [],
+          rullType: row.rull_type
         };
 
         for (let i = 0; i < roomIds.length; i++){
@@ -388,7 +391,8 @@
           endTime: '',
           delay: 60,
           dormitoryIdList: [],
-          checkbedRuleDay: []
+          checkbedRuleDay: [],
+          rullType: ''
         };
         this.subTitle = "";
         this.oprType == "";

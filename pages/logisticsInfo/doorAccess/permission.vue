@@ -341,6 +341,7 @@
                 <span>
                   <my-radio :sel-value="form.errorPassType" :label="false" @change="changeStatus($event, false, 2)">{{$t("禁用")}}</my-radio>
                   <my-radio :sel-value="form.errorPassType" :label="true" @change="changeStatus($event, true, 2)">{{$t("启用")}}</my-radio>
+                  <label class="color-danger">{{$t("(仅适用于门禁控制器设备)")}}</label>
                 </span>
               </div>
               <div>
