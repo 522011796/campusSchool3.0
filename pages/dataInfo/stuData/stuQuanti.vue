@@ -325,7 +325,7 @@
             <span class="color-warning">{{$t("设置统计权重")}}</span>
           </div>
           <div class="margin-top-10">
-            <el-form :model="form" :rules="rules" ref="form" label-width="90px">
+            <el-form :model="form" :rules="rules" ref="form" label-width="100px">
               <el-row>
                 <el-col :span="12">
                   <el-form-item :label="$t('请假率')" prop="leaveRate">
@@ -390,7 +390,7 @@
                     </el-form-item>
                   </el-form>
                   <div class="text-center padding-tb-5">
-                    <el-button type="default" size="small">{{$t("取消")}}</el-button>
+                    <el-button type="default" size="small" @click="cancelConfig">{{$t("取消")}}</el-button>
                     <el-button type="info" size="small" @click="saveConfig">{{$t("确定")}}</el-button>
                   </div>
                 </div>
@@ -1287,6 +1287,9 @@
             this.popverVisible = false;
           }
         });
+      },
+      cancelConfig(){
+        this.popverVisible = false;
       },
       okDialog(event){
         let url = "";

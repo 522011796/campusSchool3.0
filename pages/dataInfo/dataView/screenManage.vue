@@ -25,7 +25,7 @@
                   </span>
                   <div class="pull-right">
                     <i class="fa fa-plus-circle color-grand margin-right-5" style="font-size: 16px" @click="addInfo(1)"></i>
-                    <i class="fa fa-eye color-warning" style="font-size: 16px"></i>
+                    <i class="fa fa-eye color-warning" style="font-size: 16px" @click="showView('/img/screen-all-class.png')"></i>
                   </div>
                 </div>
                 <div class="padding-tb-5 padding-lr-5">
@@ -53,7 +53,7 @@
                   </span>
                   <div class="pull-right">
                     <i class="fa fa-plus-circle color-grand margin-right-5" style="font-size: 16px" @click="addInfo(2)"></i>
-                    <i class="fa fa-eye color-warning" style="font-size: 16px"></i>
+                    <i class="fa fa-eye color-warning" style="font-size: 16px" @click="showView('/img/screen-all-dorm.png')"></i>
                   </div>
                 </div>
                 <div class="padding-tb-5 padding-lr-5">
@@ -81,7 +81,7 @@
                   </span>
                   <div class="pull-right">
                     <i class="fa fa-plus-circle color-grand margin-right-5" style="font-size: 16px" @click="addInfo(3)"></i>
-                    <i class="fa fa-eye color-warning" style="font-size: 16px"></i>
+                    <i class="fa fa-eye color-warning" style="font-size: 16px" @click="showView('/img/screen-build-bg.png')"></i>
                   </div>
                 </div>
                 <div class="padding-tb-5 padding-lr-5">
@@ -188,6 +188,8 @@
         </div>
       </div>
     </drawer-layout-right>
+
+    <my-view-img :visible.sync="imgVisibleConfim" :head-img="viewImage"></my-view-img>
   </div>
 </template>
 
@@ -203,10 +205,11 @@
   import MyInputButton from "../../../components/search/MyInputButton";
   import DialogNormal from "../../../components/utils/dialog/DialogNormal";
   import DrawerLayoutRight from "../../../components/utils/dialog/DrawerLayoutRight";
+  import MyViewImg from "../../../components/utils/common/MyViewImg";
   import screenManageValidater from "../../../utils/validater/screenManageValidater";
   export default {
     mixins: [mixins, screenManageValidater],
-    components: {MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal,DrawerLayoutRight},
+    components: {MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal,DrawerLayoutRight,MyViewImg},
     data(){
       return {
         pageStudent: 1,
@@ -222,9 +225,11 @@
         drawerVisible: false,
         dialogLoading: false,
         visibleConfim: false,
+        imgVisibleConfim: false,
         clearTime: '',
         action: '',
         subTitle: '',
+        viewImage: '',
         dataSetOptions: [],
         groupOptions: [],
         form: {
@@ -312,6 +317,10 @@
       },
       setInfo(){
         this.drawerVisible = true;
+      },
+      showView(viewImage){
+        this.viewImage = viewImage;
+        this.imgVisibleConfim = true;
       },
       addInfo(type){
         if (type == 1){
