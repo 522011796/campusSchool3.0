@@ -139,7 +139,7 @@
               </tbody>
             </table>
           </el-form-item>
-          <el-form-item :label="$t('组名')" prop="delay">
+          <el-form-item :label="$t('晚归设置')" prop="delay">
             <span>{{$t("超过考勤时间")}}</span><el-input v-model="form.delay" style="width:80px"></el-input><span>{{$t("分钟标记为晚归")}}</span>
           </el-form-item>
           <el-form-item :label="$t('例外学生')" prop="dormitoryIdList">

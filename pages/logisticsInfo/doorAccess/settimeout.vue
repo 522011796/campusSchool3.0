@@ -365,7 +365,8 @@
       },
       deleteInfo(row){
         this.form.id = row.id;
-        //this.subTitle = row.name;
+        this.deleteSetTitle = this.$t("确认需要删除该信息？");
+        this.subTitle = row.name;
         this.visibleConfim = true;
       },
       sizeChange(event){
@@ -397,13 +398,13 @@
       },
       enableInfo(row, type){
         if (type == true){
-          this.deleteSetTitle = this.$t("确认需要启用该异常吗？");
+          this.deleteSetTitle = this.$t("确认需要启用该任务吗？");
         }else if (type == false){
-          this.deleteSetTitle = this.$t("确认需要禁用该异常吗？");
+          this.deleteSetTitle = this.$t("确认需要禁用该任务吗？");
         }
         this.form.id =  row.id;
         this.form.enable = type;
-        //this.subTitle = row.name;
+        this.subTitle = row.name;
         this.visibleConfim = true;
       },
       handleOkChange(data) {
