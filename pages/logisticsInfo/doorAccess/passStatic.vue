@@ -8,8 +8,8 @@
         </div>
         <my-el-tree :type="mainType" :sub-type="subType" @node-click="nodeClick">
           <div slot="top" class="text-center">
-            <el-button :type="showType == 1 ? 'primary' : 'default'" size="mini" @click="changeTree(3,3, 2)">{{$t("建筑楼")}}</el-button>
-            <el-button :type="showType == 2 ? 'primary' : 'default'" size="mini" @click="changeTree(2,3, 1)">{{$t("宿舍楼")}}</el-button>
+            <el-button :type="showType == 1 ? 'primary' : 'default'" size="mini" @click="changeTree(3,3, 1)">{{$t("建筑楼")}}</el-button>
+            <el-button :type="showType == 2 ? 'primary' : 'default'" size="mini" @click="changeTree(2,3, 2)">{{$t("宿舍楼")}}</el-button>
           </div>
         </my-el-tree>
       </div>
@@ -24,7 +24,7 @@
           </my-search-of-date>-->
           <my-search-of-date-group size="small" :show-year="true" :show-term="false" :show-week="false" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType">
             <span slot="other">
-              <my-select class="layout-item" size="small" width-style="100" :sel-value="searchUserType" :options="filterUserTypes" @change="handleChangeUserType"></my-select>
+              <my-select class="layout-item" size="small" width-style="100" :sel-value="searchUserType" :options="filterUserTypes2" @change="handleChangeUserType"></my-select>
               <my-cascader class="layout-item" ref="SelectorDoorAccess" size="small" width-style="160" :clearable="true" :sel-value="searchCommDeptData" :type="selType" :sub-type="selSubType" @change="_handleCascaderChange($event)"></my-cascader>
             </span>
           </my-search-of-date-group>
@@ -303,6 +303,17 @@
             </template>
           </el-table-column>
         </el-table>
+        <div class="margin-top-5 font-size-12 color-danger">
+          <div>
+            {{$t("提示")}}：
+          </div>
+          <div>
+            1、{{$t("当前设定的次数为日数据，月和年的数据自动乘以对应天数；")}}
+          </div>
+          <div>
+            2、{{$t("频率等级“高”的通行次数阈值自动计算，无需手动输入。")}}
+          </div>
+        </div>
       </div>
       <div slot="footer">
         <el-button size="small" @click="cancelDialog">{{$t("取消")}}</el-button>
@@ -670,8 +681,8 @@
         params['num'] = this.numStudent;
         params['userType'] = userType;
         params['userId'] = this.detailUserId;
-        params['startTime'] = this.searchDate.length > 0 ? (this.searchDate[0] + ' 00:00') : '';
-        params['endTime'] = this.searchDate.length > 0 ? (this.searchDate[1] + ' 23:59') : '';
+        params['startTime'] = this.searchDate && this.searchDate.length > 0 ? (this.searchDate[0] + ' 00:00') : '';
+        params['endTime'] = this.searchDate && this.searchDate.length > 0 ? (this.searchDate[1] + ' 23:59') : '';
         params['deviceSceneSubType'] = this.searchDetailType;
         if (this.searchUserType == 1){
           userType = 5;
@@ -907,6 +918,10 @@
         this.drawerVisible = false;
       },
       cancelDrawDialog(){
+        this.pageStudent = 1;
+        this.numStudent = 20;
+        this.searchDate = [];
+        this.searchDetailType = "";
         this.drawerVisible = false;
       },
       searchTopDate(data){

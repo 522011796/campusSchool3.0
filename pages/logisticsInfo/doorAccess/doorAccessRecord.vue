@@ -8,8 +8,8 @@
         </div>
         <my-el-tree :type="mainType" :sub-type="subType" @node-click="nodeClick">
           <div slot="top" class="text-center">
-            <el-button :type="showType == 1 ? 'primary' : 'default'" size="mini" @click="changeTree(3,3, 2)">{{$t("建筑楼")}}</el-button>
-            <el-button :type="showType == 2 ? 'primary' : 'default'" size="mini" @click="changeTree(2,3, 1)">{{$t("宿舍楼")}}</el-button>
+            <el-button :type="showType == 1 ? 'primary' : 'default'" size="mini" @click="changeTree(3,3, 1)">{{$t("建筑楼")}}</el-button>
+            <el-button :type="showType == 2 ? 'primary' : 'default'" size="mini" @click="changeTree(2,3, 2)">{{$t("宿舍楼")}}</el-button>
           </div>
         </my-el-tree>
       </div>

@@ -7,6 +7,7 @@
         <el-row>
           <el-col :span="12">
             <el-button size="small" type="default" :disabled="deviceList.length <= 0" :loading="mutiUnbindLoading"  icon="el-icon-circle-close" @click="unbindMutiInfo($event)">{{$t("批量解绑")}}</el-button>
+            <el-button size="small" type="warning" icon="el-icon-download" @click="exportInfo($event)">{{$t("导出")}}</el-button>
           </el-col>
           <el-col :span="12" class="text-right">
             <my-date-picker class="layout-item" style="position: relative; top: 1px;" type="daterange" :clearable="true" :sel-value="searchDate" size="small" width-style="240" @change="handleTime"></my-date-picker>
@@ -305,6 +306,20 @@
           }
         }
         this.init();
+      },
+      exportInfo(){
+        let url = "";
+        let params = {
+          page: 1,
+          num: 99999,
+          searchKey: this.searchKey,
+          status: this.status,
+          beginTime: this.searchDate && this.searchDate.length > 0 ? this.searchDate[0] : '',
+          endTime: this.searchDate && this.searchDate.length > 0 ? this.searchDate[1] : '',
+        };
+        params = this.$qs.stringify(params);
+        url = common.dormaccess_exception_export;
+        window.open(url+"?"+params, "_self");
       }
     }
   }

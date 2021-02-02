@@ -365,7 +365,7 @@
       },
       deleteInfo(row){
         this.form.id = row.id;
-        this.deleteSetTitle = this.$t("确认需要删除该信息？");
+        this.deleteSetTitle = this.$t("确认删除该规则吗？");
         this.subTitle = row.name;
         this.visibleConfim = true;
       },
@@ -398,9 +398,9 @@
       },
       enableInfo(row, type){
         if (type == true){
-          this.deleteSetTitle = this.$t("确认需要启用该任务吗？");
+          this.deleteSetTitle = this.$t("确认需要启用该规则吗？");
         }else if (type == false){
-          this.deleteSetTitle = this.$t("确认需要禁用该任务吗？");
+          this.deleteSetTitle = this.$t("确认需要禁用该规则吗？");
         }
         this.form.id =  row.id;
         this.form.enable = type;
@@ -465,7 +465,7 @@
               MessageWarning(this.$t("请选择设备！"));
               return;
             }
-            if (this.form.weekNoset.length == 0){
+            if (this.form.timeType == 2 && this.form.weekNoset.length == 0){
               MessageWarning(this.$t("请选择星期！"));
               return;
             }

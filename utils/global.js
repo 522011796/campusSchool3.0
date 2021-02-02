@@ -260,6 +260,11 @@ const filterUserTypes = [
   { text: '陌生人', value: "3", label: '陌生人'}
 ];
 
+const filterUserTypes2 = [
+  { text: "学生", value: "1", label: '学生'},
+  { text: '教师', value: "2", label: '教师'}
+];
+
 const filterDoorOpenTypes = [
   { text: "正常", value: "3", label: '正常'},
   { text: '常开', value: "1", label: '常开'},
@@ -347,6 +352,7 @@ export default {
   filterTripFlowTypes,
   filterCardFlowTypes,
   filterUserTypes,
+  filterUserTypes2,
   filterDoorOpenTypes,
   filterDoorOnlineStatus,
   filterDoorExceptionStatus,

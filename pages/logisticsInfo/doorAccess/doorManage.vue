@@ -493,7 +493,7 @@
           time: 5
         };
         this.deviceLoading = true;
-        this.$axios.get(common.dormaccess_control_device_search, {params: params}).then(res => {
+        this.$axios.get(common.dormaccess_control_device_search, {params: params, loading: false}).then(res => {
           if (res.data.data && res.data.data.length > 0){
             for (let i = 0; i < res.data.data.length; i++){
               res.data.data[i]['doorNoSet'] = [];

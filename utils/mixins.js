@@ -71,6 +71,7 @@ export default {
       filterTripFlowTypes: global.filterTripFlowTypes,
       filterCardFlowTypes: global.filterCardFlowTypes,
       filterUserTypes: global.filterUserTypes,
+      filterUserTypes2: global.filterUserTypes2,
       filterDoorOpenTypes: global.filterDoorOpenTypes,
       filterDoorOnlineStatus: global.filterDoorOnlineStatus,
       filterDoorExceptionStatus: global.filterDoorExceptionStatus,

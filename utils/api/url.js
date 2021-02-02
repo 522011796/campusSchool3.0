@@ -383,6 +383,8 @@ export const common = {
   dormaccess_role_group_device_line: '/proxy/school/device/device/door/group/face/list',//门禁设备--直连
   dormaccess_role_group_edit: '/proxy/school/group/info',//门禁权限--编辑
   dormaccess_role_group_save: '/proxy/school/group/save',//门禁权限--保存
+  dormaccess_exception_export: '/proxy/school/person/user/passError/export',//门禁异常管理--导出
+
 
   dormaccess_teacher_select_status_page: '/proxy/user/employee/ac/selected/page',//老师分页--选中自动前排
   dormaccess_student_select_status_page: '/proxy/user/student/info/ac/selected/user/page',//学生分页--选中自动前排
@@ -465,6 +467,4 @@ export const common = {
   userinfo_cookie_auth: '/proxy/course/quantization/get-auth',//个人报告cookie
 
   dorm_stat_count: '/proxy/course/rollcallbed/rollcallbed/build/stat',//归寝统计数量
-
-
 };
