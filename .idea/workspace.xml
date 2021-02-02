@@ -3,18 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/treeAndList/StudentTreeAndList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/treeAndList/StudentTreeAndList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/treeAndList/StudentTreeAndListNoPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/treeAndList/StudentTreeAndListNoPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/treeAndList/TeacherTreeAndList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/treeAndList/TeacherTreeAndList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/treeAndList/TeacherTreeAndListNoPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/treeAndList/TeacherTreeAndListNoPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/meetAttend/meetting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/meetAttend/meetting.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/auditInfo/stuApply/doorApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/auditInfo/stuApply/doorApply.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/auditInfo/stuApply/faceApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/auditInfo/stuApply/faceApply.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/auditInfo/stuApply/leaveApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/auditInfo/stuApply/leaveApply.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/auditInfo/stuApply/repuApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/auditInfo/stuApply/repuApply.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/auditInfo/stuApply/scoreApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/auditInfo/stuApply/scoreApply.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/CreditDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/CreditDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/FaceDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/FaceDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/RepuDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/RepuDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/StudoorDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/StudoorDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/StuleaveDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/StuleaveDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/TerdoorDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/TerdoorDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/TerleaveDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/TerleaveDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/common/MyHeadImg.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/common/MyHeadImg.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/auditInfo/terApply/doorApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/auditInfo/terApply/doorApply.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,14 +111,7 @@
       <workItem from="1608625084513" duration="122942000" />
       <workItem from="1609379556549" duration="104145000" />
       <workItem from="1610156986760" duration="338962000" />
-      <workItem from="1611544756423" duration="142122000" />
-    </task>
-    <task id="LOCAL-00196" summary="1、修改框架和组件样式、细节bug等&#10;2、加载未完成时的效果完成">
-      <created>1611220327354</created>
-      <option name="number" value="00196" />
-      <option name="presentableId" value="LOCAL-00196" />
-      <option name="project" value="LOCAL" />
-      <updated>1611220327354</updated>
+      <workItem from="1611544756423" duration="145561000" />
     </task>
     <task id="LOCAL-00197" summary="1、修改框架和组件样式、细节bug等&#10;2、加载未完成时的效果完成">
       <created>1611221894201</created>
@@ -459,7 +449,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612237095389</updated>
     </task>
-    <option name="localTasksCounter" value="245" />
+    <task id="LOCAL-00245" summary="1、修改框架和组件样式、细节bug等&#10;2、按钮组带动画版本完成">
+      <created>1612247123015</created>
+      <option name="number" value="00245" />
+      <option name="presentableId" value="LOCAL-00245" />
+      <option name="project" value="LOCAL" />
+      <updated>1612247123015</updated>
+    </task>
+    <option name="localTasksCounter" value="246" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,11 +495,11 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1612176661241" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1612237093808">
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1612247121501">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1612237093808" />
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1612247121501" />
     <state x="100" y="124" width="1240" height="600" key="DiffContextDialog" timestamp="1612151588330">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -532,11 +529,11 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="221" y="66" key="SettingsEditor/0.25.1440.798@0.25.1440.798" timestamp="1611905365471" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1612237097198">
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1612247124895">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1612237097198" />
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1612247124895" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1611203372469">
       <screen x="0" y="25" width="1440" height="798" />
     </state>

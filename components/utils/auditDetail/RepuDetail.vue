@@ -5,6 +5,7 @@
         <div class="color-success">
           <span>{{$t("申请老师")}}:</span>
           <span>{{value.apply_user_name}}</span>
+          <span class="font-size-12 color-muted">({{$moment(value.apply_time).format("YYYY-MM-DD HH:mm:ss")}})</span>
         </div>
       </div>
       <div class="color-muted">
@@ -21,15 +22,15 @@
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("班级")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-70+'px'}">{{value.class_name}}</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-70+'px'}" :title="value.class_name">{{value.class_name}}</span>
               </div>
             </div>
           </el-col>
           <el-col :span="8" class="ellipsis-tag">
             <div>
               <div>
-                <span class="title-class color-disabeld">{{$t("专业")}}专业:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-70+'px'}">{{value.major_name}}</span>
+                <span class="title-class color-disabeld">{{$t("专业")}}:</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-70+'px'}" :title="value.major_name">{{value.major_name}}</span>
               </div>
             </div>
           </el-col>
@@ -37,7 +38,7 @@
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("院系")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-70+'px'}">{{value.college_name}}</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-70+'px'}" :title="value.college_name">{{value.college_name}}</span>
               </div>
             </div>
           </el-col>
@@ -50,7 +51,7 @@
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("类型")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}">{{value.str1}}</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}" :title="value.str1">{{value.str1}}</span>
               </div>
             </div>
           </el-col>
@@ -58,7 +59,7 @@
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("级别")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}">{{value.str2}}</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}" :title="value.str2">{{value.str2}}</span>
               </div>
             </div>
           </el-col>

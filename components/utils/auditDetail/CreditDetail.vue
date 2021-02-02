@@ -22,7 +22,7 @@
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("班级")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}">{{value.class_name}}</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}" :title="value.class_name">{{value.class_name}}</span>
               </div>
             </div>
           </el-col>
@@ -30,7 +30,7 @@
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("专业")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}">{{value.major_name}}</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}" :title="value.major_name">{{value.major_name}}</span>
               </div>
             </div>
           </el-col>
@@ -38,7 +38,7 @@
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("院系")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}">{{value.college_name}}</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}" :title="value.college_name">{{value.college_name}}</span>
               </div>
             </div>
           </el-col>
@@ -51,7 +51,7 @@
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("类型")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}">{{value.str1}}</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}" :title="value.str1">{{value.str1}}</span>
               </div>
             </div>
           </el-col>
@@ -59,7 +59,7 @@
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("项目")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}">{{value.str2}}</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}" :title="value.str2">{{value.str2}}</span>
               </div>
             </div>
           </el-col>

@@ -4,24 +4,50 @@
       <div slot="header" style="padding: 5px !important;">
         <div class="color-success">
           <el-row>
-            <el-col :span="12">
+            <el-col :span="24">
               <span>{{$t("申请人")}}:</span>
               <span>{{value.apply_user_name}}</span>
-            </el-col>
-            <el-col :span="12">
-              <span>{{$t("班级")}}:</span>
-              <span>{{value.class_name}}</span>
+              <span class="font-size-12 color-muted">({{$moment(value.apply_time).format("YYYY-MM-DD HH:mm:ss")}})</span>
             </el-col>
           </el-row>
         </div>
       </div>
       <div class="color-muted">
         <el-row>
+          <el-col :span="8" class="ellipsis-tag">
+            <div>
+              <div>
+                <span class="title-class color-disabeld">{{$t("班级")}}:</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-70+'px'}" :title="value.class_name">{{value.class_name}}</span>
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="8" class="ellipsis-tag">
+            <div>
+              <div>
+                <span class="title-class color-disabeld">{{$t("专业")}}:</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-70+'px'}" :title="value.major_name">{{value.major_name}}</span>
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="8" class="ellipsis-tag">
+            <div>
+              <div>
+                <span class="title-class color-disabeld">{{$t("院系")}}:</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-70+'px'}" :title="value.college_name">{{value.college_name}}</span>
+              </div>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+      <div class="line-height"></div>
+      <div class="color-muted">
+        <el-row>
           <el-col :span="12" class="ellipsis-tag">
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("类型")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}">{{value.str3}}</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}" :title="value.str3">{{value.str3}}</span>
               </div>
             </div>
           </el-col>
@@ -39,7 +65,7 @@
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("开始时间")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px','position': 'relative','top': '-2px'}">{{$moment(value.date1).format("YYYY-MM-DD HH:mm:ss")}}</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px','position': 'relative','top': '-2px'}" :title='$moment(value.date1).format("YYYY-MM-DD HH:mm:ss")'>{{$moment(value.date1).format("YYYY-MM-DD HH:mm:ss")}}</span>
               </div>
             </div>
           </el-col>
@@ -47,7 +73,7 @@
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("结束时间")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px','position': 'relative','top': '-2px'}">{{$moment(value.date2).format("YYYY-MM-DD HH:mm:ss")}}</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px','position': 'relative','top': '-2px'}" :title='$moment(value.date2).format("YYYY-MM-DD HH:mm:ss")'>{{$moment(value.date2).format("YYYY-MM-DD HH:mm:ss")}}</span>
               </div>
             </div>
           </el-col>
@@ -57,7 +83,7 @@
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("申请时间")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px','position': 'relative','top': '-2px'}">{{$moment(value.apply_time).format("YYYY-MM-DD HH:mm:ss")}}</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px','position': 'relative','top': '-2px'}" :title='$moment(value.apply_time).format("YYYY-MM-DD HH:mm:ss")'>{{$moment(value.apply_time).format("YYYY-MM-DD HH:mm:ss")}}</span>
               </div>
             </div>
           </el-col>

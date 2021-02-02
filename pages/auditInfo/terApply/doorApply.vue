@@ -97,11 +97,11 @@
                     {{$moment(scope.row.date2).format("YYYY-MM-DD HH:mm:ss")}}
                   </div>
                 </div>
-                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <div>
+                <div slot="reference">
+                  <div class="name-wrapper moon-content-text-ellipsis-class">
                     {{$moment(scope.row.date1).format("YYYY-MM-DD HH:mm:ss")}}
                   </div>
-                  <div>
+                  <div class="name-wrapper moon-content-text-ellipsis-class">
                     {{$moment(scope.row.date2).format("YYYY-MM-DD HH:mm:ss")}}
                   </div>
                 </div>

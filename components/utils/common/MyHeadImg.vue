@@ -24,7 +24,7 @@
       :show-close="false">
       <div slot="title">
         <div class="text-right">
-          <label class="font-size-12 color-grand" @click="handleLoop">{{$t("旋转")}}</label>
+          <label class="font-size-12 color-grand select-none" @click="handleLoop">{{$t("旋转")}}</label>
         </div>
       </div>
       <div class="head-img-block head-img-block-tag">

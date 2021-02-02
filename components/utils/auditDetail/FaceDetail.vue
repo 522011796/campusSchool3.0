@@ -7,6 +7,7 @@
             <el-col :span="12">
               <span>{{$t("申请人")}}:</span>
               <span>{{value.apply_user_name}}</span>
+              <span class="font-size-12 color-muted">({{$moment(value.apply_time).format("YYYY-MM-DD HH:mm:ss")}})</span>
             </el-col>
           </el-row>
         </div>
@@ -17,7 +18,7 @@
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("类型")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}">{{value.str1}}</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-40+'px'}" :title="value.str1">{{value.str1}}</span>
               </div>
             </div>
           </el-col>
@@ -25,7 +26,7 @@
             <div>
               <div>
                 <span class="title-class color-disabeld">{{$t("申请时间")}}:</span>
-                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px','position': 'relative','top': '-2px'}">{{$moment(value.apply_time).format("YYYY-MM-DD HH:mm:ss")}}</span>
+                <span class="moon-content-text-ellipsis-class" :style="{'display': 'inline-block','width': widthStyle-90+'px','position': 'relative','top': '-2px'}" :title='$moment(value.apply_time).format("YYYY-MM-DD HH:mm:ss")'>{{$moment(value.apply_time).format("YYYY-MM-DD HH:mm:ss")}}</span>
               </div>
             </div>
           </el-col>

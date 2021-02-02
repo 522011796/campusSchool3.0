@@ -4,13 +4,16 @@
       <div slot="header" style="padding: 5px !important;">
         <div class="color-success">
           <el-row>
-            <el-col :span="12">
+            <el-col :span="24">
               <span>{{$t("申请人")}}:</span>
               <span>{{value.apply_user_name}}</span>
+              <span class="font-size-12 color-muted">({{$moment(value.apply_time).format("YYYY-MM-DD HH:mm:ss")}})</span>
             </el-col>
-            <el-col :span="12">
-              <span>{{$t("部门")}}:</span>
-              <span>{{value.depart_name}}</span>
+          </el-row>
+          <el-row class="margin-top-5">
+            <el-col :span="24">
+              <span class="color-muted font-size-12">{{$t("部门")}}:</span>
+              <span class="color-muted font-size-12">{{value.depart_name}}</span>
             </el-col>
           </el-row>
         </div>
