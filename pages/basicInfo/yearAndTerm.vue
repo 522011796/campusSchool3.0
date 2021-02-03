@@ -156,7 +156,7 @@
           <el-form-item :label="$t('学期时间')">
             <el-tag type="warning"><i class="fa fa-calendar"></i> {{$moment(formSetTerm.termStart).format("YYYY-MM-DD")}}</el-tag>
             -
-            <el-tag type="warning"><i class="fa fa-calendar"></i> {{$moment(formSetTerm.endStart).format("YYYY-MM-DD")}}</el-tag>
+            <el-tag type="warning"><i class="fa fa-calendar"></i> {{$moment(formSetTerm.termEnd).format("YYYY-MM-DD")}}</el-tag>
           </el-form-item>
           <el-form-item :label="$t('开始时间')">
             <my-date-picker :disabled="!formSetTerm.current" v-if="formSetTerm.startTime" :sel-value="formSetTerm.startTime" width-style="300" @change="handleChangeTime($event, 5)"></my-date-picker>
@@ -413,6 +413,7 @@
         this.visibleConfim = true;
       },
       async setTerm(row){
+        console.log(row);
         await this.getSessionInfo();
         await this.getCurrentWeekInfo(this.campusId);
         let params = {

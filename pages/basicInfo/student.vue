@@ -110,7 +110,7 @@
       </div>
     </layout-lr>
 
-    <dialog-normal top="10vh" width-style="650px" :visible="modalVisible" :title="$t('教工设置')" @close="closeDialog" @right-close="cancelDialog">
+    <dialog-normal top="10vh" width-style="650px" :visible="modalVisible" :title="$t('学生设置')" @close="closeDialog" @right-close="cancelDialog">
       <div class="margin-top-10">
         <el-form :model="form" :rules="rules" ref="form" label-width="80px">
           <el-row :gutter="16">

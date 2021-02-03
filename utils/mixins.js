@@ -76,6 +76,7 @@ export default {
       filterDoorOnlineStatus: global.filterDoorOnlineStatus,
       filterDoorExceptionStatus: global.filterDoorExceptionStatus,
       filterDoorInOutStatus: global.filterDoorInOutStatus,
+      filterDoorSignStatus: global.filterDoorSignStatus,
       g_currentDate: {},
       currentYearData: '',
       currentTermData: '',

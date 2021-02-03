@@ -74,7 +74,7 @@
       </div>
     </layout-lr>
 
-    <dialog-normal top="10vh" :visible="modalVisible" :title="$t('教室设置')" @close="closeDialog" @right-close="cancelDialog">
+    <dialog-normal top="10vh" :visible="modalVisible" :title="$t('宿舍设置')" @close="closeDialog" @right-close="cancelDialog">
       <div class="margin-top-10">
         <el-form ref="form" :rules="rules" :model="form" label-width="140px">
           <el-form-item label="宿舍楼/楼层" prop="buildData">

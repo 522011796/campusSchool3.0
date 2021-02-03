@@ -66,9 +66,9 @@
               :label="$t('所属专业')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{ $moment(scope.row.create_time).format("YYYY-MM-DD") }}</div>
+                  <div class="text-center">{{ scope.row.major_name }}</div>
                   <span slot="reference" class="name-wrapper">
-                  {{ $moment(scope.row.create_time).format("YYYY-MM-DD") }}
+                  {{ scope.row.major_name }}
                 </span>
                 </el-popover>
               </template>

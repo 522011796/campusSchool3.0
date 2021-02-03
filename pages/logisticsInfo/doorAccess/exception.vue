@@ -136,7 +136,8 @@
             label="操作"
             width="120">
             <template slot-scope="scope">
-              <i class="fa fa-window-close-o margin-right-5 color-grand" @click="unbindInfo(scope.row)"></i>
+              <i v-if="scope.row.status == 0 || scope.row.status == 1" class="fa fa-window-close-o margin-right-5 color-grand" @click="unbindInfo(scope.row)"></i>
+              <span v-else>--</span>
             </template>
           </el-table-column>
         </el-table>

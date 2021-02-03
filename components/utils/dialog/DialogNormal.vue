@@ -13,14 +13,14 @@
       <div slot="title" class="dialog-normal-title">
         <slot v-if="header" name="title"></slot>
         <el-row v-if="!header">
-          <el-col :span="12">
+          <el-col :span="18">
             <div class="dialog-normal-header">
               <i class="fa fa-cog"></i>
               <span class="title">{{title}}</span>
               <span class="subTitle">{{subTitle}}</span>
             </div>
           </el-col>
-          <el-col :span="12">
+          <el-col :span="6">
             <div class="dialog-normal-close text-right color-disabeld font-size-14">
               <i class="fa fa-close" @click="handleClose"></i>
             </div>

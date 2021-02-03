@@ -281,7 +281,7 @@
             </template>
           </el-table-column>
           <el-table-column
-            :label="$t('关门延时')"
+            :label="$t('关门延时/秒')"
             align="center">
             <template slot-scope="scope">
               <el-input size="mini" style="width: 80px" v-model="scope.row.delay_time"></el-input>
@@ -499,6 +499,7 @@
               res.data.data[i]['doorNoSet'] = [];
             }
             this.tableDeviceData = res.data.data;
+            this.addTitle =  this.$t("添加设备") + "(" + this.$t("已发现台") + this.tableDeviceData.length + this.$t("台") + "," + this.$t("已选择 0 台") + ")" ;
           }
           this.deviceLoading = false;
         });
@@ -539,21 +540,21 @@
         this.modalConfVisible = true;
       },
       deleteInfo(row){
-        this.id = row.id;
+        this.id = row.sn;
         this.subTitle = row.name ? row.name : row.sn;
         this.visibleConfim = true;
       },
       deleteMutiInfo(){
         let arr = [];
         for (let i = 0; i < this.deviceList.length; i++){
-          arr.push(this.deviceList[i].id);
+          arr.push(this.deviceList[i].sn);
         }
         let params = {
-          ids: arr.join()
+          snList: arr.join()
         };
         params = this.$qs.stringify(params);
         this.mutiDeleteLoading = true;
-        this.$axios.post(common.dormaccess_exception_unbind, params).then(res => {
+        this.$axios.post(common.dormaccess_control_device_del, params, {loading: false}).then(res => {
           if (res.data.code == 200){
             this.init();
             this.deviceList = [];
@@ -737,9 +738,9 @@
         this.dialogLoading = true;
         let url = "";
         let params = {
-          ids: this.id
+          sn: this.id
         };
-        url = common.dormaccess_exception_unbind;
+        url = common.dormaccess_control_device_del_only;
         params = this.$qs.stringify(params);
         this.$axios.post(url, params).then(res => {
           if (res.data.code == 200){
@@ -765,6 +766,7 @@
         this.deviceList = data;
       },
       handleSelectionDeviceChange(data){
+        this.addTitle = this.$t("添加设备") + "(" + this.$t("已发现") + this.tableDeviceData.length + this.$t("台") + "," + this.$t("已选择") + data.length + this.$t("台") + ")";
         this.deviceAddList = data;
       },
       handleChangeBox(data, row, index){

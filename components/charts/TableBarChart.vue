@@ -8,7 +8,10 @@
   export default {
     props: {
       chartId: '',
-      chartTitle: '',
+      chartTitle: {
+        default: '达标率',
+        type: String
+      },
       data: {
         default: 0,
         type: [String, Number]
@@ -94,7 +97,7 @@
                 color: "#333",          // 文字的颜色,默认 #333。
                 fontSize: 12,           // 文字的字体大小,默认 15。
               },
-              data: [{value: this.data, name: '达标率'}]
+              data: [{value: this.data, name: this.chartTitle}]
             }
           ]
         });

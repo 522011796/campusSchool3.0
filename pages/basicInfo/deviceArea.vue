@@ -605,12 +605,13 @@
           num: this.num,
           buildId: this.searchBuildId,
           floorNum: this.searchFloorNum,
-          online: this.searchOnline,
-          searchKey: this.searchKey
+          online: this.searchOnline
         };
         if (this.showType == 1){
+          params['searchKey'] = this.searchKey;
           url = common.device_class_location_page;
         }else if (this.showType == 2){
+          params['keyWord'] = this.searchKey;
           url = common.device_dorm_location_page;
         }
         this.$axios.get(url, {params: params}).then(res => {
@@ -731,11 +732,13 @@
       },
       handleChange(data){
         this.searchDeviceType = data;
+        this.initDevice();
       },
       closeDialog(event){
         this.subTitle = "";
         this.deviceList = [];
         this.buildList = [];
+        this.searchDeviceType = "3";
         if (this.$refs.tableRef){
           this.$refs.tableRef.clearSelection();
         }

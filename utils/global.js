@@ -287,6 +287,13 @@ const filterDoorInOutStatus = [
   { text: '外出', value: '2' ,label: '外出'}
 ];
 
+const filterDoorSignStatus = [
+  { text: '扫码通行', value: '1' ,label: '扫码通行'},
+  { text: '刷脸通行', value: '2' ,label: '刷脸通行'},
+  { text: '刷卡通行', value: '3' ,label: '刷卡通行'},
+  { text: '刷码通行', value: '4' ,label: '刷码通行'},
+];
+
 export default {
   total,
   page,
@@ -356,5 +363,6 @@ export default {
   filterDoorOpenTypes,
   filterDoorOnlineStatus,
   filterDoorExceptionStatus,
-  filterDoorInOutStatus
+  filterDoorInOutStatus,
+  filterDoorSignStatus
 }

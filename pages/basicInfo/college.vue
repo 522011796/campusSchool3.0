@@ -231,7 +231,7 @@ export default {
       };
       params['realName'] = this.searchTeacherName;
       this.loadingList = true;
-      this.$axios(common.teacher_list, {params: params}).then(res => {
+      this.$axios(common.teacher_list, {params: params, loading: false}).then(res => {
         if (res.data.data){
           for (let i = 0; i < res.data.data.page.list.length; i++){
             res.data.data.page.list[i]['_director'] = false;
@@ -275,10 +275,19 @@ export default {
       this.drawerVisible = true;
     },
     editInfo(row){
+      let director_id = !row.director_id ? [] : row.director_id.split(",");
+      let deputy_director_id = !row.deputy_director_id ? [] : row.deputy_director_id.split(",");
+      let student_manage_id = !row.student_manage_id ? [] : row.student_manage_id.split(",");
+      let secretary_id = !row.secretary_id ? [] : row.secretary_id.split(",");
       this.form = {
         id: row.id,
         no: row.college_no,
-        name: row.college_name
+        name: row.college_name,
+        directorId: director_id,
+        deputyDirectorId: deputy_director_id,
+        studentManageId: student_manage_id,
+        secretaryId: secretary_id,
+        searchKey: []
       };
       this.modalVisible = true;
     },
@@ -300,14 +309,13 @@ export default {
       let url = "";
       this.$refs['form'].validate((valid) => {
         if (valid) {
-          this.dialogLoading = true;
           let params = {
             collegeNo: this.form.no,
             collegeName: this.form.name,
-            //directoryId: this.form.directorId,
-            //deputyDirectorId: this.form.deputyDirectorId,
-            //studentManageId: this.form.studentManageId,
-            //secretaryId: this.form.secretaryId,
+            directorId: this.form.directorId.join(),
+            deputyDirectorId: this.form.deputyDirectorId.join(),
+            studentManageId: this.form.studentManageId.join(),
+            secretaryId: this.form.secretaryId.join(),
           };
           if (this.form.id != ""){
             url = common.college_upate;
@@ -316,6 +324,7 @@ export default {
             url = common.college_add;
           }
           params = this.$qs.stringify(params);
+          this.dialogLoading = true;
           this.$axios.post(url, params, {loading: false}).then(res => {
             if (res.data.code == 200){
               this.modalVisible = false;
@@ -427,7 +436,6 @@ export default {
     },
     okDrawDialog(event){
       let url = "";
-      this.dialogLoading = true;
       let params = {
         id: this.form.id,
         collegeName: this.form.name,

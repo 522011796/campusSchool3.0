@@ -112,16 +112,16 @@
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                 <div class="text-center">
-                  <span v-if="scope.row.day_str">
-                    <label v-for="(item, index) in JSON.parse(scope.row.day_str)" :key="index">{{item.d1}}-{{item.d2}}</label>
+                  <span v-if="scope.row.date_str">
+                    <label v-for="(item, index) in JSON.parse(scope.row.date_str)" :key="index">{{item.d1}}/{{item.d2}}</label>
                   </span>
                   <span v-else>
                     {{$t("永久")}}
                   </span>
                 </div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <span v-if="scope.row.day_str">
-                    <label v-for="(item, index) in JSON.parse(scope.row.day_str)" :key="index">{{item.d1}}-{{item.d2}}</label>
+                  <span v-if="scope.row.date_str">
+                    <label v-for="(item, index) in JSON.parse(scope.row.date_str)" :key="index">{{item.d1}}/{{item.d2}}</label>
                   </span>
                   <span v-else>
                     {{$t("永久")}}
@@ -737,8 +737,8 @@
             let params = {
               id: this.form.groupId,
               name: this.form.name,
-              timeType: this.form.timeType == 1 ? true : false,
-              dateType: this.form.dateType == 1 ? true : false,
+              timeType: this.form.timeType == 1 ? false : true,
+              dateType: this.form.dateType == 1 ? false : true,
               authTimeStart: this.form.searchData.length > 0 ? this.form.searchData[0] : '',
               authTimeEnd: this.form.searchData.length > 0 ? this.form.searchData[1] : '',
               deviceList: [],
@@ -772,6 +772,13 @@
               warningThe: this.form.errorTimes,
               recModes: '',
             };
+
+            if (this.form.dateType == 2){
+              params['timeStr'] = timeStr.length > 0 ? JSON.stringify(timeStr) : [];
+              params['timeStr'] = timeStr.length > 0 ? JSON.stringify(timeStr) : [];
+            }else {
+              params['timeStr'] = [];
+            }
 
             if (this.form.approverStudentId.length <= 0 && this.form.approverTeacherId.length <= 0){
               MessageWarning("请选择授权老师或者学生！");
@@ -822,14 +829,26 @@
                 t2: this.form.timeStr[i].t2
               });
             }
-            params['timeStr'] = timeStr.length > 0 ? JSON.stringify(timeStr) : [];
 
-            if (this.form.searchData.length > 0){
-              dateStr = [{
-                d1: this.form.searchData[0],
-                d2: this.form.searchData[1]
-              }]
+            if (this.form.timeType == 2){
+              params['timeStr'] = timeStr.length > 0 ? JSON.stringify(timeStr) : [];
+            }else {
+              params['timeStr'] = [];
             }
+
+            if (this.form.dateType == 2){
+              console.log(1);
+              if (this.form.searchData.length > 0){
+                dateStr = [{
+                  d1: this.form.searchData[0],
+                  d2: this.form.searchData[1]
+                }]
+              }
+            }else {
+              console.log(2);
+              dateStr = [];
+            }
+            console.log(dateStr);
             params['dateStr'] = dateStr.length > 0 ? JSON.stringify(dateStr) : [];
 
             params = this.$qs.stringify(params);
@@ -930,8 +949,8 @@
           this.dialogLoading = false;
         });
       },
-      handleChange(){
-
+      handleChange(data){
+        this.form.searchData = data;
       },
       changeStatus(event, data, type){
         if (type == 1){

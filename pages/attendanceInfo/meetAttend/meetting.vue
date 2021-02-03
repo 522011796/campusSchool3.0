@@ -207,9 +207,9 @@
             </el-col>
             <el-col :span="8">
               <div class="rpStatic-top-item color-muted">
-                <div class="title">{{$t("达标率")}}: </div>
+                <div class="title">{{$t("出席率")}}: </div>
                 <div style="height: 140px">
-                  <table-bar-chart chart-id="typeId" :chart-title='$t("达标率")' :data="staticData.signRate"></table-bar-chart>
+                  <table-bar-chart chart-id="typeId" :chart-title='$t("出席率")' :data="staticData.signRate"></table-bar-chart>
                 </div>
               </div>
             </el-col>
@@ -487,6 +487,7 @@
 
 <script>
   import MyPagination from "../../../components/MyPagination";
+  import TableBarChart from "../../../components/charts/TableBarChart";
   import mixins from "../../../utils/mixins";
   import {common} from "../../../utils/api/url";
   import {
@@ -511,7 +512,7 @@
 
   export default {
     mixins: [mixins, meetingValidater],
-    components: {MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal,DrawerLayoutRight,MyCascader,TeacherTreeAndList,UploadSquare},
+    components: {MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal,DrawerLayoutRight,MyCascader,TeacherTreeAndList,UploadSquare,TableBarChart},
     data(){
       return {
         uploadFileAction: common.upload_file,

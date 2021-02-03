@@ -17,21 +17,208 @@
       <div slot="right">
         <div class="layout-top-tab margin-top-5">
           <el-row>
-            <el-col :span="12">
+            <el-col :span="8">
               <div class="layout-inline">
-                <my-select class="layout-item" size="small" :sel-value="searchUserType" :options="filterUserTypes" @change="handleChangeUserType"></my-select>
+                <my-select width-style="120" class="layout-item" size="small" :sel-value="searchUserType" :options="filterUserTypes" @change="handleChangeUserType"></my-select>
                 <my-cascader class="layout-item" ref="SelectorDoorAccess" size="small" width-style="160" :clearable="true" :sel-value="searchCommDeptData" :type="selType" :sub-type="selSubType" @change="_handleCascaderChange($event)"></my-cascader>
               </div>
             </el-col>
-            <el-col :span="12" class="text-right">
-              <my-date-picker :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChange" style="position: relative; top: 1px;"></my-date-picker>
-              <my-input-button ref="teacher" size="small" plain width-class="width: 120px" type="success" :clearable="true" :placeholder="$t('姓名/工号')" @click="search"></my-input-button>
+            <el-col :span="16">
+              <div class="layout-inline text-right">
+                <my-select :clearable="true" class="layout-item" width-style="120" size="small" :sel-value="searchUserSignType" :options="filterDoorSignStatus" @change="handleChangeUserSignType"></my-select>
+                <my-date-picker class="layout-item" :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChange" style="position: relative; top: 1px;"></my-date-picker>
+                <my-input-button class="layout-item" ref="teacher" size="small" plain width-class="width: 120px" type="success" :clearable="true" :placeholder="$t('姓名/工号')" @click="search"></my-input-button>
+              </div>
             </el-col>
           </el-row>
         </div>
 
         <div class="margin-top-10">
           <el-table
+            v-if="searchUserType != 3"
+            ref="refTable"
+            :data="tableData"
+            header-cell-class-name="custom-table-cell-bg"
+            size="medium"
+            :max-height="tableHeight2.height"
+            style="width: 100%"
+            @filter-change="fliterTable">
+            <el-table-column
+              v-if="searchUserType != 3"
+              align="center"
+              :label="$t('姓名')">
+
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.real_name ? scope.row.real_name : '--'}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.real_name ? scope.row.real_name : '--'}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              v-if="searchUserType == 1"
+              align="center"
+              :label="$t('学号')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.student_id ? scope.row.student_id : '--'}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.student_id ? scope.row.student_id : '--'}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              v-if="searchUserType == 2"
+              align="center"
+              :label="$t('工号')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.job_num ? scope.row.job_num : '--'}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.job_num ? scope.row.job_num : '--'}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              v-if="searchUserType == 1"
+              align="center"
+              :label="$t('班级')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.class_name ? scope.row.class_name : '--'}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.class_name ? scope.row.class_name : '--'}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              v-if="searchUserType == 2"
+              align="center"
+              :label="$t('部门')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.department_name ? scope.row.department_name : '--'}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.department_name ? scope.row.department_name : '--'}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('设备类型')">
+              <template slot-scope="scope">
+                <el-popover v-if="searchUserType == 1 || searchUserType == 2" trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{deviceTypeInfo('set', scope.row.device_type)}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{deviceTypeInfo('set', scope.row.device_type)}}
+                  </div>
+                </el-popover>
+                <el-popover v-if="searchUserType == 3" trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{deviceTypeInfo('set', scope.row.type)}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{deviceTypeInfo('set', scope.row.type)}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              v-if="searchUserType != 3"
+              align="center"
+              :label="$t('设备名称')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.name}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.name}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('位置')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.device_location_name}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.device_location_name}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('设备SN')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.sn}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.sn}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('上报时间')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{$moment(scope.row.add_time).format("YYYY-MM-DD HH:mm:ss")}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{$moment(scope.row.add_time).format("YYYY-MM-DD HH:mm:ss")}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('识别时间')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{$moment(scope.row.time).format("YYYY-MM-DD HH:mm:ss")}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{$moment(scope.row.time).format("YYYY-MM-DD HH:mm:ss")}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('人脸/卡号')">
+              <template slot-scope="scope">
+                <div v-if="scope.row.rec_mode == 1">
+                  <my-head-img :head-img="scope.row"></my-head-img>
+                  <!--<div v-if="scope.row.photo_status == 0">
+                    <i class="fa fa-refresh color-grand" style="font-size: 15px"></i>
+                  </div>
+                  <div v-if="scope.row.photo_status != 0">
+                    <img :src="scope.row.photourl" style="width: 30px; height: 30px; border-radius: 30px" />
+                  </div>-->
+                </div>
+                <div v-if="scope.row.rec_mode != 1">
+                  <span>{{scope.row.photourl}}</span>
+                </div>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('状态')">
+              <template slot-scope="scope">
+                <span v-if="scope.row.alive_type == 1" class="color-success">{{$t("通过")}}</span>
+                <span v-if="scope.row.alive_type == 2" class="color-danger">{{$t("失败")}}</span>
+                <span v-if="scope.row.alive_type == 3" class="color-warning">{{$t("无权限")}}</span>
+              </template>
+            </el-table-column>
+          </el-table>
+
+          <el-table
+            v-if="searchUserType == 3"
             ref="refTable"
             :data="tableData"
             header-cell-class-name="custom-table-cell-bg"
@@ -186,29 +373,9 @@
             </el-table-column>
             <el-table-column
               align="center"
-              :label="$t('人脸/卡号')">
+              :label="$t('照片抓怕')">
               <template slot-scope="scope">
-                <div v-if="scope.row.rec_mode == 1">
-                  <my-head-img :head-img="scope.row"></my-head-img>
-                  <!--<div v-if="scope.row.photo_status == 0">
-                    <i class="fa fa-refresh color-grand" style="font-size: 15px"></i>
-                  </div>
-                  <div v-if="scope.row.photo_status != 0">
-                    <img :src="scope.row.photourl" style="width: 30px; height: 30px; border-radius: 30px" />
-                  </div>-->
-                </div>
-                <div v-if="scope.row.rec_mode != 1">
-                  <span>{{scope.row.photourl}}</span>
-                </div>
-              </template>
-            </el-table-column>
-            <el-table-column
-              align="center"
-              :label="$t('状态')">
-              <template slot-scope="scope">
-                <span v-if="scope.row.alive_type == 1" class="color-success">{{$t("通过")}}</span>
-                <span v-if="scope.row.alive_type == 2" class="color-danger">{{$t("失败")}}</span>
-                <span v-if="scope.row.alive_type == 3" class="color-warning">{{$t("无权限")}}</span>
+                <my-head-img :head-img="scope.row"></my-head-img>
               </template>
             </el-table-column>
           </el-table>
@@ -238,13 +405,14 @@
   import DrawerRight from "../../../components/utils/dialog/DrawerRight";
   import MySearchOfDate from "../../../components/search/MySearchOfDate";
   import DrawerLayoutRight from "../../../components/utils/dialog/DrawerLayoutRight";
+  import MyHeadImg from "../../../components/utils/common/MyHeadImg";
   import {
     clearData, deviceType,
     dormStatus
   } from "../../../utils/utils";
   export default {
     mixins: [mixins],
-    components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,MySearchOfDate,DrawerLayoutRight},
+    components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,MySearchOfDate,DrawerLayoutRight,MyHeadImg},
     data(){
       return {
         searchTimeData: {},
@@ -283,7 +451,8 @@
         resultList: [],
         searchTopTime: this.$moment(new Date).format("YYYY-MM-DD"),
         selType: '1',
-        selSubType: "4"
+        selSubType: "4",
+        searchUserSignType: ''
       }
     },
     created() {
@@ -303,8 +472,9 @@
           sceneType: "3,4",
           aliveType: "",
           searchTopType: this.searchUserType,
-          deviceLocationType: 1,
-          departmentPath: ''
+          deviceLocationType: this.showType == 1 ? 0 : 1,
+          departmentPath: '',
+          aliveType: this.searchUserSignType
         };
 
         if (this.searchUserType == 1){
@@ -433,6 +603,11 @@
           this.selType = "4";
           this.selSubType = "";
         }
+        this.page = 1;
+        this.init();
+      },
+      handleChangeUserSignType(data){
+        this.searchUserSignType = data;
         this.page = 1;
         this.init();
       },
