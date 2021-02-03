@@ -73,7 +73,7 @@
 <script>
   import {common} from "../../../utils/api/url";
   import MyInputButton from "../../search/MyInputButton";
-  import {inArray} from "../../../utils/utils";
+  import {inArray, MessageWarning} from "../../../utils/utils";
 
   export default {
     name: 'myRoleList',
@@ -106,7 +106,8 @@
         commAllCheck: false,
         checkboxCount: 0,
         roleSelUserArr: [],
-        roleTableLoading: false
+        roleTableLoading: false,
+        commSearchRoleId: ''
       }
     },
     created() {
@@ -122,6 +123,7 @@
           if (res.data.data){
             this.roleList = res.data.data.list;
             if (res.data.data.list.length > 0){
+              this.commSearchRoleId = res.data.data.list[0].id;
               this.initRoleTeacher(res.data.data.list[0].id);
             }
           }
@@ -180,6 +182,11 @@
       _handleSearch(data){
         this.page = 1;
         this.roleSearchKey = data.input;
+        if (!this.commSearchRoleId == ""){
+          this.initRoleTeacher(this.commSearchRoleId);
+        }else {
+          MessageWarning(this.$t("请选择左侧角色组再进行搜索"));
+        }
       },
       _handleSelectionSelect(event, row){
         if (event){//选中
@@ -223,6 +230,7 @@
       },
       _handleClick(id){
         this.checkboxCount = 0;
+        this.commSearchRoleId = id;
         this.initRoleTeacher(id);
       },
       _getRoleSelectData(){
@@ -230,6 +238,7 @@
       },
       _handleResetChange(){
         this.roleSelUserArr = [];
+        this.commSearchRoleId = "";
         //this.initRole();
       },
       _handleOpen(){

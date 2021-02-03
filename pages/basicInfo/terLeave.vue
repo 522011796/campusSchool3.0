@@ -398,6 +398,25 @@
         }
       },
       closeDrawDialog(event){
+        this.form = {
+          id: '',
+          name: '',
+          content: '',
+          conditionStatus: '',
+          conditionType: '1',
+          conditionDay1: '',
+          conditionDay2: '',
+          status: true,
+          handleProcess: [],
+          conditionRole: []
+        };
+        if (this.$refs['form']){
+          this.$refs['form'].resetFields();
+        }
+        if (this.$refs['processRoleRef']){
+          this.$refs.processRoleRef._handleResetChange();
+        }
+        this.errorTips = "";
         this.drawerVisible = false;
       },
       okDrawDialog(event){
