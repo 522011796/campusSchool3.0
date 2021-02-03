@@ -215,9 +215,12 @@
     </dialog-normal>
 
     <!--审批详细-->
-    <drawer-layout-right @changeDrawer="closeDrawerDialog" :hide-footer="true" :visible="drawerVisible" size="550px" :title="$t('申请单')" @right-close="cancelDrawDialog">
+    <drawer-layout-right @changeDrawer="closeDrawerDialog" :hide-footer="false" :visible="drawerVisible" size="550px" :title="$t('申请单')" @right-close="cancelDrawDialog">
       <div slot="content">
         <my-audit-detail type="ScoreApply" :sel-value="dataAudit"></my-audit-detail>
+      </div>
+      <div slot="footer">
+        <audit-button :sel-value="dataAudit" @ok="handleOk" @no="handleNo" @cancel="handleCancel"></audit-button>
       </div>
     </drawer-layout-right>
   </div>
@@ -271,6 +274,7 @@ export default {
       objectTwo: [],
       errorStudent: '',
       uploadFileAction: common.upload_file,
+      auditObjectItem: {},
       form: {
         id: '',
         type: '',
@@ -316,7 +320,6 @@ export default {
       if (typeName){
         params['socreName'] = typeName;
       }
-      console.log(params);
       params = this.$qs.stringify(params);
       this.$axios.post(common.audit_credit_type_fliter, params).then(res => {
         if (res.data.data){
@@ -431,6 +434,7 @@ export default {
       let params = {
         id:row.object_id ? row.object_id : row.id
       };
+      this.auditObjectItem = row;
       this.$axios.get(common.msg_detail_center, {params: params}).then(res => {
         if (res.data.code == 200){
           this.dataAudit = res.data.data;
@@ -441,9 +445,13 @@ export default {
       });
     },
     closeDrawerDialog(event){
+      this.auditObjectItem = {};
+      this.dataAudit = {};
       this.drawerVisible = event;
     },
     cancelDrawDialog(){
+      this.auditObjectItem = {};
+      this.dataAudit = {};
       this.drawerVisible = false;
     },
     okDialog(event){
@@ -460,7 +468,6 @@ export default {
             arr.push(this.form.userId[i].user_id);
           }
           this.dialogLoading = true;
-          console.log(this.form.type);
           let params = {
             applyFile: this.form.file,
             applyTypeCode: "ScoreApply",
@@ -565,6 +572,56 @@ export default {
     },
     deleteImg(){
       this.form.file = "";
+    },
+    handleOk(data,textarea){
+      let params = {
+        applyId: this.auditObjectItem.id ? this.auditObjectItem.id : this.auditObjectItem.id,
+        status: 1,
+        des2: textarea
+      };
+      params = this.$qs.stringify(params);
+      this.$axios.post(common.msg_handle, params).then(res => {
+        if (res.data.code == 200){
+          this.handleDetail(this.auditObjectItem);
+          this.init();
+          MessageSuccess(res.data.desc);
+        }else{
+          MessageWarning(res.data.desc);
+        }
+      });
+    },
+    handleNo(data,textarea){
+      let params = {
+        applyId: this.auditObjectItem.id ? this.auditObjectItem.id : this.auditObjectItem.id,
+        status: 2,
+        des2: textarea
+      };
+      params = this.$qs.stringify(params);
+      this.$axios.post(common.msg_handle, params).then(res => {
+        if (res.data.code == 200){
+          this.handleDetail(this.auditObjectItem);
+          this.init();
+          MessageSuccess(res.data.desc);
+        }else{
+          MessageWarning(res.data.desc);
+        }
+      });
+    },
+    handleCancel(data){
+      let params = {
+        applyId: this.auditObjectItem.id ? this.auditObjectItem.id : this.auditObjectItem.id,
+        status: -1
+      };
+      params = this.$qs.stringify(params);
+      this.$axios.post(common.msg_handle, params).then(res => {
+        if (res.data.code == 200){
+          this.handleDetail(this.auditObjectItem);
+          this.init();
+          MessageSuccess(res.data.desc);
+        }else{
+          MessageWarning(res.data.desc);
+        }
+      });
     }
   }
 }

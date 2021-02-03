@@ -276,9 +276,12 @@
     </dialog-normal>
 
     <!--审批详细-->
-    <drawer-layout-right @changeDrawer="closeDrawerDialog" :hide-footer="true" :visible="drawerVisible" size="550px" :title="$t('申请单')" @right-close="cancelDrawDialog">
+    <drawer-layout-right @changeDrawer="closeDrawerDialog" :hide-footer="false" :visible="drawerVisible" size="550px" :title="$t('申请单')" @right-close="cancelDrawDialog">
       <div slot="content">
         <my-audit-detail type="PunishmentApply" :sel-value="dataAudit"></my-audit-detail>
+      </div>
+      <div slot="footer">
+        <audit-button :sel-value="dataAudit" @ok="handleOk" @no="handleNo" @cancel="handleCancel"></audit-button>
       </div>
     </drawer-layout-right>
   </div>
@@ -298,12 +301,13 @@
   import DialogNormal from "../../../components/utils/dialog/DialogNormal";
   import MyInputButton from "../../../components/search/MyInputButton";
   import UploadSquare from "../../../components/utils/upload/UploadSquare";
+  import AuditButton from "../../../components/utils/auditDetail/AuditButton";
   import {common} from "../../../utils/api/url";
   import {MessageError, MessageSuccess, MessageWarning} from "../../../utils/utils";
   import rpApplyValidater from "../../../utils/validater/rpApplyValidater";
   export default {
     mixins: [mixins, rpApplyValidater],
-    components: {LayoutLr,MyElTree,MySelect,DrawerLayoutRight,MyAuditDetail,MyPagination,MyAuditStatus,CircleChart,MyRadio,DialogNormal,MyInputButton,UploadSquare},
+    components: {LayoutLr,MyElTree,MySelect,DrawerLayoutRight,MyAuditDetail,MyPagination,MyAuditStatus,CircleChart,MyRadio,DialogNormal,MyInputButton,UploadSquare,AuditButton},
     data(){
       return {
         pageStudnet: 1,
@@ -343,6 +347,7 @@
         levelDataKey: [],
         searchStudentKey: '',
         errorStudent: '',
+        auditObjectItem: {},
         form: {
           id: '',
           type: '',
@@ -503,6 +508,7 @@
         let params = {
           id:row.object_id ? row.object_id : row.id
         };
+        this.auditObjectItem = row;
         this.$axios.get(common.msg_detail_center, {params: params}).then(res => {
           if (res.data.code == 200){
             this.dataAudit = res.data.data;
@@ -513,6 +519,7 @@
         });
       },
       closeDrawerDialog(event){
+        this.auditObjectItem = {};
         this.drawerVisible = event;
       },
       cancelDrawDialog(){
@@ -660,6 +667,57 @@
       },
       deleteImg(){
         this.form.file = "";
+      },
+      handleOk(data,textarea){
+        let params = {
+          applyId: this.auditObjectItem.id ? this.auditObjectItem.id : this.auditObjectItem.id,
+          status: 1,
+          des2: textarea
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.msg_handle, params).then(res => {
+          if (res.data.code == 200){
+            //this.handleDetail(this.auditObjectItem);
+            this.init();
+            this.drawerVisible = false;
+            MessageSuccess(res.data.desc);
+          }else{
+            MessageWarning(res.data.desc);
+          }
+        });
+      },
+      handleNo(data,textarea){
+        let params = {
+          applyId: this.auditObjectItem.id ? this.auditObjectItem.id : this.auditObjectItem.id,
+          status: 2,
+          des2: textarea
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.msg_handle, params).then(res => {
+          if (res.data.code == 200){
+            this.handleDetail(this.auditObjectItem);
+            this.init();
+            MessageSuccess(res.data.desc);
+          }else{
+            MessageWarning(res.data.desc);
+          }
+        });
+      },
+      handleCancel(data){
+        let params = {
+          applyId: this.auditObjectItem.id ? this.auditObjectItem.id : this.auditObjectItem.id,
+          status: -1
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.msg_handle, params).then(res => {
+          if (res.data.code == 200){
+            this.handleDetail(this.auditObjectItem);
+            this.init();
+            MessageSuccess(res.data.desc);
+          }else{
+            MessageWarning(res.data.desc);
+          }
+        });
       }
     }
   }
