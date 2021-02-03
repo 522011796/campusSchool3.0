@@ -58,9 +58,10 @@
               <template slot-scope="scope" style="position: relative">
                 <div class="opr-block">
                   <div class="opr-block-opr">
-                    <i class="fa fa-cog margin-right-10" @click="settingInfo(scope.row[1], scope.row, 1)"></i>
-                    <i v-if="Object.keys(scope.row[1]).length != 0" class="fa fa-copy" @click="copy(scope.row[1])"></i>
-                    <i v-if="Object.keys(scope.row[1]).length == 0" class="fa fa-paste" @click="paste(scope.row, 1)"></i>
+                    <i class="fa fa-cog margin-right-5" @click="settingInfo(scope.row[1], scope.row, 1)"></i>
+                    <i v-if="Object.keys(scope.row[1]).length != 0" class="fa fa-copy margin-right-5" @click="copy(scope.row[1])"></i>
+                    <i v-if="Object.keys(scope.row[1]).length == 0" class="fa fa-paste margin-right-5" @click="paste(scope.row, 1)"></i>
+                    <i class="fa fa-trash" @click="deleteCourse(scope.row, 1)"></i>
                   </div>
                 </div>
                 <div class="font-size-12">
@@ -86,9 +87,10 @@
               <template slot-scope="scope" style="position: relative">
                 <div class="opr-block">
                   <div class="opr-block-opr">
-                    <i class="fa fa-cog margin-right-10" @click="settingInfo(scope.row[2], scope.row, 2)"></i>
-                    <i v-if="Object.keys(scope.row[2]).length != 0" class="fa fa-copy" @click="copy(scope.row[2])"></i>
-                    <i v-if="Object.keys(scope.row[2]).length == 0" class="fa fa-paste" @click="paste(scope.row, 2)"></i>
+                    <i class="fa fa-cog margin-right-5" @click="settingInfo(scope.row[2], scope.row, 2)"></i>
+                    <i v-if="Object.keys(scope.row[2]).length != 0" class="fa fa-copy margin-right-5" @click="copy(scope.row[2])"></i>
+                    <i v-if="Object.keys(scope.row[2]).length == 0" class="fa fa-paste margin-right-5" @click="paste(scope.row, 2)"></i>
+                    <i class="fa fa-trash" @click="deleteCourse(scope.row, 2)"></i>
                   </div>
                 </div>
                 <div class="font-size-12">
@@ -114,9 +116,10 @@
               <template slot-scope="scope" style="position: relative">
                 <div class="opr-block">
                   <div class="opr-block-opr">
-                    <i class="fa fa-cog margin-right-10" @click="settingInfo(scope.row[3], scope.row, 3)"></i>
-                    <i v-if="Object.keys(scope.row[3]).length != 0" class="fa fa-copy" @click="copy(scope.row[3])"></i>
-                    <i v-if="Object.keys(scope.row[3]).length == 0" class="fa fa-paste" @click="paste(scope.row, 3)"></i>
+                    <i class="fa fa-cog margin-right-5" @click="settingInfo(scope.row[3], scope.row, 3)"></i>
+                    <i v-if="Object.keys(scope.row[3]).length != 0" class="fa fa-copy margin-right-5" @click="copy(scope.row[3])"></i>
+                    <i v-if="Object.keys(scope.row[3]).length == 0" class="fa fa-paste margin-right-5" @click="paste(scope.row, 3)"></i>
+                    <i class="fa fa-trash" @click="deleteCourse(scope.row, 3)"></i>
                   </div>
                 </div>
                 <div class="font-size-12">
@@ -142,9 +145,10 @@
               <template slot-scope="scope" style="position: relative">
                 <div class="opr-block">
                   <div class="opr-block-opr">
-                    <i class="fa fa-cog margin-right-10" @click="settingInfo(scope.row[4], scope.row, 4)"></i>
-                    <i v-if="Object.keys(scope.row[4]).length != 0" class="fa fa-copy" @click="copy(scope.row[4])"></i>
-                    <i v-if="Object.keys(scope.row[4]).length == 0" class="fa fa-paste" @click="paste(scope.row, 4)"></i>
+                    <i class="fa fa-cog margin-right-5" @click="settingInfo(scope.row[4], scope.row, 4)"></i>
+                    <i v-if="Object.keys(scope.row[4]).length != 0" class="fa fa-copy margin-right-5" @click="copy(scope.row[4])"></i>
+                    <i v-if="Object.keys(scope.row[4]).length == 0" class="fa fa-paste margin-right-5" @click="paste(scope.row, 4)"></i>
+                    <i class="fa fa-trash" @click="deleteCourse(scope.row, 4)"></i>
                   </div>
                 </div>
                 <div class="font-size-12">
@@ -170,9 +174,10 @@
               <template slot-scope="scope" style="position: relative">
                 <div class="opr-block">
                   <div class="opr-block-opr">
-                    <i class="fa fa-cog margin-right-10" @click="settingInfo(scope.row[5], scope.row, 5)"></i>
-                    <i v-if="Object.keys(scope.row[5]).length != 0" class="fa fa-copy" @click="copy(scope.row[5])"></i>
-                    <i v-if="Object.keys(scope.row[5]).length == 0" class="fa fa-paste" @click="paste(scope.row, 5)"></i>
+                    <i class="fa fa-cog margin-right-5" @click="settingInfo(scope.row[5], scope.row, 5)"></i>
+                    <i v-if="Object.keys(scope.row[5]).length != 0" class="fa fa-copy margin-right-5" @click="copy(scope.row[5])"></i>
+                    <i v-if="Object.keys(scope.row[5]).length == 0" class="fa fa-paste margin-right-5" @click="paste(scope.row, 5)"></i>
+                    <i class="fa fa-trash" @click="deleteCourse(scope.row, 5)"></i>
                   </div>
                 </div>
                 <div class="font-size-12">
@@ -198,9 +203,10 @@
               <template slot-scope="scope" style="position: relative">
                 <div class="opr-block">
                   <div class="opr-block-opr">
-                    <i class="fa fa-cog margin-right-10" @click="settingInfo(scope.row[6], scope.row, 6)"></i>
-                    <i v-if="Object.keys(scope.row[6]).length != 0" class="fa fa-copy" @click="copy(scope.row[6])"></i>
-                    <i v-if="Object.keys(scope.row[6]).length == 0" class="fa fa-paste" @click="paste(scope.row, 6)"></i>
+                    <i class="fa fa-cog margin-right-5" @click="settingInfo(scope.row[6], scope.row, 6)"></i>
+                    <i v-if="Object.keys(scope.row[6]).length != 0" class="fa fa-copy margin-right-5" @click="copy(scope.row[6])"></i>
+                    <i v-if="Object.keys(scope.row[6]).length == 0" class="fa fa-paste margin-right-5" @click="paste(scope.row, 6)"></i>
+                    <i class="fa fa-trash" @click="deleteCourse(scope.row, 6)"></i>
                   </div>
                 </div>
                 <div class="font-size-12">
@@ -226,9 +232,10 @@
               <template slot-scope="scope" style="position: relative">
                 <div class="opr-block">
                   <div class="opr-block-opr">
-                    <i class="fa fa-cog margin-right-10" @click="settingInfo(scope.row[7], scope.row, 7)"></i>
-                    <i v-if="Object.keys(scope.row[7]).length != 0" class="fa fa-copy" @click="copy(scope.row[7])"></i>
-                    <i v-if="Object.keys(scope.row[7]).length == 0" class="fa fa-paste" @click="paste(scope, 7)"></i>
+                    <i class="fa fa-cog margin-right-5" @click="settingInfo(scope.row[7], scope.row, 7)"></i>
+                    <i v-if="Object.keys(scope.row[7]).length != 0" class="fa fa-copy margin-right-5" @click="copy(scope.row[7])"></i>
+                    <i v-if="Object.keys(scope.row[7]).length == 0" class="fa fa-paste margin-right-5" @click="paste(scope, 7)"></i>
+                    <i class="fa fa-trash" @click="deleteCourse(scope.row, 7)"></i>
                   </div>
                 </div>
                 <div class="font-size-12">
@@ -309,6 +316,7 @@
     </dialog-normal>
 
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" content="确认需要删除当前课表？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
+    <my-normal-dialog :visible.sync="visibleCourseConfim" :loading="dialogLoading" title="提示" content="确认需要删除当前课表？" @ok-click="deleteCourseInfo" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
 
   </div>
 </template>
@@ -345,6 +353,7 @@
         modalVisible: false,
         drawerVisible: false,
         visibleConfim: false,
+        visibleCourseConfim: false,
         dialogLoading: false,
         loading: false,
         drawerLoading: false,
@@ -374,6 +383,7 @@
           className: '',
           floorNum: ''
         },
+        courseId: '',
         selYear: '',
         selTerm: '',
         selWeek: '',
@@ -394,7 +404,6 @@
       }
     },
     created() {
-      this.initCourseList();
       this.initInfo();
     },
     methods: {
@@ -497,14 +506,17 @@
         let params = {
           page: 1,
           num: 9999,
+          schYearId: this.selYear,
+          termId: this.selTerm,
+          majorId: this.searchMajor
         };
-        this.$axios.get(common.course_mamage_page, {params: params}).then(res => {
+        this.$axios.get(common.course_mamage_offer_page, {params: params}).then(res => {
           if (res.data.data){
-            for (let i = 0; i < res.data.data.list.length; i++){
-              res.data.data.list[i]['label'] = res.data.data.list[i].course_name;
-              res.data.data.list[i]['value'] = res.data.data.list[i].id + "-" + res.data.data.list[i].course_name;
+            for (let i = 0; i < res.data.data.length; i++){
+              res.data.data[i]['label'] = res.data.data[i].courseName;
+              res.data.data[i]['value'] = res.data.data[i].courseId + "-" + res.data.data[i].courseName;
             }
-            this.courseNameList = res.data.data.list;
+            this.courseNameList = res.data.data;
           }
         });
       },
@@ -542,6 +554,8 @@
           this.form.weekNum = this.selWeek;
           this.form.className = this.searchClassName;
         }
+
+        this.initCourseList();
         this.modalVisible = true;
       },
       copyCourseTable(){
@@ -549,11 +563,33 @@
         this.searchWeek();
         this.modalWeekVisible = true;
       },
-      deleteInfo(){
+      deleteInfo(row){
         this.visibleConfim = true;
+      },
+      deleteCourse(row, index){
+        console.log(row);
+        this.courseId = row[index].id;
+        this.visibleCourseConfim = true;
+      },
+      deleteCourseInfo(row){
+        let params = {
+          scheduleId: this.courseId
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.teach_course_plan_delete, params).then(res => {
+          if (res.data.code == 200){
+            this.init();
+            this.courseId = "";
+            this.visibleCourseConfim = false;
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+        });
       },
       handleCancelChange(data) {
         this.visibleConfim = false;
+        this.visibleCourseConfim = false;
       },
       search(data){
         this.page = 1;
@@ -665,6 +701,7 @@
           this.form.className = data.label;
           this.searchClassName = data.label;
           this.searchClass = data.id;
+          this.searchMajor = data.major_id;
         }
         this.init();
       },
@@ -738,6 +775,7 @@
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
         }
+        this.visibleCourseConfim = false;
       },
       okDialog(){
         let url = "";

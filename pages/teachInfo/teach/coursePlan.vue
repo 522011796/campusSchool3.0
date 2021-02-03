@@ -231,6 +231,7 @@
         await this.getSessionInfo();
         this.selYear = this.currentYearId;
         this.selTerm = this.currentTermId;
+        console.log(this.currentYearId, this.currentTermId);
         this.init();
       },
       init(){
@@ -256,6 +257,7 @@
         let params = {
           page: 1,
           num: 9999,
+          deleted: 0
         };
         this.$axios.get(common.course_mamage_page, {params: params}).then(res => {
           if (res.data.data){
