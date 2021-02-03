@@ -266,7 +266,7 @@
           name: row.screen_name,
           templateId: row.template_id,
           dataSet: '',
-          group: ''+row.screen_group_id,
+          group: row.screen_group_id ? row.screen_group_id : '0',
           time: '',
           content: ''+row.comment,
           userUnit: row.user_unit,

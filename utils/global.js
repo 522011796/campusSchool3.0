@@ -117,6 +117,17 @@ const searchStudentType = [
   }
 ];
 
+const searchStudentType2 = [
+  {
+    label: "姓名",
+    value: 'realName'
+  },
+  {
+    label: "学号",
+    value: 'studentId'
+  }
+];
+
 const g_sex = [
   {
     label: "男",
@@ -364,5 +375,6 @@ export default {
   filterDoorOnlineStatus,
   filterDoorExceptionStatus,
   filterDoorInOutStatus,
-  filterDoorSignStatus
+  filterDoorSignStatus,
+  searchStudentType2
 }

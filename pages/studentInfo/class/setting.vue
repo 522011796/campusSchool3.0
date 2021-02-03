@@ -61,7 +61,7 @@
           style="width: 100%">
           <el-table-column
             align="center"
-            :label="$t('院系/宿舍楼')">
+            :label="$t('院系')">
 
             <template slot-scope="scope">
               <span v-if="scope.row.scope == 3">{{$t("全校")}}</span>
@@ -106,7 +106,7 @@
       <span tabindex="1"></span>
       <div class="margin-top-10">
         <el-form :model="formPer" :rules="rules" ref="formPer" label-width="100px">
-          <el-form-item :label="$t('院系/宿舍楼')" prop="typeId">
+          <el-form-item :label="$t('院系')" prop="typeId">
             <my-select :sel-value="formPer.typeId" :options="tableCBData" width-style="420" @change="handleSelect"></my-select>
           </el-form-item>
           <el-form-item :label="$t('老师')">

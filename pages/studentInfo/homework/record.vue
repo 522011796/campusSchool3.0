@@ -147,7 +147,7 @@
         applyTimeBegin: '',
         applyTimeEnd: '',
         searchTime: '',
-        searchTopTime: this.$moment().subtract(1, 'days').format("YYYY-MM-DD"),
+        searchTopTime: this.$moment(new Date()).format("YYYY-MM-DD"),
         searchData: {},
         searchTimeDate: [],
         tableTypeData: [],
@@ -189,7 +189,7 @@
         }else if (this.searchData.timeUnit == 5){
           params['checkIntervalType'] = 1;
         }else {
-          params['busiTime'] = this.$moment().subtract(1, 'days').format("YYYY-MM-DD");
+          params['busiTime'] = this.$moment(new Date()).format("YYYY-MM-DD");
           params['checkIntervalType'] = 3;
         }
         this.$axios.get(common.housework_query_page, {params: params}).then(res => {

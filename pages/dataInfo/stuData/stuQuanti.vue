@@ -27,6 +27,10 @@
                   {{$t("设置")}}
                 </el-button>
               </span>
+
+              <span slot="other">
+                <el-input class="width-150" size="small" :clearable="true" :placeholder="$t('班级名称')" v-model="searchClassKey"></el-input>
+              </span>
             </my-search-of-date-group>
           </div>
           <div class="margin-top-10">
@@ -788,6 +792,7 @@
         level: '',
         status: '',
         searchKey: '',
+        searchClassKey: '',
         searchDate: [],
         //filterTypes: [{ text: this.$t("处分"), value: '处分' }, { text: '奖励', value: '奖励' }],
         filterLevels: [],
@@ -850,7 +855,8 @@
           grade: this.searchGrade,
           classId: this.searchClass,
           qtztStatus: this.status,
-          searchKey: this.searchKey
+          searchKey: this.searchKey,
+          className: this.searchClassKey,
         };
         //时间类型
         if (this.searchTimeData.timeUnit == 1){

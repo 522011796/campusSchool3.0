@@ -101,6 +101,27 @@
             </el-table-column>
             <el-table-column
               align="center"
+              prop="class_no"
+              :label="$t('固定教室')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">
+                    <label v-if="scope.row.classroom_no">
+                      {{ scope.row.building_name }}{{ scope.row.floor_num }}{{$t("楼")}}{{ scope.row.classroom_no }}
+                    </label>
+                    <label v-else>--</label>
+                  </div>
+                  <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    <label v-if="scope.row.classroom_no">
+                      {{ scope.row.building_name }}{{ scope.row.floor_num }}{{$t("楼")}}{{ scope.row.classroom_no }}
+                    </label>
+                    <label v-else>--</label>
+                  </span>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
               fixed="right"
               label="操作"
               width="120">

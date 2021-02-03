@@ -35,11 +35,11 @@ export default {
         ],
         min1: [
           { required: true, message: this.$t("请输入信息"), trigger: 'blur' },
-          { validator: rules.FormValidate.Form().validateRNf2, trigger: 'blur' }
+          { validator: rules.FormValidate.Form().validate0_100FloatNumber, trigger: 'blur' }
         ],
         min2: [
           { required: true, message: this.$t("请输入信息"), trigger: 'blur' },
-          { validator: rules.FormValidate.Form().validateRNf2, trigger: 'blur' }
+          { validator: rules.FormValidate.Form().validate0_100FloatNumber, trigger: 'blur' }
         ],
       }
     }

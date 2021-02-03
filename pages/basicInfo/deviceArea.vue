@@ -248,14 +248,14 @@
           </el-table>
 
           <el-table
-            ref="tableMainRef"
+            ref="tableMainDormRef"
             v-if="showType == 2"
-            :data="tableData"
+            :data="tableDormData"
             header-cell-class-name="custom-table-cell-bg"
             size="medium"
             :max-height="tableHeight2.height"
             style="width: 100%"
-            :row-key="getRowKeys"
+            :row-key="getRowDormKeys"
             @selection-change="handleSelectionChange">
             <el-table-column
               :reserve-selection="true"
@@ -571,6 +571,7 @@
         mainType: "3",
         mainSubType: "2",
         tableData: [],
+        tableDormData: [],
         tableDeviceData: [],
         modalVisible: false,
         drawerVisible: false,
@@ -616,7 +617,11 @@
         }
         this.$axios.get(url, {params: params}).then(res => {
           if (res.data.data){
-            this.tableData = res.data.data.list;
+            if (this.showType == 1){
+              this.tableData = res.data.data.list;
+            }else if(this.showType == 2){
+              this.tableDormData = res.data.data.list;
+            }
             this.total = res.data.data.totalCount;
             this.num = res.data.data.num;
             this.page = res.data.data.currentPage;
@@ -814,7 +819,10 @@
         this.deviceList = data;
       },
       getRowKeys(row) {
-        return row.id
+        return row.id + row.floor_num;
+      },
+      getRowDormKeys(row){
+        return row.build_id + row.floor_num;
       },
       handleSelectionChange(data){
         this.buildMutiList = data;
@@ -830,6 +838,9 @@
         }
         if (this.$refs.tableMainRef){
           this.$refs.tableMainRef.clearSelection();
+        }
+        if (this.$refs.tableMainDormRef){
+          this.$refs.tableMainDormRef.clearSelection();
         }
         this.buildMutiList = [];
         this.init();

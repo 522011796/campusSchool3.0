@@ -16,7 +16,7 @@
               <div class="text-right layout-inline">
                 <!--<my-select width-style="100" :clearable="true" :sel-value="searchStatus" :options="studentTeachStatusInfo(null, 'get')" :placeholder="$t('学籍状态')" class="layout-item" size="small" @change="handleSelect($event, 1)"></my-select>
                 <my-select width-style="100" :clearable="true" :sel-value="searchTeach" :options="studyTypeInfo(null, 'get')" :placeholder="$t('就读形式')" class="layout-item" size="small" @change="handleSelect($event, 2)"></my-select>-->
-                <my-input-button class="layout-item" :show-select="true" :options="searchStudentType" size="small" plain width-class="width: 240px" type="success" :clearable="true" @click="search"></my-input-button>
+                <my-input-button class="layout-item" :show-select="true" :options="searchStudentType2" size="small" plain width-class="width: 240px" type="success" :clearable="true" @click="search"></my-input-button>
               </div>
             </el-col>
           </el-row>

@@ -191,7 +191,7 @@
         searchOnline: '',
         config: {},
         subTitle: '',
-        deleteSetTitle: '确认需要解除该信息？',
+        deleteSetTitle: '确认需要解除该限制吗？',
         status: '',
         deviceList: [],
         id: ''
@@ -270,7 +270,7 @@
         return row.id
       },
       unbindInfo(row){
-        this.deleteSetTitle = this.$t("确认需要解除该异常吗？");
+        this.deleteSetTitle = this.$t("确认需要解除该限制吗？");
         this.id =  row.id;
         this.subTitle = row.name;
         this.visibleConfim = true;

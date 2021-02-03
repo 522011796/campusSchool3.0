@@ -45,6 +45,7 @@ export default {
       dormroomType: global.dormroomType,
       searchTeacherType: global.searchTeacherType,
       searchStudentType: global.searchStudentType,
+      searchStudentType2: global.searchStudentType2,
       g_sex: global.g_sex,
       filterStatus: global.filterStatus,
       filterTypes: global.filterTypes,

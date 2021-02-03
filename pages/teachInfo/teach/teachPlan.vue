@@ -12,10 +12,10 @@
       <div slot="right">
         <div class="layout-top-tab margin-top-5">
           <el-row>
-            <el-col :span="12">
+            <el-col :span="18">
               <my-year-term size="small" :show-default-week="true" :clearable-week="false" @changeYear="hangdleChange($event,1)" @changeTerm="hangdleChange($event,2)" @changeWeek="hangdleChange($event,3)"></my-year-term>
             </el-col>
-            <el-col :span="12" class="text-right">
+            <el-col :span="6" class="text-right">
 
             </el-col>
           </el-row>

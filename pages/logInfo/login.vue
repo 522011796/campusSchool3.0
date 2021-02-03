@@ -127,8 +127,8 @@ export default {
       let params = {
         page: this.page,
         num: this.num,
-        startTime: this.searchDate ? this.searchDate[0] : '',
-        endTime: this.searchDate ? this.searchDate[1] : '',
+        startTime: this.searchDate && this.searchDate.length > 0 ? (this.searchDate[0] + " 00:00:00") : '',
+        endTime: this.searchDate && this.searchDate.length > 0 ? (this.searchDate[1] + " 23:59:59") : '',
         userName: this.searchKey,
         queryType: 1
       };
