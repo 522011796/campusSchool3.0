@@ -151,6 +151,11 @@ export default {
       }
     }
   },
+  mounted(){
+    window.addEventListener("resize", () => {
+      this.g_HH();
+    });
+  },
   created() {
     this.g_HH();
   },
