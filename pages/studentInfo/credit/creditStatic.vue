@@ -541,7 +541,7 @@
           page:1,
           num:99999,
           applyTypeCode: 'ScoreApply',
-          applyUserId: this.userId,
+          userId: this.userId,
           collegeId: this.searchCollege,
           majorId: this.searchMajor,
           grade: this.searchGrade,
