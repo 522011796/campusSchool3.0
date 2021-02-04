@@ -641,7 +641,7 @@
           page: 1,
           num: 999,
           keyWOrd: this.searchDeviceKey,
-          sceneType: 3
+          sceneType: '3,4'
         };
         this.$axios.get(common.attend_meeting_device_page, {params: params}).then(res => {
           if (res.data.data){

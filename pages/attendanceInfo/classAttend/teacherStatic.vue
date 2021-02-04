@@ -12,10 +12,11 @@
       <div slot="right">
         <div class="layout-top-tab margin-top-5">
           <el-row>
-            <el-col :span="12">
+            <el-col :span="18">
               <my-year-term size="small" :clearable-week="true" @changeYear="hangdleChange($event,1)" @changeTerm="hangdleChange($event,2)" @changeWeek="hangdleChange($event,3)"></my-year-term>
+              <el-button size="small" type="warning"  icon="el-icon-download" @click="expandInfo($event)">{{$t("导出")}}</el-button>
             </el-col>
-            <el-col :span="12" class="text-right">
+            <el-col :span="6" class="text-right">
               <my-input-button ref="teacher" size="small" plain width-class="width: 120px" type="success" :clearable="true" @click="search"></my-input-button>
             </el-col>
           </el-row>
@@ -362,6 +363,22 @@
             break;
         }
         this.init();
+      },
+      expandInfo(){
+        let url = "";
+        let params = {
+          page: this.page,
+          num: this.num,
+          yearSelect: this.selYear,
+          termId: this.selTerm,
+          weekNum: this.selWeek
+        };
+        params['realName'] = this.searchKey.input;
+        params['structure'] = this.searchDept;
+        params = this.clearDataInfo(params);
+        params = this.$qs.stringify(params);
+        url = common.attend_class_static_ter_detail_change_record_export;
+        window.open(url+"?"+params, "_self");
       }
     }
   }
