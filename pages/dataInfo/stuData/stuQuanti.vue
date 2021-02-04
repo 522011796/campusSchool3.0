@@ -89,7 +89,7 @@
                 </span>
               </el-col>
               <el-col :span="12" class="text-right">
-
+                <el-button size="small" type="warning"  icon="el-icon-download" @click="expandInfo()">{{$t("导出")}}</el-button>
               </el-col>
             </el-row>
           </div>
@@ -1233,26 +1233,6 @@
         }
         this.init();
       },
-      expandInfo(){
-        let url = common.audit_download;
-        let params = {
-          page:1,
-          num:99999,
-          applyTypeCode: 'PunishmentApply',
-          collegeId: this.searchCollege,
-          majorId: this.searchMajor,
-          grade: this.searchGrade,
-          classId: this.searchClass,
-          applyTimeBegin: this.searchDate ? this.searchDate[0] : '',
-          applyTimeEnd: this.searchDate ? this.searchDate[1] : '',
-          str1: this.type,
-          str2: this.level,
-          status: this.status,
-          searchKey: this.searchKey
-        };
-        params = this.$qs.stringify(params);
-        window.open(url+"?"+params, "_self");
-      },
       cancelDialog(){
         this.modalVisible = false;
       },
@@ -1408,6 +1388,42 @@
         if (this.$refs['formConf']){
           this.$refs['formConf'].resetFields();
         }
+      },
+      expandInfo(){
+        let url = common.qtzt_analysis_static_set_query_export;
+        let params = {
+          page:1,
+          num:99999,
+          orderAttr: 'qtztRate',
+          orderAsc: false,
+          collegeId: this.searchCollege,
+          majorId: this.searchMajor,
+          grade: this.searchGrade,
+          classId: this.searchClass,
+          qtztStatus: this.status,
+          searchKey: this.searchKey,
+          className: this.searchClassKey
+        };
+        //时间类型
+        if (this.searchTimeData.timeUnit == 1){
+          let day = this.searchTimeData.value;
+          params['busiTime'] = day;
+          params['timeUnit'] = 3;
+        }else if (this.searchTimeData.timeUnit == 2){
+          params['weekNum'] = this.searchTimeData.value;
+          params['timeUnit'] = 2;
+        }else if (this.searchTimeData.timeUnit == 3){
+          params['queryDate'] = this.searchTimeData.value+"-01";
+          params['timeUnit'] = 4;
+        }else if (this.searchTimeData.timeUnit == 5){
+          params['timeUnit'] = 1;
+        }else {
+          let day = this.$moment(new Date()).format("YYYY-MM-DD");
+          params['busiTime'] = this.$moment().subtract(1, 'days').format("YYYY-MM-DD");
+          params['timeUnit'] = 3;
+        }
+        params = this.$qs.stringify(params);
+        window.open(url+"?"+params, "_self");
       }
     }
   }

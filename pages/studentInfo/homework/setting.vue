@@ -240,7 +240,6 @@
       initCollegeAndDorm(){
         let arr = [];
         this.$axios.get(common.housework_query_check_college).then(res => {
-          console.log(res.data.data);
           if (res.data.data){
             arr.push({
               label: this.$t("全校"),
@@ -256,7 +255,6 @@
             }
 
             this.$axios.get(common.housework_query_check_dorm, {params: {type: 1}}).then(res => {
-              console.log(res.data.data);
               if (res.data.data){
                 for (let i = 0; i < res.data.data.length; i++ ){
                   arr.push({
@@ -268,7 +266,6 @@
                 this.tableCBData = arr;
               }
             });
-            console.log(arr);
           }
         });
       },
@@ -300,7 +297,6 @@
         this.modalVisible = true;
       },
       editInfo(row){
-        console.log(row);
         this.formPer = {
           id: row.id,
           typeName: '',
