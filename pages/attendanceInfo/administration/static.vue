@@ -354,7 +354,7 @@
       this.init();
     },
     methods: {
-      init(){
+      async init(){
         let params = {
           page: this.page,
           num: this.num,
@@ -362,6 +362,8 @@
           keyWord: this.searchKey,
           staticType: 1
         };
+        await this.getCurrentGDateInfo();
+        await this.getSessionInfo();
         //时间类型
         if (this.searchTimeData.timeUnit == 1){
           let day = this.searchTimeData.value;
@@ -383,6 +385,7 @@
           params['busiTime'] = this.$moment(new Date()).format("YYYY-MM-DD");
           params['timeUnit'] = 3;
         }
+        params['termId'] = this.currentTermId;
         this.initStatic(params);
         this.initInfo(params);
       },
@@ -462,7 +465,7 @@
         let params = {
           page: this.page,
           num: this.num,
-          departmentPath: this.searchDept,
+          departmentPath: this.searchDept.value,
           keyWord: this.searchKey,
           staticType: 1
         };
@@ -487,6 +490,7 @@
           params['busiTime'] = this.$moment(new Date()).format("YYYY-MM-DD");
           params['timeUnit'] = 3;
         }
+        params['termId'] = this.currentTermId;
         params = this.$qs.stringify(params);
         window.open(url+"?"+params, "_self");
       },

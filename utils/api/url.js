@@ -166,6 +166,8 @@ export const common = {
   housework_query_check_dorm: '/proxy/building/buildings/type',//内务评比宿舍楼列表
   housework_query_check_person_save: '/proxy/course/quantization/checkperm-add',//内务评比检查人添加
   housework_query_check_person_edit: '/proxy/course/quantization/checkperm-edit',//内务评比检查人删除
+  housework_query_record_export: '/proxy/course/quantization/qtzt-query-export',//内务评比记录导出
+  housework_query_class_record_export: '/proxy/course/quantization/qtzt-query-export',//内务评比记录导出
 
   phone_limit_page: '/proxy/user/phone/limit/page',//手机号段限制
   phone_limit_save: '/proxy/user/phone/limit/save',//手机号段设置
@@ -309,7 +311,7 @@ export const common = {
 
 
   attend_teacher_static_count: '/proxy/user/attendRecords/detail/count',//综合考勤--考勤统计
-  attend_teacher_static_page_export: '/proxy/course/employee/summary/signDay/export',//综合考勤--考勤统计导出
+  attend_teacher_static_page_export: '/proxy/course/employee/summary/stat/export',//综合考勤--考勤统计导出
 
   news_page: '/proxy/school/school/news/page',//新闻分页
   news_delete: '/proxy/school/school/news/delete',//删除新闻

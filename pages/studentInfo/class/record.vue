@@ -11,6 +11,9 @@
           </span>
         </my-search-of-date>-->
         <my-search-of-date-group size="small" :show-year="false" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType">
+          <span slot="opr">
+            <el-button size="small" type="warning"  icon="el-icon-download" @click="expandInfo($event)">{{$t("导出")}}</el-button>
+          </span>
           <span slot="other" class="layout-inline">
             <my-select size="small" :sel-value="checkStatus" :options="filterCheckStatus" :clearable="true" class="layout-item width-150" @change="handleSelect"></my-select>
             <el-input size="small" :placeholder="$t('班级名称')" :clearable="true" v-model="searchKey" class="layout-item width-150"></el-input>
@@ -224,6 +227,40 @@
       },
       handleSelect(data){
         this.checkStatus = data;
+      },
+      expandInfo() {
+        let url = common.housework_query_class_record_export;
+        let params = {
+          page: this.page,
+          num: this.num,
+          /*buildId: this.searchCollege,
+          floorNum: this.searchMajor,
+          roomNo: this.searchKey,
+          termId: this.currentTermId,*/
+          isRecord: true,
+          checkType: 2,
+          checkStatus: this.checkStatus,
+          className: this.searchKey
+        };
+        //时间类型
+        if (this.searchData.timeUnit == 1) {
+          params['busiTime'] = this.searchData.value;
+          params['checkIntervalType'] = 3;
+        } else if (this.searchData.timeUnit == 2) {
+          params['weekNum'] = this.searchData.value;
+          params['checkIntervalType'] = 2;
+        } else if (this.searchData.timeUnit == 3) {
+          params['year'] = this.searchData.value.split("-")[0];
+          params['month'] = this.searchData.value.split("-")[1];
+          params['checkIntervalType'] = 4;
+        } else if (this.searchData.timeUnit == 5) {
+          params['checkIntervalType'] = 1;
+        } else {
+          params['busiTime'] = this.$moment(new Date()).format("YYYY-MM-DD");
+          params['checkIntervalType'] = 3;
+        }
+        params = this.$qs.stringify(params);
+        window.open(url + "?" + params, "_self");
       }
     }
   }
