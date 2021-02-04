@@ -12,7 +12,11 @@
       <div slot="right">
         <div class="layout-right-tab">
           <el-row>
-            <el-col :span="24">
+            <el-col :span="12">
+              <div class="text-left">
+                <tab-group-button size="small" :options='filterAuthOptions' @click="handleChange"></tab-group-button></div>
+            </el-col>
+            <el-col :span="12">
               <div class="text-right">
                 <my-input-button size="small" plain width-class="width: 240px" type="success" :clearable="true" @click="search"></my-input-button>
               </div>
@@ -21,11 +25,11 @@
         </div>
 
         <div  class="bg-white border-bottom-1 padding-lr-5 padding-tb-5" :style="divHeight">
-          <!--<div v-if="tableData.length <= 0">
+          <div v-if="tableData.length <= 0">
             <div class="text-center padding-tb-10">
               <span class="color-disabeld">{{$t("暂无数据")}}</span>
             </div>
-          </div>-->
+          </div>
           <el-row :gutter="16">
             <el-col :span="6" v-for="(item, index) in tableData" :key="index" class="margin-bottom-20" @click.native="detailInfo(item)">
               <el-card :body-style="{padding: '10px 10px', height: '85px'}" style="position: relative">
@@ -37,7 +41,8 @@
                     </el-col>
                     <el-col :span="12">
                       <div class="text-right">
-                        <i class="fa fa-ellipsis-h"></i>
+                        <!--<i class="fa fa-ellipsis-h"></i>-->
+                        <my-auth-options :status="item.ai_sync_status"></my-auth-options>
                       </div>
                     </el-col>
                   </el-row>
@@ -268,6 +273,8 @@
   import DrawerRight from "../../../components/utils/dialog/DrawerRight";
   import UploadSquare from "../../../components/utils/upload/UploadSquare";
   import DrawerLayoutRight from "../../../components/utils/dialog/DrawerLayoutRight";
+  import TabGroupButton from "../../../components/utils/button/TabGroupButton";
+  import MyAuthOptions from "../../../components/utils/status/MyAuthOptions";
   import {
     deviceType,
     MessageError,
@@ -280,7 +287,7 @@
   } from "../../../utils/utils";
   export default {
     mixins: [mixins],
-    components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,UploadSquare,DrawerLayoutRight},
+    components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,UploadSquare,DrawerLayoutRight,TabGroupButton,MyAuthOptions},
     data(){
       return {
         tableData: [],
@@ -297,6 +304,7 @@
         drawerLoading: false,
         maskShow: false,
         timerVisible: false,
+        aiSyncStatus: '',
         searchCollege: '',
         searchMajor: '',
         searchGrade: '',
@@ -357,6 +365,7 @@
           num: this.num,
           departPath: this.searchDept,
           deleted: 0,
+          aiSyncStatus: this.aiSyncStatus,
           searchKey: this.searchKey.input
         };
         //params = this.$qs.stringify(params);
@@ -575,8 +584,8 @@
       },
       selPhoteDevice(row){
         this.photoDeviceSn = row.sn;
-        //this.photoDevicePwd = row.sn;
-        //this.photoDeviceIp = row.sn;
+        this.photoDevicePwd = row.password;
+        this.photoDeviceIp = row.ip;
       },
       selKeyDevice(row){
         this.keyDeviceSn = row.sn;
@@ -704,13 +713,18 @@
         this.selDormTips = row.build_name +"-"+ row.floor_num+"楼" +"-"+ row.dormitory_no +"-"+ row.bed_no+"号床";
       },
       deviceTypeInfo(val){
-        return deviceType(val);
+        return deviceType('set',val);
       },
       deleteImg(index){
         this.form.imgList.splice(index, 1);
       },
       timerFormat(val){
         return val + "s";
+      },
+      handleChange(type){
+        this.page = 1;
+        this.aiSyncStatus = type.value;
+        this.init();
       }
     }
   }

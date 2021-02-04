@@ -750,15 +750,18 @@
         };
 
         for (let i in weekSetting1){
-          this.form.workTimeWeek1[i-1] = {weekSwitch: true, startTime: weekSetting1[i].startTime, endTime: weekSetting1[i].endTime};
+          //this.form.workTimeWeek1[i-1] = {weekSwitch: true, startTime: weekSetting1[i].startTime, endTime: weekSetting1[i].endTime};
+          this.$set(this.form.workTimeWeek1, i-1, {weekSwitch: true, startTime: weekSetting1[i].startTime, endTime: weekSetting1[i].endTime});
         }
 
         for (let i in weekSetting2){
-          this.form.workTimeWeek2[i-1] = {weekSwitch: true, startTime: weekSetting2[i].startTime, endTime: weekSetting2[i].endTime};
+          //this.form.workTimeWeek2[i-1] = {weekSwitch: true, startTime: weekSetting2[i].startTime, endTime: weekSetting2[i].endTime};
+          this.$set(this.form.workTimeWeek2, i-1, {weekSwitch: true, startTime: weekSetting2[i].startTime, endTime: weekSetting2[i].endTime});
         }
 
         for (let i in weekSetting3){
-          this.form.workTimeWeek3[i-1] = {weekSwitch: true, startTime: weekSetting3[i].startTime, endTime: weekSetting3[i].endTime};
+          //this.form.workTimeWeek3[i-1] = {weekSwitch: true, startTime: weekSetting3[i].startTime, endTime: weekSetting3[i].endTime};
+          this.$set(this.form.workTimeWeek3, i-1, {weekSwitch: true, startTime: weekSetting3[i].startTime, endTime: weekSetting3[i].endTime});
         }
 
         for (let i = 0; i < row.day_times; i++){
@@ -1143,8 +1146,10 @@
       handleChangeTime(data, item, index, type){
         if (type == 1){
           this.$set(this.form.timeTimes[index],'startTime', data);
+          this.setAllWeekTimes(data, index, type);
         }else if (type == 2){
           this.$set(this.form.timeTimes[index],'endTime', data);
+          this.setAllWeekTimes(data, index, type);
         }else if (type == 3){
           this.$set(this.form.workTimeWeek1[index],'startTime', data);
         }else if (type == 4){
@@ -1188,6 +1193,16 @@
       },
       handleWeekSwitch(data, item, index){
         item.weekSwitch = data;
+      },
+      setAllWeekTimes(data, index, type){
+        let workTimeWeek = 'workTimeWeek' + (index+1);
+        for (let i = 0; i < 7; i++){
+          if (type == 1){
+            this.$set(this.form[workTimeWeek][i],'startTime', data);
+          }else if (type == 2){
+            this.$set(this.form[workTimeWeek][i],'endTime', data);
+          }
+        }
       }
     }
   }

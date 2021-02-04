@@ -12,11 +12,12 @@
       <div slot="right">
         <div class="layout-top-tab margin-top-5">
           <el-row>
-            <el-col :span="12">
+            <el-col :span="8">
               <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo()">{{$t("学分申请")}}</el-button>
               <el-button size="small" type="warning"  icon="el-icon-download" @click="expandInfo()">{{$t("导出")}}</el-button>
             </el-col>
-            <el-col :span="12" class="text-right">
+            <el-col :span="16" class="text-right">
+              <my-date-picker type="daterange" :clearable="true" :sel-value="searchDate" size="small" width-style="240" @change="handleTime"></my-date-picker>
               <my-input-button size="small" plain width-class="width: 200px" type="success" :placeholder="$t('请输入姓名')" :clearable="true" @click="search"></my-input-button>
             </el-col>
           </el-row>
@@ -240,12 +241,13 @@
   import DialogNormal from "../../../components/utils/dialog/DialogNormal";
   import MyInputButton from "../../../components/search/MyInputButton";
   import UploadSquare from "../../../components/utils/upload/UploadSquare";
+  import MyDatePicker from "../../../components/MyDatePicker";
   import {common} from "../../../utils/api/url";
   import {MessageError, MessageSuccess, MessageWarning} from "../../../utils/utils";
   import scoreApplyValidater from "../../../utils/validater/scoreApplyValidater";
 export default {
   mixins: [mixins,scoreApplyValidater],
-  components: {LayoutLr,MyElTree,MySelect,DrawerLayoutRight,MyAuditDetail,MyPagination,MyAuditStatus,CircleChart,MyRadio,DialogNormal,MyInputButton,UploadSquare},
+  components: {LayoutLr,MyElTree,MySelect,DrawerLayoutRight,MyAuditDetail,MyPagination,MyAuditStatus,CircleChart,MyRadio,DialogNormal,MyInputButton,UploadSquare,MyDatePicker},
   data(){
     return {
       pageStudnet: 1,
@@ -299,8 +301,8 @@ export default {
         majorId: this.searchMajor,
         grade: this.searchGrade,
         classId: this.searchClass,
-        applyTimeBegin: this.searchDate ? this.searchDate[0] : '',
-        applyTimeEnd: this.searchDate ? this.searchDate[1] : '',
+        applyTimeBegin: this.searchDate && this.searchDate.length > 0 ? this.searchDate[0] : '',
+        applyTimeEnd: this.searchDate && this.searchDate.length > 0 ? this.searchDate[1] : '',
         status: this.status,
         searchKey: this.searchKey
       };
@@ -622,6 +624,9 @@ export default {
           MessageWarning(res.data.desc);
         }
       });
+    },
+    handleTime(data){
+      this.searchDate = data;
     }
   }
 }

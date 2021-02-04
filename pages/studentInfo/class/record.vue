@@ -168,7 +168,8 @@
           termId: this.currentTermId,*/
           isRecord: true,
           checkType: 2,
-          checkStatus: this.checkStatus
+          checkStatus: this.checkStatus,
+          className: this.searchKey
         };
         //时间类型
         if (this.searchData.timeUnit == 1){

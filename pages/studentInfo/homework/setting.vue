@@ -254,7 +254,7 @@
               });
             }
 
-            this.$axios.get(common.housework_query_check_dorm).then(res => {
+            this.$axios.get(common.housework_query_check_dorm, {params: {type: 1}}).then(res => {
               if (res.data.data){
                 for (let i = 0; i < res.data.data.length; i++ ){
                   arr.push({

@@ -13,6 +13,7 @@
         <div class="layout-top-tab margin-top-5">
           <el-row>
             <el-col :span="24" class="text-right">
+              <i class="fa fa-file color-warning" @click="detailInfo"></i>
               <my-date-picker :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChange" style="position: relative; top: 1px;"></my-date-picker>
               <my-course-select size="small" :clearable="true" :sel-value="searchCourseId" @change="handleCourseChange"></my-course-select>
               <my-input-button size="small" :clearable="true" type="success" plain @click="search"></my-input-button>
@@ -162,6 +163,95 @@
         </div>
       </div>
     </layout-lr>
+
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerVisible" size="650px" :title="$t('开门记录')" @right-close="cancelDrawDialog">
+      <div slot="content" v-loading="showDetailLoading">
+        <span tabindex="1"></span>
+        <div>
+          <div>
+            <my-date-picker class="layout-item" style="position: relative; top: 1px;" :clearable="true" :sel-value="searchRecordDate" size="small" width-style="150" @change="handleTime"></my-date-picker>
+            <my-input-button ref="remoteDetail" class="layout-item" size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('修改人/被修改人')" @click="searchDetail"></my-input-button>
+          </div>
+          <el-table
+            class="margin-top-10"
+            ref="refTable"
+            :data="tableStudentData"
+            header-cell-class-name="custom-table-cell-bg"
+            size="medium"
+            style="width: 100%">
+            <el-table-column
+              align="center"
+              prop="group_name"
+              :label="$t('修改人')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{ scope.row.teacher_name }}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{ scope.row.teacher_name }}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="group_name"
+              :label="$t('被修改人')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{ scope.row.real_name }}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{ scope.row.real_name }}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="group_name"
+              :label="$t('原状态')">
+              <template slot-scope="scope">
+                <my-class-attend-options :status="scope.row.original_status"></my-class-attend-options>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="group_name"
+              :label="$t('新状态')">
+              <template slot-scope="scope">
+                <my-class-attend-options :status="scope.row.original_status"></my-class-attend-options>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="group_name"
+              :label="$t('修改时间')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.time ? $moment(scope.row.time).format("YYYY-MM-DD HH:mm:ss") : '--'}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{ scope.row.time ? $moment(scope.row.time).format("YYYY-MM-DD HH:mm:ss") : '--'}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
+      </div>
+      <div slot="footer">
+        <div class="text-right">
+          <el-pagination
+            background
+            :page-sizes="[10, 20, 50, 100]"
+            layout="total, sizes, prev, pager, next"
+            :total="totalStudent"
+            :current-page="pageStudent"
+            :page-size="numStudent"
+            @size-change="sizeStudentChange"
+            @current-change="currentStudentPage">
+          </el-pagination>
+        </div>
+      </div>
+    </drawer-layout-right>
   </div>
 </template>
 
@@ -182,6 +272,7 @@
   import MySearchOfDate from "../../../components/search/MySearchOfDate";
   import DrawerLayoutRight from "../../../components/utils/dialog/DrawerLayoutRight";
   import MyCourseSelect from "../../../components/utils/MyCourseSelect";
+  import MyClassAttendOptions from "../../../components/utils/status/MyClassAttendOptions";
   import {
     classAttendStatus,
     dormStatus,
@@ -195,10 +286,15 @@
   } from "../../../utils/utils";
   export default {
     mixins: [mixins],
-    components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,MySearchOfDate,DrawerLayoutRight,MyCourseSelect},
+    components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,MySearchOfDate,DrawerLayoutRight,MyCourseSelect,MyClassAttendOptions},
     data(){
       return {
+        pageStudent: 1,
+        numStudent: 20,
+        totalStudent: 0,
         searchDate: [],
+        searchRecordDate: '',
+        searchRecordKey: '',
         filtersSection: [],
         searchSection: '',
         searchCourseId: '',
@@ -207,12 +303,14 @@
         totalDetail: 0,
         searchTimeData: {},
         tableData: [],
+        tableStudentData: [],
         tableDetailData: [],
         modalVisible: false,
         dialogLoading: false,
         visibleConfim: false,
         drawerVisible: false,
         drawerLoading: false,
+        showDetailLoading: false,
         searchCollege: '',
         searchMajor: '',
         searchGrade: '',
@@ -271,6 +369,26 @@
             value: i+1
           });
         }
+      },
+      initRecord(){
+        let params = {
+          page: this.pageStudent,
+          num: this.numStudent,
+          type: 1,
+          busiTime: this.searchRecordDate,
+          searchKey: this.searchRecordKey
+        };
+        //params = this.$qs.stringify(params);
+        this.showDetailLoading = true;
+        this.$axios.get(common.attend_class_static_stu_detail_change_record, {params: params, loading: false}).then(res => {
+          if (res.data.data){
+            this.tableStudentData = res.data.data.list;
+            this.totalStudent = res.data.data.totalCount;
+            this.numStudent = res.data.data.num;
+            this.pageStudent = res.data.data.currentPage;
+          }
+          this.showDetailLoading = false;
+        });
       },
       nodeClick(data){
         this.searchCollege = "";
@@ -335,6 +453,48 @@
       },
       handleCourseChange(data){
         this.searchCourseId = data;
+      },
+      detailInfo(){
+        this.initRecord();
+        this.drawerVisible = true;
+      },
+      closeDrawerDialog(event){
+        this.searchRecordDate = '';
+        this.searchRecordKey = '';
+        this.pageStudent = 1;
+        if (this.$refs.remoteDetail){
+          this.$refs.remoteDetail.inputValue = "";
+        }
+        this.drawerVisible = event;
+      },
+      closeDrawDialog(event){
+        this.searchRecordDate = '';
+        this.searchRecordKey = '';
+        this.pageStudent = 1;
+        if (this.$refs.remoteDetail){
+          this.$refs.remoteDetail.inputValue = "";
+        }
+        this.drawerVisible = false;
+      },
+      cancelDrawDialog(){
+        this.drawerVisible = false;
+      },
+      handleTime(data){
+        this.searchRecordDate = data;
+      },
+      searchDetail(data){
+        this.searchRecordKey = data.input;
+        this.page = 1;
+        this.initRecord();
+      },
+      sizeStudentChange(event){
+        this.pageStudent = 1;
+        this.numStudent = event;
+        this.initRecord();
+      },
+      currentStudentPage(event){
+        this.pageStudent = event;
+        this.initRecord();
       }
     }
   }
