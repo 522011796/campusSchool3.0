@@ -429,6 +429,7 @@
     </dialog-normal>
 
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" :content="deleteSetTitle" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
+    <my-normal-dialog :visible.sync="visibleEnableConfim" :loading="dialogLoading" title="提示" detail="仅适用于门禁控制器设备,是否启用？" @ok-click="handleEnableOkChange" @cancel-click="handleCancelChange" @close="closeVisibleDialog"></my-normal-dialog>
 
   </div>
 </template>
@@ -473,6 +474,7 @@
         dialogLoading: false,
         drawerLoading: false,
         visibleConfim: false,
+        visibleEnableConfim: false,
         drawerVisible: false,
         loading: false,
         perLoading: false,
@@ -866,6 +868,9 @@
           }
         });
       },
+      closeVisibleDialog(event){
+
+      },
       closeDialog(event){
         this.form = {
           id: '',
@@ -929,6 +934,8 @@
       },
       handleCancelChange(data) {
         this.visibleConfim = false;
+        this.visibleEnableConfim = false;
+        this.$set(this.form, 'errorPassType', false);
       },
       handleOkChange(data) {
         this.dialogLoading = true;
@@ -949,6 +956,10 @@
           this.dialogLoading = false;
         });
       },
+      handleEnableOkChange(data){
+        this.$set(this.form, 'errorPassType', true);
+        this.visibleEnableConfim = false;
+      },
       handleChange(data){
         this.form.searchData = data;
       },
@@ -956,6 +967,9 @@
         if (type == 1){
           this.form.errorType = data;
         }else if (type == 2){
+          if(data) {
+            this.visibleEnableConfim = true;
+          }
           this.form.errorPassType = data;
         }else if (type == 3){
           this.form.leaveType = data;
