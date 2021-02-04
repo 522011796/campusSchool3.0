@@ -94,6 +94,18 @@
               </template>
             </el-table-column>
             <el-table-column
+              :label="$t('手机号')"
+              align="center">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{ scope.row.phone }}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{ scope.row.phone }}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
               :label="$t('收款人')"
               align="center">
               <template slot-scope="scope">

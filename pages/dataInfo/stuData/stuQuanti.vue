@@ -474,14 +474,19 @@
           <my-input-button size="small" type="success" plain :clearable="true" @click="search"></my-input-button>
         </div>
 
-        <div class="margin-top-10">
-          <el-row :gutter="16">
+        <div class="margin-top-10" v-loading="studentLoading">
+          <div v-if="studentData.length <= 0">
+            <div class="text-center padding-tb-10">
+              <span class="color-disabeld">{{$t("暂无数据")}}</span>
+            </div>
+          </div>
+          <el-row v-else :gutter="16">
             <el-col :span="12" class="margin-bottom-20" v-for="(item, index) in studentData" :key="index">
               <el-card :body-style="{padding: '0px'}" style="height:115px;">
                 <el-row class="padding-tb-10 padding-lr-10">
                   <el-col :span="4">
                     <el-avatar v-if="item.headImg" :size="50" :src="item.headImg"></el-avatar>
-                    <el-avatar v-else :size="50" icon="el-icon-user"></el-avatar>
+                    <el-avatar v-else :size="50" icon="el-icon-user-solid"></el-avatar>
                   </el-col>
                   <el-col :span="11">
                     <div class="margin-top-5">
@@ -633,7 +638,7 @@
                 <el-row class="padding-tb-10 padding-lr-10">
                   <el-col :span="4">
                     <el-avatar v-if="item.headImg" :size="50" :src="item.headImg"></el-avatar>
-                    <el-avatar v-else :size="50" icon="el-icon-user"></el-avatar>
+                    <el-avatar v-else :size="50" icon="el-icon-user-solid"></el-avatar>
                   </el-col>
                   <el-col :span="11">
                     <div class="margin-top-5">
@@ -777,6 +782,7 @@
         visibleConfim: false,
         studentLoading: false,
         popverVisible: false,
+        showStudentLoading: false,
         subTitle: '',
         tableData: [],
         studentData: [],

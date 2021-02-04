@@ -240,6 +240,7 @@
       initCollegeAndDorm(){
         let arr = [];
         this.$axios.get(common.housework_query_check_college).then(res => {
+          console.log(res.data.data);
           if (res.data.data){
             arr.push({
               label: this.$t("全校"),
@@ -249,23 +250,25 @@
             for (let i = 0; i < res.data.data.length; i++ ){
               arr.push({
                 label: res.data.data[i].name,
-                value: res.data.data[i].id,
+                value: res.data.data[i].id + "-" + res.data.data[i].college_no,
                 type: 2
               });
             }
 
             this.$axios.get(common.housework_query_check_dorm, {params: {type: 1}}).then(res => {
+              console.log(res.data.data);
               if (res.data.data){
                 for (let i = 0; i < res.data.data.length; i++ ){
                   arr.push({
                     label: res.data.data[i].buildingName,
-                    value: res.data.data[i].id,
+                    value: res.data.data[i].id + "-" + res.data.data[i].buildingNo,
                     type: 1
                   });
                 }
                 this.tableCBData = arr;
               }
             });
+            console.log(arr);
           }
         });
       },
@@ -297,6 +300,7 @@
         this.modalVisible = true;
       },
       editInfo(row){
+        console.log(row);
         this.formPer = {
           id: row.id,
           typeName: '',
@@ -305,9 +309,9 @@
           teacherList: row.user_ids ? row.user_ids.split(",") : []
         };
         if (row.scope == 1){
-          this.formPer['typeId'] = row.build_id;
+          this.formPer['typeId'] = row.build_id+"-"+row.build_no;
         }else if (row.scope == 2){
-          this.formPer['typeId'] = row.college_id;
+          this.formPer['typeId'] = row.college_id+"-"+row.college_no;
         }else if (row.scope == 3){
           this.formPer['typeId'] = '-1';
         }
@@ -399,9 +403,9 @@
               userIds: arr.join()
             };
             if (this.formPer.scope == 2){
-              params['collegeId'] = this.formPer.typeId;
+              params['collegeId'] = this.formPer.typeId.split("-")[0];
             }else if (this.formPer.scope == 1){
-              params['buildId'] = this.formPer.typeId;
+              params['buildId'] = this.formPer.typeId.split("-")[0];
             }else if (this.formPer.scope == 3){
 
             }
@@ -463,8 +467,10 @@
         }
       },
       handleSelect(data, type){
+        let dataJson = data.split("-");
         for (let i = 0; i < this.tableCBData.length; i++){
-          if (this.tableCBData[i].value == data){
+          let tableCBJson = this.tableCBData[i].value.split("-");
+          if (tableCBJson[0] == dataJson[0]){
             this.formPer.scope = this.tableCBData[i].type;
           }
         }

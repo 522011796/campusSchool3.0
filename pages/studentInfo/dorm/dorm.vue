@@ -156,7 +156,7 @@
                         </div>
                         <div class="color-warning font-size-12 margin-top-10">
                           <el-avatar v-if="!itemChild.photo_simple" shape="square" :size="50">
-                            <i class="el-icon-user" style="font-size: 20px"></i>
+                            <i class="el-icon-user-solid" style="font-size: 20px"></i>
                           </el-avatar>
                           <img v-if="itemChild.photo_simple" src="" style="height:50px;width: 50px"/>
                         </div>

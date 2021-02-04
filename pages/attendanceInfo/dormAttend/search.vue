@@ -125,7 +125,7 @@
                     </div>
                     <img v-if="itemChild.headImg" :src="itemChild.headImg" class="leave-header-logo">
                     <el-avatar v-else :size="80" class="leave-header-logo">
-                      <span class="el-icon-user font-size-20"></span>
+                      <span class="el-icon-user-solid font-size-20"></span>
                     </el-avatar>
                   </el-card>
                 </el-col>
