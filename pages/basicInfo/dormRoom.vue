@@ -110,7 +110,7 @@
       </div>
     </dialog-normal>
 
-    <drawer-right @changeDrawer="closeDrawerDialog" :visible="drawerVisible" :loading="drawerLoading" :hide-footer="true" size="400px" :title="$t('导入宿舍')" action="https://jsonplaceholder.typicode.com/posts/" download-file="xxx" @right-close="cancelDrawDialog" @ok="okDrawDialog" @cancel="closeDrawDialog">
+    <drawer-right @changeDrawer="closeDrawerDialog" :visible="drawerVisible" accept=".xls,.xlsx" :data="{all: true}" :loading="drawerLoading" :hide-footer="true" size="400px" :title="$t('导入宿舍')" :action="uploadAction" :download-file="uploadFile" :result="uploadResult" :process="uploadProcess" @right-close="cancelDrawDialog" @success="uploadSuccess" @error="uploadError">
 
     </drawer-right>
 
@@ -146,6 +146,10 @@ export default {
       drawerLoading: false,
       subTitle: '',
       subDetail: '',
+      uploadFile: common.doomroom_import_file + "?fileName=" + encodeURIComponent(this.$t("宿舍分配模板.xlsx")),
+      uploadAction: common.doomroom_import,
+      uploadResult: {},
+      uploadProcess: '',
       form: {
         id: '',
         buildName: '',
@@ -389,6 +393,65 @@ export default {
     },
     uploadClassRoom(row){
       this.drawerVisible = true;
+    },
+    uploadSuccess(res, file){
+      if (res.code == 200){
+        this.uploadProcess = res.desc;
+        this.loopUploadResult(res.data);
+      }else {
+        this.uploadProcess = this.$t("文件上传成功,正在导入文件...");
+        this.resultList = [];
+        if (res.data){
+          for (let i in res.data){
+            this.uploadResult.push(res.data[i]);
+          }
+        }else {
+          this.uploadResult = [res.desc];
+        }
+      }
+    },
+    uploadError(res, file){
+      this.uploadProcess = res.data.data;
+    },
+    loopUploadResult(uuid){
+      this.getUploadResult(uuid);
+    },
+    getUploadResult(uuid) {
+      let _self = this;
+      clearTimeout(this.loopTimer);
+      let params = {
+        uuid: uuid,
+        action: 3
+      };
+      this.$axios.get(common.upload_loop_result, {params: params}).then(res => {
+        let result = "";
+        if (res.data.code == 200) {
+          let arrResult = [];
+          if (res.data.data) {
+            for (let i = 0; i < res.data.data.length; i++) {
+              //设置结果列表
+              if (res.data.data[i].line) {
+                arrResult.push(this.$t("第") + res.data.data[i].line + this.$t("行") + JSON.parse(res.data.data[i].mess).join());
+              } else {
+                arrResult.push(JSON.parse(res.data.data[i].mess).join());
+              }
+              if (res.data.data[i].status == 1) {
+                //this.loopStatus = true;
+                this.uploadResult = arrResult;
+                clearTimeout(this.loopTimer);
+                break;
+              } else {
+                this.loopTimer = setTimeout(function () {
+                  _self.getUploadResult(uuid)
+                }, 10000);
+              }
+            }
+          } else {
+            this.uploadResult = [this.$t("上传停止！")];
+            clearTimeout(this.loopTimer);
+          }
+        }
+      });
     }
   }
 }

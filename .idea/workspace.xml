@@ -5,7 +5,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/dataInfo/stuData/stuAnalysis.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dataInfo/stuData/stuAnalysis.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/dialog/DrawerRight.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/dialog/DrawerRight.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/dormRoom.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/dormRoom.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dataInfo/stuData/stuStatus.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dataInfo/stuData/stuStatus.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/teachInfo/teach/teachPlan.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/teachInfo/teach/teachPlan.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,14 +111,7 @@
       <workItem from="1609379556549" duration="104145000" />
       <workItem from="1610156986760" duration="338962000" />
       <workItem from="1611544756423" duration="213730000" />
-      <workItem from="1612495432937" duration="487000" />
-    </task>
-    <task id="LOCAL-00215" summary="1、修改框架和组件样式、细节bug等&#10;2、分页跳转完成">
-      <created>1611656317179</created>
-      <option name="number" value="00215" />
-      <option name="presentableId" value="LOCAL-00215" />
-      <option name="project" value="LOCAL" />
-      <updated>1611656317179</updated>
+      <workItem from="1612495432937" duration="6784000" />
     </task>
     <task id="LOCAL-00216" summary="1、修改框架和组件样式、细节bug等&#10;2、审批流程-固定教师不选择审批老师不能保存完成">
       <created>1611712620822</created>
@@ -451,7 +449,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612495105279</updated>
     </task>
-    <option name="localTasksCounter" value="264" />
+    <task id="LOCAL-00264" summary="1、修改框架和组件样式、细节bug等&#10;2、按钮组带动画版本完成">
+      <created>1612495989611</created>
+      <option name="number" value="00264" />
+      <option name="presentableId" value="LOCAL-00264" />
+      <option name="project" value="LOCAL" />
+      <updated>1612495989612</updated>
+    </task>
+    <option name="localTasksCounter" value="265" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -490,11 +495,11 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1612176661241" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1612495103667">
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1612495987653">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1612495103667" />
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1612495987653" />
     <state x="100" y="124" width="1240" height="600" key="DiffContextDialog" timestamp="1612336251240">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -503,32 +508,28 @@
     <state width="1398" height="201" key="GridCell.Tab.0.bottom" timestamp="1609379519477">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
-    <state width="1398" height="206" key="GridCell.Tab.0.bottom/0.23.1440.805@0.23.1440.805" timestamp="1603090554275" />
     <state width="1398" height="201" key="GridCell.Tab.0.bottom/0.25.1440.798@0.25.1440.798" timestamp="1609379519477" />
     <state width="1398" height="201" key="GridCell.Tab.0.center" timestamp="1609379519476">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
-    <state width="1398" height="206" key="GridCell.Tab.0.center/0.23.1440.805@0.23.1440.805" timestamp="1603090554272" />
     <state width="1398" height="201" key="GridCell.Tab.0.center/0.25.1440.798@0.25.1440.798" timestamp="1609379519476" />
     <state width="1398" height="201" key="GridCell.Tab.0.left" timestamp="1609379519473">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
-    <state width="1398" height="206" key="GridCell.Tab.0.left/0.23.1440.805@0.23.1440.805" timestamp="1603090554270" />
     <state width="1398" height="201" key="GridCell.Tab.0.left/0.25.1440.798@0.25.1440.798" timestamp="1609379519473" />
     <state width="1398" height="201" key="GridCell.Tab.0.right" timestamp="1609379519477">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
-    <state width="1398" height="206" key="GridCell.Tab.0.right/0.23.1440.805@0.23.1440.805" timestamp="1603090554274" />
     <state width="1398" height="201" key="GridCell.Tab.0.right/0.25.1440.798@0.25.1440.798" timestamp="1609379519477" />
     <state x="221" y="66" key="SettingsEditor" timestamp="1611905365471">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="221" y="66" key="SettingsEditor/0.25.1440.798@0.25.1440.798" timestamp="1611905365471" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1612495107074">
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1612495992348">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1612495107074" />
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1612495992348" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1611203372469">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -542,11 +543,11 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="506" y="345" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.1440.798@0.25.1440.798" timestamp="1611389592729" />
-    <state x="378" y="183" width="837" height="550" key="find.popup" timestamp="1612494143095">
+    <state x="378" y="183" width="837" height="550" key="find.popup" timestamp="1612508309234">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="378" y="182" width="837" height="486" key="find.popup/0.23.1440.805@0.23.1440.805" timestamp="1605680757485" />
-    <state x="378" y="183" width="837" height="550" key="find.popup/0.25.1440.798@0.25.1440.798" timestamp="1612494143095" />
+    <state x="378" y="183" width="837" height="550" key="find.popup/0.25.1440.798@0.25.1440.798" timestamp="1612508309234" />
     <state x="385" y="153" width="670" height="671" key="search.everywhere.popup" timestamp="1611727354332">
       <screen x="0" y="25" width="1440" height="798" />
     </state>

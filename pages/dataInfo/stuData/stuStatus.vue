@@ -9,7 +9,7 @@
             </div>
             <div class="margin-top-5">
               <span class="font-size-15 color-grand" v-if="searchData.sexList">
-                {{searchData.sexList[0].size + searchData.sexList[1].size + searchData.sexList[2].size}}
+                {{searchData.sexList[0] ? searchData.sexList[0].size : 0 + searchData.sexList[1] ? searchData.sexList[1].size : 0 + searchData.sexList[2] ? searchData.sexList[2].size : 0}}
               </span>
             </div>
 
@@ -19,21 +19,21 @@
                 <span class="margin-left-10">
                   <i class="fa fa-male margin-right-5" v-for="n in 5" :key="n"></i>
                 </span>
-                <span class="margin-left-10" v-if="searchData.sexList">{{searchData.sexList[1].size}}</span>
+                <span class="margin-left-10" v-if="searchData.sexList">{{searchData.sexList[1] ? searchData.sexList[1].size : 0}}</span>
               </div>
               <div class="margin-top-5">
                 <span>{{$t("女生")}}</span>
                 <span class="margin-left-10">
                   <i class="fa fa-female margin-right-5" v-for="n in 5" :key="n"></i>
                 </span>
-                <span class="margin-left-10" v-if="searchData.sexList">{{searchData.sexList[0].size}}</span>
+                <span class="margin-left-10" v-if="searchData.sexList">{{searchData.sexList[0] ? searchData.sexList[0].size : 0}}</span>
               </div>
               <div class="margin-top-5">
                 <span>{{$t("未知")}}</span>
                 <span class="margin-left-10">
                   <i class="fa fa-male margin-right-5" v-for="n in 5" :key="n"></i>
                 </span>
-                <span class="margin-left-10" v-if="searchData.sexList">{{searchData.sexList[2].size}}</span>
+                <span class="margin-left-10" v-if="searchData.sexList">{{searchData.sexList[2] ? searchData.sexList[2].size : 0}}</span>
               </div>
             </div>
           </el-card>
@@ -344,20 +344,49 @@ export default {
       let collegeDataKeyArr = [];
       this.$axios.get(common.school_static_top).then(res => {
         if (res.data.data){
+          /*for (let i = 0; i < res.data.data.sexList.length; i++){
+            if (i == 0){
+              res.data.data.sexList[i] = {
+                campus_id: res.data.data.sexList[i].campus_id,
+                sex: res.data.data.sexList[i].sex,
+                size: res.data.data.sexList[i].size
+              };
+            }else {
+              res.data.data.sexList[i] = {
+                campus_id: 0,
+                sex: 0,
+                size: 0
+              };
+            }
+            if (i == 1){
+              res.data.data.sexList[i] = {
+                campus_id: res.data.data.sexList[i].campus_id,
+                sex: res.data.data.sexList[i].sex,
+                size: res.data.data.sexList[i].size
+              };
+            }
+            if (i == 2){
+              res.data.data.sexList[i] = {
+                campus_id: res.data.data.sexList[i].campus_id,
+                sex: res.data.data.sexList[i].sex,
+                size: res.data.data.sexList[i].size
+              };
+            }
+          }*/
           this.searchData = res.data.data;
           personDataArr[0] = {
             name: this.$t("男生"),
-            value: res.data.data.sexList[1].size,
+            value: res.data.data.sexList[1] ? res.data.data.sexList[1].size : 0,
             rate: res.data.data.sexRate[1]
           };
           personDataArr[1] = {
             name: this.$t("女生"),
-            value: res.data.data.sexList[0].size,
+            value: res.data.data.sexList[0] ? res.data.data.sexList[0].size : 0,
             rate: res.data.data.sexRate[2]
           };
           personDataArr[2] = {
             name: this.$t("未知"),
-            value: res.data.data.sexList[2].size,
+            value: res.data.data.sexList[2] ? res.data.data.sexList[2].size : 0,
             rate: res.data.data.sexRate[0]
           };
           personDataKeyArr[0] =this.$t("男生");

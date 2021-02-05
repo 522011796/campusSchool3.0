@@ -49,7 +49,8 @@
               :data="data"
               :show-file-list="false"
               :on-success="handleAvatarSuccess"
-              :on-error="handleAvatarError">
+              :on-error="handleAvatarError"
+              :before-upload="setBefore ? handleAvatarBefore : ''">
 
               <i class="el-icon-upload"></i>
               <div class="el-upload__text">{{$t("将文件拖到此处，或")}}<em>{{$t("点击上传")}}</em></div>
@@ -159,6 +160,10 @@ export default {
         return {} || [];
       },
       type: [Object, Array]
+    },
+    setBefore: {
+      default: false,
+      type: Boolean
     }
   },
   computed: {
@@ -203,7 +208,6 @@ export default {
       this.$emit("cancel", data);
     },
     download(event){
-      console.log(this.downloadFile);
       window.open(this.downloadFile, '_self');
     },
     handleAvatarSuccess(res, file){
@@ -211,6 +215,9 @@ export default {
     },
     handleAvatarError(res, file){
       this.$emit('error', res, file);
+    },
+    handleAvatarBefore(file){
+      this.data['fileName'] = file.name;
     }
   }
 }

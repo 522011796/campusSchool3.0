@@ -27,7 +27,7 @@
               <el-col :span="24">
                 <el-button :disabled="this.week_schedule_id == null || this.week_schedule_id == ''" size="small" type="primary" icon="el-icon-document-copy" @click="copyCourseTable">{{$t("复制当前课表")}}</el-button>
                 <el-button :disabled="this.week_schedule_id == null || this.week_schedule_id == ''" size="small" type="danger" icon="el-icon-document-copy" @click="deleteInfo()">{{$t("删除当前课表")}}</el-button>
-                <el-button size="small" type="warning" icon="el-icon-upload">{{$t("导入")}}</el-button>
+                <el-button size="small" type="warning" icon="el-icon-upload" @click="importInfo($event)">{{$t("导入")}}</el-button>
               </el-col>
             </el-row>
           </div>
@@ -315,6 +315,10 @@
       </div>
     </dialog-normal>
 
+    <drawer-right @changeDrawer="closeDrawerDialog" :set-before="true" :visible="drawerVisible" accept=".xls,.xlsx" :data="{schYearId: this.selYear, termId: this.selTerm,weekNum: this.selWeek, fileName: this.fileName}" :loading="drawerLoading" :hide-footer="true" size="400px" :title="$t('导入排课')" :action="uploadAction" :download-file="uploadFile" :result="uploadResult" :process="uploadProcess" @right-close="cancelDrawDialog" @success="uploadSuccess" @error="uploadError">
+
+    </drawer-right>
+
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" content="确认需要删除当前课表？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
     <my-normal-dialog :visible.sync="visibleCourseConfim" :loading="dialogLoading" title="提示" content="确认需要删除当前课表？" @ok-click="deleteCourseInfo" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
 
@@ -359,10 +363,6 @@
         drawerLoading: false,
         modalWeekVisible: false,
         subDetail: '',
-        uploadFile: common.course_mamage_file,
-        uploadAction: common.course_mamage_import,
-        uploadResult: {},
-        uploadProcess: '',
         g_superId: '',
         tableData: [],
         searchSchoolData: [],
@@ -400,7 +400,12 @@
         checkedCities: [],
         cities: [],
         isIndeterminate: false,
-        searchWeekSelList: []
+        searchWeekSelList: [],
+        uploadFile: common.teach_course_plan_inport_file,
+        uploadAction: common.teach_course_plan_inport,
+        uploadResult: {},
+        uploadProcess: '',
+        fileName: ''
       }
     },
     created() {
@@ -877,6 +882,78 @@
       },
       inArrayInfo(search, arr){
         return inArray(search, arr);
+      },
+      importInfo(event){
+        this.drawerVisible = true;
+      },
+      closeDrawerDialog(event){
+        this.uploadProcess = '';
+        this.uploadResult = {};
+        this.drawerVisible = event;
+      },
+      cancelDrawDialog(){
+        this.uploadProcess = '';
+        this.uploadResult = {};
+        this.drawerVisible = false;
+      },
+      uploadSuccess(res, file){
+        if (res.code == 200){
+          this.uploadProcess = res.desc;
+          this.loopUploadResult(res.data);
+        }else {
+          this.uploadProcess = this.$t("文件上传成功,正在导入文件...");
+          this.resultList = [];
+          if (res.data){
+            for (let i in res.data){
+              this.uploadResult.push(res.data[i]);
+            }
+          }else {
+            this.uploadResult = [res.desc];
+          }
+        }
+      },
+      uploadError(res, file){
+        this.uploadProcess = res.data.data;
+      },
+      loopUploadResult(uuid){
+        this.getUploadResult(uuid);
+      },
+      getUploadResult(uuid) {
+        let _self = this;
+        clearTimeout(this.loopTimer);
+        let params = {
+          uuid: uuid,
+          action: 6
+        };
+        this.$axios.get(common.upload_loop_result, {params: params}).then(res => {
+          let result = "";
+          if (res.data.code == 200) {
+            let arrResult = [];
+            if (res.data.data) {
+              for (let i = 0; i < res.data.data.length; i++) {
+                //设置结果列表
+                if (res.data.data[i].line) {
+                  arrResult.push(this.$t("第") + res.data.data[i].line + this.$t("行") + JSON.parse(res.data.data[i].mess).join());
+                } else {
+                  arrResult.push(JSON.parse(res.data.data[i].mess).join());
+                }
+                if (res.data.data[i].status == 1) {
+                  //this.loopStatus = true;
+                  this.uploadResult = arrResult;
+                  clearTimeout(this.loopTimer);
+                  break;
+                } else {
+                  this.loopTimer = setTimeout(function () {
+                    _self.getUploadResult(uuid)
+                  }, 10000);
+                }
+              }
+            } else {
+              this.uploadResult = [this.$t("上传停止！")];
+              clearTimeout(this.loopTimer);
+            }
+          }
+        });
       }
     }
   }

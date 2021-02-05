@@ -479,5 +479,11 @@ export const common = {
   dorm_stat_count: '/proxy/course/rollcallbed/rollcallbed/build/stat',//归寝统计数量
 
   teach_course_plan_delete: '/proxy/course/schedule/delete',//删除排课
+  teach_course_plan_inport: '/proxy/zuul/course/schedule/multy/import',//排课导入
+  teach_course_plan_inport_file: '/proxy/course/schedule/download',//排课导入模版
+
+
+  doomroom_import_file: '/proxy/building/dormitory/bed/student/download',//宿舍导入模版
+  doomroom_import: '/proxy/building/dormitory/bed/student/import',//宿舍导入
 
 };
