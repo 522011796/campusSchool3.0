@@ -151,6 +151,73 @@
           <div class="margin-top-20">
             <el-card :body-style="{padding: '10px'}">
               <div>
+                <span>{{$t("学生排名")}}</span>
+                <span>
+                <el-button-group>
+                  <el-button size="small" :type="searchStatus == 'actualNum' ? 'primary' : 'default'" @click="changeStatus('actualNum')">{{$t("出勤")}}</el-button>
+                  <el-button size="small" :type="searchStatus == 'unSignNum' ? 'primary' : 'default'" @click="changeStatus('lateNum')">{{$t("迟到")}}</el-button>
+                  <el-button size="small" :type="searchStatus == 'lateNum' ? 'primary' : 'default'" @click="changeStatus('leaveEarlyNum')">{{$t("早退")}}</el-button>
+                  <el-button size="small" :type="searchStatus == 'lateLongNum' ? 'primary' : 'default'" @click="changeStatus('unSignNum')">{{$t("旷课")}}</el-button>
+                  <el-button size="small" :type="searchStatus == 'leaveNum' ? 'primary' : 'default'" @click="changeStatus('leaveNum')">{{$t("请假")}}</el-button>
+                </el-button-group>
+              </span>
+              </div>
+              <div style="height: 300px">
+                <el-table
+                  ref="refTable"
+                  :data="tableData"
+                  height="300"
+                  header-cell-class-name="custom-table-cell-bg"
+                  size="medium"
+                  style="width: 100%">
+                  <el-table-column
+                    align="center"
+                    :label="$t('排名')">
+
+                    <template slot-scope="scope">
+                      <span class="color-warning">{{scope.$index + 1}}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    :label="$t('姓名')">
+
+                    <template slot-scope="scope">
+                      <span class="color-warning">{{scope.row.studentName}}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    :label="$t('院系')">
+
+                    <template slot-scope="scope">
+                      <span class="color-warning">{{scope.row.collegeName}}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    :label="$t('专业')">
+
+                    <template slot-scope="scope">
+                      <span class="color-warning">{{scope.row.majorName}}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    :label="$t('班级')">
+
+                    <template slot-scope="scope">
+                      <span class="color-warning">{{scope.row.className}}</span>
+                    </template>
+                  </el-table-column>
+                </el-table>
+              </div>
+            </el-card>
+          </div>
+
+          <div class="margin-top-20">
+            <el-card :body-style="{padding: '10px'}">
+              <div>
                 <span>{{$t("课程分析")}}</span>
                 <span>
                   <my-course-select size="small" :clearable="true" :sel-value="searchCourseId" @change="handleCourseChange"></my-course-select>
@@ -325,6 +392,7 @@
         topData: {},
         searchTimeData: {},
         tableData: [],
+        tableTopData: [],
         tableDetailData: [],
         searchDate: [],
         lineKeyData: [],
@@ -364,7 +432,8 @@
         uploadAction: common.student_upload,
         loopTimer: null,
         resultList: [],
-        searchTopTime: this.$moment(new Date).format("YYYY-MM-DD")
+        searchTopTime: this.$moment(new Date).format("YYYY-MM-DD"),
+        paramsData: {}
       }
     },
     created() {
@@ -410,6 +479,17 @@
         this.initLineStatic(params);
         this.initLinePopStatic(params);
         this.initData(params);
+        this.initStudentTop(params);
+      },
+      initStudentTop(params){
+        params['sortField'] = this.searchStatus;
+        this.paramsData = params;
+        this.$axios.get(common.classattend_student_sort, {params: params}).then(res => {
+          if (res.data.data){
+            console.log(res);
+            this.tableTopData = res.data.data;
+          }
+        });
       },
       initStatic(params){
         params['page'] = this.page;
@@ -603,7 +683,7 @@
       },
       changeStatus(type){
         this.searchStatus = type;
-        this.init();
+        this.initStudentTop(this.paramsData);
       },
       changeTree(mainType, subType, type){
         this.searchCollege = "";
