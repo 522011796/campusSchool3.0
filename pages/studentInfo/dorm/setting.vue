@@ -283,7 +283,9 @@
       initTeacher(){
         let params = {
           page: 1,
-          num: 9999
+          num: 9999,
+          serviceType: 'dorm',
+          serviceId: this.form.id
         };
         params['realName'] = this.searchTeacherName;
         this.loadingList = true;
