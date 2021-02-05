@@ -15,7 +15,7 @@
             <el-col :span="12">
               <el-col :span="12">
                 <el-button size="small" type="primary"  icon="el-icon-plus" @click="addClassRoom($event)">{{$t("添加教室")}}</el-button>
-                <el-button size="small" type="warning" plain  icon="el-icon-notebook-2" @click="uploadClassRoom($event)">{{$t("导入教室")}}</el-button>
+                <!--<el-button size="small" type="warning" plain  icon="el-icon-notebook-2" @click="uploadClassRoom($event)">{{$t("导入教室")}}</el-button>-->
               </el-col>
             </el-col>
           </el-row>

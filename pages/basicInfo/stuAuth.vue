@@ -245,7 +245,7 @@
         phoneOwner: '',
         status: '',
         searchKey: '',
-        uploadFile: common.file_import_modal + "?fileName=" + encodeURIComponent(this.$t("手机号录入模版.xls")),
+        uploadFile: common.file_import_modal + "?fileName=" + encodeURIComponent(this.$t("手机号录入模板.xls")),
         uploadAction: common.phone_limit_import,
         uploadResult: {},
         uploadProcess: '',

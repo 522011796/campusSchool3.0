@@ -57,7 +57,7 @@ export default {
   },
   proxy: [
     ['/proxy', {
-      target:'http://wykj.9451.org:10201',  //api请求路径
+      target:'http://campustest.9451.org:10201',  //api请求路径
       pathRewrite: { '^/proxy' : '/' }  //重定向请求路径，防止路由、api路径的冲突
     }]
   ],

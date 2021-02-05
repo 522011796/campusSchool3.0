@@ -16,6 +16,7 @@
               <div class="text-right layout-inline">
                 <!--<my-select width-style="100" :clearable="true" :sel-value="searchStatus" :options="studentTeachStatusInfo(null, 'get')" :placeholder="$t('学籍状态')" class="layout-item" size="small" @change="handleSelect($event, 1)"></my-select>
                 <my-select width-style="100" :clearable="true" :sel-value="searchTeach" :options="studyTypeInfo(null, 'get')" :placeholder="$t('就读形式')" class="layout-item" size="small" @change="handleSelect($event, 2)"></my-select>-->
+                <el-button size="small" type="warning"  icon="el-icon-medal-1" @click="topInfo($event)">{{$t("考勤排名")}}</el-button>
                 <my-input-button class="layout-item" :show-select="true" :options="searchStudentType2" size="small" plain width-class="width: 240px" type="success" :clearable="true" @click="search"></my-input-button>
               </div>
             </el-col>
@@ -393,6 +394,101 @@
 
       </div>
     </drawer-layout-right>-->
+
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerVisible" size="750px" :title="$t('考勤排名')" @right-close="cancelDrawDialog">
+      <div slot="content">
+        <span tabindex="1"></span>
+        <div>
+          <el-row>
+            <el-col :span="12">
+              <el-button-group>
+                <el-button size="small" :type="searchTopDateTimeType == 1 ? 'primary' : 'default'" @click="handleTopDateType(1)">{{$t("昨日")}}</el-button>
+                <el-button size="small" :type="searchTopDateTimeType == 2 ? 'primary' : 'default'" @click="handleTopDateType(2)">{{$t("今日")}}</el-button>
+                <el-button size="small" :type="searchTopDateTimeType == 3 ? 'primary' : 'default'" @click="handleTopDateType(3)">{{$t("本周")}}</el-button>
+                <el-button size="small" :type="searchTopDateTimeType == 4 ? 'primary' : 'default'" @click="handleTopDateType(4)">{{$t("本月")}}</el-button>
+                <el-button size="small" :type="searchTopDateTimeType == 5 ? 'primary' : 'default'" @click="handleTopDateType(5)">{{$t("本学期")}}</el-button>
+              </el-button-group>
+            </el-col>
+            <el-col :span="12">
+
+            </el-col>
+          </el-row>
+        </div>
+        <div class="margin-top-10">
+          <el-table
+            :data="studentData"
+            header-cell-class-name="custom-table-cell-bg"
+            size="medium"
+            style="width: 100%">
+            <el-table-column
+              align="center"
+              :label="$t('排名')">
+
+              <template slot-scope="scope">
+                <span class="color-warning">{{scope.$index+1}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('姓名')">
+
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.studentName}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.studentName}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="type"
+              :label="$t('班级')">
+
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.className}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.className}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="type"
+              :label="$t('出勤')">
+              <template slot-scope="scope">
+                <span class="color-success">{{scope.row.actualRate}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="type"
+              :label="$t('缺勤')">
+
+              <template slot-scope="scope">
+                <span class="color-success">{{scope.row.unSignRate}}</span>
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
+      </div>
+      <div slot="footer">
+        <div class="text-right padding-lr-10">
+          <!--<el-pagination
+            background
+            :page-sizes="[10, 20, 50, 100]"
+            layout="total, sizes, prev, pager, next"
+            :total="totalStudent"
+            :current-page="pageStudent"
+            :page-size="numStudent">
+          </el-pagination>-->
+          <span>{{$t("共")}}{{totalStudent}}{{$t("人")}}</span>
+        </div>
+      </div>
+    </drawer-layout-right>
   </div>
 </template>
 
@@ -432,16 +528,22 @@
     components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,UploadSquare,DrawerLayoutRight,LayoutTb,MySearchOfDate,RadarChart,RadarDormChart,MyClassAtten},
     data(){
       return {
+        pageStudent: 1,
+        numStudent: 20,
+        totalStudent: 0,
         pageClass: 1,
         numClass: 20,
         totalClass: 0,
         tableData: [],
+        studentData: [],
         statusList: [],
         teachList: [],
         deviceData: [],
         deviceAllData: [],
         bedData: [],
         userData: {},
+        searchTopDateTime: '',
+        searchTopDateTimeType: '2',
         modalVisible: false,
         dialogLoading: false,
         visibleConfim: false,
@@ -752,6 +854,42 @@
           }
         });
       },
+      initTop(){
+        let params = {
+          page: 1,
+          num: 99999,
+          classId: this.searchClass,
+          timeType: 3,
+          orderAsc: false,
+          orderAttr: 'actualRate',
+        };
+        if (this.searchTopDateTimeType == 1){
+          params['queryDate'] = this.$moment().subtract(1, 'days').format("YYYY-MM-DD");
+        }else if (this.searchTopDateTimeType == 2){
+          params['queryDate'] = this.$moment(new Date()).format("YYYY-MM-DD");
+        }else if (this.searchTopDateTimeType == 3){
+          params['timeType'] = 2;
+        }else if (this.searchTopDateTimeType == 4){
+          params['queryDate'] = this.$moment(new Date()).format("YYYY-MM-01");
+          params['timeType'] = 4;
+        }else if (this.searchTopDateTimeType == 5){
+          params['timeType'] = 1;
+        }
+        this.$axios.get(common.student_analysis_bed_static_top_page, {params: params, loading: false}).then(res => {
+          if (res.data.code == 200){
+            this.studentData = res.data.data.list;
+            this.totalStudent = res.data.data.totalCount;
+            this.numStudent = res.data.data.num;
+            this.pageStudent = res.data.data.currentPage;
+          }else {
+            MessageWarning(res.data.desc);
+          }
+        });
+        this.drawerVisible = true;
+      },
+      topInfo(){
+        this.initTop();
+      },
       detailInfo(row, type){
         this.showType = type;
         if (type == 1){
@@ -923,6 +1061,10 @@
         this.pageClass = 1;
         this.numClass = 20;
         this.initClassRecord();
+      },
+      handleTopDateType(type){
+        this.searchTopDateTimeType = type;
+        this.initTop();
       }
     }
   }

@@ -212,6 +212,7 @@ export const common = {
   student_analysis_static_page: '/proxy/course/rollcallbigdata/overall/rollcall/student/record/page',//学生分析课堂考勤记录分页--日
   student_analysis_static_count_page: '/proxy/course/rollcallbigdata/overall/rollcall/student/detail/page',//学生分析课堂考勤记录分页--周/年/学期
   student_analysis_bed_static_page: '/proxy/course/rollcallbed/rollcallbed/student/detail/page',//学生分析归寝统计信息
+  student_analysis_bed_static_top_page: '/proxy/course/rollcallbigdata/overall/rollcall/student/ranking/page',//学生分析排名
 
   qtzt_analysis_static_page: '/proxy/course/quantization/query-qtzt-class-statistic-page',//量化统计信息
   qtzt_analysis_static_student_page: '/proxy/course/quantization/query-qtzt-user-statistic-page',//量化统计学生信息
