@@ -237,7 +237,7 @@
                           </el-table-column>
                         </el-table>
                       </div>
-                      <a slot="reference" href="javascript:;" class="color-warning font-size-12">{{$t("选择设备")}}</a>
+                      <a slot="reference" href="javascript:;" class="color-warning font-size-12">{{$t("拍照设备")}}</a>
                     </el-popover>
                   </div>
                 </el-col>

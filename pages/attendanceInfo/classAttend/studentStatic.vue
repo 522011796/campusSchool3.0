@@ -13,7 +13,7 @@
         <div class="layout-top-tab margin-top-5">
           <el-row>
             <el-col :span="18">
-              <my-year-term size="small" :clearable-week="true" @changeYear="hangdleChange($event,1)" @changeTerm="hangdleChange($event,2)" @changeWeek="hangdleChange($event,3)"></my-year-term>
+              <my-year-term size="small" :show-default-week="true" :clearable-week="true" @changeYear="hangdleChange($event,1)" @changeTerm="hangdleChange($event,2)" @changeWeek="hangdleChange($event,3)"></my-year-term>
               <el-button size="small" type="warning"  icon="el-icon-download" @click="expandInfo($event)">{{$t("导出")}}</el-button>
             </el-col>
             <el-col :span="6" class="text-right">

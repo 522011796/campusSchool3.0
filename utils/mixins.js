@@ -379,23 +379,29 @@ export default {
       });
     },
     async initCurrentTermList(year,resolve){
+      let num = 0;
+      let index = 0;
       let params = {
         page: 1,
         num: 999,
         schYearId: year
       };
       this.currentTermData = "";
+      this.currentTermList = [];
       await this.$axios.get(common.term_list, {params: params}).then(res => {
-        if (res.data.data){
+        if (res.data.data && res.data.data.list.length > 0){
           for (let i = 0; i < res.data.data.list.length; i++){
             res.data.data.list[i]['label'] = res.data.data.list[i].name;
             res.data.data.list[i]['value'] = res.data.data.list[i].id;
             if (res.data.data.list[i].current == true){
-              this.currentTermData = res.data.data.list[i].id;
-              break;
-            }else {
-              this.currentTermData = res.data.data.list[0].id;
+              num++;
+              index = i;
             }
+          }
+          if (num > 0){
+            this.currentTermData = res.data.data.list[index].id;
+          }else {
+            this.currentTermData = res.data.data.list[0].id;
           }
           this.currentTermList = res.data.data.list;
         }
