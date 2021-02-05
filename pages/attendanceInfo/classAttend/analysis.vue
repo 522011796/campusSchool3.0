@@ -155,14 +155,14 @@
                 <span>
                 <el-button-group>
                   <el-button size="small" :type="searchStatus == 'actualNum' ? 'primary' : 'default'" @click="changeStatus('actualNum')">{{$t("出勤")}}</el-button>
-                  <el-button size="small" :type="searchStatus == 'unSignNum' ? 'primary' : 'default'" @click="changeStatus('lateNum')">{{$t("迟到")}}</el-button>
-                  <el-button size="small" :type="searchStatus == 'lateNum' ? 'primary' : 'default'" @click="changeStatus('leaveEarlyNum')">{{$t("早退")}}</el-button>
-                  <el-button size="small" :type="searchStatus == 'lateLongNum' ? 'primary' : 'default'" @click="changeStatus('unSignNum')">{{$t("旷课")}}</el-button>
+                  <el-button size="small" :type="searchStatus == 'lateNum' ? 'primary' : 'default'" @click="changeStatus('lateNum')">{{$t("迟到")}}</el-button>
+                  <el-button size="small" :type="searchStatus == 'leaveEarlyNum' ? 'primary' : 'default'" @click="changeStatus('leaveEarlyNum')">{{$t("早退")}}</el-button>
+                  <el-button size="small" :type="searchStatus == 'unSignNum' ? 'primary' : 'default'" @click="changeStatus('unSignNum')">{{$t("旷课")}}</el-button>
                   <el-button size="small" :type="searchStatus == 'leaveNum' ? 'primary' : 'default'" @click="changeStatus('leaveNum')">{{$t("请假")}}</el-button>
                 </el-button-group>
               </span>
               </div>
-              <div style="height: 300px">
+              <div class="margin-top-5" style="height: 300px">
                 <el-table
                   ref="refTable"
                   :data="tableData"
@@ -208,6 +208,18 @@
 
                     <template slot-scope="scope">
                       <span class="color-warning">{{scope.row.className}}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    :label="$t('次数')">
+
+                    <template slot-scope="scope">
+                      <span class="color-warning" v-if="searchStatus == 'actualNum'">{{scope.row.actualNum}}</span>
+                      <span class="color-warning" v-if="searchStatus == 'lateNum'">{{scope.row.lateNum}}</span>
+                      <span class="color-warning" v-if="searchStatus == 'leaveEarlyNum'">{{scope.row.leaveEarlyNum}}</span>
+                      <span class="color-warning" v-if="searchStatus == 'unSignNum'">{{scope.row.unSignNum}}</span>
+                      <span class="color-warning" v-if="searchStatus == 'leaveNum'">{{scope.row.leaveNum}}</span>
                     </template>
                   </el-table-column>
                 </el-table>
@@ -486,7 +498,6 @@
         this.paramsData = params;
         this.$axios.get(common.classattend_student_sort, {params: params}).then(res => {
           if (res.data.data){
-            console.log(res);
             this.tableTopData = res.data.data;
           }
         });

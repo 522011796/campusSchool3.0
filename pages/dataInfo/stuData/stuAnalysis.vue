@@ -461,7 +461,7 @@
               prop="type"
               :label="$t('出勤')">
               <template slot-scope="scope">
-                <span class="color-success">{{scope.row.actualRate}}</span>
+                <span class="color-success">{{scope.row.actualRate}}%</span>
               </template>
             </el-table-column>
             <el-table-column
@@ -470,7 +470,7 @@
               :label="$t('缺勤')">
 
               <template slot-scope="scope">
-                <span class="color-success">{{scope.row.unSignRate}}</span>
+                <span class="color-success">{{scope.row.unSignRate}}%</span>
               </template>
             </el-table-column>
           </el-table>

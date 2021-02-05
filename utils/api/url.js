@@ -487,5 +487,6 @@ export const common = {
   doomroom_import: '/proxy/building/dormitory/bed/student/import',//宿舍导入
 
   classattend_student_sort: '/proxy/course/rollcallbigdata/overall/rollcall/all/sort',//课堂考勤--学生排名
+  dormattend_student_sort: '/proxy/course/rollcallbed/rollcallbed/analyse/top',//课堂考勤--学生排名、状态率排名
 
 };

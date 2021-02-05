@@ -53,6 +53,24 @@
   "LazyMyTree": {
     "description": "Auto imported from components/MyTree.vue"
   },
+  "LayoutLr": {
+    "description": "Auto imported from components/Layout/LayoutLr.vue"
+  },
+  "LazyLayoutLr": {
+    "description": "Auto imported from components/Layout/LayoutLr.vue"
+  },
+  "LayoutLrBefore": {
+    "description": "Auto imported from components/Layout/LayoutLrBefore.vue"
+  },
+  "LazyLayoutLrBefore": {
+    "description": "Auto imported from components/Layout/LayoutLrBefore.vue"
+  },
+  "LayoutTb": {
+    "description": "Auto imported from components/Layout/LayoutTb.vue"
+  },
+  "LazyLayoutTb": {
+    "description": "Auto imported from components/Layout/LayoutTb.vue"
+  },
   "BarChart": {
     "description": "Auto imported from components/charts/BarChart.vue"
   },
@@ -143,24 +161,6 @@
   "LazyMyYearTerm": {
     "description": "Auto imported from components/search/MyYearTerm.vue"
   },
-  "LayoutLr": {
-    "description": "Auto imported from components/Layout/LayoutLr.vue"
-  },
-  "LazyLayoutLr": {
-    "description": "Auto imported from components/Layout/LayoutLr.vue"
-  },
-  "LayoutLrBefore": {
-    "description": "Auto imported from components/Layout/LayoutLrBefore.vue"
-  },
-  "LazyLayoutLrBefore": {
-    "description": "Auto imported from components/Layout/LayoutLrBefore.vue"
-  },
-  "LayoutTb": {
-    "description": "Auto imported from components/Layout/LayoutTb.vue"
-  },
-  "LazyLayoutTb": {
-    "description": "Auto imported from components/Layout/LayoutTb.vue"
-  },
   "MyBlockListChildTree": {
     "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
   },
@@ -208,18 +208,6 @@
   },
   "LazyMyUserType": {
     "description": "Auto imported from components/utils/MyUserType.vue"
-  },
-  "MyHeadImg": {
-    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
-  },
-  "LazyMyHeadImg": {
-    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
-  },
-  "MyViewImg": {
-    "description": "Auto imported from components/utils/common/MyViewImg.vue"
-  },
-  "LazyMyViewImg": {
-    "description": "Auto imported from components/utils/common/MyViewImg.vue"
   },
   "AuditButton": {
     "description": "Auto imported from components/utils/auditDetail/AuditButton.vue"
@@ -298,6 +286,18 @@
   },
   "LazyTimeoutButton": {
     "description": "Auto imported from components/utils/button/TimeoutButton.vue"
+  },
+  "MyHeadImg": {
+    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
+  },
+  "LazyMyHeadImg": {
+    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
+  },
+  "MyViewImg": {
+    "description": "Auto imported from components/utils/common/MyViewImg.vue"
+  },
+  "LazyMyViewImg": {
+    "description": "Auto imported from components/utils/common/MyViewImg.vue"
   },
   "DialogNormal": {
     "description": "Auto imported from components/utils/dialog/DialogNormal.vue"

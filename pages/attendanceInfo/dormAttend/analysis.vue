@@ -187,6 +187,150 @@
           <div class="margin-top-20">
             <el-card :body-style="{padding: '10px'}">
               <div>
+                <span>{{$t("学生排名TOP10")}}</span>
+                <span>
+                <el-button-group>
+                  <el-button size="small" :type="searchStatus == 'actualNum' ? 'primary' : 'default'" @click="changeStatus('actualNum')">{{$t("已归")}}</el-button>
+                  <el-button size="small" :type="searchStatus == 'unSignNum' ? 'primary' : 'default'" @click="changeStatus('unSignNum')">{{$t("未归")}}</el-button>
+                  <el-button size="small" :type="searchStatus == 'lateNum' ? 'primary' : 'default'" @click="changeStatus('lateNum')">{{$t("晚归")}}</el-button>
+                  <el-button size="small" :type="searchStatus == 'lateLongNum' ? 'primary' : 'default'" @click="changeStatus('lateLongNum')">{{$t("超长未归")}}</el-button>
+                  <el-button size="small" :type="searchStatus == 'leaveNum' ? 'primary' : 'default'" @click="changeStatus('leaveNum')">{{$t("请假")}}</el-button>
+                </el-button-group>
+              </span>
+              </div>
+              <div class="margin-top-5" style="height: 300px">
+                <el-table
+                  ref="refTable"
+                  :data="tableTopData"
+                  height="300"
+                  header-cell-class-name="custom-table-cell-bg"
+                  size="medium"
+                  style="width: 100%">
+                  <el-table-column
+                    align="center"
+                    :label="$t('排名')">
+
+                    <template slot-scope="scope">
+                      <span>{{scope.$index + 1}}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    :label="$t('姓名')">
+
+                    <template slot-scope="scope">
+                      <span>{{scope.row.studentName}}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    :label="$t('院系')">
+
+                    <template slot-scope="scope">
+                      <span>{{scope.row.collegeName}}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    :label="$t('专业')">
+
+                    <template slot-scope="scope">
+                      <span>{{scope.row.majorName}}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    :label="$t('班级')">
+
+                    <template slot-scope="scope">
+                      <span>{{scope.row.className}}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    :label="$t('次数')">
+
+                    <template slot-scope="scope">
+                      <span v-if="searchStatus == 'actualNum'">{{scope.row.actualNum}}</span>
+                      <span v-if="searchStatus == 'lateNum'">{{scope.row.lateNum}}</span>
+                      <span v-if="searchStatus == 'lateLongNum'">{{scope.row.lateLongNum}}</span>
+                      <span v-if="searchStatus == 'unSignNum'">{{scope.row.unSignNum}}</span>
+                      <span v-if="searchStatus == 'leaveNum'">{{scope.row.leaveNum}}</span>
+                    </template>
+                  </el-table-column>
+                </el-table>
+              </div>
+            </el-card>
+          </div>
+
+          <div class="margin-top-20">
+            <el-card :body-style="{padding: '10px'}">
+              <div>
+                <span>{{$t("状态率排名TOP10")}}</span>
+                <span>
+                  <el-button-group>
+                    <el-button size="small" :type="searchRateStatus == 'shouldNum' ? 'primary' : 'default'" @click="changeDormStatus('shouldNum')">{{$t("全部")}}</el-button>
+                    <el-button size="small" :type="searchRateStatus == 'actualNum' ? 'primary' : 'default'" @click="changeDormStatus('actualNum')">{{$t("归寝率")}}</el-button>
+                    <el-button size="small" :type="searchRateStatus == 'unSignNum' ? 'primary' : 'default'" @click="changeDormStatus('unSignNum')">{{$t("未归率")}}</el-button>
+                    <el-button size="small" :type="searchRateStatus == 'lateNum' ? 'primary' : 'default'" @click="changeDormStatus('lateNum')">{{$t("晚归率")}}</el-button>
+                    <el-button size="small" :type="searchRateStatus == 'lateLongNum' ? 'primary' : 'default'" @click="changeDormStatus('lateLongNum')">{{$t("超长未归率")}}</el-button>
+                    <el-button size="small" :type="searchRateStatus == 'leaveNum' ? 'primary' : 'default'" @click="changeDormStatus('leaveNum')">{{$t("请假率")}}</el-button>
+                  </el-button-group>
+              </span>
+              </div>
+              <div class="margin-top-5" style="height: 300px">
+                <el-table
+                  ref="refTable"
+                  :data="tableDormTopData"
+                  height="300"
+                  header-cell-class-name="custom-table-cell-bg"
+                  size="medium"
+                  style="width: 100%">
+                  <el-table-column
+                    align="center"
+                    :label="$t('排名')">
+
+                    <template slot-scope="scope">
+                      <span>{{scope.$index + 1}}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    :label="$t('宿舍号')">
+
+                    <template slot-scope="scope">
+                      <span>{{scope.row.roomNo}}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    :label="$t('宿舍楼')">
+
+                    <template slot-scope="scope">
+                      <span>{{scope.row.buildName}}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    align="center"
+                    :label="$t('状态率')">
+
+                    <template slot-scope="scope">
+                      <span v-if="searchRateStatus == 'shouldNum'">{{scope.row.shouldNum}}</span>
+                      <span v-if="searchRateStatus == 'actualNum'">{{scope.row.actualNum}}</span>
+                      <span v-if="searchRateStatus == 'lateNum'">{{scope.row.lateNum}}</span>
+                      <span v-if="searchRateStatus == 'lateLongNum'">{{scope.row.lateLongNum}}</span>
+                      <span v-if="searchRateStatus == 'unSignNum'">{{scope.row.unSignNum}}</span>
+                      <span v-if="searchRateStatus == 'leaveNum'">{{scope.row.leaveNum}}</span>
+                    </template>
+                  </el-table-column>
+                </el-table>
+              </div>
+            </el-card>
+          </div>
+
+          <div class="margin-top-20">
+            <el-card :body-style="{padding: '10px'}">
+              <div>
                 <span>{{$t("统计信息")}}</span>
               </div>
               <div class="margin-top-10">
@@ -348,6 +492,8 @@
         topData: {},
         searchTimeData: {},
         tableData: [],
+        tableTopData: [],
+        tableDormTopData: [],
         tableDetailData: [],
         searchDate: [],
         lineKeyData: [],
@@ -356,7 +502,8 @@
         popKeyData: [],
         popData: [],
         searchStatus: 'actualNum',
-        searchRateStatus: 'actualNum',
+        searchDormStatus: 'actualNum',
+        searchRateStatus: 'shouldNum',
         modalVisible: false,
         dialogLoading: false,
         visibleConfim: false,
@@ -384,7 +531,9 @@
         uploadAction: common.student_upload,
         loopTimer: null,
         resultList: [],
-        searchTopTime: this.$moment(new Date).format("YYYY-MM-DD")
+        searchTopTime: this.$moment(new Date).format("YYYY-MM-DD"),
+        paramsData: {},
+        paramsDormData: {}
       }
     },
     created() {
@@ -426,6 +575,35 @@
         this.initLineStatic(params);
         this.initLinePopStatic(params);
         this.initData(params);
+        this.initStudentTop(params);
+        this.initDormRoomTop(params);
+      },
+      initStudentTop(params){
+        params['num'] = 10;
+        params['userUnit'] = 5;
+        params['type'] = this.searchStatus;
+        params['sortField'] = this.searchStatus;
+        params['searchStaticType'] = '';
+        this.paramsData = params;
+        this.$axios.get(common.dormattend_student_sort, {params: params}).then(res => {
+          if (res.data.data){
+            this.tableTopData = res.data.data.list;
+          }
+        });
+      },
+      initDormRoomTop(params){
+        params['num'] = 10;
+        params['userUnit'] = 8;
+        params['type'] = 1;
+        params['orderAttr'] = this.searchRateStatus;
+        params['orderAsc'] = false;
+        params['searchStaticType'] = 1;
+        this.paramsDormData = params;
+        this.$axios.get(common.dormattend_student_sort, {params: params}).then(res => {
+          if (res.data.data){
+            this.tableDormTopData = res.data.data.list;
+          }
+        });
       },
       initStatic(params){
         params['page'] = this.page;
@@ -592,7 +770,11 @@
       },
       changeStatus(type){
         this.searchStatus = type;
-        this.init();
+        this.initStudentTop(this.paramsData);
+      },
+      changeDormStatus(type){
+        this.searchRateStatus = type;
+        this.initDormRoomTop(this.paramsDormData);
       },
       changeTree(mainType, subType, type){
         this.searchCollege = "";
