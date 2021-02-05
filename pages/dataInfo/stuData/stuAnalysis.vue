@@ -400,17 +400,18 @@
         <span tabindex="1"></span>
         <div>
           <el-row>
-            <el-col :span="12">
-              <el-button-group>
+            <el-col :span="24">
+              <span style="position: relative; top: 5px;" v-if="searchGrade == '' && searchTopLabel != ''">
+                <label class="tag-title"></label>
+                <label class="tag-text">{{searchTopLabel}}</label>
+              </span>
+              <el-button-group class="margin-left-5">
                 <el-button size="small" :type="searchTopDateTimeType == 1 ? 'primary' : 'default'" @click="handleTopDateType(1)">{{$t("昨日")}}</el-button>
                 <el-button size="small" :type="searchTopDateTimeType == 2 ? 'primary' : 'default'" @click="handleTopDateType(2)">{{$t("今日")}}</el-button>
                 <el-button size="small" :type="searchTopDateTimeType == 3 ? 'primary' : 'default'" @click="handleTopDateType(3)">{{$t("本周")}}</el-button>
                 <el-button size="small" :type="searchTopDateTimeType == 4 ? 'primary' : 'default'" @click="handleTopDateType(4)">{{$t("本月")}}</el-button>
                 <el-button size="small" :type="searchTopDateTimeType == 5 ? 'primary' : 'default'" @click="handleTopDateType(5)">{{$t("本学期")}}</el-button>
               </el-button-group>
-            </el-col>
-            <el-col :span="12">
-
             </el-col>
           </el-row>
         </div>
@@ -544,6 +545,7 @@
         userData: {},
         searchTopDateTime: '',
         searchTopDateTimeType: '2',
+        searchTopLabel: '',
         modalVisible: false,
         dialogLoading: false,
         visibleConfim: false,
@@ -858,6 +860,9 @@
         let params = {
           page: 1,
           num: 99999,
+          collegeId: this.searchCollege,
+          majorId: this.searchMajor,
+          grade: this.searchGrade,
           classId: this.searchClass,
           timeType: 3,
           orderAsc: false,
@@ -922,6 +927,7 @@
         }else if (data.unit == 4){
           this.searchClass = data.id;
         }
+        this.searchTopLabel = data.label;
         this.init();
       },
       nodeDormClick(data){
