@@ -45,11 +45,17 @@
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                 <div class="text-center">
-                  <span>{{$t('通知人数')}}</span>
-                  <span>{{scope.row.total_received_num}}</span>
+                  <div>
+                    <span>{{$t('已读人数')}}</span>
+                    <span>{{scope.row.readed_num}}</span>
+                  </div>
+                  <div>
+                    <span>{{$t('通知人数')}}</span>
+                    <span>{{scope.row.total_received_num}}</span>
+                  </div>
                 </div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <span class="color-grand">{{scope.row.total_received_num}}</span>
+                  <span class="color-grand">{{scope.row.readed_num}}/{{scope.row.total_received_num}}</span>
                 </div>
               </el-popover>
             </template>

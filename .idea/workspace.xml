@@ -2,9 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/static/img/head-boy.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/analysis.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/analysis.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/dataInfo/stuData/stuAnalysis.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dataInfo/stuData/stuAnalysis.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/select/MyCascader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/select/MyCascader.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/treeAndList/MyRoleList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/treeAndList/MyRoleList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/upload/QuillBlock.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/upload/QuillBlock.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layouts/default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/default.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nuxt.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/nuxt.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/info.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/info.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/notice.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/notice.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +42,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/utils/status" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/img" />
     <property name="list.type.of.created.stylesheet" value="textmate" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
@@ -43,19 +54,19 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static/img" />
+      <recent name="$PROJECT_DIR$/components/utils/status" />
+      <recent name="$PROJECT_DIR$/components/utils/common" />
+      <recent name="$PROJECT_DIR$/components/utils/button" />
+      <recent name="$PROJECT_DIR$/components/search" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/pages/logisticsInfo/doorAccess" />
       <recent name="$PROJECT_DIR$/components/utils/status" />
       <recent name="$PROJECT_DIR$/pages/teachInfo/exam" />
       <recent name="$PROJECT_DIR$/components/utils/dialog" />
       <recent name="$PROJECT_DIR$/components/tree" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/components/utils/status" />
-      <recent name="$PROJECT_DIR$/components/utils/common" />
-      <recent name="$PROJECT_DIR$/components/utils/button" />
-      <recent name="$PROJECT_DIR$/components/search" />
-      <recent name="$PROJECT_DIR$/pages/auditInfo/stuApply" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -106,14 +117,8 @@
       <workItem from="1610156986760" duration="338962000" />
       <workItem from="1611544756423" duration="213730000" />
       <workItem from="1612495432937" duration="10270000" />
-      <workItem from="1612513126795" duration="4698000" />
-    </task>
-    <task id="LOCAL-00220" summary="1、修改框架和组件样式、细节bug等&#10;2、增加分页跳转完成">
-      <created>1611728592870</created>
-      <option name="number" value="00220" />
-      <option name="presentableId" value="LOCAL-00220" />
-      <option name="project" value="LOCAL" />
-      <updated>1611728592870</updated>
+      <workItem from="1612513126795" duration="5215000" />
+      <workItem from="1612663815769" duration="13355000" />
     </task>
     <task id="LOCAL-00221" summary="1、修改框架和组件样式、细节bug等&#10;2、任课安排添加老是错误修改完成">
       <created>1611729133180</created>
@@ -451,7 +456,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612516158666</updated>
     </task>
-    <option name="localTasksCounter" value="269" />
+    <task id="LOCAL-00269" summary="1、修改框架和组件样式、细节bug等&#10;2、按钮组带动画版本完成">
+      <created>1612662481924</created>
+      <option name="number" value="00269" />
+      <option name="presentableId" value="LOCAL-00269" />
+      <option name="project" value="LOCAL" />
+      <updated>1612662481924</updated>
+    </task>
+    <option name="localTasksCounter" value="270" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -490,16 +502,17 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1612176661241" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1612516156650">
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1612662480606">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1612516156650" />
-    <state x="100" y="124" width="1240" height="600" key="DiffContextDialog" timestamp="1612336251240">
-      <screen x="0" y="25" width="1440" height="798" />
+    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1612662480606" />
+    <state x="100" y="124" width="1240" height="598" key="DiffContextDialog" timestamp="1612687198309">
+      <screen x="0" y="25" width="1440" height="795" />
     </state>
     <state x="100" y="123" width="1240" height="605" key="DiffContextDialog/0.23.1440.805@0.23.1440.805" timestamp="1605058122839" />
-    <state x="100" y="124" width="1240" height="600" key="DiffContextDialog/0.25.1440.798@0.25.1440.798" timestamp="1612336251240" />
+    <state x="100" y="124" width="1240" height="598" key="DiffContextDialog/0.25.1440.795@0.25.1440.795" timestamp="1612687198309" />
+    <state x="100" y="124" width="1240" height="600" key="DiffContextDialog/0.25.1440.798@0.25.1440.798" timestamp="1612685014754" />
     <state width="1398" height="201" key="GridCell.Tab.0.bottom" timestamp="1609379519477">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -520,11 +533,11 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="221" y="66" key="SettingsEditor/0.25.1440.798@0.25.1440.798" timestamp="1611905365471" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1612516161007">
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2" timestamp="1612662483421">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1612516161007" />
+    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1612662483421" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1611203372469">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
@@ -538,11 +551,11 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="506" y="345" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.1440.798@0.25.1440.798" timestamp="1611389592729" />
-    <state x="378" y="183" width="837" height="550" key="find.popup" timestamp="1612661228370">
+    <state x="378" y="183" width="837" height="550" key="find.popup" timestamp="1612678392148">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="378" y="182" width="837" height="486" key="find.popup/0.23.1440.805@0.23.1440.805" timestamp="1605680757485" />
-    <state x="378" y="183" width="837" height="550" key="find.popup/0.25.1440.798@0.25.1440.798" timestamp="1612661228370" />
+    <state x="378" y="183" width="837" height="550" key="find.popup/0.25.1440.798@0.25.1440.798" timestamp="1612678392148" />
     <state x="385" y="153" width="670" height="671" key="search.everywhere.popup" timestamp="1611727354332">
       <screen x="0" y="25" width="1440" height="798" />
     </state>

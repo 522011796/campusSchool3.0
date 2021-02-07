@@ -281,7 +281,7 @@
               type: this.form.type,
               content: this.form.content,
               status: 0,
-              thumnbnail: this.form.thumnbnail,
+              thumbnail: this.form.thumnbnail,
             };
             url = common.info_add;
             params = this.$qs.stringify(params);

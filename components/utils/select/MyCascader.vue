@@ -11,6 +11,7 @@
       :clearable="clearable"
       :size="size"
       :props="props"
+      :placeholder="placeholder"
       @change="handleChange"></el-cascader>
   </div>
 </template>
@@ -33,6 +34,10 @@
           return {};
         },
         type: Object
+      },
+      placeholder: {
+        default: '请选择',
+        type: String
       },
       label: {
         default: '',

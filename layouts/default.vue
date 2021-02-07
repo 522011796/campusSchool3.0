@@ -2,13 +2,13 @@
   <div class="moon-container">
     <div class="moon-top-menu">
       <div class="pull-left moon-top-logo moon-top-logo-shadow animated fadeInLeftBig" @click="jumpIndex">
-        <span v-if="campusName == ''" class="color-white moon-top-logo-title">
+        <span class="color-white moon-top-logo-title">
           <img src="~static/img/login-logo.png" style="height: 50px;width: 220px;position: relative; top: -10px;left: -10px">
         </span>
-        <span v-if="campusName != ''" class="color-white moon-top-logo-title animated fadeInLeft">
+        <!--<span v-if="campusName != ''" class="color-white moon-top-logo-title animated fadeInLeft">
           <el-avatar shape="square" :size="30" :src="campusLogo" style="margin-left: 2px"></el-avatar>
           <label style="position: relative; top: -10px;">{{campusName}}</label>
-        </span>
+        </span>-->
       </div>
       <div class="pull-right moon-top-right">
         <el-popover
@@ -64,7 +64,7 @@
           <span slot="reference">
             <label class="moon-top-right-item top-18">
               <el-avatar size="small" v-if="headImage != undefined" :src="headImage"></el-avatar>
-              <el-avatar size="small" v-else icon="el-icon-user-solid"></el-avatar>
+              <el-avatar size="small" v-else src="/img/head-boy.png"></el-avatar>
             </label>
             <label class="moon-top-right-item top-6">
               <label class="moon-top-right-item-eliplse" v-if="loginUserType == 2">{{loginUserName}}</label>

@@ -107,8 +107,12 @@
         if (res.code == '200') {
           // 获取光标所在位置
           let length = quill.getSelection().index;
+          let imgUrl = res.data.url;
           // 插入图片  res.info为服务器返回的图片地址
-          quill.insertEmbed(length, 'image', res.data.url)
+          if (res.data.url && (res.data.url.indexOf("http://") == -1 || res.data.url.indexOf("https://") == -1)){
+            imgUrl = "http:" + res.data.url;
+          }
+          quill.insertEmbed(length, 'image', imgUrl);
           // 调整光标到最后
           quill.setSelection(length + 1);
         } else {

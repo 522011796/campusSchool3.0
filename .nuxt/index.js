@@ -74,7 +74,7 @@ async function createApp(ssrContext, config = {}) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"title":"棉花糖智慧校园管理平台","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":""}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"}],"script":[{"src":"\u002F\u002Fwebapi.amap.com\u002Fmaps?v=1.3&key=5d85fdda2266f84f512709656648c856&plugin=AMap.Autocomplete,AMap.PlaceSearch,AMap.MouseTool,AMap.PolyEditor,AMap.CitySearch"}],"style":[]},
+    head: {"title":"棉花糖智慧校园管理平台","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":""},{"name":"referrer","content":"no-referrer"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"}],"script":[{"src":"\u002F\u002Fwebapi.amap.com\u002Fmaps?v=1.3&key=5d85fdda2266f84f512709656648c856&plugin=AMap.Autocomplete,AMap.PlaceSearch,AMap.MouseTool,AMap.PolyEditor,AMap.CitySearch"}],"style":[]},
 
     store,
     router,

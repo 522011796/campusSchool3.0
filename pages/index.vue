@@ -11,7 +11,7 @@
                   <span>{{$t("人")}}</span>
                 </el-col>
                 <el-col :span="12" class="text-right">
-                  <my-cascader ref="SelectorBuild" width-style="180" :clearable="true" size="small" :sel-value="collegeData" type="1" sub-type="4" @change="handleCascaderChange($event,1)"></my-cascader>
+                  <my-cascader ref="SelectorBuild" width-style="180" :placeholder="$t('全部院系')" :clearable="true" size="small" :sel-value="collegeData" type="1" sub-type="4" @change="handleCascaderChange($event,1)"></my-cascader>
                 </el-col>
               </el-row>
             </div>
@@ -43,7 +43,7 @@
                   <span>{{$t("人")}}</span>
                 </el-col>
                 <el-col :span="12" class="text-right">
-                  <my-cascader ref="SelectorBuild" width-style="180" :clearable="true" size="small" :sel-value="deptData" type="4" sub-type="4" @change="handleCascaderChange($event, 2)"></my-cascader>
+                  <my-cascader ref="SelectorBuild" :placeholder="$t('全部部门')" width-style="180" :clearable="true" size="small" :sel-value="deptData" type="4" sub-type="id" @change="handleCascaderChange($event, 2)"></my-cascader>
                 </el-col>
               </el-row>
             </div>
@@ -74,7 +74,7 @@
                   <span>{{$t("人")}}</span>
                 </el-col>
                 <el-col :span="12" class="text-right">
-                  <my-cascader ref="SelectorLevelType" width-style="180" :clearable="true" size="small" :sel-value="collegeLevelTypeData" type="1" sub-type="4" @change="handleCascaderChange($event, 5)"></my-cascader>
+                  <my-cascader ref="SelectorLevelType" :placeholder="$t('全部院系')" width-style="180" :clearable="true" size="small" :sel-value="collegeLevelTypeData" type="1" sub-type="4" @change="handleCascaderChange($event, 5)"></my-cascader>
                 </el-col>
               </el-row>
             </div>
@@ -149,7 +149,7 @@
                 <span>{{$t("院系统计")}}</span>
               </span>
               <span class="pull-right">
-                <my-cascader ref="SelectorBuild" width-style="180" :clearable="true" size="small" :sel-value="collegeTabData" type="1" sub-type="4" @change="handleCascaderChange($event,3)"></my-cascader>
+                <my-cascader ref="SelectorBuild" :placeholder="$t('全部院系')" width-style="180" :clearable="true" size="small" :sel-value="collegeTabData" type="1" sub-type="4" @change="handleCascaderChange($event,3)"></my-cascader>
               </span>
               <div class="moon-clearfix"></div>
             </div>
@@ -163,7 +163,7 @@
                       <div class="item-attend-block">
                         <div>{{$t("应出勤人次")}}</div>
                         <div>
-                          <span class="font-size-25 color-grand">{{classAttendData.shouldNum}}</span>
+                          <span class="font-size-25 color-grand">{{classAttendData.shouldNum ? classAttendData.shouldNum : 0}}</span>
                         </div>
                       </div>
                     </el-col>
@@ -171,7 +171,7 @@
                       <div class="item-attend-block">
                         <div>{{$t("已出勤人次")}}</div>
                         <div>
-                          <span class="font-size-25 color-grand">{{classAttendData.actualNum}}</span>
+                          <span class="font-size-25 color-grand">{{classAttendData.actualNum ? classAttendData.actualNum : 0}}</span>
                         </div>
                       </div>
                     </el-col>
@@ -179,7 +179,7 @@
                       <div class="item-attend-block">
                         <div>{{$t("旷课人次")}}</div>
                         <div>
-                          <span class="font-size-25 color-grand">{{classAttendData.unSignNum}}</span>
+                          <span class="font-size-25 color-grand">{{classAttendData.unSignNum ? classAttendData.unSignNum : 0}}</span>
                         </div>
                       </div>
                     </el-col>
@@ -189,7 +189,7 @@
                       <div class="item-attend-block">
                         <div>{{$t("迟到人次")}}</div>
                         <div>
-                          <span class="font-size-25 color-grand">{{classAttendData.lateNum}}</span>
+                          <span class="font-size-25 color-grand">{{classAttendData.lateNum ? classAttendData.lateNum : 0}}</span>
                         </div>
                       </div>
                     </el-col>
@@ -197,7 +197,7 @@
                       <div class="item-attend-block">
                         <div>{{$t("早退人次")}}</div>
                         <div>
-                          <span class="font-size-25 color-grand">{{classAttendData.leaveEarlyNum}}</span>
+                          <span class="font-size-25 color-grand">{{classAttendData.leaveEarlyNum ? classAttendData.leaveEarlyNum : 0}}</span>
                         </div>
                       </div>
                     </el-col>
@@ -207,9 +207,9 @@
                   <el-row :gutter="16">
                     <el-col :span="8">
                       <div class="item-attend-block">
-                        <div>{{$t("应归寝人次")}}</div>
+                        <div>{{$t("应归寝人数")}}</div>
                         <div>
-                          <span class="font-size-25 color-grand">{{dormAttendData.shouldNum}}</span>
+                          <span class="font-size-25 color-grand">{{dormAttendData.shouldNum ? dormAttendData.shouldNum : 0}}</span>
                         </div>
                       </div>
                     </el-col>
@@ -217,7 +217,7 @@
                       <div class="item-attend-block">
                         <div>{{$t("已归寝人数")}}</div>
                         <div>
-                          <span class="font-size-25 color-grand">{{dormAttendData.actualNum}}</span>
+                          <span class="font-size-25 color-grand">{{dormAttendData.actualNum ? dormAttendData.actualNum : 0}}</span>
                         </div>
                       </div>
                     </el-col>
@@ -225,7 +225,7 @@
                       <div class="item-attend-block">
                         <div>{{$t("未归人数")}}</div>
                         <div>
-                          <span class="font-size-25 color-grand">{{dormAttendData.unSignNum}}</span>
+                          <span class="font-size-25 color-grand">{{dormAttendData.unSignNum ? dormAttendData.unSignNum : 0}}</span>
                         </div>
                       </div>
                     </el-col>
@@ -235,7 +235,7 @@
                       <div class="item-attend-block">
                         <div>{{$t("晚归人数")}}</div>
                         <div>
-                          <span class="font-size-25 color-grand">{{dormAttendData.lateNum}}</span>
+                          <span class="font-size-25 color-grand">{{dormAttendData.lateNum ? dormAttendData.lateNum : 0}}</span>
                         </div>
                       </div>
                     </el-col>
@@ -243,7 +243,7 @@
                       <div class="item-attend-block">
                         <div>{{$t("超长未归人数")}}</div>
                         <div>
-                          <span class="font-size-25 color-grand">{{dormAttendData.lateLongNum}}</span>
+                          <span class="font-size-25 color-grand">{{dormAttendData.lateLongNum ? dormAttendData.lateLongNum : 0}}</span>
                         </div>
                       </div>
                     </el-col>
@@ -318,7 +318,7 @@
             </div>
           </div>
         </el-col>
-        <el-col :span="8" v-if="userType == 2">
+        <el-col :span="8" v-show="userType == 2">
           <el-card :body-style="{padding: '0px'}" style="height: 140px" class="animated fadeInUp card-box-shadow">
             <div slot="header" class="moon-clearfix padding-tb-10 padding-lr-10">
               <span class="color-muted" style="font-weight: bold;position: relative; top: 0px;">
@@ -330,8 +330,22 @@
               </span>
               <div class="moon-clearfix"></div>
             </div>
-            <div class="color-muted padding-tb-10 padding-lr-10" style="position: relative">
-              <el-row :gutter="16">
+            <div id="deviceListOverflow" class="color-muted padding-tb-10 padding-lr-10" style="position: relative">
+              <div class="left-tag-icon" v-if="deviceListBlockType == 2">
+                <div class="right-tag-icon-container">
+                  <div class="right-tag-icon-text">
+                    <i class="fa fa-caret-left color-sub-grand" style="font-size: 18px" @click="moveDevice(1)"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="right-tag-icon" v-if="deviceListBlockType == 1">
+                <div class="right-tag-icon-container">
+                  <div class="right-tag-icon-text">
+                    <i class="fa fa-caret-right color-sub-grand" style="font-size: 18px" @click="moveDevice(2)"></i>
+                  </div>
+                </div>
+              </div>
+              <el-row :gutter="16" v-if="deviceListBlockType == 1" class="animated fadeInRight">
                 <el-col :span="8">
                   <div class="item-attend-block">
                     <div>{{$t("一体机本地版")}}</div>
@@ -353,6 +367,32 @@
                     <div>{{$t("门禁控制器")}}</div>
                     <div>
                       <span class="font-size-25 color-grand">{{doorTotal}}</span>
+                    </div>
+                  </div>
+                </el-col>
+              </el-row>
+              <el-row :gutter="16" v-if="deviceListBlockType == 2" class="animated fadeInLeft">
+                <el-col :span="8">
+                  <div class="item-attend-block">
+                    <div>{{$t("控制器读头")}}</div>
+                    <div>
+                      <span class="font-size-25 color-grand">{{doorControlTotal}}</span>
+                    </div>
+                  </div>
+                </el-col>
+                <el-col :span="8">
+                  <div class="item-attend-block">
+                    <div>{{$t("终端机")}}</div>
+                    <div>
+                      <span class="font-size-25 color-grand">{{terminalTotal}}</span>
+                    </div>
+                  </div>
+                </el-col>
+                <el-col :span="8">
+                  <div class="item-attend-block">
+                    <div>{{$t("摄像机")}}</div>
+                    <div>
+                      <span class="font-size-25 color-grand">{{videoTotal}}</span>
                     </div>
                   </div>
                 </el-col>
@@ -409,7 +449,7 @@
                 <span>{{$t("素质学分统计")}}</span>
               </span>
               <span class="pull-right color-grand">
-                <my-cascader ref="SelectorBuild" width-style="180" :clearable="true" size="small" :sel-value="collegeCreditData" type="1" sub-type="4" @change="handleCascaderChange($event,4)"></my-cascader>
+                <my-cascader ref="SelectorBuild" :placeholder="$t('全部院系')" width-style="180" :clearable="true" size="small" :sel-value="collegeCreditData" type="1" sub-type="4" @change="handleCascaderChange($event,4)"></my-cascader>
               </span>
               <div class="moon-clearfix"></div>
             </div>
@@ -550,7 +590,10 @@
         padWoTotal: 0,
         doorTotal: 0,
         deviceTotal: 0,
+        videoTotal: 0,
+        terminalTotal: 0,
         levelTypeTotal: 0,
+        doorControlTotal: 0,
         year: '',
         weekNum: '',
         week: '',
@@ -567,10 +610,21 @@
         circularData: [],
         drawerVisible: false,
         noticeContentDetail: '',
+        deviceCardWidth: {
+          width: '0px'
+        },
+        deviceListBlockType: 1,
         format(percentage) {
           return percentage === 100 ? '' : `${percentage}%`;
         }
       }
+    },
+    mounted() {
+      this.$nextTick(() => {
+        let deviceCardWidth = this.$refs;
+        console.log(deviceCardWidth);
+        this.deviceCardWidth = '0px';
+      });
     },
     created() {
       this.layoutInit();
@@ -604,6 +658,7 @@
         let params = {
           collegeIdList: this.collegeData[0],
           majorIdList: this.collegeData[1],
+          gradeList: this.collegeData[2],
           classIdList: this.collegeData[3]
         };
         this.sexTotal = 0;
@@ -625,6 +680,7 @@
       },
       initTeacherSex(){
         let total = 0;
+        console.log(this.deptData);
         let params = {
           //collegeIdList: this.campusId,
           departmentIdList: this.deptData[this.deptData.length - 1]
@@ -656,17 +712,26 @@
         this.padWoTotal = 0;
         this.doorTotal = 0;
         this.deviceTotal = 0;
+        this.videoTotal = 0;
+        this.terminalTotal = 0;
+        this.doorControlTotal = 0;
         this.$axios.get(common.index_device_type).then(res => {
           if (res.data.data){
             this.deviceTypeDate = res.data.data;
             for (let i = 0; i < res.data.data.length; i++){
               total += res.data.data[i].count;
-              if (res.data.data[i].type == 3){
+              if (res.data.data[i].type == 1){
+                this.terminalTotal = res.data.data[i].count;
+              }else if (res.data.data[i].type == 2){
+                this.videoTotal = res.data.data[i].count;
+              }else if (res.data.data[i].type == 3){
                 this.padLocalTotal = res.data.data[i].count;
               }else if (res.data.data[i].type == 4){
                 this.padWoTotal = res.data.data[i].count;
               }else if (res.data.data[i].type == 5){
                 this.doorTotal = res.data.data[i].count;
+              }else if (res.data.data[i].type == 6){
+                this.doorControlTotal = res.data.data[i].count;
               }
             }
             this.deviceTotal = total;
@@ -907,6 +972,9 @@
         this.detailNoticeInfo(row.id);
         this.drawerVisible = true;
       },
+      moveDevice(type){
+        this.deviceListBlockType = type;
+      }
     }
   }
 </script>
@@ -963,5 +1031,49 @@
 }
 .card-box-shadow{
   box-shadow: 0 0 4px #bbbbbb;
+}
+.device-over-flow{
+  float: left;
+  width: 100%;
+}
+.left-tag-icon{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  transition: all .2s ease-in-out;
+  z-index: 99;
+}
+.right-tag-icon{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  transition: all .2s ease-in-out;
+  z-index: 99;
+}
+.left-tag-icon .right-tag-icon-container, .right-tag-icon .right-tag-icon-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.left-tag-icon .right-tag-icon-text, .right-tag-icon .right-tag-icon-text{
+  margin-top: 0.5px;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  /* transition-property: background-color,opacity; */
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+  color: #dddddd;
+  padding-right: 2px;
 }
 </style>

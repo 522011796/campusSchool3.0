@@ -7,7 +7,7 @@
           <ul class="role-ul">
             <li class="role-li" v-for="(item, index) in roleList" :key="index">
               <span>
-                <el-checkbox @change="_handleChange($event, item.id)" style="margin-right: 0px !important;"></el-checkbox>
+                <el-checkbox v-model="item._checked" @change="_handleChange($event, item.id)" style="margin-right: 0px !important;"></el-checkbox>
                 <label class="color-sub-grand" @click="_handleClick(item.id)">{{item.role_name}}</label>
               </span>
             </li>
@@ -92,7 +92,8 @@
     },
     computed: {
       _selArr() {
-        this.roleSelUserArr = this.selArr;
+        //this.roleSelUserArr = this.selArr;
+        this.roleSelUserArr = [].concat(this.selArr);
         this.initRole();
       }
     },
@@ -122,6 +123,11 @@
         this.$axios.get(common.teacher_role_group_list, {params: params}).then(res => {
           if (res.data.data){
             this.roleList = res.data.data.list;
+
+            for (let i = 0; i < res.data.data.list.length; i++) {
+              res.data.data.list[i]['_checked'] = false;
+            }
+
             if (res.data.data.list.length > 0){
               this.commSearchRoleId = res.data.data.list[0].id;
               this.initRoleTeacher(res.data.data.list[0].id);
@@ -167,7 +173,6 @@
                 }
               }
             }
-            console.log(this.checkboxCount);
             this.roleTeacherData = res.data.data.list;
 
             if (this.checkboxCount != 0 && this.checkboxCount == this.roleTeacherData.length){
