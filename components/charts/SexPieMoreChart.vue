@@ -82,7 +82,6 @@ export default {
             },
           }
         );
-        console.log(dataList);
       }
 
       let lineId = document.getElementById(this.chartId); //找到绘制的区域,强烈推荐使用refs

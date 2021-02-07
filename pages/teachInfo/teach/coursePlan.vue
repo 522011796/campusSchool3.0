@@ -231,7 +231,6 @@
         await this.getSessionInfo();
         this.selYear = this.currentYearId;
         this.selTerm = this.currentTermId;
-        console.log(this.currentYearId, this.currentTermId);
         this.init();
       },
       init(){

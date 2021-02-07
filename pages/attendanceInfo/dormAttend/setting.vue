@@ -278,7 +278,6 @@
         this.modalOtherVisible = true;
       },
       editInfo(row){
-        console.log(row);
         let roomIds = row.dormitory_id_list ? row.dormitory_id_list.split(",") : [];
         let arr = [];
         this.form = {

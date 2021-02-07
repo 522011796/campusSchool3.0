@@ -454,7 +454,6 @@
       handleSelect(data, type){
         for (let i = 0; i < this.tableCBData.length; i++){
           if (this.tableCBData[i].value == data){
-            console.log(this.tableCBData[i].type);
             this.formPer.scope = this.tableCBData[i].type;
           }
         }

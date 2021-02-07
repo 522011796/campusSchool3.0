@@ -213,7 +213,6 @@
         this.visibleConfim = false;
       },
       handleCascaderChange(data){
-        console.log(data);
         this.form.classData = data;
       },
       cancelDialog(){

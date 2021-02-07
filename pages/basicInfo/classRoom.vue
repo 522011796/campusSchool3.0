@@ -311,7 +311,6 @@ export default {
     nodeClick(data){
       this.searchBuildId = "";
       this.searchFloorNum = "";
-      console.log(data);
       if (data.unit == 6){
         this.searchBuildId = data.id;
         this.searchFloorNum = data.floorNum;

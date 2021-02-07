@@ -622,7 +622,6 @@
     mounted() {
       this.$nextTick(() => {
         let deviceCardWidth = this.$refs;
-        console.log(deviceCardWidth);
         this.deviceCardWidth = '0px';
       });
     },
@@ -680,7 +679,6 @@
       },
       initTeacherSex(){
         let total = 0;
-        console.log(this.deptData);
         let params = {
           //collegeIdList: this.campusId,
           departmentIdList: this.deptData[this.deptData.length - 1]
@@ -913,7 +911,7 @@
         }
       },
       handleClick(tab, event) {
-        console.log(tab, event);
+
       },
       weekToText(val){
         return weekNoText(val);

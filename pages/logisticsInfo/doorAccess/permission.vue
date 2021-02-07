@@ -839,7 +839,6 @@
             }
 
             if (this.form.dateType == 2){
-              console.log(1);
               if (this.form.searchData.length > 0){
                 dateStr = [{
                   d1: this.form.searchData[0],
@@ -847,10 +846,8 @@
                 }]
               }
             }else {
-              console.log(2);
               dateStr = [];
             }
-            console.log(dateStr);
             params['dateStr'] = dateStr.length > 0 ? JSON.stringify(dateStr) : [];
 
             params = this.$qs.stringify(params);

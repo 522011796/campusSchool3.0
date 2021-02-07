@@ -478,7 +478,6 @@
           sn: row.sn
         };
         this.$axios.get(common.wo_pad_config_get, {params: params}).then(res => {
-          console.log(res.data.data);
           if (res.data.data){
             this.formSet = {
               name: res.data.data.name,

@@ -156,7 +156,6 @@ export default {
       this.modalVisible = true;
     },
     editInfo(row){
-      console.log(row);
       this.form = {
         id: row.id,
         no: row.building_no,

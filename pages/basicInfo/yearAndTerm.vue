@@ -413,7 +413,6 @@
         this.visibleConfim = true;
       },
       async setTerm(row){
-        console.log(row);
         await this.getSessionInfo();
         await this.getCurrentWeekInfo(this.campusId);
         let params = {

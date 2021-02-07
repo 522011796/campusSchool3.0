@@ -572,7 +572,6 @@
         this.visibleConfim = true;
       },
       deleteCourse(row, index){
-        console.log(row);
         this.courseId = row[index].id;
         this.visibleCourseConfim = true;
       },
