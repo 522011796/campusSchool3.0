@@ -3,19 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/charts/SexPieMoreChart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/charts/SexPieMoreChart.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/search/MySearchOfDateGroup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/search/MySearchOfDateGroup.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/setting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/setting.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/basicInfo/build.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/build.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/basicInfo/classRoom.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/classRoom.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/basicInfo/padCloud.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/padCloud.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/basicInfo/yearAndTerm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/yearAndTerm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/permission.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/permission.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/class/setting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/class/setting.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/credit/scope.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/credit/scope.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/teachInfo/teach/coursePlan.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/teachInfo/teach/coursePlan.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/teachInfo/teach/teachPlan.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/teachInfo/teach/teachPlan.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/student/warning.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/student/warning.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,14 +110,7 @@
       <workItem from="1611544756423" duration="213730000" />
       <workItem from="1612495432937" duration="10270000" />
       <workItem from="1612513126795" duration="5215000" />
-      <workItem from="1612663815769" duration="14199000" />
-    </task>
-    <task id="LOCAL-00222" summary="1、修改框架和组件样式、细节bug等&#10;2、批量操作未清除前一步的操作数据修改完成">
-      <created>1611734126813</created>
-      <option name="number" value="00222" />
-      <option name="presentableId" value="LOCAL-00222" />
-      <option name="project" value="LOCAL" />
-      <updated>1611734126814</updated>
+      <workItem from="1612663815769" duration="16882000" />
     </task>
     <task id="LOCAL-00223" summary="1、修改框架和组件样式、细节bug等&#10;2、批量操作未清除前一步的操作数据修改完成">
       <created>1611742671914</created>
@@ -463,7 +448,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612687336675</updated>
     </task>
-    <option name="localTasksCounter" value="271" />
+    <task id="LOCAL-00271" summary="1、修改框架和组件样式、细节bug等&#10;2、按钮组带动画版本完成">
+      <created>1612689454522</created>
+      <option name="number" value="00271" />
+      <option name="presentableId" value="LOCAL-00271" />
+      <option name="project" value="LOCAL" />
+      <updated>1612689454523</updated>
+    </task>
+    <option name="localTasksCounter" value="272" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -502,11 +494,11 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1612176661241" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2" timestamp="1612687334641">
+    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2" timestamp="1612689452418">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" key="CommitChangelistDialog2/0.25.1440.795@0.25.1440.795" timestamp="1612687334641" />
+    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2/0.25.1440.795@0.25.1440.795" timestamp="1612689452418" />
     <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1612662480606" />
     <state x="100" y="124" width="1240" height="598" key="DiffContextDialog" timestamp="1612687198309">
       <screen x="0" y="25" width="1440" height="795" />
@@ -534,11 +526,11 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="221" y="66" key="SettingsEditor/0.25.1440.798@0.25.1440.798" timestamp="1611905365471" />
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1612687639427">
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1612689456550">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.25.1440.795@0.25.1440.795" timestamp="1612687639427" />
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.25.1440.795@0.25.1440.795" timestamp="1612689456550" />
     <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1612662483421" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1611203372469">
       <screen x="0" y="25" width="1440" height="798" />

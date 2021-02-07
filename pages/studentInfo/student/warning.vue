@@ -102,15 +102,15 @@
                 </div>
                 <div class="margin-top-5">
                   <span>{{$t("班级")}}: </span>
-                  <span>{{alarmInfo ? alarmInfo.className : ''}}</span>
+                  <span>{{alarmInfo ? alarmInfo.className : this.$t("未设置")}}</span>
                 </div>
                 <div class="margin-top-5">
                   <span>{{$t("班主任")}}: </span>
-                  <span>{{alarmInfo ? alarmInfo.realName : ''}}</span>
+                  <span>{{alarmInfo.realName ? alarmInfo.realName : this.$t("未设置")}}</span>
                 </div>
                 <div class="margin-top-5">
                   <span>{{$t("班主任联系方式")}}: </span>
-                  <span>{{alarmInfo ? alarmInfo.phone : ''}}</span>
+                  <span>{{alarmInfo.realName ? alarmInfo.phone : this.$t("未设置")}}</span>
                 </div>
               </div>
             </el-card>
@@ -132,11 +132,11 @@
                     <el-col :span="18">
                       <el-popover trigger="hover" placement="right" popper-class="custom-table-popover">
                         <div class="text-center">
-                          <div class="moon-content-text-ellipsis-class">{{item.address}}</div>
+                          <div class="moon-content-text-ellipsis-class">{{(item.address && item.address != "") ? item.address : '--'}}</div>
                         </div>
                         <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                           <div class="moon-content-text-ellipsis-class">
-                            <label>{{item.address}}</label>
+                            <label>{{(item.address && item.address != "") ? item.address : '--'}}</label>
                           </div>
                         </div>
                       </el-popover>
@@ -266,10 +266,14 @@
         this.rowData = row;
         this.$axios.get(common.student_info_warning_detail_list, {params: params}).then(res => {
           if (res.data.data){
-            res.data.data['studentName'] = row.name;
-            res.data.data['studentPhone'] = row.phone;
-            res.data.data['className'] = row.class_name;
             this.alarmInfo = res.data.data;
+            this.$set(this.alarmInfo, 'studentName', row.name);
+            this.$set(this.alarmInfo, 'studentPhone', row.phone);
+            this.$set(this.alarmInfo, 'className', row.class_name);
+          }else {
+            this.$set(this.alarmInfo, 'studentName', row.name);
+            this.$set(this.alarmInfo, 'studentPhone', row.phone);
+            this.$set(this.alarmInfo, 'className', row.class_name);
           }
         });
       },
@@ -296,8 +300,11 @@
         };
         if (type == 'local'){
           this.addrLineArr[this.addrLineArr.length-1];
-          this.map.setCenter(this.addrLineArr[this.addrLineArr.length-1]);
-          this.addMarker(this.addrLineArr[this.addrLineArr.length-1][0], this.addrLineArr[this.addrLineArr.length-1][1]);
+
+          if ((!this.addrLineArr[0] && this.addrLineArr[0] != "") && !this.addrLineArr[1] && this.addrLineArr[1] != ""){
+            this.map.setCenter(this.addrLineArr[this.addrLineArr.length-1]);
+            this.addMarker(this.addrLineArr[this.addrLineArr.length-1][0], this.addrLineArr[this.addrLineArr.length-1][1]);
+          }
         }else {
           this.$axios.get(common.student_info_warning_detail_map_list, {params: params}).then(res => {
             if (res.data.data){
@@ -309,8 +316,11 @@
                   lineArr.push([res.data.data.locationPage.list[i].longitude, res.data.data.locationPage.list[i].latitude]);
                 }
                 this.addrLineArr = lineArr;
-                this.map.setCenter(this.addrLineArr[this.addrLineArr.length-1]);
-                this.addMarker(this.addrLineArr[this.addrLineArr.length-1][0], this.addrLineArr[this.addrLineArr.length-1][1]);
+
+                if ((!this.addrLineArr[0] && this.addrLineArr[0] != "") && !this.addrLineArr[1] && this.addrLineArr[1] != ""){
+                  this.map.setCenter(this.addrLineArr[this.addrLineArr.length-1]);
+                  this.addMarker(this.addrLineArr[this.addrLineArr.length-1][0], this.addrLineArr[this.addrLineArr.length-1][1]);
+                }
               }
             }
           });
