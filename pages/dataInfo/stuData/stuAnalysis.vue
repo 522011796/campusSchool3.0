@@ -897,6 +897,7 @@
       },
       detailInfo(row, type){
         this.showType = type;
+        this.userData = row;
         if (type == 1){
           this.showText = this.$t("课堂考勤");
           this.initClassRecord();
@@ -904,7 +905,6 @@
           this.showText = this.$t("归寝考勤");
           this.initDormRecord();
         }
-        this.userData = row;
         this.initStatic();
         this.showDetail = true;
       },

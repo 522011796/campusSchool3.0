@@ -262,6 +262,7 @@
                   :data="tableData"
                   header-cell-class-name="custom-table-cell-bg"
                   size="medium"
+                  @sort-change="sortTable"
                   style="width: 100%">
                   <el-table-column
                     align="center"
@@ -302,6 +303,8 @@
                   </el-table-column>
                   <el-table-column
                     align="center"
+                    sortable="custom"
+                    prop="actualNum"
                     :label="$t('已出勤')">
 
                     <template slot-scope="scope">
@@ -315,6 +318,8 @@
                   </el-table-column>
                   <el-table-column
                     align="center"
+                    sortable="custom"
+                    prop="lateNum"
                     :label="$t('迟到')">
 
                     <template slot-scope="scope">
@@ -328,6 +333,8 @@
                   </el-table-column>
                   <el-table-column
                     align="center"
+                    sortable="custom"
+                    prop="unSignNum"
                     :label="$t('旷课')">
 
                     <template slot-scope="scope">
@@ -341,6 +348,8 @@
                   </el-table-column>
                   <el-table-column
                     align="center"
+                    sortable="custom"
+                    prop="leaveEarlyNum"
                     :label="$t('早退')">
 
                     <template slot-scope="scope">
@@ -354,6 +363,8 @@
                   </el-table-column>
                   <el-table-column
                     align="center"
+                    sortable="custom"
+                    prop="leaveNum"
                     :label="$t('请假')">
 
                     <template slot-scope="scope">
@@ -445,7 +456,10 @@
         loopTimer: null,
         resultList: [],
         searchTopTime: this.$moment(new Date).format("YYYY-MM-DD"),
-        paramsData: {}
+        paramsData: {},
+        sortField: 'actualNum',
+        sortType: 'asc',
+        paramsData: {},
       }
     },
     created() {
@@ -606,14 +620,15 @@
         });
       },
       initData(params){
+        this.paramsData = params;
         params['page'] = this.page;
         params['num'] = this.num;
         params['userUnit'] = 5;
         params['chartType'] = 3;
         params['type'] = 'actualNum';
         params['searchStaticType'] = this.showType == 1 ? 2 : 1;
-        params['orderAttr'] = 'shouldNum';
-        params['orderAsc'] = false;
+        params['sortField'] = this.sortField;
+        params['sortType'] = this.sortType;
         this.$axios.get(common.attend_class_static_analyse_page, {params: params}).then(res => {
           if (res.data.data){
             this.tableData = res.data.data.list;
@@ -711,6 +726,15 @@
       handleCourseChange(data){
         this.searchCourseId = data;
         this.init();
+      },
+      sortTable(data){
+        this.sortField = data.prop;
+        if (data.order == 'descending'){
+          this.sortType = 'desc';
+        }else if (data.order == 'ascending'){
+          this.sortType = 'asc';
+        }
+        this.initData(this.paramsData);
       }
     }
   }
