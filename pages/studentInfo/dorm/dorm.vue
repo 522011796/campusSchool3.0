@@ -191,7 +191,6 @@
                             <label v-if="itemChild.bed_no != null">{{itemChild.bed_no}}号床</label>
                             <el-popover
                               v-else
-                              placement="top"
                               width="700"
                               trigger="click"
                               @show="handleShowDorm(itemChild.user_id, itemChild)"
@@ -208,7 +207,6 @@
                         </div>
                         <div v-if="!itemChild.student_id" class="margin-top-10">
                           <el-popover
-                            placement="top"
                             width="700"
                             trigger="click"
                             @show="handleShowStudent(itemChild.id, itemChild)">
