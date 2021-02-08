@@ -50,7 +50,7 @@
               :show-file-list="false"
               :on-success="handleAvatarSuccess"
               :on-error="handleAvatarError"
-              :before-upload="setBefore ? handleAvatarBefore : ''">
+              :before-upload="handleAvatarBefore">
 
               <i class="el-icon-upload"></i>
               <div class="el-upload__text">{{$t("将文件拖到此处，或")}}<em>{{$t("点击上传")}}</em></div>
@@ -217,7 +217,9 @@ export default {
       this.$emit('error', res, file);
     },
     handleAvatarBefore(file){
-      this.data['fileName'] = file.name;
+      if (this.setBefore){
+        this.data['fileName'] = file.name;
+      }
     }
   }
 }
