@@ -79,12 +79,14 @@
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                 <div class="text-center name-wrapper moon-content-text-ellipsis-class">
-                  <span v-for="(item,index) in scope.row.permUserList">
+                  <span v-if="scope.row.permUserList.length <= 0">--</span>
+                  <span v-else v-for="(item,index) in scope.row.permUserList">
                     {{item.realName}}
                   </span>
                 </div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <span v-for="(item,index) in scope.row.permUserList">
+                  <span v-if="scope.row.permUserList.length <= 0">--</span>
+                  <span v-else v-for="(item,index) in scope.row.permUserList">
                     {{item.realName}}
                   </span>
                 </div>
@@ -107,10 +109,42 @@
 
             <template slot-scope="scope">
               <span v-if="scope.row.checkStatus" class="color-success">
-                {{$t("已检查")}}
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center name-wrapper moon-content-text-ellipsis-class">
+                    <span v-if="scope.row.permUserList <= 0">
+                      --
+                    </span>
+                    <div v-else v-for="(item,index) in scope.row.permUserList">
+                      <span>{{item.realName}}</span>
+                      <span>
+                        <label v-if="item.checkStatus == false" class="color-danger">{{$t("未检查")}}</label>
+                        <label v-if="item.checkStatus == true" class="color-success">{{$t("已检查")}}</label>
+                      </span>
+                    </div>
+                  </div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{$t("已检查")}}
+                  </div>
+                </el-popover>
               </span>
               <span v-else class="title-tag color-warning">
-                {{$t("未检查")}}
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-left name-wrapper moon-content-text-ellipsis-class">
+                    <span v-if="scope.row.permUserList <= 0">
+                      --
+                    </span>
+                    <div v-else v-for="(item,index) in scope.row.permUserList">
+                      <span>{{item.realName}}</span>
+                      <span>
+                        <label v-if="item.checkStatus == false" class="color-danger">{{$t("未检查")}}</label>
+                        <label v-if="item.checkStatus == true" class="color-success">{{$t("已检查")}}</label>
+                      </span>
+                    </div>
+                  </div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{$t("未检查")}}
+                  </div>
+                </el-popover>
               </span>
             </template>
           </el-table-column>

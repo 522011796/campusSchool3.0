@@ -152,7 +152,7 @@
             <div class="color-success font-size-12">
               <span v-if="tableShareData.editStatus">
                 <el-button size="mini" :type="checkShareStatus == 1 ? 'success' : 'default'" class="font-size-12" style="cursor: default" @click="selAllItem(tableShareData, 1)">{{$t("合格")}}</el-button>
-                <el-button size="mini" :type="checkShareStatus == 2 ? 'success' : 'default'" class="font-size-12" style="cursor: default" @click="selAllItem(tableShareData, 2)">{{$t("不合格")}}</el-button>
+                <el-button size="mini" :type="checkShareStatus == 2 ? 'danger' : 'default'" class="font-size-12" style="cursor: default" @click="selAllItem(tableShareData, 2)">{{$t("不合格")}}</el-button>
               </span>
               <span class="margin-left-10">
                 <label>
@@ -178,10 +178,21 @@
                       </el-popover>
                     </span>
                     <span class="pull-right">
-                      <span v-if="tableShareData.editStatus == false" class="color-disabeld">{{$t("未打分")}}</span>
-                      <template v-if="tableShareData.editStatus">
+                      <span v-if="tableShareData.checkStatus == false && tableShareData.editStatus == false" class="color-disabeld">{{$t("未打分")}}</span>
+                      <template v-if="tableShareData.checkStatus == false && tableShareData.editStatus == true">
                         <el-tag size="mini" :type="item.checkStatus == 1 ? 'success' : 'info'" class="font-size-12" style="cursor: default" @click="selItem(item ,1, 2)">{{$t("合格")}}</el-tag>
                         <el-tag size="mini" :type="item.checkStatus == 2 ? 'danger' : 'info'" class="font-size-12" style="cursor: default" @click="selItem(item, 2, 2)">{{$t("不合格")}}</el-tag>
+                      </template>
+
+
+                      <template v-if="tableShareData.checkStatus == true && tableShareData.editStatus == true">
+                        <el-tag size="mini" :type="item.checkStatus == 1 ? 'success' : 'info'" class="font-size-12" style="cursor: default" @click="selItem(item ,1, 2)">{{$t("合格")}}</el-tag>
+                        <el-tag size="mini" :type="item.checkStatus == 2 ? 'danger' : 'info'" class="font-size-12" style="cursor: default" @click="selItem(item, 2, 2)">{{$t("不合格")}}</el-tag>
+                      </template>
+                      <template v-if="tableShareData.checkStatus == true && tableShareData.editStatus == false">
+                        <span v-if="item.checkStatus == 1" class="font-size-12 color-success">{{$t("合格")}}</span>
+                        <span v-if="item.checkStatus == 2" class="font-size-12 color-danger">{{$t("不合格")}}</span>
+                        <span v-if="item.checkStatus == 0" class="font-size-12 color-disabeld">{{$t("未检查")}}</span>
                       </template>
                     </span>
                   </div>
@@ -199,7 +210,7 @@
             </span>
             <span class="homework-title-text" v-if="tableShareData.editStatus">
               <el-button size="mini" :type="checkPriStatus == 1 ? 'success' : 'default'" class="font-size-12" style="cursor: default" @click="selAllStudentItem(tableShareData, 1)">{{$t("合格")}}</el-button>
-              <el-button size="mini" :type="checkPriStatus == 2 ? 'success' : 'default'" class="font-size-12" style="cursor: default" @click="selAllStudentItem(tableShareData, 2)">{{$t("不合格")}}</el-button>
+              <el-button size="mini" :type="checkPriStatus == 2 ? 'danger' : 'default'" class="font-size-12" style="cursor: default" @click="selAllStudentItem(tableShareData, 2)">{{$t("不合格")}}</el-button>
             </span>
           </div>
 
@@ -260,10 +271,20 @@
                               </el-popover>
                             </span>
                             <span class="pull-right">
-                              <label v-if="tableShareData.editStatus == false" class="color-disabeld">{{$t("未打分")}}</label>
-                              <template v-if="tableShareData.editStatus">
+                              <span v-if="tableShareData.checkStatus == false && tableShareData.editStatus == false" class="color-disabeld">{{$t("未打分")}}</span>
+                              <template v-if="tableShareData.checkStatus == false && tableShareData.editStatus == true">
                                 <el-tag size="mini" :type="itemChild.checkStatus == 1 ? 'success' : 'info'" class="font-size-12" style="cursor: default" @click="selStudentItem(item, itemChild ,1, 1)">{{$t("合格")}}</el-tag>
-                                <el-tag size="mini" :type="itemChild.checkStatus == 2 ? 'danger' : 'info'" class="font-size-12" style="cursor: default" @click="selStudentItem(item, itemChild ,2, 1)">{{$t("不合格")}}</el-tag>
+                                <el-tag size="mini" :type="itemChild.checkStatus == 2 ? 'danger' : 'info'" class="font-size-12" style="cursor: default" @click="selStudentItem(item, itemChild, 2, 1)">{{$t("不合格")}}</el-tag>
+                              </template>
+
+                              <template v-if="tableShareData.checkStatus == true && tableShareData.editStatus == true">
+                                <el-tag size="mini" :type="itemChild.checkStatus == 1 ? 'success' : 'info'" class="font-size-12" style="cursor: default" @click="selStudentItem(item, itemChild ,1, 1)">{{$t("合格")}}</el-tag>
+                                <el-tag size="mini" :type="itemChild.checkStatus == 2 ? 'danger' : 'info'" class="font-size-12" style="cursor: default" @click="selStudentItem(item, itemChild, 2, 1)">{{$t("不合格")}}</el-tag>
+                              </template>
+                              <template v-if="tableShareData.checkStatus == true && tableShareData.editStatus == false">
+                                <span v-if="itemChild.checkStatus == 1" class="font-size-12 color-success">{{$t("合格")}}</span>
+                                <span v-if="itemChild.checkStatus == 2" class="font-size-12 color-danger">{{$t("不合格")}}</span>
+                                <span v-if="itemChild.checkStatus == 0" class="font-size-12 color-disabeld">{{$t("未检查")}}</span>
                               </template>
                             </span>
                           </div>
@@ -562,6 +583,7 @@
         this.$axios.post(common.housework_query_edit_all_info, params).then(res => {
           if (res.data.code == 200){
             item.checkStatus = status;
+            this.checkShareStatus = status;
             this.initShare(this.itemId);
           }else{
             MessageError(res.data.desc);
@@ -578,7 +600,9 @@
         this.$axios.post(common.housework_query_edit_private_info, params).then(res => {
           if (res.data.code == 200){
             item.checkStatus = status;
+            this.checkPriStatus = status;
             this.initStudent(this.itemId);
+            this.initShare(this.itemId);
           }else{
             MessageError(res.data.desc);
           }
