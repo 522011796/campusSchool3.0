@@ -61,7 +61,7 @@
                     <i class="fa fa-cog margin-right-5" @click="settingInfo(scope.row[1], scope.row, 1)"></i>
                     <i v-if="Object.keys(scope.row[1]).length != 0" class="fa fa-copy margin-right-5" @click="copy(scope.row[1])"></i>
                     <i v-if="Object.keys(scope.row[1]).length == 0" class="fa fa-paste margin-right-5" @click="paste(scope.row, 1)"></i>
-                    <i class="fa fa-trash" @click="deleteCourse(scope.row, 1)"></i>
+                    <i class="fa fa-trash" v-if="scope.row[1].id" @click="deleteCourse(scope.row, 1)"></i>
                   </div>
                 </div>
                 <div class="font-size-12">
@@ -90,7 +90,7 @@
                     <i class="fa fa-cog margin-right-5" @click="settingInfo(scope.row[2], scope.row, 2)"></i>
                     <i v-if="Object.keys(scope.row[2]).length != 0" class="fa fa-copy margin-right-5" @click="copy(scope.row[2])"></i>
                     <i v-if="Object.keys(scope.row[2]).length == 0" class="fa fa-paste margin-right-5" @click="paste(scope.row, 2)"></i>
-                    <i class="fa fa-trash" @click="deleteCourse(scope.row, 2)"></i>
+                    <i class="fa fa-trash" v-if="scope.row[2].id" @click="deleteCourse(scope.row, 2)"></i>
                   </div>
                 </div>
                 <div class="font-size-12">
@@ -119,7 +119,7 @@
                     <i class="fa fa-cog margin-right-5" @click="settingInfo(scope.row[3], scope.row, 3)"></i>
                     <i v-if="Object.keys(scope.row[3]).length != 0" class="fa fa-copy margin-right-5" @click="copy(scope.row[3])"></i>
                     <i v-if="Object.keys(scope.row[3]).length == 0" class="fa fa-paste margin-right-5" @click="paste(scope.row, 3)"></i>
-                    <i class="fa fa-trash" @click="deleteCourse(scope.row, 3)"></i>
+                    <i class="fa fa-trash" v-if="scope.row[3].id" @click="deleteCourse(scope.row, 3)"></i>
                   </div>
                 </div>
                 <div class="font-size-12">
@@ -148,7 +148,7 @@
                     <i class="fa fa-cog margin-right-5" @click="settingInfo(scope.row[4], scope.row, 4)"></i>
                     <i v-if="Object.keys(scope.row[4]).length != 0" class="fa fa-copy margin-right-5" @click="copy(scope.row[4])"></i>
                     <i v-if="Object.keys(scope.row[4]).length == 0" class="fa fa-paste margin-right-5" @click="paste(scope.row, 4)"></i>
-                    <i class="fa fa-trash" @click="deleteCourse(scope.row, 4)"></i>
+                    <i class="fa fa-trash" v-if="scope.row[4].id" @click="deleteCourse(scope.row, 4)"></i>
                   </div>
                 </div>
                 <div class="font-size-12">
@@ -177,7 +177,7 @@
                     <i class="fa fa-cog margin-right-5" @click="settingInfo(scope.row[5], scope.row, 5)"></i>
                     <i v-if="Object.keys(scope.row[5]).length != 0" class="fa fa-copy margin-right-5" @click="copy(scope.row[5])"></i>
                     <i v-if="Object.keys(scope.row[5]).length == 0" class="fa fa-paste margin-right-5" @click="paste(scope.row, 5)"></i>
-                    <i class="fa fa-trash" @click="deleteCourse(scope.row, 5)"></i>
+                    <i class="fa fa-trash" v-if="scope.row[5].id" @click="deleteCourse(scope.row, 5)"></i>
                   </div>
                 </div>
                 <div class="font-size-12">
@@ -206,7 +206,7 @@
                     <i class="fa fa-cog margin-right-5" @click="settingInfo(scope.row[6], scope.row, 6)"></i>
                     <i v-if="Object.keys(scope.row[6]).length != 0" class="fa fa-copy margin-right-5" @click="copy(scope.row[6])"></i>
                     <i v-if="Object.keys(scope.row[6]).length == 0" class="fa fa-paste margin-right-5" @click="paste(scope.row, 6)"></i>
-                    <i class="fa fa-trash" @click="deleteCourse(scope.row, 6)"></i>
+                    <i class="fa fa-trash" v-if="scope.row[6].id" @click="deleteCourse(scope.row, 6)"></i>
                   </div>
                 </div>
                 <div class="font-size-12">
@@ -235,7 +235,7 @@
                     <i class="fa fa-cog margin-right-5" @click="settingInfo(scope.row[7], scope.row, 7)"></i>
                     <i v-if="Object.keys(scope.row[7]).length != 0" class="fa fa-copy margin-right-5" @click="copy(scope.row[7])"></i>
                     <i v-if="Object.keys(scope.row[7]).length == 0" class="fa fa-paste margin-right-5" @click="paste(scope, 7)"></i>
-                    <i class="fa fa-trash" @click="deleteCourse(scope.row, 7)"></i>
+                    <i class="fa fa-trash" v-if="scope.row[7].id" @click="deleteCourse(scope.row, 7)"></i>
                   </div>
                 </div>
                 <div class="font-size-12">
@@ -756,6 +756,7 @@
       },
       handleCancelChange(data) {
         this.visibleConfim = false;
+        this.visibleCourseConfim = false;
       },
       closeDialog(event){
         this.form = {
