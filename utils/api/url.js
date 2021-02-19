@@ -489,4 +489,9 @@ export const common = {
   classattend_student_sort: '/proxy/course/rollcallbigdata/overall/rollcall/all/sort',//课堂考勤--学生排名
   dormattend_student_sort: '/proxy/course/rollcallbed/rollcallbed/analyse/top',//课堂考勤--学生排名、状态率排名
 
+  role_list: '/proxy/user/school/page/role',//角色管理--列表
+  role_menu_list: '/proxy/user/school/page/role',//角色管理--菜单列表
+  role_employee_list: '/proxy/user/school/page/role',//角色管理--成员列表
+  role_set_employee_info: '/proxy/user/school/add/userRole',//角色管理--设置成员
+
 };

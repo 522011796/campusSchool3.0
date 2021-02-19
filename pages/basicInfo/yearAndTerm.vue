@@ -421,10 +421,13 @@
           num: 10000
         };
         this.$axios.get(common.get_term, {params: params}).then(res => {
+          console.log(row.current);
+          console.log(JSON.stringify(res.data.data) == "{}");
           if (!row.current && JSON.stringify(res.data.data) == "{}"){
             MessageWarning(this.$t("没有教学设置"));
             return;
           }else if (row.current && JSON.stringify(res.data.data) == "{}"){
+            console.log(1);
             let arr = [];
             this.formSetTerm = {
               id: '',
@@ -477,8 +480,9 @@
               });
             }
             this.$set(this.formSetTerm,'courseTimeArr', arr);
-            this.modalTermVisible = true;
+            this.drawerVisible = true;
           }else {
+            console.log(2);
             if (res.data.code == 200){
               let data = res.data.data;
               this.formSetTerm = {
@@ -553,6 +557,7 @@
                 this.$set(data.period[i],'editStartTime', false);
               }
               //this.formSetTerm['courseTimeArr'] = data.period;
+              console.log(data);
               this.formSetTerm.courseTimeBakArr = [].concat(data.period);
               this.$set(this.formSetTerm,'courseTimeArr', data.period);
             }
@@ -882,13 +887,19 @@
           termId: row.id
         };
         this.$axios.get(common.check_current_term, {params: params}).then(res => {
-          if (res.data.code == 200 || res.data.code == 464){
+          if (res.data.code == 200){
+            this.g_status = "in";
+            //this.setContent = res.data.desc + this.$t("是否继续设置？");
+            this.setContent = this.$t("你确定要设置该学期为当前学期吗？");
+            this.visibleSetConfim = true;
+          }else if (res.data.code == 464){
             this.g_status = "in";
             this.setContent = res.data.desc + this.$t("是否继续设置？");
             this.visibleSetConfim = true;
           }else if (res.data.code == 461 || res.data.code == 462){
             this.g_status = "out";
-            this.setContent = res.data.desc + this.$t("是否继续设置？");
+            //this.setContent = res.data.desc + this.$t("是否继续设置？");
+            this.setContent = this.$t("你确定要设置该学期为当前学期吗？");
             this.visibleSetConfim = true;
           }else{
             MessageError(res.data.desc);
@@ -958,14 +969,14 @@
         return setSelectOptions(val);
       },
       handeChangeSelect(data, type){
+        console.log(this.formSetTerm.courseTimeBakArr);
         if (type == 1){
           this.formSetTerm.weekTotal = data;
         }else if (type == 2){
           this.formSetTerm.courseTime = data;
 
           let arr = [];
-          let dataTerm = this.formSetTerm.courseTimeBakArr;
-          console.log(data,dataTerm.length);
+          let dataTerm = this.formSetTerm.courseTimeBakArr ? this.formSetTerm.courseTimeBakArr : [];
           for (let i = 0; i < data; i++){
             /*this.$set(data[i],'editCourseTime', false);
             this.$set(data[i],'editStartTime', false);*/

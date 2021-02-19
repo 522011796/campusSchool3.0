@@ -564,6 +564,8 @@
           params['timeUnit'] = 2;
         }else if (this.searchTimeData.timeUnit == 3){
           params['queryDate'] = this.searchTimeData.value+"-01";
+          params['year'] = this.searchTimeData.value.split("-")[0];
+          params['month'] = this.searchTimeData.value.split("-")[1];
           params['timeUnit'] = 4;
         }else if (this.searchTimeData.timeUnit == 5){
           params['timeUnit'] = 1;
@@ -571,6 +573,7 @@
           params['weekNum'] = this.g_currentDate.currentWeekNum;
           params['timeUnit'] = 2;
         }
+        params['termId'] = this.g_currentDate.currentTermId;
         this.initStatic(params);
         this.initLineStatic(params);
         this.initLinePopStatic(params);
@@ -584,7 +587,10 @@
         params['type'] = this.searchStatus;
         params['sortField'] = this.searchStatus;
         params['searchStaticType'] = '';
+        params['orderAttr'] = this.searchStatus;
+        params['orderAsc'] = false;
         this.paramsData = params;
+        params = this.clearDataInfo(params);
         this.$axios.get(common.dormattend_student_sort, {params: params}).then(res => {
           if (res.data.data){
             this.tableTopData = res.data.data.list;
@@ -598,7 +604,11 @@
         params['orderAttr'] = this.searchRateStatus;
         params['orderAsc'] = false;
         params['searchStaticType'] = 1;
+        params['chartType'] = '';
+        params['barChartAttr'] = '';
+        params['sortField'] = '';
         this.paramsDormData = params;
+        params = this.clearDataInfo(params);
         this.$axios.get(common.dormattend_student_sort, {params: params}).then(res => {
           if (res.data.data){
             this.tableDormTopData = res.data.data.list;
@@ -687,9 +697,14 @@
         params['userUnit'] = 5;
         params['chartType'] = 3;
         params['type'] = 'actualNum';
-        params['searchStaticType'] = this.showType == 1 ? 2 : 1;
-        params['orderAttr'] = 'shouldNum';
+        params['searchStaticType'] = '';
+        params['orderAttr'] = 'actualNum';
         params['orderAsc'] = false;
+        params['chartType'] = '';
+        params['barChartAttr'] = '';
+        params['sortField'] = '';
+
+        params = this.clearDataInfo(params);
         this.$axios.get(common.attend_dorm_static_analyse_page, {params: params}).then(res => {
           if (res.data.data){
             this.tableData = res.data.data.list;
@@ -787,6 +802,9 @@
         this.subType = ''+subType;
         this.showType = type;
         this.init();
+      },
+      clearDataInfo(data){
+        return clearData(data);
       }
     }
   }

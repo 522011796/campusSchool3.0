@@ -18,7 +18,7 @@
             </el-col>
             <el-col :span="16" class="text-right">
               <my-year-term ref="yearRef" size="small" :show-week="false" :clearable-week="false" @changeYear="hangdleChange($event,1)" @changeTerm="hangdleChange($event,2)" @changeWeek="hangdleChange($event,3)"></my-year-term>
-              <my-input-button size="small" plain width-class="width: 150px" type="success" :clearable="true" @click="search"></my-input-button>
+              <my-input-button size="small" :placeholder="$t('课程名称')" plain width-class="width: 150px" type="success" :clearable="true" @click="search"></my-input-button>
             </el-col>
           </el-row>
         </div>
@@ -221,6 +221,9 @@
         courseNameList: []
       }
     },
+    mounted() {
+
+    },
     created() {
       this.initInfo();
       this.initCourse();
@@ -229,8 +232,10 @@
     methods: {
       async initInfo(){
         await this.getSessionInfo();
-        this.selYear = this.currentYearId;
-        this.selTerm = this.currentTermId;
+        await this.initCurrentYearList();
+        await this.initCurrentTermList(this.currentYearData);
+        this.selYear = this.$refs.yearRef.currentYearData ? this.$refs.yearRef.currentYearData : this.currentYearId;
+        this.selTerm = this.$refs.yearRef.currentTermData ? this.$refs.yearRef.currentTermData : this.currentTermId;
         this.init();
       },
       init(){
@@ -603,13 +608,14 @@
           case 1:
             this.selYear = data.year;
             this.selTerm = data.term;
+            this.init();
             break;
           case 2:
             this.selYear = data.year;
             this.selTerm = data.term;
+            this.init();
             break;
         }
-        this.init();
       },
       handleSelUser(data){
         this.form.teacherId = data;
