@@ -9,7 +9,7 @@
             </div>
             <div class="margin-top-5">
               <span class="font-size-15 color-grand" v-if="searchData.sexList">
-                {{searchData.sexList[0] ? searchData.sexList[0].size : 0 + searchData.sexList[1] ? searchData.sexList[1].size : 0 + searchData.sexList[2] ? searchData.sexList[2].size : 0}}
+                {{(searchData.sexList[0] ? searchData.sexList[0].size : 0) + (searchData.sexList[1] ? searchData.sexList[1].size : 0) + (searchData.sexList[2] ? searchData.sexList[2].size : 0)}}
               </span>
             </div>
 
@@ -19,14 +19,14 @@
                 <span class="margin-left-10">
                   <i class="fa fa-male margin-right-5" v-for="n in 5" :key="n"></i>
                 </span>
-                <span class="margin-left-10" v-if="searchData.sexList">{{searchData.sexList[1] ? searchData.sexList[1].size : 0}}</span>
+                <span class="margin-left-10" v-if="searchData.sexList">{{searchData.sexList[0] ? searchData.sexList[0].size : 0}}</span>
               </div>
               <div class="margin-top-5">
                 <span>{{$t("女生")}}</span>
                 <span class="margin-left-10">
                   <i class="fa fa-female margin-right-5" v-for="n in 5" :key="n"></i>
                 </span>
-                <span class="margin-left-10" v-if="searchData.sexList">{{searchData.sexList[0] ? searchData.sexList[0].size : 0}}</span>
+                <span class="margin-left-10" v-if="searchData.sexList">{{searchData.sexList[1] ? searchData.sexList[1].size : 0}}</span>
               </div>
               <div class="margin-top-5">
                 <span>{{$t("未知")}}</span>
@@ -376,18 +376,18 @@ export default {
           this.searchData = res.data.data;
           personDataArr[0] = {
             name: this.$t("男生"),
-            value: res.data.data.sexList[1] ? res.data.data.sexList[1].size : 0,
-            rate: res.data.data.sexRate[1]
+            value: res.data.data.sexList[0] ? res.data.data.sexList[0].size : 0,
+            rate: res.data.data.sexRate[0]
           };
           personDataArr[1] = {
             name: this.$t("女生"),
-            value: res.data.data.sexList[0] ? res.data.data.sexList[0].size : 0,
-            rate: res.data.data.sexRate[2]
+            value: res.data.data.sexList[1] ? res.data.data.sexList[1].size : 0,
+            rate: res.data.data.sexRate[1]
           };
           personDataArr[2] = {
             name: this.$t("未知"),
             value: res.data.data.sexList[2] ? res.data.data.sexList[2].size : 0,
-            rate: res.data.data.sexRate[0]
+            rate: res.data.data.sexRate[2]
           };
           personDataKeyArr[0] =this.$t("男生");
           personDataKeyArr[1] =this.$t("女生");

@@ -887,6 +887,7 @@
       // 监听窗口大小
       window.onresize = () => {
         this.getMenuTabWdith();
+        this.hh();
         if (document.querySelector(".moon-top-middle-menu-title")){
           width = document.querySelector(".moon-top-middle-menu-title").clientWidth;
           return (() => {
