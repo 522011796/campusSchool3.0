@@ -293,7 +293,7 @@
                 trigger="click"
                 @show="handleShowTeacher()">
                 <div>
-                  <teacher-tree-and-list ref="popverPartRef" :sel-value="form.approverUserId" @change="handleUserSel"></teacher-tree-and-list>
+                  <teacher-course-tree-and-list ref="popverPartRef" :sel-value="form.teacherId" :table-data="tableTeacherData" @change="handleUserSel"></teacher-course-tree-and-list>
                 </div>
                 <el-button slot="reference" type="success" plain size="small">{{$t("添加")}}</el-button>
               </el-popover>
@@ -336,6 +336,8 @@
   import MyEnable from "../../../components/utils/status/MyEnable";
   import MyYearTerm from "../../../components/search/MyYearTerm";
   import MyCascader from "../../../components/utils/select/MyCascader";
+  import TeacherTreeAndList from "../../../components/utils/treeAndList/TeacherTreeAndList";
+  import TeacherCourseTreeAndList from "../../../components/utils/treeAndList/TeacherCourseTreeAndList";
   import {common} from "../../../utils/api/url";
   import {
     setChildren,
@@ -351,7 +353,7 @@
 
   export default {
     mixins: [mixins, teachPlanValidater],
-    components: {MyRadio, MySelect, LayoutTb,MyInputButton,MyPagination,DialogNormal,MyNormalDialog,DrawerRight,MyEnable,MyYearTerm,MyCascader},
+    components: {MyRadio, MySelect, LayoutTb,MyInputButton,MyPagination,DialogNormal,MyNormalDialog,DrawerRight,MyEnable,MyYearTerm,MyCascader,TeacherCourseTreeAndList},
     data(){
       return {
         modalVisible: false,
@@ -365,6 +367,7 @@
         subDetail: '',
         g_superId: '',
         tableData: [],
+        tableTeacherData: [],
         searchSchoolData: [],
         searchKey: '',
         courseNameList: [],
@@ -465,6 +468,18 @@
           this.searchSchoolData = [college, major, grade, classId];
         }
       },
+      initCourseTeacher(id){
+        let params = {
+          offerIds: id,
+        };
+        this.$axios.get(common.teach_course_teacher_info, {params: params}).then(res => {
+          if (res.data.data){
+            this.tableTeacherData = res.data.data;
+            this.form.teacherId = res.data.data[0].teacher_id;
+            this.form.teacherName = res.data.data[0].teacher_name;
+          }
+        });
+      },
       initCourse(){
         let arr = [];
         let params = {
@@ -496,6 +511,7 @@
                       buildingId: res.data.data[item].building_id,
                       classroomId: res.data.data[item].classroom_id,
                       floorNum: res.data.data[item].floor_num,
+                      offerId: res.data.data[item].offer_id
                     };
                     if (res.data.data[item].week_schedule_id != null && res.data.data[item].week_schedule_id != ''){
                       this.week_schedule_id = res.data.data[item].week_schedule_id;
@@ -519,7 +535,7 @@
           if (res.data.data){
             for (let i = 0; i < res.data.data.length; i++){
               res.data.data[i]['label'] = res.data.data[i].courseName;
-              res.data.data[i]['value'] = res.data.data[i].courseId + "-" + res.data.data[i].courseName;
+              res.data.data[i]['value'] = res.data.data[i].courseId + "-" + res.data.data[i].courseName + "-" + res.data.data[i].id;
             }
             this.courseNameList = res.data.data;
           }
@@ -541,7 +557,7 @@
         if (Object.keys(row).length != 0){
           this.form = {
             id: row.id,
-            courseName: row.courseId+"-"+row.courseName,
+            courseName: row.courseId+"-"+row.courseName+"-"+row.offerId,
             courseNo: row.courseId,
             teacherName: row.teacherName,
             teacherId: row.teacherId,
@@ -561,6 +577,9 @@
         }
 
         this.initCourseList();
+        if (row.offerId){
+          this.initCourseTeacher(row.offerId);
+        }
         this.modalVisible = true;
       },
       copyCourseTable(){
@@ -847,8 +866,8 @@
         this.modalVisible = false;
       },
       handleUserSel(data){
-        this.form.teacherId = data.user_id;
-        this.form.teacherName = data.real_name;
+        this.form.teacherId = data.teacher_id;
+        this.form.teacherName = data.teacher_name;
       },
       handleShowTeacher(){
         this.$refs.popverPartRef._handleOpen();
@@ -861,6 +880,7 @@
           case 2:
             this.form.courseName = data;
             this.form.credit = data.split("-")[2];
+            this.initCourseTeacher(data.split("-")[2]);
             break;
         }
       },

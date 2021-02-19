@@ -9,7 +9,7 @@
             <my-year-term size="small" :show-default-week="true" :clearable-week="false" @changeYear="hangdleChange($event,1)" @changeTerm="hangdleChange($event,2)" @changeWeek="hangdleChange($event,3)"></my-year-term>
           </el-col>
           <el-col :span="12" class="text-right">
-            <my-cascader ref="SelectorSchool" size="small" width-style="160" :sel-value="searchSchoolData" type="1" sub-type="4" @change="handleCascaderChange($event)"></my-cascader>
+            <my-cascader ref="SelectorSchool" size="small" width-style="260" :sel-value="searchSchoolData" type="1" sub-type="4" @change="handleCascaderChange($event)"></my-cascader>
           </el-col>
         </el-row>
       </div>
@@ -258,11 +258,12 @@
       async initInfo() {
         await this.getSessionInfo();
         await this.getCollegeInfo(4);
-        this.selYear = this.currentYearId;
-        this.selTerm = this.currentTermId;
+        await this.initCurrentYearList();
+        await this.initCurrentTermList(this.currentYearData);
+        this.selYear = this.currentYearData ? this.currentYearData : this.currentYearId;
+        this.selTerm = this.currentTermData ? this.currentTermData : this.currentTermId;
         this.selWeek = 1;
         this.initSchoolSelect();
-        this.init();
       },
       async initTeachSetting(){
         let arr = [];
@@ -299,8 +300,17 @@
           let major = this.dataCollege[0].children ? this.dataCollege[0].children[0].id : '';
           let grade = this.dataCollege[0].children[0].children ? this.dataCollege[0].children[0].children[0].grade : '';
           let classId = this.dataCollege[0].children[0].children[0].children > 0 ? this.dataCollege[0].children[0].children[0].children[0].id : '';
-          this.searchSchoolData = [college, major, grade, classId];
+          this.searchSchoolData = [college, major, grade];
+          this.searchCollege = college;
+          this.searchMajor = major;
+          this.searchGrade = grade;
+          if (classId){
+            this.searchSchoolData[3] = classId;
+            this.searchClass = classId;
+          }
         }
+
+        this.init();
       },
       initCourse(){
         let arr = [];

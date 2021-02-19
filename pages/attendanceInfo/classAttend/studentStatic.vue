@@ -13,7 +13,7 @@
         <div class="layout-top-tab margin-top-5">
           <el-row>
             <el-col :span="18">
-              <my-year-term size="small" :show-default-week="true" :clearable-week="true" @changeYear="hangdleChange($event,1)" @changeTerm="hangdleChange($event,2)" @changeWeek="hangdleChange($event,3)"></my-year-term>
+              <my-year-term ref="yearRef" size="small" :show-default-week="true" :clearable-week="true" @changeYear="hangdleChange($event,1)" @changeTerm="hangdleChange($event,2)" @changeWeek="hangdleChange($event,3)"></my-year-term>
               <el-button size="small" type="warning"  icon="el-icon-download" @click="expandInfo($event)">{{$t("导出")}}</el-button>
             </el-col>
             <el-col :span="6" class="text-right">
@@ -257,8 +257,10 @@
     methods: {
       async initInfo(){
         await this.getSessionInfo();
-        this.selYear = this.currentYearId;
-        this.selTerm = this.currentTermId;
+        await this.initCurrentYearList();
+        await this.initCurrentTermList(this.currentYearData);
+        this.selYear = this.currentYearData ? this.currentYearData : this.currentYearId;
+        this.selTerm = this.currentTermData ? this.currentTermData : this.currentTermId;
         this.init();
       },
       init(){
@@ -425,24 +427,27 @@
         this.init();
       },
       hangdleChange(data, type){
+        console.log(data);
         switch (type) {
           case 1:
             this.selYear = data.year;
             this.selTerm = data.term;
             this.selWeek = data.week;
+            this.init();
             break;
           case 2:
             this.selYear = data.year;
             this.selTerm = data.term;
             this.selWeek = data.week;
+            this.init();
             break;
           case 3:
             this.selYear = data.year;
             this.selTerm = data.term;
             this.selWeek = data.week;
+            this.init();
             break;
         }
-        this.init();
       },
       expandInfo(){
         let url = "";

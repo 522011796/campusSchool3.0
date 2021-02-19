@@ -481,6 +481,7 @@ export const common = {
   teach_course_plan_delete: '/proxy/course/schedule/delete',//删除排课
   teach_course_plan_inport: '/proxy/zuul/course/schedule/multy/import',//排课导入
   teach_course_plan_inport_file: '/proxy/course/schedule/download',//排课导入模版
+  teach_course_teacher_info: '/proxy/course/course/arrange/list',//任课获取课程老师
 
 
   doomroom_import_file: '/proxy/building/dormitory/bed/student/download',//宿舍导入模版
