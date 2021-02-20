@@ -73,14 +73,14 @@
                 <div class="text-left">
                   <div v-if="scope.row.work_day_setting" v-for="(item, index) in JSON.parse(scope.row.work_day_setting)" :key="index">
                     <div>
-                      <span>
+                      <span v-if="JSON.parse(scope.row.work_day_setting)[index].weekSwitch == true">
                         {{weekNoText2Info(index)}}:{{JSON.parse(scope.row.work_day_setting)[index].startTime}}-{{JSON.parse(scope.row.work_day_setting)[index].endTime}}
                       </span>
                     </div>
                   </div>
                 </div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <span class="color-grand">{{scope.row.upper_time}}-{{scope.row.lower_time}}</span>
+                  <span class="color-grand" v-if="scope.row.upper_time">{{scope.row.upper_time}}-{{scope.row.lower_time}}</span>
                 </div>
               </el-popover>
 
@@ -88,14 +88,14 @@
                 <div class="text-left">
                   <div v-if="scope.row.work_day_setting2" v-for="(item, index) in JSON.parse(scope.row.work_day_setting2)" :key="index">
                     <div>
-                      <span>
+                      <span v-if="JSON.parse(scope.row.work_day_setting2)[index].weekSwitch == true">
                         {{weekNoText2Info(index)}}:{{JSON.parse(scope.row.work_day_setting2)[index].startTime}}-{{JSON.parse(scope.row.work_day_setting2)[index].endTime}}
                       </span>
                     </div>
                   </div>
                 </div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <span class="color-grand">{{scope.row.upper_time2}}-{{scope.row.lower_time2}}</span>
+                  <span class="color-grand" v-if="scope.row.upper_time2">{{scope.row.upper_time2}}-{{scope.row.lower_time2}}</span>
                 </div>
               </el-popover>
 
@@ -103,14 +103,14 @@
                 <div class="text-left">
                   <div v-if="scope.row.work_day_setting3" v-for="(item, index) in JSON.parse(scope.row.work_day_setting3)" :key="index">
                     <div>
-                      <span>
+                      <span v-if="JSON.parse(scope.row.work_day_setting3)[index].weekSwitch == true">
                         {{weekNoText2Info(index)}}:{{JSON.parse(scope.row.work_day_setting3)[index].startTime}}-{{JSON.parse(scope.row.work_day_setting3)[index].endTime}}
                       </span>
                     </div>
                   </div>
                 </div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <span class="color-grand">{{scope.row.upper_time3}}-{{scope.row.lower_time3}}</span>
+                  <span class="color-grand" v-if="scope.row.upper_time3">{{scope.row.upper_time3}}-{{scope.row.lower_time3}}</span>
                 </div>
               </el-popover>
             </template>
@@ -748,20 +748,19 @@
           partUserIds: [],
           auditUserIds: []
         };
-
         for (let i in weekSetting1){
           //this.form.workTimeWeek1[i-1] = {weekSwitch: true, startTime: weekSetting1[i].startTime, endTime: weekSetting1[i].endTime};
-          this.$set(this.form.workTimeWeek1, i-1, {weekSwitch: true, startTime: weekSetting1[i].startTime, endTime: weekSetting1[i].endTime});
+          this.$set(this.form.workTimeWeek1, i-1, {weekSwitch: weekSetting1[i].weekSwitch, startTime: weekSetting1[i].startTime, endTime: weekSetting1[i].endTime});
         }
 
         for (let i in weekSetting2){
           //this.form.workTimeWeek2[i-1] = {weekSwitch: true, startTime: weekSetting2[i].startTime, endTime: weekSetting2[i].endTime};
-          this.$set(this.form.workTimeWeek2, i-1, {weekSwitch: true, startTime: weekSetting2[i].startTime, endTime: weekSetting2[i].endTime});
+          this.$set(this.form.workTimeWeek2, i-1, {weekSwitch:  weekSetting2[i].weekSwitch, startTime: weekSetting2[i].startTime, endTime: weekSetting2[i].endTime});
         }
 
         for (let i in weekSetting3){
           //this.form.workTimeWeek3[i-1] = {weekSwitch: true, startTime: weekSetting3[i].startTime, endTime: weekSetting3[i].endTime};
-          this.$set(this.form.workTimeWeek3, i-1, {weekSwitch: true, startTime: weekSetting3[i].startTime, endTime: weekSetting3[i].endTime});
+          this.$set(this.form.workTimeWeek3, i-1, {weekSwitch:  weekSetting3[i].weekSwitch, startTime: weekSetting3[i].startTime, endTime: weekSetting3[i].endTime});
         }
 
         for (let i = 0; i < row.day_times; i++){
@@ -949,6 +948,10 @@
         let url = "";
         let _self = this;
         let errNum = 0;
+        let errTimeNum = 0;
+        let errWeekNum1 = 0;
+        let errWeekNum2 = 0;
+        let errWeekNum3 = 0;
         let regNum = /^[0-9]*$/;
         let userIds = [];
         let auditIds = [];
@@ -977,8 +980,12 @@
             };
 
             for (let i = 0; i < this.form.timeTimes.length; i++){
-              if (regNum.test(this.form.timeTimes[i].upBefore) == false || regNum.test(this.form.timeTimes[i].downAfter) == false){
-                errNum++;
+              if (this.form.workTimesSwitch == true){
+                if (this.form.timeTimes[i].upBefore == "" || regNum.test(this.form.timeTimes[i].upBefore) == false){
+                  errTimeNum++;
+                }else if (this.form.timeTimes[i].downAfter == "" || regNum.test(this.form.timeTimes[i].downAfter) == false){
+                  errTimeNum++;
+                }
               }
               if (i == 0){
                 params['upperTime'] = this.form.timeTimes[0].startTime;
@@ -1001,57 +1008,57 @@
             }
 
             for (let i = 0; i < this.form.workTimeWeek1.length; i++){
-              if (i == 0 && this.form.workTimeWeek1[i].weekSwitch == true){
+              if (i == 0/* && this.form.workTimeWeek1[i].weekSwitch == true*/){
                 weekDay1['one'] = this.form.workTimeWeek1[i];
-              }else if (i == 1 && this.form.workTimeWeek1[i].weekSwitch == true){
+              }else if (i == 1/* && this.form.workTimeWeek1[i].weekSwitch == true*/){
                 weekDay1['two'] = this.form.workTimeWeek1[i];
-              }else if (i == 2 && this.form.workTimeWeek1[i].weekSwitch == true){
+              }else if (i == 2/* && this.form.workTimeWeek1[i].weekSwitch == true*/){
                 weekDay1['three'] = this.form.workTimeWeek1[i];
-              }else if (i == 3 && this.form.workTimeWeek1[i].weekSwitch == true){
+              }else if (i == 3/* && this.form.workTimeWeek1[i].weekSwitch == true*/){
                 weekDay1['four'] = this.form.workTimeWeek1[i];
-              }else if (i == 4 && this.form.workTimeWeek1[i].weekSwitch == true){
+              }else if (i == 4/* && this.form.workTimeWeek1[i].weekSwitch == true*/){
                 weekDay1['five'] = this.form.workTimeWeek1[i];
-              }else if (i == 5 && this.form.workTimeWeek1[i].weekSwitch == true){
+              }else if (i == 5/* && this.form.workTimeWeek1[i].weekSwitch == true*/){
                 weekDay1['six'] = this.form.workTimeWeek1[i];
-              }else if (i == 6 && this.form.workTimeWeek1[i].weekSwitch == true){
+              }else if (i == 6/* && this.form.workTimeWeek1[i].weekSwitch == true*/){
                 weekDay1['seven'] = this.form.workTimeWeek1[i];
               }
             }
             params['workDaySetting'] = JSON.stringify(weekDay1);
 
             for (let i = 0; i < this.form.workTimeWeek2.length; i++){
-              if (i == 0 && this.form.workTimeWeek2[i].weekSwitch == true){
+              if (i == 0/* && this.form.workTimeWeek2[i].weekSwitch == true*/){
                 weekDay2['one'] = this.form.workTimeWeek2[i];
-              }else if (i == 1 && this.form.workTimeWeek2[i].weekSwitch == true){
+              }else if (i == 1/* && this.form.workTimeWeek2[i].weekSwitch == true*/){
                 weekDay2['two'] = this.form.workTimeWeek2[i];
-              }else if (i == 2 && this.form.workTimeWeek2[i].weekSwitch == true){
+              }else if (i == 2/* && this.form.workTimeWeek2[i].weekSwitch == true*/){
                 weekDay2['three'] = this.form.workTimeWeek2[i];
-              }else if (i == 3 && this.form.workTimeWeek2[i].weekSwitch == true){
+              }else if (i == 3/* && this.form.workTimeWeek2[i].weekSwitch == true*/){
                 weekDay2['four'] = this.form.workTimeWeek2[i];
-              }else if (i == 4 && this.form.workTimeWeek2[i].weekSwitch == true){
+              }else if (i == 4/* && this.form.workTimeWeek2[i].weekSwitch == true*/){
                 weekDay2['five'] = this.form.workTimeWeek2[i];
-              }else if (i == 5 && this.form.workTimeWeek2[i].weekSwitch == true){
+              }else if (i == 5/* && this.form.workTimeWeek2[i].weekSwitch == true*/){
                 weekDay2['six'] = this.form.workTimeWeek2[i];
-              }else if (i == 6 && this.form.workTimeWeek2[i].weekSwitch == true){
+              }else if (i == 6/* && this.form.workTimeWeek2[i].weekSwitch == true*/){
                 weekDay2['seven'] = this.form.workTimeWeek2[i];
               }
             }
             params['workDaySetting2'] = JSON.stringify(weekDay2);
 
             for (let i = 0; i < this.form.workTimeWeek3.length; i++){
-              if (i == 0 && this.form.workTimeWeek3[i].weekSwitch == true){
+              if (i == 0/* && this.form.workTimeWeek3[i].weekSwitch == true*/){
                 weekDay3['one'] = this.form.workTimeWeek3[i];
-              }else if (i == 1 && this.form.workTimeWeek3[i].weekSwitch == true){
+              }else if (i == 1/* && this.form.workTimeWeek3[i].weekSwitch == true*/){
                 weekDay3['two'] = this.form.workTimeWeek3[i];
-              }else if (i == 2 && this.form.workTimeWeek3[i].weekSwitch == true){
+              }else if (i == 2/* && this.form.workTimeWeek3[i].weekSwitch == true*/){
                 weekDay3['three'] = this.form.workTimeWeek3[i];
-              }else if (i == 3 && this.form.workTimeWeek3[i].weekSwitch == true){
+              }else if (i == 3/* && this.form.workTimeWeek3[i].weekSwitch == true*/){
                 weekDay3['four'] = this.form.workTimeWeek3[i];
-              }else if (i == 4 && this.form.workTimeWeek3[i].weekSwitch == true){
+              }else if (i == 4/* && this.form.workTimeWeek3[i].weekSwitch == true*/){
                 weekDay3['five'] = this.form.workTimeWeek3[i];
-              }else if (i == 5 && this.form.workTimeWeek3[i].weekSwitch == true){
+              }else if (i == 5/* && this.form.workTimeWeek3[i].weekSwitch == true*/){
                 weekDay3['six'] = this.form.workTimeWeek3[i];
-              }else if (i == 6 && this.form.workTimeWeek3[i].weekSwitch == true){
+              }else if (i == 6/* && this.form.workTimeWeek3[i].weekSwitch == true*/){
                 weekDay3['seven'] = this.form.workTimeWeek3[i];
               }
             }
@@ -1084,9 +1091,50 @@
               errNum++;
             }
 
+            if (errTimeNum > 0){
+              MessageWarning(this.$t("时间段不能为空且必须为整数，请检查"));
+              return;
+            }
+
             if (errNum > 0){
               MessageWarning(this.$t("内容有非整数的数据，请检查"));
               return;
+            }
+
+            if (this.form.workTimes == 1 || this.form.workTimes == 2 || this.form.workTimes == 3){
+              for (let i in weekDay1){
+                if (weekDay1[i].weekSwitch == true){
+                  errWeekNum1++;
+                }
+              }
+              if (errWeekNum1 == 0){
+                MessageWarning(this.$t("请选择第一次上下班周数"));
+                return;
+              }
+            }
+
+            if (this.form.workTimes == 2 || this.form.workTimes == 3){
+              for (let i in weekDay2){
+                if (weekDay2[i].weekSwitch == true){
+                  errWeekNum2++;
+                }
+              }
+              if (errWeekNum2 == 0){
+                MessageWarning(this.$t("请选择第二次上下班周数"));
+                return;
+              }
+            }
+
+            if (this.form.workTimes == 3){
+              for (let i in weekDay3){
+                if (weekDay3[i].weekSwitch == true){
+                  errWeekNum3++;
+                }
+              }
+              if (errWeekNum3 == 0){
+                MessageWarning(this.$t("请选择第三次上下班周数"));
+                return;
+              }
             }
 
             if (this.form.id != ""){
@@ -1126,20 +1174,28 @@
         }
       },
       handleChange(data, type){
+        let timeArr = [];
         if (type == 4){
           this.form.workTimesSwitch = data;
         }else if (type == 5){
           this.form.autoSwitch = data;
         }else {
           this.form.workTimes = type;
-          this.form.timeTimes = [];
+          let timeTimes = [].concat(this.form.timeTimes);
           for (let i = 0; i < type; i++){
-            this.form.timeTimes.push({
-              startTime: '00:00',
-              endTime: '00:00',
-              upBefore: '',
-              downAfter: ''
+            timeArr.push({
+              startTime: timeTimes[i] ? timeTimes[i].startTime : '00:00',
+              endTime: timeTimes[i] ? timeTimes[i].endTime : '00:00',
+              upBefore: timeTimes[i] ? timeTimes[i].upBefore : '',
+              downAfter: timeTimes[i] ? timeTimes[i].downAfter : ''
             });
+            this.form.timeTimes = timeArr;
+            /*this.form.timeTimes[i] = {
+              startTime: this.form.timeTimes[i].startTime ? this.form.timeTimes[i].startTime : '00:00',
+              endTime: this.form.timeTimes[i].endTime ? this.form.timeTimes[i].endTime : '00:00',
+              upBefore: this.form.timeTimes[i].upBefore ? this.form.timeTimes[i].upBefore : '00:00',
+              downAfter: this.form.timeTimes[i].downAfter ? this.form.timeTimes[i].downAfter : '00:00'
+            }*/
           }
         }
       },
