@@ -29,19 +29,19 @@
       <el-table-column property="teacher_name" align="center" label="姓名">
 
       </el-table-column>
-      <!--<el-table-column property="job_num" align="center" label="工号">
+      <el-table-column property="job_num" align="center" label="工号">
 
       </el-table-column>
       <el-table-column property="" align="center" label="部门">
         <template slot-scope="scope">
           <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-            <div class="text-center">{{scope.row.department_name ? scope.row.department_name : '&#45;&#45;'}}</div>
+            <div class="text-center">{{scope.row.depart_name ? scope.row.depart_name : '--'}}</div>
             <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              {{scope.row.department_name ? scope.row.department_name : '&#45;&#45;'}}
+              {{scope.row.depart_name ? scope.row.depart_name : '--'}}
             </div>
           </el-popover>
         </template>
-      </el-table-column>-->
+      </el-table-column>
     </el-table>
     <div class="text-right margin-top-10">
       <el-pagination
