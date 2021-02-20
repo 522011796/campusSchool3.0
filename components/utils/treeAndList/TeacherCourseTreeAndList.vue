@@ -7,6 +7,7 @@
     <el-table ref="commTableRef" :data="tableTeacherCommData"
               :max-height="maxHeight"
               size="mini"
+              :empty-text="emptyText"
               v-loading="commLoading">
       <el-table-column
         v-if="setType == 'check'"
@@ -89,6 +90,10 @@
       maxHeight: {
         default: '300',
         type: [String, Number]
+      },
+      emptyText: {
+        default: "暂无数据",
+        type: String
       }
     },
     computed: {
@@ -190,13 +195,13 @@
         this.commFlag = false;
         this.tableTeacherCommData = this.tableData;
         this.commTotalTotal= this.tableData.length;
-        this.commNum = 20;
+        this.commNum = 50;
         this.commPage = 1;
         this.commLoading = false;
       },
       _handleOpen(){
         this.commPage = 1;
-        this.commNum = 20;
+        this.commNum = 50;
         this.commSelUserArr = this.selArr;
         this._initTeacher();
       },
@@ -257,7 +262,7 @@
       },
       _handleResetChange(){
         this.value = '';
-        this.commNum = 20;
+        this.commNum = 50;
         this.commPage = 1;
         this.searchCommDeptData =  [];
         this.commSearchKey =  '';

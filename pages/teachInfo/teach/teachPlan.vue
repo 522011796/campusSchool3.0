@@ -291,9 +291,10 @@
                 placement="top"
                 width="700"
                 trigger="click"
-                @show="handleShowTeacher()">
+                @show="handleShowTeacher()"
+                @hide="handleResetChange()">
                 <div>
-                  <teacher-course-tree-and-list ref="popverPartRef" :sel-value="form.teacherId" :table-data="tableTeacherData" @change="handleUserSel"></teacher-course-tree-and-list>
+                  <teacher-course-tree-and-list ref="popverPartRef" :empty-text="$t('请选择课程后再选择老师')" :sel-value="form.teacherId" :table-data="tableTeacherData" @change="handleUserSel"></teacher-course-tree-and-list>
                 </div>
                 <el-button slot="reference" type="success" plain size="small">{{$t("添加")}}</el-button>
               </el-popover>
@@ -468,15 +469,17 @@
           this.searchSchoolData = [college, major, grade, classId];
         }
       },
-      initCourseTeacher(id){
+      initCourseTeacher(id,teacherId){
         let params = {
           offerIds: id,
         };
         this.$axios.get(common.teach_course_teacher_info, {params: params}).then(res => {
           if (res.data.data){
             this.tableTeacherData = res.data.data;
-            this.form.teacherId = res.data.data[0].teacher_id;
-            this.form.teacherName = res.data.data[0].teacher_name;
+            if (!teacherId){
+              this.form.teacherId = res.data.data[0].teacher_id;
+              this.form.teacherName = res.data.data[0].teacher_name;
+            }
           }
         });
       },
@@ -578,7 +581,7 @@
 
         this.initCourseList();
         if (row.offerId){
-          this.initCourseTeacher(row.offerId);
+          this.initCourseTeacher(row.offerId,row.teacherId);
         }
         this.modalVisible = true;
       },
@@ -871,6 +874,10 @@
       },
       handleShowTeacher(){
         this.$refs.popverPartRef._handleOpen();
+      },
+      handleResetChange(){
+        //this.$refs.popverPartRef._handleResetChange();
+        this.tableTeacherData = [];
       },
       handleChangeSelect(data, type){
         switch (type) {
