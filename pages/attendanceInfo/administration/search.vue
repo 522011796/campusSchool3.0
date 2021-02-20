@@ -700,6 +700,7 @@
       },
       nodeClick(data){
         this.searchDept = data;
+        this.page = 1;
         this.init();
       },
       sizeChange(event){

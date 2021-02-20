@@ -186,6 +186,7 @@
       },
       _handleCascaderChange(data){
         this.commSearchDept = data[data.length-1];
+        this.commPage = 1;
         this._initTeacher();
       },
       _handleSelectionSelect(event, row){
@@ -273,6 +274,7 @@
       },
       _handleSearch(data){
         this.commSearchKey = data;
+        this.commPage = 1;
         this._initTeacher();
       },
       _getSelectData(){

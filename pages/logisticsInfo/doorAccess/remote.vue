@@ -344,6 +344,7 @@
           this.searchFloor = data.floorNum;
           this.searchRoom = data.id;
         }
+        this.page = 1;
 
         this.init();
       },

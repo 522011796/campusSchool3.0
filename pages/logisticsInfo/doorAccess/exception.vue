@@ -270,7 +270,11 @@
         return row.id
       },
       unbindInfo(row){
-        this.deleteSetTitle = this.$t("确认需要解除该限制吗？");
+        if (row.status == 0){
+          this.deleteSetTitle = this.$t("确认需要解除该异常吗？");
+        }else if (row.status == 1){
+          this.deleteSetTitle = this.$t("确认需要解除该限制吗？");
+        }
         this.id =  row.id;
         this.subTitle = row.name;
         this.visibleConfim = true;

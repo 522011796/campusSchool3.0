@@ -729,6 +729,7 @@
           this.searchClass = data.id;
           this.searchMajor = data.major_id;
         }
+        this.page = 1;
         this.init();
       },
       copy(item){

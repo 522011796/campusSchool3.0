@@ -339,7 +339,7 @@
             let params = {};
             if (this.type == 'setType'){
               params['typeName'] = this.form.typeName;
-              params['freeSwich'] = this.form.freeSwich;
+              params['freeSwich'] = this.form.freeSwich == "" ? 0 : this.form.freeSwich;
               params['freeWeekNo1'] = this.form.freeWeekNo1;
               params['freeHour1'] = this.form.freeHour1;
               params['freeMinuts1'] = this.form.freeMinuts1;

@@ -1,8 +1,8 @@
 <template>
   <div ref="commTeacherList">
     <div class="layout-inline">
-      <my-cascader class="layout-item" ref="SelectorDept" size="small" width-style="160" :sel-value="searchCommDeptData" type="4" sub-type="" @change="_handleCascaderChange($event)"></my-cascader>
-      <my-input-button class="layout-item" size="small" :clearable="true" type="success" plain @click="_handleSearch"></my-input-button>
+      <!--<my-cascader class="layout-item" ref="SelectorDept" size="small" width-style="160" :sel-value="searchCommDeptData" type="4" sub-type="" @change="_handleCascaderChange($event)"></my-cascader>-->
+      <!--<my-input-button class="layout-item" size="small" :clearable="true" type="success" plain @click="_handleSearch"></my-input-button>-->
     </div>
     <el-table ref="commTableRef" :data="tableTeacherCommData"
               :max-height="maxHeight"
@@ -298,8 +298,16 @@
         this.commFlag = false;
       },
       _handleSearch(data){
+        let _self = this;
         this.commSearchKey = data;
-        this._initTeacher();
+        let arr = [];
+        //this._initTeacher();
+        return this.tableTeacherCommData.filter(function(value) {
+          if (value.teacher_name.indexOf(data.input) != -1){
+            arr.push(value);
+          }
+          _self.tableTeacherCommData = arr;
+        });
       },
       _getSelectData(){
         this.$emit("select", this.commSelUserArr);

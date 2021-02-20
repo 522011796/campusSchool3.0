@@ -657,6 +657,7 @@
           this.searchBuildId = data.buildId;
           this.searchFloorNum = data.floorNum;
         }
+        this.page = 1;
         this.init();
       },
       bindInfo(type, row){

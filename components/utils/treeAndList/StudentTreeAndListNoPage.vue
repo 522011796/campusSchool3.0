@@ -228,6 +228,7 @@
           this.commSearchGrade = data[2];
           this.commSearchClass = data[3];
         }
+        this.commPage = 1;
         this._initTeacher();
       },
       _handleSelectionSelect(event, row){
@@ -315,6 +316,7 @@
       },
       _handleSearch(data){
         this.commSearchKey = data;
+        this.commPage = 1;
         this._initTeacher();
       },
       _getSelectData(){

@@ -350,6 +350,7 @@
         }else if (data.unit == 4){
           this.searchClass = data.id;
         }
+        this.page = 1;
         this.init();
       },
       search(data){

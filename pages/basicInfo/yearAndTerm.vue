@@ -18,7 +18,7 @@
           :data="tableData"
           header-cell-class-name="custom-table-cell-bg"
           size="medium"
-          row-key="id"
+          row-key="onlyId"
           :max-height="tableHeight.height"
           style="width: 100%"
           @cell-click="cellClick"
@@ -347,7 +347,7 @@
         },
         tableData: [],
         maps:new Map(),
-        dataMaps: new Map()
+        dataMaps: new Map(),
       }
     },
     created() {
@@ -364,6 +364,7 @@
           if (res.data.data){
             for (let i = 0; i < res.data.data.list.length; i++){
               res.data.data.list[i]['hasChildren'] = true;
+              res.data.data.list[i]['onlyId'] = "year"+res.data.data.list[i].id+"";
             }
             this.tableData = res.data.data.list;
             this.total = res.data.data.totalCount;
@@ -381,13 +382,16 @@
         };
         this.$axios.get(common.term_list, {params: params, loading: false}).then(res => {
           if (res.data.data){
+            for (let i = 0; i < res.data.data.list.length; i++){
+              res.data.data.list[i]['onlyId'] = "term"+res.data.data.list[i].id+"";
+            }
             resolve(res.data.data.list);
           }
         });
       },
       load(tree, treeNode, resolve) {
-        const pid = tree.id;
-        this.g_row = tree.id;
+        const pid = tree.onlyId;
+        this.g_row = tree.onlyId;
         this.maps.set(pid,{tree,treeNode,resolve});
         this.initTerm(tree.id, resolve);
       },
@@ -421,13 +425,10 @@
           num: 10000
         };
         this.$axios.get(common.get_term, {params: params}).then(res => {
-          console.log(row.current);
-          console.log(JSON.stringify(res.data.data) == "{}");
           if (!row.current && JSON.stringify(res.data.data) == "{}"){
             MessageWarning(this.$t("没有教学设置"));
             return;
           }else if (row.current && JSON.stringify(res.data.data) == "{}"){
-            console.log(1);
             let arr = [];
             this.formSetTerm = {
               id: '',
@@ -482,7 +483,6 @@
             this.$set(this.formSetTerm,'courseTimeArr', arr);
             this.drawerVisible = true;
           }else {
-            console.log(2);
             if (res.data.code == 200){
               let data = res.data.data;
               this.formSetTerm = {
@@ -557,7 +557,6 @@
                 this.$set(data.period[i],'editStartTime', false);
               }
               //this.formSetTerm['courseTimeArr'] = data.period;
-              console.log(data);
               this.formSetTerm.courseTimeBakArr = [].concat(data.period);
               this.$set(this.formSetTerm,'courseTimeArr', data.period);
             }
@@ -908,12 +907,12 @@
       },
       updateTableData(rowId){
         for (let i = 0; i < this.tableData.length; i++ ){
-          if (rowId == this.tableData[i].id){
+          if (rowId == this.tableData[i].onlyId){
             this.$refs.refTable.toggleRowExpansion(this.tableData[i], true);
           }else {
             this.$refs.refTable.toggleRowExpansion(this.tableData[i], false);
-            this.$refs.refTable['store'].states.treeData[this.tableData[i].id].loaded = false;
-            this.$refs.refTable['store'].states.treeData[this.tableData[i].id].expanded = false;
+            this.$refs.refTable['store'].states.treeData[this.tableData[i].onlyId].loaded = false;
+            this.$refs.refTable['store'].states.treeData[this.tableData[i].onlyId].expanded = false;
           }
         }
       },
@@ -969,7 +968,6 @@
         return setSelectOptions(val);
       },
       handeChangeSelect(data, type){
-        console.log(this.formSetTerm.courseTimeBakArr);
         if (type == 1){
           this.formSetTerm.weekTotal = data;
         }else if (type == 2){

@@ -447,6 +447,7 @@
       nodeClick(data){
         this.searchDept = "";
         this.searchDept = data.value;
+        this.page = 1;
         this.init();
       },
       nodeDormClick(data){

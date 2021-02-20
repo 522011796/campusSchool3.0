@@ -239,6 +239,7 @@ export default {
         this.searchBuildId = data.buildId;
         this.searchFloorNum = data.floorNum;
       }
+      this.page = 1;
       this.init();
     },
     search(){

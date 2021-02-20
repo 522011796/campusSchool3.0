@@ -439,6 +439,7 @@
             this.searchDorm = data.id;
           }
         }
+        this.page = 1;
         this.init();
       },
       sizeChange(event){

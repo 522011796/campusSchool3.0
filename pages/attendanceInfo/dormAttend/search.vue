@@ -230,6 +230,7 @@
           this.searchBuild = data.buildId;
           this.searchFloor = data.id;
         }
+        this.page = 1;
         this.init();
       },
       handleTime(data){

@@ -400,6 +400,7 @@ export default {
         this.searchMajorId = data.major_id;
         this.searchGrade = data.grade;
       }
+      this.page = 1;
       this.init();
     },
     sizeChange(event){

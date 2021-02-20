@@ -161,6 +161,7 @@ export default {
     nodeClick(data){
       this.collegeData = data;
       this.form.collegeId = data.id;
+      this.page = 1;
       this.init(data);
     },
     addInfo(){

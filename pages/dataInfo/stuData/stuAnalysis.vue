@@ -928,6 +928,7 @@
           this.searchClass = data.id;
         }
         this.searchTopLabel = data.label;
+        this.page = 1;
         this.init();
       },
       nodeDormClick(data){

@@ -349,6 +349,7 @@ export default {
     },
     nodeClick(data){
       this.searchDept = data.department_path;
+      this.page = 1;
       this.init();
     },
     search(data){
