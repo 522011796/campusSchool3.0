@@ -12,7 +12,10 @@
       <div slot="right">
         <div class="layout-top-tab margin-top-5">
           <el-row>
-            <el-col :span="24" class="text-right">
+            <el-col :span="4">
+              <el-button size="small" type="warning"  icon="el-icon-download" @click="expandInfo()">{{$t("导出")}}</el-button>
+            </el-col>
+            <el-col :span="20" class="text-right">
               <i class="fa fa-file color-warning" @click="detailInfo"></i>
               <my-date-picker :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChange" style="position: relative; top: 1px;"></my-date-picker>
               <my-course-select size="small" :clearable="true" :sel-value="searchCourseId" @change="handleCourseChange"></my-course-select>
@@ -164,7 +167,7 @@
       </div>
     </layout-lr>
 
-    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerVisible" size="650px" :title="$t('开门记录')" @right-close="cancelDrawDialog">
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerVisible" size="650px" :title="$t('人工修改记录')" @right-close="cancelDrawDialog">
       <div slot="content" v-loading="showDetailLoading">
         <span tabindex="1"></span>
         <div>
@@ -495,6 +498,29 @@
       currentStudentPage(event){
         this.pageStudent = event;
         this.initRecord();
+      },
+      expandInfo(){
+        let url = common.class_attend_info_export;
+        let params = {
+          page: this.page,
+          num: this.num,
+          collegeId: this.searchCollege,
+          majorId: this.searchMajor,
+          grade: this.searchGrade,
+          classId: this.searchClass,
+          keyWord: this.searchKey,
+          beginTime: this.searchDate && this.searchDate.length > 0 ? this.searchDate[0] : '',
+          endTime: this.searchDate && this.searchDate.length > 0 ? this.searchDate[1] : '',
+          signStatus: this.searchType == -1 ? "" : this.searchType,
+          section: this.searchSection,
+          userType: 5,
+          realNameAsc: false,
+          busiTimeAsc: false,
+          courseId: this.searchCourseId,
+          realName: this.searchKey
+        };
+        params = this.$qs.stringify(params);
+        window.open(url+"?"+params, "_self");
       }
     }
   }

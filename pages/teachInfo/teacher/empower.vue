@@ -133,7 +133,8 @@
                       v-model="timerVisible"
                       placement="right"
                       width="500"
-                      trigger="click">
+                      trigger="click"
+                      @hide="hideCardSet">
                       <div style="position: relative">
                         <div class="popover-mask" v-if="maskShow">
                           <div class="text-center margin-top-30">
@@ -142,7 +143,10 @@
                           <div class="text-center color-muted margin-top-10" style="font-weight: bold">
                             <span>{{$t("请将IC卡/身份证放在刷卡区域")}}</span>
                           </div>
-                          <div class="text-center color-muted margin-top-20">
+                          <div class="text-center color-muted margin-top-10">
+                            <span class="color-danger">{{errorCardTips}}</span>
+                          </div>
+                          <div class="text-center color-muted margin-top-10">
                             <a href="javascript:;" class="color-warning" @click="closeKeyModal">{{$t("手动关闭")}}</a>
                           </div>
                         </div>
@@ -335,6 +339,7 @@
         keySign: '',
         loopTimerCount: 60,
         selDormTips: '',
+        errorCardTips: '',
         form: {
           status: '',
           attnedType: '',
@@ -610,6 +615,7 @@
         this.loopTimerCount = 60;
         this.keyDeviceSn = "";
         this.maskShow = false;
+        this.errorCardTips = "";
       },
       photoChange(){
         if (this.photoDeviceSn == ""){
@@ -698,9 +704,10 @@
             clearTimeout(this.keyTimer);
             this.loopTimerCount = 60;
             this.keyDeviceSn = "";
-            this.maskShow = false;
-            this.timerVisible = false;
-            MessageError(res.data.desc);
+            this.maskShow = true;
+            this.timerVisible = true;
+            //MessageError(res.data.desc);
+            this.errorCardTips = res.data.desc;
           }
         });
       },
@@ -725,6 +732,11 @@
         this.page = 1;
         this.aiSyncStatus = type.value;
         this.init();
+      },
+      hideCardSet(){
+        this.maskShow = false;
+        this.timerVisible = false;
+        this.errorCardTips = "";
       }
     }
   }

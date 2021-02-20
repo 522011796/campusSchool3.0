@@ -57,7 +57,7 @@
           header-cell-class-name="custom-table-cell-bg"
           size="medium"
           row-key="id"
-          :max-height="tableHeight4.height"
+          :max-height="tableHeight7.height"
           style="width: 100%">
           <el-table-column
             align="center"

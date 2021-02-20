@@ -57,7 +57,7 @@
           header-cell-class-name="custom-table-cell-bg"
           size="medium"
           row-key="id"
-          :max-height="tableHeight4.height"
+          :max-height="tableHeight7.height"
           style="width: 100%">
           <el-table-column
             align="center"
@@ -249,7 +249,7 @@
             for (let i = 0; i < res.data.data.length; i++ ){
               arr.push({
                 label: res.data.data[i].name,
-                value: res.data.data[i].id + "-" + res.data.data[i].college_no,
+                value: res.data.data[i].id + "-" + res.data.data[i].college_no + "-" + "1",
                 type: 2
               });
             }
@@ -259,7 +259,7 @@
                 for (let i = 0; i < res.data.data.length; i++ ){
                   arr.push({
                     label: res.data.data[i].buildingName,
-                    value: res.data.data[i].id + "-" + res.data.data[i].buildingNo,
+                    value: res.data.data[i].id + "-" + res.data.data[i].buildingNo + "-" + "2",
                     type: 1
                   });
                 }
@@ -305,9 +305,9 @@
           teacherList: row.user_ids ? row.user_ids.split(",") : []
         };
         if (row.scope == 1){
-          this.formPer['typeId'] = row.build_id+"-"+row.build_no;
+          this.formPer['typeId'] = row.build_id+"-"+row.build_no+"-"+"2";
         }else if (row.scope == 2){
-          this.formPer['typeId'] = row.college_id+"-"+row.college_no;
+          this.formPer['typeId'] = row.college_id+"-"+row.college_no+"-"+"1";
         }else if (row.scope == 3){
           this.formPer['typeId'] = '-1';
         }
@@ -463,10 +463,10 @@
         }
       },
       handleSelect(data, type){
-        let dataJson = data.split("-");
+        let dataJson = data;
         for (let i = 0; i < this.tableCBData.length; i++){
-          let tableCBJson = this.tableCBData[i].value.split("-");
-          if (tableCBJson[0] == dataJson[0]){
+          let tableCBJson = this.tableCBData[i].value;
+          if (tableCBJson == dataJson){
             this.formPer.scope = this.tableCBData[i].type;
           }
         }
