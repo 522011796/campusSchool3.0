@@ -496,5 +496,7 @@ export const common = {
   role_set_employee_info: '/proxy/user/school/add/userRole',//角色管理--设置成员
 
   class_attend_info_export: '/proxy/course/rollcallsta/user/rollCall/exportweb',//课堂考勤-考勤查询--导出
+  reply_delete: '/proxy/user/message/comment/del',//通知公告删除回复
+  reply_add: '/proxy/user/message/comment/add',//通知公告回复
 
 };

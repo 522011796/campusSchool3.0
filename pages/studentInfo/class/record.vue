@@ -110,15 +110,18 @@
             <template slot-scope="scope">
               <span v-if="scope.row.checkStatus" class="color-success">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center name-wrapper moon-content-text-ellipsis-class">
+                  <div class="text-left name-wrapper moon-content-text-ellipsis-class">
                     <span v-if="scope.row.permUserList <= 0">
                       --
                     </span>
                     <div v-else v-for="(item,index) in scope.row.permUserList">
                       <span>{{item.realName}}</span>
                       <span>
-                        <label v-if="item.checkStatus == false" class="color-danger">{{$t("未检查")}}</label>
-                        <label v-if="item.checkStatus == true" class="color-success">{{$t("已检查")}}</label>
+                        <label v-if="!item.finishStatus || item.finishStatus == false" class="color-danger">{{$t("未检查")}}</label>
+                        <label v-if="item.finishStatus == true" class="color-success">
+                          {{$t("已检查")}}
+                          <label class="margin-left-5">{{$moment(item.finishTime).format("YYYY-MM-DD HH:mm")}}</label>
+                        </label>
                       </span>
                     </div>
                   </div>
@@ -136,8 +139,11 @@
                     <div v-else v-for="(item,index) in scope.row.permUserList">
                       <span>{{item.realName}}</span>
                       <span>
-                        <label v-if="item.checkStatus == false" class="color-danger">{{$t("未检查")}}</label>
-                        <label v-if="item.checkStatus == true" class="color-success">{{$t("已检查")}}</label>
+                        <label v-if="!item.finishStatus || item.finishStatus == false" class="color-danger">{{$t("未检查")}}</label>
+                        <label v-if="item.finishStatus == true" class="color-success">
+                          {{$t("已检查")}}
+                          <label class="margin-left-5">{{$moment(item.finishTime).format("YYYY-MM-DD HH:mm")}}</label>
+                        </label>
                       </span>
                     </div>
                   </div>

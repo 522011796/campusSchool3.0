@@ -128,11 +128,59 @@
           <ul>
             <li v-for="(item, index) in noticeContentDetailData" :key="index">
               <div>
-                <i class="fa fa-user-circle font-size-12 margin-right-5"></i>
-                <span class="color-muted font-size-12">{{item.com_real_name}}</span>
-              </div>
-              <div class="color-muted margin-top-5">
-                {{decodeUTF8Info(item.comment)}}
+                <div v-if="item.type == 2">
+                  <i class="fa fa-user-circle font-size-12 margin-right-5"></i>
+                  <span class="color-muted font-size-12">{{item.com_real_name}}</span>
+                  <span class="color-disabeld font-size-12">{{$t("回复")}}</span>
+                  <span class="color-muted font-size-12">{{item.reply_real_name}}</span>
+
+                  <el-popover
+                    v-if="item.com_user_id != loginUserId"
+                    placement="top"
+                    width="300"
+                    @hide="hideReplyModal"
+                    v-model="item.replyModal">
+                    <div>
+                      <el-input type="textarea"
+                                :rows="2"
+                                placeholder="请输入内容"
+                                v-model="replyComment">
+                      </el-input>
+                    </div>
+                    <div style="text-align: right; margin-top: 10px" class="margin-top-10">
+                      <el-button type="primary" size="mini" :loading="dialogLoading" @click="replyContent(item, index)">{{$t("确定")}}</el-button>
+                    </div>
+                    <i class="fa fa-commenting-o" slot="reference"></i>
+                  </el-popover>
+                  <i class="fa fa-trash" @click="deleteReply(item, index)"></i>
+                </div>
+                <div v-else>
+                  <i class="fa fa-user-circle font-size-12 margin-right-5"></i>
+                  <span class="color-muted font-size-12">{{item.com_real_name}}</span>
+                  <el-popover
+                    v-if="item.com_user_id != loginUserId"
+                    placement="top"
+                    width="300"
+                    @hide="hideReplyModal"
+                    v-model="item.replyModal">
+                    <div>
+                      <el-input type="textarea"
+                                :rows="2"
+                                placeholder="请输入内容"
+                                v-model="replyComment">
+
+                      </el-input>
+                    </div>
+                    <div style="text-align: right; margin-top: 10px" class="margin-top-10">
+                      <el-button type="primary" size="mini" :loading="dialogLoading" @click="replyContent(item, index)">{{$t("确定")}}</el-button>
+                    </div>
+                    <i class="fa fa-commenting-o" slot="reference"></i>
+                  </el-popover>
+                  <i class="fa fa-trash" @click="deleteReply(item, index)"></i>
+                </div>
+                <div class="color-muted margin-top-5">
+                  {{decodeUTF8Info(item.comment)}}
+                </div>
               </div>
               <div class="line-height"></div>
             </li>
@@ -142,6 +190,7 @@
     </drawer-layout-right>
 
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" content="确认需要删除该信息？" :detail="subTitle" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
+    <my-normal-dialog :visible.sync="visibleReplyConfim" :loading="dialogLoading" title="提示" :content="tips" @ok-click="handleOkReplyChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
 
   </div>
 </template>
@@ -171,6 +220,7 @@
         loading: false,
         drawerLoading: false,
         drawerViewVisible: false,
+        visibleReplyConfim: false,
         subTitle: '',
         noticeContentDetail: '',
         noticeContentDetailData: [],
@@ -179,6 +229,11 @@
         uploadProcess: '',
         g_superId: '',
         tableData: [],
+        replyId: '',
+        replyIndex: '',
+        tips: '',
+        replyComment: '',
+        msgRowData: {},
         form: {
           id: '',
           title: '',
@@ -261,6 +316,8 @@
           type: 0,
           thumnbnail: ''
         };
+        this.replyComment = '';
+        this.msgRowData = {};
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
         }
@@ -329,6 +386,7 @@
       },
       handleCancelChange(data) {
         this.visibleConfim = false;
+        this.visibleReplyConfim = false;
       },
       search(event){
 
@@ -371,13 +429,81 @@
           userId: this.loginUserId
         };
 
+        this.noticeContentDetailData = [];
         this.$axios.get(url, {params: params}).then(res => {
-          if (res.data.data){
+          if (res.data.data && res.data.data.list.length > 0){
+            for (let i = 0; i < res.data.data.list.length; i++){
+              res.data.data.list[i]['replyModal'] = false;
+              res.data.data.list[i]['replyOtherModal'] = false;
+            }
             this.noticeContentDetailData = res.data.data.list;
           }
         });
+        this.msgRowData = row;
         this.initDetail(row);
         this.drawerViewVisible = true;
+      },
+      deleteReply(data,index){
+        this.tips = "确认需要删除该回复吗？";
+        this.replyId = data.id;
+        this.replyIndex= index;
+        this.visibleReplyConfim = true;
+      },
+      handleOkReplyChange(data) {
+        this.dialogLoading = true;
+        let url = common.reply_delete;
+        let params = {
+          commentId: this.replyId
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(url, params).then(res => {
+          if (res.data.code == 200){
+            //this.noticeContentDetailData.splice(this.replyIndex,1);
+            this.detailMsg(this.msgRowData);
+            this.init();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+          this.visibleReplyConfim = false;
+          this.dialogLoading = false;
+        });
+      },
+      replyContent(data, index){
+        this.dialogLoading = true;
+        let url = common.reply_add;
+        let params = {
+          comment: this.replyComment,
+          msgId: data.msg_id,
+          type: 2,
+          commentId: data.id,
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(url, params).then(res => {
+          if (res.data.code == 200){
+            this.detailMsg(this.msgRowData);
+            this.init();
+            data.replyModal = false;
+            data.replyOtherModal = false;
+            this.$set(data, 'replyModal', false);
+            this.replyComment = "";
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+          this.dialogLoading = false;
+        });
+      },
+      hideReplyModal(){
+        this.replyComment = "";
+      },
+      replyOhterModalOpr(item, index){
+        this.$set(this.noticeContentDetailData[index], 'replyModal', true);
+        this.$set(item, 'replyModal', true);
+      },
+      replyModalOpr(item, index){
+        this.$set(this.noticeContentDetailData[index], 'replyModal', true);
+        this.$set(item, 'replyModal', true);
       }
     }
   }

@@ -499,7 +499,7 @@
               res.data.data[i]['doorNoSet'] = [];
             }
             this.tableDeviceData = res.data.data;
-            this.addTitle =  this.$t("添加设备") + "(" + this.$t("已发现台") + this.tableDeviceData.length + this.$t("台") + "," + this.$t("已选择 0 台") + ")" ;
+            this.addTitle =  this.$t("添加设备") + "(" + this.$t("已发现") + this.tableDeviceData.length + this.$t("台") + "," + this.$t("已选择 0 台") + ")" ;
           }
           this.deviceLoading = false;
         });

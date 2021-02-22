@@ -58,7 +58,16 @@
                   </div>
                   <div>
                     <span class="color-disabeld">{{$t("设备位置")}}</span>
-                    <span>{{item.location_name}}</span>
+                    <span style="display: inline-block; max-width: 150px;position: relative; top: 5px">
+                      <el-popover trigger="hover" placement="top" popper-class="custom-table-popover" width="400">
+                        <div class="text-left">
+                          {{item.location_name}}
+                        </div>
+                        <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                          {{item.location_name}}
+                        </div>
+                      </el-popover>
+                    </span>
                   </div>
                   <div>
                     <span class="color-disabeld">{{$t("授权人数")}}</span>

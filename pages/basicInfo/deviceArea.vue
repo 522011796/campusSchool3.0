@@ -21,7 +21,7 @@
               <el-button :disabled="buildMutiList.length == 0" size="small" type="primary"  icon="el-icon-plus" @click="bindInfo('muti')">{{$t("批量绑定")}}</el-button>
             </el-col>
             <el-col :span="12" class="text-right">
-              <my-input-button size="small" :clearable="true" type="success" plain @click="search"></my-input-button>
+              <my-input-button size="small" :placeholder="placeholderTips" :clearable="true" type="success" plain @click="search"></my-input-button>
             </el-col>
           </el-row>
         </div>
@@ -256,7 +256,7 @@
             :max-height="tableHeight2.height"
             style="width: 100%"
             :row-key="getRowDormKeys"
-            @selection-change="handleSelectionChange">
+            @selection-change="handleSelectionDormChange">
             <el-table-column
               :reserve-selection="true"
               type="selection"
@@ -577,6 +577,7 @@
         drawerVisible: false,
         visibleConfim: false,
         dialogLoading: false,
+        placeholderTips: 'IP/设备名称/教室编号',
         subDetail: '',
         searchBuildId: '',
         searchFloorNum: '',
@@ -592,6 +593,7 @@
         deviceList: [],
         buildList: [],
         buildMutiList: [],
+        buildDormMutiList: [],
         setType: ''
       }
     },
@@ -618,8 +620,14 @@
         this.$axios.get(url, {params: params}).then(res => {
           if (res.data.data){
             if (this.showType == 1){
+              for (let i = 0; i < res.data.data.list.length; i++){
+                res.data.data.list[i]['onlyId'] = res.data.data.list[i].id+ "-" +res.data.data.list[i].floor_num;
+              }
               this.tableData = res.data.data.list;
             }else if(this.showType == 2){
+              for (let i = 0; i < res.data.data.list.length; i++){
+                res.data.data.list[i]['onlyId'] = res.data.data.list[i].build_id+ "-" +res.data.data.list[i].floor_num;
+              }
               this.tableDormData = res.data.data.list;
             }
             this.total = res.data.data.totalCount;
@@ -820,12 +828,15 @@
         this.deviceList = data;
       },
       getRowKeys(row) {
-        return row.id + row.floor_num;
+        return row.onlyId;
       },
       getRowDormKeys(row){
-        return row.build_id + row.floor_num;
+        return row.onlyId;
       },
       handleSelectionChange(data){
+        this.buildMutiList = data;
+      },
+      handleSelectionDormChange(data){
         this.buildMutiList = data;
       },
       selBuild(type){
@@ -833,9 +844,11 @@
         if (type == 1){
           this.mainType = "3";
           this.mainSubType = "2";
+          this.placeholderTips = "IP/设备名称/教室编号";
         }else if (type == 2){
           this.mainType = "2";
           this.mainSubType = "1";
+          this.placeholderTips = "IP/设备名称";
         }
         if (this.$refs.tableMainRef){
           this.$refs.tableMainRef.clearSelection();
@@ -844,6 +857,7 @@
           this.$refs.tableMainDormRef.clearSelection();
         }
         this.buildMutiList = [];
+        this.page = 1;
         this.init();
       }
     }

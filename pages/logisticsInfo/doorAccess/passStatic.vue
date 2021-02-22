@@ -410,7 +410,8 @@
                     <i class="fa fa-refresh color-grand" style="font-size: 15px"></i>
                   </div>
                   <div v-if="scope.row.photo_status != 0">
-                    <img :src="scope.row.photourl" style="width: 30px; height: 30px; border-radius: 30px" />
+                    <!--<img :src="scope.row.photourl" style="width: 30px; height: 30px; border-radius: 30px" />-->
+                    <my-head-img :head-img="scope.row.photourl" style="display: inline-block"></my-head-img>
                   </div>
                 </div>
                 <div v-if="scope.row.rec_mode != 1">
@@ -455,6 +456,7 @@
   import DrawerRight from "../../../components/utils/dialog/DrawerRight";
   import MySearchOfDate from "../../../components/search/MySearchOfDate";
   import DrawerLayoutRight from "../../../components/utils/dialog/DrawerLayoutRight";
+  import MyHeadImg from "../../../components/utils/common/MyHeadImg";
   import {
     clearData, deviceType,
     dormStatus, MessageError, MessageSuccess, MessageWarning
@@ -464,7 +466,7 @@
     mixins: [mixins],
     components: {
       LineChart,
-      LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,MySearchOfDate,DrawerLayoutRight},
+      LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,MySearchOfDate,DrawerLayoutRight,MyHeadImg},
     data(){
       return {
         pageStudent: 1,
