@@ -195,7 +195,7 @@
     created() {
       this.init();
       if (process.client){
-        this.screenUrl = window.location.protocol + "//" + window.location.hostname + ":" + location.port;
+        this.screenUrl = window.location.protocol + "//" + window.location.hostname + ":" + 2000;
       }
     },
     methods: {

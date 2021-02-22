@@ -247,7 +247,7 @@
           searchKey: this.searchKey,
           beginTime: this.searchDate && this.searchDate.length > 0 ? this.searchDate[0] : '',
           endTime: this.searchDate && this.searchDate.length > 0 ? this.searchDate[1] : '',
-          sceneType: this.showType,
+          sceneType: 1,
           type: this.searchDeviceType
         };
         if (this.showType == 1){

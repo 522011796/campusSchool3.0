@@ -874,6 +874,9 @@
           params['timeUnit'] = 2;
         }else if (this.searchTimeData.timeUnit == 3){
           params['queryDate'] = this.searchTimeData.value+"-01";
+          let month = this.searchTimeData.value;
+          params['year'] = month.split("-")[0];
+          params['month'] = month.split("-")[1];
           params['timeUnit'] = 4;
         }else if (this.searchTimeData.timeUnit == 5){
           params['timeUnit'] = 1;
