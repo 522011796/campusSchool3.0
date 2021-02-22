@@ -549,6 +549,9 @@
           params['classId'] = this.searchClass;
         }else if (this.searchUserType == 2){
           userType = 4;
+          params['buildId'] = this.searchBuild;
+          params['floorNum'] = this.searchFloor;
+          params['roomId'] = this.searchRoom;
           params['userType'] = userType;
           params['departmentPath'] = this.searchDept;
         }
@@ -698,6 +701,9 @@
           params['classId'] = this.searchClass;
         }else if (this.searchUserType == 2){
           userType = 4;
+          params['buildId'] = this.searchBuild;
+          params['floorNum'] = this.searchFloor;
+          params['roomId'] = this.searchRoom;
           params['userType'] = userType;
           params['departmentPath'] = this.searchDept;
         }
@@ -767,6 +773,9 @@
           params['classId'] = this.searchClass;
         }else if (this.searchUserType == 2){
           userType = 4;
+          params['buildId'] = this.searchBuild;
+          params['floorNum'] = this.searchFloor;
+          params['roomId'] = this.searchRoom;
           params['userType'] = userType;
           params['departmentPath'] = this.searchDept;
         }

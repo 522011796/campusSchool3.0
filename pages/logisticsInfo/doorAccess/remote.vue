@@ -58,7 +58,7 @@
                   </div>
                   <div>
                     <span class="color-disabeld">{{$t("设备位置")}}</span>
-                    <span style="display: inline-block; max-width: 150px;position: relative; top: 5px">
+                    <span style="display: inline-block; max-width: 115px;position: relative; top: 5px">
                       <el-popover trigger="hover" placement="top" popper-class="custom-table-popover" width="400">
                         <div class="text-left">
                           {{item.location_name}}
