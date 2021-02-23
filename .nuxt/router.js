@@ -146,6 +146,7 @@ const _42220ccd = () => interopDefault(import('../pages/teachInfo/teach/teachPla
 const _0bf58ba9 = () => interopDefault(import('../pages/teachInfo/teacher/account.vue' /* webpackChunkName: "pages/teachInfo/teacher/account" */))
 const _2cbe2d48 = () => interopDefault(import('../pages/teachInfo/teacher/auth.vue' /* webpackChunkName: "pages/teachInfo/teacher/auth" */))
 const _6795e24e = () => interopDefault(import('../pages/teachInfo/teacher/empower.vue' /* webpackChunkName: "pages/teachInfo/teacher/empower" */))
+const _73c17acd = () => interopDefault(import('../pages/teachInfo/teacher/leaveSetting.vue' /* webpackChunkName: "pages/teachInfo/teacher/leaveSetting" */))
 const _fbe53fe8 = () => interopDefault(import('../pages/teachInfo/teacher/other.vue' /* webpackChunkName: "pages/teachInfo/teacher/other" */))
 const _94ec11ac = () => interopDefault(import('../pages/teachInfo/teacher/stranger.vue' /* webpackChunkName: "pages/teachInfo/teacher/stranger" */))
 const _41b58047 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
@@ -738,6 +739,10 @@ export const routerOptions = {
     path: "/teachInfo/teacher/empower",
     component: _6795e24e,
     name: "teachInfo-teacher-empower"
+  }, {
+    path: "/teachInfo/teacher/leaveSetting",
+    component: _73c17acd,
+    name: "teachInfo-teacher-leaveSetting"
   }, {
     path: "/teachInfo/teacher/other",
     component: _fbe53fe8,

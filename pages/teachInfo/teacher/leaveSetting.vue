@@ -50,6 +50,7 @@
           <el-row>
             <el-col :span="6">
               <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo('setType')">{{$t("类型管理")}}</el-button>
+              <el-button size="small" type="warning"  icon="el-icon-time" @click="timeInfo()">{{$t("课时规划")}}</el-button>
             </el-col>
             <el-col :span="18" class="text-right">
 
@@ -67,38 +68,15 @@
           style="width: 100%">
           <el-table-column
             align="center"
+            :label="$t('序号')">
+            <template slot-scope="scope">
+              {{scope.$index+1}}
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
             prop="typeName"
             :label="$t('类型')">
-          </el-table-column>
-          <el-table-column
-            align="center"
-            prop="socre_name_sub"
-            :label="$t('公休日')">
-
-            <template slot-scope="scope">
-              <span class="color-danger" v-if="scope.row.freeSwich == 0">{{$t("关")}}</span>
-              <span class="color-success" v-if="scope.row.freeSwich == 1">{{$t("开")}}</span>
-            </template>
-          </el-table-column>
-          <el-table-column
-            align="center"
-            prop="socre_name"
-            :label="$t('时间范围')">
-
-            <template slot-scope="scope">
-              <div v-if="scope.row.freeSwich == 0">--</div>
-              <div v-if="scope.row.freeSwich == 1">
-                <span>
-                  <label>{{weekNoInfo(scope.row.freeWeekNo1)}}</label>
-                  <label>{{scope.row.freeHour1}}:{{scope.row.freeMinuts1}}</label>
-                </span>
-                -
-                <span>
-                  <label>{{weekNoInfo(scope.row.freeWeekNo2)}}</label>
-                  <label>{{scope.row.freeHour2}}:{{scope.row.freeMinuts2}}</label>
-                </span>
-              </div>
-            </template>
           </el-table-column>
           <el-table-column
             align="center"
@@ -106,7 +84,6 @@
             label="操作"
             width="120">
             <template slot-scope="scope">
-              <i class="fa fa-cog margin-right-5 color-warning" @click="editInfo(scope.row, 'setTime')"></i>
               <i class="fa fa-edit margin-right-5 color-grand" @click="editInfo(scope.row, 'setType')"></i>
               <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
             </template>
@@ -170,6 +147,54 @@
       </div>
     </dialog-normal>
 
+    <dialog-normal :visible="modalTimeVisible" :title="$t('课时规划')" @close="closeDialog" @right-close="cancelDialog">
+      <div class="margin-top-10">
+        <el-form :model="formConf" :rules="rulesConf" ref="formConf" label-width="100px">
+          <el-form-item :label="$t('小时规则:')">
+            <div>
+              <span>{{$t("请假 <= ")}}</span>
+              <el-input v-model="formConf.ruleHour1" size="small" style="width: 80px"></el-input>
+              <span>{{$t(" 小时,统计为0.5天")}}</span>
+            </div>
+            <div class="margin-top-5">
+              <span>{{$t("请假 > ")}}</span>
+              <el-input v-model="formConf.ruleHour2" size="small" style="width: 80px"></el-input>
+              <span>{{$t(" <= ")}}</span>
+              <el-input v-model="formConf.ruleHour3" size="small" style="width: 80px"></el-input>
+              <span>{{$t(" 小时,统计为1天")}}</span>
+            </div>
+          </el-form-item>
+
+          <el-form-item :label="$t('课时规则:')">
+            <div>
+              <div>
+                <el-switch v-model="formConf.ruleClassSwich" active-color="#13ce66" inactive-color="#ff4949" @change="handleChangeEnable($event)"></el-switch>
+              </div>
+              <span>{{$t("请假 <= ")}}</span>
+              <el-input v-model="formConf.ruleClass1" size="small" style="width: 80px"></el-input>
+              <span>{{$t(" 节,统计为0.5天")}}</span>
+            </div>
+            <div class="margin-top-5">
+              <span>{{$t("请假 > ")}}</span>
+              <el-input v-model="formConf.ruleClass2" size="small" style="width: 80px"></el-input>
+              <span>{{$t(" <= ")}}</span>
+              <el-input v-model="formConf.ruleClass3" size="small" style="width: 80px"></el-input>
+              <span>{{$t(" 节,统计为1天")}}</span>
+            </div>
+          </el-form-item>
+        </el-form>
+      </div>
+
+      <div slot="footer">
+        <span class="color-danger">{{errorTips}}</span>
+        <el-button size="small" @click="cancelDialog">{{$t("取消")}}</el-button>
+        <el-button size="small" type="primary" @click="dialogLoading == false ? okTimeDialog() : ''">
+          <i class="el-icon-loading" v-if="dialogLoading"></i>
+          {{$t("确定")}}
+        </el-button>
+      </div>
+    </dialog-normal>
+
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="确认需要删除该信息？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
 
   </div>
@@ -189,8 +214,9 @@
   import MyNormalDialog from "../../../components/utils/dialog/MyNormalDialog";
   import MyRadio from "../../../components/MyRadio";
   import leaveTypeValidater from "../../../utils/validater/leaveTypeValidater";
+  import leaveSettingValidater from "../../../utils/validater/leaveSettingValidater";
   export default {
-    mixins: [mixins, leaveTypeValidater],
+    mixins: [mixins, leaveTypeValidater, leaveSettingValidater],
     components: {MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal,MyNormalDialog,MyRadio},
     data(){
       return {
@@ -203,6 +229,7 @@
         modalVisible: false,
         dialogLoading: false,
         visibleConfim: false,
+        modalTimeVisible: false,
         clearTime: '',
         action: '',
         subTitle: '',
@@ -210,6 +237,7 @@
         grade1: '',
         grade2: '',
         type: '',
+        errorTips: '',
         form: {
           id: '',
           typeName: '',
@@ -222,6 +250,15 @@
           freeMinuts2: '00',
           freeData1: '00:00',
           freeData2: '00:00'
+        },
+        formConf: {
+          ruleHour1: '',
+          ruleHour2: '',
+          ruleHour3: '',
+          ruleClass1: '',
+          ruleClass2: '',
+          ruleClass3: '',
+          ruleClassSwich: false,
         }
       }
     },
@@ -235,18 +272,40 @@
           page: this.page,
           num: this.num
         };
-        this.$axios.get(common.leave_query_type_list, {params: params}).then(res => {
+        this.$axios.get(common.leave_ter_setting_config_type_page, {params: params}).then(res => {
           if (res.data.data){
             this.tableData = res.data.data.list;
+            /*this.total = res.data.data.totalCount;
+            this.num = res.data.data.num;
+            this.page = res.data.data.currentPage;*/
           }
         });
       },
       initLevel(){
-        this.$axios.get(common.leave_query_level_list).then(res => {
+        this.$axios.get(common.leave_ter_setting_config_data).then(res => {
           if (res.data.data){
             this.tableLevelData = res.data.data.list;
           }
         });
+      },
+      initTimeConf(){
+        this.$axios.get(common.leave_ter_setting_config_time_list).then(res => {
+          if (res.data.data){
+            this.formConf = {
+              ruleHour1: res.data.data.ruleHour1,
+              ruleHour2: res.data.data.ruleHour2,
+              ruleHour3: res.data.data.ruleHour3,
+              ruleClass1: res.data.data.ruleClass1,
+              ruleClass2: res.data.data.ruleClass2,
+              ruleClass3: res.data.data.ruleClass3,
+              ruleClassSwich: res.data.data.ruleClassSwich == 0 ? false : true
+            };
+          }
+        });
+      },
+      timeInfo(){
+        this.initTimeConf();
+        this.modalTimeVisible = true;
       },
       addInfo(type){
         this.type = type;
@@ -257,15 +316,6 @@
         this.form = {
           id: row.id,
           typeName: row.typeName,
-          freeSwich: ''+row.freeSwich,
-          freeWeekNo1: row.freeWeekNo1 ? ''+row.freeWeekNo1 : '1',
-          freeHour1: row.freeHour1 ? ''+row.freeHour1 : '00',
-          freeMinuts1: row.freeMinuts1 ? ''+row.freeMinuts1 : '00',
-          freeWeekNo2: row.freeWeekNo2 ? ''+row.freeWeekNo2 : '1',
-          freeHour2: row.freeHour2 ? ''+row.freeHour2 : '00',
-          freeMinuts2: row.freeMinuts2 ? ''+row.freeMinuts2 : '00',
-          freeData1: row.freeHour1 ? (row.freeHour1+":"+row.freeMinuts1 + '') : '00:00',
-          freeData2: row.freeHour2 ? (row.freeHour2+":"+row.freeMinuts2 + '') : '00:00',
         };
         this.modalVisible = true;
       },
@@ -286,7 +336,7 @@
           grade2: row.grade2,
         };
         params = this.$qs.stringify(params);
-        this.$axios.post(common.leave_query_level_save, params).then(res => {
+        this.$axios.post(common.leave_ter_setting_config_save, params).then(res => {
           if (res.data.code == 200){
             MessageSuccess(res.data.desc);
           }else {
@@ -312,22 +362,24 @@
       },
       cancelDialog(){
         this.modalVisible = false;
+        this.modalTimeVisible = false;
       },
       closeDialog(event){
         this.form = {
           id: '',
-          typeName: '',
-          freeSwich: '',
-          freeWeekNo1: '1',
-          freeHour1: '00',
-          freeMinuts1: '00',
-          freeWeekNo2: '1',
-          freeHour2: '00',
-          freeMinuts2: '00',
-          freeData1: '00:00',
-          freeData2: '00:00'
+          typeName: ''
+        };
+        this.formConf = {
+          ruleHour1: '',
+          ruleHour2: '',
+          ruleHour3: '',
+          ruleClass1: '',
+          ruleClass2: '',
+          ruleClass3: '',
+          ruleClassSwich: false,
         };
         this.subTitle = "";
+        this.modalTimeVisible = false;
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
         }
@@ -340,28 +392,14 @@
             let params = {};
             if (this.type == 'setType'){
               params['typeName'] = this.form.typeName;
-              params['freeSwich'] = this.form.freeSwich == "" ? 0 : this.form.freeSwich;
-              params['freeWeekNo1'] = this.form.freeWeekNo1;
-              params['freeHour1'] = this.form.freeHour1;
-              params['freeMinuts1'] = this.form.freeMinuts1;
-              params['freeWeekNo2'] = this.form.freeWeekNo2;
-              params['freeHour2'] = this.form.freeHour2;
-              params['freeMinuts2'] = this.form.freeMinuts2;
             }else if (this.type == 'setTime'){
               params['typeName'] = this.form.typeName;
-              params['freeSwich'] = this.form.freeSwich;
-              params['freeWeekNo1'] = this.form.freeWeekNo1;
-              params['freeHour1'] = this.form.freeHour1;
-              params['freeMinuts1'] = this.form.freeMinuts1;
-              params['freeWeekNo2'] = this.form.freeWeekNo2;
-              params['freeHour2'] = this.form.freeHour2;
-              params['freeMinuts2'] = this.form.freeMinuts2;
             }
             if (this.form.id != ''){
               params['id'] = this.form.id;
             }
 
-            url = common.leave_query_level_add;
+            url = common.leave_ter_setting_config_type_add;
             params = this.$qs.stringify(params);
             this.$axios.post(url, params, {loading: false}).then(res => {
               if (res.data.code == 200){
@@ -376,13 +414,47 @@
           }
         });
       },
+      okTimeDialog(){
+        let url = common.leave_ter_setting_config_time_save;
+        let reg = /^(?!0+(\.0*)?$)\d+(\.\d{1})?$/;
+        this.errorTips = "";
+        if (!reg.test(this.formConf.ruleHour1) || !reg.test(this.formConf.ruleHour2) || !reg.test(this.formConf.ruleHour3)){
+          this.errorTips = this.$t("小时规则时间必须为非0整数或者一位小数");
+          return;
+        }
+        if (!reg.test(this.formConf.ruleClass1) || !reg.test(this.formConf.ruleClass2) || !reg.test(this.formConf.ruleClass3)){
+          this.errorTips = this.$t("小时规则时间必须为非0整数或者一位小数");
+          return;
+        }
+
+        let params = {
+          ruleHour1: this.formConf.ruleHour1,
+          ruleHour2: this.formConf.ruleHour2,
+          ruleHour3: this.formConf.ruleHour3,
+          ruleClass1: this.formConf.ruleClass1,
+          ruleClass2: this.formConf.ruleClass2,
+          ruleClass3: this.formConf.ruleClass3,
+          ruleClassSwich: this.formConf.ruleClassSwich == false ? 0 : 1
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(url, params, {loading: false}).then(res => {
+          if (res.data.code == 200){
+            this.modalTimeVisible = false;
+            this.init();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+          this.dialogLoading = false;
+        });
+      },
       handleOkChange(data) {
         this.dialogLoading = true;
         let url = "";
         let params = {
           id: this.form.id
         };
-        url = common.leave_query_level_del;
+        url = common.leave_ter_setting_config_type_del;
         params = this.$qs.stringify(params);
         this.$axios.post(url, params).then(res => {
           if (res.data.code == 200){
@@ -424,6 +496,9 @@
       },
       handleChange(data){
         this.form.freeSwich = data;
+      },
+      handleChangeEnable(data){
+        this.formConf.ruleClassSwich = data;
       }
     }
   }

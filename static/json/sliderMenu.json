@@ -338,6 +338,13 @@
             "id": 2201,
             "top": "teachInfo",
             "path": "/teachInfo/teacher/empower"
+          },
+          {
+            "name": "请假设置",
+            "key": "leaveSetting",
+            "id": 2202,
+            "top": "teachInfo",
+            "path": "/teachInfo/teacher/leaveSetting"
           }
         ]
       }

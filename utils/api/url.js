@@ -506,4 +506,12 @@ export const common = {
   leave_ter_query_level_manage_time_page: '/proxy/user/teacher/leave/apply/timeUnitPage',//行政考勤-教工请假统计-详细分页
   leave_ter_query_level_manage_time_export: '/proxy/user/teacher/leave/apply/timeUnitExport',//行政考勤-教工请假统计-详细导出
 
+  leave_ter_setting_config_data: '/proxy/user/teacher/leave/apply/grade/list',//教工管理--请假等级设置列表
+  leave_ter_setting_config_save: '/proxy/user/teacher/leave/apply/grade/save',//教工管理--请假等级设置
+  leave_ter_setting_config_type_page: '/proxy/user/teacher/leave/apply/type/list',//教工管理--类型列表
+  leave_ter_setting_config_type_add: '/proxy/user/teacher/leave/apply/type/add',////教工管理--类型列表添加/修改
+  leave_ter_setting_config_type_del: '/proxy/user/teacher/leave/apply/type/del',//教工管理--类型删除
+  leave_ter_setting_config_time_list: '/proxy/user/teacher/leave/apply/rule/list',//教工管理--时间规则查询
+  leave_ter_setting_config_time_save: '/proxy/user/teacher/leave/apply/rule/save',//教工管理--时间规则设置
+
 };

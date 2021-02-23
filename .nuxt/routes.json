@@ -1001,6 +1001,13 @@
     "_name": "_6795e24e"
   },
   {
+    "name": "teachInfo-teacher-leaveSetting",
+    "path": "/teachInfo/teacher/leaveSetting",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/teachInfo/teacher/leaveSetting.vue",
+    "chunkName": "pages/teachInfo/teacher/leaveSetting",
+    "_name": "_73c17acd"
+  },
+  {
     "name": "teachInfo-teacher-other",
     "path": "/teachInfo/teacher/other",
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/teachInfo/teacher/other.vue",

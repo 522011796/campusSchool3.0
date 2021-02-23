@@ -22,6 +22,8 @@ let idCard_Reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
 let nf2_Reg = /^([\+ \-]?(([1-9]\d*)|(0)))([.]\d{0,2})?$/;
 //整数或者2位小数
 let rightnNf2_Reg = /^([\+]?(([1-9]\d*)|(0)))([.]\d{0,2})?$/;
+//整数或者1位小数
+let rightnNf1_Reg = /^(?!0+(\.0*)?$)\d+(\.\d{1})?$/;
 //负数或者2位小数
 let mnf2_Reg = /(^(-)[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(-)(0){1}$)|(^(-)[0-9]\.[0-9]([0-9])?$)/;
 //0-100
@@ -100,6 +102,14 @@ let FormValidate = (function () {
       validateMnf2 (rule, value, callback) {
         if (value && value != ""){
           mnf2_Reg.test(value) ? callback() : callback(new Error('负数或者2位小数'))
+        }else {
+          callback();
+        }
+      },
+      // 整数或者1位小数
+      validateRNf1 (rule, value, callback) {
+        if (value && value != ""){
+          rightnNf1_Reg.test(value) ? callback() : callback(new Error('非0整数或者1位小数'))
         }else {
           callback();
         }
