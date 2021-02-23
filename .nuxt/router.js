@@ -51,6 +51,7 @@ const _cbda6104 = () => interopDefault(import('../pages/test/test2.vue' /* webpa
 const _cbbe3202 = () => interopDefault(import('../pages/test/test3.vue' /* webpackChunkName: "pages/test/test3" */))
 const _cba20300 = () => interopDefault(import('../pages/test/test4.vue' /* webpackChunkName: "pages/test/test4" */))
 const _5018bea2 = () => interopDefault(import('../pages/attendanceInfo/administration/faceRecord.vue' /* webpackChunkName: "pages/attendanceInfo/administration/faceRecord" */))
+const _7a89bda1 = () => interopDefault(import('../pages/attendanceInfo/administration/leaveStatic.vue' /* webpackChunkName: "pages/attendanceInfo/administration/leaveStatic" */))
 const _45b80b36 = () => interopDefault(import('../pages/attendanceInfo/administration/record.vue' /* webpackChunkName: "pages/attendanceInfo/administration/record" */))
 const _f2051f88 = () => interopDefault(import('../pages/attendanceInfo/administration/search.vue' /* webpackChunkName: "pages/attendanceInfo/administration/search" */))
 const _742c2c6c = () => interopDefault(import('../pages/attendanceInfo/administration/setting.vue' /* webpackChunkName: "pages/attendanceInfo/administration/setting" */))
@@ -357,6 +358,10 @@ export const routerOptions = {
     path: "/attendanceInfo/administration/faceRecord",
     component: _5018bea2,
     name: "attendanceInfo-administration-faceRecord"
+  }, {
+    path: "/attendanceInfo/administration/leaveStatic",
+    component: _7a89bda1,
+    name: "attendanceInfo-administration-leaveStatic"
   }, {
     path: "/attendanceInfo/administration/record",
     component: _45b80b36,

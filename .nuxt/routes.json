@@ -336,6 +336,13 @@
     "_name": "_5018bea2"
   },
   {
+    "name": "attendanceInfo-administration-leaveStatic",
+    "path": "/attendanceInfo/administration/leaveStatic",
+    "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/attendanceInfo/administration/leaveStatic.vue",
+    "chunkName": "pages/attendanceInfo/administration/leaveStatic",
+    "_name": "_7a89bda1"
+  },
+  {
     "name": "attendanceInfo-administration-record",
     "path": "/attendanceInfo/administration/record",
     "component": "/Volumes/Macintosh HD - 数据/object/vuejs/campusSchool3.0/pages/attendanceInfo/administration/record.vue",

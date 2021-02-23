@@ -608,10 +608,17 @@
             "path": "/attendanceInfo/administration/search"
           },
           {
+            "name": "教工请假统计",
+            "key": "leaveStatic",
+            "id": 4006,
+            "top": "faceRecord",
+            "path": "/attendanceInfo/administration/leaveStatic"
+          },
+          {
             "name": "人脸识别记录",
             "key": "faceRecord",
             "id": 4004,
-            "top": "faceRecord",
+            "top": "attendanceInfo",
             "path": "/attendanceInfo/administration/faceRecord"
           },
           {

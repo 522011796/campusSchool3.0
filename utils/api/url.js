@@ -499,4 +499,11 @@ export const common = {
   reply_delete: '/proxy/user/message/comment/del',//通知公告删除回复
   reply_add: '/proxy/user/message/comment/add',//通知公告回复
 
+  leave_ter_query_level_manage_static: '/proxy/user/teacher/leave/stat/count',//行政考勤-教工请假统计-统计
+  leave_ter_query_level_manage_page: '/proxy/user/teacher/leave/stat/page',//行政考勤-教工请假统计-分页
+  leave_ter_query_level_manage_type: '/proxy/user/teacher/leave/apply/type/list',//行政考勤-教工请假统计-类型
+  leave_ter_query_level_manage_export: '/proxy/user/teacher/leave/stat/export',//行政考勤-教工请假统计-导出
+  leave_ter_query_level_manage_time_page: '/proxy/user/teacher/leave/apply/timeUnitPage',//行政考勤-教工请假统计-详细分页
+  leave_ter_query_level_manage_time_export: '/proxy/user/teacher/leave/apply/timeUnitExport',//行政考勤-教工请假统计-详细导出
+
 };
