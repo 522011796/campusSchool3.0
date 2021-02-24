@@ -897,8 +897,8 @@
             this.visibleSetConfim = true;
           }else if (res.data.code == 461 || res.data.code == 462){
             this.g_status = "out";
-            //this.setContent = res.data.desc + this.$t("是否继续设置？");
-            this.setContent = this.$t("你确定要设置该学期为当前学期吗？");
+            this.setContent = res.data.desc + this.$t("是否继续设置？");
+            //this.setContent = this.$t("你确定要设置该学期为当前学期吗？");
             this.visibleSetConfim = true;
           }else{
             MessageError(res.data.desc);

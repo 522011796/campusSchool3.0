@@ -255,6 +255,7 @@
       },
       changeStatus(type){
         this.searchType = type.value;
+        this.page = 1;
         this.init();
       },
       changeTree(mainType, subType){

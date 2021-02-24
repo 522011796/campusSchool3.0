@@ -5,27 +5,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/common.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nuxt.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/nuxt.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/administration/faceRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/administration/faceRecord.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/administration/leaveStatic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/administration/leaveStatic.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/administration/search.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/administration/search.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/administration/static.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/administration/static.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/analysis.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/analysis.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/faceRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/faceRecord.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/studentStatic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/studentStatic.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/teacherStatic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/teacherStatic.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/analysis.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/analysis.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/faceRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/faceRecord.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/static.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/static.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/dataInfo/stuData/stuQuanti.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dataInfo/stuData/stuQuanti.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/doorAccessRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/doorAccessRecord.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/passStatic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/passStatic.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/remote.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/remote.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/class/classChecked.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/class/classChecked.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/homework/homework.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/homework/homework.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/leave/manage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/leave/manage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/rp/rpApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/rp/rpApply.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/search.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/search.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/yearAndTerm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/yearAndTerm.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,14 +113,7 @@
       <workItem from="1612663815769" duration="17475000" />
       <workItem from="1612749103965" duration="14013000" />
       <workItem from="1612832131841" duration="1462000" />
-      <workItem from="1613696934587" duration="88439000" />
-    </task>
-    <task id="LOCAL-00241" summary="1、修改框架和组件样式、细节bug等&#10;2、按钮组带动画版本完成">
-      <created>1612175148784</created>
-      <option name="number" value="00241" />
-      <option name="presentableId" value="LOCAL-00241" />
-      <option name="project" value="LOCAL" />
-      <updated>1612175148784</updated>
+      <workItem from="1613696934587" duration="92033000" />
     </task>
     <task id="LOCAL-00242" summary="1、修改框架和组件样式、细节bug等&#10;2、按钮组带动画版本完成">
       <created>1612176917479</created>
@@ -476,11 +451,29 @@
       <option name="project" value="LOCAL" />
       <updated>1614062914131</updated>
     </task>
-    <option name="localTasksCounter" value="290" />
+    <task id="LOCAL-00290" summary="1、修改框架和组件样式、细节bug等&#10;2、新增教学设置-请假设置">
+      <created>1614145406094</created>
+      <option name="number" value="00290" />
+      <option name="presentableId" value="LOCAL-00290" />
+      <option name="project" value="LOCAL" />
+      <updated>1614145406094</updated>
+    </task>
+    <option name="localTasksCounter" value="291" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、归寝考勤设置接口对接完成" />
@@ -515,16 +508,16 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1612176661241" />
-    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2" timestamp="1614062912860">
+    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2" timestamp="1614145404484">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2/0.25.1440.795@0.25.1440.795" timestamp="1614062912860" />
+    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2/0.25.1440.795@0.25.1440.795" timestamp="1614145404484" />
     <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1612662480606" />
-    <state x="100" y="124" width="1240" height="598" key="DiffContextDialog" timestamp="1613965492166">
+    <state x="100" y="124" width="1240" height="598" key="DiffContextDialog" timestamp="1614150576149">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
-    <state x="100" y="124" width="1240" height="598" key="DiffContextDialog/0.25.1440.795@0.25.1440.795" timestamp="1613965492166" />
+    <state x="100" y="124" width="1240" height="598" key="DiffContextDialog/0.25.1440.795@0.25.1440.795" timestamp="1614150576149" />
     <state x="100" y="124" width="1240" height="600" key="DiffContextDialog/0.25.1440.798@0.25.1440.798" timestamp="1612685014754" />
     <state width="1398" height="201" key="GridCell.Tab.0.bottom" timestamp="1609379519477">
       <screen x="0" y="25" width="1440" height="798" />
@@ -546,11 +539,11 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="221" y="66" key="SettingsEditor/0.25.1440.798@0.25.1440.798" timestamp="1611905365471" />
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1614062916126">
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1614145407718">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.25.1440.795@0.25.1440.795" timestamp="1614062916126" />
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.25.1440.795@0.25.1440.795" timestamp="1614145407718" />
     <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1612662483421" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1611203372469">
       <screen x="0" y="25" width="1440" height="798" />
