@@ -66,11 +66,11 @@
 
           <div class="layout-right-tab margin-top-10">
             <el-row class="layout-inline">
-              <el-col :span="12">
+              <el-col :span="8">
                 <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo()">{{$t("奖惩申请")}}</el-button>
                 <el-button size="small" type="warning"  icon="el-icon-download" @click="expandInfo()">{{$t("导出")}}</el-button>
               </el-col>
-              <el-col :span="12" class="text-right">
+              <el-col :span="16" class="text-right">
                 <my-date-picker :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChange" style="position: relative; top: 1px;"></my-date-picker>
                 <my-input-button size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('姓名/学号')" @click="search"></my-input-button>
               </el-col>

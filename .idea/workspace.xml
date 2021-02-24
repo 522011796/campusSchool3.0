@@ -2,19 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pages/teachInfo/teacher/leaveSetting.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/validater/leaveSettingValidater.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/common.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nuxt.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/nuxt.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/leave/setting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/leave/setting.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/sliderMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/sliderMenu.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/validater/rules.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/rules.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/administration/faceRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/administration/faceRecord.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/administration/leaveStatic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/administration/leaveStatic.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/administration/search.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/administration/search.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/administration/static.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/administration/static.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/analysis.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/analysis.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/faceRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/faceRecord.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/studentStatic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/studentStatic.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/teacherStatic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/teacherStatic.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/analysis.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/analysis.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/faceRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/faceRecord.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/static.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/static.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dataInfo/stuData/stuQuanti.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dataInfo/stuData/stuQuanti.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/doorAccessRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/doorAccessRecord.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/passStatic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/passStatic.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/remote.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/remote.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/class/classChecked.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/class/classChecked.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/homework/homework.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/homework/homework.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/leave/manage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/leave/manage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/rp/rpApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/rp/rpApply.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,14 +131,7 @@
       <workItem from="1612663815769" duration="17475000" />
       <workItem from="1612749103965" duration="14013000" />
       <workItem from="1612832131841" duration="1462000" />
-      <workItem from="1613696934587" duration="83070000" />
-    </task>
-    <task id="LOCAL-00240" summary="1、修改框架和组件样式、细节bug等&#10;2、按钮组带动画版本完成">
-      <created>1612170866003</created>
-      <option name="number" value="00240" />
-      <option name="presentableId" value="LOCAL-00240" />
-      <option name="project" value="LOCAL" />
-      <updated>1612170866004</updated>
+      <workItem from="1613696934587" duration="88439000" />
     </task>
     <task id="LOCAL-00241" summary="1、修改框架和组件样式、细节bug等&#10;2、按钮组带动画版本完成">
       <created>1612175148784</created>
@@ -465,14 +469,20 @@
       <option name="project" value="LOCAL" />
       <updated>1614049992988</updated>
     </task>
-    <option name="localTasksCounter" value="289" />
+    <task id="LOCAL-00289" summary="1、修改框架和组件样式、细节bug等&#10;2、新增教学设置-请假设置">
+      <created>1614062914131</created>
+      <option name="number" value="00289" />
+      <option name="presentableId" value="LOCAL-00289" />
+      <option name="project" value="LOCAL" />
+      <updated>1614062914131</updated>
+    </task>
+    <option name="localTasksCounter" value="290" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、课堂考勤接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、归寝考勤设置接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、行政考勤设置接口对接完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、授权管理接口对接完成" />
@@ -497,18 +507,19 @@
     <MESSAGE value="1、修改框架和组件样式、细节bug等" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、搜索、院系等菜单点击后page未重置为1" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、新增行政考勤-教工请假统计" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、新增行政考勤-教工请假统计" />
+    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、新增教学设置-请假设置" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、新增教学设置-请假设置" />
   </component>
   <component name="WindowStateProjectService">
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1612176661241">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1612176661241" />
-    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2" timestamp="1614049991187">
+    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2" timestamp="1614062912860">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
     <state x="198" y="28" key="CommitChangelistDialog2/0.23.1440.805@0.23.1440.805" timestamp="1605695116058" />
-    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2/0.25.1440.795@0.25.1440.795" timestamp="1614049991187" />
+    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2/0.25.1440.795@0.25.1440.795" timestamp="1614062912860" />
     <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1612662480606" />
     <state x="100" y="124" width="1240" height="598" key="DiffContextDialog" timestamp="1613965492166">
       <screen x="0" y="25" width="1440" height="795" />
@@ -535,11 +546,11 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="221" y="66" key="SettingsEditor/0.25.1440.798@0.25.1440.798" timestamp="1611905365471" />
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1614049994824">
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1614062916126">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
     <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.23.1440.805@0.23.1440.805" timestamp="1605695118689" />
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.25.1440.795@0.25.1440.795" timestamp="1614049994824" />
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.25.1440.795@0.25.1440.795" timestamp="1614062916126" />
     <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1612662483421" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1611203372469">
       <screen x="0" y="25" width="1440" height="798" />
@@ -554,11 +565,11 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="506" y="345" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.1440.798@0.25.1440.798" timestamp="1611389592729" />
-    <state x="378" y="182" width="837" height="550" key="find.popup" timestamp="1614062407329">
+    <state x="378" y="182" width="837" height="550" key="find.popup" timestamp="1614145311988">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
     <state x="378" y="182" width="837" height="486" key="find.popup/0.23.1440.805@0.23.1440.805" timestamp="1605680757485" />
-    <state x="378" y="182" width="837" height="550" key="find.popup/0.25.1440.795@0.25.1440.795" timestamp="1614062407329" />
+    <state x="378" y="182" width="837" height="550" key="find.popup/0.25.1440.795@0.25.1440.795" timestamp="1614145311988" />
     <state x="378" y="183" width="837" height="550" key="find.popup/0.25.1440.798@0.25.1440.798" timestamp="1612678392148" />
     <state x="385" y="153" width="670" height="671" key="search.everywhere.popup" timestamp="1611727354332">
       <screen x="0" y="25" width="1440" height="798" />

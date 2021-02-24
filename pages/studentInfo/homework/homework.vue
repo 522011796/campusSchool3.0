@@ -469,10 +469,12 @@ export default {
     },
     search(data){
       this.searchKey = data.input;
+      this.page = 1;
       this.init();
     },
     checkTypeInfo(type){
       this.checkedType = type.value;
+      this.page = 1;
       this.init();
     },
     sizeChange(event){

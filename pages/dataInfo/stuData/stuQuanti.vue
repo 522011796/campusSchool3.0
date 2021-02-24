@@ -1352,6 +1352,7 @@
       },
       searchTopDate(data){
         this.searchTimeData = data;
+        this.page = 1;
         this.init();
       },
       searchTopType(data){

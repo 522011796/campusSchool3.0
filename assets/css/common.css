@@ -82,7 +82,7 @@ a{
   box-shadow: 5px 5px 5px #077DBA;
   padding: 0px 10px;
   position: relative;
-  z-index: 9999;
+  z-index: 1000;
   border-bottom-right-radius: 3px;
 }
 .moon-top-middle-menu{

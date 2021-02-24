@@ -712,6 +712,7 @@
       },
       searchTopDate(data){
         this.searchData = data;
+        this.page = 1;
         this.initLeaveInfo();
       },
       searchTopType(data){
