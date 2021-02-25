@@ -50,7 +50,7 @@
           <el-row>
             <el-col :span="6">
               <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo('setType')">{{$t("类型管理")}}</el-button>
-              <el-button size="small" type="warning"  icon="el-icon-time" @click="timeInfo()">{{$t("课时规划")}}</el-button>
+              <el-button size="small" type="warning"  icon="el-icon-time" @click="timeInfo()">{{$t("课时规则")}}</el-button>
             </el-col>
             <el-col :span="18" class="text-right">
 

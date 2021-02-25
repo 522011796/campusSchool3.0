@@ -514,4 +514,20 @@ export const common = {
   leave_ter_setting_config_time_list: '/proxy/user/teacher/leave/apply/rule/list',//教工管理--时间规则查询
   leave_ter_setting_config_time_save: '/proxy/user/teacher/leave/apply/rule/save',//教工管理--时间规则设置
 
+  menuno_add: '/proxy/school/campus/menuno/add',//设置顶部菜单快捷
+  menuno_quick_list: '/proxy/school/campus/menuno/list',//设置顶部菜单快捷列表
+  menuno_role_list: '/proxy/user/user/menu/list',//设置顶部菜单角色列表
+  menuno_role_list3: '/proxy/school/campus/menu/list3',//设置顶部菜单角色列表
+  menuno_quick_list_del: '/proxy/school/campus/menuno/del',//设置顶部菜单快捷列表--删除
+
+  web_auth_group_page: '/proxy/user/school/page/role',//web权限--组列表
+  web_auth_group_add: '/proxy/user/school/add/role',//web权限--组添加
+  web_auth_group_edit: '/proxy/user/school/edit/roleInfo',//web权限--组修改
+  web_auth_group_edit_role: '/proxy/user/school/edit/roleMenu',//web权限--权限修改
+  web_auth_group_del: '/proxy/user/school/delete/role',//web权限--组删除
+  web_auth_group_role_menu_list: '/proxy/user/school/role/menuIds',//web权限--角色权限菜单
+  web_auth_group_role_user_list: '/proxy/user/school/role/employees',//web权限--角色组成员
+  web_auth_group_role_user_add: '/proxy/user/school/add/userRole',//web权限--角色组成员添加
+  web_auth_group_role_user_del: '/proxy/user/school/delete/userRole',//web权限--角色组成员删除
+
 };

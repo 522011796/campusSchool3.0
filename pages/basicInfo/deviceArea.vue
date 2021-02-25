@@ -598,9 +598,13 @@
       }
     },
     created() {
-      this.init();
+      this.initInfo();
     },
     methods: {
+      async initInfo(){
+        await this.getSessionInfo();
+        this.init();
+      },
       init(){
         let url = "";
         let params = {
@@ -776,12 +780,14 @@
             }
             params = {
               roomId: roomIdArr.join(),
-              sns: arr.join()
+              sns: arr.join(),
+              termId: this.currentTermId
             }
           }else if(this.setType == 'only'){
             params = {
               roomId: this.buildList[0].roomId,
-              sns: arr.join()
+              sns: arr.join(),
+              termId: this.currentTermId
             }
           }
           url = common.device_bind_build_set;

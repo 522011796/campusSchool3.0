@@ -730,6 +730,26 @@
         </div>
       </div>
     </drawer-layout-right>
+
+    <dialog-normal width-style="300" :visible="modalMenuCustomVisible" :title="$t('自定义菜单模块')" @close="closeCustomDialog" @right-close="cancelCustomDialog">
+      <div class="margin-top-10">
+        <el-tree
+          ref="customMenuRef"
+          class="margin-left-20"
+          :data="this.topMenuQuickList"
+          show-checkbox
+          node-key="key">
+        </el-tree>
+      </div>
+
+      <div slot="footer">
+        <el-button size="small" @click="cancelCustomDialog">{{$t("取消")}}</el-button>
+        <el-button size="small" type="primary" @click="dialogCustomLoading == false ? okCustomDialog() : ''">
+          <i class="el-icon-loading" v-if="dialogCustomLoading"></i>
+          {{$t("确定")}}
+        </el-button>
+      </div>
+    </dialog-normal>
   </div>
 </template>
 
@@ -743,12 +763,13 @@
   import UploadSquare from "../components/utils/upload/UploadSquare";
   import QuillBlock from "../components/utils/upload/QuillBlock";
   import LayoutLrBefore from "../components/Layout/LayoutLrBefore";
+  import DialogNormal from "../components/utils/dialog/DialogNormal";
   import {auditStatusColor, weekNoText, MessageSuccess, MessageError, MessageWarning, inArray} from "../utils/utils";
   import {common} from "../utils/api/url";
   export default {
     name: 'default',
     mixins: [mixins],
-    components: {MyPagination, DrawerLayoutRight,MyAuditDetail,AuditButton,TimeoutButton,UploadSquare,LayoutLrBefore},
+    components: {MyPagination, DrawerLayoutRight,MyAuditDetail,AuditButton,TimeoutButton,UploadSquare,LayoutLrBefore,DialogNormal},
     data(){
       return {
         layout: 'lr',
@@ -768,6 +789,8 @@
         drawerCourseVisible: false,
         drawerLoading: false,
         moreVisible: false,
+        modalMenuCustomVisible: false,
+        dialogCustomLoading: false,
         settingType: 1,
         direction: 'ttb',
         screenWidth: 0,
@@ -775,6 +798,7 @@
         activeSliderIndex: '',
         topMenuList: [],
         topMenuAllList: [],
+        topMenuQuickList: [],
         sliderMenuList: [],
         clickType: '',
         tabVal: '0',
@@ -804,6 +828,7 @@
         uploadFileListUrl: common.upload_imglist_file,
         calendarData: [],
         defaultCourseList: [],
+        checkedMenuList: [],
         defaultCourseDay: '',
         rightNowWidth: {
           width: '0px'
@@ -918,8 +943,6 @@
       this.activeTop = this.$route.query.top;
       this.activeSliderIndex = this.$route.query.key;
       this.activeSubSlider = this.$route.query.sub;
-      this.getTopMenu();
-      this.getSliderMenu(this.activeTop);
     },
     methods: {
       hh(){
@@ -977,6 +1000,8 @@
         this.week = this.currentWeekNo;
         this.updatePhoneMms = this.userType == 2 ? common.updatephone_admin_save : common.updatephone_teacher_save;
         this.updatePwdMms = this.userType == 2 ? common.updatepwd_admin_save : common.updatepwd_mms;
+        this.getTopMenu();
+        this.getSliderMenu(this.activeTop);
       },
       test1() {
       },
@@ -989,14 +1014,63 @@
         this.getSliderMenu(item.key, 'click');
       },
       getTopMenu(){
-        this.$axios.get('/json/topMenu.json').then(res => {
+        /*this.$axios.get('/json/topMenu.json').then(res => {
           this.topMenuAllList = res.data;
           for (let i = 0; i < res.data.length; i++){
+            res.data[i]['label'] = res.data[i].name;
             if (res.data[i].show){
               this.topMenuList.push(res.data[i]);
             }
           }
-        })
+        })*/
+        this.checkedMenuList = [];
+        let params = {
+          campusName: this.campusName
+        };
+        this.$axios.get('http://campus.9451.com/campusmanage/appapi/system-menu', {params: params}).then(res => {
+          let menuArr = [];
+          this.topMenuList = [];
+          if (res.data.data){
+            for (let i = 0; i < res.data.data.length; i++){
+              menuArr.push(res.data.data[i].key);
+              res.data.data[i]['label'] = res.data.data[i].name;
+            }
+            this.topMenuQuickList = res.data.data;
+            this.topMenuAllList = res.data.data;
+
+            let params = {
+              menuNo: menuArr.join()
+            };
+            //获取角色拥有的所有列表
+            /*this.$axios.get(common.menuno_role_list, {params: params}).then(res => {
+              console.log(111,res.data.data);
+              if (res.data.data){
+                for (let i = 0; i < res.data.data.length; i++){
+                  menuArr.push(res.data.data[i].key);
+                  res.data.data[i]['name'] = res.data.data[i].name;
+                  res.data.data[i]['label'] = res.data.data[i].name;
+                  res.data.data[i]['key'] = res.data.data[i].menu_no;
+                }
+                this.topMenuAllList = res.data.data;
+              }
+            });*/
+
+            this.$axios.get(common.menuno_quick_list, {params: params}).then(resCustom => {
+              if (resCustom.data.data){
+                for (let i = 0; i < res.data.data.length; i++){
+                  for (let j = 0; j < resCustom.data.data.length; j++) {
+                    if (resCustom.data.data[j].nemu_no == res.data.data[i].key) {
+                      res.data.data[i]['show'] = true;
+                      res.data.data[i]['label'] = res.data.data[i].name;
+                      this.topMenuList.push(res.data.data[i]);
+                      this.checkedMenuList.push(resCustom.data.data[j].nemu_no);
+                    }
+                  }
+                }
+              }
+            });
+          }
+        });
       },
       getSliderMenu(key, type){
         this.activeTop = key;
@@ -1549,7 +1623,58 @@
         return -1;
       },
       addMenuItem(){
-        MessageWarning("请先测试和确认模块功能点。");
+        //MessageWarning("请先测试和确认模块功能点。");
+        setTimeout(()=>{
+          if (this.$refs.customMenuRef){
+            this.$refs.customMenuRef.setCheckedKeys(this.checkedMenuList, true);
+          }
+        },800);
+        this.modalMenuCustomVisible = true;
+      },
+      closeCustomDialog(event){
+
+      },
+      cancelCustomDialog(){
+        this.modalMenuCustomVisible = false;
+      },
+      okCustomDialog(event){
+        let url = "";
+        let arr = [];
+        let getMenusNodes = this.$refs.customMenuRef.getCheckedNodes();
+        for (let i = 0; i < getMenusNodes.length; i++){
+          arr.push(getMenusNodes[i].key);
+        }
+        let params = {
+          menuNo: arr.join()
+        };
+        url = common.menuno_add;
+        this.dialogCustomLoading = true;
+        //params = this.$qs.stringify(params);
+        this.$axios.get(url, {params: params,loading: false}).then(res => {
+          if (res.data.code == 200){
+            this.modalMenuCustomVisible = false;
+            this.getTopMenu();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+          this.dialogCustomLoading = false;
+        });
+      },
+      removeQuickMenu(node, data){
+        let params = {
+          menuNo: data.key
+        };
+        let url = common.menuno_quick_list_del;
+        //params = this.$qs.stringify(params);
+        this.$axios.get(url, {params: params,loading: false}).then(res => {
+          if (res.data.code == 200){
+            this.getTopMenu();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+        });
       }
     },
     watch: {

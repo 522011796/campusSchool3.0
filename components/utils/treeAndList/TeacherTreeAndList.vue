@@ -141,6 +141,7 @@
         //this.commSelUserArr = [];
         //this.commSelUserNameArr = [];
         this.$axios.get(common.teacher_list, {params: params}).then(res => {
+          console.log(this.commSelUserArr);
           if (res.data.data){
             //this.$refs.commTableRef.clearSelection();
             for (let i = 0; i < res.data.data.page.list.length; i++){
@@ -214,6 +215,10 @@
             this.checkboxCount++;
           }else {
             this.tableTeacherCommData[i]._checked = false;
+            let checked = inArray(this.tableTeacherCommData[i], this.commSelUserArr, 'user_id');
+            if (checked > -1){
+              this.commSelUserArr.splice(checked, 1);
+            }
             this.checkboxCount--;
           }
         }
