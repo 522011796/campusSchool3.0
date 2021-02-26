@@ -1035,47 +1035,181 @@
               menuArr.push(res.data.data[i].key);
               res.data.data[i]['label'] = res.data.data[i].name;
             }
-            this.topMenuQuickList = res.data.data;
-            this.topMenuAllList = res.data.data;
 
             let params = {
               menuNo: menuArr.join()
             };
             //获取角色拥有的所有列表
-            /*this.$axios.get(common.menuno_role_list, {params: params}).then(res => {
-              console.log(111,res.data.data);
-              if (res.data.data){
-                for (let i = 0; i < res.data.data.length; i++){
-                  menuArr.push(res.data.data[i].key);
-                  res.data.data[i]['name'] = res.data.data[i].name;
-                  res.data.data[i]['label'] = res.data.data[i].name;
-                  res.data.data[i]['key'] = res.data.data[i].menu_no;
-                }
-                this.topMenuAllList = res.data.data;
-              }
-            });*/
-
-            this.$axios.get(common.menuno_quick_list, {params: params}).then(resCustom => {
-              if (resCustom.data.data){
-                for (let i = 0; i < res.data.data.length; i++){
-                  for (let j = 0; j < resCustom.data.data.length; j++) {
-                    if (resCustom.data.data[j].nemu_no == res.data.data[i].key) {
-                      res.data.data[i]['show'] = true;
-                      res.data.data[i]['label'] = res.data.data[i].name;
-                      this.topMenuList.push(res.data.data[i]);
-                      this.checkedMenuList.push(resCustom.data.data[j].nemu_no);
+            if (this.loginUserType == 2){//超级管理员
+              this.topMenuQuickList = res.data.data;//快捷列表
+              this.topMenuAllList = res.data.data;//所有列表
+              this.$axios.get(common.menuno_quick_list, {params: params}).then(resCustom => {
+                if (resCustom.data.data){
+                  for (let i = 0; i < res.data.data.length; i++){
+                    for (let j = 0; j < resCustom.data.data.length; j++) {
+                      if (resCustom.data.data[j].menu_no == res.data.data[i].key) {
+                        res.data.data[i]['show'] = true;
+                        res.data.data[i]['label'] = res.data.data[i].name;
+                        this.topMenuList.push(res.data.data[i]);
+                        this.checkedMenuList.push(resCustom.data.data[j].menu_no);
+                      }
                     }
                   }
                 }
-              }
-            });
+              });
+            }else if(this.loginUserType == 4){//教师
+              let menuTopArr = [];
+              let menuTopQuickArr = [];
+              this.$axios.get(common.menuno_role_list, {params: params}).then(resRole => {
+                if (resRole.data.data){
+                  for (let i = 0; i < res.data.data.length; i++){
+                    for (let j = 0; j < resRole.data.data.length; j++){
+                      let indexOfKey = inArray(res.data.data[i], menuTopArr, 'key');
+                      if (resRole.data.data[j].menu_no == res.data.data[i].key && indexOfKey == -1){
+                        menuTopQuickArr.push(res.data.data[i].key);
+                        menuTopArr.push({
+                          name: res.data.data[i].name,
+                          label: res.data.data[i].name,
+                          key: res.data.data[i].key,
+                        });
+                        continue;
+                      }
+                    }
+                  }
+
+                  let params = {
+                    menuNo:menuTopQuickArr.join()
+                  };
+                  this.$axios.get(common.menuno_quick_list, {params: params}).then(resCustom => {
+                    if (resCustom.data.data){
+                      for (let i = 0; i < menuTopArr.length; i++){
+                        for (let j = 0; j < resCustom.data.data.length; j++) {
+                          if (resCustom.data.data[j].menu_no == menuTopArr[i].key) {
+                            menuTopArr[i]['show'] = true;
+                            menuTopArr[i]['label'] = menuTopArr[i].name;
+                            this.topMenuList.push(menuTopArr[i]);
+                            this.checkedMenuList.push(resCustom.data.data[j].menu_no);
+                          }
+                        }
+                      }
+                    }
+                  });
+
+                  this.topMenuAllList = menuTopArr;//所有列表
+                  this.topMenuQuickList = menuTopArr;//快捷列表
+                }
+              });
+            }
           }
         });
       },
       getSliderMenu(key, type){
         this.activeTop = key;
+        let roleGroupArr = [];
+        let menuList = [];
+
         this.$axios.get('/json/sliderMenu.json').then(res => {
-          for (let i = 0; i < res.data.length; i++){
+          let params = {
+            campusName: this.campusName
+          };
+          this.$axios.get('http://campus.9451.com/campusmanage/appapi/system-menu', {params: params}).then(resAll => {
+              let menuArr = [];
+              if (resAll.data.data) {
+                for (let i = 0; i < resAll.data.data.length; i++) {
+                  menuArr.push(resAll.data.data[i].key);
+                }
+
+                let params = {
+                  menuNo: menuArr.join()
+                };
+
+                this.$axios.get(common.menuno_role_list, {params: params}).then(resSub => {
+                  if (resSub.data.data){
+                    for (let i = 0; i < resSub.data.data.length; i++){
+                      if (resSub.data.data[i].menu_no == key && resSub.data.data[i].level == 1){
+                        let indexMenu = inArray(resSub.data.data[i], roleGroupArr, 'id');
+                        if (indexMenu == -1){
+                          roleGroupArr.push({
+                            name: resSub.data.data[i].name,
+                            key: resSub.data.data[i].menu_no,
+                            id: resSub.data.data[i].id,
+                            list: []
+                          });
+                        }
+                      }
+                    }
+
+                    for (let i = 0; i < roleGroupArr.length; i++) {
+                      for (let j = 0; j < res.data.length; j++){
+                        if (key == res.data[j].key) {
+                          for (let z = 0; z < res.data[j].list.length; z++){
+                            if (roleGroupArr[i].id == res.data[j].list[z].id){
+                              roleGroupArr[i]['name'] = res.data[j].list[z].name;
+                              roleGroupArr[i]['icon'] = res.data[j].list[z].icon;
+                              roleGroupArr[i]['toggle'] = res.data[j].list[z].toggle;
+                              roleGroupArr[i]['key'] = res.data[j].list[z].key;
+                              roleGroupArr[i]['keySub'] = res.data[j].list[z].keySub;
+                              roleGroupArr[i]['list'] = res.data[j].list[z].list;
+                            }
+                          }
+
+                          menuList = [];
+                          for (let k = 0; k < resSub.data.data.length; k++){
+                            if (this.loginUserType == 2){
+                              if (resSub.data.data[k].pId == roleGroupArr[i].id && resSub.data.data[k].level == 2){
+                                for (let h = 0; h < roleGroupArr[i]['list'].length; h++){
+                                  if (roleGroupArr[i]['list'][h].id == resSub.data.data[k].id){
+                                    menuList.push({
+                                      name: roleGroupArr[i]['list'][h].name,
+                                      key: roleGroupArr[i]['list'][h].key,
+                                      id: roleGroupArr[i]['list'][h].id,
+                                      top: roleGroupArr[i]['list'][h].top,
+                                      path: roleGroupArr[i]['list'][h].path
+                                    });
+                                  }
+                                }
+                              }
+                            }else if (this.loginUserType == 4){
+                              if (resSub.data.data[k].parent_id == roleGroupArr[i].id && resSub.data.data[k].level == 2){
+                                for (let h = 0; h < roleGroupArr[i]['list'].length; h++){
+                                  if (roleGroupArr[i]['list'][h].id == resSub.data.data[k].id){
+                                    menuList.push({
+                                      name: roleGroupArr[i]['list'][h].name,
+                                      key: roleGroupArr[i]['list'][h].key,
+                                      id: roleGroupArr[i]['list'][h].id,
+                                      top: roleGroupArr[i]['list'][h].top,
+                                      path: roleGroupArr[i]['list'][h].path
+                                    });
+                                  }
+                                }
+                              }
+                            }
+                          }
+                          roleGroupArr[i]['list'] = menuList;
+                        }
+                      }
+                    }
+                  }
+                  this.sliderMenuList = roleGroupArr;
+                  for (let i = 0; i < roleGroupArr.length; i++){
+                    if (type == "click"){
+                      this.$router.push({
+                        path: this.sliderMenuList[0].list[0].path,
+                        query: {
+                          top: this.sliderMenuList[0].list[0].top,
+                          key: this.sliderMenuList[0].list[0].key,
+                          sub: this.sliderMenuList[0].key
+                        }
+                      });
+                    }
+                    break;
+                  }
+                  this.setSliderSubToggle();
+                });
+              }
+          });
+
+          /*for (let i = 0; i < res.data.length; i++){
             if (key == res.data[i].key){
               this.sliderMenuList = res.data[i].list;
               if (type == "click"){
@@ -1090,8 +1224,8 @@
               }
               break;
             }
-          }
-          this.setSliderSubToggle();
+          }*/
+          //this.setSliderSubToggle();
         });
       },
       setSliderSubToggle(){

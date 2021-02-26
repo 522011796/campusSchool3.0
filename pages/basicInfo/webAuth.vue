@@ -60,7 +60,7 @@
       </div>
     </layout-tb>
 
-    <dialog-normal :visible="modalVisible" :title="$t('建筑楼设置')" @close="closeDialog" @right-close="cancelDialog">
+    <dialog-normal :visible="modalVisible" :title="$t('权限设置')" @close="closeDialog" @right-close="cancelDialog">
       <div class="margin-top-10">
         <el-form :model="form" :rules="rules" ref="form" label-width="140px">
           <div v-if="oprType != 'set'">
@@ -303,7 +303,6 @@
                     }
                   }
                 }
-                console.log(roleGroupArr);
                 this.roleGourpMenuList = roleGroupArr;
 
                 if (this.oprType == 'set'){
@@ -324,11 +323,13 @@
           if (res.data.data) {
             for (let i = 0; i < res.data.data.length; i++){
               roleMenuArr.push(res.data.data[i].menu_id);
+              if (this.$refs.customRoleMenuRef){
+                this.$refs.customRoleMenuRef.setChecked(res.data.data[i].menu_id, true, false);
+              }
             }
-            if (this.$refs.customRoleMenuRef){
-              console.log(roleMenuArr);
+            /*if (this.$refs.customRoleMenuRef){
               this.$refs.customRoleMenuRef.setCheckedKeys(roleMenuArr, false);
-            }
+            }*/
           }
         });
       },
@@ -348,7 +349,6 @@
         this.modalVisible = true;
       },
       setInfo(row){
-        console.log(row);
         this.oprType = 'set';
         this.form['id'] = row.id;
         setTimeout(() => {
@@ -357,7 +357,6 @@
         this.modalVisible = true;
       },
       editInfo(row){
-        console.log(row);
         this.oprType = 'edit';
         this.form = {
           id: row.id,
@@ -400,7 +399,7 @@
                 params['id'] = this.form.id;
                 url = common.web_auth_group_edit_role;
               }
-              let customRoleMenu = this.$refs.customRoleMenuRef.getCheckedNodes();
+              let customRoleMenu = this.$refs.customRoleMenuRef.getCheckedNodes(false, true);
               if (customRoleMenu.length == 0){
                 MessageWarning(this.$t("请选择权限"));
                 return;
@@ -518,7 +517,6 @@
           partUserIds: []
         };
         if (this.$refs['popverPartRef']){
-          console.log(222);
           this.$refs.popverPartRef._handleResetChange();
         }
         this.drawerVisible = event;
