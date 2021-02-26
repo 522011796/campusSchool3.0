@@ -1095,6 +1095,15 @@
                     }
                   });
 
+                  if (this.$route.query.top){
+                    let indexTopArr = [{key: this.$route.query.top}];
+                    let indexTop = inArray(indexTopArr[0], menuTopArr, 'key');
+                    if (indexTop == -1){
+                      MessageWarning(this.$t("检测到您没有权限访问该模块，请联系管理员"));
+                      this.$router.push("/");
+                    }
+                  }
+
                   this.topMenuAllList = menuTopArr;//所有列表
                   this.topMenuQuickList = menuTopArr;//快捷列表
                 }
@@ -1190,6 +1199,7 @@
                       }
                     }
                   }
+
                   this.sliderMenuList = roleGroupArr;
                   for (let i = 0; i < roleGroupArr.length; i++){
                     if (type == "click"){
@@ -1205,6 +1215,16 @@
                     break;
                   }
                   this.setSliderSubToggle();
+
+                  if (this.$route.query.top){
+                    let indexTopArr = [{keySub: key}];
+                    let indexTop = inArray(indexTopArr[0], roleGroupArr, 'keySub');
+                    if (this.$route.query.top && indexTop == -1){
+                      MessageWarning(this.$t("检测到您没有权限访问该模块，请联系管理员"));
+                      this.$router.push("/");
+                      return;
+                    }
+                  }
                 });
               }
           });
