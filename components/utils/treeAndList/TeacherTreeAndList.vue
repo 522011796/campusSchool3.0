@@ -141,7 +141,6 @@
         //this.commSelUserArr = [];
         //this.commSelUserNameArr = [];
         this.$axios.get(common.teacher_list, {params: params}).then(res => {
-          console.log(this.commSelUserArr);
           if (res.data.data){
             //this.$refs.commTableRef.clearSelection();
             for (let i = 0; i < res.data.data.page.list.length; i++){

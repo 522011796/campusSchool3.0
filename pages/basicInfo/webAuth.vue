@@ -127,16 +127,36 @@
           <tbody v-loading="drawerLoading" :element-loading-text="$t('加载中...')" element-loading-spinner="el-icon-loading">
             <tr v-for="(item, index) in tableTeacherData" :key="item.id">
               <td>
-                {{item.real_name}}
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{item.real_name}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{item.real_name}}
+                  </div>
+                </el-popover>
               </td>
               <td>
-                {{item.job_num}}
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{item.job_num}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{item.job_num}}
+                  </div>
+                </el-popover>
               </td>
               <td>
-                {{item.phone}}
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{item.phone}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{item.phone}}
+                  </div>
+                </el-popover>
               </td>
               <td>
-                {{item.dept_name}}
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{item.depart_name}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{item.depart_name}}
+                  </div>
+                </el-popover>
               </td>
               <td>
                 <i class="fa fa-trash color-danger" @click="deleteEmployee(item)"></i>
@@ -184,6 +204,7 @@
         oprType: '',
         form: {
           id: '',
+          roleId: '',
           enable: true,
           roleNo: '',
           roleName: '',
@@ -221,7 +242,6 @@
           roleId: id
         };
 
-        this.drawerLoading = true;
         this.$axios(common.web_auth_group_role_user_list, {params: params}).then(res => {
           if (res.data.data){
             this.tableTeacherData = res.data.data.list;
@@ -313,6 +333,7 @@
         });
       },
       userInfo(row){
+        this.drawerLoading = true;
         this.form.id = row.id;
         setTimeout(() => {
           this.initTeacher(row.id);
@@ -353,6 +374,7 @@
       },
       deleteEmployee(row){
         this.employeeId = row.user_id;
+        this.form.roleId =row.user_role_id ;
         this.visibleEmployeeConfim = true;
       },
       insterestInfo(val){
@@ -408,6 +430,7 @@
       closeDialog(event){
         this.form = {
           id: '',
+          roleId: '',
           enable: true,
           roleNo: '',
           roleName: '',
@@ -449,7 +472,7 @@
       handleEmployeeOkChange(){
         let url = "";
         let params = {
-          id: this.form.id,
+          id: this.form.roleId,
           userId: this.employeeId
         };
         url = common.web_auth_group_role_user_del;
