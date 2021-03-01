@@ -166,7 +166,16 @@
         </table>
       </div>
       <div slot="footer">
-
+        <el-pagination
+          background
+          :page-sizes="[10, 20, 50, 100]"
+          layout="total, sizes, prev, pager, next"
+          :total="totalStudent"
+          :current-page="pageStudent"
+          :page-size="numStudent"
+          @size-change="sizeStudentChange"
+          @current-change="currentStudentPage">
+        </el-pagination>
       </div>
     </drawer-layout-right>
 
@@ -189,6 +198,9 @@
     components: {MyNormalDialog,DialogNormal},
     data(){
       return {
+        pageStudent: 1,
+        numStudent: 20,
+        totalStudent: 0,
         tableData: [],
         tableTeacherData: [],
         modalVisible: false,
@@ -237,14 +249,17 @@
       },
       initTeacher(id){
         let params = {
-          page: 1,
-          num: 99999,
+          page: this.pageStudent,
+          num: this.numStudent,
           roleId: id
         };
 
         this.$axios(common.web_auth_group_role_user_list, {params: params}).then(res => {
           if (res.data.data){
             this.tableTeacherData = res.data.data.list;
+            this.totalStudent = res.data.data.totalCount;
+            this.numStudent = res.data.data.num;
+            this.pageStudent = res.data.data.currentPage;
           }
           this.drawerLoading = false;
         });
@@ -336,6 +351,8 @@
       userInfo(row){
         this.drawerLoading = true;
         this.form.id = row.id;
+        this.pageStudent = 1;
+        this.totalStudent = 20;
         setTimeout(() => {
           this.initTeacher(row.id);
         },800);
@@ -438,6 +455,8 @@
         this.subTitle = "";
         this.roleGourpMenuList = [];
         this.employeeId = "";
+        this.pageStudent = 1;
+        this.totalStudent = 20;
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
         }
@@ -556,6 +575,15 @@
           this.visibleConfim = false;
           this.dialogLoading = false;
         });
+      },
+      sizeStudentChange(event){
+        this.pageStudent = 1;
+        this.numStudent = event;
+        this.initTeacher(this.form.id);
+      },
+      currentStudentPage(event){
+        this.pageStudent = event;
+        this.initTeacher(this.form.id);
       }
     }
   }
