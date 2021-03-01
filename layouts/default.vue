@@ -87,7 +87,7 @@
             </span>
 
             <el-popover
-              v-if="topMenuList.length > widthIndex"
+              v-if="topMenuList.length > 0 && topMenuList.length > widthIndex && this.topMenuList[parseInt(widthIndex) + 1]"
               v-model="moreVisible"
               popper-class="custom-user-popover custom-more-popover"
               placement="bottom"
@@ -770,6 +770,9 @@
     name: 'default',
     mixins: [mixins],
     components: {MyPagination, DrawerLayoutRight,MyAuditDetail,AuditButton,TimeoutButton,UploadSquare,LayoutLrBefore,DialogNormal},
+    computed: {
+
+    },
     data(){
       return {
         layout: 'lr',
@@ -791,6 +794,7 @@
         moreVisible: false,
         modalMenuCustomVisible: false,
         dialogCustomLoading: false,
+        showMore: false,
         settingType: 1,
         direction: 'ttb',
         screenWidth: 0,
@@ -908,7 +912,7 @@
       let width = document.querySelector(".moon-top-middle-menu-title").clientWidth;
       this.topWidth.width = width - rightWidth + 'px';
       this.topDrawerWidth.width = width + 'px';
-      this.widthIndex = (width - rightWidth) / 110 - 2;
+      this.widthIndex = (width - rightWidth) / 110 -2;
       // 监听窗口大小
       window.onresize = () => {
         this.getMenuTabWdith();
@@ -1829,6 +1833,15 @@
             MessageError(res.data.desc);
           }
         });
+      },
+      showMoreItem(item){
+        console.log(item);
+        if (this.topMenuList.length >= widthIndex){
+
+        }
+        if (item && item != undefined){
+          this.showMore = false;
+        }
       }
     },
     watch: {

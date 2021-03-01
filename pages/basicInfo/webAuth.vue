@@ -97,7 +97,7 @@
       </div>
     </dialog-normal>
 
-    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerVisible" :loading="drawerLoading" size="550px" :title="$t('管理员设置')" @right-close="cancelDrawDialog">
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerVisible" :loading="drawerLoading" size="550px" :title="$t('成员设置')" @right-close="cancelDrawDialog">
       <div slot="content">
         <div>
           <el-popover
@@ -111,8 +111,8 @@
             <el-button slot="reference" size="small" type="primary"  icon="el-icon-user">{{$t("添加成员")}}</el-button>
           </el-popover>
           <span>
-            <el-button size="small" type="warning" :disabled="form.partUserIds.length == 0">
-              <span class="color-white" @click="saveRoleEmployee">{{$t("保存成员设置")}}</span>
+            <el-button size="small" type="warning" :disabled="form.partUserIds.length == 0" @click="saveRoleEmployee">
+              <span class="color-white">{{$t("保存成员设置")}}</span>
             </el-button>
           </span>
         </div>
@@ -379,7 +379,8 @@
           id: row.id,
           roleNo: row.role_no,
           roleName: row.role_name,
-          enable: row.enabled
+          enable: row.enabled,
+          partUserIds: []
         };
         this.modalVisible = true;
       },

@@ -637,20 +637,20 @@
             "name": "教工请假统计",
             "key": "leaveStatic",
             "id": 40350,
-            "top": "faceRecord",
+            "top": "attendanceInfo",
             "path": "/attendanceInfo/administration/leaveStatic"
           },
           {
             "name": "人脸识别记录",
             "key": "faceRecord",
-            "id": 40500,
+            "id": 40400,
             "top": "attendanceInfo",
             "path": "/attendanceInfo/administration/faceRecord"
           },
           {
             "name": "行政考勤设置",
             "key": "setting",
-            "id": 40600,
+            "id": 40500,
             "top": "attendanceInfo",
             "path": "/attendanceInfo/administration/setting"
           }

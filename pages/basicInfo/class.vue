@@ -438,7 +438,7 @@ export default {
             className: this.form.className,
             classroomId: this.form.buildData[2],
             buildingId: this.form.buildData[0],
-            classNo: this.form.buildData[1],
+            classNo: this.form.classNo,
             majorId: this.form.collegeData[1],
             createTime: this.form.createTime,
             masterTeacher: this.form.masterId,

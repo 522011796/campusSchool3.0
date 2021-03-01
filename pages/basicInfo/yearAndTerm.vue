@@ -60,7 +60,7 @@
               <div v-if="!scope.row.sch_year_id">
                 <!--<el-tag type="warning" size="small" v-if="!scope.row.current" @click="setCurrentYear(scope.row)"><i class="fa fa-cog"></i>{{$t("设为当前学年")}}</el-tag>-->
                 <el-tag type="warning" size="small" v-if="!scope.row.current">{{$t("非当前学年")}}</el-tag>
-                <el-tag type="success" size="small" v-else><i class="fa fa-bookmark margin-right-5"></i>{{$t("当前学年")}}</el-tag>
+                <el-tag type="success" size="small" v-else><i class="fa fa-bookmark margin-right-5"></i>{{scope.row.current}}{{$t("当前学年")}}</el-tag>
               </div>
               <div v-if="scope.row.sch_year_id && scope.row.sch_year_id != ''">
                 <el-tag type="info" size="small" v-if="!scope.row.current" @click="setCurrentTerm(scope.row)"><i class="fa fa-cog"></i>{{$t("设为当前学期")}}</el-tag>
@@ -393,6 +393,8 @@
         const pid = tree.onlyId;
         this.g_row = tree.onlyId;
         this.maps.set(pid,{tree,treeNode,resolve});
+        this.$refs.refTable.store.loadOrToggle(this.g_row);
+        this.updateTableData();
         this.initTerm(tree.id, resolve);
       },
       addYear(){
@@ -789,7 +791,7 @@
             termId: this.g_term_id
           }
           if (this.g_status == 'in'){
-            url = common.set_current_term_in;
+            url = common.set_current_term_out;
           }else if (this.g_status == 'out'){
             url = common.set_current_term_out;
           }
@@ -827,6 +829,7 @@
         });
       },
       cellClick(row, column, cell, event){
+        console.log(111,column);
         if (column.property == 'name'){
           this.g_row = row.id;
           this.$refs.refTable.store.loadOrToggle(row);

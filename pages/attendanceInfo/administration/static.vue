@@ -78,7 +78,7 @@
                 <el-button size="small" type="warning"  icon="el-icon-download" @click="expandInfo($event)">{{$t("导出")}}</el-button>
               </el-col>
               <el-col :span="12" class="text-right">
-                <my-input-button size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('姓名/学号')" @click="search"></my-input-button>
+                <my-input-button size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('姓名/工号')" @click="search"></my-input-button>
               </el-col>
             </el-row>
           </div>
