@@ -1083,8 +1083,20 @@
               params['supervisors'] = auditIds.length > 0 ? JSON.stringify(auditIds) : [];
             }
 
-            if (regNum.test("") == false || regNum.test(this.form.unSignRuleTime2) == false){
-              errNum++;
+            if (this.form.unSignRule == 1){
+              if (this.form.unSignRuleTime1 == ""){
+                errNum++;
+              }else if (regNum.test(this.form.unSignRuleTime1) == false){
+                errNum++;
+              }
+            }
+
+            if (this.form.unSignRule == 2){
+              if (this.form.unSignRuleTime2 == ""){
+                errNum++;
+              }else if (regNum.test(this.form.unSignRuleTime2) == false){
+                errNum++;
+              }
             }
 
             if (regNum.test(this.form.unSignStaticRuleTime1) == false || regNum.test(this.form.unSignStaticRuleTime2) == false || regNum.test(this.form.unSignStaticRuleTime3) == false){
@@ -1097,7 +1109,7 @@
             }
 
             if (errNum > 0){
-              MessageWarning(this.$t("内容有非整数的数据，请检查"));
+              MessageWarning(this.$t("内容存在空值或存在零的数据，请检查"));
               return;
             }
 

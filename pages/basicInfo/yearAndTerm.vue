@@ -60,7 +60,7 @@
               <div v-if="!scope.row.sch_year_id">
                 <!--<el-tag type="warning" size="small" v-if="!scope.row.current" @click="setCurrentYear(scope.row)"><i class="fa fa-cog"></i>{{$t("设为当前学年")}}</el-tag>-->
                 <el-tag type="warning" size="small" v-if="!scope.row.current">{{$t("非当前学年")}}</el-tag>
-                <el-tag type="success" size="small" v-else><i class="fa fa-bookmark margin-right-5"></i>{{scope.row.current}}{{$t("当前学年")}}</el-tag>
+                <el-tag type="success" size="small" v-else><i class="fa fa-bookmark margin-right-5"></i>{{$t("当前学年")}}</el-tag>
               </div>
               <div v-if="scope.row.sch_year_id && scope.row.sch_year_id != ''">
                 <el-tag type="info" size="small" v-if="!scope.row.current" @click="setCurrentTerm(scope.row)"><i class="fa fa-cog"></i>{{$t("设为当前学期")}}</el-tag>

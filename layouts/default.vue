@@ -646,12 +646,15 @@
               </span>
             </el-popover>
 
-            <div v-show="menuTabList.length != '0'" class="pull-left" style="height: 40px; width: 10px;display: inline-block;background: #f5f5f5;text-align: center;position: relative;z-index: 999" @click="moveTabLeft">
+            <div v-show="menuTabListObj[loginUserId] && menuTabListObj[loginUserId].length != '0'" class="pull-left" style="height: 40px; width: 10px;display: inline-block;background: #f5f5f5;text-align: center;position: relative;z-index: 999" @click="moveTabLeft">
               <span><i class="fa fa-angle-left color-muted"></i></span>
+            </div>
+            <div v-show="menuTabListObj[loginUserId] && menuTabListObj[loginUserId].length != '0'" class="pull-left" style="height: 40px; width: 10px;display: inline-block;text-align: center;position: relative;z-index: 999;margin-left: 2px" @click="clearTabLeft">
+              <span><i class="fa fa-trash color-muted"></i></span>
             </div>
             <div ref="menuTagDiv" id="menuTagDiv" class="pull-left margin-left-5" style="position: relative;overflow-x: hidden;height: 40px;" :style="rightNowWidth">
               <div style="position:absolute;height: 40px;" :style="rightItemAllWidth">
-                <span v-for="(item,index) in menuTabList" :key="index" style="cursor:default;">
+                <span v-if="menuTabListObj[loginUserId]" v-for="(item,index) in menuTabListObj[loginUserId]" :key="index" style="cursor:default;">
                   <el-tag closable size="medium" color="#ffffff"
                           class="margin-right-5"
                           :disable-transitions="false"
@@ -662,7 +665,7 @@
                 </span>
               </div>
             </div>
-            <div v-show="menuTabList.length != '0'" class="pull-left" style="height: 40px; width: 10px;display: inline-block;background: #f5f5f5;text-align: center;" :style="isCollapse ? 'right: 15px' : 'right: -2px'" @click="moveTabRight">
+            <div v-show="menuTabListObj[loginUserId] && menuTabListObj[loginUserId].length != '0'" class="pull-left" style="height: 40px; width: 10px;display: inline-block;background: #f5f5f5;text-align: center;" :style="isCollapse ? 'right: 15px' : 'right: -2px'" @click="moveTabRight">
               <span><i class="fa fa-angle-right color-muted"></i></span>
             </div>
             <div class="moon-clearfix"></div>
@@ -801,6 +804,7 @@
         activeIndex: '1',
         activeSliderIndex: '',
         topMenuList: [],
+        menuTabListObj: {},
         topMenuAllList: [],
         topMenuQuickList: [],
         sliderMenuList: [],
@@ -938,8 +942,6 @@
       if (this.$route.name == "index" || this.$route.name == null){
         this.layout = "full";
       }
-      //获取menuTab
-      this.getLocastorage();
       this.hh();
       this.init();
       this.getBell();
@@ -964,34 +966,50 @@
       getLocastorage(){
         if (process.client){
           let menuTabList = localStorage.getItem("menuTabList");
-          if (menuTabList && menuTabList != ''){
-            this.menuTabList = JSON.parse(menuTabList);
+          if (menuTabList){
+            this.menuTabListObj = JSON.parse(menuTabList);
           }
         }
-        this.$set(this.rightItemAllWidth,'width', this.menuTabList.length * 100 +'px');
+        if (this.menuTabListObj[this.loginUserId]){
+          this.$set(this.rightItemAllWidth,'width', this.menuTabListObj[this.loginUserId].length * 120 +'px');
+        }else {
+          this.$set(this.rightItemAllWidth,'width', 0 * 120 +'px');
+        }
       },
       getMenuTabWdith(){
         //获取menuTab的宽度
         this.$nextTick(() => {
           let menuTabWidth = document.querySelector("#menuTagDiv") ? document.querySelector("#menuTagDiv").clientWidth : 0;
           let menuRightWidth = document.querySelector(".moon-right-menu") ? document.querySelector(".moon-right-menu").clientWidth : 0;
-          let menuPopMenu = 128;
+          let menuPopMenu = 140;
           let rightNowWidth = menuRightWidth;
           if (!this.isCollapse){
             rightNowWidth = menuRightWidth - menuPopMenu;
           }else {
-            rightNowWidth = menuRightWidth - 37;
+            rightNowWidth = menuRightWidth - 48;
           }
           this.rightNowWidth.width = rightNowWidth + "px";
         });
       },
       moveTabRight(){
         let scrollWith =  document.querySelector("#menuTagDiv").scrollWidth;
-        document.getElementById("menuTagDiv").scrollLeft += 100;
+        document.getElementById("menuTagDiv").scrollLeft += 120;
       },
       moveTabLeft(){
         let scrollWith =  document.querySelector("#menuTagDiv").scrollWidth;
-        document.getElementById("menuTagDiv").scrollLeft -= 100;
+        document.getElementById("menuTagDiv").scrollLeft -= 120;
+      },
+      clearTabLeft(){
+        if (process.client){
+          let menuTabList = localStorage.getItem("menuTabList");
+          if (menuTabList){
+            this.menuTabListObj = JSON.parse(menuTabList);
+          }
+        }
+        if (this.menuTabListObj[this.loginUserId]){
+          delete this.menuTabListObj[this.loginUserId];
+          localStorage.setItem("menuTabList", JSON.stringify(this.menuTabListObj));
+        }
       },
       async init() {
         await this.getSessionInfo();
@@ -1006,6 +1024,8 @@
         this.updatePwdMms = this.userType == 2 ? common.updatepwd_admin_save : common.updatepwd_mms;
         this.getTopMenu();
         this.getSliderMenu(this.activeTop);
+        //获取menuTab
+        this.getLocastorage();
       },
       test1() {
       },
@@ -1261,17 +1281,33 @@
       },
       routerUrl(event, item, itemSub){
         //设置tab
-        let tabArr = this.inArrayPrivate(item.id, this.menuTabList);
-
+        //let tabArr = this.inArrayPrivate(item.id, this.menuTabList);
+        let tabArr = this.inArrayPrivateObj(item.id, this.menuTabListObj[this.loginUserId]);
         if (tabArr == -1){
-          this.menuTabList.push({
+          /*this.menuTabList.push({
             menuList: item,
             menuKeyList: itemSub
-          });
-          let width = parseInt(this.rightItemAllWidth.width.substr(0,this.rightItemAllWidth.width.length-2)) + 100;
+          });*/
+          if (Object.keys(this.menuTabListObj).length == 0 || !this.menuTabListObj[this.loginUserId] || Object.keys(this.menuTabListObj[this.loginUserId]).length == 0){
+            this.menuTabListObj[this.loginUserId] = [];
+            this.menuTabListObj[this.loginUserId].push(
+              {
+                menuList: item,
+                menuKeyList: itemSub
+              }
+            );
+          }else {
+            this.menuTabListObj[this.loginUserId].push(
+              {
+                menuList: item,
+                menuKeyList: itemSub
+              }
+            );
+          }
+          let width = parseInt(this.rightItemAllWidth.width.substr(0,this.rightItemAllWidth.width.length-2)) + 120;
           this.$set(this.rightItemAllWidth,'width', width +'px');
         }
-        localStorage.setItem("menuTabList", JSON.stringify(this.menuTabList));
+        localStorage.setItem("menuTabList", JSON.stringify(this.menuTabListObj));
 
         this.activeSliderIndex = item.key;
         this.activeSubSlider = itemSub.key;
@@ -1351,10 +1387,10 @@
         done();
       },
       handleTabClose(index){
-        this.menuTabList.splice(index, 1);
-        let width = parseInt(this.rightItemAllWidth.width.substr(0,this.rightItemAllWidth.width.length-2)) - 100;
+        this.menuTabListObj[this.loginUserId].splice(index, 1);
+        let width = parseInt(this.rightItemAllWidth.width.substr(0,this.rightItemAllWidth.width.length-2)) - 120;
         this.$set(this.rightItemAllWidth,'width', width +'px');
-        localStorage.setItem("menuTabList", JSON.stringify(this.menuTabList));
+        localStorage.setItem("menuTabList", JSON.stringify(this.menuTabListObj));
       },
       tabChange(event, type){
         this.tabVal = type;
@@ -1780,6 +1816,14 @@
         }
         return -1;
       },
+      inArrayPrivateObj(search, array){
+        for(var i in array){
+          if(array[i]['menuList']['id'] == search){
+            return i;
+          }
+        }
+        return -1;
+      },
       addMenuItem(){
         //MessageWarning("请先测试和确认模块功能点。");
         setTimeout(()=>{
@@ -1835,7 +1879,6 @@
         });
       },
       showMoreItem(item){
-        console.log(item);
         if (this.topMenuList.length >= widthIndex){
 
         }
@@ -1860,7 +1903,7 @@
           if (width <= 0){
             this.getMenuTabWdith();
           }
-          if (this.menuTabList.length > 0){
+          if (this.menuTabListObj[this.loginUserId]){
             this.getLocastorage();
             this.getMenuTabWdith();
           }

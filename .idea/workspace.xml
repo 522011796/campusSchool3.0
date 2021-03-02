@@ -7,11 +7,9 @@
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/layouts/default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/default.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/administration/static.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/administration/static.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/basicInfo/class.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/class.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/basicInfo/webAuth.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/webAuth.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/administration/setting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/administration/setting.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/basicInfo/yearAndTerm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/yearAndTerm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/sliderMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/sliderMenu.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/login.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,14 +116,8 @@
       <workItem from="1612749103965" duration="14013000" />
       <workItem from="1612832131841" duration="1462000" />
       <workItem from="1613696934587" duration="147108000" />
-      <workItem from="1614561879817" duration="13047000" />
-    </task>
-    <task id="LOCAL-00248" summary="1、修改框架和组件样式、细节bug等&#10;2、按钮组带动画版本完成">
-      <created>1612260134546</created>
-      <option name="number" value="00248" />
-      <option name="presentableId" value="LOCAL-00248" />
-      <option name="project" value="LOCAL" />
-      <updated>1612260134546</updated>
+      <workItem from="1614561879817" duration="15526000" />
+      <workItem from="1614647780660" duration="11522000" />
     </task>
     <task id="LOCAL-00249" summary="1、修改框架和组件样式、细节bug等&#10;2、按钮组带动画版本完成">
       <created>1612325121293</created>
@@ -463,7 +455,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614563300319</updated>
     </task>
-    <option name="localTasksCounter" value="297" />
+    <task id="LOCAL-00297" summary="1、修改框架和组件样式、细节bug等&#10;2、新增web权限、自定义顶部显示">
+      <created>1614591483921</created>
+      <option name="number" value="00297" />
+      <option name="presentableId" value="LOCAL-00297" />
+      <option name="project" value="LOCAL" />
+      <updated>1614591483921</updated>
+    </task>
+    <option name="localTasksCounter" value="298" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -515,10 +514,10 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1612176661241" />
-    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2" timestamp="1614563297721">
+    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2" timestamp="1614591482501">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
-    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2/0.25.1440.795@0.25.1440.795" timestamp="1614563297721" />
+    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2/0.25.1440.795@0.25.1440.795" timestamp="1614591482501" />
     <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1612662480606" />
     <state x="100" y="124" width="1240" height="598" key="DiffContextDialog" timestamp="1614150576149">
       <screen x="0" y="25" width="1440" height="795" />
@@ -545,10 +544,10 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="221" y="66" key="SettingsEditor/0.25.1440.798@0.25.1440.798" timestamp="1611905365471" />
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1614563302588">
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1614593527935">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.25.1440.795@0.25.1440.795" timestamp="1614563302588" />
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.25.1440.795@0.25.1440.795" timestamp="1614593527935" />
     <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1612662483421" />
     <state x="100" y="124" width="1240" height="598" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1614302359057">
       <screen x="0" y="25" width="1440" height="795" />
