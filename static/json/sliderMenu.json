@@ -452,7 +452,7 @@
           },
           {
             "name": "请假设置",
-            "key": "setting",
+            "key": "leaveManageSetting",
             "id": 32300,
             "top": "studentInfo",
             "path": "/studentInfo/leave/setting"
