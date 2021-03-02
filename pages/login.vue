@@ -289,6 +289,7 @@
         this.$axios.post(common.login_url, params, {loading: false}).then(res => {
           if (res.data.code == 200){
             this.$router.push("/");
+            localStorage.removeItem("menuTabList");
             MessageSuccess(res.data.desc);
           }else if (res.data.code == 2032){
             this.formAuth.userId = res.data.data.userInfo.userId;

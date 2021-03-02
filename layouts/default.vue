@@ -655,12 +655,13 @@
             <div ref="menuTagDiv" id="menuTagDiv" class="pull-left margin-left-5" style="position: relative;overflow-x: hidden;height: 40px;" :style="rightNowWidth">
               <div style="position:absolute;height: 40px;" :style="rightItemAllWidth">
                 <span v-if="menuTabListObj[loginUserId]" v-for="(item,index) in menuTabListObj[loginUserId]" :key="index" style="cursor:default;">
-                  <el-tag closable size="medium" color="#ffffff"
+                  <el-tag :type="item.menuList && item.menuList.key == $route.query.key ? 'success' : 'info'" closable size="medium"
                           class="margin-right-5"
                           :disable-transitions="false"
+                          :effect="item.menuList && item.menuList.key == $route.query.key ? 'dark' : 'plain'"
                           @click="routerUrl($event, item.menuList, item.menuKeyList)"
                           @close="handleTabClose(index)">
-                    {{item.menuList.name}}
+                    {{item.menuList ? item.menuList.name : ''}}
                   </el-tag>
                 </span>
               </div>
@@ -930,6 +931,25 @@
           })()
         }
       };
+
+      //浏览器关闭
+      let beginTime = 0;//执行onbeforeunload的开始时间
+      let differTime = 0;//时间差
+      window.addEventListener("unload", () => {
+        differTime = new Date().getTime() - beginTime;
+        if(differTime <= 5) {
+          localStorage.removeItem("menuTabList");
+        }
+      });
+      window.addEventListener('beforeunload', e => {
+        beginTime = new Date().getTime();
+        var n = e.screenX - window.screenLeft;
+        var b = n > document.documentElement.scrollWidth-20;
+        if(b && e.clientY < 0 || e.altKey)
+        {
+          console.log("是关闭而非刷新");
+        }
+      });
 
       this.getMenuTabWdith();
 
@@ -1801,6 +1821,7 @@
       logout(){
         this.$axios.post(common.logout_url).then(res => {
           if (res.data.code == 200){
+            localStorage.removeItem("menuTabList");
             this.$router.push("/login");
           }
         });
