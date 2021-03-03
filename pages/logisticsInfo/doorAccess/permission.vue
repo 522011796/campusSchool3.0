@@ -379,8 +379,8 @@
               <my-radio :sel-value="form.teachType" :label="true" @change="changeStatus($event, true,5)">{{$t("启用")}}</my-radio>
             </span>
             <span>
-              <el-popover trigger="hover" placement="bottom" :disabled="form.teachType == false">
-                <div class="text-left">
+              <el-popover trigger="hover" placement="right" :disabled="form.teachType == false">
+                <div class="text-left" style="max-height: 240px;overflow-y: auto">
                   <ul class="door-ul">
                     <el-checkbox-group v-model="form.teachTypeList">
                       <li v-for="(item, index) in tableTeachData" :key="index">
@@ -402,8 +402,8 @@
               <my-radio :sel-value="form.workType" :label="true" @change="changeStatus($event, true,6)">{{$t("启用")}}</my-radio>
             </span>
             <span>
-              <el-popover trigger="hover" placement="bottom" :disabled="form.workType == false">
-                <div class="text-left">
+              <el-popover trigger="hover" placement="right" :disabled="form.workType == false">
+                <div class="text-left" style="max-height: 240px;overflow-y: auto">
                   <ul class="door-ul">
                     <el-checkbox-group v-model="form.workTypeList">
                       <li v-for="(item, index) in tableWorkData" :key="index">

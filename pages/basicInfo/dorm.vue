@@ -287,7 +287,6 @@
         let url = "";
         this.$refs['form'].validate((valid) => {
           if (valid) {
-            this.dialogLoading = true;
             let params = {
               buildingNo: this.form.no,
               buildingName: this.form.name,
@@ -311,6 +310,7 @@
               url = common.build_add;
             }
             params = this.$qs.stringify(params);
+            this.dialogLoading = true;
             this.$axios.post(url, params, {loading: false}).then(res => {
               if (res.data.code == 200){
                 this.modalVisible = false;
@@ -349,13 +349,13 @@
         this.modalVisible = false;
       },
       handleOkChange(data) {
-        this.dialogLoading = true;
         let url = "";
         let params = {
           buildingId: this.form.id
         };
         url = common.build_delete;
         params = this.$qs.stringify(params);
+        this.dialogLoading = true;
         this.$axios.post(url, params).then(res => {
           if (res.data.code == 200){
             this.init();
@@ -411,7 +411,6 @@
       },
       okDrawDialog(event){
         let url = "";
-        this.dialogLoading = true;
         let params = {
           buildingId: this.form.id,
           buildingNo: this.form.no,

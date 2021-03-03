@@ -7,7 +7,7 @@
             <!--<span class="layout-left-menu-tag"></span>-->
             <span class="layout-left-menu-title">考勤统计</span>
           </div>
-          <my-el-tree type="4" sub-type="4" @node-click="nodeClick"></my-el-tree>
+          <my-el-tree type="4" sub-type="4" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
         </div>
 
         <div slot="right">

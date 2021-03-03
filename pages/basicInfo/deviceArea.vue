@@ -6,7 +6,7 @@
           <!--<span class="layout-left-menu-tag"></span>-->
           <span class="layout-left-menu-title">设备位置</span>
         </div>
-        <my-el-tree :type="mainType" :sub-type="mainSubType" @node-click="nodeClick">
+        <my-el-tree :type="mainType" :sub-type="mainSubType" @node-click="nodeClick" @all-click="nodeClick">
           <div slot="top">
             <el-button size="small" :type="showType == 1 ? 'primary' : 'default'" @click="selBuild(1)">{{$t("教学楼")}}</el-button>
             <el-button size="small" :type="showType == 2 ? 'primary' : 'default'" @click="selBuild(2)">{{$t("宿舍楼")}}</el-button>

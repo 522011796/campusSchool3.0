@@ -6,7 +6,7 @@
           <!--<span class="layout-left-menu-tag"></span>-->
           <span class="layout-left-menu-title">通行分析</span>
         </div>
-        <my-el-tree :type="mainType" :sub-type="subType" @node-click="nodeClick">
+        <my-el-tree :type="mainType" :sub-type="subType" @node-click="nodeClick" @all-click="nodeClick">
           <div slot="top" class="text-center">
             <el-button :type="showType == 1 ? 'primary' : 'default'" size="mini" @click="changeTree(3,3, 1)">{{$t("建筑楼")}}</el-button>
             <el-button :type="showType == 2 ? 'primary' : 'default'" size="mini" @click="changeTree(2,3, 2)">{{$t("宿舍楼")}}</el-button>
@@ -79,8 +79,8 @@
               <el-button size="small" type="warning"  icon="el-icon-download" @click="expandInfo($event)">{{$t("导出")}}</el-button>
             </el-col>
             <el-col :span="18" class="text-right">
-              <my-select class="layout-item" size="small" :sel-value="searchLevel" :options="levelList" @change="handleSearchChange($event,1)"></my-select>
-              <my-select class="layout-item" size="small" :sel-value="searchType" :options="filterDoorInOutStatus" @change="handleSearchChange($event,2)"></my-select>
+              <my-select class="layout-item" size="small" :clearable="true" :sel-value="searchLevel" :options="levelList" @change="handleSearchChange($event,1)"></my-select>
+              <my-select class="layout-item" size="small" :clearable="true" :sel-value="searchType" :options="filterDoorInOutStatus" @change="handleSearchChange($event,2)"></my-select>
 
               <my-input-button size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('姓名/编号')" @click="search"></my-input-button>
             </el-col>

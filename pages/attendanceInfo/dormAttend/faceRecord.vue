@@ -6,7 +6,7 @@
           <!--<span class="layout-left-menu-tag"></span>-->
           <span class="layout-left-menu-title">识别记录</span>
         </div>
-        <my-el-tree :type="mainType" :sub-type="subType" @node-click="nodeClick">
+        <my-el-tree :type="mainType" :sub-type="subType" @node-click="nodeClick" @all-click="nodeClick">
           <div slot="top" class="text-center">
             <el-button :type="showType == 1 ? 'primary' : 'default'" size="mini" @click="changeTree(1,4, 1)">{{$t("院系")}}</el-button>
             <el-button :type="showType == 2 ? 'primary' : 'default'" size="mini" @click="changeTree(2,2, 2)">{{$t("宿舍楼")}}</el-button>

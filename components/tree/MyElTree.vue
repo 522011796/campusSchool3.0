@@ -14,6 +14,9 @@
       <slot name="middle" ref="slotDefault"></slot>
     </div>
     <div class="tree-container custom-el-tree margin-top-5">
+      <div v-if="showCampus" class="tree-el-tree-all" @click="nodeClickCampusAll">
+        {{campusName}}
+      </div>
       <el-tree
         class="filter-tree"
         :data="data"
@@ -80,6 +83,10 @@
       subType: {
         default: 1,
         type: String
+      },
+      showCampus: {
+        default: true,
+        type: Boolean
       }
     },
     computed: {
@@ -109,6 +116,7 @@
     },
     methods: {
       async initInfo(){
+        await this.getSessionInfo();
         if(this.type == 1){
           await this.getCollegeInfo(this.subType);
           this.data = this.dataCollege;
@@ -132,6 +140,9 @@
       },
       handleCheckChange(data, checked, indeterminate){
         this.$emit('check-change', data, checked, indeterminate);
+      },
+      nodeClickCampusAll(data){
+        this.$emit('all-click', data);
       }
     },
     watch: {
@@ -149,5 +160,13 @@
 </script>
 
 <style scoped>
-
+.tree-el-tree-all{
+  height: 25px;
+  line-height: 25px;
+  background: #efefef;
+  padding: 2px 10px;
+  text-align: left;
+  font-size: 14px;
+  color: #606266;
+}
 </style>

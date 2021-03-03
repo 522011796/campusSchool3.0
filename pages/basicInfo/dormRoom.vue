@@ -6,7 +6,7 @@
           <!--<span class="layout-left-menu-tag"></span>-->
           <span class="layout-left-menu-title">宿舍信息</span>
         </div>
-        <my-el-tree type="2" sub-type="2" @node-click="nodeClick"></my-el-tree>
+        <my-el-tree type="2" sub-type="2" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
       </div>
 
       <div slot="right">

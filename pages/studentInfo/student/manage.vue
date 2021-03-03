@@ -6,7 +6,7 @@
           <!--<span class="layout-left-menu-tag"></span>-->
           <span class="layout-left-menu-title">学生信息</span>
         </div>
-        <my-el-tree type="1" sub-type="4" @node-click="nodeClick"></my-el-tree>
+        <my-el-tree type="1" sub-type="4" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
       </div>
 
       <div slot="right">
@@ -337,7 +337,7 @@
                     <el-row>
                       <el-col :span="6">
                         <div style="height: 350px;overflow-y: auto;border-right: 1px solid #dddddd">
-                          <my-el-tree type="2" sub-type="3" @node-click="nodeDormClick"></my-el-tree>
+                          <my-el-tree :show-campus="false" type="2" sub-type="3" @node-click="nodeDormClick"></my-el-tree>
                         </div>
                       </el-col>
                       <el-col :span="18">

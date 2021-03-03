@@ -188,7 +188,7 @@
           </el-form-item>
           <el-form-item :label="$t('参与考勤')" prop="partUserIds">
             <el-popover
-              placement="top"
+              placement="right"
               width="700"
               trigger="click"
               @show="handleShowTeacher(1)">
@@ -204,7 +204,7 @@
           </el-form-item>
           <el-form-item :label="$t('监督员')" prop="auditUserIds">
             <el-popover
-              placement="top"
+              placement="right"
               width="700"
               trigger="click"
               @show="handleShowTeacher(2)">

@@ -6,7 +6,7 @@
           <!--<span class="layout-left-menu-tag"></span>-->
           <span class="layout-left-menu-title">远程控制</span>
         </div>
-        <my-el-tree :type="mainType" :sub-type="subType" @node-click="nodeClick">
+        <my-el-tree :type="mainType" :sub-type="subType" @node-click="nodeClick" @all-click="nodeClick">
           <div slot="top" class="text-center">
             <el-button :type="showType == 1 ? 'primary' : 'default'" size="mini" @click="changeTree(3,3, 1)">{{$t("建筑楼")}}</el-button>
             <el-button :type="showType == 2 ? 'primary' : 'default'" size="mini" @click="changeTree(2,3, 2)">{{$t("宿舍楼")}}</el-button>
