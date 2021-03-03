@@ -298,6 +298,7 @@
       <!--菜单列表-->
       <div class="drawer-custom-top">
         <el-drawer
+          tabindex="0"
           :visible.sync="drawerMenu"
           :direction="direction"
           custom-class="custom-drawer"
@@ -307,14 +308,15 @@
           :modal="false"
           :close-on-press-escape="false"
           :wrapperClosable="true"
-          :style="topDrawerWidth">
-
+          :style="topDrawerWidth"
+          @open="showDrawderMenuList">
+          <span tabindex="1"></span>
           <div class="drawer-main-menu">
             <i class="fa fa-close drawer-menu-close" @click="closeDrawer"></i>
             <div class="drawer-main-menu-left text-center" :style="drawerMenuHeight">
               <div class="drawer-main-menu-left-container">
                 <!--drawer-main-menu-left-container-item-active-->
-                <div class="drawer-main-menu-left-container-item" :class="activeTop == item.key ? 'moon-top-middle-menu-item-text-drawer-active' : ''" v-for="(item, index) in topMenuAllList" :key="index" @click="handleTopSelect($event, item)">
+                <div class="drawer-main-menu-left-container-item" :class="activeDialogTop == item.key ? 'moon-top-middle-menu-item-text-drawer-active' : ''" v-for="(item, index) in topMenuAllList" :key="index" @click="handleTopSelect($event, item, 'menuList')">
                   <i :class="item.icon"></i>
                   <span>{{item.name}}</span>
                 </div>
@@ -322,7 +324,7 @@
             </div>
             <div class="drawer-main-menu-right" :style="drawerMenuHeight">
               <div class="drawer-main-menu-right-container">
-                <div class="drawer-main-menu-right-container-item" v-for="(item, index) in sliderMenuList" :key="item.id">
+                <div class="drawer-main-menu-right-container-item" v-for="(item, index) in sliderMenuDialogList" :key="item.id">
                   <div class="drawer-main-menu-right-container-item-title">
                     <i :class="item.icon"></i>
                     <span>{{item.name}}</span>
@@ -809,10 +811,12 @@
         topMenuAllList: [],
         topMenuQuickList: [],
         sliderMenuList: [],
+        sliderMenuDialogList: [],
         clickType: '',
         tabVal: '0',
         activeSlider: '',
         activeTop: '',
+        activeDialogTop: '',
         activeSubSlider: '',
         widthIndex: 0,
         year: '',
@@ -826,6 +830,7 @@
         msgList: [],
         msgAuditList: [],
         loading: false,
+        menuLoading: false,
         msgType: '',
         calendarValue: new Date(),
         dataAudit: {},
@@ -1043,19 +1048,23 @@
         this.updatePhoneMms = this.userType == 2 ? common.updatephone_admin_save : common.updatephone_teacher_save;
         this.updatePwdMms = this.userType == 2 ? common.updatepwd_admin_save : common.updatepwd_mms;
         this.getTopMenu();
-        this.getSliderMenu(this.activeTop);
+        this.getSliderMenu(this.activeTop, 'init');
         //获取menuTab
         this.getLocastorage();
       },
       test1() {
       },
-      handleTopSelect(event, item) {
+      handleTopSelect(event, item, type) {
         this.drawerAudit = false;
         this.drawerSet = false;
-        this.drawerMenu = false;
         this.drawer = false;
         this.moreVisible = false;
-        this.getSliderMenu(item.key, 'click');
+        if (type == "menuList"){
+          this.drawerMenu = true;
+        }else{
+          this.drawerMenu = false;
+        }
+        this.getSliderMenu(item.key, 'click', type);
       },
       getTopMenu(){
         /*this.$axios.get('/json/topMenu.json').then(res => {
@@ -1156,16 +1165,21 @@
           }
         });
       },
-      getSliderMenu(key, type){
-        this.activeTop = key;
+      getSliderMenu(key, type, subType){
+        if (subType != "menuList"){
+          this.activeTop = key;
+        }else {
+          this.activeDialogTop = key;
+        }
         let roleGroupArr = [];
         let menuList = [];
 
+        this.menuLoading = true;
         this.$axios.get('/json/sliderMenu.json').then(res => {
           let params = {
             campusName: this.campusName
           };
-          this.$axios.get('http://campus.9451.com/campusmanage/appapi/system-menu', {params: params}).then(resAll => {
+          this.$axios.get('http://campus.9451.com/campusmanage/appapi/system-menu', {params: params, loading: false}).then(resAll => {
               let menuArr = [];
               if (resAll.data.data) {
                 for (let i = 0; i < resAll.data.data.length; i++) {
@@ -1244,9 +1258,18 @@
                     }
                   }
 
-                  this.sliderMenuList = roleGroupArr;
+                  if (type == 'init' || subType == 'menuList'){
+                    this.sliderMenuDialogList = roleGroupArr;
+                  }else{
+                    this.sliderMenuList = roleGroupArr;
+                  }
+
+                  if (type == 'init'){
+                    this.sliderMenuList = roleGroupArr;
+                  }
+
                   for (let i = 0; i < roleGroupArr.length; i++){
-                    if (type == "click"){
+                    if (type == "click" && subType != 'menuList'){
                       this.$router.push({
                         path: this.sliderMenuList[0].list[0].path,
                         query: {
@@ -1269,6 +1292,9 @@
                       return;
                     }
                   }
+
+
+                  this.menuLoading = false;
                 });
               }
           });
@@ -1906,6 +1932,12 @@
         if (item && item != undefined){
           this.showMore = false;
         }
+      },
+      showDrawderMenuList(){
+        //this.activeTop = 'basicInfo';
+        if (this.topMenuList && this.topMenuList.length > 0){
+          this.getSliderMenu(this.topMenuList[0].key, null, 'menuList');
+        }
       }
     },
     watch: {
@@ -2050,6 +2082,9 @@
   width: 60px;
   height: 3px;
   background: #E6A23C;
+}
+.drawer-main-menu-left-container-item.moon-top-middle-menu-item-text-drawer-active{
+  background: rgba(140, 197, 255, 1);
 }
 .moon-top-middle-menu-item-text-drawer-active:after {
   content: "";
@@ -2292,6 +2327,9 @@
   border-radius: 5px;
   color: #ffffff;
 }
+.drawer-main-menu-left-container-item:hover{
+  background: rgba(140, 197, 255, 0.9);
+}
 .drawer-main-menu-right-container{
   margin-top: 40px;
 }
@@ -2308,8 +2346,17 @@
   margin-top: 10px;
 }
 .drawer-main-menu-right-container-item-list-item{
-  padding: 5px 0px;
+  padding: 5px 2px;
+  text-align: left;
   cursor: default;
+}
+.drawer-main-menu-right-container-item-list-item:hover{
+  background: rgb(198, 226, 255);
+  color: #f8f8f8;
+  border-radius: 2px;
+}
+.drawer-main-menu-left-container-item.drawer-main-menu-left-container-item-active{
+  background: rgba(140, 197, 255, 1);
 }
 .drawer-main-menu-left-container-item-active:after {
   content: "";

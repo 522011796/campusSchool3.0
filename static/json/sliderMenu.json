@@ -340,7 +340,7 @@
         "icon": "fa fa-window-maximize",
         "toggle": false,
         "id": 21000,
-        "key": "teach",
+        "key": "teacherManage",
         "keySub": "teachInfo",
         "list": [
           {

@@ -8,10 +8,14 @@
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/nuxt-error.vue" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/nuxt-error.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/loading.html" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/loading.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/server.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/utils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/views/error.html" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/views/error.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layouts/default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/default.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nuxt.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/nuxt.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/administration/setting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/administration/setting.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/json/sliderMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/sliderMenu.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -120,14 +124,8 @@
       <workItem from="1612832131841" duration="1462000" />
       <workItem from="1613696934587" duration="147108000" />
       <workItem from="1614561879817" duration="15526000" />
-      <workItem from="1614647780660" duration="18998000" />
-    </task>
-    <task id="LOCAL-00251" summary="1、修改框架和组件样式、细节bug等&#10;2、按钮组带动画版本完成">
-      <created>1612341554994</created>
-      <option name="number" value="00251" />
-      <option name="presentableId" value="LOCAL-00251" />
-      <option name="project" value="LOCAL" />
-      <updated>1612341554994</updated>
+      <workItem from="1614647780660" duration="19411000" />
+      <workItem from="1614733305821" duration="13397000" />
     </task>
     <task id="LOCAL-00252" summary="1、修改框架和组件样式、细节bug等&#10;2、按钮组带动画版本完成">
       <created>1612347214122</created>
@@ -465,7 +463,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614677008843</updated>
     </task>
-    <option name="localTasksCounter" value="300" />
+    <task id="LOCAL-00300" summary="1、修改框架和组件样式、细节bug等&#10;2、新增web权限、自定义顶部显示">
+      <created>1614680348115</created>
+      <option name="number" value="00300" />
+      <option name="presentableId" value="LOCAL-00300" />
+      <option name="project" value="LOCAL" />
+      <updated>1614680348115</updated>
+    </task>
+    <option name="localTasksCounter" value="301" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -517,10 +522,10 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1612176661241" />
-    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2" timestamp="1614677007448">
+    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2" timestamp="1614680346768">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
-    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2/0.25.1440.795@0.25.1440.795" timestamp="1614677007448" />
+    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2/0.25.1440.795@0.25.1440.795" timestamp="1614680346768" />
     <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1612662480606" />
     <state x="100" y="124" width="1240" height="598" key="DiffContextDialog" timestamp="1614150576149">
       <screen x="0" y="25" width="1440" height="795" />
@@ -547,15 +552,15 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="221" y="66" key="SettingsEditor/0.25.1440.798@0.25.1440.798" timestamp="1611905365471" />
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1614677011267">
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1614680438451">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.25.1440.795@0.25.1440.795" timestamp="1614677011267" />
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.25.1440.795@0.25.1440.795" timestamp="1614680438451" />
     <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1612662483421" />
-    <state x="100" y="124" width="1240" height="598" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1614302359057">
+    <state x="100" y="124" width="1240" height="598" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1614759168764">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
-    <state x="100" y="124" width="1240" height="598" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1440.795@0.25.1440.795" timestamp="1614302359057" />
+    <state x="100" y="124" width="1240" height="598" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1440.795@0.25.1440.795" timestamp="1614759168764" />
     <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1440.798@0.25.1440.798" timestamp="1611203372469" />
     <state x="441" y="61" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1610592665848">
       <screen x="0" y="25" width="1440" height="798" />

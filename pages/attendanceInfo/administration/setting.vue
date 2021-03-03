@@ -952,7 +952,7 @@
         let errWeekNum1 = 0;
         let errWeekNum2 = 0;
         let errWeekNum3 = 0;
-        let regNum = /^[0-9]*$/;
+        let regNum = /^[1-9]*$/;
         let userIds = [];
         let auditIds = [];
         let weekDay1 = {};
@@ -1084,22 +1084,26 @@
             }
 
             if (this.form.unSignRule == 1){
-              if (this.form.unSignRuleTime1 == ""){
+              /*if (this.form.unSignRuleTime1 == ""){
                 errNum++;
-              }else if (regNum.test(this.form.unSignRuleTime1) == false){
+              }else */if (!!this.form.unSignRuleTime1 != "" && regNum.test(this.form.unSignRuleTime1) == false){
                 errNum++;
               }
             }
 
             if (this.form.unSignRule == 2){
-              if (this.form.unSignRuleTime2 == ""){
+              /*if (this.form.unSignRuleTime2 == ""){
                 errNum++;
-              }else if (regNum.test(this.form.unSignRuleTime2) == false){
+              }else */if (!!this.form.unSignRuleTime2 && regNum.test(this.form.unSignRuleTime2) == false){
                 errNum++;
               }
             }
 
-            if (regNum.test(this.form.unSignStaticRuleTime1) == false || regNum.test(this.form.unSignStaticRuleTime2) == false || regNum.test(this.form.unSignStaticRuleTime3) == false){
+            if (!!this.form.unSignRuleTime3 && regNum.test(this.form.unSignRuleTime3) == false){
+              errNum++;
+            }
+
+            if ((!!this.form.unSignStaticRuleTime1 && regNum.test(this.form.unSignStaticRuleTime1) == false) || (!!this.form.unSignStaticRuleTime2 && regNum.test(this.form.unSignStaticRuleTime2) == false) || (!!this.form.unSignStaticRuleTime3 && regNum.test(this.form.unSignStaticRuleTime3) == false)){
               errNum++;
             }
 
