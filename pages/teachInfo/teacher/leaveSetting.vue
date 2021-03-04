@@ -39,7 +39,7 @@
                 width="80"
                 :label="$t('操作')">
                 <template slot-scope="scope">
-                  <i class="fa fa-cog color-grand" @click="setLevel(scope.row)"></i>
+                  <i class="fa fa-check-square-o color-grand" @click="setLevel(scope.row)"></i>
                 </template>
               </el-table-column>
             </el-table>

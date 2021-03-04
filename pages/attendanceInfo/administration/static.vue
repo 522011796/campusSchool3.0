@@ -155,30 +155,7 @@
                 :label="$t('连续旷工天数')">
 
                 <template slot-scope="scope">
-                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">
-                      <el-table
-                        :data="scope.row.workAttendMap.lxabsList"
-                        style="width: 300px"
-                        max-height="240">
-                        <el-table-column
-                          label="次数"
-                          align="center">
-                          <template slot-scope="scopeItem">
-                            <span>{{scopeItem.row.time1}} - {{scopeItem.row.time2}}</span>
-                          </template>
-                        </el-table-column>
-                        <el-table-column
-                          prop="days"
-                          label="天数"
-                          align="center">
-                        </el-table-column>
-                      </el-table>
-                    </div>
-                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      <span class="color-grand">{{scope.row.workAttendMap.lxabs}}</span>
-                    </div>
-                  </el-popover>
+                  <span class="color-grand" @click="showDetail(scope.row)">{{scope.row.workAttendMap.lxabs}}</span>
                 </template>
               </el-table-column>
               <el-table-column
@@ -244,6 +221,32 @@
         </div>
       </layout-lr>
     </div>
+
+    <drawer-layout-right @changeDrawer="closeDrawerDialog" :hide-footer="false" :visible="drawerVisible" size="550px" :title="$t('连续旷工天数详情')" @right-close="cancelDrawDialog">
+      <div slot="content">
+        <el-table
+          :data="tableDetailData"
+          header-cell-class-name="custom-table-cell-bg"
+          size="medium"
+          style="width: 100%">
+          <el-table-column
+            label="次数"
+            align="center">
+            <template slot-scope="scopeItem">
+              <span>{{scopeItem.row.time1}} - {{scopeItem.row.time2}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="days"
+            label="天数"
+            align="center">
+          </el-table-column>
+        </el-table>
+      </div>
+      <div slot="footer" class="text-right padding-lr-10">
+        {{$t("共")}}{{tableDetailData.length}}{{$t("条")}}
+      </div>
+    </drawer-layout-right>
   </div>
 </template>
 
@@ -327,6 +330,7 @@
         leftStatus: [],
         leftStatusKey: [],
         shareData: {},
+        tableDetailData: [],
         form: {
           leaveRateType: 3,
           unSignRateType: 3,
@@ -507,6 +511,19 @@
         this.page = 1;
         this.searchKey = data.input;
         this.init();
+      },
+      showDetail(data){
+        if (data && data.workAttendMap && data.workAttendMap.lxabsList){
+          this.tableDetailData = data.workAttendMap.lxabsList;
+        }
+        this.drawerVisible = true;
+      },
+      closeDrawerDialog(event){
+        this.auditObjectItem = {};
+        this.drawerVisible = event;
+      },
+      cancelDrawDialog(){
+        this.drawerVisible = false;
       }
     }
   }

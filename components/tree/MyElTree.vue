@@ -14,7 +14,7 @@
       <slot name="middle" ref="slotDefault"></slot>
     </div>
     <div class="tree-container custom-el-tree margin-top-5">
-      <div v-if="showCampus" class="tree-el-tree-all" @click="nodeClickCampusAll">
+      <div v-if="showCampus" :class="selectCampusAll == true ? 'tree-el-tree-all' : 'tree-el-tree-all-no'" @click="nodeClickCampusAll">
         {{campusName}}
       </div>
       <el-tree
@@ -25,7 +25,7 @@
         :default-checked-keys="defaultCheckedKeys"
         ref="tree"
         node-key="id"
-        :highlight-current="true"
+        :highlight-current="selectCampusAll == true ? false : true"
         @node-click="handleNodeClick"
         @check-change="handleCheckChange">
       </el-tree>
@@ -106,7 +106,8 @@
         filterText: '',
         slotDefault: false,
         slotTop: false,
-        nodeTreeCurrentId: '7'
+        nodeTreeCurrentId: '7',
+        selectCampusAll: true
       }
     },
     mounted() {
@@ -138,12 +139,14 @@
         return data.label.indexOf(value) !== -1;
       },
       handleNodeClick(data) {
+        this.selectCampusAll = false;
         this.$emit('node-click', data);
       },
       handleCheckChange(data, checked, indeterminate){
         this.$emit('check-change', data, checked, indeterminate);
       },
       nodeClickCampusAll(data){
+        this.selectCampusAll = true;
         this.$emit('all-click', data);
       }
     },
@@ -165,8 +168,16 @@
 .tree-el-tree-all{
   height: 25px;
   line-height: 25px;
-  background: #efefef;
-  padding: 2px 10px;
+  background: #f0f7ff;
+  padding: 3px 10px;
+  text-align: left;
+  font-size: 14px;
+  color: #606266;
+}
+.tree-el-tree-all-no{
+  height: 25px;
+  line-height: 25px;
+  padding: 3px 10px;
   text-align: left;
   font-size: 14px;
   color: #606266;
