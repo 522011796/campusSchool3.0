@@ -25,6 +25,7 @@
         :default-checked-keys="defaultCheckedKeys"
         ref="tree"
         node-key="id"
+        :highlight-current="true"
         @node-click="handleNodeClick"
         @check-change="handleCheckChange">
       </el-tree>
@@ -104,7 +105,8 @@
         data : [],
         filterText: '',
         slotDefault: false,
-        slotTop: false
+        slotTop: false,
+        nodeTreeCurrentId: '7'
       }
     },
     mounted() {
