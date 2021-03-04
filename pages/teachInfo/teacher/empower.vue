@@ -94,14 +94,16 @@
               prop="class_no"
               :label="$t('已授权/总数')">
               <template slot-scope="scope">
-                <span class="color-success">
-                  <label v-if="scope.row.ai_sync_success">{{scope.row.ai_sync_success}}</label>
-                  <label v-else>0</label>
-                </span>
-                /
-                <span class="color-grand">
-                  {{scope.row.ai_sync_all}}
-                </span>
+                <div>
+                  <span class="color-success">
+                    <label v-if="scope.row.ai_sync_success">{{scope.row.ai_sync_success}}</label>
+                    <label v-else>0</label>
+                  </span>
+                  /
+                  <span class="color-grand">
+                    {{scope.row.ai_sync_all}}
+                  </span>
+                </div>
               </template>
             </el-table-column>
             <el-table-column

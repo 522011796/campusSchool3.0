@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/teachInfo/teacher/empower.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/teachInfo/teacher/empower.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
     </list>
@@ -115,14 +114,7 @@
       <workItem from="1614561879817" duration="15526000" />
       <workItem from="1614647780660" duration="19411000" />
       <workItem from="1614733305821" duration="35725000" />
-      <workItem from="1614850381173" duration="4713000" />
-    </task>
-    <task id="LOCAL-00259" summary="1、修改框架和组件样式、细节bug等&#10;2、按钮组带动画版本完成">
-      <created>1612430801093</created>
-      <option name="number" value="00259" />
-      <option name="presentableId" value="LOCAL-00259" />
-      <option name="project" value="LOCAL" />
-      <updated>1612430801094</updated>
+      <workItem from="1614850381173" duration="4911000" />
     </task>
     <task id="LOCAL-00260" summary="1、修改框架和组件样式、细节bug等&#10;2、按钮组带动画版本完成">
       <created>1612431562973</created>
@@ -460,7 +452,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614851123489</updated>
     </task>
-    <option name="localTasksCounter" value="308" />
+    <task id="LOCAL-00308" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
+      <created>1614855348493</created>
+      <option name="number" value="00308" />
+      <option name="presentableId" value="LOCAL-00308" />
+      <option name="project" value="LOCAL" />
+      <updated>1614855348494</updated>
+    </task>
+    <option name="localTasksCounter" value="309" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -512,10 +511,10 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1612176661241" />
-    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2" timestamp="1614851121728">
+    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2" timestamp="1614855346955">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
-    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2/0.25.1440.795@0.25.1440.795" timestamp="1614851121728" />
+    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2/0.25.1440.795@0.25.1440.795" timestamp="1614855346955" />
     <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1612662480606" />
     <state x="100" y="124" width="1240" height="598" key="DiffContextDialog" timestamp="1614150576149">
       <screen x="0" y="25" width="1440" height="795" />
@@ -542,10 +541,10 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="221" y="66" key="SettingsEditor/0.25.1440.798@0.25.1440.798" timestamp="1611905365471" />
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1614851125924">
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1614855352720">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.25.1440.795@0.25.1440.795" timestamp="1614851125924" />
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.25.1440.795@0.25.1440.795" timestamp="1614855352720" />
     <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1612662483421" />
     <state x="100" y="124" width="1240" height="598" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1614759168764">
       <screen x="0" y="25" width="1440" height="795" />
