@@ -115,8 +115,11 @@
             align="center"
             :filter-multiple="false"
             column-key="status"
-            :filters="filterOnlineStatus"
-            :label="$t('状态')">
+            :filters="filterOnlineStatus">
+            <template slot="header">
+              <span>{{$t('状态')}}</span>
+              <span v-if="filterOnlineStatusText != ''" class="font-size-12 color-disabeld">{{filterOnlineStatusText}}</span>
+            </template>
             <template slot-scope="scope">
               <div v-if="scope.row.online == false" class="color-warning">{{$t("离线")}}</div>
               <div v-if="scope.row.online == true" class="color-success">
@@ -409,6 +412,7 @@
         deleteSetTitle: '确认需要删除该信息？',
         status: '',
         deviceList: [],
+        filterOnlineStatusText: '',
         form: {
           id: '',
           ip: '',
@@ -874,8 +878,15 @@
         for (let item in value){
           if (item == 'status'){
             this.searchOnline = value[item][0];
+            this.filterOnlineStatusText = "";
+            for (let i = 0; i < this.filterOnlineStatus.length; i++){
+              if (this.searchOnline == this.filterOnlineStatus[i].value){
+                this.filterOnlineStatusText = this.filterOnlineStatus[i].text;
+              }
+            }
           }
         }
+        this.page = 1;
         this.init();
       },
       handleChange(type){

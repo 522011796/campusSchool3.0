@@ -140,9 +140,11 @@
                 align="center"
                 :filter-multiple="false"
                 column-key="type"
-                :filters="filterTypes"
-                :label="$t('类型')">
-
+                :filters="filterTypes">
+                <template slot="header">
+                  <span>{{$t('类型')}}</span>
+                  <span v-if="filterTypesText != ''" class="font-size-12 color-disabeld">{{filterTypesText}}</span>
+                </template>
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                     <div class="text-center">{{scope.row.str1}}</div>
@@ -156,9 +158,11 @@
                 align="center"
                 :filter-multiple="false"
                 column-key="level"
-                :filters="filterLevels"
-                :label="$t('级别')">
-
+                :filters="filterLevels">
+                <template slot="header">
+                  <span>{{$t('级别')}}</span>
+                  <span v-if="filterLevelsText != ''" class="font-size-12 color-disabeld">{{filterLevelsText}}</span>
+                </template>
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                     <div class="text-center">{{scope.row.str2}}</div>
@@ -185,9 +189,11 @@
                 align="center"
                 :filter-multiple="false"
                 column-key="status"
-                :filters="filterStatus"
-                :label="$t('状态/审核人')">
-
+                :filters="filterStatus">
+                <template slot="header">
+                  <span>{{$t('状态/审核人')}}</span>
+                  <span v-if="filterStatusText != ''" class="font-size-12 color-disabeld moon-content-text-ellipsis-class">{{filterStatusText}}</span>
+                </template>
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                     <div class="text-center">
@@ -348,6 +354,9 @@
         searchStudentKey: '',
         errorStudent: '',
         auditObjectItem: {},
+        filterLevelsText: '',
+        filterTypesText: '',
+        filterStatusText: '',
         form: {
           id: '',
           type: '',
@@ -570,13 +579,32 @@
       fliterTable(value, row, column){
         for (let item in value){
           if (item == 'type'){
+            this.filterTypesText = "";
             this.type = value[item][0];
+            for (let i = 0; i < this.filterTypes.length; i++){
+              if (this.type == this.filterTypes[i].value){
+                this.filterTypesText = this.filterTypes[i].text;
+              }
+            }
           }else if (item == 'level'){
+            this.filterLevelsText = "";
             this.level = value[item][0];
+            for (let i = 0; i < this.filterLevels.length; i++){
+              if (this.level == this.filterLevels[i].value){
+                this.filterLevelsText = this.filterLevels[i].text;
+              }
+            }
           }else if (item == 'status'){
+            this.filterStatusText = "";
             this.status = value[item][0];
+            for (let i = 0; i < this.filterStatus.length; i++){
+              if (this.status == this.filterStatus[i].value){
+                this.filterStatusText = this.filterStatus[i].text;
+              }
+            }
           }
         }
+        this.page = 1;
         this.init();
       },
       expandInfo(){

@@ -96,6 +96,10 @@
               :filter-multiple="false"
               column-key="section"
               :filters="filtersSection">
+              <template slot="header">
+                <span>{{$t('节数')}}</span>
+                <span v-if="filtersSectionText != ''" class="font-size-12 color-disabeld">{{filtersSectionText}}</span>
+              </template>
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                   <div class="text-left">
@@ -129,6 +133,10 @@
                 :filter-multiple="false"
                 column-key="status"
                 :filters="filterClassAttendStatus">
+                <template slot="header">
+                  <span>{{$t('状态')}}</span>
+                  <span v-if="filterClassAttendStatusText != ''" class="font-size-12 color-disabeld">{{filterClassAttendStatusText}}</span>
+                </template>
                 <template slot-scope="scope">
                   <span>{{classAttendStatusInfo(scope.row.signStatus, 'set')}}</span>
                 </template>
@@ -328,7 +336,9 @@
         uploadAction: common.student_upload,
         loopTimer: null,
         resultList: [],
-        searchTopTime: this.$moment(new Date).format("YYYY-MM-DD")
+        searchTopTime: this.$moment(new Date).format("YYYY-MM-DD"),
+        filterClassAttendStatusText: '',
+        filtersSectionText: ''
       }
     },
     created() {
@@ -445,11 +455,24 @@
       fliterTable(value, row, column){
         for (let item in value){
           if (item == 'status'){
+            this.filterClassAttendStatusText = '';
             this.searchType = value[item][0];
+            for (let i = 0; i < this.filterClassAttendStatus.length; i++){
+              if (this.searchType == this.filterClassAttendStatus[i].value){
+                this.filterClassAttendStatusText = this.filterClassAttendStatus[i].text;
+              }
+            }
           }else if (item == 'section'){
+            this.filtersSectionText = '';
             this.searchSection = value[item][0];
+            for (let i = 0; i < this.filtersSection.length; i++){
+              if (this.searchSection == this.filtersSection[i].value){
+                this.filtersSectionText = this.filtersSection[i].text;
+              }
+            }
           }
         }
+        this.page = 1;
         this.init();
       },
       handleChange(data){

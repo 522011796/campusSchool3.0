@@ -161,6 +161,10 @@
             :filters="mettingStatusFilter"
             prop="level_name"
             :label="$t('会议状态')">
+            <template slot="header">
+              <span>{{$t('会议状态')}}</span>
+              <span v-if="mettingStatusFilterText != ''" class="font-size-12 color-disabeld moon-content-text-ellipsis-class">{{mettingStatusFilterText}}</span>
+            </template>
             <template slot-scope="scope">
               <span>{{meetingStatusInfo('set', scope.row.meeting_status)}}</span>
             </template>
@@ -318,7 +322,10 @@
             column-key="signStatus"
             :filters="mettingUserJoinStatusFilter"
             :label="$t('出席状态')">
-
+            <template slot="header">
+              <span>{{$t('会议状态')}}</span>
+              <span v-if="mettingUserJoinStatusFilterText != ''" class="font-size-12 color-disabeld moon-content-text-ellipsis-class">{{mettingUserJoinStatusFilterText}}</span>
+            </template>
             <template slot-scope="scope">
               <span>{{meetingUserStatusTextInfo(scope.row.sign_status)}}</span>
             </template>
@@ -552,6 +559,8 @@
         statusChartData: [],
         deviceList: [],
         searchDeviceKey: '',
+        mettingStatusFilterText: '',
+        mettingUserJoinStatusFilterText: '',
         form: {
           id: '',
           meetingNo: '',
@@ -888,10 +897,24 @@
       fliterTable(value, row, column){
         for (let item in value){
           if (item == 'status'){
+            this.mettingStatusFilterText = '';
             this.status = value[item][0];
+            for (let i = 0; i < this.mettingStatusFilter.length; i++){
+              if (this.status == this.mettingStatusFilter[i].value){
+                this.mettingStatusFilterText = this.mettingStatusFilter[i].text;
+              }
+            }
+            this.page = 1;
             this.init();
           }else if (item == 'signStatus'){
+            this.mettingUserJoinStatusFilterText = '';
             this.signStatus = value[item][0];
+            for (let i = 0; i < this.mettingUserJoinStatusFilter.length; i++){
+              if (this.signStatus == this.mettingUserJoinStatusFilter[i].value){
+                this.mettingUserJoinStatusFilterText = this.mettingUserJoinStatusFilter[i].text;
+              }
+            }
+            this.pageStatic = 1;
             this.initStaticPage(this.detailData);
           }
         }

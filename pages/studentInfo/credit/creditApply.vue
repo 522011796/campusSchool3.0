@@ -118,9 +118,11 @@
               align="center"
               :filter-multiple="false"
               column-key="status"
-              :filters="filterStatus"
-              :label="$t('状态/审核人')">
-
+              :filters="filterStatus">
+              <template slot="header">
+                <span>{{$t('状态/审核人')}}</span>
+                <span v-if="filterStatusText != ''" class="font-size-12 color-disabeld moon-content-text-ellipsis-class">{{filterStatusText}}</span>
+              </template>
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                   <div class="text-center">
@@ -277,6 +279,7 @@ export default {
       errorStudent: '',
       uploadFileAction: common.upload_file,
       auditObjectItem: {},
+      filterStatusText: '',
       form: {
         id: '',
         type: '',
@@ -428,9 +431,16 @@ export default {
     fliterTable(value, row, column){
       for (let item in value){
         if (item == 'status'){
+          this.filterStatusText = "";
           this.status = value[item][0];
+          for (let i = 0; i < this.filterStatus.length; i++){
+            if (this.status == this.filterStatus[i].value){
+              this.filterStatusText = this.filterStatus[i].text;
+            }
+          }
         }
       }
+      this.page = 1;
       this.init();
     },
     handleDetail(row){

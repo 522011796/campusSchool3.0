@@ -77,6 +77,10 @@
               :filter-multiple="false"
               column-key="status"
               :filters="filterDormBackStatus">
+              <template slot="header">
+                <span>{{$t('状态')}}</span>
+                <span v-if="filterDormBackStatusText != ''" class="font-size-12 color-disabeld moon-content-text-ellipsis-class">{{filterDormBackStatusText}}</span>
+              </template>
               <template slot-scope="scope">
                 <span v-if="scope.row.signStatus || scope.row.signStatus == 0">{{dormStatusInfo(scope.row.signStatus)}}</span>
                 <span v-else>--</span>
@@ -296,6 +300,7 @@
         loopTimer: null,
         resultList: [],
         searchTopTime: this.$moment(new Date).format("YYYY-MM-DD"),
+        filterDormBackStatusText: '',
         form: {
           id: '',
           name: '',
@@ -695,9 +700,16 @@
       fliterTable(value, row, column){
         for (let item in value){
           if (item == 'status'){
+            this.filterDormBackStatusText = "";
             this.searchType = value[item][0];
+            for (let i = 0; i < this.filterDormBackStatus.length; i++){
+              if (this.searchType == this.filterDormBackStatus[i].value){
+                this.filterDormBackStatusText = this.filterDormBackStatus[i].text;
+              }
+            }
           }
         }
+        this.page = 1;
         this.init();
       }
     }

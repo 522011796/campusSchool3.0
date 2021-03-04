@@ -87,7 +87,12 @@
               :label="$t('设备类型')"
               :filter-multiple="false"
               column-key="deviceType"
+              width="100"
               :filters="filtersDeviceType">
+              <template slot="header">
+                <span>{{$t('设备类型')}}</span>
+                <span v-if="filtersDeviceTypeText != ''" class="font-size-12 color-disabeld moon-content-text-ellipsis-class">{{filtersDeviceTypeText}}</span>
+              </template>
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                   <div class="text-center">{{deviceTypeInfo('set', scope.row.device_type)}}</div>
@@ -232,7 +237,8 @@
         uploadAction: common.student_upload,
         loopTimer: null,
         resultList: [],
-        searchTopTime: this.$moment(new Date).format("YYYY-MM-DD")
+        searchTopTime: this.$moment(new Date).format("YYYY-MM-DD"),
+        filtersDeviceTypeText: ''
       }
     },
     created() {
@@ -370,9 +376,16 @@
       fliterTable(value, row, column){
         for (let item in value){
           if (item == 'deviceType'){
+            this.filtersDeviceTypeText = '';
             this.searchDeviceType = value[item][0];
+            for (let i = 0; i < this.filtersDeviceType.length; i++){
+              if (this.searchDeviceType == this.filtersDeviceType[i].value){
+                this.filtersDeviceTypeText = this.filtersDeviceType[i].text;
+              }
+            }
           }
         }
+        this.page = 1;
         this.init();
       },
       handleChange(data){

@@ -163,8 +163,11 @@
                 prop="apply_grade"
                 :filter-multiple="false"
                 column-key="level"
-                :filters="levelStatus"
-                :label="$t('等级')">
+                :filters="levelStatus">
+                <template slot="header">
+                  <span>{{$t('等级')}}</span>
+                  <span v-if="levelStatusText != ''" class="font-size-12 color-disabeld">{{levelStatusText}}</span>
+                </template>
               </el-table-column>
               <el-table-column
                 align="center"
@@ -394,7 +397,8 @@
         searchStudentKey: '',
         errorStudent: '',
         userId: '',
-        typeName: ''
+        typeName: '',
+        levelStatusText: ''
       }
     },
     created() {
@@ -657,10 +661,18 @@
       fliterTable(value, row, column){
         for (let item in value){
           if (item == 'level'){
+            this.levelStatusText = "";
             this.status = value[item][0];
+            for (let i = 0; i < this.levelStatus.length; i++){
+              if (this.status == this.levelStatus[i].value){
+                this.levelStatusText = this.levelStatus[i].text;
+              }
+            }
+            this.page = 1;
             this.initLeaveInfo();
           }else if (item == 'status'){
             this.typeName = value[item][0];
+            this.pageStudent = 1;
             this.initScore();
           }
         }

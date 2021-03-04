@@ -123,6 +123,10 @@
             column-key="status"
             :filters="filterOnlineStatus"
             :label="$t('状态')">
+            <template slot="header">
+              <span>{{$t('状态')}}</span>
+              <span v-if="filterOnlineStatusText != ''" class="font-size-12 color-disabeld">{{filterOnlineStatusText}}</span>
+            </template>
             <template slot-scope="scope">
               <div v-if="scope.row.online == false" class="color-warning">{{$t("离线")}}</div>
               <div v-if="scope.row.online == true" class="color-success">
@@ -399,6 +403,7 @@
         deviceExtraList: [],
         searchIndex: '',
         id: '',
+        filterOnlineStatusText: '',
         form: {
           id: '',
           sn: '',
@@ -792,9 +797,16 @@
       fliterTable(value, row, column){
         for (let item in value){
           if (item == 'status'){
+            this.filterOnlineStatusText = '';
             this.searchOnline = value[item][0];
+            for (let i = 0; i < this.filterOnlineStatus.length; i++){
+              if (this.searchOnline == this.filterOnlineStatus[i].value){
+                this.filterOnlineStatusText = this.filterOnlineStatus[i].text;
+              }
+            }
           }
         }
+        this.page = 1;
         this.init();
       },
       handleChange(type){

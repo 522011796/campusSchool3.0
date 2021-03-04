@@ -156,9 +156,11 @@
                 align="center"
                 :filter-multiple="false"
                 column-key="level"
-                :filters="filterScoreLevels"
-                :label="$t('等级')">
-
+                :filters="filterScoreLevels">
+                <template slot="header">
+                  <span>{{$t('等级')}}</span>
+                  <span v-if="filterScoreLevelsText != ''" class="font-size-12 color-disabeld">{{filterScoreLevelsText}}</span>
+                </template>
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                     <div class="text-center">{{scope.row.gradeName}}</div>
@@ -387,6 +389,7 @@
         searchStudentKey: '',
         errorStudent: '',
         userId: '',
+        filterScoreLevelsText: ''
       }
     },
     created() {
@@ -566,9 +569,16 @@
       fliterTable(value, row, column){
         for (let item in value){
           if (item == 'level'){
+            this.filterScoreLevelsText = "";
             this.status = value[item][0];
+            for (let i = 0; i < this.filterScoreLevels.length; i++){
+              if (this.status == this.filterScoreLevels[i].value){
+                this.filterScoreLevelsText = this.filterScoreLevels[i].text;
+              }
+            }
           }
         }
+        this.page = 1;
         this.init();
       },
       handleTime(data){

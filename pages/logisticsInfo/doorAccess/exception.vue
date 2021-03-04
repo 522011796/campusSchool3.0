@@ -114,6 +114,10 @@
             column-key="status"
             :filters="filterDoorExceptionStatus"
             :label="$t('状态')">
+            <template slot="header">
+              <span>{{$t('状态')}}</span>
+              <span v-if="filterDoorExceptionStatusText != ''" class="font-size-12 color-disabeld">{{filterDoorExceptionStatusText}}</span>
+            </template>
             <template slot-scope="scope">
               <my-door-exception-status :status="scope.row.status"></my-door-exception-status>
             </template>
@@ -194,7 +198,8 @@
         deleteSetTitle: '确认需要解除该限制吗？',
         status: '',
         deviceList: [],
-        id: ''
+        id: '',
+        filterDoorExceptionStatusText: ''
       }
     },
     created() {
@@ -307,9 +312,16 @@
       fliterTable(value, row, column){
         for (let item in value){
           if (item == 'status'){
+            this.filterDoorExceptionStatusText = '';
             this.status = value[item][0];
+            for (let i = 0; i < this.filterDoorExceptionStatus.length; i++){
+              if (this.status == this.filterDoorExceptionStatus[i].value){
+                this.filterDoorExceptionStatusText = this.filterDoorExceptionStatus[i].text;
+              }
+            }
           }
         }
+        this.page = 1;
         this.init();
       },
       exportInfo(){
