@@ -530,4 +530,7 @@ export const common = {
   web_auth_group_role_user_add: '/proxy/user/school/add/userRole',//web权限--角色组成员添加
   web_auth_group_role_user_del: '/proxy/user/school/delete/userRole',//web权限--角色组成员删除
 
+  face_sync_teacher: '/proxy/school/person/teacher/face/sync',//同步教工授权
+  face_sync_teacher_del: '/proxy/school/person/teacher/flush',//删除教工授权
+
 };

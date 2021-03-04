@@ -10,7 +10,7 @@
       </div>
 
       <div slot="right">
-        <div class="layout-right-tab">
+        <div class="layout-top-tab margin-top-5">
           <el-row>
             <el-col :span="12">
               <div class="text-left">
@@ -24,70 +24,220 @@
           </el-row>
         </div>
 
-        <div  class="bg-white border-bottom-1 padding-lr-5 padding-tb-5" :style="divHeight">
+        <div class="margin-top-10">
+          <el-table
+            ref="refTable"
+            :data="tableData"
+            header-cell-class-name="custom-table-cell-bg"
+            size="medium"
+            :max-height="tableHeight2.height"
+            style="width: 100%">
+            <el-table-column
+              align="center"
+              prop="real_name"
+              :label="$t('姓名')">
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="college_no"
+              :label="$t('部门')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{ scope.row.depart_name ?  scope.row.depart_name : '--'}}</div>
+                  <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{ scope.row.depart_name ?  scope.row.depart_name : '--'}}
+                </span>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="class_no"
+              :label="$t('工号')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{ scope.row.job_name ?  scope.row.job_name : '--'}}</div>
+                  <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{ scope.row.job_name ?  scope.row.job_name : '--'}}
+                </span>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="class_no"
+              :label="$t('在职状态')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{studyTypeInfo(scope.row.work_enjoy, 'set')}}</div>
+                  <span slot="reference" class="name-wrapper">
+                  {{studyTypeInfo(scope.row.work_enjoy, 'set')}}
+                </span>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="class_no"
+              :label="$t('授权状态')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center"><my-auth-options :status="scope.row.ai_sync_status"></my-auth-options></div>
+                  <span slot="reference" class="name-wrapper">
+                    <my-auth-options :status="scope.row.ai_sync_status"></my-auth-options>
+                  </span>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="class_no"
+              :label="$t('已授权/总数')">
+              <template slot-scope="scope">
+                <span class="color-success">
+                  <label v-if="scope.row.ai_sync_success">{{scope.row.ai_sync_success}}</label>
+                  <label v-else>0</label>
+                </span>
+                /
+                <span class="color-grand">
+                  {{scope.row.ai_sync_all}}
+                </span>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="class_no"
+              :label="$t('注册照片')">
+              <template slot-scope="scope">
+                <my-head-img class="pull-left" v-if="scope.row.photo" :head-img="scope.row.photo"></my-head-img>
+                <span v-if="scope.row.face_photos && scope.row.face_photos != '|'">
+                  <my-head-img class="pull-left margin-left-5" v-for="(item, index) in scope.row.face_photos.split('|')" :head-img="item" :key="index"></my-head-img>
+                </span>
+                <div class="moon-clearfix"></div>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              fixed="right"
+              label="操作"
+              width="120">
+              <template slot-scope="scope">
+                <i class="fa fa-cog margin-right-5 color-success" @click="detailInfo(scope.row)"></i>
+                <i class="fa margin-right-5 color-grand" :class="scope.row.loading ? 'fa-spinner fa-spin' : 'fa-retweet'" @click="syncInfo(scope.row)"></i>
+                <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
+              </template>
+            </el-table-column>
+          </el-table>
+
+          <div class="layout-right-footer text-right">
+            <my-pagination :total="total" :current-page="page" :page-size="num" @currentPage="currentPage" @sizeChange="sizeChange" @jumpChange="jumpPage" class="layout-pagination"></my-pagination>
+          </div>
+        </div>
+
+        <!--<div  class="bg-white border-bottom-1 padding-lr-5 padding-tb-5" :style="divHeight">
           <div v-if="tableData.length <= 0">
             <div class="text-center padding-tb-10">
               <span class="color-disabeld">{{$t("暂无数据")}}</span>
             </div>
           </div>
           <el-row :gutter="16">
-            <el-col :span="6" v-for="(item, index) in tableData" :key="index" class="margin-bottom-20" @click.native="detailInfo(item)">
-              <el-card :body-style="{padding: '10px 10px', height: '85px'}" style="position: relative">
-                <div class="color-muted">
-                  <el-row class="color-warning">
-                    <el-col :span="12">
-                      <i class="fa fa-id-card"></i>
-                      <span>{{item.job_num}}</span>
-                    </el-col>
-                    <el-col :span="12">
-                      <div class="text-right">
-                        <!--<i class="fa fa-ellipsis-h"></i>-->
-                        <my-auth-options :status="item.ai_sync_status"></my-auth-options>
-                      </div>
-                    </el-col>
-                  </el-row>
-                </div>
+            <el-col :span="6" v-for="(item, index) in tableData" :key="index" class="margin-bottom-20">
+              <el-card :body-style="{padding: '0px 0px', height: '100px'}" style="position: relative">
+                <div class="padding-lr-10 padding-tb-10">
+                  <div class="color-muted">
+                    <el-row class="color-warning">
+                      <el-col :span="12">
+                        <i class="fa fa-id-card"></i>
+                        <span>{{item.job_num}}</span>
+                      </el-col>
+                      <el-col :span="12">
+                        <div class="text-right">
+                          &lt;!&ndash;<i class="fa fa-ellipsis-h"></i>&ndash;&gt;
+                          <my-auth-options :status="item.ai_sync_status"></my-auth-options>
+                        </div>
+                      </el-col>
+                    </el-row>
+                  </div>
 
-                <div class="color-muted margin-top-10">
-                  <el-row>
-                    <el-col :span="8">
-                      <div>
-                        <img v-if="item.photo" :src="item.photo" key="contain" style="width: 40px; height: 40px" />
-                        <el-avatar v-if="!item.photo" shape="square" :size="40" icon="el-icon-user-solid"></el-avatar>
-                      </div>
-                      <div class="color-success font-size-12 text-left">
-                        <!--<span>
-                          <label v-if="item.status">{{studentTeachStatusInfo(item.status, 'set')}}</label>
-                          <label v-else>&#45;&#45;</label>
-                        </span>-->
-                        <span class="color-warning margin-left-10">
+                  <div class="color-muted margin-top-10">
+                    <el-row>
+                      <el-col :span="8">
+                        <div>
+                          <img v-if="item.photo" :src="item.photo" key="contain" style="width: 40px; height: 40px" />
+                          <el-avatar v-if="!item.photo" shape="square" :size="40" icon="el-icon-user-solid"></el-avatar>
+                        </div>
+                        <div class="color-success font-size-12 text-left">
+                          &lt;!&ndash;<span>
+                            <label v-if="item.status">{{studentTeachStatusInfo(item.status, 'set')}}</label>
+                            <label v-else>&#45;&#45;</label>
+                          </span>&ndash;&gt;
+                          <span class="color-warning margin-left-10">
                           <label>{{studyTypeInfo(item.work_enjoy, 'set')}}</label>
                         </span>
-                      </div>
-                    </el-col>
-                    <el-col :span="16">
-                      <div class="text-right">
-                        <div class="moon-content-text-ellipsis-class">
-                          {{item.real_name}}
                         </div>
-                        <div class="moon-content-text-ellipsis-class">
-                          {{item.depart_name}}
+                      </el-col>
+                      <el-col :span="16">
+                        <div class="text-right">
+                          <div>
+                            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                              <div class="text-left">
+                                <div>
+                                  <span>{{$t("已授权")}}：</span>
+                                  <span>
+                                  <label v-if="item.ai_sync_success">{{item.ai_sync_success}}</label>
+                                  <label v-else>0</label>
+                                </span>
+                                </div>
+                                <div>
+                                  <span>{{$t("设备总数")}}：</span>
+                                  <span>
+                                  {{item.ai_sync_all}}
+                                </span>
+                                </div>
+                              </div>
+                              <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class color-warning">
+                              <span class="color-success">
+                                <label v-if="item.ai_sync_success">{{item.ai_sync_success}}</label>
+                                <label v-else>0</label>
+                              </span>
+                                /
+                                <span class="color-grand">
+                                {{item.ai_sync_all}}
+                              </span>
+                              </div>
+                            </el-popover>
+                          </div>
+                          <div class="moon-content-text-ellipsis-class">
+                            {{item.real_name}}
+                          </div>
+                          <div class="moon-content-text-ellipsis-class">
+                            {{item.depart_name}}
+                          </div>
+                          &lt;!&ndash;<div class="moon-content-text-ellipsis-class">
+                            {{workTitleInfo(item.title, 'set')}}
+                          </div>&ndash;&gt;
                         </div>
-                        <div class="moon-content-text-ellipsis-class">
-                          {{workTitleInfo(item.title, 'set')}}
-                        </div>
-                      </div>
+                      </el-col>
+                    </el-row>
+                  </div>
+                </div>
+                <div class="line-height"></div>
+                <div>
+                  <el-row>
+                    <el-col :span="24" class="text-right padding-lr-10">
+                      <label class="font-size-12" @click="detailInfo(item)">{{$t("授权")}}</label>
+                      <label class="font-size-12 margin-left-5">{{$t("同步")}}</label>
                     </el-col>
                   </el-row>
                 </div>
               </el-card>
             </el-col>
           </el-row>
-        </div>
+        </div>-->
 
-        <div class="layout-right-footer text-right">
+        <!--<div class="layout-right-footer text-right">
           <my-pagination :total="total" :current-page="page" :page-size="num" @currentPage="currentPage" @sizeChange="sizeChange" @jumpChange="jumpPage" class="layout-pagination"></my-pagination>
-        </div>
+        </div>-->
       </div>
     </layout-lr>
 
@@ -258,6 +408,9 @@
         </div>
       </div>
     </drawer-layout-right>
+
+    <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="删除后会清空所有授权数据，确认需要执行该操作吗？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="cancelDrawDialog"></my-normal-dialog>
+
   </div>
 </template>
 
@@ -279,6 +432,7 @@
   import DrawerLayoutRight from "../../../components/utils/dialog/DrawerLayoutRight";
   import TabGroupButton from "../../../components/utils/button/TabGroupButton";
   import MyAuthOptions from "../../../components/utils/status/MyAuthOptions";
+  import MyHeadImg from "../../../components/utils/common/MyHeadImg";
   import {
     deviceType,
     MessageError,
@@ -291,7 +445,7 @@
   } from "../../../utils/utils";
   export default {
     mixins: [mixins],
-    components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,UploadSquare,DrawerLayoutRight,TabGroupButton,MyAuthOptions},
+    components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,UploadSquare,DrawerLayoutRight,TabGroupButton,MyAuthOptions,MyHeadImg},
     data(){
       return {
         tableData: [],
@@ -308,6 +462,7 @@
         drawerLoading: false,
         maskShow: false,
         timerVisible: false,
+        syncLoading: false,
         aiSyncStatus: '',
         searchCollege: '',
         searchMajor: '',
@@ -375,7 +530,10 @@
         };
         //params = this.$qs.stringify(params);
         this.$axios.get(common.tearcher_info_setting_page, {params: params}).then(res => {
-          if (res.data.data){
+          if (res.data.data && res.data.data.list.length > 0){
+            for (let i = 0; i < res.data.data.list.length; i++){
+              res.data.data.list[i]['loading'] = false;
+            }
             this.tableData = res.data.data.list;
             this.total = res.data.data.totalCount;
             this.num = res.data.data.num;
@@ -426,6 +584,26 @@
       },
       exportInfo(row){
 
+      },
+      syncInfo(row){
+        let params = {
+          userId: row.user_id
+        };
+        row.loading = true;
+        this.$axios.get(common.face_sync_teacher, {params: params, loading: false}).then(res => {
+          if (res.data.code == 200){
+            this.init();
+            //MessageSuccess(res.data.desc);
+          }else {
+            //MessageError(res.data.desc);
+          }
+
+          row.loading = false;
+        });
+      },
+      deleteInfo(row){
+        this.form.id = row.user_id;
+        this.visibleConfim = true;
       },
       detailInfo(row){
         this.userData = row;
@@ -738,6 +916,28 @@
         this.maskShow = false;
         this.timerVisible = false;
         this.errorCardTips = "";
+      },
+      handleOkChange(data) {
+        this.dialogLoading = true;
+        let url = "";
+        let params = {
+          userId: this.form.id
+        }
+        url = common.face_sync_teacher_del;
+        params = this.$qs.stringify(params);
+        this.$axios.post(url, params).then(res => {
+          if (res.data.code == 200){
+            this.init();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+          this.visibleConfim = false;
+          this.dialogLoading = false;
+        });
+      },
+      handleCancelChange(data) {
+        this.visibleConfim = false;
       }
     }
   }
