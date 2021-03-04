@@ -47,6 +47,21 @@
               </template>
             </el-table-column>
             <el-table-column
+              :label="$t('管理员')"
+              align="center">
+
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">
+                    <label>{{scope.row.teacher_name ? scope.row.teacher_name : '--'}}</label>
+                  </div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    <label>{{scope.row.teacher_name ? scope.row.teacher_name : '--'}}</label>
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
               :label="$t('人数')"
               align="center">
               <template slot-scope="scope">

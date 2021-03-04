@@ -160,10 +160,12 @@
             <template slot-scope="scope">
               <div v-if="scope.row.online == false" class="color-warning">{{$t("离线")}}</div>
               <div v-if="scope.row.online == true" class="color-success">
-                {{$t("在线")}}
+                <span v-if="scope.row.user_sync_count > 0" style="position: relative; top:-8px;">{{$t("在线")}}</span>
+                <span v-else>{{$t("在线")}}</span>
                 <span v-if="scope.row.user_sync_count > 0">
                   <el-tooltip class="item" effect="dark" :content="$t('同步剩余') + ':' + scope.row.user_sync_count" placement="right">
-                    <i class="el-icon-loading"></i>
+                    <!--<i class="fa fa-recycle"></i>-->
+                    <img src="~static/img/cloud-loading.gif" style="height: 30px;width: 30px;">
                   </el-tooltip>
                 </span>
                 <span v-if="scope.row.user_sync_count < 0">
