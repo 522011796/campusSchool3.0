@@ -1278,6 +1278,12 @@
                           sub: this.sliderMenuList[0].key
                         }
                       });
+
+
+                      let tabArr = this.inArrayPrivateObj(this.sliderMenuList[0].list[0].id, this.menuTabListObj[this.loginUserId]);
+                      if (tabArr != -1){
+                        document.getElementById("menuTagDiv").scrollLeft = tabArr * 80;
+                      }
                     }
                     break;
                   }
@@ -1352,7 +1358,11 @@
           }
           let width = parseInt(this.rightItemAllWidth.width.substr(0,this.rightItemAllWidth.width.length-2)) + 120;
           this.$set(this.rightItemAllWidth,'width', width +'px');
+          document.getElementById("menuTagDiv").scrollLeft = width;
+        }else {
+          document.getElementById("menuTagDiv").scrollLeft = tabArr * 80;
         }
+
         localStorage.setItem("menuTabList", JSON.stringify(this.menuTabListObj));
 
         this.activeSliderIndex = item.key;
