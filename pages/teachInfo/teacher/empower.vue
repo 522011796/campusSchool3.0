@@ -888,6 +888,7 @@
         this.numDevice = 20;
         this.totalDevice = 0;
         this.syncStatus = '';
+        this.tableDeviceData = [];
         this.drawerVisible = event;
         this.drawerDeviceVisible = event;
       },
