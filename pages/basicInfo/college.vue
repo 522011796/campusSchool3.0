@@ -136,24 +136,28 @@
             <th width="15%">{{$t("系部主任")}}</th>
             <th width="40%">{{$t("姓名")}}</th>
           </tr>
-          <tbody v-loading="loadingList" :element-loading-text="$t('加载中...')" element-loading-spinner="el-icon-loading">
-          <tr v-for="(item, index) in tableTeacherData" :key="item.id">
-            <td>
-              <my-check :sel-value="item._director" @change="handleBoxChange($event, item, 1)"></my-check>
-            </td>
-            <td>
-              <my-check :sel-value="item._deputyDirectior" @change="handleBoxChange($event, item, 2)"></my-check>
-            </td>
-            <td>
-              <my-check :sel-value="item._studentManage" @change="handleBoxChange($event, item, 3)"></my-check>
-            </td>
-            <td>
-              <my-check :sel-value="item._secretary" @change="handleBoxChange($event, item, 4)"></my-check>
-            </td>
-            <td>{{item.real_name}}</td>
-          </tr>
-          </tbody>
         </table>
+        <div :style="divHeight8">
+          <table class="custom-table2">
+            <tbody v-loading="loadingList" :element-loading-text="$t('加载中...')" element-loading-spinner="el-icon-loading">
+            <tr v-for="(item, index) in tableTeacherData" :key="item.id">
+              <td width="15%">
+                <my-check :sel-value="item._director" @change="handleBoxChange($event, item, 1)"></my-check>
+              </td>
+              <td width="15%">
+                <my-check :sel-value="item._deputyDirectior" @change="handleBoxChange($event, item, 2)"></my-check>
+              </td>
+              <td width="15%">
+                <my-check :sel-value="item._studentManage" @change="handleBoxChange($event, item, 3)"></my-check>
+              </td>
+              <td width="15%">
+                <my-check :sel-value="item._secretary" @change="handleBoxChange($event, item, 4)"></my-check>
+              </td>
+              <td width="40%">{{item.real_name}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div slot="footer">
         <div class="text-right padding-lr-10">

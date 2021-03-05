@@ -859,9 +859,31 @@ ul{
   text-align: center;
 }
 .custom-table tr td{
-   background: #f5f5f5;
-   color: #606266;
-   border: 1px solid #DCDFE6;
+  background: #f5f5f5;
+  color: #606266;
+  border: 1px solid #DCDFE6;
+  text-align: center;
+}
+.custom-table2{
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #DCDFE6;
+}
+.custom-table2 tr{
+  height: 35px;
+  line-height: 35px;
+}
+.custom-table2 tr th{
+  background: #C0C4CC;
+  color: #FFFFFF;
+  border: 1px solid #DCDFE6;
+  text-align: center;
+}
+.custom-table2 tr td{
+  background: #f5f5f5;
+  color: #606266;
+  border: 0px solid #DCDFE6;
+  border-bottom: 1px solid #DCDFE6;
   text-align: center;
 }
 .custom-table-white{
