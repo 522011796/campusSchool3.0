@@ -79,6 +79,7 @@ export default {
       filterDoorInOutStatus: global.filterDoorInOutStatus,
       filterDoorSignStatus: global.filterDoorSignStatus,
       filterAuthOptions: global.filterAuthOptions,
+      filterAuthOtherOptions: global.filterAuthOtherOptions,
       g_currentDate: {},
       currentYearData: '',
       currentTermData: '',
@@ -106,6 +107,9 @@ export default {
         'height': ''
       },
       tableHeight7: {
+        'height': ''
+      },
+      tableHeight8: {
         'height': ''
       },
       tableMiddleHeight: {
@@ -180,6 +184,7 @@ export default {
         this.tableHeight5.height = window.innerHeight - 380 + 'px';
         this.tableHeight6.height = window.innerHeight - 410 + 'px';
         this.tableHeight7.height = window.innerHeight - 470 + 'px';
+        this.tableHeight8.height = window.innerHeight - 100 + 'px';
         this.tableMiddleHeight.height = window.innerHeight - 335 + 'px';
         this.divHeight["max-height"] = window.innerHeight - 205 + 'px';
         this.divHeight2["max-height"] = window.innerHeight - 235 + 'px';

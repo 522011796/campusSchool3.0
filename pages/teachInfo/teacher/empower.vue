@@ -94,7 +94,7 @@
               prop="class_no"
               :label="$t('已授权/总数')">
               <template slot-scope="scope">
-                <div>
+                <div @click="detialDeviceInfo(scope.row)">
                   <span class="color-success">
                     <label v-if="scope.row.ai_sync_success">{{scope.row.ai_sync_success}}</label>
                     <label v-else>0</label>
@@ -411,6 +411,115 @@
       </div>
     </drawer-layout-right>
 
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerDeviceVisible" :loading="drawerLoading" size="850px" :title="$t('授权设备')" @right-close="cancelDrawDialog">
+      <div slot="content">
+        <!--<div class="margin-bottom-10">
+          <tab-group-button size="small" :options='filterAuthOtherOptions' @click="handleDeviceChange"></tab-group-button>
+        </div>-->
+        <el-table
+          ref="refTable"
+          :data="tableDeviceData"
+          header-cell-class-name="custom-table-cell-bg"
+          size="medium"
+          v-loading="loadingDevice"
+          :max-height="tableHeight8.height"
+          style="width: 100%"
+          @filter-change="fliterTable">
+          <el-table-column
+            align="center"
+            prop="real_name"
+            :label="$t('设备名称')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{ scope.row.name ?  scope.row.name : '--'}}</div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{ scope.row.name ?  scope.row.name : '--'}}
+                </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            :label="$t('设备类型')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{deviceTypeInfo(scope.row.type)}}</div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{deviceTypeInfo(scope.row.type)}}
+                </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            :label="$t('IP')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.ip}}</div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{scope.row.ip}}
+                </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            :label="$t('SN')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.sn}}</div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{scope.row.sn}}
+                </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            :label="$t('授权时间')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.sync_time ? $moment(scope.row.sync_time).format("YYYY-MM-DD HH:mm:ss") : '--'}}</div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{scope.row.sync_time ? $moment(scope.row.sync_time).format("YYYY-MM-DD HH:mm:ss") : '--'}}
+                </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            :filter-multiple="false"
+            column-key="status"
+            :filters="filterAuthOtherOptions"
+            width="150"
+            :label="$t('授权状态')">
+            <template slot="header">
+              <span>{{$t('授权状态')}}</span>
+              <span v-if="filterAuthOtherOptionsText != ''" class="font-size-12 color-disabeld moon-content-text-ellipsis-class">{{filterAuthOtherOptionsText}}</span>
+            </template>
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center"><my-auth-options :status="scope.row.sync_status"></my-auth-options></div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  <my-auth-options :status="scope.row.sync_status"></my-auth-options>
+                </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+        </el-table>
+      </div>
+      <div slot="footer">
+        <div class="text-right padding-lr-10">
+          <my-pagination :total="totalDevice" :current-page="pageDevice" :page-size="numDevice" @currentPage="currentDevicePage" @sizeChange="sizeDeviceChange" @jumpChange="jumpDevicePage" class="layout-pagination"></my-pagination>
+        </div>
+      </div>
+    </drawer-layout-right>
+
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="删除后会清空所有授权数据，确认需要执行该操作吗？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="cancelDrawDialog"></my-normal-dialog>
 
   </div>
@@ -450,12 +559,16 @@
     components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,UploadSquare,DrawerLayoutRight,TabGroupButton,MyAuthOptions,MyHeadImg},
     data(){
       return {
+        pageDevice: 1,
+        totalDevice: 0,
+        numDevice: 20,
         tableData: [],
         statusList: [],
         teachList: [],
         deviceData: [],
         deviceAllData: [],
         bedData: [],
+        tableDeviceData: [],
         userData: {},
         modalVisible: false,
         dialogLoading: false,
@@ -465,6 +578,9 @@
         maskShow: false,
         timerVisible: false,
         syncLoading: false,
+        drawerDeviceVisible: false,
+        loadingList: false,
+        loadingDevice: false,
         aiSyncStatus: '',
         searchCollege: '',
         searchMajor: '',
@@ -497,6 +613,9 @@
         loopTimerCount: 60,
         selDormTips: '',
         errorCardTips: '',
+        deviceObj: '',
+        syncStatus: '',
+        filterAuthOtherOptionsText: '',
         form: {
           status: '',
           attnedType: '',
@@ -581,11 +700,36 @@
           }
         });
       },
+      initUserDevice(row){
+        let params = {
+          page: this.pageDevice,
+          num: this.numDevice,
+          userId: this.deviceObj.user_id,
+          syncStatus: this.syncStatus
+        };
+        this.loadingDevice = true;
+        this.$axios.get(common.face_sync_teacher_device_list, {params: params}).then(res => {
+          if (res.data.data){
+            this.tableDeviceData = res.data.data.list;
+            this.totalDevice = res.data.data.totalCount;
+            this.numDevice = res.data.data.num;
+            this.pageDevice = res.data.data.currentPage;
+          }
+          this.loadingDevice = false;
+        });
+      },
       importInfo(){
 
       },
       exportInfo(row){
 
+      },
+      detialDeviceInfo(row){
+        this.deviceObj = row;
+        setTimeout(() => {
+          this.initUserDevice();
+        },800);
+        this.drawerDeviceVisible = true;
       },
       syncInfo(row){
         let params = {
@@ -653,6 +797,19 @@
       jumpPage(data){
         this.page = data;
         this.init();
+      },
+      sizeDeviceChange(event){
+        this.pageDevice = 1;
+        this.numDevice = event;
+        this.initUserDevice();
+      },
+      currentDevicePage(event){
+        this.pageDevice = event;
+        this.initUserDevice();
+      },
+      jumpDevicePage(data){
+        this.page = data;
+        this.initUserDevice();
       },
       handleSelect(data, type){
         if (type == 1){
@@ -726,10 +883,17 @@
         this.$set(this.form,'deptdata', []);
         this.resetCasadeSelector('selectorClass');
         this.resetCasadeSelector('selectorDorm');
+        this.deviceObj = {};
+        this.pageDevice = 1;
+        this.numDevice = 20;
+        this.totalDevice = 0;
+        this.syncStatus = '';
         this.drawerVisible = event;
+        this.drawerDeviceVisible = event;
       },
       cancelDrawDialog(){
         this.drawerVisible = false;
+        this.drawerDeviceVisible = false;
       },
       closeDrawDialog(event){
         this.drawerVisible = false;
@@ -914,6 +1078,11 @@
         this.aiSyncStatus = type.value;
         this.init();
       },
+      handleDeviceChange(type){
+        this.page = 1;
+        this.syncStatus = type.value;
+        this.initUserDevice();
+      },
       hideCardSet(){
         this.maskShow = false;
         this.timerVisible = false;
@@ -940,6 +1109,21 @@
       },
       handleCancelChange(data) {
         this.visibleConfim = false;
+      },
+      fliterTable(value, row, column){
+        for (let item in value){
+          if (item == 'status'){
+            this.filterAuthOtherOptionsText = "";
+            this.syncStatus = value[item][0];
+            for (let i = 0; i < this.filterAuthOtherOptions.length; i++){
+              if (this.syncStatus == this.filterAuthOtherOptions[i].value){
+                this.filterAuthOtherOptionsText = this.filterAuthOtherOptions[i].text;
+              }
+            }
+          }
+        }
+        this.pageDevice = 1;
+        this.initUserDevice();
       }
     }
   }

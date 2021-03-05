@@ -313,6 +313,12 @@ const filterAuthOptions = [
   { text: '授权失败', value: '2' ,label: '授权失败'}
 ];
 
+const filterAuthOtherOptions = [
+  { text: '待授权', value: '0' ,label: '待授权'},
+  { text: '已授权', value: '1' ,label: '已授权'},
+  { text: '授权失败', value: '2' ,label: '授权失败'}
+];
+
 export default {
   total,
   page,
@@ -385,5 +391,6 @@ export default {
   filterDoorInOutStatus,
   filterDoorSignStatus,
   searchStudentType2,
-  filterAuthOptions
+  filterAuthOptions,
+  filterAuthOtherOptions
 }
