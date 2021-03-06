@@ -50,7 +50,7 @@
           <el-row>
             <el-col :span="6">
               <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo('setType')">{{$t("类型管理")}}</el-button>
-              <el-button size="small" type="warning"  icon="el-icon-time" @click="timeInfo()">{{$t("课时规则")}}</el-button>
+              <el-button size="small" type="warning"  icon="el-icon-time" @click="timeInfo()">{{$t("统计规则")}}</el-button>
             </el-col>
             <el-col :span="18" class="text-right">
 
@@ -147,23 +147,27 @@
       </div>
     </dialog-normal>
 
-    <dialog-normal :visible="modalTimeVisible" :title="$t('课时规划')" @close="closeDialog" @right-close="cancelDialog">
+    <dialog-normal :visible="modalTimeVisible" :title="$t('统计规则')" @close="closeDialog" @right-close="cancelDialog">
       <div class="margin-top-10">
         <el-form :model="formConf" :rules="rulesConf" ref="formConf" label-width="100px">
           <el-form-item :label="$t('小时规则:')">
-            <!--<div>
-              <el-switch v-model="formConf.ruleClassSwich" active-color="#13ce66" inactive-color="#ff4949" @change="handleChangeEnable($event)"></el-switch>
-            </div>-->
+            <div>
+              <my-radio :sel-value="formConf.ruleTimeSwich" label="1" @change="changeStatus($event, 1)">{{$t("按小时")}}</my-radio>
+              <el-tooltip class="item" effect="dark" :content="$t('按小时: 将不执行以下小时规则的换算')" placement="top">
+                <i class="fa fa-info-circle"></i>
+              </el-tooltip>
+              <my-radio class="margin-left-10" :sel-value="formConf.ruleTimeSwich" label="2" @change="changeStatus($event, 2)">{{$t("按天")}}</my-radio>
+            </div>
             <div>
               <span>{{$t("请假 <= ")}}</span>
-              <el-input v-model="formConf.ruleHour1" size="small" style="width: 80px"></el-input>
+              <el-input :disabled="formConf.ruleTimeSwich == 1" v-model="formConf.ruleHour1" size="small" style="width: 80px"></el-input>
               <span>{{$t(" 小时,统计为0.5天")}}</span>
             </div>
             <div class="margin-top-5">
               <span>{{$t("请假 > ")}}</span>
-              <el-input v-model="formConf.ruleHour2" size="small" style="width: 80px"></el-input>
+              <el-input :disabled="formConf.ruleTimeSwich == 1" v-model="formConf.ruleHour2" size="small" style="width: 80px"></el-input>
               <span>{{$t(" <= ")}}</span>
-              <el-input v-model="formConf.ruleHour3" size="small" style="width: 80px"></el-input>
+              <el-input :disabled="formConf.ruleTimeSwich == 1" v-model="formConf.ruleHour3" size="small" style="width: 80px"></el-input>
               <span>{{$t(" 小时,统计为1天")}}</span>
             </div>
           </el-form-item>
@@ -262,6 +266,7 @@
           ruleClass2: '',
           ruleClass3: '',
           ruleClassSwich: false,
+          ruleTimeSwich: '2'
         }
       }
     },
@@ -301,7 +306,8 @@
               ruleClass1: res.data.data.ruleClass1,
               ruleClass2: res.data.data.ruleClass2,
               ruleClass3: res.data.data.ruleClass3,
-              ruleClassSwich: res.data.data.ruleClassSwich == 0 ? false : true
+              ruleClassSwich: res.data.data.ruleClassSwich == 0 ? false : true,
+              ruleTimeSwich: "2"
             };
           }
         });
@@ -380,6 +386,7 @@
           ruleClass2: '',
           ruleClass3: '',
           ruleClassSwich: false,
+          ruleTimeSwich: '2'
         };
         this.subTitle = "";
         this.modalTimeVisible = false;
@@ -421,12 +428,12 @@
         let url = common.leave_ter_setting_config_time_save;
         let reg = /^(?!0+(\.0*)?$)\d+(\.\d{1})?$/;
         this.errorTips = "";
-        if (!reg.test(this.formConf.ruleHour1) || !reg.test(this.formConf.ruleHour2) || !reg.test(this.formConf.ruleHour3)){
+        if (this.formConf.ruleTimeSwich == 2 && (!reg.test(this.formConf.ruleHour1) || !reg.test(this.formConf.ruleHour2) || !reg.test(this.formConf.ruleHour3))){
           this.errorTips = this.$t("小时规则时间必须为非0整数或者一位小数");
           return;
         }
         if (!reg.test(this.formConf.ruleClass1) || !reg.test(this.formConf.ruleClass2) || !reg.test(this.formConf.ruleClass3)){
-          this.errorTips = this.$t("小时规则时间必须为非0整数或者一位小数");
+          this.errorTips = this.$t("课时规则时间必须为非0整数或者一位小数");
           return;
         }
 
@@ -502,6 +509,10 @@
       },
       handleChangeEnable(data){
         this.formConf.ruleClassSwich = data;
+      },
+      changeStatus(event, data){
+        console.log(data);
+        this.formConf.ruleTimeSwich = ''+data;
       }
     }
   }
