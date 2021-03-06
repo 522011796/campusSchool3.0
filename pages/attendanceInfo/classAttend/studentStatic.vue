@@ -79,10 +79,10 @@
               :label="$t('正常')">
               <template slot-scope="scope">
                 <el-popover trigger="click" placement="top" popper-class="custom-table-popover" @show="showDetail(scope.row.userId)">
-                  <div class="text-left">
-                    <div v-for="(item,index) in detailData" :key="index">
-                      <span>{{item.courseName}}:</span>
-                      <span>{{item.actualNum}}</span>
+                  <div class="text-left pop-height">
+                    <div v-for="(item,index) in detailData" :key="index" class="pop-block">
+                      <span class="pop-item">{{item.courseName}}:</span>
+                      <span class="pop-item">{{item.actualNum}}</span>
                     </div>
                   </div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
@@ -96,10 +96,10 @@
               :label="$t('旷课')">
               <template slot-scope="scope">
                 <el-popover trigger="click" placement="top" popper-class="custom-table-popover" @show="showDetail(scope.row.userId)">
-                  <div class="text-left">
-                    <div v-for="(item,index) in detailData" :key="index">
-                      <span>{{item.courseName}}:</span>
-                      <span>{{scope.row.shouldNum - scope.row.actualNum - scope.row.leaveNum - scope.row.lateNum - scope.row.leaveEarlyNum}}</span>
+                  <div class="text-left pop-height">
+                    <div v-for="(item,index) in detailData" :key="index" class="pop-block">
+                      <span class="pop-item">{{item.courseName}}:</span>
+                      <span class="pop-item">{{scope.row.shouldNum - scope.row.actualNum - scope.row.leaveNum - scope.row.lateNum - scope.row.leaveEarlyNum}}</span>
                     </div>
                   </div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
@@ -113,10 +113,10 @@
               :label="$t('请假')">
               <template slot-scope="scope">
                 <el-popover trigger="click" placement="top" popper-class="custom-table-popover" @show="showDetail(scope.row.userId)">
-                  <div class="text-left">
-                    <div v-for="(item,index) in detailData" :key="index">
-                      <span>{{item.courseName}}:</span>
-                      <span>{{item.leaveNum}}</span>
+                  <div class="text-left pop-height">
+                    <div v-for="(item,index) in detailData" :key="index" class="pop-block">
+                      <span class="pop-item">{{item.courseName}}:</span>
+                      <span class="pop-item">{{item.leaveNum}}</span>
                     </div>
                   </div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
@@ -130,10 +130,10 @@
               :label="$t('应出勤')">
               <template slot-scope="scope">
                 <el-popover trigger="click" placement="top" popper-class="custom-table-popover" @show="showDetail(scope.row.userId)">
-                  <div class="text-left">
-                    <div v-for="(item,index) in detailData" :key="index">
-                      <span>{{item.courseName}}:</span>
-                      <span>{{item.shouldNum}}</span>
+                  <div class="text-left pop-height">
+                    <div v-for="(item,index) in detailData" :key="index" class="pop-block">
+                      <span class="pop-item">{{item.courseName}}:</span>
+                      <span class="pop-item">{{item.shouldNum}}</span>
                     </div>
                   </div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
@@ -148,9 +148,9 @@
               <template slot-scope="scope">
                 <el-popover trigger="click" placement="top" popper-class="custom-table-popover" @show="showDetail(scope.row.userId)">
                   <div class="text-left">
-                    <div v-for="(item,index) in detailData" :key="index">
-                      <span>{{item.courseName}}:</span>
-                      <span>{{item.lateNum}}</span>
+                    <div v-for="(item,index) in detailData" :key="index" class="pop-block">
+                      <span class="pop-item">{{item.courseName}}:</span>
+                      <span class="pop-item">{{item.lateNum}}</span>
                     </div>
                   </div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
@@ -166,8 +166,8 @@
                 <el-popover trigger="click" placement="top" popper-class="custom-table-popover" @show="showDetail(scope.row.userId)">
                   <div class="text-left">
                     <div v-for="(item,index) in detailData" :key="index">
-                      <span>{{item.courseName}}:</span>
-                      <span>{{item.leaveEarlyNum}}</span>
+                      <span class="pop-item">{{item.courseName}}:</span>
+                      <span class="pop-item">{{item.leaveEarlyNum}}</span>
                     </div>
                   </div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
@@ -477,5 +477,17 @@
 <style scoped>
   .container {
 
+  }
+  .pop-height{
+    min-height: 50px;
+    max-height: 150px;
+    overflow-y: auto;
+  }
+  .pop-block{
+    border-bottom: 1px dashed #dddddd;
+  }
+  .pop-item{
+    display: inline-block;
+    padding: 5px 0px;
   }
 </style>

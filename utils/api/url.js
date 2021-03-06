@@ -535,4 +535,9 @@ export const common = {
   face_sync_teacher_device_list: '/proxy/school/person/teacher/device/page',//教工授权设备列表
   face_sync_teacher_face_record_list: '/proxy/school/person/teacher/recognition/page',//教工识别记录列表
 
+  face_sync_auth_student_list: '/proxy/school/person/student/page',//授权学生列表
+  face_sync_student: '/proxy/school/person/student/face/sync',//同步学生授权
+  face_sync_student_del: '/proxy/school/person/student/flush',//删除学生授权
+  face_sync_student_device_list: '/proxy/school/person/student/device/page',//教工授权设备列表
+  face_sync_student_face_record_list: '/proxy/school/person/student/recognition/page',//教工识别记录列表
 };

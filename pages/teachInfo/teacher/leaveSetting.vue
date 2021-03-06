@@ -151,6 +151,9 @@
       <div class="margin-top-10">
         <el-form :model="formConf" :rules="rulesConf" ref="formConf" label-width="100px">
           <el-form-item :label="$t('小时规则:')">
+            <!--<div>
+              <el-switch v-model="formConf.ruleClassSwich" active-color="#13ce66" inactive-color="#ff4949" @change="handleChangeEnable($event)"></el-switch>
+            </div>-->
             <div>
               <span>{{$t("请假 <= ")}}</span>
               <el-input v-model="formConf.ruleHour1" size="small" style="width: 80px"></el-input>

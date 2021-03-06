@@ -796,6 +796,7 @@
           searchKey: this.searchKey.input
         };
         //params = this.$qs.stringify(params);
+        this.tableData = [];
         this.$axios.get(common.tearcher_info_setting_page, {params: params}).then(res => {
           if (res.data.data && res.data.data.list.length > 0){
             for (let i = 0; i < res.data.data.list.length; i++){
@@ -969,6 +970,7 @@
         this.init();
       },
       handleSearchClick(){
+        this.pageTeacher = 1;
         this.initUserRecord();
       },
       sizeChange(event){
@@ -1100,6 +1102,7 @@
         this.filtersDeviceTypeText = '';
         this.searchRecodeDeviceType = '';
         this.tableRecordData = [];
+        this.searchDate = [];
         this.drawerVisible = event;
         this.drawerDeviceVisible = event;
         this.drawerRecordVisible = event;
@@ -1111,6 +1114,8 @@
       },
       closeDrawDialog(event){
         this.drawerVisible = false;
+        this.drawerDeviceVisible = false;
+        this.drawerRecordVisible = false;
       },
       okDrawDialog(event){
         let url = "";

@@ -12,15 +12,14 @@
       <div slot="right">
         <div class="layout-right-tab">
           <el-row>
-            <!--<el-col :span="6">
-              &lt;!&ndash;<el-button size="small" type="primary"  icon="el-icon-upload" @click="importInfo($event)">{{$t("导入")}}</el-button>
-              <el-button size="small" type="warning"  icon="el-icon-download" @click="exportInfo($event)">{{$t("导出")}}</el-button>&ndash;&gt;
-            </el-col>-->
-            <el-col :span="24">
+            <el-col :span="10">
+              <tab-group-button size="small" :options='filterAuthOptions' @click="handleChange"></tab-group-button>
+            </el-col>
+            <el-col :span="14">
               <div class="text-right layout-inline">
                 <my-select width-style="100" :clearable="true" :sel-value="searchStatus" :options="studentTeachStatusInfo(null, 'get')" :placeholder="$t('学籍状态')" class="layout-item" size="small" @change="handleSelect($event, 1)"></my-select>
                 <my-select width-style="100" :clearable="true" :sel-value="searchTeach" :options="studyTypeInfo(null, 'get')" :placeholder="$t('就读形式')" class="layout-item" size="small" @change="handleSelect($event, 2)"></my-select>
-                <my-input-button class="layout-item" :show-select="true" :options="searchStudentType" size="small" plain width-class="width: 240px" type="success" :clearable="true" @click="search"></my-input-button>
+                <my-input-button class="layout-item" :placeholder="$t('姓名/学号')" :show-select="false" :options="searchStudentType" size="small" plain width-class="width: 150px" type="success" :clearable="true" @click="search"></my-input-button>
               </div>
             </el-col>
           </el-row>
@@ -33,8 +32,8 @@
             </div>
           </div>
           <el-row v-else :gutter="16">
-            <el-col :span="6" v-for="(item, index) in tableData" :key="index" class="margin-bottom-20" @click.native="detailInfo(item)">
-              <el-card :body-style="{padding: '10px 10px', height: '85px'}" style="position: relative">
+            <el-col :span="6" v-for="(item, index) in tableData" :key="index" class="margin-bottom-20">
+              <el-card :body-style="{padding: '10px 10px', height: '110px'}" style="position: relative">
                 <div class="color-muted">
                   <el-row class="color-warning">
                     <el-col :span="12">
@@ -43,7 +42,34 @@
                     </el-col>
                     <el-col :span="12">
                       <div class="text-right">
-                        <i class="fa fa-ellipsis-h"></i>
+                        <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                          <div class="text-center"><my-auth-options :status="item.ai_sync_status"></my-auth-options></div>
+                          <span slot="reference" class="name-wrapper">
+                            <my-auth-options :status="item.ai_sync_status"></my-auth-options>
+                          </span>
+                        </el-popover>
+                        <el-popover
+                          placement="left"
+                          width="260"
+                          trigger="hover">
+
+                          <div class="text-left">
+                            <el-button size="mini" plain type="success" @click="detailInfo(item)">
+                              <i class="fa fa-cog"></i>
+                              <span>{{$t("授权")}}</span>
+                            </el-button>
+                            <el-button size="mini" plain type="warning" @click="syncInfo(item)">
+                              <i class="fa" :class="item.loading ? 'fa-spinner fa-spin' : 'fa-retweet'"></i>
+                              <span>{{$t("同步")}}</span>
+                            </el-button>
+                            <el-button size="mini" plain type="danger" @click="deleteInfo(item)">
+                              <i class="fa fa-trash"></i>
+                              <span>{{$t("清除")}}</span>
+                            </el-button>
+                          </div>
+
+                          <i slot="reference" class="fa fa-ellipsis-h"></i>
+                        </el-popover>
                       </div>
                     </el-col>
                   </el-row>
@@ -53,8 +79,8 @@
                   <el-row>
                     <el-col :span="8">
                       <div>
-                        <img v-if="item.photo_simple" :src="item.photo_simple" key="contain" style="width: 40px; height: 40px" />
-                        <el-avatar v-if="!item.photo_simple" shape="square" :size="40" icon="el-icon-user-solid"></el-avatar>
+                        <img v-if="item.photo_simple" :src="item.photo_simple" key="contain" style="width: 50px; height: 50px" />
+                        <el-avatar v-if="!item.photo_simple" shape="square" :size="50" icon="el-icon-user-solid"></el-avatar>
                       </div>
                       <div class="color-success font-size-12 text-left">
                         <!--<span>
@@ -68,7 +94,17 @@
                     </el-col>
                     <el-col :span="16">
                       <div class="text-right">
-                        <div class="moon-content-text-ellipsis-class">
+                        <div class="moon-content-text-ellipsis-class" style="cursor:default;" @click="detialDeviceInfo(item)">
+                          <span class="color-success">
+                            <label v-if="item.ai_sync_success">{{item.ai_sync_success}}</label>
+                            <label v-else>0</label>
+                          </span>
+                          /
+                          <span class="color-grand">
+                            {{item.ai_sync_all}}
+                          </span>
+                        </div>
+                        <div class="moon-content-text-ellipsis-class color-grand" style="cursor:default;" @click="detialRecordInfo(item)">
                           {{item.real_name}}
                         </div>
                         <div class="moon-content-text-ellipsis-class">
@@ -383,6 +419,247 @@
         </div>
       </div>
     </drawer-layout-right>
+
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerDeviceVisible" :loading="drawerLoading" size="850px" :title="$t('授权设备')" @right-close="cancelDrawDialog">
+      <div slot="content">
+        <!--<div class="margin-bottom-10">
+          <tab-group-button size="small" :options='filterAuthOtherOptions' @click="handleDeviceChange"></tab-group-button>
+        </div>-->
+        <el-table
+          ref="refDeviceTable"
+          :data="tableDeviceData"
+          header-cell-class-name="custom-table-cell-bg"
+          size="medium"
+          v-loading="loadingDevice"
+          :max-height="tableHeight8.height"
+          style="width: 100%"
+          @filter-change="fliterTable">
+          <el-table-column
+            align="center"
+            prop="real_name"
+            :label="$t('设备名称')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{ scope.row.name ?  scope.row.name : '--'}}</div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{ scope.row.name ?  scope.row.name : '--'}}
+                </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            :label="$t('设备类型')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{deviceTypeInfo(scope.row.type)}}</div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{deviceTypeInfo(scope.row.type)}}
+                </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            :label="$t('IP')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.ip}}</div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{scope.row.ip}}
+                </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            :label="$t('SN')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.sn}}</div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{scope.row.sn}}
+                </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            :label="$t('授权时间')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.sync_time ? $moment(scope.row.sync_time).format("YYYY-MM-DD HH:mm:ss") : '--'}}</div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{scope.row.sync_time ? $moment(scope.row.sync_time).format("YYYY-MM-DD HH:mm:ss") : '--'}}
+                </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            :filter-multiple="false"
+            column-key="status"
+            :filters="filterAuthOtherOptions"
+            width="150"
+            :label="$t('授权状态')">
+            <template slot="header">
+              <span>{{$t('授权状态')}}</span>
+              <span v-if="filterAuthOtherOptionsText != ''" class="font-size-12 color-disabeld moon-content-text-ellipsis-class">{{filterAuthOtherOptionsText}}</span>
+            </template>
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center"><my-auth-options :status="scope.row.sync_status"></my-auth-options></div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  <my-auth-options :status="scope.row.sync_status"></my-auth-options>
+                </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+        </el-table>
+      </div>
+      <div slot="footer">
+        <div class="text-right padding-lr-10">
+          <my-pagination :total="totalDevice" :current-page="pageDevice" :page-size="numDevice" @currentPage="currentDevicePage" @sizeChange="sizeDeviceChange" @jumpChange="jumpDevicePage" class="layout-pagination"></my-pagination>
+        </div>
+      </div>
+    </drawer-layout-right>
+
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerRecordVisible" :loading="drawerLoading" size="850px" :title="$t('授权记录')" @right-close="cancelDrawDialog">
+      <div slot="content">
+        <div class="margin-bottom-10 text-right">
+          <my-date-picker :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChangeTime" style="position: relative; top: 1px;"></my-date-picker>
+          <el-button size="small" type="success" plain @click="handleSearchClick">{{$t("搜索")}}</el-button>
+        </div>
+        <el-table
+          ref="refRecordTable"
+          :data="tableRecordData"
+          header-cell-class-name="custom-table-cell-bg"
+          size="medium"
+          v-loading="loadingDevice"
+          :max-height="tableHeight8.height"
+          style="width: 100%"
+          @filter-change="fliterTable">
+          <el-table-column
+            align="center"
+            prop="real_name"
+            :label="$t('设备名称')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{ scope.row.name ?  scope.row.name : '--'}}</div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{ scope.row.name ?  scope.row.name : '--'}}
+                </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            :filter-multiple="false"
+            column-key="deviceType"
+            :filters="filtersDeviceType"
+            :label="$t('设备类型')">
+            <template slot="header">
+              <span>{{$t('设备类型')}}</span>
+              <span v-if="filtersDeviceTypeText != ''" class="font-size-12 color-disabeld moon-content-text-ellipsis-class">{{filtersDeviceTypeText}}</span>
+            </template>
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{deviceTypeInfo(scope.row.device_type)}}</div>
+                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{deviceTypeInfo(scope.row.device_type)}}
+                </div>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            :label="$t('IP')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.ip}}</div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{scope.row.ip}}
+                </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            :label="$t('SN')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.sn}}</div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{scope.row.sn}}
+                </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            :label="$t('授权时间')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.add_time ? $moment(scope.row.add_time).format("YYYY-MM-DD HH:mm:ss") : '--'}}</div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{scope.row.add_time ? $moment(scope.row.add_time).format("YYYY-MM-DD HH:mm:ss") : '--'}}
+                </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            :label="$t('照片抓怕')">
+            <template slot-scope="scope">
+              <my-head-img :head-img="scope.row"></my-head-img>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            width="150"
+            :label="$t('用途')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">
+                  <my-device-use-type :type="scope.row.scene_type"></my-device-use-type>
+                </div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  <my-device-use-type :type="scope.row.scene_type"></my-device-use-type>
+                </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            :label="$t('识别状态')">
+            <template slot-scope="scope">
+              <span v-if="scope.row.alive_type == 1" class="color-success">{{$t("通过")}}</span>
+              <span v-if="scope.row.alive_type != 1" class="color-danger">{{$t("失败")}}</span>
+            </template>
+          </el-table-column>
+        </el-table>
+      </div>
+      <div slot="footer">
+        <div class="text-right padding-lr-10">
+          <my-pagination :total="totalTeacher" :current-page="pageTeacher" :page-size="numTeacher" @currentPage="currentTeacherPage" @sizeChange="sizeTeacherChange" @jumpChange="jumpTeacherPage" class="layout-pagination"></my-pagination>
+        </div>
+      </div>
+    </drawer-layout-right>
+
+    <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="删除后会清空所有授权数据，确认需要执行该操作吗？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="cancelDrawDialog"></my-normal-dialog>
+
   </div>
 </template>
 
@@ -417,6 +694,13 @@
     components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,UploadSquare,DrawerLayoutRight},
     data(){
       return {
+        searchDate: [],
+        pageDevice: 1,
+        totalDevice: 0,
+        numDevice: 20,
+        pageTeacher: 1,
+        totalTeacher: 0,
+        numTeacher: 20,
         tableData: [],
         statusList: [],
         teachList: [],
@@ -432,6 +716,9 @@
         maskShow: false,
         timerVisible: false,
         showIframe: false,
+        loadingDevice: false,
+        drawerRecordVisible: false,
+        drawerDeviceVisible: false,
         searchCollege: '',
         searchMajor: '',
         searchGrade: '',
@@ -464,6 +751,13 @@
         selDormTips: '',
         errorCardTips: '',
         userInfoRul: '',
+        tableRecordData: [],
+        tableDeviceData: [],
+        filterAuthOtherOptionsText: '',
+        filtersDeviceTypeText: '',
+        syncStatus: '',
+        deviceRecordObj: {},
+        deviceObj: {},
         form: {
           status: '',
           attnedType: '',
@@ -475,8 +769,11 @@
           imgList: [],
           buildId: '',
           floorNum: '',
-          dormId: '',
           bedId: '',
+          filterAuthOtherOptionsText: '',
+          searchRecordDeviceType: '',
+          filtersDeviceTypeText: '',
+          filtersDeviceType: [],
           studentInfo: {
             attendType: "",
             bedNo: '',
@@ -510,6 +807,7 @@
       this.init();
       this.initAllDevice();
       this.initDevice();
+      this.deviceTypeGetInfo();
     },
     methods: {
       init(){
@@ -520,7 +818,8 @@
           majorId: this.searchMajor,
           grade: this.searchGrade,
           clasz: this.searchClass,
-          deleted: 0
+          deleted: 0,
+          aiSyncStatus: this.aiSyncStatus
         };
         if (this.searchStatus != ''){
           params['status'] = this.searchStatus;
@@ -528,10 +827,14 @@
         if (this.searchTeach != ''){
           params['attendType'] = this.searchTeach;
         }
-        params[this.searchKey['select']] = this.searchKey['input'];
-        params = this.$qs.stringify(params);
-        this.$axios.post(common.student_list, params).then(res => {
-          if (res.data.data){
+        params['searchKey'] = this.searchKey['input'];
+        //params = this.$qs.stringify(params);
+        this.tableData = [];
+        this.$axios.get(common.face_sync_auth_student_list, {params: params}).then(res => {
+          if (res.data.data && res.data.data.list.length > 0){
+            for (let i = 0; i < res.data.data.list.length; i++){
+              res.data.data.list[i]['loading'] = false;
+            }
             this.tableData = res.data.data.list;
             this.total = res.data.data.totalCount;
             this.num = res.data.data.num;
@@ -577,17 +880,87 @@
           }
         });
       },
+      initUserDevice(row){
+        let params = {
+          page: this.pageDevice,
+          num: this.numDevice,
+          userId: this.deviceObj.user_id,
+          syncStatus: this.syncStatus
+        };
+        this.loadingDevice = true;
+        this.$axios.get(common.face_sync_student_device_list, {params: params}).then(res => {
+          if (res.data.data){
+            this.tableDeviceData = res.data.data.list;
+            this.totalDevice = res.data.data.totalCount;
+            this.numDevice = res.data.data.num;
+            this.pageDevice = res.data.data.currentPage;
+          }
+          this.loadingDevice = false;
+        });
+      },
+      initUserRecord(row){
+        let params = {
+          page: this.pageTeacher,
+          num: this.numTeacher,
+          userId: this.deviceRecordObj.user_id,
+        };
+        if (this.searchRecodeDeviceType){
+          params['type'] = this.searchRecodeDeviceType
+        }
+
+        if (this.searchDate && this.searchDate.length > 0){
+          params['beginTime'] = this.searchDate[0];
+        }
+
+        if (this.searchDate && this.searchDate.length > 0){
+          params['endTime'] = this.searchDate[1];
+        }
+
+        this.loadingDevice = true;
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.face_sync_student_face_record_list, params).then(res => {
+          if (res.data.data){
+            this.tableRecordData = res.data.data.list;
+            this.totalTeacher = res.data.data.totalCount;
+            this.numTeacher = res.data.data.num;
+            this.pageTeacher = res.data.data.currentPage;
+          }
+          this.loadingDevice = false;
+        });
+      },
       importInfo(){
 
       },
       exportInfo(row){
 
       },
+      syncInfo(row){
+        let params = {
+          userId: row.user_id
+        };
+        row.loading = true;
+        this.$axios.get(common.face_sync_student, {params: params, loading: false}).then(res => {
+          if (res.data.code == 200){
+            this.init();
+            //MessageSuccess(res.data.desc);
+          }else {
+            //MessageError(res.data.desc);
+          }
+
+          row.loading = false;
+        });
+      },
+      deleteInfo(row){
+        this.form.id = row.user_id;
+        this.visibleConfim = true;
+      },
       detailInfo(row){
+        console.log(row);
         this.userData = row;
         this.form.status = row.status;
         this.form.attnedType = row.attend_type;
-        this.form.classData = [row.college_id, row.major_id, row.grade, row.class_id];
+        this.form.classData = [row.college_id, row.major_id, row.grade, row.clasz];
+        console.log([row.college_id, row.major_id, row.grade, row.clasz]);
         this.form.dormData = [row.build_id, row.floor_num, row.drom_id];
         this.form.cardNo = row.face_cards;
         this.form.imgList = [];
@@ -771,15 +1144,33 @@
         clearTimeout(this.keyTimer);
         this.loopTimerCount = 60;
         this.$set(this.form,'deptdata', []);
+        if (this.$refs['refRecordTable']){
+          this.$refs.refRecordTable.clearFilter();
+        }
+        if (this.$refs['refDeviceTable']){
+          this.$refs.refDeviceTable.clearFilter();
+        }
+        this.syncStatus = '';
+        this.filterAuthOtherOptionsText = '';
+        this.filtersDeviceTypeText = '';
+        this.searchRecodeDeviceType = '';
+        this.tableRecordData = [];
+        this.searchDate = [];
         this.resetCasadeSelector('selectorClass');
         this.resetCasadeSelector('selectorDorm');
         this.drawerVisible = event;
+        this.drawerDeviceVisible = event;
+        this.drawerRecordVisible = event;
       },
       cancelDrawDialog(){
         this.drawerVisible = false;
+        this.drawerDeviceVisible = false;
+        this.drawerRecordVisible = false;
       },
       closeDrawDialog(event){
         this.drawerVisible = false;
+        this.drawerDeviceVisible = false;
+        this.drawerRecordVisible = false;
       },
       okDrawDialog(event){
         let url = "";
@@ -993,6 +1384,116 @@
         this.maskShow = false;
         this.timerVisible = false;
         this.errorCardTips = "";
+      },
+      handleOkChange(data) {
+        this.dialogLoading = true;
+        let url = "";
+        let params = {
+          userId: this.form.id
+        }
+        url = common.face_sync_student_del;
+        params = this.$qs.stringify(params);
+        this.$axios.post(url, params).then(res => {
+          if (res.data.code == 200){
+            this.init();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+          this.visibleConfim = false;
+          this.dialogLoading = false;
+        });
+      },
+      handleCancelChange(data) {
+        this.visibleConfim = false;
+      },
+      handleChange(type){
+        this.page = 1;
+        this.aiSyncStatus = type.value;
+        this.init();
+      },
+      sizeDeviceChange(event){
+        this.pageDevice = 1;
+        this.numDevice = event;
+        this.initUserDevice();
+      },
+      currentDevicePage(event){
+        this.pageDevice = event;
+        this.initUserDevice();
+      },
+      jumpDevicePage(data){
+        this.pageDevice = data;
+        this.initUserDevice();
+      },
+      sizeTeacherChange(event){
+        this.pageTeacher = 1;
+        this.numTeacher = event;
+        this.initUserRecord();
+      },
+      currentTeacherPage(event){
+        this.pageTeacher = event;
+        this.initUserRecord();
+      },
+      jumpTeacherPage(data){
+        this.pageTeacher = data;
+        this.initUserRecord();
+      },
+      deviceTypeGetInfo(type, val){
+        let arr = [];
+        let deviceList = deviceType('get', val);
+        for (let i in deviceList){
+          arr.push({
+            value: i,
+            text: deviceList[i]
+          });
+        }
+        this.filtersDeviceType = arr;
+      },
+      fliterTable(value, row, column) {
+        for (let item in value) {
+          if (item == 'status') {
+            this.filterAuthOtherOptionsText = "";
+            this.syncStatus = value[item][0];
+            for (let i = 0; i < this.filterAuthOtherOptions.length; i++) {
+              if (this.syncStatus == this.filterAuthOtherOptions[i].value) {
+                this.filterAuthOtherOptionsText = this.filterAuthOtherOptions[i].text;
+              }
+            }
+            this.pageDevice = 1;
+            this.initUserDevice();
+          } else if (item == 'deviceType') {
+            this.filtersDeviceTypeText = "";
+            this.searchRecodeDeviceType = value[item][0];
+            for (let i = 0; i < this.filtersDeviceType.length; i++) {
+              if (this.searchRecodeDeviceType == this.filtersDeviceType[i].value) {
+                this.filtersDeviceTypeText = this.filtersDeviceType[i].text;
+              }
+            }
+            this.pageTeacher = 1;
+            this.initUserRecord();
+          }
+        }
+      },
+      handleChangeTime(data){
+        this.searchDate = data;
+      },
+      handleSearchClick(){
+        this.pageTeacher = 1;
+        this.initUserRecord();
+      },
+      detialDeviceInfo(row){
+        this.deviceObj = row;
+        setTimeout(() => {
+          this.initUserDevice();
+        },800);
+        this.drawerDeviceVisible = true;
+      },
+      detialRecordInfo(row){
+        this.deviceRecordObj = row;
+        setTimeout(() => {
+          this.initUserRecord();
+        },800);
+        this.drawerRecordVisible = true;
       }
     }
   }
