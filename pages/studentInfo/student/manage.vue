@@ -955,12 +955,10 @@
         this.visibleConfim = true;
       },
       detailInfo(row){
-        console.log(row);
         this.userData = row;
         this.form.status = row.status;
         this.form.attnedType = row.attend_type;
         this.form.classData = [row.college_id, row.major_id, row.grade, row.clasz];
-        console.log([row.college_id, row.major_id, row.grade, row.clasz]);
         this.form.dormData = [row.build_id, row.floor_num, row.drom_id];
         this.form.cardNo = row.face_cards;
         this.form.imgList = [];
