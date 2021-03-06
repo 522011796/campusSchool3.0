@@ -11,7 +11,7 @@
                   <span>{{$t("人")}}</span>
                 </el-col>
                 <el-col :span="12" class="text-right">
-                  <my-cascader ref="SelectorBuild" width-style="180" :placeholder="$t('全部院系')" :clearable="true" size="small" :sel-value="collegeData" type="1" sub-type="4" @change="handleCascaderChange($event,1)"></my-cascader>
+                  <my-cascader ref="SelectorBuild" :props="{ checkStrictly: true }" width-style="180" :placeholder="$t('全部院系')" :clearable="true" size="small" :sel-value="collegeData" type="1" sub-type="4" @change="handleCascaderChange($event,1)"></my-cascader>
                 </el-col>
               </el-row>
             </div>
@@ -27,7 +27,7 @@
                     <span>{{$t("学生人数")}}</span>
                   </el-col>
                   <el-col :span="12" class="text-right">
-                    <i class="fa fa-flag"></i>
+                    <i class="fa fa-flag color-grand" @click="jumpStudentInfo"></i>
                   </el-col>
                 </el-row>
               </div>
@@ -43,7 +43,7 @@
                   <span>{{$t("人")}}</span>
                 </el-col>
                 <el-col :span="12" class="text-right">
-                  <my-cascader ref="SelectorBuild" :placeholder="$t('全部部门')" width-style="180" :clearable="true" size="small" :sel-value="deptData" type="4" sub-type="id" @change="handleCascaderChange($event, 2)"></my-cascader>
+                  <my-cascader ref="SelectorBuild" :props="{ checkStrictly: true }" :placeholder="$t('全部部门')" width-style="180" :clearable="true" size="small" :sel-value="deptData" type="4" sub-type="id" @change="handleCascaderChange($event, 2)"></my-cascader>
                 </el-col>
               </el-row>
             </div>
@@ -59,7 +59,7 @@
                     <span>{{$t("教工人数")}}</span>
                   </el-col>
                   <el-col :span="12" class="text-right">
-                    <i class="fa fa-flag"></i>
+                    <i class="fa fa-flag color-grand" @click="jumpTeacherInfo"></i>
                   </el-col>
                 </el-row>
               </div>
@@ -149,7 +149,9 @@
                 <span>{{$t("院系统计")}}</span>
               </span>
               <span class="pull-right">
-                <my-cascader ref="SelectorBuild" :placeholder="$t('全部院系')" width-style="180" :clearable="true" size="small" :sel-value="collegeTabData" type="1" sub-type="4" @change="handleCascaderChange($event,3)"></my-cascader>
+                <tab-group-button class="pull-left" size="small" :options='filterTimeStatusOptions' @click="handleChange"></tab-group-button>
+
+                <my-cascader class="pull-left margin-left-5" ref="SelectorBuild" :props="{ checkStrictly: true }" :placeholder="$t('全部院系')" width-style="180" :clearable="true" size="small" :sel-value="collegeTabData" type="1" sub-type="4" @change="handleCascaderChange($event,3)"></my-cascader>
               </span>
               <div class="moon-clearfix"></div>
             </div>
@@ -610,6 +612,7 @@
         circularData: [],
         drawerVisible: false,
         noticeContentDetail: '',
+        searchTimeStatus: '',
         deviceCardWidth: {
           width: '0px'
         },
@@ -642,7 +645,7 @@
         this.initDeviceType();
         this.initDeviceList(this.deviceTypeVal);
         this.deviceTypeGetInfo();
-        this.initAttendStatic();
+        this.initTimeStatus();
         this.initLevelStatic();
         this.initNotice(1);
         this.initCreditStatic();
@@ -755,12 +758,18 @@
           }
         });
       },
-      initAttendStatic(){
-        let params = {
+      initAttendStatic(params){
+        /*let params = {
           collegeIdList: this.collegeTabData[0],
           majorIdList: this.collegeTabData[1],
           classIdList: this.collegeTabData[3]
-        };
+        };*/
+        params['collegeId'] = this.collegeTabData[0];
+        params['majorId'] = this.collegeTabData[1];
+        params['grade'] = this.collegeTabData[2];
+        params['classId'] = this.collegeTabData[3];
+
+        //this.initTimeStatus(params);
         //this.initLevelStatic(params);
         this.initClassStatic(params);
         //this.initCreditStatic(params);
@@ -872,6 +881,31 @@
           }
         });
       },
+      initTimeStatus(){
+        let params = {};
+        //时间类型
+        if (this.searchTimeStatus == 1){
+          params['busiTime'] = this.$moment(new Date()).format("YYYY-MM-DD");
+          params['timeUnit'] = 3;
+        }else if (this.searchTimeStatus == 2){
+          params['weekNum'] = this.currentWeekNum;
+          params['timeUnit'] = 2;
+        }else if (this.searchTimeStatus == 3){
+          let month = this.$moment(new Date()).format("YYYY-MM");
+          params['year'] = month.split("-")[0];
+          params['month'] = month.split("-")[1];
+          params['timeUnit'] = 4;
+        }else if (this.searchTimeStatus == 4){
+          params['timeUnit'] = 1;
+        }else {
+          let day = this.$moment(new Date()).format("YYYY-MM-DD");
+          params['busiTime'] = this.$moment(new Date()).format("YYYY-MM-DD");
+          params['timeUnit'] = 3;
+        }
+        params['termId'] = this.currentTermId;
+
+        this.initAttendStatic(params);
+      },
       detailNoticeInfo(msgId){
         let url = common.msg_detail;
         let params = {
@@ -897,7 +931,7 @@
             break;
           case 3:
             this.collegeTabData = data;
-            this.initAttendStatic();
+            this.initTimeStatus();
             break;
           case 4:
             this.collegeCreditData = data;
@@ -972,7 +1006,31 @@
       },
       moveDevice(type){
         this.deviceListBlockType = type;
-      }
+      },
+      handleChange(data){
+        this.searchTimeStatus = data.value;
+        this.initTimeStatus();
+      },
+      jumpStudentInfo(){
+        this.$router.push({
+          path: '/studentInfo/student/manage',
+          query: {
+            top: 'studentInfo',
+            key: 'stuManage',
+            sub: 'studentManage'
+          }
+        });
+      },
+      jumpTeacherInfo(){
+        this.$router.push({
+          path: '/basicInfo/teacher',
+          query: {
+            top: 'basicInfo',
+            key: 'teacher',
+            sub: 'personInfo'
+          }
+        });
+      },
     }
   }
 </script>

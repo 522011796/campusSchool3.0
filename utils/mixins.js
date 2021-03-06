@@ -80,6 +80,7 @@ export default {
       filterDoorSignStatus: global.filterDoorSignStatus,
       filterAuthOptions: global.filterAuthOptions,
       filterAuthOtherOptions: global.filterAuthOtherOptions,
+      filterTimeStatusOptions: global.filterTimeStatusOptions,
       g_currentDate: {},
       currentYearData: '',
       currentTermData: '',

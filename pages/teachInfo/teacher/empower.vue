@@ -36,6 +36,9 @@
               align="center"
               prop="real_name"
               :label="$t('姓名')">
+              <template slot-scope="scope">
+                <label class="color-grand" @click="detialRecordInfo(scope.row)">{{scope.row.real_name}}</label>
+              </template>
             </el-table-column>
             <el-table-column
               align="center"
@@ -417,7 +420,7 @@
           <tab-group-button size="small" :options='filterAuthOtherOptions' @click="handleDeviceChange"></tab-group-button>
         </div>-->
         <el-table
-          ref="refTable"
+          ref="refDeviceTable"
           :data="tableDeviceData"
           header-cell-class-name="custom-table-cell-bg"
           size="medium"
@@ -520,6 +523,136 @@
       </div>
     </drawer-layout-right>
 
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerRecordVisible" :loading="drawerLoading" size="850px" :title="$t('授权记录')" @right-close="cancelDrawDialog">
+      <div slot="content">
+        <div class="margin-bottom-10 text-right">
+          <my-date-picker :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChangeTime" style="position: relative; top: 1px;"></my-date-picker>
+          <el-button size="small" type="success" plain @click="handleSearchClick">{{$t("搜索")}}</el-button>
+        </div>
+        <el-table
+          ref="refRecordTable"
+          :data="tableRecordData"
+          header-cell-class-name="custom-table-cell-bg"
+          size="medium"
+          v-loading="loadingDevice"
+          :max-height="tableHeight8.height"
+          style="width: 100%"
+          @filter-change="fliterTable">
+          <el-table-column
+            align="center"
+            prop="real_name"
+            :label="$t('设备名称')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{ scope.row.name ?  scope.row.name : '--'}}</div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{ scope.row.name ?  scope.row.name : '--'}}
+                </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            :filter-multiple="false"
+            column-key="deviceType"
+            :filters="filtersDeviceType"
+            :label="$t('设备类型')">
+            <template slot="header">
+              <span>{{$t('设备类型')}}</span>
+              <span v-if="filtersDeviceTypeText != ''" class="font-size-12 color-disabeld moon-content-text-ellipsis-class">{{filtersDeviceTypeText}}</span>
+            </template>
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{deviceTypeInfo(scope.row.device_type)}}</div>
+                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{deviceTypeInfo(scope.row.device_type)}}
+                </div>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            :label="$t('IP')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.ip}}</div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{scope.row.ip}}
+                </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            :label="$t('SN')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.sn}}</div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{scope.row.sn}}
+                </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            :label="$t('授权时间')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.add_time ? $moment(scope.row.add_time).format("YYYY-MM-DD HH:mm:ss") : '--'}}</div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{scope.row.add_time ? $moment(scope.row.add_time).format("YYYY-MM-DD HH:mm:ss") : '--'}}
+                </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            :label="$t('照片抓怕')">
+            <template slot-scope="scope">
+              <my-head-img :head-img="scope.row"></my-head-img>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            width="150"
+            :label="$t('用途')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">
+                  <my-device-use-type :type="scope.row.scene_type"></my-device-use-type>
+                </div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  <my-device-use-type :type="scope.row.scene_type"></my-device-use-type>
+                </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="college_no"
+            :label="$t('识别状态')">
+            <template slot-scope="scope">
+              <span v-if="scope.row.alive_type == 1" class="color-success">{{$t("通过")}}</span>
+              <span v-if="scope.row.alive_type != 1" class="color-danger">{{$t("失败")}}</span>
+            </template>
+          </el-table-column>
+        </el-table>
+      </div>
+      <div slot="footer">
+        <div class="text-right padding-lr-10">
+          <my-pagination :total="totalTeacher" :current-page="pageTeacher" :page-size="numTeacher" @currentPage="currentTeacherPage" @sizeChange="sizeTeacherChange" @jumpChange="jumpTeacherPage" class="layout-pagination"></my-pagination>
+        </div>
+      </div>
+    </drawer-layout-right>
+
+
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="删除后会清空所有授权数据，确认需要执行该操作吗？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="cancelDrawDialog"></my-normal-dialog>
 
   </div>
@@ -544,6 +677,7 @@
   import TabGroupButton from "../../../components/utils/button/TabGroupButton";
   import MyAuthOptions from "../../../components/utils/status/MyAuthOptions";
   import MyHeadImg from "../../../components/utils/common/MyHeadImg";
+  import MyDeviceUseType from "../../../components/utils/status/MyDeviceUseType";
   import {
     deviceType,
     MessageError,
@@ -556,12 +690,16 @@
   } from "../../../utils/utils";
   export default {
     mixins: [mixins],
-    components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,UploadSquare,DrawerLayoutRight,TabGroupButton,MyAuthOptions,MyHeadImg},
+    components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,UploadSquare,DrawerLayoutRight,TabGroupButton,MyAuthOptions,MyHeadImg,MyDeviceUseType},
     data(){
       return {
+        searchDate: [],
         pageDevice: 1,
         totalDevice: 0,
         numDevice: 20,
+        pageTeacher: 1,
+        totalTeacher: 0,
+        numTeacher: 20,
         tableData: [],
         statusList: [],
         teachList: [],
@@ -581,6 +719,8 @@
         drawerDeviceVisible: false,
         loadingList: false,
         loadingDevice: false,
+        drawerRecordVisible: false,
+        tableRecordData: [],
         aiSyncStatus: '',
         searchCollege: '',
         searchMajor: '',
@@ -590,6 +730,7 @@
         searchKey: '',
         searckDeviceKey: '',
         searchDeviceType: '',
+        searchRecodeDeviceType: '',
         searchDept: '',
         searchStatus: '',
         searchTeach: '',
@@ -614,8 +755,12 @@
         selDormTips: '',
         errorCardTips: '',
         deviceObj: '',
+        deviceRecordObj: '',
         syncStatus: '',
         filterAuthOtherOptionsText: '',
+        searchRecordDeviceType: '',
+        filtersDeviceTypeText: '',
+        filtersDeviceType: [],
         form: {
           status: '',
           attnedType: '',
@@ -638,6 +783,7 @@
       this.init();
       this.initAllDevice();
       this.initDevice();
+      this.deviceTypeGetInfo();
     },
     methods: {
       init(){
@@ -718,6 +864,36 @@
           this.loadingDevice = false;
         });
       },
+      initUserRecord(row){
+        let params = {
+          page: this.pageTeacher,
+          num: this.numTeacher,
+          userId: this.deviceRecordObj.user_id,
+        };
+        if (this.searchRecodeDeviceType){
+          params['type'] = this.searchRecodeDeviceType
+        }
+
+        if (this.searchDate && this.searchDate.length > 0){
+          params['beginTime'] = this.searchDate[0];
+        }
+
+        if (this.searchDate && this.searchDate.length > 0){
+          params['endTime'] = this.searchDate[1];
+        }
+
+        this.loadingDevice = true;
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.face_sync_teacher_face_record_list, params).then(res => {
+          if (res.data.data){
+            this.tableRecordData = res.data.data.list;
+            this.totalTeacher = res.data.data.totalCount;
+            this.numTeacher = res.data.data.num;
+            this.pageTeacher = res.data.data.currentPage;
+          }
+          this.loadingDevice = false;
+        });
+      },
       importInfo(){
 
       },
@@ -730,6 +906,13 @@
           this.initUserDevice();
         },800);
         this.drawerDeviceVisible = true;
+      },
+      detialRecordInfo(row){
+        this.deviceRecordObj = row;
+        setTimeout(() => {
+          this.initUserRecord();
+        },800);
+        this.drawerRecordVisible = true;
       },
       syncInfo(row){
         let params = {
@@ -785,6 +968,9 @@
         this.page = 1;
         this.init();
       },
+      handleSearchClick(){
+        this.initUserRecord();
+      },
       sizeChange(event){
         this.page = 1;
         this.num = event;
@@ -808,8 +994,21 @@
         this.initUserDevice();
       },
       jumpDevicePage(data){
-        this.page = data;
+        this.pageDevice = data;
         this.initUserDevice();
+      },
+      sizeTeacherChange(event){
+        this.pageTeacher = 1;
+        this.numTeacher = event;
+        this.initUserRecord();
+      },
+      currentTeacherPage(event){
+        this.pageTeacher = event;
+        this.initUserRecord();
+      },
+      jumpTeacherPage(data){
+        this.pageTeacher = data;
+        this.initUserRecord();
       },
       handleSelect(data, type){
         if (type == 1){
@@ -884,17 +1083,31 @@
         this.resetCasadeSelector('selectorClass');
         this.resetCasadeSelector('selectorDorm');
         this.deviceObj = {};
+        this.deviceRecordObj = {};
         this.pageDevice = 1;
         this.numDevice = 20;
         this.totalDevice = 0;
-        this.syncStatus = '';
+        this.searchDeviceType = '';
         this.tableDeviceData = [];
+        if (this.$refs['refRecordTable']){
+          this.$refs.refRecordTable.clearFilter();
+        }
+        if (this.$refs['refDeviceTable']){
+          this.$refs.refDeviceTable.clearFilter();
+        }
+        this.syncStatus = '';
+        this.filterAuthOtherOptionsText = '';
+        this.filtersDeviceTypeText = '';
+        this.searchRecodeDeviceType = '';
+        this.tableRecordData = [];
         this.drawerVisible = event;
         this.drawerDeviceVisible = event;
+        this.drawerRecordVisible = event;
       },
       cancelDrawDialog(){
         this.drawerVisible = false;
         this.drawerDeviceVisible = false;
+        this.drawerRecordVisible = false;
       },
       closeDrawDialog(event){
         this.drawerVisible = false;
@@ -1111,6 +1324,20 @@
       handleCancelChange(data) {
         this.visibleConfim = false;
       },
+      handleChangeTime(data){
+        this.searchDate = data;
+      },
+      deviceTypeGetInfo(type, val){
+        let arr = [];
+        let deviceList = deviceType('get', val);
+        for (let i in deviceList){
+          arr.push({
+            value: i,
+            text: deviceList[i]
+          });
+        }
+        this.filtersDeviceType = arr;
+      },
       fliterTable(value, row, column){
         for (let item in value){
           if (item == 'status'){
@@ -1121,10 +1348,21 @@
                 this.filterAuthOtherOptionsText = this.filterAuthOtherOptions[i].text;
               }
             }
+            this.pageDevice = 1;
+            this.initUserDevice();
+          }else if (item == 'deviceType'){
+            this.filtersDeviceTypeText = "";
+            this.searchRecodeDeviceType = value[item][0];
+            for (let i = 0; i < this.filtersDeviceType.length; i++){
+              if (this.searchRecodeDeviceType == this.filtersDeviceType[i].value){
+                this.filtersDeviceTypeText = this.filtersDeviceType[i].text;
+              }
+            }
+            this.pageTeacher = 1;
+            this.initUserRecord();
           }
         }
-        this.pageDevice = 1;
-        this.initUserDevice();
+
       }
     }
   }

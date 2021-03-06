@@ -533,5 +533,6 @@ export const common = {
   face_sync_teacher: '/proxy/school/person/teacher/face/sync',//同步教工授权
   face_sync_teacher_del: '/proxy/school/person/teacher/flush',//删除教工授权
   face_sync_teacher_device_list: '/proxy/school/person/teacher/device/page',//教工授权设备列表
+  face_sync_teacher_face_record_list: '/proxy/school/person/teacher/recognition/page',//教工识别记录列表
 
 };

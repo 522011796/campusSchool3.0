@@ -319,6 +319,13 @@ const filterAuthOtherOptions = [
   { text: '授权失败', value: '2' ,label: '授权失败'}
 ];
 
+const filterTimeStatusOptions = [
+  { text: '当日', value: '1' ,label: '当日'},
+  { text: '本周', value: '2' ,label: '本周'},
+  { text: '本月', value: '3' ,label: '本月'},
+  { text: '本学期', value: '4' ,label: '本学期'}
+];
+
 export default {
   total,
   page,
@@ -392,5 +399,6 @@ export default {
   filterDoorSignStatus,
   searchStudentType2,
   filterAuthOptions,
-  filterAuthOtherOptions
+  filterAuthOtherOptions,
+  filterTimeStatusOptions
 }
