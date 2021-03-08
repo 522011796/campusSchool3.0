@@ -52,7 +52,7 @@ export default {
           data: this.dataLegned
         },
         grid: {
-          top: '10%',
+          top: '15%',
           left: '2%',
           right: '2%',
           bottom: '8%',

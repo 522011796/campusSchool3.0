@@ -113,6 +113,21 @@ export default {
       tableHeight8: {
         'height': ''
       },
+      tableHeight9: {
+        'height': ''
+      },
+      tableHeight10: {
+        'height': ''
+      },
+      tableHeight11: {
+        'height': ''
+      },
+      tableHeight12: {
+        'height': ''
+      },
+      tableHeight13: {
+        'height': ''
+      },
       tableMiddleHeight: {
         'height': ''
       },
@@ -191,6 +206,11 @@ export default {
         this.tableHeight6.height = window.innerHeight - 410 + 'px';
         this.tableHeight7.height = window.innerHeight - 470 + 'px';
         this.tableHeight8.height = window.innerHeight - 100 + 'px';
+        this.tableHeight9.height = window.innerHeight - 278 + 'px';
+        this.tableHeight10.height = window.innerHeight - 315 + 'px';
+        this.tableHeight11.height = window.innerHeight - 325 + 'px';
+        this.tableHeight12.height = window.innerHeight - 340 + 'px';
+        this.tableHeight13.height = window.innerHeight - 320 + 'px';
         this.tableMiddleHeight.height = window.innerHeight - 335 + 'px';
         this.divHeight["max-height"] = window.innerHeight - 205 + 'px';
         this.divHeight2["max-height"] = window.innerHeight - 235 + 'px';

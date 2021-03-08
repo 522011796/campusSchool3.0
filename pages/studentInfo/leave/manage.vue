@@ -16,7 +16,57 @@
             <my-search-of-date-group size="small" :show-year="false" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType"></my-search-of-date-group>
           </el-card>
           <div class="margin-top-10">
-            <div>
+            <div v-if="toggleTopShow == false" style="position: relative;">
+              <el-card shadow="never" :body-style="{padding: '5px 10px',height: '60px'}">
+                <div>
+                  <el-row>
+                    <el-col :span="8">
+                      <div class="rpStatic-top-item-mini color-muted">
+                        <i class="fa fa-user"></i>
+                        {{$t("请假人次")}}:
+                      </div>
+                      <div class="color-grand margin-top-5 font-size-25 margin-left-15" style="font-weight: bold">
+                        <span>{{personTotal}}</span>
+                      </div>
+                    </el-col>
+                    <el-col :span="8">
+                      <div class="rpStatic-top-item-mini color-muted">
+                        <i class="fa fa-cubes"></i>
+                        <label>{{$t("达标率")}}:</label>
+                      </div>
+                      <div class="font-size-25 margin-top-5 color-muted margin-left-20">
+                        <label>{{typeData}}%</label>
+                      </div>
+                    </el-col>
+                    <el-col :span="8">
+                      <div class="rpStatic-top-item-mini color-muted">
+                        <i class="fa fa-cube"></i>
+                        <label>{{$t("级别占比")}}:</label>
+                      </div>
+                      <div v-if="levelData.length <= 0" class="color-disabeld margin-left-18" style="position: relative; top: 20%;">{{$t("暂无数据")}}</div>
+                      <div v-else class="font-size-12 color-muted margin-left-18">
+                        <div class="font-size-12 color-muted" v-for="(item, index) in levelData" :key="index">
+                          <div v-if="index < 2">
+                            <label>{{item.name}}:</label>
+                            <label>{{item.rate}}%</label>
+                          </div>
+                        </div>
+                        <div class="font-size-12 color-muted" v-if="levelData.length > 2">
+                          ...
+                        </div>
+                      </div>
+                    </el-col>
+                  </el-row>
+                </div>
+              </el-card>
+              <div class="text-center toggle-show-icon" @click="toggleTopShow = !toggleTopShow">
+                <div class="font-size-12 toggle-show-icon-block">
+                  <i class="fa fa-angle-double-down"></i>
+                  <label>{{$t("展开")}}</label>
+                </div>
+              </div>
+            </div>
+            <div v-if="toggleTopShow == true" style="position: relative;">
               <el-card shadow="never" :body-style="{padding: '5px 10px',height: '150px'}">
                 <el-row :gutter="8">
                   <el-col :span="8">
@@ -67,6 +117,12 @@
                   </el-col>
                 </el-row>
               </el-card>
+              <div class="text-center toggle-show-icon" @click="toggleTopShow = !toggleTopShow">
+                <div class="font-size-12 toggle-show-icon-block">
+                  <i class="fa fa-angle-double-up"></i>
+                  <label>{{$t("收起")}}</label>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -85,7 +141,7 @@
               :data="tableData"
               header-cell-class-name="custom-table-cell-bg"
               size="medium"
-              :max-height="tableHeight3.height"
+              :max-height="toggleTopShow == false ? tableHeight9.height : tableHeight3.height"
               style="width: 100%"
               @filter-change="fliterTable">
               <el-table-column
@@ -347,6 +403,7 @@
     components: {LayoutLr,MyElTree,MySelect,DrawerLayoutRight,MyPagination,CircleChart,DialogNormal,MyInputButton,TableBarChart,MyDatePicker,MySearchOfDate,MyHeadImg},
     data(){
       return {
+        toggleTopShow: false,
         pageStudent: 1,
         numStudent: 20,
         totalStudent: 0,

@@ -62,7 +62,7 @@
                 </el-col>
                 <el-col :span="16">
                   <div class="rpStatic-top-item color-muted">
-                    <div style="height: 140px">
+                    <div style="height: 150px">
                       <line-chart chart-id="lineBaseId" :data-key="lineBaseKeyData" :data="lineBaseData" :data-legned="lineBaseLegned"></line-chart>
                     </div>
                   </div>

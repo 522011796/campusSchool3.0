@@ -228,6 +228,12 @@ a{
 .margin-left-10{
   margin-left: 10px;
 }
+.margin-left-15{
+  margin-left: 15px;
+}
+.margin-left-18{
+  margin-left: 18px;
+}
 .margin-left-5{
   margin-left: 5px;
 }
@@ -575,6 +581,18 @@ ul{
 }
 .layout-inline .layout-item{
   display: inline-block;
+}
+.toggle-show-icon{
+  position: absolute;
+  bottom: 0px;
+  width: 100%
+}
+.toggle-show-icon-block:hover{
+  color: #409EFF;
+}
+.toggle-show-icon-block{
+  color: #909399;
+  margin: 0 auto;
 }
 /**树形菜单**/
 .tree-container{
