@@ -61,7 +61,8 @@
             label="操作"
             width="120">
             <template slot-scope="scope">
-              <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
+              <i class="fa fa-edit color-grand" @click="editInfo(scope.row)"></i>
+              <i class="fa fa-trash color-danger margin-left-5" @click="deleteInfo(scope.row)"></i>
             </template>
           </el-table-column>
         </el-table>
@@ -79,7 +80,7 @@
             <el-input v-model="form.title" class="width-300"></el-input>
           </el-form-item>
           <el-form-item label="缩略图">
-            <span v-if="form.thumnbnail != ''" class="pull-left" style="position: relative">
+            <span v-if="form.thumnbnail && form.thumnbnail != ''" class="pull-left" style="position: relative">
               <i class="fa fa-close" style="position: absolute;top: -6px;right: -5px;" @click="closeImg"></i>
               <img :src="form.thumnbnail" class="news-img"/>
             </span>
@@ -196,6 +197,19 @@
       addInfo(){
         this.drawerVisible = true;
       },
+      editInfo(row){
+        this.form = {
+          id: row.id,
+          title: row.title,
+          labelOne: row.label_one,
+          labelTwo: row.label_two,
+          labelThree: row.label_three,
+          content: row.content,
+          type: 0,
+          thumnbnail: row.thumbnail
+        };
+        this.drawerVisible = true;
+      },
       deleteInfo(row){
         this.form.id = row.id;
         this.subTitle = row.title;
@@ -269,6 +283,9 @@
               type: 0,
               thumbnail: this.form.thumnbnail,
             };
+            if (this.form.id != ""){
+              params['id'] = this.form.id;
+            }
             url = common.news_add;
             params = this.$qs.stringify(params);
             this.drawerLoading = true;

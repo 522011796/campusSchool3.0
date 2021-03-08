@@ -88,7 +88,8 @@
             label="操作"
             width="120">
             <template slot-scope="scope">
-              <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
+              <i class="fa fa-edit color-grand" @click="editInfo(scope.row)"></i>
+              <i class="fa fa-trash color-danger margin-left-5" @click="deleteInfo(scope.row)"></i>
             </template>
           </el-table-column>
         </el-table>
@@ -110,7 +111,7 @@
             <my-radio :sel-value="form.receipt" :label="true" @change="changeReceipt($event, true)" class="margin-left-10">{{$t("是")}}</my-radio>
           </el-form-item>
           <el-form-item label="缩略图">
-            <span v-if="form.thumnbnail != ''" class="pull-left" style="position: relative">
+            <span v-if="form.thumnbnail && form.thumnbnail != ''" class="pull-left" style="position: relative">
               <i class="fa fa-close" style="position: absolute;top: -6px;right: -5px;" @click="closeImg"></i>
               <img :src="form.thumnbnail" class="news-img"/>
             </span>
@@ -317,6 +318,33 @@
       addInfo(){
         this.drawerVisible = true;
       },
+      editInfo(row){
+        let checkModelTercher = false;
+        let checkModelStudent = false;
+        this.checkModelTercher = false;
+        this.checkModelStudent = false;
+        if (row.getter && Object.keys(row.getter).length != 0){
+          if (JSON.parse(row.getter)['teacher']){
+            checkModelTercher = true;
+            this.checkModelTercher = true;
+          }
+          if (JSON.parse(row.getter)['student']){
+            checkModelStudent = true;
+            this.checkModelStudent = true;
+          }
+        }
+        this.form = {
+          id: row.id,
+          title: row.title,
+          titleDesc: row.title_desc,
+          content: row.content,
+          type: 0,
+          thumnbnail: row.title_img,
+          getter: row.getter,
+          receipt: false
+        };
+        this.drawerVisible = true;
+      },
       deleteInfo(row){
         this.form.id = row.id;
         this.subTitle = row.title;
@@ -339,6 +367,8 @@
           getter: {},
           receipt: false
         };
+        this.checkModelTercher = false;
+        this.checkModelStudent = false;
         this.dialogLoading = false;
         this.replyId = '';
         this.replyIndex= '';
@@ -357,6 +387,8 @@
           getter: {},
           receipt: false
         };
+        this.checkModelTercher = false;
+        this.checkModelStudent = false;
         this.replyComment = '';
         this.msgRowData = {};
         this.replyModal = false;
@@ -410,6 +442,9 @@
               getter['student'] = {type: 2, range: [], sex: null};
             }
             params['getter'] = JSON.stringify(getter);
+            if (this.form.id != ""){
+              params['id'] = this.form.id;
+            }
             url = common.circular_add;
             //params = this.$qs.stringify(params);
             this.drawerLoading = true;
