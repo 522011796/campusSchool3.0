@@ -30,7 +30,40 @@
           </my-search-of-date-group>
         </div>
         <div class="margin-top-10">
-          <div>
+          <div v-if="toggleTopShow == false" style="position: relative;">
+            <el-card shadow="never" :body-style="{padding: '5px 10px',height: '60px'}">
+              <div>
+                <el-row>
+                  <el-col :span="8">
+                    <div class="rpStatic-top-item-mini color-muted">
+                      <i class="fa fa-user"></i>
+                      {{$t("总通行人数")}}:
+                    </div>
+                    <div class="color-grand margin-top-5 font-size-25 margin-left-15" style="font-weight: bold">
+                      <span>{{personTotal}}</span>
+                    </div>
+                  </el-col>
+                  <el-col :span="8">
+                    <div class="rpStatic-top-item-mini color-muted">
+                      <i class="fa fa-cubes"></i>
+                      <label>{{$t("类型统计")}}:</label>
+                    </div>
+                    <div class="font-size-12 margin-top-5 color-muted margin-left-20" v-for="(item, index) in typeData" :key="index">
+                      <label>{{item.name}}:</label>
+                      <label>{{item.value}}</label>
+                    </div>
+                  </el-col>
+                </el-row>
+              </div>
+            </el-card>
+            <div class="text-center toggle-show-icon" @click="toggleTopShow = !toggleTopShow">
+              <div class="font-size-12 toggle-show-icon-block">
+                <i class="fa fa-angle-double-down"></i>
+                <label>{{$t("展开")}}</label>
+              </div>
+            </div>
+          </div>
+          <div v-if="toggleTopShow == true" style="position: relative;">
             <el-card shadow="never" :body-style="{padding: '5px 10px',height: '150px'}">
               <el-row :gutter="8">
                 <el-col :span="8">
@@ -69,6 +102,12 @@
                 </el-col>
               </el-row>
             </el-card>
+            <div class="text-center toggle-show-icon" @click="toggleTopShow = !toggleTopShow">
+              <div class="font-size-12 toggle-show-icon-block">
+                <i class="fa fa-angle-double-up"></i>
+                <label>{{$t("收起")}}</label>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -91,7 +130,7 @@
             :data="tableData"
             header-cell-class-name="custom-table-cell-bg"
             size="medium"
-            :max-height="tableHeight6.height"
+            :max-height="toggleTopShow == false ? tableHeight13.height : tableHeight6.height"
             style="width: 100%">
             <el-table-column
               align="center"
@@ -469,6 +508,7 @@
       LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,MySearchOfDate,DrawerLayoutRight,MyHeadImg},
     data(){
       return {
+        toggleTopShow: false,
         pageStudent: 1,
         numStudent: 20,
         totalStudent: 0,
