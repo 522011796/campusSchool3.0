@@ -82,7 +82,7 @@
       </div>
     </layout-tb>
 
-    <drawer-layout-right @changeDrawer="closeDrawerDialog" :hide-footer="false" :visible="drawerVisible" size="650px" :title="$t('发布新闻')" @right-close="cancelDrawDialog" @close="handleCloseDrawer">
+    <drawer-layout-right @changeDrawer="closeDrawerDialog" :hide-footer="false" :visible="drawerVisible" size="650px" :title="$t('发布新闻')" @right-close="cancelDrawDialog">
       <div slot="content">
         <el-form ref="form" :rules="rules" :model="form" label-width="120px">
           <el-form-item label="标题" prop="title">
@@ -166,6 +166,7 @@
         uploadProcess: '',
         g_superId: '',
         tableData: [],
+        addStatus: '',
         typeOptions: [
           {
             label: this.$t("前沿科技"),
@@ -215,9 +216,13 @@
         });
       },
       addInfo(){
+        if (this.addStatus == 'edit'){
+          this.clearDrawerDialog();
+        }
         this.drawerVisible = true;
       },
       editInfo(row){
+        this.addStatus = 'edit';
         this.form = {
           id: row.id,
           title: row.title,
@@ -237,6 +242,7 @@
         this.modalVisible = false;
       },
       cancelDrawDialog(){
+        this.clearDrawerDialog();
         this.drawerVisible = false;
       },
       closeDialog(event){
@@ -253,7 +259,7 @@
           this.$refs['form'].resetFields();
         }
       },
-      closeDrawerDialog(event){
+      clearDrawerDialog(){
         this.form = {
           id: '',
           title: '',
@@ -265,6 +271,10 @@
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
         }
+        this.errorTips = "";
+        this.addStatus = '';
+      },
+      closeDrawerDialog(event){
         this.drawerVisible = event;
         this.drawerViewVisible = event;
       },
@@ -302,6 +312,7 @@
               if (res.data.code == 200){
                 this.drawerVisible = false;
                 this.init();
+                this.clearDrawerDialog();
                 MessageSuccess(res.data.desc);
               }else {
                 MessageError(res.data.desc);

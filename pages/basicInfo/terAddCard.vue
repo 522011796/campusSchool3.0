@@ -127,7 +127,7 @@
       </div>
     </layout-tb>
 
-    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :hide-footer="false" :visible="drawerVisible" size="650px" :title="$t('流程设置')" @right-close="cancelDrawDialog" @close="handleCloseDrawer">
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :hide-footer="false" :visible="drawerVisible" size="650px" :title="$t('流程设置')" @right-close="cancelDrawDialog">
       <div slot="content">
         <span tabindex="1"></span>
         <el-form ref="form" :rules="rules" :model="form" label-width="80px">
@@ -223,6 +223,7 @@
         tableData: [],
         errorTips: '',
         listData: [],
+        addStatus: '',
         form: {
           id: '',
           name: '',
@@ -277,9 +278,13 @@
         });
       },
       addInfo(){
+        if (this.addStatus == 'edit'){
+          this.clearDrawerDialog();
+        }
         this.drawerVisible = true;
       },
       editInfo(row){
+        this.addStatus = 'edit';
         this.form = {
           id: row.id,
           name: row.name,
@@ -348,12 +353,13 @@
         this.modalVisible = false;
       },
       cancelDrawDialog(){
+        this.clearDrawerDialog();
         this.drawerVisible = false;
       },
       closeDialog(event){
 
       },
-      closeDrawerDialog(event){
+      clearDrawerDialog(){
         this.form = {
           id: '',
           name: '',
@@ -373,6 +379,9 @@
           this.$refs.processRoleRef._handleResetChange();
         }
         this.errorTips = "";
+        this.addStatus = '';
+      },
+      closeDrawerDialog(event){
         this.drawerVisible = event;
       },
       handleCloseDrawer(){
@@ -491,6 +500,7 @@
               if (res.data.code == 200){
                 this.drawerVisible = false;
                 this.init();
+                this.clearDrawerDialog();
                 MessageSuccess(res.data.desc);
               }else {
                 MessageError(res.data.desc);
