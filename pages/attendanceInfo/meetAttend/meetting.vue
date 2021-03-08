@@ -354,7 +354,7 @@
             <el-input v-model="form.meetingTitle" class="width-260"></el-input>
           </el-form-item>
           <el-form-item :label="$t('开始时间')" prop="beginDate">
-            <my-date-picker :sel-value="form.beginDate" width-style="128" @change="handleChangeDate($event, 1)"></my-date-picker>
+            <my-date-picker :sel-value="form.beginDate" width-style="135" @change="handleChangeDate($event, 1)"></my-date-picker>
             <el-time-picker
               :clearable="false"
               value-format="HH:mm"
@@ -362,12 +362,12 @@
               v-model="form.beginDateTime"
               :placeholder="$t('选择时间')"
               class="layout-item"
-              style="width: 128px"
+              style="width: 122px"
               @change="handleChangeTime($event, 1)">
             </el-time-picker>
           </el-form-item>
           <el-form-item :label="$t('结束时间')" prop="endDate">
-            <my-date-picker :sel-value="form.endDate" width-style="128" @change="handleChangeDate($event, 2)"></my-date-picker>
+            <my-date-picker :sel-value="form.endDate" width-style="135" @change="handleChangeDate($event, 2)"></my-date-picker>
             <el-time-picker
               :clearable="false"
               value-format="HH:mm"
@@ -375,7 +375,7 @@
               v-model="form.endDateTime"
               :placeholder="$t('选择时间')"
               class="layout-item"
-              style="width: 128px"
+              style="width: 122px"
               @change="handleChangeTime($event, 2)">
             </el-time-picker>
           </el-form-item>
@@ -456,7 +456,7 @@
                   <el-radio :label="3">{{$t("人脸识别考勤机签到")}}</el-radio>
                 </div>
                 <div class="margin-top-5">
-                  <my-select :sel-value="form.signDeviceSn" width-style="260" :options="tableDeviceData" @change="handleSelect($event)"></my-select>
+                  <my-select :group="true" :sel-value="form.signDeviceSn" width-style="260" :options="tableDeviceData" @change="handleSelect($event)"></my-select>
                 </div>
               </div>
             </el-radio-group>
@@ -529,6 +529,7 @@
         tableData: [],
         tableStaticData: [],
         tableDeviceData: [],
+        tableDeviceDoorList: [],
         teacherData: [],
         searchDate: [],
         typeList: [],
@@ -558,6 +559,7 @@
         statusChartDataKey: [],
         statusChartData: [],
         deviceList: [],
+        deviceArr: [],
         searchDeviceKey: '',
         mettingStatusFilterText: '',
         mettingUserJoinStatusFilterText: '',
@@ -588,7 +590,8 @@
     created() {
       this.init();
       this.meetingStatusGetInfo();
-      this.initDevice();
+      this.initDevice("1,2,4", "3,4", 1);
+      this.initDevice("4", "6", 2);
     },
     methods: {
       init(){
@@ -645,20 +648,48 @@
           }
         });
       },
-      initDevice(){
+      initDevice(sceneType, deviceType, type){
+        this.deviceArr = [
+          {
+            label: this.$t("一体机设备"),
+          },
+          {
+            label: this.$t("二维码/刷卡设备"),
+          }
+        ];
         let params = {
           page: 1,
           num: 999,
           keyWOrd: this.searchDeviceKey,
-          sceneType: '3,4'
+          sceneType: sceneType,
+          deviceType: deviceType
         };
-        this.$axios.get(common.attend_meeting_device_page, {params: params}).then(res => {
+        this.$axios.get(common.device_join_in_list, {params: params}).then(res => {
           if (res.data.data){
             for (let i = 0; i < res.data.data.list.length; i++){
               res.data.data.list[i]['label'] = res.data.data.list[i].sn+"("+res.data.data.list[i].name+")";
               res.data.data.list[i]['value'] = res.data.data.list[i].sn;
             }
-            this.tableDeviceData = res.data.data.list;
+            if (type == 1){
+              this.deviceArr[0]['options'] = [];
+              for (let i = 0; i< res.data.data.list.length; i++){
+                this.deviceArr[0]['options'].push({
+                  label: res.data.data.list[i].sn+"("+res.data.data.list[i].name+")",
+                  value: res.data.data.list[i].sn
+                });
+              }
+            }
+            if (type == 2){
+              this.deviceArr[1]['options'] = [];
+              for (let i = 0; i< res.data.data.list.length; i++){
+                this.deviceArr[1]['options'].push({
+                  label: res.data.data.list[i].sn+"("+res.data.data.list[i].name+")",
+                  value: res.data.data.list[i].sn
+                });
+              }
+            }
+
+            this.tableDeviceData = this.deviceArr;
           }
         });
       },

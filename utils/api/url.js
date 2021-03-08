@@ -540,4 +540,6 @@ export const common = {
   face_sync_student_del: '/proxy/school/person/student/flush',//删除学生授权
   face_sync_student_device_list: '/proxy/school/person/student/device/page',//教工授权设备列表
   face_sync_student_face_record_list: '/proxy/school/person/student/recognition/page',//教工识别记录列表
+
+  device_join_in_list: '/proxy/school/device/query-device-page',//关联设备列表
 };

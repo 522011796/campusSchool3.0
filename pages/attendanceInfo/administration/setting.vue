@@ -485,17 +485,38 @@
             </div>
             <div>
               <my-radio :sel-value="form.addrSwitch" label="1" @change="changeStatus($event,4)">{{$t("人脸识别机考勤")}}</my-radio>
-              <span>
-                <el-card :body-style="{padding: '5px 5px'}" style="width: 240px; max-height: 200px; overflow: auto">
-                  <ul>
-                    <el-checkbox-group v-model="form.deviceList">
-                      <li v-for="(item, index) in tableDeviceList" :key="index">
-                        <el-checkbox :label="item.value" :key="index">{{item.label}}</el-checkbox>
-                      </li>
-                    </el-checkbox-group>
-                  </ul>
-                </el-card>
-              </span>
+              <el-row :gutter="8">
+                <el-col :span="6">
+                  <div class="margin-bottom-5">
+                    <span class="color-muted">{{$t("一体机设备")}}</span>
+                  </div>
+                  <el-card :body-style="{padding: '5px 5px'}" style="width: 240px; max-height: 200px; overflow: auto">
+                    <span v-if="tableDeviceList.length == 0" class="color-disabeld">{{$t("暂无数据")}}</span>
+                    <ul v-else>
+                      <el-checkbox-group v-model="form.deviceList">
+                        <li v-for="(item, index) in tableDeviceList" :key="index">
+                          <el-checkbox :label="item.value" :key="index">{{item.label}}</el-checkbox>
+                        </li>
+                      </el-checkbox-group>
+                    </ul>
+                  </el-card>
+                </el-col>
+                <el-col :span="6">
+                  <div class="margin-bottom-5">
+                    <span class="color-muted">{{$t("二维码/刷卡设备")}}</span>
+                  </div>
+                  <el-card :body-style="{padding: '5px 5px'}" style="width: 240px; max-height: 200px; overflow: auto">
+                    <span v-if="tableDeviceList.length == 0" class="color-disabeld">{{$t("暂无数据")}}</span>
+                    <ul v-else>
+                      <el-checkbox-group v-model="form.deviceList">
+                        <li v-for="(item, index) in tableDeviceDoorList" :key="index">
+                          <el-checkbox :label="item.value" :key="index">{{item.label}}</el-checkbox>
+                        </li>
+                      </el-checkbox-group>
+                    </ul>
+                  </el-card>
+                </el-col>
+              </el-row>
             </div>
           </el-form-item>
         </el-form>
@@ -558,6 +579,7 @@
         errorTips: '',
         tips: '',
         tableDeviceList: [],
+        tableDeviceDoorList: [],
         form: {
           id: '',
           name: '',
@@ -621,7 +643,8 @@
     },
     created() {
       this.init();
-      this.initDevice();
+      this.initDevice("1,2,4", "3,4", 1);
+      this.initDevice("4", "6", 2);
     },
     methods: {
       async init(){
@@ -642,20 +665,26 @@
           }
         });
       },
-      initDevice(){
+      initDevice(sceneType, deviceType, type){
         let arr = [];
         let params = {
           page: 1,
           num: 999,
-          sceneType: 3
+          sceneType: sceneType,
+          deviceType: deviceType
         };
-        this.$axios.get(common.attend_admin_setting_device, {params:params}).then(res => {
+        this.$axios.get(common.device_join_in_list, {params:params}).then(res => {
           if (res.data.data){
             for (let i = 0; i < res.data.data.list.length; i++){
               res.data.data.list[i]['label'] = res.data.data.list[i].name ? res.data.data.list[i].name : res.data.data.list[i].sn;
               res.data.data.list[i]['value'] = res.data.data.list[i].sn;
             }
-            this.tableDeviceList = res.data.data.list;
+            if (type == 1){
+              this.tableDeviceList = res.data.data.list;
+            }
+            if (type == 2){
+              this.tableDeviceDoorList = res.data.data.list;
+            }
           }
         });
       },
