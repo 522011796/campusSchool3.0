@@ -340,7 +340,7 @@ export const common = {
   dorm_user_dorm_list: '/proxy/school/bed/dorm-group/page',//宿舍人员列表--宿舍
   dorm_user_class_list: '/proxy/school/student/class-group/page',//宿舍人员列表--班级
   dorm_user_class_import: '/proxy/building/dormitory/bed/student/import',//宿舍人员导入
-  dorm_user_class_export: '/proxy/building/dormitory/bed/student/import',//宿舍人员导出
+  dorm_user_class_export: '/proxy/user/student/pageForBed/export',//宿舍人员导出
   dorm_user_class_bed_into: '/proxy/user/student/pageForBed',//宿舍人员分配列表
   dorm_user_class_bed_distribute: '/proxy/building/dormitory/bed/distribute',//分配宿舍人员
   dorm_user_class_student_clear: '/proxy/building/dormitory/student/clear',//清空宿舍

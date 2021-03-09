@@ -174,7 +174,7 @@
                 <span class="dorm-blick-tag"></span>
                 <label v-if="showType == 2">
                   <span class="color-success margin-left-5 font-size-14" style="position: relative; top: -12px;">{{item.dormitory_no}}</span>
-                  <span class="color-muted margin-left-5 font-size-12" style="position: relative; top: -12px;">
+                  <span class="color-muted margin-left-5 font-size-14" style="position: relative; top: -12px;">
                     <i v-if="item.type == 0" class="fa fa-male"></i>
                     <i v-if="item.type == 1" class="fa fa-famale"></i>
                     <label>{{dormTypeTextInfo(item.type)}}</label>
@@ -190,11 +190,11 @@
                 <i v-if="showType == 2" class="fa fa-scissors color-danger pull-right" style="position: relative; top: 10px; right: 10px" @click="removeBed(item, 'clearDormRoomId')"></i>
               </div>
               <el-row :gutter="16" class="margin-top-10">
-                <el-col :span="6" v-for="(itemChild, indexChild) in item.list" :key="indexChild" class="margin-bottom-20">
-                  <el-card :body-style="{padding: '5px 10px',height: '110px'}">
+                <el-col :span="8" v-for="(itemChild, indexChild) in item.list" :key="indexChild" class="margin-bottom-20">
+                  <el-card shadow="hover" :body-style="{padding: '5px 10px',height: '130px'}">
                     <el-row>
-                      <el-col :span="8">
-                        <div class="color-warning font-size-12">
+                      <el-col :span="9">
+                        <div class="color-warning font-size-14">
                           <i class="fa fa-id-card"></i>
                           <span v-if="!itemChild.student_id && showType == 2">
                             {{$t("空床位")}}
@@ -203,7 +203,7 @@
                             <span class="moon-content-text-ellipsis-class dorm-card-title">{{itemChild.student_id}}</span>
                           </el-tooltip>
                         </div>
-                        <div class="color-warning font-size-12 margin-top-10">
+                        <div class="color-warning font-size-14 margin-top-10">
                           <el-avatar v-if="!itemChild.photo_simple" shape="square" :size="50">
                             <i class="el-icon-user-solid" style="font-size: 20px"></i>
                           </el-avatar>
@@ -211,12 +211,12 @@
                         </div>
                         <div class="margin-top-5">
                           <el-tooltip class="item" effect="dark" :content="searchStatusTypeSet(itemChild.status)" placement="top-start">
-                            <span class="color-success font-size-12 moon-content-text-ellipsis-class dorm-card-status margin-left-10">{{searchStatusTypeSet(itemChild.status)}}</span>
+                            <span class="color-success font-size-14 moon-content-text-ellipsis-class dorm-card-status margin-left-10">{{searchStatusTypeSet(itemChild.status)}}</span>
                           </el-tooltip>
                         </div>
                       </el-col>
-                      <el-col :span="16" class="text-right">
-                        <div class="color-warning font-size-12">
+                      <el-col :span="15" class="text-right">
+                        <div class="color-warning font-size-14">
                           <span v-if="showType == 2" class="moon-content-text-ellipsis-class dorm-card-title">
                             <label v-if="itemChild.student_id != null" @click="removeBed(itemChild, 'clearBedId')">
                               <i class="fa fa-trash color-danger"></i>
@@ -252,8 +252,8 @@
                                 {{$t("分配床位")}}
                               </a>
                             </el-popover>-->
-                            <a v-if="!itemChild.bed_no || itemChild.bed_no == null" slot="reference" href="javascript:;" class="color-success" @click="setDormList(itemChild)">
-                              <i class="fa fa-bed"></i>
+                            <a v-if="!itemChild.bed_no || itemChild.bed_no == null" slot="reference" href="javascript:;" class="color-success bed-dorm-color" @click="setDormList(itemChild)">
+                              <i class="fa fa-bed" style="font-size: 14px"></i>
                               {{$t("分配床位")}}
                             </a>
                           </span>
@@ -277,26 +277,29 @@
                           </el-popover>-->
                           <div @click="setStudentList(itemChild)">
                             <div>
-                              <i class="fa fa-bed color-warning margin-right-5" style="font-size: 30px;"></i>
+                              <i class="fa fa-bed bed-color margin-right-5" style="font-size: 40px;"></i>
                             </div>
-                            <div class="font-size-12">
+                            <div class="font-size-14">
                               <span class="color-muted">{{$t("分配学生")}}</span>
                             </div>
                           </div>
                         </div>
                         <div v-if="itemChild.student_id">
-                          <div class="font-size-12 margin-top-5">
-                            <el-tooltip class="item" effect="dark" :content="itemChild.real_name" placement="top-start">
+                          <div class="font-size-14 margin-top-5">
+                            <el-tooltip class="item" effect="dark" :content="itemChild.real_name" placement="left">
                               <span class="moon-content-text-ellipsis-class dorm-card-name">{{itemChild.real_name}}</span>
                             </el-tooltip>
                           </div>
-                          <div class="font-size-12 margin-top-5">
+                          <div class="font-size-14 margin-top-5">
                             <span class="color-muted" v-if="showType == 2">{{itemChild.build_name}}</span>
                             <span class="color-muted" v-if="showType == 1">
                               <my-sex tag="text" :sex="itemChild.sex"></my-sex>
                             </span>
                           </div>
-                          <div class="font-size-12 margin-top-5">
+                          <div class="font-size-14 margin-top-5">
+                            <span class="color-muted">{{itemChild.major_name}}</span>
+                          </div>
+                          <div class="font-size-14 margin-top-5">
                             <span class="color-muted">{{itemChild.class_name}}</span>
                           </div>
                         </div>
@@ -648,10 +651,10 @@
       expandInfo(){
         let url = common.dorm_user_class_export;
         let params = {
-          page: this.page,
-          num: this.num,
-          searchKey: this.searchKey,
-          status: this.searchStatusType
+          page: 1,
+          num: 99999,
+          //searchKey: this.searchKey,
+          //status: this.searchStatusType
         };
         if (this.showType == 1){
           params['collegeId'] = this.searchCollege;
@@ -1139,7 +1142,7 @@
     display: inline-block;
   }
   .dorm-card-title{
-    max-width: 50px;
+    max-width: 130px;
     display: inline-block;
     position: relative;
     top:2px;
@@ -1155,5 +1158,14 @@
     display: inline-block;
     position: relative;
     top:2px;
+  }
+  .bed-color{
+    color: #E6A23C;
+  }
+  .bed-color:hover{
+    color: #409EFF;
+  }
+  .bed-dorm-color:hover{
+    color: #409EFF;
   }
 </style>

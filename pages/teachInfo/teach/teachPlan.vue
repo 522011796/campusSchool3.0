@@ -409,7 +409,8 @@
         uploadAction: common.teach_course_plan_inport,
         uploadResult: {},
         uploadProcess: '',
-        fileName: ''
+        fileName: '',
+        offerId: ''
       }
     },
     created() {
@@ -581,6 +582,7 @@
 
         this.initCourseList();
         if (row.offerId){
+          this.offerId = row.offerId;
           this.initCourseTeacher(row.offerId,row.teacherId);
         }
         this.modalVisible = true;
@@ -796,9 +798,11 @@
           floorNum: ''
         };
         this.id = "";
+        this.offerId = "";
         //this.week_schedule_id = "";
         this.checkedCities = [];
         this.checkAll = false;
+        this.tableTeacherData = [];
         this.resetCasadeSelector('SelectorBuild');
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
@@ -878,7 +882,9 @@
       },
       handleResetChange(){
         //this.$refs.popverPartRef._handleResetChange();
-        this.tableTeacherData = [];
+        if (this.offerId == ""){
+          this.tableTeacherData = [];
+        }
       },
       handleChangeSelect(data, type){
         switch (type) {

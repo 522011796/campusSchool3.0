@@ -191,10 +191,11 @@
             </div>-->
             <div>
               <el-popover
-                placement="top"
+                placement="right"
                 width="700"
                 trigger="click"
-                @show="handleShowTeacher(3)">
+                @show="handleShowTeacher(3)"
+                @hide="handleHideeacher">
                 <div>
                   <student-tree-and-list ref="popverPartRef" :sel-arr="form.userId" set-type="check" @select="handleSelUser"></student-tree-and-list>
                 </div>
@@ -660,6 +661,11 @@ export default {
     handleShowTeacher(type){
       if (type == 3){
         this.$refs.popverPartRef._handleOpen();
+      }
+    },
+    handleHideeacher(){
+      if (this.$refs['popverPartRef']){
+        this.$refs.popverPartRef._handleResetChange();
       }
     },
     handleSelUser(data, type){

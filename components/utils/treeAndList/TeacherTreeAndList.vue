@@ -1,8 +1,8 @@
 <template>
   <div ref="commTeacherList">
     <div class="layout-inline">
-      <my-cascader class="layout-item" ref="SelectorDept" size="small" width-style="160" :sel-value="searchCommDeptData" type="4" sub-type="" @change="_handleCascaderChange($event)"></my-cascader>
-      <my-input-button class="layout-item" size="small" :clearable="true" type="success" plain @click="_handleSearch"></my-input-button>
+      <my-cascader class="layout-item" :clearable="true" ref="SelectorDept" size="small" width-style="160" :sel-value="searchCommDeptData" type="4" sub-type="" @change="_handleCascaderChange($event)"></my-cascader>
+      <my-input-button ref="commSearchInput" class="layout-item" size="small" :clearable="true" type="success" plain @click="_handleSearch"></my-input-button>
     </div>
     <el-table ref="commTableRef" :data="tableTeacherCommData"
               :max-height="maxHeight"
@@ -245,11 +245,18 @@
         this.commSelUserValObj =  {};
         this.commSelUserValArr =  [];
         this.commSelUserArr = [];
+        this.commSearchDept =  '';
+
+        if (this.$refs['commSearchInput']){
+          this.$refs.commSearchInput.inputValue = ""
+        }
 
         if (this.$refs.SelectorDept && this.$refs.SelectorDept.$refs.cascaderSelector) {
+          this.$refs.SelectorDept.$refs.cascaderSelector.$refs.panel.activePath = [];
           this.$refs.SelectorDept.$refs.cascaderSelector.$refs.panel.calculateCheckedNodePaths()
         }
         if (this.$refs.SelectorDept && this.$refs.SelectorDept.$refs.cascaderSelector) {
+          this.$refs.SelectorDept.$refs.cascaderSelector.$refs.panel.activePath = [];
           this.$refs.SelectorDept.$refs.cascaderSelector.$refs.panel.calculateCheckedNodePaths()
         }
 

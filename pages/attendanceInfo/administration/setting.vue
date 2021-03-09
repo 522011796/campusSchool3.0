@@ -191,7 +191,8 @@
               placement="right"
               width="700"
               trigger="click"
-              @show="handleShowTeacher(1)">
+              @show="handleShowTeacher(1)"
+              @hide="handleHideeacher">
               <div>
                 <teacher-tree-and-list ref="popverPartRef" :sel-arr="form.partUserIds" set-type="check" @select="handleSelUser($event,1)"></teacher-tree-and-list>
               </div>
@@ -207,7 +208,8 @@
               placement="right"
               width="700"
               trigger="click"
-              @show="handleShowTeacher(2)">
+              @show="handleShowTeacher(2)"
+              @hide="handleHideeacher">
               <div>
                 <teacher-tree-and-list ref="popverAuditRef" :sel-arr="form.auditUserIds" set-type="check" @select="handleSelUser($event,2)"></teacher-tree-and-list>
               </div>
@@ -1211,6 +1213,14 @@
           this.$refs.popverPartRef._handleOpen();
         }else if (type == 2){
           this.$refs.popverAuditRef._handleOpen();
+        }
+      },
+      handleHideeacher(){
+        if (this.$refs['popverPartRef']){
+          this.$refs.popverPartRef._handleResetChange();
+        }
+        if (this.$refs['popverAuditRef']){
+          this.$refs.popverAuditRef._handleResetChange();
         }
       },
       handleSelUser(data, type){

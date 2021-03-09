@@ -125,7 +125,8 @@
               placement="top"
               width="700"
               trigger="click"
-              @show="handleShowTeacher()">
+              @show="handleShowTeacher()"
+              @hide="handleHideeacher">
               <div>
                 <teacher-tree-and-list ref="popverPartRef" :sel-arr="form.teacherId" set-type="check" @select="handleSelUser"></teacher-tree-and-list>
               </div>
@@ -623,6 +624,11 @@
       },
       handleShowTeacher(type){
         this.$refs.popverPartRef._handleOpen();
+      },
+      handleHideeacher(){
+        if (this.$refs['popverPartRef']){
+          this.$refs.popverPartRef._handleResetChange();
+        }
       }
     }
   }

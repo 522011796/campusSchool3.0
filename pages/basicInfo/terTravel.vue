@@ -159,7 +159,8 @@
                 placement="left"
                 width="700"
                 trigger="click"
-                @show="handleShowTeacher(1)">
+                @show="handleShowTeacher(1)"
+                @hide="handleHideeacher">
                 <div>
                   <teacher-tree-and-list ref="popverPartRef" :sel-arr="form.conditionRole" set-type="check" @select="handleSelUser($event,1)"></teacher-tree-and-list>
                 </div>
@@ -573,6 +574,11 @@
           this.$refs.popverPartRef._handleOpen();
         }else if (type == 2){
           this.$refs.popverAuditRef._handleOpen();
+        }
+      },
+      handleHideeacher(){
+        if (this.$refs['popverPartRef']){
+          this.$refs.popverPartRef._handleResetChange();
         }
       },
       handleSelUser(data, type){
