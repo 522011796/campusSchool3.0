@@ -20,7 +20,7 @@
           <el-checkbox v-model="scope.row._checked" @change="_handleSelectionSelect($event, scope.row)"></el-checkbox>
         </template>
       </el-table-column>
-      <el-table-column align="center" v-if="setType == 'radio'">
+      <el-table-column align="center" label="操作" v-if="setType == 'radio'">
         <template slot-scope="scope">
           <my-radio :sel-value="commSelUserVal" v-bind="_selValue" :label="scope.row.user_id" @change="_handleChange(scope.row)"><span></span></my-radio>
         </template>

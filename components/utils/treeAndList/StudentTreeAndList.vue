@@ -10,6 +10,7 @@
               v-loading="commLoading">
       <el-table-column
         v-if="setType == 'select'"
+        label="操作"
         align="center">
         <template slot-scope="scope">
           <a href="javascript:;" class="color-grand" v-if="scope.row.bed_no == null" @click="_selectBedno(scope.row)">{{$t("分配")}}</a>
@@ -28,7 +29,7 @@
           <el-checkbox v-model="scope.row._checked" @change="_handleSelectionSelect($event, scope.row)"></el-checkbox>
         </template>
       </el-table-column>
-      <el-table-column align="center" v-if="setType == 'radio'">
+      <el-table-column align="center" label="操作" v-if="setType == 'radio'">
         <template slot-scope="scope">
           <my-radio :sel-value="commSelUserVal" v-bind="_selValue" :label="scope.row.user_id" @change="_handleChange(scope.row)"><span></span></my-radio>
         </template>

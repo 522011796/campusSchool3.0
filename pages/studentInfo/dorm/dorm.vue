@@ -16,93 +16,142 @@
 
       <div slot="right">
         <div class="margin-top-10">
-          <el-card shadow="never" :body-style="{padding: '5px 10px',height: '120px'}">
-            <el-row>
-              <el-col :span="8">
-                <div class="layout-inline padding-lr-10">
-                  <div class="layout-item margin-top-30">
-                    <div>
-                      <i class="fa fa-bed color-warning" style="font-size: 35px"></i>
+          <div v-if="toggleTopShow == false" style="position: relative;">
+            <el-card shadow="never" :body-style="{padding: '5px 10px',height: '60px'}">
+              <div>
+                <el-row>
+                  <el-col :span="8">
+                    <div class="rpStatic-top-item-mini color-muted">
+                      <i class="fa fa-bed"></i>
+                      <label>{{$t("总床位")}}:</label>
                     </div>
-                    <div>
-                      <span class="color-warning font-size-12">{{$t("总床位")}}</span>
+                    <div class="font-size-25 margin-top-5 color-muted margin-left-20">
+                      <label>{{Object.keys(dormData).length > 0 ? dormData[0].people_num + dormData[1].people_num : 0}}</label>
                     </div>
-                  </div>
+                  </el-col>
+                  <el-col :span="8">
+                    <div class="rpStatic-top-item-mini color-muted">
+                      <i class="fa fa-bed"></i>
+                      <label>{{$t("已分配")}}:</label>
+                    </div>
+                    <div class="font-size-25 margin-top-5 color-muted margin-left-20">
+                      <label>{{Object.keys(dormData).length  > 0 ? dormData[0].has_people_num + dormData[1].has_people_num : 0}}</label>
+                    </div>
+                  </el-col>
+                  <el-col :span="8">
+                    <div class="rpStatic-top-item-mini color-muted">
+                      <i class="fa fa-bed"></i>
+                      <label>{{$t("未分配")}}:</label>
+                    </div>
+                    <div class="font-size-25 margin-top-5 color-muted margin-left-20">
+                      <label>{{Object.keys(dormData).length  > 0 ? dormData[0].not_people_num + dormData[1].not_people_num : 0}}</label>
+                    </div>
+                  </el-col>
+                </el-row>
+              </div>
+            </el-card>
+            <div class="text-center toggle-show-icon" @click="toggleTopShow = !toggleTopShow">
+              <div class="font-size-12 toggle-show-icon-block">
+                <i class="fa fa-angle-double-down"></i>
+                <label>{{$t("展开")}}</label>
+              </div>
+            </div>
+          </div>
+          <div v-if="toggleTopShow == true" style="position: relative;">
+            <el-card shadow="never" :body-style="{padding: '5px 10px',height: '120px'}">
+              <el-row>
+                <el-col :span="8">
+                  <div class="layout-inline padding-lr-10">
+                    <div class="layout-item margin-top-30">
+                      <div>
+                        <i class="fa fa-bed color-warning" style="font-size: 35px"></i>
+                      </div>
+                      <div>
+                        <span class="color-warning font-size-12">{{$t("总床位")}}</span>
+                      </div>
+                    </div>
 
-                  <div class="layout-item font-size-12 color-warning margin-left-10">
-                    <div>
-                      <span>{{$t("总床位")}}</span>
-                      <span>{{Object.keys(dormData).length > 0 ? dormData[0].people_num + dormData[1].people_num : 0}}</span>
-                    </div>
-                    <div class="margin-top-5">
-                      <span>{{$t("男生")}}</span>
-                      <span>{{Object.keys(dormData).length  > 0 ? dormData[0].people_num : 0}}</span>
-                    </div>
-                    <div class="margin-top-5">
-                      <span>{{$t("女生")}}</span>
-                      <span>{{Object.keys(dormData).length  > 0 ? dormData[1].people_num : 0}}</span>
+                    <div class="layout-item font-size-12 color-warning margin-left-10">
+                      <div>
+                        <span>{{$t("总床位")}}</span>
+                        <span>{{Object.keys(dormData).length > 0 ? dormData[0].people_num + dormData[1].people_num : 0}}</span>
+                      </div>
+                      <div class="margin-top-5">
+                        <span>{{$t("男生")}}</span>
+                        <span>{{Object.keys(dormData).length  > 0 ? dormData[0].people_num : 0}}</span>
+                      </div>
+                      <div class="margin-top-5">
+                        <span>{{$t("女生")}}</span>
+                        <span>{{Object.keys(dormData).length  > 0 ? dormData[1].people_num : 0}}</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </el-col>
+                </el-col>
 
-              <el-col :span="8">
-                <div class="layout-inline padding-lr-10">
-                  <div class="layout-item margin-top-30">
-                    <div>
-                      <i class="fa fa-bed color-success" style="font-size: 35px"></i>
+                <el-col :span="8">
+                  <div class="layout-inline padding-lr-10">
+                    <div class="layout-item margin-top-30">
+                      <div>
+                        <i class="fa fa-bed color-success" style="font-size: 35px"></i>
+                      </div>
+                      <div>
+                        <span class="color-warning font-size-12">{{$t("已分配")}}</span>
+                      </div>
                     </div>
-                    <div>
-                      <span class="color-warning font-size-12">{{$t("已分配")}}</span>
-                    </div>
-                  </div>
 
-                  <div class="layout-item font-size-12 color-success margin-left-10">
-                    <div>
-                      <span>{{$t("已分配")}}</span>
-                      <span>{{Object.keys(dormData).length  > 0 ? dormData[0].has_people_num + dormData[1].has_people_num : 0}}</span>
-                    </div>
-                    <div class="margin-top-5">
-                      <span>{{$t("男生")}}</span>
-                      <span>{{Object.keys(dormData).length  > 0 ? dormData[0].has_people_num : 0}}</span>
-                    </div>
-                    <div class="margin-top-5">
-                      <span>{{$t("女生")}}</span>
-                      <span>{{Object.keys(dormData).length  > 0 ? dormData[1].has_people_num : 0}}</span>
+                    <div class="layout-item font-size-12 color-success margin-left-10">
+                      <div>
+                        <span>{{$t("已分配")}}</span>
+                        <span>{{Object.keys(dormData).length  > 0 ? dormData[0].has_people_num + dormData[1].has_people_num : 0}}</span>
+                      </div>
+                      <div class="margin-top-5">
+                        <span>{{$t("男生")}}</span>
+                        <span>{{Object.keys(dormData).length  > 0 ? dormData[0].has_people_num : 0}}</span>
+                      </div>
+                      <div class="margin-top-5">
+                        <span>{{$t("女生")}}</span>
+                        <span>{{Object.keys(dormData).length  > 0 ? dormData[1].has_people_num : 0}}</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </el-col>
+                </el-col>
 
-              <el-col :span="8">
-                <div class="layout-inline padding-lr-10">
-                  <div class="layout-item margin-top-30">
-                    <div>
-                      <i class="fa fa-bed color-danger" style="font-size: 35px"></i>
+                <el-col :span="8">
+                  <div class="layout-inline padding-lr-10">
+                    <div class="layout-item margin-top-30">
+                      <div>
+                        <i class="fa fa-bed color-danger" style="font-size: 35px"></i>
+                      </div>
+                      <div>
+                        <span class="color-danger font-size-12">{{$t("未分配")}}</span>
+                      </div>
                     </div>
-                    <div>
-                      <span class="color-danger font-size-12">{{$t("未分配")}}</span>
-                    </div>
-                  </div>
 
-                  <div class="layout-item font-size-12 color-danger margin-left-10">
-                    <div>
-                      <span>{{$t("未分配")}}</span>
-                      <span>{{Object.keys(dormData).length  > 0 ? dormData[0].not_people_num + dormData[1].not_people_num : 0}}</span>
-                    </div>
-                    <div class="margin-top-5">
-                      <span>{{$t("男生")}}</span>
-                      <span>{{Object.keys(dormData).length  > 0 ? dormData[0].not_people_num : 0}}</span>
-                    </div>
-                    <div class="margin-top-5">
-                      <span>{{$t("女生")}}</span>
-                      <span>{{Object.keys(dormData).length  > 0 ? dormData[1].not_people_num : 0}}</span>
+                    <div class="layout-item font-size-12 color-danger margin-left-10">
+                      <div>
+                        <span>{{$t("未分配")}}</span>
+                        <span>{{Object.keys(dormData).length  > 0 ? dormData[0].not_people_num + dormData[1].not_people_num : 0}}</span>
+                      </div>
+                      <div class="margin-top-5">
+                        <span>{{$t("男生")}}</span>
+                        <span>{{Object.keys(dormData).length  > 0 ? dormData[0].not_people_num : 0}}</span>
+                      </div>
+                      <div class="margin-top-5">
+                        <span>{{$t("女生")}}</span>
+                        <span>{{Object.keys(dormData).length  > 0 ? dormData[1].not_people_num : 0}}</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </el-col>
-            </el-row>
-          </el-card>
+                </el-col>
+              </el-row>
+            </el-card>
+            <div class="text-center toggle-show-icon" @click="toggleTopShow = !toggleTopShow">
+              <div class="font-size-12 toggle-show-icon-block">
+                <i class="fa fa-angle-double-up"></i>
+                <label>{{$t("收起")}}</label>
+              </div>
+            </div>
+          </div>
 
           <div class="layout-right-tab margin-top-10">
             <el-row class="layout-inline">
@@ -119,7 +168,7 @@
             </el-row>
           </div>
 
-          <div class="bg-f5f5f5 border-bottom-1 padding-lr-5 padding-tb-5" :style="divHeight6">
+          <div class="bg-f5f5f5 border-bottom-1 padding-lr-5 padding-tb-5" :style="toggleTopShow == false ? divHeight9 : divHeight6">
             <div v-for="(item, index) in tableData" :key="index">
               <div class="dorm-block">
                 <span class="dorm-blick-tag"></span>
@@ -189,7 +238,7 @@
                               <i class="fa fa-trash color-danger"></i>
                             </label>
                             <label v-if="itemChild.bed_no != null">{{itemChild.bed_no}}号床</label>
-                            <el-popover
+                            <!--<el-popover
                               v-else
                               width="700"
                               trigger="click"
@@ -202,11 +251,15 @@
                                 <i class="fa fa-bed"></i>
                                 {{$t("分配床位")}}
                               </a>
-                            </el-popover>
+                            </el-popover>-->
+                            <a v-if="!itemChild.bed_no || itemChild.bed_no == null" slot="reference" href="javascript:;" class="color-success" @click="setDormList(itemChild)">
+                              <i class="fa fa-bed"></i>
+                              {{$t("分配床位")}}
+                            </a>
                           </span>
                         </div>
                         <div v-if="!itemChild.student_id" class="margin-top-10">
-                          <el-popover
+                          <!--<el-popover
                             width="700"
                             trigger="click"
                             @show="handleShowStudent(itemChild.id, itemChild)">
@@ -221,7 +274,15 @@
                                 <span class="color-muted">{{$t("分配学生")}}</span>
                               </div>
                             </div>
-                          </el-popover>
+                          </el-popover>-->
+                          <div @click="setStudentList(itemChild)">
+                            <div>
+                              <i class="fa fa-bed color-warning margin-right-5" style="font-size: 30px;"></i>
+                            </div>
+                            <div class="font-size-12">
+                              <span class="color-muted">{{$t("分配学生")}}</span>
+                            </div>
+                          </div>
                         </div>
                         <div v-if="itemChild.student_id">
                           <div class="font-size-12 margin-top-5">
@@ -254,6 +315,128 @@
       </div>
     </layout-lr>
 
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerStudentVisible" :loading="drawerLoading" size="550px" :title="$t('分配学生')" @right-close="cancelDrawDialog">
+      <div slot="content">
+        <div class="layout-inline">
+          <my-cascader class="layout-item" ref="SelectorDept" size="small" width-style="160" :clearable="true" :sel-value="searchCommDeptData" type="1" sub-type="4" @change="handleCascaderChange($event)"></my-cascader>
+          <my-input-button class="layout-item" size="small" :clearable="true" type="success" plain @click="handleSearch"></my-input-button>
+        </div>
+        <el-table ref="studentTableRef"
+                  header-cell-class-name="custom-table-cell-bg"
+                  :data="tableStudentData"
+                  size="mini"
+                  class="margin-top-10"
+                  v-loading="tableStudentLoading">
+          <el-table-column align="center" label="操作">
+            <template slot-scope="scope">
+              <a href="javascript:;" class="color-grand" v-if="scope.row.bed_no == null" @click="selectBedno(scope.row)">{{$t("分配")}}</a>
+              <label class="color-warning" v-else>{{$t("已分配")}}</label>
+            </template>
+          </el-table-column>
+          <el-table-column property="real_name" align="center" label="姓名">
+
+          </el-table-column>
+          <el-table-column property="student_id" align="center" label="学号">
+
+          </el-table-column>
+          <el-table-column property="" align="center" label="班级">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.class_name ? scope.row.class_name : '--'}}</div>
+                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{scope.row.class_name ? scope.row.class_name : '--'}}
+                </div>
+              </el-popover>
+            </template>
+          </el-table-column>
+        </el-table>
+      </div>
+      <div slot="footer">
+        <div class="text-right padding-lr-10">
+          <my-pagination :total="studentTotal" :current-page="studentPage" :page-size="studentNum" @currentPage="currentStudentPage" @sizeChange="sizeStudentChange" @jumpChange="jumpStudentPage" class="layout-pagination"></my-pagination>
+        </div>
+      </div>
+    </drawer-layout-right>
+
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerDormVisible" :loading="drawerLoading" size="550px" :title="$t('分配床位')" @right-close="cancelDrawDialog">
+      <div slot="content">
+        <div class="layout-inline"  v-if="!commDrawer">
+          <my-cascader class="layout-item" :clearable="true" ref="SelectorDormDept" size="small" width-style="160" :sel-value="searchCommDeptBedData" type="2" sub-type="2" @change="handleCascaderBedChange($event)"></my-cascader>
+        </div>
+        <el-table class="margin-top-10"  v-if="!commDrawer" ref="dormTableRef"
+                  :data="tableDormData"
+                  size="mini"
+                  v-loading="tableDormLoading">
+          <el-table-column
+            label="操作"
+            align="center">
+            <template slot-scope="scope">
+              <a href="javascript:;" class="color-grand" @click="selectDorm(scope.row)">{{$t("分配")}}</a>
+            </template>
+          </el-table-column>
+          <el-table-column property="dormitory_no" align="center" label="宿舍编号">
+
+          </el-table-column>
+          <el-table-column align="center" label="宿舍类型">
+            <template slot-scope="scope">
+              <label>{{dormTypeTextInfo(scope.row.type)}}</label>
+            </template>
+          </el-table-column>
+          <el-table-column property="student_id" align="center" label="容纳人数">
+            <template slot-scope="scope">
+              <label>{{scope.row.has_people_num}}</label>
+              /
+              <label>{{scope.row.people_num}}</label>
+            </template>
+          </el-table-column>
+        </el-table>
+
+        <div v-if="commDrawer">
+          <div class="layout-inline">
+            <el-button size="small" type="success" plain @click="returnDormList">
+              <i class="fa fa-arrow-left"></i>
+              {{$t("返回")}}
+            </el-button>
+          </div>
+          <div class="margin-top-10">
+            <el-table ref="commTableRef"
+                      :data="tableDormCommDormData"
+                      size="mini">
+              <el-table-column
+                label="床号"
+                align="center">
+                <template slot-scope="scope">
+                  <span>{{scope.row.bed_no}}号床</span>
+                </template>
+              </el-table-column>
+              <el-table-column
+                label="状态"
+                align="center">
+                <template slot-scope="scope">
+                  <span v-if="scope.row.student_id != null" class="color-warning">{{$t("已分配")}}</span>
+                  <span v-else class="color-success">{{$t("未分配")}}</span>
+                </template>
+              </el-table-column>
+              <el-table-column
+                label="操作"
+                align="center">
+                <template slot-scope="scope">
+                  <a href="javascript:;" v-if="scope.row.student_id == null" class="color-grand" @click="selectDormBedno(scope.row)">{{$t("选择")}}</a>
+                  <span v-else>--</span>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </div>
+      </div>
+      <div slot="footer">
+        <div class="text-right padding-lr-10">
+          <my-pagination v-if="!commDrawer" :total="commTotal" :current-page="commPage" :page-size="commNum" @currentPage="currentDormPage" @sizeChange="sizeDormChange" @jumpChange="jumpDormPage" class="layout-pagination"></my-pagination>
+          <span v-if="commDrawer" class="margin-right-10">{{$t("共")}} {{tableDormCommDormData.length}} {{$t("条")}}</span>
+        </div>
+      </div>
+    </drawer-layout-right>
+
     <drawer-right @changeDrawer="closeDrawerDialog" :visible="drawerVisible" accept=".xls,.xlsx" :loading="drawerLoading" :hide-footer="true" size="400px" :title="$t('导入信息')" :action="uploadAction" :download-file="uploadFile" :result="uploadResult" :process="uploadProcess" @right-close="cancelDrawDialog" @success="uploadSuccess" @error="uploadError">
 
     </drawer-right>
@@ -265,7 +448,14 @@
 <script>
   import mixins from "../../../utils/mixins";
   import {common} from "../../../utils/api/url";
-  import {dormTypeText, MessageError, MessageSuccess, MessageWarning, studentTeachStatus} from "../../../utils/utils";
+  import {
+    dormTypeText,
+    inArray,
+    MessageError,
+    MessageSuccess,
+    MessageWarning,
+    studentTeachStatus
+  } from "../../../utils/utils";
   import LayoutLr from "../../../components/Layout/LayoutLr";
   import MyElTree from "../../../components/tree/MyElTree";
   import MyPagination from "../../../components/MyPagination";
@@ -290,18 +480,44 @@
     components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,MySearchOfDate,DrawerLayoutRight,StudentTreeAndList,DormBuildTreeAndList},
     data(){
       return {
+        commPage: 1,
+        commNum: 20,
+        commTotal: 0,
+        tableDormCommDormData: [],
+        commSearchBuild: '',
+        commSearchFloor: '',
+        studentTotal: 0,
+        studentNum: 20,
+        studentPage: 1,
+        tableStudentData: [],
+        tableDormData: [],
+        tableStudentLoading: false,
+        tableDormLoading: false,
+        toggleTopShow: false,
         searchTimeData: {},
+        commSearchKey: '',
+        commSearchDept: '',
+        commSearchCollege: '',
+        commSearchMajor: '',
+        commSearchGrade: '',
+        commSearchClass: '',
+        commDrawer: false,
+        commSex: '',
         tableData: [],
         tableDetailData: [],
         searchDate: [],
         filtersDeviceType: [],
         filterStatusTypes: [],
+        searchCommDeptData: [],
+        searchCommDeptBedData: [],
         dormData: {},
         modalVisible: false,
         dialogLoading: false,
         visibleConfim: false,
         drawerVisible: false,
         drawerLoading: false,
+        drawerStudentVisible: false,
+        drawerDormVisible: false,
         searchCollege: '',
         searchMajor: '',
         searchGrade: '',
@@ -364,6 +580,7 @@
           url = common.dorm_user_dorm_list;
         }
         params = this.clearDataInfo(params);
+        this.tableData = [];
         this.$axios.get(url, {params: params}).then(res => {
           if (res.data.data){
             this.tableData = res.data.data.list;
@@ -378,6 +595,51 @@
           if (res.data.data){
             this.dormData = res.data.data;
           }
+        });
+      },
+      initStudent(){
+        let params = {
+          page: this.studentPage,
+          num: this.studentNum,
+          deleted: 0,
+          sex: this.commSex.type,
+          collegeId: this.commSearchCollege,
+          majorId: this.commSearchMajor,
+          grade: this.commSearchGrade,
+          clasz: this.commSearchClass,
+        };
+        this.tableStudentLoading = true;
+        params['realName'] = this.commSearchKey['input'];
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.dorm_user_class_bed_into, params).then(res => {
+          if (res.data.data){
+            this.tableStudentData = res.data.data.list;
+            this.studentTotal= res.data.data.totalCount;
+            this.studentNum = res.data.data.num;
+            this.studentPage = res.data.data.currentPage;
+          }
+          this.tableStudentLoading = false;
+        });
+      },
+      initDorm(){
+        let params = {
+          page: this.commPage,
+          num: this.commNum,
+          deleted: 0,
+          type: this.commSex.sex,
+          buildId: this.commSearchBuild,
+          floorNum: this.commSearchFloor,
+        };
+        this.tableDormLoading = true;
+        params['realName'] = this.commSearchKey['input'];
+        this.$axios.get(common.dormroom_page, {params: params}).then(res => {
+          if (res.data.data){
+            this.tableDormData = res.data.data.list;
+            this.commTotal= res.data.data.totalCount;
+            this.commNum = res.data.data.num;
+            this.commPage = res.data.data.currentPage;
+          }
+          this.tableDormLoading = false;
         });
       },
       addInfo(){
@@ -452,8 +714,34 @@
         this.init();
       },
       jumpPage(data){
-        this.page = data;
-        this.init();
+        this.studentPage = data;
+        this.initStudent();
+      },
+      jumpStudentPage(data){
+        this.pageStudent = data;
+        this.studentPage();
+      },
+      sizeStudentChange(event){
+        this.studentPage = 1;
+        this.studentNum = event;
+        this.initStudent();
+      },
+      currentStudentPage(event){
+        this.studentPage = event;
+        this.initStudent();
+      },
+      jumpDormPage(data){
+        this.commPage = data;
+        this.studentPage();
+      },
+      sizeDormChange(event){
+        this.commPage = 1;
+        this.commNum = event;
+        this.initDorm();
+      },
+      currentDormPage(event){
+        this.commPage = event;
+        this.initDorm();
       },
       cancelDialog(){
         this.modalVisible = false;
@@ -479,7 +767,12 @@
         this.uploadResult = [];
         clearTimeout(this.loopTimer);
         this.loopTimer = null;
+        this.tableStudentData = [];
+        this.tableDormData = [];
+        this.commDrawer = false;
         this.drawerVisible = event;
+        this.drawerStudentVisible = event;
+        this.drawerDormVisible = event;
       },
       closeDrawDialog(event){
         this.drawerVisible = false;
@@ -488,6 +781,8 @@
         this.uploadProcess = '';
         this.uploadResult = [];
         this.drawerVisible = false;
+        this.drawerStudentVisible = false;
+        this.drawerDormVisible = false;
       },
       uploadInfo(){
         this.drawerVisible = true;
@@ -620,6 +915,7 @@
           dormId: params.drom_id,
         };
         this.$refs[`popverStudentRef${index}`][0]._handleOpen(data);
+        this.drawerStudentVisible = true;
       },
       handleShowDorm(index, params){
         let type = "";
@@ -694,7 +990,7 @@
           url = common.dorm_user_class_bed_enable;
         }
         params = this.$qs.stringify(params);
-        this.$axios.post(url, params).then(res => {
+        this.$axios.post(url, params, {loading: false}).then(res => {
           if (res.data.code == 200){
             this.initInfo();
             MessageSuccess(res.data.desc);
@@ -707,6 +1003,120 @@
       },
       closeDialog(event){
 
+      },
+      setDormList(row){
+        this.commPage = 1;
+        this.commNum = 20;
+        this.commSex = row;
+        setTimeout(() => {
+          this.initDorm();
+        }, 800);
+        this.drawerDormVisible = true;
+      },
+      setStudentList(row){
+        this.studentPage = 1;
+        this.studentNum = 20;
+        this.commSex = row;
+        setTimeout(() => {
+          this.initStudent();
+        }, 800);
+        this.drawerStudentVisible = true;
+      },
+      selectBedno(row){
+        let params = {
+          bedNo: this.commSex.bed_no,
+          dromId: this.commSex.drom_id,
+          studentId: row.user_id,
+          majorClassId: row.clasz
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.dorm_user_class_bed_distribute, params).then(res => {
+          if (res.data.data){
+            this.initDorm();
+            this.init();
+            this.drawerStudentVisible = false;
+            MessageSuccess(res.data.desc);
+          }else{
+            MessageWarning(res.data.desc);
+          }
+        });
+      },
+      handleSearch(data){
+        this.commSearchKey = data;
+        this.studentPage = 1;
+        this.initStudent();
+      },
+      handleCascaderChange(data){
+        this.commSearchCollege = "";
+        this.commSearchMajor = "";
+        this.commSearchGrade = "";
+        this.commSearchClass = "";
+        if (data.length == 1){
+          this.commSearchCollege = data[0];
+        }else if (data.length == 2){
+          this.commSearchCollege = data[0];
+          this.commSearchMajor = data[1];
+        }else if (data.length == 3){
+          this.commSearchCollege = data[0];
+          this.commSearchMajor = data[1];
+          this.commSearchGrade = data[2];
+        }else if (data.length == 4){
+          this.commSearchCollege = data[0];
+          this.commSearchMajor = data[1];
+          this.commSearchGrade = data[2];
+          this.commSearchClass = data[3];
+        }
+        this.studentPage = 1;
+        this.initStudent();
+      },
+      selectDormBedno(row){
+        let params = {
+          bedNo: row.bed_no,
+          dromId: row.drom_id,
+          studentId: this.commSex.user_id,
+          majorClassId: this.commSex.major_id
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.dorm_user_class_bed_distribute, params, {loading: false}).then(res => {
+          if (res.data.data){
+            this.initDorm();
+            this.init();
+            this.drawerDormVisible = false;
+            this.commDrawer = false;
+            MessageSuccess(res.data.desc);
+            this.$emit("distribute", res.data.data);
+          }else{
+            MessageWarning(res.data.desc);
+          }
+        });
+      },
+      selectDorm(row){
+        let params = {
+          page: 1,
+          num: 9999,
+          dormitoryId: row.id
+        };
+        this.$axios.get(common.dorm_user_class_bed_list, {params: params}).then(res=>{
+          if (res.data.data){
+            this.tableDormCommDormData = res.data.data;
+          }
+        });
+        this.commDrawer = true;
+      },
+      returnDormList(){
+        this.commDrawer = false;
+      },
+      handleCascaderBedChange(data){
+        //this.commSearchDept = data[data.length-1];
+        this.commSearchBuild = "";
+        this.commSearchFloor = "";
+        if (data.length == 1){
+          this.commSearchBuild = data[0];
+        }else if (data.length == 2){
+          this.commSearchBuild = data[0];
+          this.commSearchFloor = data[1];
+        }
+        this.initDorm();
       }
     }
   }
