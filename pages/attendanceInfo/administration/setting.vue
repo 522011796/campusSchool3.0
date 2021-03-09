@@ -982,7 +982,8 @@
         let errWeekNum1 = 0;
         let errWeekNum2 = 0;
         let errWeekNum3 = 0;
-        let regNum = /^[1-9]*$/;
+        //let regNum = /^[1-9]*$/;
+        let regNum = /^\+?[1-9]\d*$/;
         let userIds = [];
         let auditIds = [];
         let weekDay1 = {};

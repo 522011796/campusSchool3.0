@@ -154,7 +154,21 @@
               <el-input size="small" v-model="form.conditionDay2" style="width: 80px" :placeholder="$t('天数')"></el-input>
             </span>
             <div>
-              <my-role-list ref="processRoleRef" :sel-arr="form.conditionRole"></my-role-list>
+              <!--<my-role-list ref="processRoleRef" :sel-arr="form.conditionRole"></my-role-list>-->
+              <el-popover
+                placement="left"
+                width="700"
+                trigger="click"
+                @show="handleShowTeacher(1)">
+                <div>
+                  <teacher-tree-and-list ref="popverPartRef" :sel-arr="form.conditionRole" set-type="check" @select="handleSelUser($event,1)"></teacher-tree-and-list>
+                </div>
+                <el-button slot="reference" type="success" plain size="small">{{$t("添加")}}</el-button>
+              </el-popover>
+              <span class="color-warning margin-left-10">
+                <i class="fa fa-user"></i>
+                {{$t("已选择")}}{{form.conditionRole.length}}{{$t("人员")}}
+              </span>
             </div>
             <div style="line-height: 20px">
               <span class="color-danger font-size-12">{{errorTips}}</span>
@@ -200,12 +214,13 @@
   import MyFlowProcessList from "../../components/utils/status/MyFlowProcessList";
   import MyRoleList from "../../components/utils/treeAndList/MyRoleList";
   import flowProcessValidater from "../../utils/validater/flowProcessValidater";
+  import TeacherTreeAndList from "../../components/utils/treeAndList/TeacherTreeAndList";
 
   export default {
     mixins: [mixins, flowProcessValidater],
     components: {
       MyRadio,
-      LayoutTb,MyInputButton,MyPagination,DialogNormal,MyNormalDialog,DrawerRight,DrawerLayoutRight,MyFlowType,MyFlowCondition,MyFlowProcess,MyFlowProcessList,MyRoleList},
+      LayoutTb,MyInputButton,MyPagination,DialogNormal,MyNormalDialog,DrawerRight,DrawerLayoutRight,MyFlowType,MyFlowCondition,MyFlowProcess,MyFlowProcessList,MyRoleList,TeacherTreeAndList},
     data(){
       return {
         modalVisible: false,
@@ -295,7 +310,8 @@
           conditionDay1: '',
           conditionDay2: '',
           status: row.enable,
-          handleProcess: []
+          handleProcess: [],
+          conditionRole: []
         };
         let handleCondition = row.handle_condition;
         for (let i = 0; i < handleCondition.length; i++){
@@ -319,7 +335,8 @@
                 user_id: roleArr[j]
               });
             }
-            this.form.conditionRole = roleData;
+            //this.form.conditionRole = roleData;
+            this.$set(this.form, 'conditionRole', roleData);
           }
         }
         let handleProcess = row.handle_process;
@@ -438,7 +455,8 @@
               this.errorTips = "请输入信息";
               return;
             }
-            let roleIdArr = this.$refs.processRoleRef._getRoleSelectData();
+            //let roleIdArr = this.$refs.processRoleRef._getRoleSelectData();
+            let roleIdArr = this.form.conditionRole;
             if (roleIdArr.length == 0){
               this.errorTips = "请选择角色";
               return;
@@ -578,6 +596,19 @@
       },
       handleChangeSelect(data){
         this.form.conditionStatus = data;
+      },
+      handleShowTeacher(type){
+        if (type == 1){
+          this.$refs.popverPartRef._handleOpen();
+        }else if (type == 2){
+          this.$refs.popverAuditRef._handleOpen();
+        }
+      },
+      handleSelUser(data, type){
+        if (type == 1){
+          //this.form.conditionRole = data;
+          this.$set(this.form, 'conditionRole', data);
+        }
       }
     }
   }
