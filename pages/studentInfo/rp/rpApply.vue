@@ -294,7 +294,7 @@
             <my-select :sel-value="form.level" :options="filterAddLevels" width-style="350" @change="handleSelect($event, 2)"></my-select>
           </el-form-item>
           <el-form-item :label="$t('学生')">
-            <div class="margin-bottom-10">
+            <!--<div class="margin-bottom-10">
               <my-input-button ref="studentRef" size="small" type="success" :clearable="true" :placeholder="$t('学生名称')" @click="searchStudent"></my-input-button>
             </div>
             <el-table v-loading="studentLoading" height="200" :header-cell-style="{'line-height': '20px'}" size="mini" :data="studentData" border style="width: 350px">
@@ -312,6 +312,22 @@
             </el-table>
             <div class="rp-fotter-page text-right">
               <el-pagination style="padding: 5px 0px;" small layout="prev, pager, next" :total="totalStudent" :page-size="numStudent" @current-change="currentStudentPage" @size-change="sizeStudentChange"></el-pagination>
+            </div>-->
+            <div>
+              <el-popover
+                placement="top"
+                width="700"
+                trigger="click"
+                @show="handleShowTeacher(3)">
+                <div>
+                  <student-tree-and-list ref="popverPartRef" :sel-arr="form.userId" set-type="check" @select="handleSelUser"></student-tree-and-list>
+                </div>
+                <el-button slot="reference" type="success" plain size="small">{{$t("添加")}}</el-button>
+              </el-popover>
+              <span class="color-warning margin-left-10">
+                <i class="fa fa-user"></i>
+                {{$t("已选择")}}{{form.userId.length}}{{$t("个学生")}}
+              </span>
             </div>
             <div><span class="color-danger font-size-12">{{errorStudent}}</span></div>
           </el-form-item>
@@ -371,9 +387,10 @@
   import {common} from "../../../utils/api/url";
   import {MessageError, MessageSuccess, MessageWarning} from "../../../utils/utils";
   import rpApplyValidater from "../../../utils/validater/rpApplyValidater";
+  import StudentTreeAndList from "../../../components/utils/treeAndList/StudentTreeAndList";
   export default {
     mixins: [mixins, rpApplyValidater],
-    components: {LayoutLr,MyElTree,MySelect,DrawerLayoutRight,MyAuditDetail,MyPagination,MyAuditStatus,CircleChart,MyRadio,DialogNormal,MyInputButton,UploadSquare,AuditButton},
+    components: {LayoutLr,MyElTree,MySelect,DrawerLayoutRight,MyAuditDetail,MyPagination,MyAuditStatus,CircleChart,MyRadio,DialogNormal,MyInputButton,UploadSquare,AuditButton,StudentTreeAndList},
     data(){
       return {
         toggleTopShow: false,
@@ -424,7 +441,7 @@
           level: '',
           file: '',
           des: '',
-          userId:''
+          userId:[]
         }
       }
     },
@@ -698,7 +715,7 @@
           level: '',
           file: '',
           des: '',
-          userId: ''
+          userId:[]
         };
         this.subTitle = "";
         this.pageStudent = 1;
@@ -713,12 +730,17 @@
       },
       okDialog(event){
         let url = "";
+        let arr = [];
         this.$refs['form'].validate((valid) => {
           if (valid) {
             this.errorStudent = "";
-            if (this.form.userId == ""){
+            this.errorStudent = "";
+            if (this.form.userId.length <= 0){
               this.errorStudent = this.$t("请选择学生");
               return;
+            }
+            for (let i = 0; i < this.form.userId.length; i++){
+              arr.push(this.form.userId[i].user_id);
             }
             this.dialogLoading = true;
             let params = {
@@ -727,7 +749,7 @@
               des: this.form.des,
               str1: this.form.type,
               str2: this.form.level,
-              userId: this.form.userId,
+              userId: arr.join(),
               userType: "5"
             };
             url = common.audit_re_add;
@@ -808,6 +830,14 @@
             MessageWarning(res.data.desc);
           }
         });
+      },
+      handleShowTeacher(type){
+        if (type == 3){
+          this.$refs.popverPartRef._handleOpen();
+        }
+      },
+      handleSelUser(data, type){
+        this.$set(this.form, 'userId', data);
       }
     }
   }

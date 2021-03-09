@@ -165,7 +165,7 @@
             <my-select :sel-value="form.object2" :options="objectTwo" width-style="350" @change="handleSelect($event, 3)"></my-select>
           </el-form-item>
           <el-form-item :label="$t('学生')">
-            <div class="margin-bottom-10">
+            <!--<div class="margin-bottom-10">
               <my-input-button ref="studentRef" size="small" type="success" :clearable="true" :placeholder="$t('学生名称')" @click="searchStudent"></my-input-button>
             </div>
             <el-table ref="tableRef" v-loading="studentLoading" :row-key="getRowKeys" height="200" :header-cell-style="{'line-height': '20px'}" size="mini" :data="studentData" border style="width: 450px" @selection-change="handleSelectionChange">
@@ -188,6 +188,22 @@
             </el-table>
             <div class="credit-fotter-page text-right">
               <el-pagination style="padding: 5px 0px;" small layout="prev, pager, next" :total="totalStudent" :current-page="pageStudnet" :page-size="numStudent" @current-change="currentStudentPage" @size-change="sizeStudentChange"></el-pagination>
+            </div>-->
+            <div>
+              <el-popover
+                placement="top"
+                width="700"
+                trigger="click"
+                @show="handleShowTeacher(3)">
+                <div>
+                  <student-tree-and-list ref="popverPartRef" :sel-arr="form.userId" set-type="check" @select="handleSelUser"></student-tree-and-list>
+                </div>
+                <el-button slot="reference" type="success" plain size="small">{{$t("添加")}}</el-button>
+              </el-popover>
+              <span class="color-warning margin-left-10">
+                <i class="fa fa-user"></i>
+                {{$t("已选择")}}{{form.userId.length}}{{$t("个学生")}}
+              </span>
             </div>
             <div><span class="color-danger font-size-12">{{errorStudent}}</span></div>
           </el-form-item>
@@ -247,9 +263,11 @@
   import {common} from "../../../utils/api/url";
   import {MessageError, MessageSuccess, MessageWarning} from "../../../utils/utils";
   import scoreApplyValidater from "../../../utils/validater/scoreApplyValidater";
+  import AuditButton from "../../../components/utils/auditDetail/AuditButton";
+  import StudentTreeAndList from "../../../components/utils/treeAndList/StudentTreeAndList";
 export default {
   mixins: [mixins,scoreApplyValidater],
-  components: {LayoutLr,MyElTree,MySelect,DrawerLayoutRight,MyAuditDetail,MyPagination,MyAuditStatus,CircleChart,MyRadio,DialogNormal,MyInputButton,UploadSquare,MyDatePicker},
+  components: {LayoutLr,MyElTree,MySelect,DrawerLayoutRight,MyAuditDetail,MyPagination,MyAuditStatus,CircleChart,MyRadio,DialogNormal,MyInputButton,UploadSquare,MyDatePicker,StudentTreeAndList},
   data(){
     return {
       pageStudnet: 1,
@@ -287,7 +305,7 @@ export default {
         object2: '',
         des: '',
         userId: [],
-        file: ''
+        file: '',
       }
     }
   },
@@ -638,6 +656,14 @@ export default {
     },
     handleTime(data){
       this.searchDate = data;
+    },
+    handleShowTeacher(type){
+      if (type == 3){
+        this.$refs.popverPartRef._handleOpen();
+      }
+    },
+    handleSelUser(data, type){
+      this.$set(this.form, 'userId', data);
     }
   }
 }
