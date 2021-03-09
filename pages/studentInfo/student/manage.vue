@@ -520,6 +520,16 @@
               </el-popover>
             </template>
           </el-table-column>
+          <el-table-column
+            align="center"
+            fixed="right"
+            label="操作"
+            width="120">
+            <template slot-scope="scope">
+              <i class="fa margin-right-5 color-grand" :class="scope.row.loading ? 'fa-spinner fa-spin' : 'fa-retweet'" @click="syncDeviceInfo(scope.row)"></i>
+              <i class="fa color-danger" :class="scope.row.downloading ? 'fa-spinner fa-spin' : 'fa-cloud-download'" @click="downloadInfo(scope.row)"></i>
+            </template>
+          </el-table-column>
         </el-table>
       </div>
       <div slot="footer">
@@ -890,6 +900,10 @@
         this.loadingDevice = true;
         this.$axios.get(common.face_sync_student_device_list, {params: params}).then(res => {
           if (res.data.data){
+            for (let i = 0; i < res.data.data.list.length; i++){
+              res.data.data.list[i]['loading'] = false;
+              res.data.data.list[i]['downloading'] = false;
+            }
             this.tableDeviceData = res.data.data.list;
             this.totalDevice = res.data.data.totalCount;
             this.numDevice = res.data.data.num;
@@ -933,6 +947,24 @@
       },
       exportInfo(row){
 
+      },
+      syncDeviceInfo(row){
+        let params = {
+          userId: this.deviceObj.user_id,
+          sn: row.sn
+        };
+        row.loading = true;
+        this.$axios.get(common.sync_device_student_auth_opr, {params: params, loading: false}).then(res => {
+          if (res.data.code == 200){
+            //MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+          row.loading = false;
+        });
+      },
+      downloadInfo(row){
+        window.open(common.down_device_student_auth_opr + "?userId=" + this.deviceObj.user_id + "&sn=" + row.sn, '_self');
       },
       syncInfo(row){
         let params = {

@@ -545,4 +545,11 @@ export const common = {
 
   delete_batch_object: '/proxy/course/quantization/checkitem-batch-del',//批量删除项目列表
   edit_batch_object: '/proxy/course/quantization/checkitem-batch-edit',//批量修改项目列表
+
+  sync_device_auth_opr: '/proxy/school/person/teacher/face/device/sync',//同步设备授权
+  down_device_auth_opr: '/proxy/school/person/teacher/device/download',//下载设备图片
+
+
+  sync_device_student_auth_opr: '/proxy/school/person/student/face/device/sync',//同步设备授权
+  down_device_student_auth_opr: '/proxy/school/person/student/device/download',//下载设备图片
 };
