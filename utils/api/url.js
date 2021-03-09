@@ -542,4 +542,7 @@ export const common = {
   face_sync_student_face_record_list: '/proxy/school/person/student/recognition/page',//教工识别记录列表
 
   device_join_in_list: '/proxy/school/device/query-device-page',//关联设备列表
+
+  delete_batch_object: '/proxy/course/quantization/checkitem-batch-del',//批量删除项目列表
+  edit_batch_object: '/proxy/course/quantization/checkitem-batch-edit',//批量修改项目列表
 };
