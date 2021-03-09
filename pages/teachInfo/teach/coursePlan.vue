@@ -122,6 +122,7 @@
           </template>
           <el-form-item :label="$t('教师')" prop="name">
             <el-popover
+              popper-class="custom-popper-class-form"
               placement="top"
               width="700"
               trigger="click"

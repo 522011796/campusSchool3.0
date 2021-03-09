@@ -101,6 +101,7 @@
       <div slot="content">
         <div>
           <el-popover
+            popper-class="custom-popper-class-form"
             placement="top"
             width="700"
             trigger="click"

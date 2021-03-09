@@ -315,6 +315,7 @@
             </div>-->
             <div>
               <el-popover
+                popper-class="custom-popper-class-form"
                 placement="right"
                 width="700"
                 trigger="click"

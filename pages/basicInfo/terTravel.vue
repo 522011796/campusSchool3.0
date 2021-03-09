@@ -156,6 +156,7 @@
             <div>
               <!--<my-role-list ref="processRoleRef" :sel-arr="form.conditionRole"></my-role-list>-->
               <el-popover
+                popper-class="custom-popper-class-form"
                 placement="left"
                 width="700"
                 trigger="click"

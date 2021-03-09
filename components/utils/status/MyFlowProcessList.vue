@@ -18,6 +18,7 @@
       </span>
       <span class="layout-item margin-left-5" v-if="item.type != 'NullUser'">
         <el-popover
+          popper-class="custom-popper-class-form"
           v-if="item.type == 'AnyUser'"
           placement="top"
           width="700"
@@ -33,6 +34,7 @@
         </el-popover>
 
         <el-popover
+          popper-class="custom-popper-class-form"
           placement="top"
           width="700"
           trigger="click"

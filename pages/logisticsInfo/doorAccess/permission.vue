@@ -156,6 +156,7 @@
           </el-form-item>
           <el-form-item :label="$t('APP管理')" prop="ip">
             <el-popover
+              popper-class="custom-popper-class-form"
               placement="top"
               width="700"
               trigger="click"
@@ -176,6 +177,7 @@
           <el-form-item :label="$t('授权范围')" prop="comment">
             <div>
               <el-popover
+                popper-class="custom-popper-class-form"
                 placement="top"
                 width="700"
                 trigger="click"
@@ -195,6 +197,7 @@
             </div>
             <div>
               <el-popover
+                popper-class="custom-popper-class-form"
                 placement="top"
                 width="700"
                 trigger="click"

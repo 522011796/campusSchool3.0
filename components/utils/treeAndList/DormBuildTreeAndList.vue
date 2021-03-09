@@ -303,11 +303,15 @@
         this.commSelUserArr = [];
         this.commDrawer = false;
         this.tableDormCommDormData = [];
+        this.commSearchBuild = "";
+        this.commSearchFloor = "";
 
         if (this.$refs.SelectorDept && this.$refs.SelectorDept.$refs.cascaderSelector) {
+          this.$refs.SelectorDept.$refs.cascaderSelector.$refs.panel.activePath = [];
           this.$refs.SelectorDept.$refs.cascaderSelector.$refs.panel.calculateCheckedNodePaths()
         }
         if (this.$refs.SelectorDept && this.$refs.SelectorDept.$refs.cascaderSelector) {
+          this.$refs.SelectorDept.$refs.cascaderSelector.$refs.panel.activePath = [];
           this.$refs.SelectorDept.$refs.cascaderSelector.$refs.panel.calculateCheckedNodePaths()
         }
 

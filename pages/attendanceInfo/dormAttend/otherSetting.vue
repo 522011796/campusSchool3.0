@@ -144,6 +144,7 @@
           </el-form-item>
           <el-form-item :label="$t('例外学生')" prop="dormitoryIdList">
             <el-popover
+              popper-class="custom-popper-class-form"
               placement="top"
               width="700"
               trigger="click"

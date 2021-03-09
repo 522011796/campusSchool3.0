@@ -736,6 +736,9 @@ ul{
 .custom-head-black-class .el-dialog__header {
   padding: 0px 10px;
 }
+.custom-popper-class-form .el-input__validateIcon{
+  display: none;
+}
 /***drawer***/
 .drawer-normal-drawer{
   background: rgba(238,238,238, 0.6);

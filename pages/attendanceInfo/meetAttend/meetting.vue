@@ -442,6 +442,7 @@
           </el-form-item>
           <el-form-item :label="$t('筹备人')" prop="catererUserId">
             <el-popover
+              popper-class="custom-popper-class-form"
               placement="top"
               width="700"
               trigger="click"
@@ -458,6 +459,7 @@
           </el-form-item>
           <el-form-item :label="$t('审批人')" prop="approverUserId">
             <el-popover
+              popper-class="custom-popper-class-form"
               placement="top"
               width="700"
               trigger="click"
@@ -474,6 +476,7 @@
           </el-form-item>
           <el-form-item :label="$t('参会人员')" prop="partUserIds">
             <el-popover
+              popper-class="custom-popper-class-form"
               placement="top"
               width="700"
               trigger="click"

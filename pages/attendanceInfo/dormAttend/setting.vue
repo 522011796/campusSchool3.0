@@ -147,10 +147,12 @@
           </el-form-item>
           <el-form-item v-if="form.id != -1" :label="$t('考勤地点')" prop="dormitoryIdList">
             <el-popover
+              popper-class="custom-popper-class-form"
               placement="top"
               width="700"
               trigger="click"
-              @show="handleShowTeacher(3)">
+              @show="handleShowTeacher(3)"
+              @hide="handleHideeacher">
               <div>
                 <dorm-build-tree-and-list ref="popverPartRef" :sel-arr="form.dormitoryIdList" set-type="check" @select="handleSelUser"></dorm-build-tree-and-list>
               </div>
@@ -467,6 +469,11 @@
       },
       handleShowTeacher(type){
         this.$refs.popverPartRef._handleOpen();
+      },
+      handleHideeacher(){
+        if (this.$refs['popverPartRef']){
+          this.$refs.popverPartRef._handleResetChange();
+        }
       },
       handleSelUser(data){
         let arr = [];

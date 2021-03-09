@@ -188,6 +188,7 @@
           </el-form-item>
           <el-form-item :label="$t('参与考勤')" prop="partUserIds">
             <el-popover
+              popper-class="custom-popper-class-form"
               placement="right"
               width="700"
               trigger="click"
@@ -205,6 +206,7 @@
           </el-form-item>
           <el-form-item :label="$t('监督员')" prop="auditUserIds">
             <el-popover
+              popper-class="custom-popper-class-form"
               placement="right"
               width="700"
               trigger="click"
