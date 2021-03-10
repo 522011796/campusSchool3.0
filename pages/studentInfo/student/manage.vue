@@ -725,6 +725,41 @@
       </div>
     </dialog-normal>
 
+    <dialog-normal width-style="600px" top="10vh" :visible="modalRpVisible" :title="$t('奖惩申请')" @close="closeDrawerDialog" @right-close="cancelDrawDialog">
+      <div class="margin-top-10">
+        <el-form :model="formRp" :rules="rulesRp" ref="formRp" label-width="140px">
+          <el-form-item :label="$t('类型')" prop="type">
+            <my-select :sel-value="formRp.type" :options="filterTypes" width-style="350" @change="handleRpSelect($event, 1)"></my-select>
+          </el-form-item>
+          <el-form-item :label="$t('级别')" prop="level">
+            <my-select :sel-value="formRp.level" :options="filterAddLevels" width-style="350" @change="handleRpSelect($event, 2)"></my-select>
+          </el-form-item>
+          <el-form-item :label="$t('附件')">
+            <div v-if="formRp.file != ''" class="pull-left" style="position: relative">
+              <i class="fa fa-close" style="position: absolute; right: -5px; top: -5px;" @click="deleteRpImg"></i>
+              <img :src="formRp.file" class="credit-img"/>
+            </div>
+            <upload-square class="pull-left margin-left-10 margin-top-5" :limit="9999" :action="uploadFileAction" max-size="8" :data="{path: 'reFile'}" accept=".png,.jpg,.jpeg" @success="uploadRpSuccess">
+              <el-button size="small" type="primary">{{$t("点击上传")}}</el-button>
+            </upload-square>
+            <span class="pull-left color-danger font-size-12 margin-left-10 margin-top-5">{{$t("文件不超过8M")}}</span>
+            <div class="moon-clearfix"></div>
+          </el-form-item>
+          <el-form-item :label="$t('说明')">
+            <el-input type="textarea" :rows="2" v-model="formRp.des" class="width-350"></el-input>
+          </el-form-item>
+        </el-form>
+      </div>
+
+      <div slot="footer">
+        <el-button size="small" @click="cancelDialog">{{$t("取消")}}</el-button>
+        <el-button size="small" type="primary" @click="dialogLoading == false ? okRpDialog() : ''">
+          <i class="el-icon-loading" v-if="dialogLoading"></i>
+          {{$t("确定")}}
+        </el-button>
+      </div>
+    </dialog-normal>
+
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="删除后会清空所有授权数据，确认需要执行该操作吗？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="cancelDrawDialog"></my-normal-dialog>
 
   </div>
@@ -776,6 +811,8 @@
         deviceAllData: [],
         bedData: [],
         userData: {},
+        filterLevels: [],
+        filterAddLevels: [],
         modalVisible: false,
         dialogLoading: false,
         visibleConfim: false,
@@ -884,6 +921,14 @@
           des: '',
           userId: [],
           file: '',
+        },
+        formRp: {
+          id: '',
+          type: '',
+          level: '',
+          file: '',
+          des: '',
+          userId:[]
         }
       }
     },
@@ -1044,6 +1089,28 @@
           }
         });
       },
+      initLevels(type){
+        let params = {
+          page: 1,
+          num: 99999,
+          levelType: type
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.audit_re_level, params).then(res => {
+          if (res.data.data){
+            for (let i = 0; i < res.data.data.list.length; i++){
+              res.data.data.list[i]['text'] = res.data.data.list[i].level_name;
+              res.data.data.list[i]['value'] = res.data.data.list[i].level_name;
+            }
+            if (type){
+              this.filterAddLevels = res.data.data.list;
+            }
+            if (!type){
+              this.filterLevels = res.data.data.list;
+            }
+          }
+        });
+      },
       importInfo(){
 
       },
@@ -1054,8 +1121,9 @@
         this.formCredit.userId = [{user_id: item.user_id}];
         this.modalCreditVisible = true;
       },
-      rpInfo(){
-        this.modalCreditVisible = true;
+      rpInfo(item){
+        this.formRp.userId = [{user_id: item.user_id}];
+        this.modalRpVisible = true;
       },
       syncDeviceInfo(row){
         let params = {
@@ -1096,7 +1164,6 @@
         this.visibleConfim = true;
       },
       detailInfo(row){
-        console.log(row);
         this.userData = row;
         this.form.status = row.status;
         this.form.attnedType = row.attend_type;
@@ -1286,10 +1353,24 @@
           userId: [],
           file: ''
         };
+        this.formRp = {
+          id: '',
+          type: '',
+          object1: '',
+          object2: '',
+          des: '',
+          userId: [],
+          file: ''
+        };
+
         this.objectOne = [];
         this.objectTwo = [];
         if (this.$refs['formCredit']){
           this.$refs['formCredit'].resetFields();
+        }
+
+        if (this.$refs['formRp']){
+          this.$refs['formRp'].resetFields();
         }
 
         this.selDormTips = "";
@@ -1679,8 +1760,18 @@
             break;
         }
       },
+      handleRpSelect(data, type){
+        if (type == 1){
+          this.formRp.type = data;
+          this.formRp.level = "";
+          this.initLevels(data);
+        }else if(type == 2){
+          this.formRp.level = data;
+        }
+      },
       cancelDialog(){
         this.modalCreditVisible = false;
+        this.modalRpVisible = false;
       },
       okDialog(event){
         let url = "";
@@ -1725,6 +1816,52 @@
       },
       uploadError(res, file){
         MessageError(res.data.desc);
+      },
+      okRpDialog(event){
+        let url = "";
+        let arr = [];
+        this.$refs['formRp'].validate((valid) => {
+          if (valid) {
+            this.errorStudent = "";
+            for (let i = 0; i < this.formRp.userId.length; i++){
+              arr.push(this.formRp.userId[i].user_id);
+            }
+            this.dialogLoading = true;
+            let params = {
+              applyFile: this.formRp.file,
+              applyTypeCode: "PunishmentApply",
+              des: this.formRp.des,
+              str1: this.formRp.type,
+              str2: this.formRp.level,
+              userId: arr.join(),
+              userType: "5"
+            };
+            url = common.audit_re_add;
+            params = JSON.stringify(params);
+            this.$axios.post(url, params, {dataType: 'stringfy', loading: false}).then(res => {
+              if (res.data.code == 200){
+                this.modalRpVisible = false;
+                MessageSuccess(res.data.desc);
+              }else {
+                MessageError(res.data.desc);
+              }
+              this.dialogLoading = false;
+            });
+          }
+        });
+      },
+      uploadRpSuccess(res, file){
+        if (res.code == 200){
+          this.formRp.file = res.data.url;
+        }else {
+
+        }
+      },
+      uploadRpError(res, file){
+        MessageError(res.data.desc);
+      },
+      deleteRpImg(){
+        this.formRp.file = "";
       }
     }
   }
