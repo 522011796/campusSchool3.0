@@ -6,11 +6,11 @@
       </span>
     </div>
 
-    <div class="layout-top-tab margin-top-5 animated fadeInUp" v-if="showTab">
+    <div class="layout-top-tab margin-top-5" v-if="showTab">
       <slot name="tab"></slot>
     </div>
 
-    <div class="layout-bottom-tab margin-top-10 animated fadeInUp">
+    <div class="layout-bottom-tab margin-top-10">
       <slot name="content"></slot>
     </div>
   </div>
