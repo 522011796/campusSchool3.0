@@ -6,7 +6,7 @@
       </slot>
     </div>
 
-    <div class="layout-right-menu animated fadeInUp">
+    <div class="layout-right-menu">
       <slot name="right"></slot>
     </div>
   </div>
