@@ -149,6 +149,13 @@
             "id": 14300,
             "top": "basicInfo",
             "path": "/basicInfo/deviceArea"
+          },
+          {
+            "name": "设备网络配置",
+            "key": "deviceNetWorkConf",
+            "id": 14400,
+            "top": "basicInfo",
+            "path": "/basicInfo/deviceNetWork"
           }
         ]
       },

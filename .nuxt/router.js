@@ -15,6 +15,7 @@ const _c1cf9bb2 = () => interopDefault(import('../pages/basicInfo/classRoomBak.v
 const _58631379 = () => interopDefault(import('../pages/basicInfo/college.vue' /* webpackChunkName: "pages/basicInfo/college" */))
 const _12c73211 = () => interopDefault(import('../pages/basicInfo/deviceArea.vue' /* webpackChunkName: "pages/basicInfo/deviceArea" */))
 const _86a65174 = () => interopDefault(import('../pages/basicInfo/deviceConfig.vue' /* webpackChunkName: "pages/basicInfo/deviceConfig" */))
+const _66d780da = () => interopDefault(import('../pages/basicInfo/deviceNetwork.vue' /* webpackChunkName: "pages/basicInfo/deviceNetwork" */))
 const _32b8c514 = () => interopDefault(import('../pages/basicInfo/dorm.vue' /* webpackChunkName: "pages/basicInfo/dorm" */))
 const _0f91268f = () => interopDefault(import('../pages/basicInfo/dormRoom.vue' /* webpackChunkName: "pages/basicInfo/dormRoom" */))
 const _74b2d808 = () => interopDefault(import('../pages/basicInfo/identification.vue' /* webpackChunkName: "pages/basicInfo/identification" */))
@@ -215,6 +216,10 @@ export const routerOptions = {
     path: "/basicInfo/deviceConfig",
     component: _86a65174,
     name: "basicInfo-deviceConfig"
+  }, {
+    path: "/basicInfo/deviceNetwork",
+    component: _66d780da,
+    name: "basicInfo-deviceNetwork"
   }, {
     path: "/basicInfo/dorm",
     component: _32b8c514,
