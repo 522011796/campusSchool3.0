@@ -279,6 +279,15 @@
           <el-form-item :label="$t('照片注册地址')">
             <el-input v-model="formConf.padPhotoRegisterCallbackUrl" class="width-260"></el-input>
           </el-form-item>
+          <!--<el-form-item :label="$t('NTP服务地址')">
+            <el-input v-model="formConf.ntpAddr" class="width-260"></el-input>
+          </el-form-item>
+          <el-form-item :label="$t('NTP服务端口')">
+            <el-input v-model="formConf.ntpPort" class="width-260"></el-input>
+          </el-form-item>
+          <el-form-item :label="$t('NTP更新周期')">
+            <el-input v-model="formConf.ntpTime" class="width-260"></el-input>
+          </el-form-item>-->
         </el-form>
       </div>
 
@@ -552,7 +561,10 @@
           pwd: '',
           faceCallBack: '',
           hurtCallBack: '',
-          padPhotoRegisterCallbackUrl: ''
+          padPhotoRegisterCallbackUrl: '',
+          ntpAddr: '',
+          ntpPort: '',
+          ntpTime: '',
         },
       }
     },
@@ -628,11 +640,15 @@
       initSetting(row){
         this.$axios.get(common.device_get).then(res => {
           if (res.data.data){
+            console.log(res);
             this.formConf = {
               pwd: res.data.data.padPassword,
               faceCallBack: res.data.data.padCallbackUrl,
               hurtCallBack: res.data.data.padHeartCallbackUrl,
               padPhotoRegisterCallbackUrl: res.data.data.padPhotoRegisterCallbackUrl,
+              ntpAddr: res.data.data.ntpServer,
+              ntpPort: res.data.data.ntpPort,
+              ntpTime: res.data.data.ntpInterval,
             };
           }
         });
@@ -841,6 +857,9 @@
               padCallbackUrl: this.formConf.faceCallBack,
               padHeartCallbackUrl: this.formConf.hurtCallBack,
               padPhotoRegisterCallbackUrl: this.formConf.padPhotoRegisterCallbackUrl,
+              //ntpAddr: this.formConf.ntpAddr,
+              //ntpPort: this.formConf.ntpPort,
+              //ntpTime: this.formConf.ntpTime,
             };
 
             params = this.$qs.stringify(params);

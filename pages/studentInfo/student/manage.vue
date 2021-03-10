@@ -49,23 +49,42 @@
                           </span>
                         </el-popover>
                         <el-popover
-                          placement="left"
+                          placement="bottom"
                           width="260"
                           trigger="hover">
 
                           <div class="text-left">
-                            <el-button size="mini" plain type="success" @click="detailInfo(item)">
-                              <i class="fa fa-cog"></i>
-                              <span>{{$t("授权")}}</span>
-                            </el-button>
-                            <el-button size="mini" plain type="warning" @click="syncInfo(item)">
-                              <i class="fa" :class="item.loading ? 'fa-spinner fa-spin' : 'fa-retweet'"></i>
-                              <span>{{$t("同步")}}</span>
-                            </el-button>
-                            <el-button size="mini" plain type="danger" @click="deleteInfo(item)">
-                              <i class="fa fa-trash"></i>
-                              <span>{{$t("清除")}}</span>
-                            </el-button>
+                            <div>
+                              <div class="margin-bottom-5 color-disabeld font-size-12">
+                                <span>{{$t("操作")}}</span>
+                              </div>
+                              <el-button size="mini" plain type="success" @click="detailInfo(item)">
+                                <i class="fa fa-cog"></i>
+                                <span>{{$t("授权")}}</span>
+                              </el-button>
+                              <el-button size="mini" plain type="warning" @click="syncInfo(item)">
+                                <i class="fa" :class="item.loading ? 'fa-spinner fa-spin' : 'fa-retweet'"></i>
+                                <span>{{$t("同步")}}</span>
+                              </el-button>
+                              <el-button size="mini" plain type="danger" @click="deleteInfo(item)">
+                                <i class="fa fa-trash"></i>
+                                <span>{{$t("清除")}}</span>
+                              </el-button>
+                            </div>
+                            <div class="line-height"></div>
+                            <div>
+                              <div class="margin-bottom-5 color-disabeld font-size-12">
+                                <span>{{$t("申请")}}</span>
+                              </div>
+                              <el-button size="mini" plain type="success" @click="creditInfo(item)">
+                                <i class="fa fa-flag"></i>
+                                <span>{{$t("学分申请")}}</span>
+                              </el-button>
+                              <el-button size="mini" plain type="warning" @click="rpInfo(item)">
+                                <i class="fa fa-star"></i>
+                                <span>{{$t("奖惩申请")}}</span>
+                              </el-button>
+                            </div>
                           </div>
 
                           <i slot="reference" class="fa fa-ellipsis-h"></i>
@@ -668,6 +687,44 @@
       </div>
     </drawer-layout-right>
 
+    <dialog-normal width-style="700px" top="10vh" :visible="modalCreditVisible" :title="$t('学分申请')" @close="closeDrawerDialog" @right-close="cancelDrawDialog">
+      <div class="margin-top-10">
+        <el-form :model="formCredit" :rules="rulesCredit" ref="formCredit" label-width="140px">
+          <el-form-item :label="$t('类型')" prop="type">
+            <my-select :sel-value="formCredit.type" :options="filterScoreTypes" width-style="350" @change="handleCreditSelect($event, 1)"></my-select>
+          </el-form-item>
+          <el-form-item :label="$t('一级项目')" prop="object1">
+            <my-select :sel-value="formCredit.object1" :options="objectOne" width-style="350" @change="handleCreditSelect($event, 2)"></my-select>
+          </el-form-item>
+          <el-form-item :label="$t('二级项目')" prop="object2">
+            <my-select :sel-value="formCredit.object2" :options="objectTwo" width-style="350" @change="handleCreditSelect($event, 3)"></my-select>
+          </el-form-item>
+          <el-form-item :label="$t('附件')">
+            <div v-if="formCredit.file != ''" class="pull-left" style="position: relative">
+              <i class="fa fa-close" style="position: absolute; right: -5px; top: -5px;" @click="deleteCreditImg"></i>
+              <img :src="formCredit.file" class="credit-img"/>
+            </div>
+            <upload-square class="pull-left margin-left-10 margin-top-5" :limit="9999" :action="uploadFileAction" max-size="8" :data="{path: 'creditFile'}" accept=".png,.jpg,.jpeg" @success="uploadSuccess">
+              <el-button size="small" type="primary">{{$t("点击上传")}}</el-button>
+            </upload-square>
+            <span class="pull-left color-danger font-size-12 margin-left-10 margin-top-5">{{$t("文件不超过8M")}}</span>
+            <div class="moon-clearfix"></div>
+          </el-form-item>
+          <el-form-item :label="$t('说明')">
+            <el-input type="textarea" :rows="2" v-model="formCredit.des" class="width-350"></el-input>
+          </el-form-item>
+        </el-form>
+      </div>
+
+      <div slot="footer">
+        <el-button size="small" @click="cancelDialog">{{$t("取消")}}</el-button>
+        <el-button size="small" type="primary" @click="dialogLoading == false ? okDialog() : ''">
+          <i class="el-icon-loading" v-if="dialogLoading"></i>
+          {{$t("确定")}}
+        </el-button>
+      </div>
+    </dialog-normal>
+
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="删除后会清空所有授权数据，确认需要执行该操作吗？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="cancelDrawDialog"></my-normal-dialog>
 
   </div>
@@ -699,8 +756,9 @@
     workEnjoy,
     workTitle
   } from "../../../utils/utils";
+  import stuManageApplyValidater from "../../../utils/validater/stuManageApplyValidater";
   export default {
-    mixins: [mixins],
+    mixins: [mixins,stuManageApplyValidater],
     components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,UploadSquare,DrawerLayoutRight},
     data(){
       return {
@@ -729,6 +787,8 @@
         loadingDevice: false,
         drawerRecordVisible: false,
         drawerDeviceVisible: false,
+        modalCreditVisible: false,
+        modalRpVisible: false,
         searchCollege: '',
         searchMajor: '',
         searchGrade: '',
@@ -768,6 +828,11 @@
         syncStatus: '',
         deviceRecordObj: {},
         deviceObj: {},
+        objectOne: [],
+        objectTwo: [],
+        errorStudent: '',
+        uploadFileAction: common.upload_file,
+        auditObjectItem: {},
         form: {
           status: '',
           attnedType: '',
@@ -810,6 +875,15 @@
             studentId: "",
             userId: ""
           }
+        },
+        formCredit: {
+          id: '',
+          type: '',
+          object1: '',
+          object2: '',
+          des: '',
+          userId: [],
+          file: '',
         }
       }
     },
@@ -942,11 +1016,46 @@
           this.loadingDevice = false;
         });
       },
+      initObject(type, typeName){
+        let params = {
+          scoreType: type
+        };
+        if (typeName){
+          params['socreName'] = typeName;
+        }
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.audit_credit_type_fliter, params).then(res => {
+          if (res.data.data){
+            if (typeName){
+              for (let i = 0; i < res.data.data.length; i++){
+                res.data.data[i]['label'] = res.data.data[i].socre_name_sub;
+                res.data.data[i]['value'] = res.data.data[i].socre_name_sub;
+              }
+              //this.objectOne = res.data.data;
+              this.objectTwo = res.data.data;
+              this.form.object2 = "";
+            }else {
+              for (let i = 0; i < res.data.data.length; i++){
+                res.data.data[i]['label'] = res.data.data[i].socre_name;
+                res.data.data[i]['value'] = res.data.data[i].socre_name;
+              }
+              this.objectOne = res.data.data;
+            }
+          }
+        });
+      },
       importInfo(){
 
       },
       exportInfo(row){
 
+      },
+      creditInfo(item){
+        this.formCredit.userId = [{user_id: item.user_id}];
+        this.modalCreditVisible = true;
+      },
+      rpInfo(){
+        this.modalCreditVisible = true;
       },
       syncDeviceInfo(row){
         let params = {
@@ -987,6 +1096,7 @@
         this.visibleConfim = true;
       },
       detailInfo(row){
+        console.log(row);
         this.userData = row;
         this.form.status = row.status;
         this.form.attnedType = row.attend_type;
@@ -1019,7 +1129,7 @@
           dormId: row.dorm_id,
           majorId: row.major_id,
           nation: row.nation,
-          nativePlace: row.natice_place,
+          nativePlace: row.native_place,
           nickName: row.nick_name,
           parentContactInfo: row.parent_contact_info,
           parentName: row.parent_name,
@@ -1166,6 +1276,22 @@
             userId: ""
           }
         };
+
+        this.formCredit = {
+          id: '',
+          type: '',
+          object1: '',
+          object2: '',
+          des: '',
+          userId: [],
+          file: ''
+        };
+        this.objectOne = [];
+        this.objectTwo = [];
+        if (this.$refs['formCredit']){
+          this.$refs['formCredit'].resetFields();
+        }
+
         this.selDormTips = "";
         this.subTitle = "";
         this.keyDeviceSn = "";
@@ -1191,16 +1317,22 @@
         this.drawerVisible = event;
         this.drawerDeviceVisible = event;
         this.drawerRecordVisible = event;
+        this.modalCreditVisible = event;
+        this.modalRpVisible = event;
       },
       cancelDrawDialog(){
         this.drawerVisible = false;
         this.drawerDeviceVisible = false;
         this.drawerRecordVisible = false;
+        this.modalCreditVisible = false;
+        this.modalRpVisible = false;
       },
       closeDrawDialog(event){
         this.drawerVisible = false;
         this.drawerDeviceVisible = false;
         this.drawerRecordVisible = false;
+        this.modalCreditVisible = false;
+        this.modalRpVisible = false;
       },
       okDrawDialog(event){
         let url = "";
@@ -1386,6 +1518,9 @@
       deleteImg(index){
         this.form.imgList.splice(index, 1);
       },
+      deleteCreditImg(){
+        this.formCredit.file = "";
+      },
       userInfoDetail(){
         let authCookie = "";
         let host = window.location.host;
@@ -1524,6 +1659,72 @@
           this.initUserRecord();
         },800);
         this.drawerRecordVisible = true;
+      },
+      handleCreditSelect(data, type){
+        switch (type) {
+          case 1:
+            this.formCredit.type = data;
+            this.formCredit.object1 = '';
+            this.formCredit.object2 = '';
+            this.objectOne = [];
+            this.objectTwo = [];
+            this.initObject(data);
+            break;
+          case 2:
+            this.formCredit.object1 = data;
+            this.initObject(this.formCredit.type, data)
+            break;
+          case 3:
+            this.formCredit.object2 = data;
+            break;
+        }
+      },
+      cancelDialog(){
+        this.modalCreditVisible = false;
+      },
+      okDialog(event){
+        let url = "";
+        let arr = [];
+        this.$refs['formCredit'].validate((valid) => {
+          if (valid) {
+            this.errorStudent = "";
+            for (let i = 0; i < this.formCredit.userId.length; i++){
+              arr.push(this.formCredit.userId[i].user_id);
+            }
+            this.dialogLoading = true;
+            let params = {
+              applyFile: this.formCredit.file,
+              applyTypeCode: "ScoreApply",
+              des: this.formCredit.des,
+              str1: this.formCredit.type == "false" ? "减分" : "加分",
+              str2: this.formCredit.object1,
+              str3: this.formCredit.object2,
+              userId: arr.join(),
+              userType: "5"
+            };
+            url = common.audit_re_add;
+            params = JSON.stringify(params);
+            this.$axios.post(url, params, {dataType: 'stringfy', loading: false}).then(res => {
+              if (res.data.code == 200){
+                this.modalCreditVisible = false;
+                MessageSuccess(res.data.desc);
+              }else {
+                MessageError(res.data.desc);
+              }
+              this.dialogLoading = false;
+            });
+          }
+        });
+      },
+      uploadSuccess(res, file){
+        if (res.code == 200){
+          this.formCredit.file = res.data.url;
+        }else {
+
+        }
+      },
+      uploadError(res, file){
+        MessageError(res.data.desc);
       }
     }
   }
@@ -1553,5 +1754,10 @@
   height: 100%;
   background: #dddddd;
   z-index: 2
+}
+.credit-img{
+  height: 50px;
+  width: 50px;
+  border: 1px solid #dddddd;
 }
 </style>

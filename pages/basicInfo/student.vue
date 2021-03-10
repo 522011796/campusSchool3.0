@@ -186,6 +186,13 @@
               </el-form-item>
             </el-col>
           </el-row>
+          <el-row :gutter="16">
+            <el-col :span="12">
+              <el-form-item :label="$t('籍贯')">
+                <el-input v-model="form.nativePlace" class="width-220"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
         </el-form>
       </div>
 
@@ -273,7 +280,8 @@
           classId: '',
           collegeId: '',
           majorId: '',
-          claszDate: ''
+          claszDate: '',
+          nativePlace: ''
         }
       }
     },
@@ -324,7 +332,8 @@
           classId: row.class_id,
           collegeId: row.college_id,
           majorId: row.major_id,
-          claszDate: this.$moment(row.clasz_date).format("YYYY-MM-DD")
+          claszDate: this.$moment(row.clasz_date).format("YYYY-MM-DD"),
+          nativePlace: row.native_place
         };
         this.$set(this.form, 'classData', [row.college_id, row.major_id, row.grade, row.class_id]);
         this.modalVisible = true;
@@ -409,7 +418,8 @@
               attendType: this.form.type,
               status: this.form.status,
               className: className[className.length - 1],
-              claszDate: this.form.claszDate
+              claszDate: this.form.claszDate,
+              nativePlace: this.form.nativePlace
             };
             if (this.form.email){
               params['email']  = this.form.email;
@@ -454,7 +464,8 @@
           classId: '',
           collegeId: '',
           majorId: '',
-          claszDate: ''
+          claszDate: '',
+          nativePlace: ''
         };
         this.subTitle = "";
         this.$set(this.form,'deptdata', []);
