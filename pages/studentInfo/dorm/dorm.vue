@@ -318,11 +318,11 @@
       </div>
     </layout-lr>
 
-    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerStudentVisible" :loading="drawerLoading" size="550px" :title="$t('分配学生')" @right-close="cancelDrawDialog">
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerStudentVisible" :loading="drawerLoading" size="800px" :title="$t('分配学生')" @right-close="cancelDrawDialog">
       <div slot="content">
         <div class="layout-inline">
           <my-cascader class="layout-item" ref="SelectorDept" size="small" width-style="160" :clearable="true" :sel-value="searchCommDeptData" type="1" sub-type="4" @change="handleCascaderChange($event)"></my-cascader>
-          <my-input-button class="layout-item" size="small" :clearable="true" type="success" plain @click="handleSearch"></my-input-button>
+          <my-input-button ref="searchInput" class="layout-item" size="small" :clearable="true" type="success" plain @click="handleSearch"></my-input-button>
         </div>
         <el-table ref="studentTableRef"
                   header-cell-class-name="custom-table-cell-bg"
@@ -361,7 +361,7 @@
       </div>
     </drawer-layout-right>
 
-    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerDormVisible" :loading="drawerLoading" size="550px" :title="$t('分配床位')" @right-close="cancelDrawDialog">
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerDormVisible" :loading="drawerLoading" size="800px" :title="$t('分配床位')" @right-close="cancelDrawDialog">
       <div slot="content">
         <div class="layout-inline"  v-if="!commDrawer">
           <my-cascader class="layout-item" :clearable="true" ref="SelectorDormDept" size="small" width-style="160" :sel-value="searchCommDeptBedData" type="2" sub-type="2" @change="handleCascaderBedChange($event)"></my-cascader>
@@ -605,7 +605,7 @@
           page: this.studentPage,
           num: this.studentNum,
           deleted: 0,
-          sex: this.commSex.type,
+          sex: this.commSex.type == 0 ? 1 : 2,
           collegeId: this.commSearchCollege,
           majorId: this.commSearchMajor,
           grade: this.commSearchGrade,
@@ -629,7 +629,7 @@
           page: this.commPage,
           num: this.commNum,
           deleted: 0,
-          type: this.commSex.sex,
+          type: this.commSex.sex == 1 ? 0 : 1,
           buildId: this.commSearchBuild,
           floorNum: this.commSearchFloor,
         };
@@ -766,6 +766,7 @@
         this.visibleConfim = false;
       },
       closeDrawerDialog(event){
+        console.log(111);
         this.uploadProcess = '';
         this.uploadResult = [];
         clearTimeout(this.loopTimer);
@@ -773,6 +774,20 @@
         this.tableStudentData = [];
         this.tableDormData = [];
         this.commDrawer = false;
+        if (this.$refs['searchInput']){
+          this.$refs.searchInput.inputValue = ""
+        }
+        this.searchCommDeptData = [];
+        this.searchCommDeptBedData = [];
+        this.commSearchCollege = "";
+        this.commSearchMajor = "";
+        this.commSearchGrade = "";
+        this.commSearchClass = "";
+        this.commSearchBuild = "";
+        this.commSearchFloor = "";
+        this.commSearchKey = "";
+        this.resetCasadeSelector('SelectorDept');
+        this.resetCasadeSelector('SelectorDormDept');
         this.drawerVisible = event;
         this.drawerStudentVisible = event;
         this.drawerDormVisible = event;
@@ -906,6 +921,7 @@
             this.searchDormType = data;
             break;
         }
+        this.page = 1;
         this.init();
       },
       dormTypeTextInfo(val){
@@ -1119,6 +1135,7 @@
           this.commSearchBuild = data[0];
           this.commSearchFloor = data[1];
         }
+        this.commPage = 1;
         this.initDorm();
       }
     }
