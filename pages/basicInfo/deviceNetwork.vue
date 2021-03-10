@@ -4,7 +4,16 @@
       <template slot="tag">设备网络配置</template>
 
       <div slot="content" class="bg-f5f5f5">
-        <div class="margin-top-10 padding-tb-10">
+        <div>
+          <div class="div-block margin-bottom-10">
+            <span class="div-block-tag"></span>
+            <label>
+              <span class="color-success margin-left-5 font-size-14" style="position: relative; top: -12px;">{{$t("网络配置")}}</span>
+              <el-tooltip class="item" effect="dark" :content="$t('仅适用终端机、摄像头、门禁控制器相关设备')" placement="right">
+                <i class="fa fa-info-circle" style="position: relative; top: -12px;"></i>
+              </el-tooltip>
+            </label>
+          </div>
           <el-form :model="formConf" :rules="rulesConf" ref="formConf" label-width="140px">
             <el-form-item :label="$t('IP地址')">
               <el-row>
@@ -37,7 +46,7 @@
             </el-form-item>
           </el-form>
 
-          <div class="padding-lr-10 text-center">
+          <div class="padding-lr-10 text-center padding-tb-10">
             <el-button size="small" type="primary" :loading="loading" @click="okConfDialog">{{$t("设置")}}</el-button>
           </div>
         </div>
@@ -118,5 +127,17 @@ export default {
 <style scoped>
 .container {
   padding: 10px 15px;
+}
+.div-block{
+  background: #f3f3f3;
+  height: 35px;
+  line-height: 35px;
+  position: relative;
+}
+.div-block-tag{
+  width: 5px;
+  height: 35px;
+  background: #E6A23C;
+  display: inline-block;
 }
 </style>
