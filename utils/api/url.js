@@ -20,8 +20,10 @@ export const common = {
   noread_count: '/proxy/user/message/notRead/count',//审批未读消息数
   updatephone_mms: '/proxy/uup/captcha/updPhone/send',//获取修改手机验证码
   updatephone_save: '/proxy/uup/ssoUser/phone',//更新手机
+  updatephone_admin_save_url: '/proxy/user/schoolAdmin/upd/phone',//更新手机
   updatepwd_mms: '/proxy/uup/captcha/send',//获取修改密码验证码
-  updatepwd_save: '/proxy/uup/ssoUser/reset/pass',//更新密码
+  updatepwd_save: '/proxy/uup/ssoUser/reset/pass',//更新密码--teacher
+  updatepwd_admin_save_pass: '/proxy/user/school_admin/upd/pass',//更新密码--admin
   school_info: '/proxy/school/school/getSchInfo',//学校信息
   update_school_info: '/proxy/school/school/info/update',//更新学校信息
   updatephone_admin_save: '/proxy/user/captcha/schoolAdmin/phone_sms',//更新手机--admin

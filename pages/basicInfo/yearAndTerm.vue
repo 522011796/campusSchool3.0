@@ -829,7 +829,6 @@
         });
       },
       cellClick(row, column, cell, event){
-        console.log(111,column);
         if (column.property == 'name'){
           this.g_row = row.id;
           this.$refs.refTable.store.loadOrToggle(row);

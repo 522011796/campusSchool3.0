@@ -52,6 +52,26 @@
             </div>
             <div class="moon-top-user-info-opr">
               <el-row>
+                <el-col :span="12" @click.native="updatePhoneInfo">
+                  <div>
+                    <a href="javascript:;" class="color-white font-size-12">
+                      <i class="fa fa-phone"></i>
+                      {{$t("修改手机")}}
+                    </a>
+                  </div>
+                </el-col>
+                <el-col :span="12" @click.native="updatePwdInfo">
+                  <div>
+                    <a href="javascript:;" class="color-white font-size-12">
+                      <i class="fa fa-lock"></i>
+                      {{$t("修改密码")}}
+                    </a>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+            <div class="moon-top-user-info-opr">
+              <el-row>
                 <el-col :span="24" @click.native="logout">
                   <div>
                     <a href="javascript:;" class="color-white">{{$t("退出")}}</a>
@@ -372,14 +392,14 @@
                   <i class="fa fa-info-circle"></i>
                   <span>{{$t("版本信息")}}</span>
                 </div>
-                <div class="drawer-main-menu-left-container-item font-size-14" :class="settingType == 3 ? 'drawer-main-menu-left-container-item-active' : ''" @click="settingTypeOpr($event, 3)">
+                <!--<div class="drawer-main-menu-left-container-item font-size-14" :class="settingType == 3 ? 'drawer-main-menu-left-container-item-active' : ''" @click="settingTypeOpr($event, 3)">
                   <i class="fa fa-lock"></i>
                   <span>{{$t("修改手机")}}</span>
                 </div>
                 <div class="drawer-main-menu-left-container-item font-size-14" :class="settingType == 4 ? 'drawer-main-menu-left-container-item-active' : ''" @click="settingTypeOpr($event, 4)">
                   <i class="fa fa-phone-square"></i>
                   <span>{{$t("修改密码")}}</span>
-                </div>
+                </div>-->
               </div>
             </div>
             <div class="drawer-main-menu-right" :style="drawerSetHeight">
@@ -469,7 +489,7 @@
                 </div>
 
                 <!--修改手机号-->
-                <div id="phone-info" class="campus-info-container" v-if="settingType == 3">
+                <!--<div id="phone-info" class="campus-info-container" v-if="settingType == 3">
                   <el-form label-width="80px">
                     <el-form-item label="旧手机号">
                       <el-input v-model="formPhone.oldPhone" class="width-300"></el-input>
@@ -491,10 +511,10 @@
                   <div class="text-center">
                     <el-button type="primary" size="small" :loading="loading" @click="updatePhone">{{$t("保存")}}</el-button>
                   </div>
-                </div>
+                </div>-->
 
                 <!--修改密码-->
-                <div id="pwd-info" class="campus-info-container" v-if="settingType == 4">
+                <!--<div id="pwd-info" class="campus-info-container" v-if="settingType == 4">
                   <el-form label-width="100px">
                     <el-form-item label="当前手机号">
                       <el-input v-model="formPwd.phone" class="width-300"></el-input>
@@ -518,7 +538,7 @@
                       {{$t("保存")}}
                     </el-button>
                   </div>
-                </div>
+                </div>-->
               </div>
             </div>
             <div class="moon-clearfix"></div>
@@ -756,6 +776,62 @@
         </el-button>
       </div>
     </dialog-normal>
+
+    <dialog-normal width-style="300" :visible="modalPhoneCustomVisible" :title="$t('修改手机')" @close="closeCustomDialog" @right-close="cancelCustomDialog">
+      <el-form :model="formPhone" :rules="rulesPhone" ref="formPhone" label-width="80px">
+        <el-form-item label="旧手机号" prop="oldPhone">
+          <el-input v-model="formPhone.oldPhone" class="width-300"></el-input>
+        </el-form-item>
+        <el-form-item label="新手机号" prop="newPhone">
+          <el-input v-model="formPhone.newPhone" class="width-300"></el-input>
+        </el-form-item>
+        <el-form-item label="验证码" prop="phoneCode">
+          <el-input class="width-300" placeholder="" v-model="formPhone.phoneCode">
+            <template slot="append">
+              <timeout-button :action="updatePhoneMms" :data="{oldPhone: this.formPhone.oldPhone, newPhone: this.formPhone.newPhone, userId: this.loginUserId}">
+                <template>{{$t("获取验证码")}}</template>
+              </timeout-button>
+            </template>
+          </el-input>
+        </el-form-item>
+      </el-form>
+
+      <div slot="footer">
+        <el-button size="small" @click="cancelCustomDialog">{{$t("取消")}}</el-button>
+        <el-button size="small" type="primary" @click="dialogCustomLoading == false ? updatePhone() : ''">
+          <i class="el-icon-loading" v-if="dialogCustomLoading"></i>
+          {{$t("确定")}}
+        </el-button>
+      </div>
+    </dialog-normal>
+
+    <dialog-normal width-style="300" :visible="modalPwdCustomVisible" :title="$t('修改密码')" @close="closeCustomDialog" @right-close="cancelCustomDialog">
+      <el-form :model="formPwd" :rules="rulesPwd" ref="formPwd" label-width="100px">
+        <el-form-item label="当前手机号" prop="phone">
+          <el-input :disabled="true" v-model="formPwd.phone" class="width-300"></el-input>
+        </el-form-item>
+        <el-form-item label="验证码" prop="phoneCode">
+          <el-input class="width-300" placeholder="" v-model="formPwd.phoneCode">
+            <template slot="append">
+              <timeout-button :action="updatePwdMms" :data="{type: 1, username: this.loginUserName, userId: this.loginUserId}">
+                <template>{{$t("获取验证码")}}</template>
+              </timeout-button>
+            </template>
+          </el-input>
+        </el-form-item>
+        <el-form-item label="密码" prop="pwd">
+          <el-input v-model="formPwd.pwd" class="width-300"></el-input>
+        </el-form-item>
+      </el-form>
+
+      <div slot="footer">
+        <el-button size="small" @click="cancelCustomDialog">{{$t("取消")}}</el-button>
+        <el-button size="small" type="primary" @click="dialogCustomLoading == false ? updatePwd() : ''">
+          <i class="el-icon-loading" v-if="dialogCustomLoading"></i>
+          {{$t("确定")}}
+        </el-button>
+      </div>
+    </dialog-normal>
   </div>
 </template>
 
@@ -772,9 +848,10 @@
   import DialogNormal from "../components/utils/dialog/DialogNormal";
   import {auditStatusColor, weekNoText, MessageSuccess, MessageError, MessageWarning, inArray} from "../utils/utils";
   import {common} from "../utils/api/url";
+  import defaultCustomValidater from "../utils/validater/defaultCustomValidater";
   export default {
     name: 'default',
-    mixins: [mixins],
+    mixins: [mixins,defaultCustomValidater],
     components: {MyPagination, DrawerLayoutRight,MyAuditDetail,AuditButton,TimeoutButton,UploadSquare,LayoutLrBefore,DialogNormal},
     computed: {
 
@@ -800,6 +877,8 @@
         moreVisible: false,
         modalMenuCustomVisible: false,
         dialogCustomLoading: false,
+        modalPhoneCustomVisible: false,
+        modalPwdCustomVisible: false,
         showMore: false,
         settingType: 1,
         direction: 'ttb',
@@ -917,7 +996,7 @@
       }
     },
     mounted () {
-      let rightWidth = this.userType == 2 ? 400 : 410;
+      let rightWidth = this.loginUserType == 2 ? 400 : 410;
       this.screenWidth = document.body.clientWidth;
       let width = document.querySelector(".moon-top-middle-menu-title").clientWidth;
       this.topWidth.width = width - rightWidth + 'px';
@@ -1045,8 +1124,8 @@
         this.year = this.currentYear;
         this.weekNum = this.currentWeekNum;
         this.week = this.currentWeekNo;
-        this.updatePhoneMms = this.userType == 2 ? common.updatephone_admin_save : common.updatephone_teacher_save;
-        this.updatePwdMms = this.userType == 2 ? common.updatepwd_admin_save : common.updatepwd_mms;
+        this.updatePhoneMms = this.loginUserType == 2 ? common.updatephone_admin_save : common.updatephone_teacher_save;
+        this.updatePwdMms = this.loginUserType == 2 ? common.updatepwd_admin_save : common.updatepwd_mms;
         this.getTopMenu();
         this.getSliderMenu(this.activeTop, 'init');
         //获取menuTab
@@ -1663,47 +1742,78 @@
           }
         });
       },
+      updatePhoneInfo(){
+        this.modalPhoneCustomVisible = true;
+      },
+      updatePwdInfo(){
+        this.formPwd.phone = this.loginUserPhone;
+        this.modalPwdCustomVisible = true;
+      },
       updatePhone(){
-        let params = {
-          phone: this.formPhone.newPhone,
-          captcha: this.formPhone.phoneCode,
-          userId: this.loginUserId,
-          username: this.loginUserName,
-          appcode: 12,
-        };
-        params = this.$qs.stringify(params);
-        this.loading = true;
-        this.$axios.post(common.updatephone_save, params).then(res => {
-          if (res.data.code == 200){
-            MessageSuccess(res.data.desc);
-          }else{
-            MessageWarning(res.data.desc);
+        this.$refs['formPhone'].validate((valid) => {
+          if (valid) {
+            let params = {};
+            let url = "";
+            if (this.loginUserType == 4){
+              params = {
+                phone: this.formPhone.newPhone,
+                captcha: this.formPhone.phoneCode,
+                userId: this.loginUserId,
+                username: this.loginUserName,
+                appcode: 12,
+              };
+              url = common.updatephone_save;
+            }else{
+              params = {
+                newPhone: this.formPhone.newPhone,
+                captcha: this.formPhone.phoneCode,
+                phone: this.formPhone.oldPhone,
+              };
+              url = common.updatephone_admin_save_url;
+            }
+            params = this.$qs.stringify(params);
+            this.loading = true;
+            this.$axios.post(url, params).then(res => {
+              if (res.data.code == 200){
+                this.modalPhoneCustomVisible = false;
+                MessageSuccess(res.data.desc);
+              }else{
+                MessageWarning(res.data.desc);
+              }
+              this.loading = false;
+            });
           }
-          this.loading = false;
         });
       },
       updatePwd(){
-        let params = {
-          pass: this.formPwd.pwd,
-          captcha: this.formPwd.phoneCode
-        };
-        if (this.loginUserType == 4){
-          params = {
-            userId: this.loginUserId,
-            password: this.formPwd.pwd,
-            appcode: 12,
-            captcha: this.formPwd.phoneCode
-          };
-        }
-        params = this.$qs.stringify(params);
-        this.loading = true;
-        this.$axios.post(common.updatepwd_save, params).then(res => {
-          if (res.data.code == 200){
-            MessageSuccess(res.data.desc);
-          }else{
-            MessageWarning(res.data.desc);
+        this.$refs['formPwd'].validate((valid) => {
+          if (valid) {
+            let url = common.updatepwd_admin_save_pass;
+            let params = {
+              pass: this.formPwd.pwd,
+              captcha: this.formPwd.phoneCode
+            };
+            console.log(this.loginUserType);
+            if (this.loginUserType == 4){
+              params = {
+                userId: this.loginUserId,
+                password: this.formPwd.pwd,
+                appcode: 12,
+                captcha: this.formPwd.phoneCode
+              };
+              url = common.updatepwd_save;
+            }
+            params = this.$qs.stringify(params);
+            this.loading = true;
+            this.$axios.post(url, params).then(res => {
+              if (res.data.code == 200){
+                MessageSuccess(res.data.desc);
+              }else{
+                MessageWarning(res.data.desc);
+              }
+              this.loading = false;
+            });
           }
-          this.loading = false;
         });
       },
       getSchoolInfo(){
@@ -1891,10 +2001,30 @@
         this.modalMenuCustomVisible = true;
       },
       closeCustomDialog(event){
+        this.formPhone = {
+          phone: '',
+          phoneCode: '',
+          pwd: ''
+        };
 
+        this.formPwd = {
+          phone: '',
+          phoneCode: '',
+          pwd: ''
+        };
+
+        if (this.$refs['formPhone']){
+          this.$refs['formPhone'].resetFields();
+        }
+
+        if (this.$refs['formPwd']){
+          this.$refs['formPwd'].resetFields();
+        }
       },
       cancelCustomDialog(){
         this.modalMenuCustomVisible = false;
+        this.modalPhoneCustomVisible = false;
+        this.modalPwdCustomVisible = false;
       },
       okCustomDialog(event){
         let url = "";

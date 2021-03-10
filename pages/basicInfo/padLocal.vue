@@ -640,7 +640,6 @@
       initSetting(row){
         this.$axios.get(common.device_get).then(res => {
           if (res.data.data){
-            console.log(res);
             this.formConf = {
               pwd: res.data.data.padPassword,
               faceCallBack: res.data.data.padCallbackUrl,

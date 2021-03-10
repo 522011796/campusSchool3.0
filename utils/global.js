@@ -24,6 +24,7 @@ const currentTermId = "";
 const currentWeekNum = "";
 const loginUserName = "";
 const loginUserType = "";
+const loginUserPhone = "";
 const campusLogo = "";
 const campusName = "";
 const currentWeekNo = "";
@@ -348,6 +349,7 @@ export default {
   currentYear,
   loginUserName,
   loginUserType,
+  loginUserPhone,
   campusLogo,
   campusName,
   currentWeekNo,

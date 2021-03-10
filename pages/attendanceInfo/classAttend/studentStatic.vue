@@ -429,7 +429,6 @@
         this.init();
       },
       hangdleChange(data, type){
-        console.log(data);
         switch (type) {
           case 1:
             this.selYear = data.year;

@@ -511,7 +511,6 @@
         this.formConf.ruleClassSwich = data;
       },
       changeStatus(event, data){
-        console.log(data);
         this.formConf.ruleTimeSwich = ''+data;
       }
     }

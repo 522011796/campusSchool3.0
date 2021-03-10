@@ -16,6 +16,7 @@ export default {
       collegeName: global.collegeName,
       campusName: global.campusName,
       loginUserType: global.loginUserType,
+      loginUserPhone: global.loginUserPhone,
       campusLogo: global.campusLogo,
       majorId: global.majorId,
       majorName: global.majorName,
@@ -281,6 +282,7 @@ export default {
           this.organizeName = res.data.data.LOGIN_RETURN_INFO.organize ? res.data.data.LOGIN_RETURN_INFO.organize.departmentName : '';
           this.headImage = res.data.data.headImage;
           this.loginUserId = res.data.data.LOGIN_RETURN_INFO.userInfo ? res.data.data.LOGIN_RETURN_INFO.userInfo.userId : res.data.data.userId;
+          this.loginUserPhone = res.data.data.LOGIN_RETURN_INFO.phone
         }
       });
     },
