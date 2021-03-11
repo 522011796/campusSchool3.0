@@ -96,7 +96,7 @@ const searchTeacherType = [
   },
   {
     label: "身份证",
-    value: 'cretificateNum'
+    value: 'certificateNum'
   }
 ];
 const searchStudentType = [
@@ -114,7 +114,7 @@ const searchStudentType = [
   },
   {
     label: "身份证",
-    value: 'cretificateNum'
+    value: 'certificateNum'
   }
 ];
 
@@ -327,6 +327,11 @@ const filterTimeStatusOptions = [
   { text: '本学期', value: '4' ,label: '本学期'}
 ];
 
+const filterUserAccountActiveStatusOptions = [
+  { text: '已激活', value: true ,label: '已激活'},
+  { text: '未激活', value: false ,label: '未激活'}
+];
+
 export default {
   total,
   page,
@@ -402,5 +407,6 @@ export default {
   searchStudentType2,
   filterAuthOptions,
   filterAuthOtherOptions,
-  filterTimeStatusOptions
+  filterTimeStatusOptions,
+  filterUserAccountActiveStatusOptions
 }

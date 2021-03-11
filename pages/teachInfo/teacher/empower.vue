@@ -18,7 +18,7 @@
             </el-col>
             <el-col :span="12">
               <div class="text-right">
-                <my-input-button size="small" plain width-class="width: 240px" type="success" :clearable="true" @click="search"></my-input-button>
+                <my-input-button size="small" plain width-class="width: 200px" type="success" :clearable="true" @click="search"></my-input-button>
               </div>
             </el-col>
           </el-row>
@@ -31,6 +31,7 @@
             header-cell-class-name="custom-table-cell-bg"
             size="medium"
             :max-height="tableHeight2.height"
+            @filter-change="fliterTable"
             style="width: 100%">
             <el-table-column
               align="center"
@@ -95,6 +96,30 @@
             <el-table-column
               align="center"
               prop="class_no"
+              :filter-multiple="false"
+              column-key="accountStatus"
+              :filters="filterUserAccountActiveStatusOptions"
+              :label="$t('激活状态')">
+              <template slot="header">
+                <span>{{$t('激活状态')}}</span>
+                <span v-if="filterUserAccountActiveStatusOptionsText != ''" class="font-size-12 color-disabeld moon-content-text-ellipsis-class">{{filterUserAccountActiveStatusOptionsText}}</span>
+              </template>
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">
+                    <span v-if="scope.row.sso_user_id == null" class="color-danger">{{$t("未激活")}}</span>
+                    <span v-if="scope.row.sso_user_id != null" class="color-success">{{$t("已激活")}}</span>
+                  </div>
+                  <span slot="reference" class="name-wrapper">
+                    <span v-if="scope.row.sso_user_id == null" class="color-danger">{{$t("未激活")}}</span>
+                    <span v-if="scope.row.sso_user_id != null" class="color-success">{{$t("已激活")}}</span>
+                  </span>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="class_no"
               :label="$t('已授权/总数')">
               <template slot-scope="scope">
                 <div @click="detialDeviceInfo(scope.row)" style="cursor: default">
@@ -129,6 +154,7 @@
               <template slot-scope="scope">
                 <i class="fa fa-cog margin-right-5 color-success" @click="detailInfo(scope.row)"></i>
                 <i class="fa margin-right-5 color-grand" :class="scope.row.loading ? 'fa-spinner fa-spin' : 'fa-retweet'" @click="syncInfo(scope.row)"></i>
+                <i class="fa fa-unlock margin-right-5 color-success" @click="unBindInfo(scope.row)"></i>
                 <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
               </template>
             </el-table-column>
@@ -664,6 +690,7 @@
 
 
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="删除后会清空所有授权数据，确认需要执行该操作吗？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="cancelDrawDialog"></my-normal-dialog>
+    <my-normal-dialog :visible.sync="visibleBindConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="确认需要重置该人员信息吗？" @ok-click="handleBindOkChange" @cancel-click="handleCancelChange" @close="cancelDrawDialog"></my-normal-dialog>
 
   </div>
 </template>
@@ -771,6 +798,9 @@
         searchRecordDeviceType: '',
         filtersDeviceTypeText: '',
         filtersDeviceType: [],
+        visibleBindConfim: false,
+        filterUserAccountActiveStatusOptionsText: '',
+        searchAccountStatusType: '',
         form: {
           status: '',
           attnedType: '',
@@ -786,6 +816,10 @@
           bedId: '',
           searchDept: '',
           userId: ''
+        },
+        formUser: {
+          userId: '',
+          pass: ''
         }
       }
     },
@@ -805,6 +839,9 @@
           aiSyncStatus: this.aiSyncStatus,
           searchKey: this.searchKey.input
         };
+        if (this.searchAccountStatusType != ""){
+          params['bind'] = this.searchAccountStatusType;
+        }
         //params = this.$qs.stringify(params);
         this.tableData = [];
         this.$axios.get(common.tearcher_info_setting_page, {params: params}).then(res => {
@@ -963,6 +1000,10 @@
           row.loading = false;
         });
       },
+      unBindInfo(item){
+        this.formUser.userId = item.user_id;
+        this.visibleBindConfim = true;
+      },
       deleteInfo(row){
         this.form.id = row.user_id;
         this.visibleConfim = true;
@@ -1106,6 +1147,11 @@
           searchDept: '',
           userId: ''
         };
+
+        this.formUser = {
+          userId: '',
+          pass: ''
+        };
         this.selDormTips = "";
         this.subTitle = "";
         this.keyDeviceSn = "";
@@ -1143,11 +1189,13 @@
         this.drawerVisible = false;
         this.drawerDeviceVisible = false;
         this.drawerRecordVisible = false;
+        this.visibleBindConfim = false;
       },
       closeDrawDialog(event){
         this.drawerVisible = false;
         this.drawerDeviceVisible = false;
         this.drawerRecordVisible = false;
+        this.visibleBindConfim = false;
       },
       okDrawDialog(event){
         let url = "";
@@ -1358,8 +1406,28 @@
           this.dialogLoading = false;
         });
       },
+      handleBindOkChange(){
+        let url = "";
+        let params = {
+          userId: this.formUser.userId
+        };
+        this.dialogLoading = true;
+        url = common.student_parent_unbind;
+        params = this.$qs.stringify(params);
+        this.$axios.post(url, params, {loading: false}).then(res => {
+          if (res.data.code == 200){
+            this.init();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+          this.visibleBindConfim = false;
+          this.dialogLoading = false;
+        });
+      },
       handleCancelChange(data) {
         this.visibleConfim = false;
+        this.visibleBindConfim = false;
       },
       handleChangeTime(data){
         this.searchDate = data;
@@ -1397,6 +1465,16 @@
             }
             this.pageTeacher = 1;
             this.initUserRecord();
+          }else if (item == 'accountStatus'){
+            this.filterUserAccountActiveStatusOptionsText = "";
+            this.searchAccountStatusType = value[item][0];
+            for (let i = 0; i < this.filterUserAccountActiveStatusOptions.length; i++){
+              if (this.searchAccountStatusType == this.filterUserAccountActiveStatusOptions[i].value){
+                this.filterUserAccountActiveStatusOptionsText = this.filterUserAccountActiveStatusOptions[i].text;
+              }
+            }
+            this.page = 1;
+            this.init();
           }
         }
 

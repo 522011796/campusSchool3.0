@@ -554,4 +554,10 @@ export const common = {
 
   sync_device_student_auth_opr: '/proxy/school/person/student/face/device/sync',//同步设备授权
   down_device_student_auth_opr: '/proxy/school/person/student/device/download',//下载设备图片
+
+  student_parent_set: '/proxy/user/student/parent/set',//设置家长信息
+  student_parent_get: '/proxy/user/student/parent/get',//获取家长信息
+  student_parent_unbind: '/proxy/user/user/unbind',//解绑学生信息
+  student_parent_reset_pwd: '/proxy/uup/pass/reset',//重置学生密码
+
 };

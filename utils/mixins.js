@@ -82,6 +82,7 @@ export default {
       filterAuthOptions: global.filterAuthOptions,
       filterAuthOtherOptions: global.filterAuthOtherOptions,
       filterTimeStatusOptions: global.filterTimeStatusOptions,
+      filterUserAccountActiveStatusOptions: global.filterUserAccountActiveStatusOptions,
       g_currentDate: {},
       currentYearData: '',
       currentTermData: '',
@@ -194,6 +195,17 @@ export default {
     this.g_HH();
   },
   methods: {
+    //*****以下函数为公共调用，主要用于封装，全部用两个__开头命名****/
+    /**
+     * 设置下拉数据选择
+     * @param data 传递过来的选择数据
+     * @param attr 传递过来需要重新设置的字段
+     * @private
+     */
+    __commonSelFun(data, attr){
+      this[attr] = data;
+    },
+    //*****以下函数为公共调用，主要用于获取系统数据****/
     test() {
       return new Promise((resolve, reject) => {
         setTimeout(() => {

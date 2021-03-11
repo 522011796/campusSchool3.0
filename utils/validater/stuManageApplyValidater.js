@@ -23,6 +23,12 @@ export default {
         userId: [
           { required: true, message: this.$t("请选择学生"), trigger: 'change' },
         ]
+      },
+      rulesParent: {
+        phone: [
+          { required: true, message: this.$t("请输入手机号"), trigger: 'blur' },
+          { validator: rules.FormValidate.Form().validatePhone, trigger: 'blur' }
+        ]
       }
     }
   }

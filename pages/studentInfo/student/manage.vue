@@ -33,7 +33,7 @@
           </div>
           <el-row v-else :gutter="16">
             <el-col :span="6" v-for="(item, index) in tableData" :key="index" class="margin-bottom-20">
-              <el-card :body-style="{padding: '10px 10px', height: '110px'}" style="position: relative">
+              <el-card :body-style="{padding: '10px 10px', height: '110px'}" style="position: relative" @click.native="detailInfo(item)">
                 <div class="color-muted">
                   <el-row class="color-warning">
                     <el-col :span="12">
@@ -50,7 +50,7 @@
                         </el-popover>
                         <el-popover
                           placement="bottom"
-                          width="260"
+                          width="300"
                           trigger="hover">
 
                           <div class="text-left">
@@ -58,9 +58,9 @@
                               <div class="margin-bottom-5 color-disabeld font-size-12">
                                 <span>{{$t("操作")}}</span>
                               </div>
-                              <el-button size="mini" plain type="success" @click="detailInfo(item)">
+                              <el-button size="mini" plain type="success" @click="detialRecordInfo(item)">
                                 <i class="fa fa-cog"></i>
-                                <span>{{$t("授权")}}</span>
+                                <span>{{$t("授权记录")}}</span>
                               </el-button>
                               <el-button size="mini" plain type="warning" @click="syncInfo(item)">
                                 <i class="fa" :class="item.loading ? 'fa-spinner fa-spin' : 'fa-retweet'"></i>
@@ -69,6 +69,24 @@
                               <el-button size="mini" plain type="danger" @click="deleteInfo(item)">
                                 <i class="fa fa-trash"></i>
                                 <span>{{$t("清除")}}</span>
+                              </el-button>
+                            </div>
+                            <div class="line-height"></div>
+                            <div>
+                              <div class="margin-bottom-5 color-disabeld font-size-12">
+                                <span>{{$t("其他")}}</span>
+                              </div>
+                              <!--<el-button size="mini" plain type="success" @click="resetPwdInfo(item)">
+                                <i class="fa fa-lock"></i>
+                                <span>{{$t("重置密码")}}</span>
+                              </el-button>-->
+                              <el-button size="mini" plain type="warning" @click="unBindInfo(item)">
+                                <i class="fa fa-unlock"></i>
+                                <span>{{$t("重置账号")}}</span>
+                              </el-button>
+                              <el-button size="mini" plain type="danger" @click="parentInfo(item)">
+                                <i class="fa fa-user"></i>
+                                <span>{{$t("家长信息")}}</span>
                               </el-button>
                             </div>
                             <div class="line-height"></div>
@@ -113,18 +131,20 @@
                     </el-col>
                     <el-col :span="16">
                       <div class="text-right">
-                        <div class="moon-content-text-ellipsis-class" style="cursor:default;" @click="detialDeviceInfo(item)">
-                          <span class="color-success">
+                        <div class="moon-content-text-ellipsis-class" style="cursor:default;">
+                          <span class="color-success" @click="detialDeviceInfo(item)">
                             <label v-if="item.ai_sync_success">{{item.ai_sync_success}}</label>
                             <label v-else>0</label>
                           </span>
                           /
-                          <span class="color-grand">
+                          <span class="color-grand" @click="detialDeviceInfo(item)">
                             {{item.ai_sync_all}}
                           </span>
                         </div>
-                        <div class="moon-content-text-ellipsis-class color-grand" style="cursor:default;" @click="detialRecordInfo(item)">
-                          {{item.real_name}}
+                        <div class="moon-content-text-ellipsis-class color-grand" style="cursor:default;">
+                          <span @click="detailInfo(item)">
+                            {{item.real_name}}
+                          </span>
                         </div>
                         <div class="moon-content-text-ellipsis-class">
                           {{item.class_name}}
@@ -760,7 +780,27 @@
       </div>
     </dialog-normal>
 
+    <dialog-normal width-style="600px" top="10vh" :visible="modalParentVisible" :title="$t('家长信息')" @close="closeDrawerDialog" @right-close="cancelDrawDialog">
+      <div class="margin-top-10">
+        <el-form :model="formParent" :rules="rulesParent" ref="formParent" label-width="140px">
+          <el-form-item :label="$t('手机号')" prop="phone">
+            <el-input v-model="formParent.phone" class="width-260"></el-input>
+          </el-form-item>
+        </el-form>
+      </div>
+
+      <div slot="footer">
+        <el-button size="small" @click="cancelDialog">{{$t("取消")}}</el-button>
+        <el-button size="small" type="primary" @click="dialogLoading == false ? okParentDialog() : ''">
+          <i class="el-icon-loading" v-if="dialogLoading"></i>
+          {{$t("确定")}}
+        </el-button>
+      </div>
+    </dialog-normal>
+
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="删除后会清空所有授权数据，确认需要执行该操作吗？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="cancelDrawDialog"></my-normal-dialog>
+    <my-normal-dialog :visible.sync="visibleBindConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="确认需要重置该人员信息吗？" @ok-click="handleBindOkChange" @cancel-click="handleCancelChange" @close="cancelDrawDialog"></my-normal-dialog>
+    <my-normal-dialog :visible.sync="visiblePwdConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="确认需要重置该人员登录密码吗？" @ok-click="handlePwdOkChange" @cancel-click="handleCancelChange" @close="cancelDrawDialog"></my-normal-dialog>
 
   </div>
 </template>
@@ -826,6 +866,10 @@
         drawerDeviceVisible: false,
         modalCreditVisible: false,
         modalRpVisible: false,
+        modalPrentVisible: false,
+        modalParentVisible: false,
+        visibleBindConfim: false,
+        visiblePwdConfim: false,
         searchCollege: '',
         searchMajor: '',
         searchGrade: '',
@@ -929,6 +973,14 @@
           file: '',
           des: '',
           userId:[]
+        },
+        formParent: {
+          phone: '',
+          userId:''
+        },
+        formUser: {
+          userId: '',
+          pass: ''
         }
       }
     },
@@ -1111,6 +1163,16 @@
           }
         });
       },
+      initParentInfo(item){
+        let params = {
+          userId: item.user_id
+        };
+        this.$axios.get(common.student_parent_get, {params: params}).then(res => {
+          if (res.data.data){
+            this.formParent.phone = res.data.data.phone;
+          }
+        });
+      },
       importInfo(){
 
       },
@@ -1124,6 +1186,20 @@
       rpInfo(item){
         this.formRp.userId = [{user_id: item.user_id}];
         this.modalRpVisible = true;
+      },
+      resetPwdInfo(item){
+        this.formUser.userId = item.user_id;
+        this.formUser.pass = (item.certificate_num && item.certificate_num != '') ? item.certificate_num.substr(item.certificate_num.length-6) : '';
+        this.visiblePwdConfim = true;
+      },
+      unBindInfo(item){
+        this.formUser.userId = item.user_id;
+        this.visibleBindConfim = true;
+      },
+      parentInfo(item){
+        this.formParent.userId = item.user_id;
+        this.initParentInfo(item);
+        this.modalParentVisible = true;
       },
       syncDeviceInfo(row){
         let params = {
@@ -1363,6 +1439,16 @@
           file: ''
         };
 
+        this.formParent = {
+          phone: '',
+          userId:''
+        };
+
+        this.formUser = {
+          userId: '',
+          pass: ''
+        };
+
         this.objectOne = [];
         this.objectTwo = [];
         if (this.$refs['formCredit']){
@@ -1371,6 +1457,10 @@
 
         if (this.$refs['formRp']){
           this.$refs['formRp'].resetFields();
+        }
+
+        if (this.$refs['formParent']){
+          this.$refs['formParent'].resetFields();
         }
 
         this.selDormTips = "";
@@ -1400,6 +1490,7 @@
         this.drawerRecordVisible = event;
         this.modalCreditVisible = event;
         this.modalRpVisible = event;
+        this.modalParentVisible = event;
       },
       cancelDrawDialog(){
         this.drawerVisible = false;
@@ -1407,6 +1498,10 @@
         this.drawerRecordVisible = false;
         this.modalCreditVisible = false;
         this.modalRpVisible = false;
+        this.modalParentVisible = false;
+        this.visibleConfim = false;
+        this.visiblePwdConfim = false;
+        this.visibleBindConfim = false;
       },
       closeDrawDialog(event){
         this.drawerVisible = false;
@@ -1414,6 +1509,7 @@
         this.drawerRecordVisible = false;
         this.modalCreditVisible = false;
         this.modalRpVisible = false;
+        this.modalParentVisible = false;
       },
       okDrawDialog(event){
         let url = "";
@@ -1650,8 +1746,48 @@
           this.dialogLoading = false;
         });
       },
+      handleBindOkChange(){
+        let url = "";
+        let params = {
+          userId: this.formUser.userId
+        };
+        this.dialogLoading = true;
+        url = common.student_parent_unbind;
+        params = this.$qs.stringify(params);
+        this.$axios.post(url, params, {loading: false}).then(res => {
+          if (res.data.code == 200){
+            this.init();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+          this.visibleBindConfim = false;
+          this.dialogLoading = false;
+        });
+      },
+      handlePwdOkChange(){
+        let url = "";
+        let params = {
+          userId: this.formUser.userId,
+          pass: this.formUser.pass
+        };
+        this.dialogLoading = true;
+        url = common.student_parent_reset_pwd;
+        params = this.$qs.stringify(params);
+        this.$axios.post(url, params).then(res => {
+          if (res.data.code == 200){
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+          this.visibleBindConfim = false;
+          this.dialogLoading = false;
+        });
+      },
       handleCancelChange(data) {
         this.visibleConfim = false;
+        this.visiblePwdConfim = false;
+        this.visibleBindConfim = false;
       },
       handleChange(type){
         this.page = 1;
@@ -1772,6 +1908,7 @@
       cancelDialog(){
         this.modalCreditVisible = false;
         this.modalRpVisible = false;
+        this.modalParentVisible = false;
       },
       okDialog(event){
         let url = "";
@@ -1798,6 +1935,30 @@
             this.$axios.post(url, params, {dataType: 'stringfy', loading: false}).then(res => {
               if (res.data.code == 200){
                 this.modalCreditVisible = false;
+                MessageSuccess(res.data.desc);
+              }else {
+                MessageError(res.data.desc);
+              }
+              this.dialogLoading = false;
+            });
+          }
+        });
+      },
+      okParentDialog(event){
+        let url = "";
+        this.$refs['formParent'].validate((valid) => {
+          if (valid) {
+            this.dialogLoading = true;
+            let params = {
+              userId: this.formParent.userId,
+              phone: this.formParent.phone
+            };
+            url = common.student_parent_set;
+            params = this.$qs.stringify(params, {loading: false});
+            this.$axios.post(url, params).then(res => {
+              if (res.data.code == 200){
+                this.modalParentVisible = false;
+                this.init();
                 MessageSuccess(res.data.desc);
               }else {
                 MessageError(res.data.desc);
