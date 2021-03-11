@@ -1176,6 +1176,9 @@
               this.topMenuQuickList = res.data.data;//快捷列表
               this.topMenuAllList = res.data.data;//所有列表
               this.$axios.get(common.menuno_quick_list, {params: params}).then(resCustom => {
+                if (resCustom.data.code != 200){
+                  return;
+                }
                 if (resCustom.data.data){
                   for (let i = 0; i < res.data.data.length; i++){
                     for (let j = 0; j < resCustom.data.data.length; j++) {
@@ -1193,6 +1196,9 @@
               let menuTopArr = [];
               let menuTopQuickArr = [];
               this.$axios.get(common.menuno_role_list, {params: params}).then(resRole => {
+                if (resCustom.data.code != 200){
+                  return;
+                }
                 if (resRole.data.data){
                   for (let i = 0; i < res.data.data.length; i++){
                     for (let j = 0; j < resRole.data.data.length; j++){
@@ -1270,6 +1276,9 @@
                 };
 
                 this.$axios.get(common.menuno_role_list, {params: params}).then(resSub => {
+                  if (resSub.data.code != 200){
+                    return;
+                  }
                   if (resSub.data.data){
                     for (let i = 0; i < resSub.data.data.length; i++){
                       if (resSub.data.data[i].menu_no == key && resSub.data.data[i].level == 1){
