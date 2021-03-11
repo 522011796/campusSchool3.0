@@ -147,6 +147,7 @@
             <el-table-column
               align="center"
               prop="class_no"
+              width="120"
               :label="$t('注册照片')">
               <template slot-scope="scope">
                 <my-head-img class="pull-left" v-if="scope.row.photo" :head-img="scope.row.photo"></my-head-img>

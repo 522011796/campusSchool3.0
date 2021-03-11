@@ -209,42 +209,6 @@
   "LazyMyUserType": {
     "description": "Auto imported from components/utils/MyUserType.vue"
   },
-  "MyHeadImg": {
-    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
-  },
-  "LazyMyHeadImg": {
-    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
-  },
-  "MyViewImg": {
-    "description": "Auto imported from components/utils/common/MyViewImg.vue"
-  },
-  "LazyMyViewImg": {
-    "description": "Auto imported from components/utils/common/MyViewImg.vue"
-  },
-  "DialogNormal": {
-    "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
-  },
-  "LazyDialogNormal": {
-    "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
-  },
-  "DrawerLayoutRight": {
-    "description": "Auto imported from components/utils/dialog/DrawerLayoutRight.vue"
-  },
-  "LazyDrawerLayoutRight": {
-    "description": "Auto imported from components/utils/dialog/DrawerLayoutRight.vue"
-  },
-  "DrawerRight": {
-    "description": "Auto imported from components/utils/dialog/DrawerRight.vue"
-  },
-  "LazyDrawerRight": {
-    "description": "Auto imported from components/utils/dialog/DrawerRight.vue"
-  },
-  "MyNormalDialog": {
-    "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
-  },
-  "LazyMyNormalDialog": {
-    "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
-  },
   "AuditButton": {
     "description": "Auto imported from components/utils/auditDetail/AuditButton.vue"
   },
@@ -323,59 +287,47 @@
   "LazyTimeoutButton": {
     "description": "Auto imported from components/utils/button/TimeoutButton.vue"
   },
-  "ClassroomTreeAndList": {
-    "description": "Auto imported from components/utils/treeAndList/ClassroomTreeAndList.vue"
+  "MyHeadImg": {
+    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
   },
-  "LazyClassroomTreeAndList": {
-    "description": "Auto imported from components/utils/treeAndList/ClassroomTreeAndList.vue"
+  "LazyMyHeadImg": {
+    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
   },
-  "DormBuildTreeAndList": {
-    "description": "Auto imported from components/utils/treeAndList/DormBuildTreeAndList.vue"
+  "MyViewImg": {
+    "description": "Auto imported from components/utils/common/MyViewImg.vue"
   },
-  "LazyDormBuildTreeAndList": {
-    "description": "Auto imported from components/utils/treeAndList/DormBuildTreeAndList.vue"
+  "LazyMyViewImg": {
+    "description": "Auto imported from components/utils/common/MyViewImg.vue"
   },
-  "MyRoleList": {
-    "description": "Auto imported from components/utils/treeAndList/MyRoleList.vue"
+  "DialogNormal": {
+    "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
   },
-  "LazyMyRoleList": {
-    "description": "Auto imported from components/utils/treeAndList/MyRoleList.vue"
+  "LazyDialogNormal": {
+    "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
   },
-  "StudentTreeAndList": {
-    "description": "Auto imported from components/utils/treeAndList/StudentTreeAndList.vue"
+  "DrawerLayoutRight": {
+    "description": "Auto imported from components/utils/dialog/DrawerLayoutRight.vue"
   },
-  "LazyStudentTreeAndList": {
-    "description": "Auto imported from components/utils/treeAndList/StudentTreeAndList.vue"
+  "LazyDrawerLayoutRight": {
+    "description": "Auto imported from components/utils/dialog/DrawerLayoutRight.vue"
   },
-  "StudentTreeAndListNoPage": {
-    "description": "Auto imported from components/utils/treeAndList/StudentTreeAndListNoPage.vue"
+  "DrawerRight": {
+    "description": "Auto imported from components/utils/dialog/DrawerRight.vue"
   },
-  "LazyStudentTreeAndListNoPage": {
-    "description": "Auto imported from components/utils/treeAndList/StudentTreeAndListNoPage.vue"
+  "LazyDrawerRight": {
+    "description": "Auto imported from components/utils/dialog/DrawerRight.vue"
   },
-  "TeacherCourseTreeAndList": {
-    "description": "Auto imported from components/utils/treeAndList/TeacherCourseTreeAndList.vue"
+  "MyNormalDialog": {
+    "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
   },
-  "LazyTeacherCourseTreeAndList": {
-    "description": "Auto imported from components/utils/treeAndList/TeacherCourseTreeAndList.vue"
+  "LazyMyNormalDialog": {
+    "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
   },
-  "TeacherTreeAndList": {
-    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndList.vue"
+  "MyCascader": {
+    "description": "Auto imported from components/utils/select/MyCascader.vue"
   },
-  "LazyTeacherTreeAndList": {
-    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndList.vue"
-  },
-  "TeacherTreeAndListBak": {
-    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListBak.vue"
-  },
-  "LazyTeacherTreeAndListBak": {
-    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListBak.vue"
-  },
-  "TeacherTreeAndListNoPage": {
-    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListNoPage.vue"
-  },
-  "LazyTeacherTreeAndListNoPage": {
-    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListNoPage.vue"
+  "LazyMyCascader": {
+    "description": "Auto imported from components/utils/select/MyCascader.vue"
   },
   "MyAdminAtten": {
     "description": "Auto imported from components/utils/status/MyAdminAtten.vue"
@@ -455,11 +407,59 @@
   "LazyMyFlowType": {
     "description": "Auto imported from components/utils/status/MyFlowType.vue"
   },
-  "MyCascader": {
-    "description": "Auto imported from components/utils/select/MyCascader.vue"
+  "ClassroomTreeAndList": {
+    "description": "Auto imported from components/utils/treeAndList/ClassroomTreeAndList.vue"
   },
-  "LazyMyCascader": {
-    "description": "Auto imported from components/utils/select/MyCascader.vue"
+  "LazyClassroomTreeAndList": {
+    "description": "Auto imported from components/utils/treeAndList/ClassroomTreeAndList.vue"
+  },
+  "DormBuildTreeAndList": {
+    "description": "Auto imported from components/utils/treeAndList/DormBuildTreeAndList.vue"
+  },
+  "LazyDormBuildTreeAndList": {
+    "description": "Auto imported from components/utils/treeAndList/DormBuildTreeAndList.vue"
+  },
+  "MyRoleList": {
+    "description": "Auto imported from components/utils/treeAndList/MyRoleList.vue"
+  },
+  "LazyMyRoleList": {
+    "description": "Auto imported from components/utils/treeAndList/MyRoleList.vue"
+  },
+  "StudentTreeAndList": {
+    "description": "Auto imported from components/utils/treeAndList/StudentTreeAndList.vue"
+  },
+  "LazyStudentTreeAndList": {
+    "description": "Auto imported from components/utils/treeAndList/StudentTreeAndList.vue"
+  },
+  "StudentTreeAndListNoPage": {
+    "description": "Auto imported from components/utils/treeAndList/StudentTreeAndListNoPage.vue"
+  },
+  "LazyStudentTreeAndListNoPage": {
+    "description": "Auto imported from components/utils/treeAndList/StudentTreeAndListNoPage.vue"
+  },
+  "TeacherCourseTreeAndList": {
+    "description": "Auto imported from components/utils/treeAndList/TeacherCourseTreeAndList.vue"
+  },
+  "LazyTeacherCourseTreeAndList": {
+    "description": "Auto imported from components/utils/treeAndList/TeacherCourseTreeAndList.vue"
+  },
+  "TeacherTreeAndList": {
+    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndList.vue"
+  },
+  "LazyTeacherTreeAndList": {
+    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndList.vue"
+  },
+  "TeacherTreeAndListBak": {
+    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListBak.vue"
+  },
+  "LazyTeacherTreeAndListBak": {
+    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListBak.vue"
+  },
+  "TeacherTreeAndListNoPage": {
+    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListNoPage.vue"
+  },
+  "LazyTeacherTreeAndListNoPage": {
+    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListNoPage.vue"
   },
   "QuillBlock": {
     "description": "Auto imported from components/utils/upload/QuillBlock.vue"
