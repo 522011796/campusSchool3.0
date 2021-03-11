@@ -2288,7 +2288,11 @@
         });
       },
       changeTableAndList(){
-        this.showTableAndList = !this.showTableAndList
+        this.showTableAndList = !this.showTableAndList;
+        this.searchAccountStatusType = '';
+        this.filterUserAccountActiveStatusOptionsText = '';
+        this.page = 1;
+        this.init();
       }
     }
   }
