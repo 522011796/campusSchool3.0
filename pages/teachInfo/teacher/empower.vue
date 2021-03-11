@@ -852,7 +852,7 @@
           aiSyncStatus: this.aiSyncStatus,
           searchKey: this.searchKey.input
         };
-        if (this.searchAccountStatusType != ""){
+        if (this.searchAccountStatusType !== ""){
           params['bind'] = this.searchAccountStatusType;
         }
         //params = this.$qs.stringify(params);

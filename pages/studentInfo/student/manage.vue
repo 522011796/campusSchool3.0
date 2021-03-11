@@ -192,7 +192,7 @@
                   <div class="text-center">
                     <label class="color-grand" @click="detialRecordInfo(scope.row)">{{scope.row.real_name}}</label>
                   </div>
-                  <span slot="reference" class="name-wrapper">
+                  <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                     <label class="color-grand" @click="detialRecordInfo(scope.row)">{{scope.row.real_name}}</label>
                   </span>
                 </el-popover>
@@ -1225,7 +1225,8 @@
         if (this.searchTeach != ''){
           params['attendType'] = this.searchTeach;
         }
-        if (this.searchAccountStatusType != ""){
+        console.log(this.searchAccountStatusType);
+        if (this.searchAccountStatusType !== ""){
           params['bind'] = this.searchAccountStatusType;
         }
         params['searchKey'] = this.searchKey['input'];
