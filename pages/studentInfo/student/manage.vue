@@ -14,9 +14,12 @@
           <el-row>
             <el-col :span="10">
               <tab-group-button size="small" :options='filterAuthOptions' @click="handleChange"></tab-group-button>
+              <el-button v-if="showTableAndList == false" size="small" type="default" :disabled="deviceList.length <= 0" :loading="mutiUnbindLoading"  icon="el-icon-circle-close" @click="unbindMutiInfo($event)">{{$t("批量重置")}}</el-button>
             </el-col>
             <el-col :span="14">
               <div class="text-right layout-inline">
+                <i :class="showTableAndList == false ? 'fa fa-table' : 'fa fa-list'" @click="changeTableAndList"></i>
+                <my-select v-if="showTableAndList == true" width-style="100" :clearable="true" :sel-value="searchAccountStatusType" :options="filterUserAccountActiveStatusOptions" :placeholder="$t('激活状态')" class="layout-item" size="small" @change="handleSelect($event, 3)"></my-select>
                 <my-select width-style="100" :clearable="true" :sel-value="searchStatus" :options="studentTeachStatusInfo(null, 'get')" :placeholder="$t('学籍状态')" class="layout-item" size="small" @change="handleSelect($event, 1)"></my-select>
                 <my-select width-style="100" :clearable="true" :sel-value="searchTeach" :options="studyTypeInfo(null, 'get')" :placeholder="$t('就读形式')" class="layout-item" size="small" @change="handleSelect($event, 2)"></my-select>
                 <my-input-button class="layout-item" :placeholder="$t('姓名/学号')" :show-select="false" :options="searchStudentType" size="small" plain width-class="width: 150px" type="success" :clearable="true" @click="search"></my-input-button>
@@ -25,7 +28,7 @@
           </el-row>
         </div>
 
-        <div  class="bg-white border-bottom-1 padding-lr-5 padding-tb-5" :style="divHeight">
+        <div v-if="showTableAndList == true" class="bg-white border-bottom-1 padding-lr-5 padding-tb-5" :style="divHeight">
           <div v-if="tableData.length <= 0">
             <div class="text-center padding-tb-10">
               <span class="color-disabeld">{{$t("暂无数据")}}</span>
@@ -80,7 +83,7 @@
                                 <i class="fa fa-lock"></i>
                                 <span>{{$t("重置密码")}}</span>
                               </el-button>-->
-                              <el-button size="mini" plain type="warning" @click="unBindInfo(item)">
+                              <el-button v-if="item.sso_user_id && item.sso_user_id != null" size="mini" plain type="warning" @click="unBindInfo(item)">
                                 <i class="fa fa-unlock"></i>
                                 <span>{{$t("重置账号")}}</span>
                               </el-button>
@@ -124,8 +127,10 @@
                           <label v-if="item.status">{{studentTeachStatusInfo(item.status, 'set')}}</label>
                           <label v-else>&#45;&#45;</label>
                         </span>-->
-                        <span class="color-warning margin-left-10">
-                          <label>{{studyTypeInfo(item.attend_type, 'set')}}</label>
+                        <span class="color-warning margin-left-5">
+                          <!--<label>{{studyTypeInfo(item.attend_type, 'set')}}</label>-->
+                          <span v-if="item.sso_user_id == null" class="color-danger">{{$t("未激活")}}</span>
+                          <span v-if="item.sso_user_id != null" class="color-success">{{$t("已激活")}}</span>
                         </span>
                       </div>
                     </el-col>
@@ -159,6 +164,213 @@
               </el-card>
             </el-col>
           </el-row>
+        </div>
+
+        <div v-if="showTableAndList == false" class="margin-top-10">
+          <el-table
+            ref="refMainTable"
+            :data="tableData"
+            header-cell-class-name="custom-table-cell-bg"
+            size="medium"
+            :max-height="tableHeight14.height"
+            @filter-change="fliterTable"
+            :row-key="getRowKeys"
+            @selection-change="handleSelectionChange"
+            style="width: 100%">
+            <el-table-column
+              :reserve-selection="true"
+              type="selection"
+              align="center"
+              width="55">
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="real_name"
+              :label="$t('姓名')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">
+                    <label class="color-grand" @click="detialRecordInfo(scope.row)">{{scope.row.real_name}}</label>
+                  </div>
+                  <span slot="reference" class="name-wrapper">
+                    <label class="color-grand" @click="detialRecordInfo(scope.row)">{{scope.row.real_name}}</label>
+                  </span>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="college_no"
+              :label="$t('班级')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{ scope.row.class_name ?  scope.row.class_name : '--'}}</div>
+                  <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{ scope.row.class_name ?  scope.row.class_name : '--'}}
+                </span>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="class_no"
+              :label="$t('学号')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{ scope.row.student_id ?  scope.row.student_id : '--'}}</div>
+                  <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{ scope.row.student_id ?  scope.row.student_id : '--'}}
+                </span>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="class_no"
+              :label="$t('就读形式')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{studyTypeInfo(scope.row.attend_type, 'set')}}</div>
+                  <span slot="reference" class="name-wrapper">
+                  {{studyTypeInfo(scope.row.attend_type, 'set')}}
+                </span>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="class_no"
+              :label="$t('学籍状态')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{studentTeachStatusInfo(scope.row.status, 'set')}}</div>
+                  <span slot="reference" class="name-wrapper">
+                  {{studentTeachStatusInfo(scope.row.status, 'set')}}
+                </span>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="class_no"
+              :label="$t('授权状态')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center"><my-auth-options :status="scope.row.ai_sync_status"></my-auth-options></div>
+                  <span slot="reference" class="name-wrapper">
+                    <my-auth-options :status="scope.row.ai_sync_status"></my-auth-options>
+                  </span>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              width="100"
+              prop="class_no"
+              :filter-multiple="false"
+              column-key="accountStatus"
+              :filters="filterUserAccountActiveStatusOptions"
+              :label="$t('激活状态')">
+              <template slot="header">
+                <span>{{$t('激活状态')}}</span>
+                <span v-if="filterUserAccountActiveStatusOptionsText != ''" class="font-size-12 color-disabeld moon-content-text-ellipsis-class">{{filterUserAccountActiveStatusOptionsText}}</span>
+              </template>
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">
+                    <span v-if="scope.row.sso_user_id == null" class="color-danger">{{$t("未激活")}}</span>
+                    <span v-if="scope.row.sso_user_id != null" class="color-success">{{$t("已激活")}}</span>
+                  </div>
+                  <span slot="reference" class="name-wrapper">
+                    <span v-if="scope.row.sso_user_id == null" class="color-danger">{{$t("未激活")}}</span>
+                    <span v-if="scope.row.sso_user_id != null" class="color-success">{{$t("已激活")}}</span>
+                  </span>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              width="100"
+              prop="class_no"
+              :label="$t('已授权/总数')">
+              <template slot-scope="scope">
+                <div @click="detialDeviceInfo(scope.row)" style="cursor: default">
+                  <span class="color-success">
+                    <label v-if="scope.row.ai_sync_success">{{scope.row.ai_sync_success}}</label>
+                    <label v-else>0</label>
+                  </span>
+                  /
+                  <span class="color-grand">
+                    {{scope.row.ai_sync_all}}
+                  </span>
+                </div>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="class_no"
+              width="120"
+              :label="$t('注册照片')">
+              <template slot-scope="scope">
+                <my-head-img class="pull-left" v-if="scope.row.photo" :head-img="scope.row.photo"></my-head-img>
+                <span v-if="scope.row.face_photos && scope.row.face_photos != '|'">
+                  <my-head-img class="pull-left margin-left-5" v-for="(item, index) in scope.row.face_photos.split('|')" :head-img="item" :key="index"></my-head-img>
+                </span>
+                <div class="moon-clearfix"></div>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              fixed="right"
+              label="操作"
+              width="120">
+              <template slot-scope="scope">
+                <i class="fa fa-cog margin-right-5 color-success" @click="detailInfo(scope.row)"></i>
+                <i class="fa margin-right-5 color-grand" :class="scope.row.loading ? 'fa-spinner fa-spin' : 'fa-retweet'" @click="syncInfo(scope.row)"></i>
+                <el-popover
+                  placement="bottom"
+                  width="300"
+                  trigger="hover">
+
+                  <div class="text-left">
+                    <div>
+                      <div class="margin-bottom-5 color-disabeld font-size-12">
+                        <span>{{$t("操作")}}</span>
+                      </div>
+                      <el-button size="mini" plain type="warning" @click="syncInfo(scope.row)">
+                        <i class="fa" :class="scope.row.loading ? 'fa-spinner fa-spin' : 'fa-retweet'"></i>
+                        <span>{{$t("同步")}}</span>
+                      </el-button>
+                      <el-button v-if="scope.row.sso_user_id && scope.row.sso_user_id != null" size="mini" plain type="warning" @click="unBindInfo(scope.row)">
+                        <i class="fa fa-unlock"></i>
+                        <span>{{$t("重置账号")}}</span>
+                      </el-button>
+                      <el-button size="mini" plain type="danger" @click="deleteInfo(scope.row)">
+                        <i class="fa fa-trash"></i>
+                        <span>{{$t("清除")}}</span>
+                      </el-button>
+                    </div>
+                    <div class="line-height"></div>
+                    <div>
+                      <div class="margin-bottom-5 color-disabeld font-size-12">
+                        <span>{{$t("申请")}}</span>
+                      </div>
+                      <el-button size="mini" plain type="success" @click="creditInfo(scope.row)">
+                        <i class="fa fa-flag"></i>
+                        <span>{{$t("学分申请")}}</span>
+                      </el-button>
+                      <el-button size="mini" plain type="warning" @click="rpInfo(scope.row)">
+                        <i class="fa fa-star"></i>
+                        <span>{{$t("奖惩申请")}}</span>
+                      </el-button>
+                    </div>
+                  </div>
+
+                  <i slot="reference" class="fa fa-ellipsis-h color-warning"></i>
+                </el-popover>
+              </template>
+            </el-table-column>
+          </el-table>
         </div>
 
         <div class="layout-right-footer text-right">
@@ -870,6 +1082,7 @@
         modalParentVisible: false,
         visibleBindConfim: false,
         visiblePwdConfim: false,
+        mutiUnbindLoading: false,
         searchCollege: '',
         searchMajor: '',
         searchGrade: '',
@@ -914,6 +1127,10 @@
         errorStudent: '',
         uploadFileAction: common.upload_file,
         auditObjectItem: {},
+        showTableAndList: true,
+        filterUserAccountActiveStatusOptionsText: '',
+        searchAccountStatusType: '',
+        deviceList: [],
         form: {
           status: '',
           attnedType: '',
@@ -1007,6 +1224,9 @@
         }
         if (this.searchTeach != ''){
           params['attendType'] = this.searchTeach;
+        }
+        if (this.searchAccountStatusType != ""){
+          params['bind'] = this.searchAccountStatusType;
         }
         params['searchKey'] = this.searchKey['input'];
         //params = this.$qs.stringify(params);
@@ -1338,7 +1558,11 @@
           this.form.studentInfo.status = data;
         }else if (type == 2){
           this.form.studentInfo.attendType = data;
+        }else if (type == 3){
+          this.searchAccountStatusType = data;
         }
+        this.page = 1;
+        this.init();
       },
       studyTypeInfo(val, type){
         if (type == 'get'){
@@ -1853,6 +2077,16 @@
             }
             this.pageTeacher = 1;
             this.initUserRecord();
+          }else if (item == 'accountStatus'){
+            this.filterUserAccountActiveStatusOptionsText = "";
+            this.searchAccountStatusType = value[item][0];
+            for (let i = 0; i < this.filterUserAccountActiveStatusOptions.length; i++){
+              if (this.searchAccountStatusType == this.filterUserAccountActiveStatusOptions[i].value){
+                this.filterUserAccountActiveStatusOptionsText = this.filterUserAccountActiveStatusOptions[i].text;
+              }
+            }
+            this.page = 1;
+            this.init();
           }
         }
       },
@@ -2023,6 +2257,37 @@
       },
       deleteRpImg(){
         this.formRp.file = "";
+      },
+      getRowKeys(row) {
+        return row.user_id
+      },
+      handleSelectionChange(data){
+        this.deviceList = data;
+      },
+      unbindMutiInfo(){
+        let arr = [];
+        for (let i = 0; i < this.deviceList.length; i++){
+          arr.push(this.deviceList[i].user_id);
+        }
+        let params = {
+          userId: arr.join()
+        };
+        params = this.$qs.stringify(params);
+        this.mutiUnbindLoading = true;
+        this.$axios.post(common.student_parent_unbind, params, {loading: false}).then(res => {
+          if (res.data.code == 200){
+            this.init();
+            this.deviceList = [];
+            this.$refs.refMainTable.clearSelection();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+          this.mutiUnbindLoading = false;
+        });
+      },
+      changeTableAndList(){
+        this.showTableAndList = !this.showTableAndList
       }
     }
   }

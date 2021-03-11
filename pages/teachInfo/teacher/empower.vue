@@ -12,11 +12,13 @@
       <div slot="right">
         <div class="layout-top-tab margin-top-5">
           <el-row>
-            <el-col :span="12">
+            <el-col :span="16">
               <div class="text-left">
-                <tab-group-button size="small" :options='filterAuthOptions' @click="handleChange"></tab-group-button></div>
+                <tab-group-button size="small" :options='filterAuthOptions' @click="handleChange"></tab-group-button>
+                <el-button size="small" type="default" :disabled="deviceList.length <= 0" :loading="mutiUnbindLoading"  icon="el-icon-circle-close" @click="unbindMutiInfo($event)">{{$t("批量重置")}}</el-button>
+              </div>
             </el-col>
-            <el-col :span="12">
+            <el-col :span="8">
               <div class="text-right">
                 <my-input-button size="small" plain width-class="width: 200px" type="success" :clearable="true" @click="search"></my-input-button>
               </div>
@@ -26,13 +28,21 @@
 
         <div class="margin-top-10">
           <el-table
-            ref="refTable"
+            ref="refMainTable"
             :data="tableData"
             header-cell-class-name="custom-table-cell-bg"
             size="medium"
             :max-height="tableHeight2.height"
             @filter-change="fliterTable"
+            :row-key="getRowKeys"
+            @selection-change="handleSelectionChange"
             style="width: 100%">
+            <el-table-column
+              :reserve-selection="true"
+              type="selection"
+              align="center"
+              width="55">
+            </el-table-column>
             <el-table-column
               align="center"
               prop="real_name"
@@ -154,7 +164,7 @@
               <template slot-scope="scope">
                 <i class="fa fa-cog margin-right-5 color-success" @click="detailInfo(scope.row)"></i>
                 <i class="fa margin-right-5 color-grand" :class="scope.row.loading ? 'fa-spinner fa-spin' : 'fa-retweet'" @click="syncInfo(scope.row)"></i>
-                <i class="fa fa-unlock margin-right-5 color-success" @click="unBindInfo(scope.row)"></i>
+                <i v-if="scope.row.sso_user_id && scope.row.sso_user_id != null" class="fa fa-unlock margin-right-5 color-success" @click="unBindInfo(scope.row)"></i>
                 <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
               </template>
             </el-table-column>
@@ -757,7 +767,9 @@
         loadingList: false,
         loadingDevice: false,
         drawerRecordVisible: false,
+        mutiUnbindLoading: false,
         tableRecordData: [],
+        deviceList: [],
         aiSyncStatus: '',
         searchCollege: '',
         searchMajor: '',
@@ -1478,6 +1490,34 @@
           }
         }
 
+      },
+      getRowKeys(row) {
+        return row.user_id
+      },
+      handleSelectionChange(data){
+        this.deviceList = data;
+      },
+      unbindMutiInfo(){
+        let arr = [];
+        for (let i = 0; i < this.deviceList.length; i++){
+          arr.push(this.deviceList[i].user_id);
+        }
+        let params = {
+          userId: arr.join()
+        };
+        params = this.$qs.stringify(params);
+        this.mutiUnbindLoading = true;
+        this.$axios.post(common.student_parent_unbind, params, {loading: false}).then(res => {
+          if (res.data.code == 200){
+            this.init();
+            this.deviceList = [];
+            this.$refs.refMainTable.clearSelection();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+          this.mutiUnbindLoading = false;
+        });
       }
     }
   }
