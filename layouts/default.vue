@@ -1196,7 +1196,7 @@
               let menuTopArr = [];
               let menuTopQuickArr = [];
               this.$axios.get(common.menuno_role_list, {params: params}).then(resRole => {
-                if (resCustom.data.code != 200){
+                if (resRole.data.code != 200){
                   return;
                 }
                 if (resRole.data.data){
