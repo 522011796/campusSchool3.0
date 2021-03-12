@@ -88,7 +88,7 @@
         this.transformBtnGroup.transform = 'translateX(' + translateX + ')';*/
         setTimeout(() => {
           let groupItem = document.querySelectorAll(".btn-group-item-default");
-          this.transformBtnGroup.width = groupItem[0].clientWidth + "px";
+          this.transformBtnGroup.width = (groupItem && groupItem.length > 0) ? groupItem[0].clientWidth + "px" : '0px';
           this.transformBtnGroup.transform = 'translateX(' + translateX + ')';
         },800);
       },
