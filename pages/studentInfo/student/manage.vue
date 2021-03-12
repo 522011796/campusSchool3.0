@@ -135,14 +135,14 @@
                       </div>
                     </el-col>
                     <el-col :span="16">
-                      <div class="text-right">
-                        <div class="moon-content-text-ellipsis-class" style="cursor:default;">
-                          <span class="color-success" @click="detialDeviceInfo(item)">
+                      <div class="text-right" style="position: relative">
+                        <div class="moon-content-text-ellipsis-class" style="cursor:default;position: relative; z-index: 99;">
+                          <span class="color-success" @click.stop="detialDeviceInfo(item)">
                             <label v-if="item.ai_sync_success">{{item.ai_sync_success}}</label>
                             <label v-else>0</label>
                           </span>
                           /
-                          <span class="color-grand" @click="detialDeviceInfo(item)">
+                          <span class="color-grand" @click.stop="detialDeviceInfo(item)">
                             {{item.ai_sync_all}}
                           </span>
                         </div>
