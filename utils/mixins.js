@@ -270,6 +270,38 @@ export default {
         func();
       }
     },
+    /**
+     * 搜索--仅支持单一属性
+     * @param event 所搜框数据
+     * @param func 需要执行的函数
+     * @param pageAttr 需要改变的属性，默认page=1
+     * @param attr 传递过来需要重新设置的字段
+     * @param obj 传递过来需要重新设置的数据对象，这里适用$set进行更新，实时更新数据和视图
+     * @private
+     */
+    __search(event, func, pageAttr, attr, obj){
+      if (event['input']){
+        if (obj && typeof obj == 'object'){
+          this.$set(obj, attr, event.input);
+        }else {
+          this[attr] = event.input;
+        }
+      }else {
+        if (obj && typeof obj == 'object'){
+          this.$set(obj, attr, event);
+        }else {
+          this[attr] = event;
+        }
+      }
+      if (pageAttr){
+        this[pageAttr] = 1;
+      }else {
+        this.page = 1;
+      }
+      if(typeof func == 'function'){
+        func();
+      }
+    },
     //*****以下函数为公共调用，主要用于获取系统数据****/
     test() {
       return new Promise((resolve, reject) => {

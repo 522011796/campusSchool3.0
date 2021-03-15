@@ -119,14 +119,7 @@
       <workItem from="1614850381173" duration="34941000" />
       <workItem from="1615165883777" duration="23493000" />
       <workItem from="1615251588961" duration="54321000" />
-      <workItem from="1615425332914" duration="37996000" />
-    </task>
-    <task id="LOCAL-00300" summary="1、修改框架和组件样式、细节bug等&#10;2、新增web权限、自定义顶部显示">
-      <created>1614680348115</created>
-      <option name="number" value="00300" />
-      <option name="presentableId" value="LOCAL-00300" />
-      <option name="project" value="LOCAL" />
-      <updated>1614680348115</updated>
+      <workItem from="1615425332914" duration="39495000" />
     </task>
     <task id="LOCAL-00301" summary="1、修改框架和组件样式、细节bug等&#10;2、新增web权限、自定义顶部显示">
       <created>1614761100971</created>
@@ -464,7 +457,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615774035952</updated>
     </task>
-    <option name="localTasksCounter" value="349" />
+    <task id="LOCAL-00349" summary="1、修改框架和组件样式、细节bug等&#10;2、更新统一函数">
+      <created>1615775186278</created>
+      <option name="number" value="00349" />
+      <option name="presentableId" value="LOCAL-00349" />
+      <option name="project" value="LOCAL" />
+      <updated>1615775186279</updated>
+    </task>
+    <option name="localTasksCounter" value="350" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -484,7 +484,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、加载未完成时的效果完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、高德地图--报警集成完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、切换可动画版本的按钮组完成" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、点击图片大图组件完成" />
@@ -509,17 +508,18 @@
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、新增web权限、自定义顶部显示" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置" />
     <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、新增需求" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、新增需求" />
+    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、更新统一函数" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、更新统一函数" />
   </component>
   <component name="WindowStateProjectService">
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1612176661241">
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1612176661241" />
-    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2" timestamp="1615774034204">
+    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2" timestamp="1615775184654">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
-    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2/0.25.1440.795@0.25.1440.795" timestamp="1615774034204" />
+    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2/0.25.1440.795@0.25.1440.795" timestamp="1615775184654" />
     <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1612662480606" />
     <state x="100" y="124" width="1240" height="598" key="DiffContextDialog" timestamp="1615544234716">
       <screen x="0" y="25" width="1440" height="795" />
@@ -547,10 +547,10 @@
     </state>
     <state x="221" y="66" key="SettingsEditor/0.25.1440.795@0.25.1440.795" timestamp="1615529226556" />
     <state x="221" y="66" key="SettingsEditor/0.25.1440.798@0.25.1440.798" timestamp="1611905365471" />
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1615774139410">
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1615775385971">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.25.1440.795@0.25.1440.795" timestamp="1615774139410" />
+    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.25.1440.795@0.25.1440.795" timestamp="1615775385971" />
     <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1612662483421" />
     <state x="100" y="124" width="1240" height="598" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1615274319801">
       <screen x="0" y="25" width="1440" height="795" />
@@ -565,10 +565,10 @@
       <screen x="0" y="25" width="1440" height="798" />
     </state>
     <state x="506" y="345" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.1440.798@0.25.1440.798" timestamp="1611389592729" />
-    <state x="378" y="182" width="1004" height="550" key="find.popup" timestamp="1615542745387">
+    <state x="378" y="182" width="1004" height="550" key="find.popup" timestamp="1615775572366">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
-    <state x="378" y="182" width="1004" height="550" key="find.popup/0.25.1440.795@0.25.1440.795" timestamp="1615542745387" />
+    <state x="378" y="182" width="1004" height="550" key="find.popup/0.25.1440.795@0.25.1440.795" timestamp="1615775572366" />
     <state x="378" y="183" width="837" height="550" key="find.popup/0.25.1440.798@0.25.1440.798" timestamp="1612678392148" />
     <state x="385" y="153" width="670" height="671" key="search.everywhere.popup" timestamp="1611727354332">
       <screen x="0" y="25" width="1440" height="798" />
