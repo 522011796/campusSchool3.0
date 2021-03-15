@@ -302,6 +302,14 @@ export default {
         func();
       }
     },
+    /**
+     * 关闭弹层或者抽屉
+     * @param attr 需要关闭的弹层或者抽屉
+     * @private
+     */
+    __cancelDialog(attr){
+      this[attr] = false;
+    },
     //*****以下函数为公共调用，主要用于获取系统数据****/
     test() {
       return new Promise((resolve, reject) => {
