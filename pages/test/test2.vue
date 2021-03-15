@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div>
-      <my-select class="pull-left" :sel-value="selModel" :options="options" :clearable="true" @change="__commonSelFun($event, 'selModel')"></my-select>
-      <el-button size="small" @click="clickBtn">btn</el-button>
+      <!--<my-select class="pull-left" :sel-value="selModel" :options="options" :clearable="true" @change="__commonSelFun($event, 'selModel')"></my-select>
+      <el-button size="small" @click="clickBtn">btn</el-button>-->
     </div>
   </div>
 </template>

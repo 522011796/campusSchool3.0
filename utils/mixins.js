@@ -205,8 +205,65 @@ export default {
      * @param attr 传递过来需要重新设置的字段
      * @private
      */
-    __commonSelFun(data, attr){
+    __selFun(data, attr){
       this[attr] = data;
+    },
+    /**
+     * 点击分页
+     * @param event 页码
+     * @param func 需要执行的函数
+     * @param pageAttr 需要改变的属性，默认page
+     * @private
+     */
+    __currentPage(event, func, pageAttr){
+      if (pageAttr){
+        this[pageAttr] = event;
+      }else {
+        this.page = event;
+      }
+      if(typeof func == 'function'){
+        func();
+      }
+    },
+    /**
+     * 分页总条数
+     * @param event 总条数
+     * @param func 需要执行的函数
+     * @param pageAttr 需要改变的当前page属性，默认page = 1
+     * @param numAttr 需要改变的属性，默认num
+     * @private
+     */
+    __sizeChange(event, func, pageAttr, numAttr){
+      if (pageAttr){
+        this[pageAttr] = 1;
+      }else {
+        this.page = 1;
+      }
+      if (numAttr){
+        this[numAttr] = event;
+      }else {
+        this.num = event;
+      }
+      if(typeof func == 'function'){
+        func();
+      }
+    },
+    /**
+     * 点击跳转分页
+     * @param event 页码
+     * @param func 需要执行的函数
+     * @param pageAttr 需要改变的属性，默认page
+     * @private
+     */
+    __jumpPage(event, func, pageAttr){
+      if (pageAttr){
+        this[pageAttr] = event;
+      }else {
+        this.page = event;
+      }
+      if(typeof func == 'function'){
+        func();
+      }
     },
     //*****以下函数为公共调用，主要用于获取系统数据****/
     test() {
