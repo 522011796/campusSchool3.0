@@ -203,10 +203,15 @@ export default {
      * 设置下拉数据选择
      * @param data 传递过来的选择数据
      * @param attr 传递过来需要重新设置的字段
+     * @param obj 传递过来需要重新设置的数据对象，这里适用$set进行更新，实时更新数据和视图
      * @private
      */
-    __selFun(data, attr){
-      this[attr] = data;
+    __selFunc(data, attr, obj){
+      if (obj && typeof obj == 'object'){
+        this.$set(obj, attr, data);
+      }else {
+        this[attr] = data;
+      }
     },
     /**
      * 点击分页
