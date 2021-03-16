@@ -1446,9 +1446,13 @@
           }
           let width = parseInt(this.rightItemAllWidth.width.substr(0,this.rightItemAllWidth.width.length-2)) + 120;
           this.$set(this.rightItemAllWidth,'width', width +'px');
-          document.getElementById("menuTagDiv").scrollLeft = width;
+          if (document.getElementById("menuTagDiv")){
+            document.getElementById("menuTagDiv").scrollLeft = width;
+          }
         }else {
-          document.getElementById("menuTagDiv").scrollLeft = tabArr * 80;
+          if (document.getElementById("menuTagDiv")){
+            document.getElementById("menuTagDiv").scrollLeft = tabArr * 80;
+          }
         }
 
         localStorage.setItem("menuTabList", JSON.stringify(this.menuTabListObj));
@@ -1802,7 +1806,6 @@
               pass: this.formPwd.pwd,
               captcha: this.formPwd.phoneCode
             };
-            console.log(this.loginUserType);
             if (this.loginUserType == 4){
               params = {
                 userId: this.loginUserId,
@@ -2084,8 +2087,8 @@
       },
       showDrawderMenuList(){
         //this.activeTop = 'basicInfo';
-        if (this.topMenuList && this.topMenuList.length > 0){
-          this.getSliderMenu(this.topMenuList[0].key, null, 'menuList');
+        if (this.topMenuAllList && this.topMenuAllList.length > 0){
+          this.getSliderMenu(this.topMenuAllList[0].key, null, 'menuList');
         }
       }
     },
