@@ -12,16 +12,16 @@
       <div slot="right">
         <div class="layout-right-tab">
           <el-row>
-            <el-col :span="10">
+            <el-col :span="showTableAndList == false ? '10' : '9'">
               <tab-group-button size="small" :options='filterAuthOptions' @click="handleChange"></tab-group-button>
               <el-button v-if="showTableAndList == false" size="small" type="default" :disabled="deviceList.length <= 0" :loading="mutiUnbindLoading"  icon="el-icon-circle-close" @click="unbindMutiInfo($event)">{{$t("批量重置")}}</el-button>
             </el-col>
-            <el-col :span="14">
+            <el-col :span="showTableAndList == false ? '14' : '15'">
               <div class="text-right layout-inline">
                 <i :class="showTableAndList == false ? 'fa fa-table' : 'fa fa-list'" @click="changeTableAndList"></i>
-                <my-select v-if="showTableAndList == true" width-style="100" :clearable="true" :sel-value="searchAccountStatusType" :options="filterUserAccountActiveStatusOptions" :placeholder="$t('激活状态')" class="layout-item" size="small" @change="handleSelect($event, 3)"></my-select>
-                <my-select width-style="100" :clearable="true" :sel-value="searchStatus" :options="studentTeachStatusInfo(null, 'get')" :placeholder="$t('学籍状态')" class="layout-item" size="small" @change="handleSelect($event, 1)"></my-select>
-                <my-select width-style="100" :clearable="true" :sel-value="searchTeach" :options="studyTypeInfo(null, 'get')" :placeholder="$t('就读形式')" class="layout-item" size="small" @change="handleSelect($event, 2)"></my-select>
+                <my-select v-if="showTableAndList == true" width-style="99" :clearable="true" :sel-value="searchAccountStatusType" :options="filterUserAccountActiveStatusOptions" :placeholder="$t('激活状态')" class="layout-item" size="small" @change="handleSelect($event, 3)"></my-select>
+                <my-select width-style="99" :clearable="true" :sel-value="searchStatus" :options="studentTeachStatusInfo(null, 'get')" :placeholder="$t('学籍状态')" class="layout-item" size="small" @change="handleSelect($event, 1)"></my-select>
+                <my-select width-style="99" :clearable="true" :sel-value="searchTeach" :options="studyTypeInfo(null, 'get')" :placeholder="$t('就读形式')" class="layout-item" size="small" @change="handleSelect($event, 2)"></my-select>
                 <my-input-button class="layout-item" :placeholder="$t('姓名/学号')" :show-select="false" :options="searchStudentType" size="small" plain width-class="width: 105px" type="success" :clearable="true" @click="search"></my-input-button>
               </div>
             </el-col>
