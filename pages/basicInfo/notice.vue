@@ -328,6 +328,7 @@
         let checkModelStudent = false;
         this.checkModelTercher = false;
         this.checkModelStudent = false;
+        console.log(JSON.parse(row.getter));
         if (row.getter && Object.keys(row.getter).length != 0){
           if (JSON.parse(row.getter)['teacher']){
             checkModelTercher = true;
@@ -448,7 +449,7 @@
             if (this.checkModelTercher  == true){
               getter['teacher'] = {type: 2, range: [], sex: null};
             }
-            if (this.checkModelStucher  == true){
+            if (this.checkModelStudent  == true){
               getter['student'] = {type: 2, range: [], sex: null};
             }
             params['getter'] = JSON.stringify(getter);
@@ -532,7 +533,7 @@
         this.checkModelTercher = data;
       },
       handleChangeStuCheck(data){
-        this.checkModelStucher = data;
+        this.checkModelStudent = data;
       },
       detailMsg(row){
         let url = common.detail_circle_search_reply;

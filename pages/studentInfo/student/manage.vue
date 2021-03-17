@@ -2155,11 +2155,11 @@
       },
       handleRpSelect(data, type){
         if (type == 1){
-          this.formRp.type = data;
+          this.formRp.type = ''+data;
           this.formRp.level = "";
           this.initLevels(data);
         }else if(type == 2){
-          this.formRp.level = data;
+          this.formRp.level = ''+data;
         }
       },
       cancelDialog(){

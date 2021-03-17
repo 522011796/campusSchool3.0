@@ -645,11 +645,11 @@
       },
       handleSelect(data, type){
         if (type == 1){
-          this.form.type = data;
+          this.form.type = ''+data;
           this.form.level = "";
           this.initLevels(data);
         }else if(type == 2){
-          this.form.level = data;
+          this.form.level = ''+data;
         }
       },
       search(data){

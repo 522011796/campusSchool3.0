@@ -684,7 +684,7 @@
         let total = 0;
         let params = {
           //collegeIdList: this.campusId,
-          departmentIdList: this.deptData[this.deptData.length - 1]
+          departmentId: this.deptData[this.deptData.length - 1]
         };
         this.sexTeacherTotal = 0;
         this.maleTeacherTotal = 0;

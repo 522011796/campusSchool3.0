@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="修改bug">
+    <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/basicInfo/college.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/college.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/dataInfo/stuData/stuQuanti.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dataInfo/stuData/stuQuanti.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/notice.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/notice.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/rp/rpApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/rp/rpApply.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/studentInfo/student/manage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/student/manage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/teachInfo/teacher/empower.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/teachInfo/teacher/empower.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +57,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1615949920858</updated>
-      <workItem from="1615949930355" duration="6021000" />
+      <workItem from="1615949930355" duration="8305000" />
     </task>
     <task id="LOCAL-00001" summary="修改bug">
       <created>1615953061597</created>
@@ -74,7 +73,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615953640130</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="修改bug">
+      <created>1615965304894</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1615965304894</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -85,10 +91,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="修改bug" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="229" y="25" width="981" height="795" key="CommitChangelistDialog2" timestamp="1615959794493">
+    <state x="229" y="25" width="981" height="795" key="CommitChangelistDialog2" timestamp="1615965302257">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
-    <state x="229" y="25" width="981" height="795" key="CommitChangelistDialog2/0.25.1440.795@0.25.1440.795" timestamp="1615959794493" />
+    <state x="229" y="25" width="981" height="795" key="CommitChangelistDialog2/0.25.1440.795@0.25.1440.795" timestamp="1615965302257" />
     <state x="100" y="125" width="1240" height="595" key="DiffContextDialog" timestamp="1615964067684">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
@@ -97,13 +103,13 @@
       <screen x="0" y="25" width="1440" height="795" />
     </state>
     <state x="229" y="58" key="SettingsEditor/0.25.1440.795@0.25.1440.795" timestamp="1615953663750" />
-    <state x="320" y="159" key="Vcs.Push.Dialog.v2" timestamp="1615959803787">
+    <state x="320" y="159" key="Vcs.Push.Dialog.v2" timestamp="1615965307025">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
-    <state x="320" y="159" key="Vcs.Push.Dialog.v2/0.25.1440.795@0.25.1440.795" timestamp="1615959803787" />
-    <state x="306" y="147" width="827" height="550" key="find.popup" timestamp="1615950198467">
+    <state x="320" y="159" key="Vcs.Push.Dialog.v2/0.25.1440.795@0.25.1440.795" timestamp="1615965307025" />
+    <state x="306" y="147" width="827" height="550" key="find.popup" timestamp="1615968221994">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
-    <state x="306" y="147" width="827" height="550" key="find.popup/0.25.1440.795@0.25.1440.795" timestamp="1615950198467" />
+    <state x="306" y="147" width="827" height="550" key="find.popup/0.25.1440.795@0.25.1440.795" timestamp="1615968221994" />
   </component>
 </project>
