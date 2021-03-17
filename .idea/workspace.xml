@@ -1,31 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="">
+    <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layouts/default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/default.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/circular.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/circular.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/notice.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/notice.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/student/manage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/student/manage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/teachInfo/teacher/empower.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/teachInfo/teacher/empower.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="CSS File" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GithubDefaultAccount">
-    <option name="defaultAccountId" value="df87f580-3e79-445e-86b5-6efb110acb2a" />
-  </component>
-  <component name="ProjectId" id="1idQgb9lXL6SxNezKnhtGq52BrV" />
+  <component name="ProjectId" id="1prn8q6uRHLyWh9ANO9CRzvCwCn" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -35,32 +29,12 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/utils/validater" />
-    <property name="list.type.of.created.stylesheet" value="textmate" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="settings.github" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
     <property name="show.migrate.to.gradle.popup" value="false" />
-    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/utils/validater" />
-      <recent name="$PROJECT_DIR$/pages/basicInfo" />
-      <recent name="$PROJECT_DIR$/static/img" />
-      <recent name="$PROJECT_DIR$/pages/teachInfo/teacher" />
-      <recent name="$PROJECT_DIR$/pages/attendanceInfo/administration" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/pages/logisticsInfo/doorAccess" />
-      <recent name="$PROJECT_DIR$/components/utils/status" />
-      <recent name="$PROJECT_DIR$/pages/teachInfo/exam" />
-      <recent name="$PROJECT_DIR$/components/utils/dialog" />
-      <recent name="$PROJECT_DIR$/components/tree" />
-    </key>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -79,503 +53,22 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="92e4584d-988c-4c41-838a-47224594bd1e" name="Default Changelist" comment="" />
-      <created>1602235100504</created>
+      <changelist id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="" />
+      <created>1615949920858</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1602235100504</updated>
-      <workItem from="1602235103603" duration="1048000" />
-      <workItem from="1602236558812" duration="104000" />
-      <workItem from="1602236688418" duration="638000" />
-      <workItem from="1602237688915" duration="45752000" />
-      <workItem from="1602515209123" duration="29559000" />
-      <workItem from="1602602280392" duration="32995000" />
-      <workItem from="1602740617969" duration="64375000" />
-      <workItem from="1603090620859" duration="21014000" />
-      <workItem from="1603172221855" duration="988000" />
-      <workItem from="1604364814322" duration="55526000" />
-      <workItem from="1604646556872" duration="2333000" />
-      <workItem from="1604712904285" duration="151488000" />
-      <workItem from="1605662854660" duration="15034000" />
-      <workItem from="1605696722145" duration="117000" />
-      <workItem from="1605711431800" duration="203184000" />
-      <workItem from="1606743205465" duration="32160000" />
-      <workItem from="1606875308377" duration="82431000" />
-      <workItem from="1607134770964" duration="211120000" />
-      <workItem from="1608254032281" duration="63362000" />
-      <workItem from="1608543213428" duration="7598000" />
-      <workItem from="1608617065213" duration="1941000" />
-      <workItem from="1608625084513" duration="122942000" />
-      <workItem from="1609379556549" duration="104145000" />
-      <workItem from="1610156986760" duration="338962000" />
-      <workItem from="1611544756423" duration="213730000" />
-      <workItem from="1612495432937" duration="10270000" />
-      <workItem from="1612513126795" duration="5215000" />
-      <workItem from="1612663815769" duration="17475000" />
-      <workItem from="1612749103965" duration="14013000" />
-      <workItem from="1612832131841" duration="1462000" />
-      <workItem from="1613696934587" duration="147108000" />
-      <workItem from="1614561879817" duration="15526000" />
-      <workItem from="1614647780660" duration="19411000" />
-      <workItem from="1614733305821" duration="35725000" />
-      <workItem from="1614850381173" duration="34941000" />
-      <workItem from="1615165883777" duration="23493000" />
-      <workItem from="1615251588961" duration="54321000" />
-      <workItem from="1615425332914" duration="41975000" />
-      <workItem from="1615779706638" duration="3770000" />
+      <updated>1615949920858</updated>
+      <workItem from="1615949930355" duration="1898000" />
     </task>
-    <task id="LOCAL-00304" summary="1、修改框架和组件样式、细节bug等&#10;2、新增web权限、自定义顶部显示">
-      <created>1614823211121</created>
-      <option name="number" value="00304" />
-      <option name="presentableId" value="LOCAL-00304" />
-      <option name="project" value="LOCAL" />
-      <updated>1614823211121</updated>
-    </task>
-    <task id="LOCAL-00305" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1614825074278</created>
-      <option name="number" value="00305" />
-      <option name="presentableId" value="LOCAL-00305" />
-      <option name="project" value="LOCAL" />
-      <updated>1614825074278</updated>
-    </task>
-    <task id="LOCAL-00306" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1614843347752</created>
-      <option name="number" value="00306" />
-      <option name="presentableId" value="LOCAL-00306" />
-      <option name="project" value="LOCAL" />
-      <updated>1614843347752</updated>
-    </task>
-    <task id="LOCAL-00307" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1614851123488</created>
-      <option name="number" value="00307" />
-      <option name="presentableId" value="LOCAL-00307" />
-      <option name="project" value="LOCAL" />
-      <updated>1614851123489</updated>
-    </task>
-    <task id="LOCAL-00308" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1614855348493</created>
-      <option name="number" value="00308" />
-      <option name="presentableId" value="LOCAL-00308" />
-      <option name="project" value="LOCAL" />
-      <updated>1614855348494</updated>
-    </task>
-    <task id="LOCAL-00309" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1614855527591</created>
-      <option name="number" value="00309" />
-      <option name="presentableId" value="LOCAL-00309" />
-      <option name="project" value="LOCAL" />
-      <updated>1614855527591</updated>
-    </task>
-    <task id="LOCAL-00310" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1614909577321</created>
-      <option name="number" value="00310" />
-      <option name="presentableId" value="LOCAL-00310" />
-      <option name="project" value="LOCAL" />
-      <updated>1614909577321</updated>
-    </task>
-    <task id="LOCAL-00311" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1614911515760</created>
-      <option name="number" value="00311" />
-      <option name="presentableId" value="LOCAL-00311" />
-      <option name="project" value="LOCAL" />
-      <updated>1614911515760</updated>
-    </task>
-    <task id="LOCAL-00312" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1614914344949</created>
-      <option name="number" value="00312" />
-      <option name="presentableId" value="LOCAL-00312" />
-      <option name="project" value="LOCAL" />
-      <updated>1614914344949</updated>
-    </task>
-    <task id="LOCAL-00313" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615002747378</created>
-      <option name="number" value="00313" />
-      <option name="presentableId" value="LOCAL-00313" />
-      <option name="project" value="LOCAL" />
-      <updated>1615002747378</updated>
-    </task>
-    <task id="LOCAL-00314" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615017528836</created>
-      <option name="number" value="00314" />
-      <option name="presentableId" value="LOCAL-00314" />
-      <option name="project" value="LOCAL" />
-      <updated>1615017528838</updated>
-    </task>
-    <task id="LOCAL-00315" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615018448144</created>
-      <option name="number" value="00315" />
-      <option name="presentableId" value="LOCAL-00315" />
-      <option name="project" value="LOCAL" />
-      <updated>1615018448145</updated>
-    </task>
-    <task id="LOCAL-00316" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615020373825</created>
-      <option name="number" value="00316" />
-      <option name="presentableId" value="LOCAL-00316" />
-      <option name="project" value="LOCAL" />
-      <updated>1615020373825</updated>
-    </task>
-    <task id="LOCAL-00317" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615170370845</created>
-      <option name="number" value="00317" />
-      <option name="presentableId" value="LOCAL-00317" />
-      <option name="project" value="LOCAL" />
-      <updated>1615170370846</updated>
-    </task>
-    <task id="LOCAL-00318" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615182427670</created>
-      <option name="number" value="00318" />
-      <option name="presentableId" value="LOCAL-00318" />
-      <option name="project" value="LOCAL" />
-      <updated>1615182427670</updated>
-    </task>
-    <task id="LOCAL-00319" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615185442566</created>
-      <option name="number" value="00319" />
-      <option name="presentableId" value="LOCAL-00319" />
-      <option name="project" value="LOCAL" />
-      <updated>1615185442566</updated>
-    </task>
-    <task id="LOCAL-00320" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615196598775</created>
-      <option name="number" value="00320" />
-      <option name="presentableId" value="LOCAL-00320" />
-      <option name="project" value="LOCAL" />
-      <updated>1615196598775</updated>
-    </task>
-    <task id="LOCAL-00321" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615197264984</created>
-      <option name="number" value="00321" />
-      <option name="presentableId" value="LOCAL-00321" />
-      <option name="project" value="LOCAL" />
-      <updated>1615197264984</updated>
-    </task>
-    <task id="LOCAL-00322" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615256264804</created>
-      <option name="number" value="00322" />
-      <option name="presentableId" value="LOCAL-00322" />
-      <option name="project" value="LOCAL" />
-      <updated>1615256264805</updated>
-    </task>
-    <task id="LOCAL-00323" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615259688847</created>
-      <option name="number" value="00323" />
-      <option name="presentableId" value="LOCAL-00323" />
-      <option name="project" value="LOCAL" />
-      <updated>1615259688847</updated>
-    </task>
-    <task id="LOCAL-00324" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615261466267</created>
-      <option name="number" value="00324" />
-      <option name="presentableId" value="LOCAL-00324" />
-      <option name="project" value="LOCAL" />
-      <updated>1615261466267</updated>
-    </task>
-    <task id="LOCAL-00325" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615275042923</created>
-      <option name="number" value="00325" />
-      <option name="presentableId" value="LOCAL-00325" />
-      <option name="project" value="LOCAL" />
-      <updated>1615275042923</updated>
-    </task>
-    <task id="LOCAL-00326" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615280488207</created>
-      <option name="number" value="00326" />
-      <option name="presentableId" value="LOCAL-00326" />
-      <option name="project" value="LOCAL" />
-      <updated>1615280488207</updated>
-    </task>
-    <task id="LOCAL-00327" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615283711226</created>
-      <option name="number" value="00327" />
-      <option name="presentableId" value="LOCAL-00327" />
-      <option name="project" value="LOCAL" />
-      <updated>1615283711227</updated>
-    </task>
-    <task id="LOCAL-00328" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615285655282</created>
-      <option name="number" value="00328" />
-      <option name="presentableId" value="LOCAL-00328" />
-      <option name="project" value="LOCAL" />
-      <updated>1615285655282</updated>
-    </task>
-    <task id="LOCAL-00329" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615341848472</created>
-      <option name="number" value="00329" />
-      <option name="presentableId" value="LOCAL-00329" />
-      <option name="project" value="LOCAL" />
-      <updated>1615341848472</updated>
-    </task>
-    <task id="LOCAL-00330" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615342629627</created>
-      <option name="number" value="00330" />
-      <option name="presentableId" value="LOCAL-00330" />
-      <option name="project" value="LOCAL" />
-      <updated>1615342629628</updated>
-    </task>
-    <task id="LOCAL-00331" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615346313117</created>
-      <option name="number" value="00331" />
-      <option name="presentableId" value="LOCAL-00331" />
-      <option name="project" value="LOCAL" />
-      <updated>1615346313118</updated>
-    </task>
-    <task id="LOCAL-00332" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615349055522</created>
-      <option name="number" value="00332" />
-      <option name="presentableId" value="LOCAL-00332" />
-      <option name="project" value="LOCAL" />
-      <updated>1615349055522</updated>
-    </task>
-    <task id="LOCAL-00333" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615357345050</created>
-      <option name="number" value="00333" />
-      <option name="presentableId" value="LOCAL-00333" />
-      <option name="project" value="LOCAL" />
-      <updated>1615357345051</updated>
-    </task>
-    <task id="LOCAL-00334" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615363207792</created>
-      <option name="number" value="00334" />
-      <option name="presentableId" value="LOCAL-00334" />
-      <option name="project" value="LOCAL" />
-      <updated>1615363207792</updated>
-    </task>
-    <task id="LOCAL-00335" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615365540674</created>
-      <option name="number" value="00335" />
-      <option name="presentableId" value="LOCAL-00335" />
-      <option name="project" value="LOCAL" />
-      <updated>1615365540674</updated>
-    </task>
-    <task id="LOCAL-00336" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615366084015</created>
-      <option name="number" value="00336" />
-      <option name="presentableId" value="LOCAL-00336" />
-      <option name="project" value="LOCAL" />
-      <updated>1615366084015</updated>
-    </task>
-    <task id="LOCAL-00337" summary="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置">
-      <created>1615368875503</created>
-      <option name="number" value="00337" />
-      <option name="presentableId" value="LOCAL-00337" />
-      <option name="project" value="LOCAL" />
-      <updated>1615368875504</updated>
-    </task>
-    <task id="LOCAL-00338" summary="1、修改框架和组件样式、细节bug等&#10;2、新增需求">
-      <created>1615425968807</created>
-      <option name="number" value="00338" />
-      <option name="presentableId" value="LOCAL-00338" />
-      <option name="project" value="LOCAL" />
-      <updated>1615425968808</updated>
-    </task>
-    <task id="LOCAL-00339" summary="1、修改框架和组件样式、细节bug等&#10;2、新增需求">
-      <created>1615447560386</created>
-      <option name="number" value="00339" />
-      <option name="presentableId" value="LOCAL-00339" />
-      <option name="project" value="LOCAL" />
-      <updated>1615447560386</updated>
-    </task>
-    <task id="LOCAL-00340" summary="1、修改框架和组件样式、细节bug等&#10;2、新增需求">
-      <created>1615456244300</created>
-      <option name="number" value="00340" />
-      <option name="presentableId" value="LOCAL-00340" />
-      <option name="project" value="LOCAL" />
-      <updated>1615456244300</updated>
-    </task>
-    <task id="LOCAL-00341" summary="1、修改框架和组件样式、细节bug等&#10;2、新增需求">
-      <created>1615456586083</created>
-      <option name="number" value="00341" />
-      <option name="presentableId" value="LOCAL-00341" />
-      <option name="project" value="LOCAL" />
-      <updated>1615456586083</updated>
-    </task>
-    <task id="LOCAL-00342" summary="1、修改框架和组件样式、细节bug等&#10;2、新增需求">
-      <created>1615457210404</created>
-      <option name="number" value="00342" />
-      <option name="presentableId" value="LOCAL-00342" />
-      <option name="project" value="LOCAL" />
-      <updated>1615457210404</updated>
-    </task>
-    <task id="LOCAL-00343" summary="1、修改框架和组件样式、细节bug等&#10;2、新增需求">
-      <created>1615457846670</created>
-      <option name="number" value="00343" />
-      <option name="presentableId" value="LOCAL-00343" />
-      <option name="project" value="LOCAL" />
-      <updated>1615457846670</updated>
-    </task>
-    <task id="LOCAL-00344" summary="1、修改框架和组件样式、细节bug等&#10;2、新增需求">
-      <created>1615512868298</created>
-      <option name="number" value="00344" />
-      <option name="presentableId" value="LOCAL-00344" />
-      <option name="project" value="LOCAL" />
-      <updated>1615512868298</updated>
-    </task>
-    <task id="LOCAL-00345" summary="1、修改框架和组件样式、细节bug等&#10;2、新增需求">
-      <created>1615529019605</created>
-      <option name="number" value="00345" />
-      <option name="presentableId" value="LOCAL-00345" />
-      <option name="project" value="LOCAL" />
-      <updated>1615529019605</updated>
-    </task>
-    <task id="LOCAL-00346" summary="1、修改框架和组件样式、细节bug等&#10;2、新增需求">
-      <created>1615529244111</created>
-      <option name="number" value="00346" />
-      <option name="presentableId" value="LOCAL-00346" />
-      <option name="project" value="LOCAL" />
-      <updated>1615529244111</updated>
-    </task>
-    <task id="LOCAL-00347" summary="1、修改框架和组件样式、细节bug等&#10;2、新增需求">
-      <created>1615544249087</created>
-      <option name="number" value="00347" />
-      <option name="presentableId" value="LOCAL-00347" />
-      <option name="project" value="LOCAL" />
-      <updated>1615544249089</updated>
-    </task>
-    <task id="LOCAL-00348" summary="1、修改框架和组件样式、细节bug等&#10;2、新增需求">
-      <created>1615774035952</created>
-      <option name="number" value="00348" />
-      <option name="presentableId" value="LOCAL-00348" />
-      <option name="project" value="LOCAL" />
-      <updated>1615774035952</updated>
-    </task>
-    <task id="LOCAL-00349" summary="1、修改框架和组件样式、细节bug等&#10;2、更新统一函数">
-      <created>1615775186278</created>
-      <option name="number" value="00349" />
-      <option name="presentableId" value="LOCAL-00349" />
-      <option name="project" value="LOCAL" />
-      <updated>1615775186279</updated>
-    </task>
-    <task id="LOCAL-00350" summary="1、修改框架和组件样式、细节bug等&#10;2、更新统一函数">
-      <created>1615776668231</created>
-      <option name="number" value="00350" />
-      <option name="presentableId" value="LOCAL-00350" />
-      <option name="project" value="LOCAL" />
-      <updated>1615776668231</updated>
-    </task>
-    <task id="LOCAL-00351" summary="1、修改框架和组件样式、细节bug等&#10;2、更新统一函数">
-      <created>1615778180632</created>
-      <option name="number" value="00351" />
-      <option name="presentableId" value="LOCAL-00351" />
-      <option name="project" value="LOCAL" />
-      <updated>1615778180633</updated>
-    </task>
-    <task id="LOCAL-00352" summary="1、修改框架和组件样式、细节bug等&#10;2、更新统一函数">
-      <created>1615778263461</created>
-      <option name="number" value="00352" />
-      <option name="presentableId" value="LOCAL-00352" />
-      <option name="project" value="LOCAL" />
-      <updated>1615778263461</updated>
-    </task>
-    <option name="localTasksCounter" value="353" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、高德地图--报警集成完成" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、切换可动画版本的按钮组完成" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、点击图片大图组件完成" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、时间改为24小时制完成" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、登录页面小屏幕无法显示，改为小屏幕可以滚动完成" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、分页跳转完成" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、审批流程-固定教师不选择审批老师不能保存完成" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、审批流程-教师仅保留教师和不需审核完成" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、增加分页跳转完成" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、任课安排添加老是错误修改完成" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、批量操作未清除前一步的操作数据修改完成" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、通知公告预览和回复消息修改完成" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、各种问题修改完成" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、人脸识别审批中心完成" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、时间搜索按钮组带动画版本完成" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、按钮组带动画版本完成" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、搜索、院系等菜单点击后page未重置为1" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、新增行政考勤-教工请假统计" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、新增教学设置-请假设置" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、新增web权限" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、新增web权限、自定义顶部显示" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、新增tab快捷自动移动到可见位置" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、新增需求" />
-    <MESSAGE value="1、修改框架和组件样式、细节bug等&#10;2、更新统一函数" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、修改框架和组件样式、细节bug等&#10;2、更新统一函数" />
-  </component>
   <component name="WindowStateProjectService">
-    <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1612176661241">
-      <screen x="0" y="25" width="1440" height="798" />
-    </state>
-    <state x="458" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.798@0.25.1440.798" timestamp="1612176661241" />
-    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2" timestamp="1615778261978">
+    <state x="306" y="147" width="827" height="550" key="find.popup" timestamp="1615950198467">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
-    <state x="198" y="25" width="1001" height="795" key="CommitChangelistDialog2/0.25.1440.795@0.25.1440.795" timestamp="1615778261978" />
-    <state x="198" y="25" width="1003" height="798" key="CommitChangelistDialog2/0.25.1440.798@0.25.1440.798" timestamp="1612662480606" />
-    <state x="100" y="124" width="1240" height="598" key="DiffContextDialog" timestamp="1615544234716">
-      <screen x="0" y="25" width="1440" height="795" />
-    </state>
-    <state x="100" y="124" width="1240" height="598" key="DiffContextDialog/0.25.1440.795@0.25.1440.795" timestamp="1615544234716" />
-    <state x="100" y="124" width="1240" height="600" key="DiffContextDialog/0.25.1440.798@0.25.1440.798" timestamp="1612685014754" />
-    <state width="1398" height="201" key="GridCell.Tab.0.bottom" timestamp="1609379519477">
-      <screen x="0" y="25" width="1440" height="798" />
-    </state>
-    <state width="1398" height="201" key="GridCell.Tab.0.bottom/0.25.1440.798@0.25.1440.798" timestamp="1609379519477" />
-    <state width="1398" height="201" key="GridCell.Tab.0.center" timestamp="1609379519476">
-      <screen x="0" y="25" width="1440" height="798" />
-    </state>
-    <state width="1398" height="201" key="GridCell.Tab.0.center/0.25.1440.798@0.25.1440.798" timestamp="1609379519476" />
-    <state width="1398" height="201" key="GridCell.Tab.0.left" timestamp="1609379519473">
-      <screen x="0" y="25" width="1440" height="798" />
-    </state>
-    <state width="1398" height="201" key="GridCell.Tab.0.left/0.25.1440.798@0.25.1440.798" timestamp="1609379519473" />
-    <state width="1398" height="201" key="GridCell.Tab.0.right" timestamp="1609379519477">
-      <screen x="0" y="25" width="1440" height="798" />
-    </state>
-    <state width="1398" height="201" key="GridCell.Tab.0.right/0.25.1440.798@0.25.1440.798" timestamp="1609379519477" />
-    <state x="221" y="66" key="SettingsEditor" timestamp="1615529226556">
-      <screen x="0" y="25" width="1440" height="795" />
-    </state>
-    <state x="221" y="66" key="SettingsEditor/0.25.1440.795@0.25.1440.795" timestamp="1615529226556" />
-    <state x="221" y="66" key="SettingsEditor/0.25.1440.798@0.25.1440.798" timestamp="1611905365471" />
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2" timestamp="1615778265285">
-      <screen x="0" y="25" width="1440" height="795" />
-    </state>
-    <state x="320" y="165" key="Vcs.Push.Dialog.v2/0.25.1440.795@0.25.1440.795" timestamp="1615778265285" />
-    <state x="320" y="166" key="Vcs.Push.Dialog.v2/0.25.1440.798@0.25.1440.798" timestamp="1612662483421" />
-    <state x="100" y="124" width="1240" height="598" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1615274319801">
-      <screen x="0" y="25" width="1440" height="795" />
-    </state>
-    <state x="100" y="124" width="1240" height="598" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1440.795@0.25.1440.795" timestamp="1615274319801" />
-    <state x="100" y="124" width="1240" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1440.798@0.25.1440.798" timestamp="1611203372469" />
-    <state x="441" y="61" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1610592665848">
-      <screen x="0" y="25" width="1440" height="798" />
-    </state>
-    <state x="441" y="61" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.25.1440.798@0.25.1440.798" timestamp="1610592665848" />
-    <state x="506" y="345" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1611389592729">
-      <screen x="0" y="25" width="1440" height="798" />
-    </state>
-    <state x="506" y="345" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.1440.798@0.25.1440.798" timestamp="1611389592729" />
-    <state x="378" y="182" width="1004" height="550" key="find.popup" timestamp="1615775572366">
-      <screen x="0" y="25" width="1440" height="795" />
-    </state>
-    <state x="378" y="182" width="1004" height="550" key="find.popup/0.25.1440.795@0.25.1440.795" timestamp="1615775572366" />
-    <state x="378" y="183" width="837" height="550" key="find.popup/0.25.1440.798@0.25.1440.798" timestamp="1612678392148" />
-    <state x="385" y="153" width="670" height="671" key="search.everywhere.popup" timestamp="1611727354332">
-      <screen x="0" y="25" width="1440" height="798" />
-    </state>
-    <state x="385" y="153" width="670" height="671" key="search.everywhere.popup/0.25.1440.798@0.25.1440.798" timestamp="1611727354332" />
+    <state x="306" y="147" width="827" height="550" key="find.popup/0.25.1440.795@0.25.1440.795" timestamp="1615950198467" />
   </component>
 </project>

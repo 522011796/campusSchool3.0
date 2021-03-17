@@ -132,16 +132,18 @@
               prop="class_no"
               :label="$t('已授权/总数')">
               <template slot-scope="scope">
-                <div @click="detialDeviceInfo(scope.row)" style="cursor: default">
-                  <span class="color-success">
-                    <label v-if="scope.row.ai_sync_success">{{scope.row.ai_sync_success}}</label>
-                    <label v-else>0</label>
-                  </span>
-                  /
-                  <span class="color-grand">
-                    {{scope.row.ai_sync_all}}
-                  </span>
-                </div>
+                <el-tooltip class="item" effect="dark" :content="$t('点击可查看详细设备授权信息')" placement="top">
+                  <div @click="detialDeviceInfo(scope.row)" style="cursor: default">
+                    <span class="color-success">
+                      <label v-if="scope.row.ai_sync_success">{{scope.row.ai_sync_success}}</label>
+                      <label v-else>0</label>
+                    </span>
+                    /
+                    <span class="color-grand">
+                      {{scope.row.ai_sync_all}}
+                    </span>
+                  </div>
+                </el-tooltip>
               </template>
             </el-table-column>
             <el-table-column
@@ -847,7 +849,7 @@
         let params = {
           page: this.page,
           num: this.num,
-          departPath: this.searchDept,
+          departmentPath: this.searchDept,
           deleted: 0,
           aiSyncStatus: this.aiSyncStatus,
           searchKey: this.searchKey.input
@@ -858,7 +860,7 @@
         //params = this.$qs.stringify(params);
         this.tableData = [];
         this.$axios.get(common.tearcher_info_setting_page, {params: params}).then(res => {
-          if (res.data.data && res.data.data.list.length > 0){
+          if (res.data.data){
             for (let i = 0; i < res.data.data.list.length; i++){
               res.data.data.list[i]['loading'] = false;
             }
@@ -1040,7 +1042,7 @@
       },
       nodeClick(data){
         this.searchDept = "";
-        this.searchDept = data.value;
+        this.searchDept = data.department_path;
         this.page = 1;
         this.init();
       },
@@ -1548,5 +1550,8 @@
     height: 100%;
     background: #dddddd;
     z-index: 2
+  }
+  .hover-tips:hover{
+    border-bottom: 1px solid #077DBA;
   }
 </style>

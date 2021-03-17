@@ -22,7 +22,7 @@
                 <my-select v-if="showTableAndList == true" width-style="100" :clearable="true" :sel-value="searchAccountStatusType" :options="filterUserAccountActiveStatusOptions" :placeholder="$t('激活状态')" class="layout-item" size="small" @change="handleSelect($event, 3)"></my-select>
                 <my-select width-style="100" :clearable="true" :sel-value="searchStatus" :options="studentTeachStatusInfo(null, 'get')" :placeholder="$t('学籍状态')" class="layout-item" size="small" @change="handleSelect($event, 1)"></my-select>
                 <my-select width-style="100" :clearable="true" :sel-value="searchTeach" :options="studyTypeInfo(null, 'get')" :placeholder="$t('就读形式')" class="layout-item" size="small" @change="handleSelect($event, 2)"></my-select>
-                <my-input-button class="layout-item" :placeholder="$t('姓名/学号')" :show-select="false" :options="searchStudentType" size="small" plain width-class="width: 150px" type="success" :clearable="true" @click="search"></my-input-button>
+                <my-input-button class="layout-item" :placeholder="$t('姓名/学号')" :show-select="false" :options="searchStudentType" size="small" plain width-class="width: 105px" type="success" :clearable="true" @click="search"></my-input-button>
               </div>
             </el-col>
           </el-row>
@@ -1225,7 +1225,7 @@
         if (this.searchTeach != ''){
           params['attendType'] = this.searchTeach;
         }
-        console.log(this.searchAccountStatusType);
+
         if (this.searchAccountStatusType !== ""){
           params['bind'] = this.searchAccountStatusType;
         }
@@ -1233,7 +1233,7 @@
         //params = this.$qs.stringify(params);
         this.tableData = [];
         this.$axios.get(common.face_sync_auth_student_list, {params: params}).then(res => {
-          if (res.data.data && res.data.data.list.length > 0){
+          if (res.data.data){
             for (let i = 0; i < res.data.data.list.length; i++){
               res.data.data.list[i]['loading'] = false;
             }

@@ -544,7 +544,7 @@
         };
         this.noticeContentDetailData = [];
         this.$axios.get(url, {params: params}).then(res => {
-          if (res.data.data && res.data.data.list.length > 0){
+          if (res.data.data){
             for (let i = 0; i < res.data.data.list.length; i++){
               res.data.data.list[i]['replyModal'] = false;
               res.data.data.list[i]['reply_visible'] = false;
