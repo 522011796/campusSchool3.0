@@ -12,11 +12,11 @@
       <div slot="right">
         <div class="layout-right-tab">
           <el-row>
-            <el-col :span="showTableAndList == false ? '10' : '9'">
+            <el-col :span="showTableAndList == false ? 10 : 9">
               <tab-group-button size="small" :options='filterAuthOptions' @click="handleChange"></tab-group-button>
               <el-button v-if="showTableAndList == false" size="small" type="default" :disabled="deviceList.length <= 0" :loading="mutiUnbindLoading"  icon="el-icon-circle-close" @click="unbindMutiInfo($event)">{{$t("批量重置")}}</el-button>
             </el-col>
-            <el-col :span="showTableAndList == false ? '14' : '15'">
+            <el-col :span="showTableAndList == false ? 14 : 15">
               <div class="text-right layout-inline">
                 <i :class="showTableAndList == false ? 'fa fa-table' : 'fa fa-list'" @click="changeTableAndList"></i>
                 <my-select v-if="showTableAndList == true" width-style="99" :clearable="true" :sel-value="searchAccountStatusType" :options="filterUserAccountActiveStatusOptions" :placeholder="$t('激活状态')" class="layout-item" size="small" @change="handleSelect($event, 3)"></my-select>
@@ -63,7 +63,7 @@
                               </div>
                               <el-button size="mini" plain type="success" @click="detialRecordInfo(item)">
                                 <i class="fa fa-cog"></i>
-                                <span>{{$t("授权记录")}}</span>
+                                <span>{{$t("识别记录")}}</span>
                               </el-button>
                               <el-button size="mini" plain type="warning" @click="syncInfo(item)">
                                 <i class="fa" :class="item.loading ? 'fa-spinner fa-spin' : 'fa-retweet'"></i>
@@ -90,6 +90,18 @@
                               <el-button size="mini" plain type="danger" @click="parentInfo(item)">
                                 <i class="fa fa-user"></i>
                                 <span>{{$t("家长信息")}}</span>
+                              </el-button>
+                              <el-button size="mini" plain type="warning" @click="detialDeviceInfo(item)">
+                                <i class="fa fa-cube"></i>
+                                <span>{{$t("授权设备")}}</span>
+                                (<span class="color-success">
+                                  <label v-if="item.ai_sync_success">{{item.ai_sync_success}}</label>
+                                  <label v-else>0</label>
+                                </span>
+                                /
+                                <span class="color-grand">
+                                  {{item.ai_sync_all}}
+                                </span>)
                               </el-button>
                             </div>
                             <div class="line-height"></div>
@@ -137,14 +149,16 @@
                     <el-col :span="16">
                       <div class="text-right" style="position: relative">
                         <div class="moon-content-text-ellipsis-class" style="cursor:default;position: relative; z-index: 99;">
-                          <span class="color-success" @click.stop="detialDeviceInfo(item)">
-                            <label v-if="item.ai_sync_success">{{item.ai_sync_success}}</label>
-                            <label v-else>0</label>
-                          </span>
-                          /
-                          <span class="color-grand" @click.stop="detialDeviceInfo(item)">
-                            {{item.ai_sync_all}}
-                          </span>
+                          <label @click.stop="detialDeviceInfo(item)">
+                            <span class="color-success">
+                              <label v-if="item.ai_sync_success">{{item.ai_sync_success}}</label>
+                              <label v-else>0</label>
+                            </span>
+                              /
+                              <span class="color-grand">
+                              {{item.ai_sync_all}}
+                            </span>
+                          </label>
                         </div>
                         <div class="moon-content-text-ellipsis-class color-grand" style="cursor:default;">
                           <span @click="detailInfo(item)">
@@ -294,16 +308,18 @@
               prop="class_no"
               :label="$t('已授权/总数')">
               <template slot-scope="scope">
-                <div @click="detialDeviceInfo(scope.row)" style="cursor: default">
-                  <span class="color-success">
-                    <label v-if="scope.row.ai_sync_success">{{scope.row.ai_sync_success}}</label>
-                    <label v-else>0</label>
-                  </span>
-                  /
-                  <span class="color-grand">
-                    {{scope.row.ai_sync_all}}
-                  </span>
-                </div>
+                <el-tooltip class="item" effect="dark" :content="$t('点击可查看详细设备授权信息')" placement="top">
+                  <div @click="detialDeviceInfo(scope.row)" style="cursor: default">
+                    <span class="color-success">
+                      <label v-if="scope.row.ai_sync_success">{{scope.row.ai_sync_success}}</label>
+                      <label v-else>0</label>
+                    </span>
+                    /
+                    <span class="color-grand">
+                      {{scope.row.ai_sync_all}}
+                    </span>
+                  </div>
+                </el-tooltip>
               </template>
             </el-table-column>
             <el-table-column
@@ -740,7 +756,7 @@
           <el-table-column
             align="center"
             prop="college_no"
-            :label="$t('授权时间')">
+            :label="$t('识别时间')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                 <div class="text-center">{{scope.row.sync_time ? $moment(scope.row.sync_time).format("YYYY-MM-DD HH:mm:ss") : '--'}}</div>
@@ -764,7 +780,10 @@
             </template>
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center"><my-auth-options :status="scope.row.sync_status"></my-auth-options></div>
+                <div class="text-center">
+                  <span v-if="scope.row.sync_status == 2">{{scope.row.sync_des}}</span>
+                  <my-auth-options v-else :status="scope.row.sync_status"></my-auth-options>
+                </div>
                 <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                   <my-auth-options :status="scope.row.sync_status"></my-auth-options>
                 </span>
@@ -790,7 +809,7 @@
       </div>
     </drawer-layout-right>
 
-    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerRecordVisible" :loading="drawerLoading" size="850px" :title="$t('授权记录')" @right-close="cancelDrawDialog">
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerRecordVisible" :loading="drawerLoading" size="850px" :title="$t('识别记录')" @right-close="cancelDrawDialog">
       <div slot="content">
         <div class="margin-bottom-10 text-right">
           <my-date-picker :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChangeTime" style="position: relative; top: 1px;"></my-date-picker>
@@ -867,7 +886,7 @@
           <el-table-column
             align="center"
             prop="college_no"
-            :label="$t('授权时间')">
+            :label="$t('识别时间')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                 <div class="text-center">{{scope.row.add_time ? $moment(scope.row.add_time).format("YYYY-MM-DD HH:mm:ss") : '--'}}</div>
@@ -880,7 +899,7 @@
           <el-table-column
             align="center"
             prop="college_no"
-            :label="$t('照片抓怕')">
+            :label="$t('照片抓拍')">
             <template slot-scope="scope">
               <my-head-img :head-img="scope.row"></my-head-img>
             </template>
@@ -1215,7 +1234,7 @@
           collegeId: this.searchCollege,
           majorId: this.searchMajor,
           grade: this.searchGrade,
-          clasz: this.searchClass,
+          classId: this.searchClass,
           deleted: 0,
           aiSyncStatus: this.aiSyncStatus
         };
@@ -1432,8 +1451,10 @@
           if (res.data.code == 200){
             //MessageSuccess(res.data.desc);
           }else {
-            MessageError(res.data.desc);
+            //MessageError(res.data.desc);
           }
+
+          MessageSuccess(row.sn + ": " + this.$t("同步操作成功"));
           row.loading = false;
         });
       },
@@ -1453,6 +1474,7 @@
             //MessageError(res.data.desc);
           }
 
+          MessageSuccess(row.real_name + ": " + this.$t("同步操作成功"));
           row.loading = false;
         });
       },

@@ -522,7 +522,7 @@
           <el-table-column
             align="center"
             prop="college_no"
-            :label="$t('授权时间')">
+            :label="$t('识别时间')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                 <div class="text-center">{{scope.row.sync_time ? $moment(scope.row.sync_time).format("YYYY-MM-DD HH:mm:ss") : '--'}}</div>
@@ -546,7 +546,10 @@
             </template>
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center"><my-auth-options :status="scope.row.sync_status"></my-auth-options></div>
+                <div class="text-center">
+                  <span v-if="scope.row.sync_status == 2">{{scope.row.sync_des}}</span>
+                  <my-auth-options v-else :status="scope.row.sync_status"></my-auth-options>
+                </div>
                 <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                   <my-auth-options :status="scope.row.sync_status"></my-auth-options>
                 </span>
@@ -572,7 +575,7 @@
       </div>
     </drawer-layout-right>
 
-    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerRecordVisible" :loading="drawerLoading" size="850px" :title="$t('授权记录')" @right-close="cancelDrawDialog">
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerRecordVisible" :loading="drawerLoading" size="850px" :title="$t('识别记录')" @right-close="cancelDrawDialog">
       <div slot="content">
         <div class="margin-bottom-10 text-right">
           <my-date-picker :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChangeTime" style="position: relative; top: 1px;"></my-date-picker>
@@ -649,7 +652,7 @@
           <el-table-column
             align="center"
             prop="college_no"
-            :label="$t('授权时间')">
+            :label="$t('识别时间')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                 <div class="text-center">{{scope.row.add_time ? $moment(scope.row.add_time).format("YYYY-MM-DD HH:mm:ss") : '--'}}</div>
@@ -662,7 +665,7 @@
           <el-table-column
             align="center"
             prop="college_no"
-            :label="$t('照片抓怕')">
+            :label="$t('照片抓拍')">
             <template slot-scope="scope">
               <my-head-img :head-img="scope.row"></my-head-img>
             </template>
@@ -991,8 +994,9 @@
           if (res.data.code == 200){
             //MessageSuccess(res.data.desc);
           }else {
-            MessageError(res.data.desc);
+            //MessageError(res.data.desc);
           }
+          MessageSuccess(row.sn + ": " + this.$t("同步操作成功"));
           row.loading = false;
         });
       },
@@ -1011,7 +1015,7 @@
           }else {
             //MessageError(res.data.desc);
           }
-
+          MessageSuccess(row.real_name + ": " + this.$t("同步操作成功"));
           row.loading = false;
         });
       },

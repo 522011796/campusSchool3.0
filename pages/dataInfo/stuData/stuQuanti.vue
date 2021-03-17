@@ -44,7 +44,7 @@
                         {{$t("整体量化率")}}:
                       </div>
                       <div class="color-grand margin-top-5 font-size-25 margin-left-15" style="font-weight: bold">
-                        <span>{{qtztRate}}</span>
+                        <span>{{qtztRate}}%</span>
                       </div>
                     </el-col>
                     <el-col :span="8">
@@ -75,7 +75,7 @@
                         <div class="font-size-12 color-muted" v-for="(item, index) in rightStatus" :key="index">
                           <div v-if="index < 2">
                             <label>{{item.name}}:</label>
-                            <label>{{item.rate}}%</label>
+                            <label>{{item.value}}%</label>
                           </div>
                         </div>
                         <div class="font-size-12 color-muted" v-if="rightStatus.length > 2">
