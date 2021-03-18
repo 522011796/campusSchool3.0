@@ -122,7 +122,7 @@
             }, 1000);
           }else {
             me.isDisabled = false;
-            MessageWarning(res.data.desc);
+            MessageWarning(this.$t("请检查信息是否有误！"));
           }
         });
       }

@@ -38,6 +38,11 @@
           </el-table-column>
           <el-table-column
             align="center"
+            prop="start_storey"
+            :label="$t('起始楼层')">
+          </el-table-column>
+          <el-table-column
+            align="center"
             :label="$t('负责人')">
             <template slot-scope="scope">
               <span>{{scope.row.person ? scope.row.person : '--'}}</span>

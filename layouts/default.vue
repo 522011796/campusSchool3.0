@@ -788,7 +788,7 @@
         <el-form-item label="验证码" prop="phoneCode">
           <el-input class="width-300" placeholder="" v-model="formPhone.phoneCode">
             <template slot="append">
-              <timeout-button :action="updatePhoneMms" :data="{oldPhone: this.formPhone.oldPhone, newPhone: this.formPhone.newPhone, userId: this.loginUserId}">
+              <timeout-button :action="updatePhoneMms" :data="{oldPhone: this.loginUserPhone, newPhone: this.formPhone.newPhone, userId: this.loginUserId}">
                 <template>{{$t("获取验证码")}}</template>
               </timeout-button>
             </template>
@@ -1756,10 +1756,17 @@
         });
       },
       updatePhoneInfo(){
+        if (this.loginUserPhone && this.loginUserPhone != ""){
+          let phone = this.loginUserPhone;
+          this.formPhone.oldPhone = phone.substr(0,3)+"****"+phone.substr(7);
+        }
         this.modalPhoneCustomVisible = true;
       },
       updatePwdInfo(){
-        this.formPwd.phone = this.loginUserPhone;
+        if (this.loginUserPhone && this.loginUserPhone != ""){
+          let phone = this.loginUserPhone;
+          this.formPwd.phone = phone.substr(0,3)+"****"+phone.substr(7);
+        }
         this.modalPwdCustomVisible = true;
       },
       updatePhone(){
@@ -1769,7 +1776,7 @@
             let url = "";
             if (this.loginUserType == 4){
               params = {
-                phone: this.formPhone.newPhone,
+                phone: this.loginUserPhone,
                 captcha: this.formPhone.phoneCode,
                 userId: this.loginUserId,
                 username: this.loginUserName,
@@ -1780,7 +1787,7 @@
               params = {
                 newPhone: this.formPhone.newPhone,
                 captcha: this.formPhone.phoneCode,
-                phone: this.formPhone.oldPhone,
+                phone: this.loginUserPhone,
               };
               url = common.updatephone_admin_save_url;
             }

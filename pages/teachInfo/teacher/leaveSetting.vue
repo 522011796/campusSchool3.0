@@ -151,13 +151,13 @@
       <div class="margin-top-10">
         <el-form :model="formConf" :rules="rulesConf" ref="formConf" label-width="100px">
           <el-form-item :label="$t('小时规则:')">
-            <div>
+            <!--<div>
               <my-radio :sel-value="formConf.ruleTimeSwich" label="1" @change="changeStatus($event, 1)">{{$t("按小时")}}</my-radio>
               <el-tooltip class="item" effect="dark" :content="$t('按小时: 将不执行以下小时规则的换算')" placement="top">
                 <i class="fa fa-info-circle"></i>
               </el-tooltip>
               <my-radio class="margin-left-10" :sel-value="formConf.ruleTimeSwich" label="2" @change="changeStatus($event, 2)">{{$t("按天")}}</my-radio>
-            </div>
+            </div>-->
             <div>
               <span>{{$t("请假 <= ")}}</span>
               <el-input :disabled="formConf.ruleTimeSwich == 1" v-model="formConf.ruleHour1" size="small" style="width: 80px"></el-input>
