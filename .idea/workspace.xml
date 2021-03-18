@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/button/TimeoutButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/button/TimeoutButton.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/layouts/default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/default.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/basicInfo/build.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/build.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/teachInfo/teacher/leaveSetting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/teachInfo/teacher/leaveSetting.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +52,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1615949920858</updated>
-      <workItem from="1615949930355" duration="12670000" />
+      <workItem from="1615949930355" duration="13242000" />
     </task>
     <task id="LOCAL-00001" summary="修改bug">
       <created>1615953061597</created>
@@ -86,7 +82,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615968406991</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="修改bug">
+      <created>1616034748876</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1616034748876</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -97,10 +100,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="修改bug" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="229" y="25" width="981" height="795" key="CommitChangelistDialog2" timestamp="1615968405201">
+    <state x="229" y="25" width="981" height="795" key="CommitChangelistDialog2" timestamp="1616034743651">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
-    <state x="229" y="25" width="981" height="795" key="CommitChangelistDialog2/0.25.1440.795@0.25.1440.795" timestamp="1615968405201" />
+    <state x="229" y="25" width="981" height="795" key="CommitChangelistDialog2/0.25.1440.795@0.25.1440.795" timestamp="1616034743651" />
     <state x="100" y="125" width="1240" height="595" key="DiffContextDialog" timestamp="1615964067684">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
@@ -109,10 +112,10 @@
       <screen x="0" y="25" width="1440" height="795" />
     </state>
     <state x="229" y="58" key="SettingsEditor/0.25.1440.795@0.25.1440.795" timestamp="1615953663750" />
-    <state x="320" y="159" key="Vcs.Push.Dialog.v2" timestamp="1615969929275">
+    <state x="320" y="159" key="Vcs.Push.Dialog.v2" timestamp="1616034750807">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
-    <state x="320" y="159" key="Vcs.Push.Dialog.v2/0.25.1440.795@0.25.1440.795" timestamp="1615969929275" />
+    <state x="320" y="159" key="Vcs.Push.Dialog.v2/0.25.1440.795@0.25.1440.795" timestamp="1616034750807" />
     <state x="306" y="147" width="827" height="550" key="find.popup" timestamp="1616029364045">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
