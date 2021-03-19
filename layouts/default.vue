@@ -779,8 +779,11 @@
 
     <dialog-normal width-style="550px" :visible="modalPhoneCustomVisible" :title="$t('修改手机')" @close="closeCustomDialog" @right-close="cancelCustomDialog">
       <el-form :model="formPhone" :rules="rulesPhone" ref="formPhone" label-width="140px">
-        <el-form-item label="旧手机号">
-          <el-input :disabled="true" v-model="formPhone.oldPhone" class="width-300"></el-input>
+        <el-form-item label="提示" style="margin-bottom: 5px !important;">
+          <label>{{formPhone.hidePhone}}</label>
+        </el-form-item>
+        <el-form-item label="旧手机号" prop="oldPhone">
+          <el-input v-model="formPhone.oldPhone" class="width-300"></el-input>
         </el-form-item>
         <el-form-item label="新手机号" prop="newPhone">
           <el-input v-model="formPhone.newPhone" class="width-300"></el-input>
@@ -983,6 +986,7 @@
           imgs: []
         },
         formPhone: {
+          hiePhone: '',
           oldPhone: '',
           newPhone: '',
           phoneCode: '',
@@ -1758,7 +1762,7 @@
       updatePhoneInfo(){
         if (this.loginUserPhone && this.loginUserPhone != ""){
           let phone = this.loginUserPhone;
-          this.formPhone.oldPhone = phone.substr(0,3)+"****"+phone.substr(7);
+          this.formPhone.hidePhone = phone.substr(0,3)+"****"+phone.substr(7);
         }
         this.modalPhoneCustomVisible = true;
       },
@@ -1776,7 +1780,7 @@
             let url = "";
             if (this.loginUserType == 4){
               params = {
-                phone: this.loginUserPhone,
+                phone: this.formPhone.oldPhone,
                 captcha: this.formPhone.phoneCode,
                 userId: this.loginUserId,
                 username: this.loginUserName,

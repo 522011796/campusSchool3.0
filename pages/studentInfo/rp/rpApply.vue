@@ -719,6 +719,7 @@
           des: '',
           userId:[]
         };
+        this.filterAddLevels = [];
         this.subTitle = "";
         this.pageStudent = 1;
         this.numStudent = 20;

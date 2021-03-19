@@ -756,7 +756,7 @@
           <el-table-column
             align="center"
             prop="college_no"
-            :label="$t('识别时间')">
+            :label="$t('授权时间')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                 <div class="text-center">{{scope.row.sync_time ? $moment(scope.row.sync_time).format("YYYY-MM-DD HH:mm:ss") : '--'}}</div>
@@ -1679,12 +1679,12 @@
         this.formRp = {
           id: '',
           type: '',
-          object1: '',
-          object2: '',
+          level: '',
+          file: '',
           des: '',
-          userId: [],
-          file: ''
+          userId:[]
         };
+        this.filterAddLevels = [];
 
         this.formParent = {
           phone: '',
@@ -2155,11 +2155,11 @@
       },
       handleRpSelect(data, type){
         if (type == 1){
-          this.formRp.type = ''+data;
-          this.formRp.level = "";
+          this.$set(this.formRp, 'type', ''+data);
+          this.$set(this.formRp, 'level', '');
           this.initLevels(data);
         }else if(type == 2){
-          this.formRp.level = ''+data;
+          this.$set(this.formRp, 'level', ""+data);
         }
       },
       cancelDialog(){

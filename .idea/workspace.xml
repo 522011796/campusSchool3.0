@@ -3,7 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/layouts/default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/default.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/rp/rpApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/rp/rpApply.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/student/manage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/student/manage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/teachInfo/teacher/empower.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/teachInfo/teacher/empower.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,6 +17,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="df87f580-3e79-445e-86b5-6efb110acb2a" />
   </component>
   <component name="ProjectId" id="1prn8q6uRHLyWh9ANO9CRzvCwCn" />
   <component name="ProjectViewState">
@@ -52,7 +60,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1615949920858</updated>
-      <workItem from="1615949930355" duration="13242000" />
+      <workItem from="1615949930355" duration="13917000" />
+      <workItem from="1616054197583" duration="6447000" />
     </task>
     <task id="LOCAL-00001" summary="修改bug">
       <created>1615953061597</created>
@@ -89,7 +98,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616034748876</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="修改bug">
+      <created>1616052723297</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1616052723297</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -100,22 +116,22 @@
     <option name="LAST_COMMIT_MESSAGE" value="修改bug" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="229" y="25" width="981" height="795" key="CommitChangelistDialog2" timestamp="1616034743651">
+    <state x="229" y="25" width="981" height="795" key="CommitChangelistDialog2" timestamp="1616052720121">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
-    <state x="229" y="25" width="981" height="795" key="CommitChangelistDialog2/0.25.1440.795@0.25.1440.795" timestamp="1616034743651" />
+    <state x="229" y="25" width="981" height="795" key="CommitChangelistDialog2/0.25.1440.795@0.25.1440.795" timestamp="1616052720121" />
     <state x="100" y="125" width="1240" height="595" key="DiffContextDialog" timestamp="1615964067684">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
     <state x="100" y="125" width="1240" height="595" key="DiffContextDialog/0.25.1440.795@0.25.1440.795" timestamp="1615964067684" />
-    <state x="229" y="58" key="SettingsEditor" timestamp="1615953663750">
+    <state x="229" y="58" key="SettingsEditor" timestamp="1616057349515">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
-    <state x="229" y="58" key="SettingsEditor/0.25.1440.795@0.25.1440.795" timestamp="1615953663750" />
-    <state x="320" y="159" key="Vcs.Push.Dialog.v2" timestamp="1616034750807">
+    <state x="229" y="58" key="SettingsEditor/0.25.1440.795@0.25.1440.795" timestamp="1616057349515" />
+    <state x="320" y="159" key="Vcs.Push.Dialog.v2" timestamp="1616118539810">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
-    <state x="320" y="159" key="Vcs.Push.Dialog.v2/0.25.1440.795@0.25.1440.795" timestamp="1616034750807" />
+    <state x="320" y="159" key="Vcs.Push.Dialog.v2/0.25.1440.795@0.25.1440.795" timestamp="1616118539810" />
     <state x="306" y="147" width="827" height="550" key="find.popup" timestamp="1616029364045">
       <screen x="0" y="25" width="1440" height="795" />
     </state>

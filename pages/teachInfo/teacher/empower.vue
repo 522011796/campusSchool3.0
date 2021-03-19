@@ -522,7 +522,7 @@
           <el-table-column
             align="center"
             prop="college_no"
-            :label="$t('识别时间')">
+            :label="$t('授权时间')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                 <div class="text-center">{{scope.row.sync_time ? $moment(scope.row.sync_time).format("YYYY-MM-DD HH:mm:ss") : '--'}}</div>
