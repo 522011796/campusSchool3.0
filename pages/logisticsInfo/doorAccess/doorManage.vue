@@ -209,7 +209,7 @@
             :label="$t('接口')"
             align="center">
             <template slot-scope="scope">
-              <el-checkbox-group v-model="deviceControlList" @change="handleChangeBox($event, scope.row, scope.$index)">
+              <el-checkbox-group v-model="scope.row['doorNoSet']" @change="handleChangeBox($event, scope.row, scope.$index)">
                 <el-checkbox label="1" style="margin-right:-10px;">&nbsp;</el-checkbox>
                 <el-checkbox label="2" style="margin-right:-10px;">&nbsp;</el-checkbox>
                 <el-checkbox label="3" style="margin-right:-10px;">&nbsp;</el-checkbox>

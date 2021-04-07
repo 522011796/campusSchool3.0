@@ -29,16 +29,22 @@
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="right" popper-class="custom-table-popover">
                 <div class="text-center">
-                  <div class="margin-right-5 margin-bottom-5" type="success" size="mini" v-for="(item, index) in scope.row.door_name_set.split(',')" :key="index">
-                    <el-tag type="success" size="mini">
+                  <div v-if="scope.row.door_name_set && scope.row.door_name_set != null">
+                    <div class="margin-right-5 margin-bottom-5" type="success" size="mini" v-for="(item, index) in scope.row.door_name_set.split(',')" :key="index">
+                      <el-tag type="success" size="mini">
+                        {{item}}
+                      </el-tag>
+                    </div>
+                  </div>
+                  <span v-else>--</span>
+                </div>
+                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  <div v-if="scope.row.door_name_set && scope.row.door_name_set != null">
+                    <el-tag class="margin-right-5" type="success" size="mini" v-for="(item, index) in scope.row.door_name_set.split(',')" :key="index">
                       {{item}}
                     </el-tag>
                   </div>
-                </div>
-                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <el-tag class="margin-right-5" type="success" size="mini" v-for="(item, index) in scope.row.door_name_set.split(',')" :key="index">
-                    {{item}}
-                  </el-tag>
+                  <span v-else>--</span>
                 </div>
               </el-popover>
             </template>
@@ -79,18 +85,20 @@
                 <div class="text-center">
                   <span v-if="scope.row.time_type == 1">{{$t("每天")}}</span>
                   <span v-if="scope.row.time_type == 2">
-                    <label class="margin-right-5" v-for="(item, index) in scope.row.week_no_set.split(',')" :key="index">
+                    <label v-if="scope.row.week_no_set && scope.row.week_no_set != null" class="margin-right-5" v-for="(item, index) in scope.row.week_no_set.split(',')" :key="index">
                       {{weekNoTextInfo(item)}}
                     </label>
+                    <span v-else>--</span>
                   </span>
                   <span v-if="scope.row.time_type == 3">{{scope.row.date}}</span>
                 </div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                   <span v-if="scope.row.time_type == 1">{{$t("每天")}}</span>
                   <span v-if="scope.row.time_type == 2">
-                    <el-tag class="margin-right-5" type="success" size="mini" v-for="(item, index) in scope.row.week_no_set.split(',')" :key="index">
+                    <el-tag v-if="scope.row.week_no_set && scope.row.week_no_set != null" class="margin-right-5" type="success" size="mini" v-for="(item, index) in scope.row.week_no_set.split(',')" :key="index">
                       {{weekNoTextInfo(item)}}
                     </el-tag>
+                    <span v-else>--</span>
                   </span>
                   <span v-if="scope.row.time_type == 3">{{scope.row.date}}</span>
                 </div>
