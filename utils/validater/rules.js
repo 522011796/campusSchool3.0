@@ -3,7 +3,7 @@ let phoneReg = /^[1][3,4,5,6,7,8,9][0-9]{9}$/;
 // 必须为数字
 let numberReg = /^\d+$|^\d+[.]?\d+$/;
 // 必须为数字
-let numberNoZeroReg = /^[1-9]*$/;
+let numberNoZeroReg = /^[1-9][0-9]*$/;
 //邮箱
 let emailReg = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/;
 //1-20位名称，只能是中英文或符号
