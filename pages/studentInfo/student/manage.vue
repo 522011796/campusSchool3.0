@@ -926,7 +926,8 @@
             :label="$t('识别状态')">
             <template slot-scope="scope">
               <span v-if="scope.row.alive_type == 1" class="color-success">{{$t("通过")}}</span>
-              <span v-if="scope.row.alive_type != 1" class="color-danger">{{$t("失败")}}</span>
+              <span v-if="scope.row.alive_type == 2" class="color-danger">{{$t("失败")}}</span>
+              <span v-if="scope.row.alive_type == 3" class="color-danger">{{$t("无权限")}}</span>
             </template>
           </el-table-column>
         </el-table>

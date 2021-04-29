@@ -10,6 +10,9 @@ export default {
         ip: [
           { required: true, message: this.$t("请输入IP地址"), trigger: 'blur' },
           { validator: rules.FormValidate.Form().validate_ip, trigger: 'blur' }
+        ],
+        collisionAvoidanceTime: [
+          { required: true, validator: rules.FormValidate.Form().validate_numberNoZeroReg, trigger: 'blur' }
         ]
       }
     }

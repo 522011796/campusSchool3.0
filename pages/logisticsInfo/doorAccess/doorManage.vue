@@ -248,6 +248,16 @@
           <el-form-item :label="$t('备注')" prop="comment">
             <el-input v-model="form.comment" class="width-260"></el-input>
           </el-form-item>
+          <el-form-item :label="$t('防撞')" prop="comment">
+            <my-radio :sel-value="form.collisionAvoidance" :label="true" @change="changeCollisionAvoidance($event, true)">{{$t("启用")}}</my-radio>
+            <my-radio :sel-value="form.collisionAvoidance" :label="false" @change="changeCollisionAvoidance($event, false)">{{$t("禁用")}}</my-radio>
+          </el-form-item>
+          <el-form-item :label="$t('最长时间')" v-if="form.collisionAvoidance == true" :key="1"  prop="collisionAvoidanceTime">
+            <el-input v-model="form.collisionAvoidanceTime" class="width-260"></el-input>
+          </el-form-item>
+          <el-form-item :label="$t('最长时间')" v-else :key="2">
+            <el-input v-model="form.collisionAvoidanceTime" class="width-260"></el-input>
+          </el-form-item>
         </el-form>
       </div>
 
@@ -409,7 +419,9 @@
           sn: '',
           ip: '',
           comment: '',
-          name: ''
+          name: '',
+          collisionAvoidanceTime: '',
+          collisionAvoidance: true
         },
         formSet: {
 
@@ -534,6 +546,9 @@
           comment: row.comment,
           name: row.name
         };
+
+        this.$set(this.form, 'collisionAvoidanceTime', ''+row.collisionAvoidanceTime);
+        this.$set(this.form, 'collisionAvoidance', row.collisionAvoidance);
         this.modalVisible = true;
       },
       setInfo(row){
@@ -598,7 +613,9 @@
               ip: this.form.ip,
               sn: this.form.sn,
               name: this.form.name,
-              comment: this.form.comment
+              comment: this.form.comment,
+              collisionAvoidanceTime:  this.form.collisionAvoidanceTime,
+              collisionAvoidance: this.form.collisionAvoidance
             };
 
             params = this.$qs.stringify(params);
@@ -685,7 +702,9 @@
           sn: '',
           ip: '',
           comment: '',
-          name: ''
+          name: '',
+          collisionAvoidanceTime:  "",
+          collisionAvoidance: true
         };
         this.deviceAddList = [];
         this.deviceSelData = [];
@@ -817,6 +836,9 @@
       },
       inArrayInfo(search, arr){
         return inArray(search, arr);
+      },
+      changeCollisionAvoidance(event, data){
+        this.$set(this.form, 'collisionAvoidance', data);
       }
     }
   }
