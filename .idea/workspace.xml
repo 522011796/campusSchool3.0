@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/validater/rules.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/rules.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +70,12 @@
       <workItem from="1618975594284" duration="760000" />
       <workItem from="1619504544030" duration="597000" />
       <workItem from="1619511241690" duration="3850000" />
-      <workItem from="1619665536514" duration="726000" />
+      <workItem from="1619665536514" duration="1260000" />
+      <workItem from="1620973886667" duration="537000" />
+      <workItem from="1621821384401" duration="23000" />
+      <workItem from="1621821412532" duration="605000" />
+      <workItem from="1621838516076" duration="735000" />
+      <workItem from="1621842159364" duration="557000" />
     </task>
     <task id="LOCAL-00001" summary="修改bug">
       <created>1615953061597</created>
@@ -129,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617762169088</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="修改bug">
+      <created>1619682390209</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1619682390210</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -140,10 +151,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="修改bug" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="229" y="25" width="981" height="795" key="CommitChangelistDialog2" timestamp="1617762014307">
+    <state x="229" y="25" width="981" height="795" key="CommitChangelistDialog2" timestamp="1619682387514">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
-    <state x="229" y="25" width="981" height="795" key="CommitChangelistDialog2/0.25.1440.795@0.25.1440.795" timestamp="1617762014307" />
+    <state x="229" y="25" width="981" height="795" key="CommitChangelistDialog2/0.25.1440.795@0.25.1440.795" timestamp="1619682387514" />
     <state x="100" y="125" width="1240" height="595" key="DiffContextDialog" timestamp="1617761800226">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
@@ -152,10 +163,10 @@
       <screen x="0" y="25" width="1440" height="795" />
     </state>
     <state x="229" y="58" key="SettingsEditor/0.25.1440.795@0.25.1440.795" timestamp="1619665908801" />
-    <state x="320" y="159" key="Vcs.Push.Dialog.v2" timestamp="1619665965800">
+    <state x="320" y="159" key="Vcs.Push.Dialog.v2" timestamp="1619682398311">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
-    <state x="320" y="159" key="Vcs.Push.Dialog.v2/0.25.1440.795@0.25.1440.795" timestamp="1619665965800" />
+    <state x="320" y="159" key="Vcs.Push.Dialog.v2/0.25.1440.795@0.25.1440.795" timestamp="1619682398311" />
     <state x="396" y="160" key="VcsDiffUtil.ChangesDialog" timestamp="1617343552441">
       <screen x="0" y="25" width="1440" height="795" />
     </state>
