@@ -8,6 +8,7 @@
           <el-col :span="12">
             <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo($event)">{{$t("添加设备")}}</el-button>
             <el-button size="small" type="default" :disabled="deviceList.length <= 0" :loading="mutiDeleteLoading"  icon="el-icon-delete" @click="deleteMutiInfo($event)">{{$t("批量删除")}}</el-button>
+            <el-button size="small" type="warning"  icon="el-icon-setting" @click="confInfo($event)">{{$t("设备配置")}}</el-button>
           </el-col>
           <el-col :span="12" class="text-right">
             <my-input-button size="small" :clearable="true" type="success" plain @click="search"></my-input-button>
@@ -356,6 +357,28 @@
       </div>
     </drawer-layout-right>
 
+    <!--设置配置-->
+    <dialog-normal top="10vh" :visible="modalConfDeviceVisible" :title="$t('设备配置')" @close="closeDialog" @right-close="cancelDialog">
+      <div class="margin-top-10">
+        <el-form :model="formConf" :rules="rulesConf" ref="formConf" label-width="140px">
+          <el-form-item :label="$t('IP')" prop="accessControlServerIp">
+            <el-input v-model="formConf.accessControlServerIp" class="width-260"></el-input>
+          </el-form-item>
+          <el-form-item :label="$t('端口')" prop="accessControlServerPort">
+            <el-input v-model="formConf.accessControlServerPort" class="width-260"></el-input>
+          </el-form-item>
+        </el-form>
+      </div>
+
+      <div slot="footer">
+        <el-button size="small" @click="cancelDialog">{{$t("取消")}}</el-button>
+        <el-button size="small" type="primary" @click="dialogLoading == false ? okConfDeviceDialog() : ''">
+          <i class="el-icon-loading" v-if="dialogLoading"></i>
+          {{$t("确定")}}
+        </el-button>
+      </div>
+    </dialog-normal>
+
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" :content="deleteSetTitle" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
 
   </div>
@@ -386,6 +409,7 @@
         visible: false,
         modalVisible: false,
         modalConfVisible: false,
+        modalConfDeviceVisible: false,
         dialogLoading: false,
         drawerLoading: false,
         visibleConfim: false,
@@ -427,7 +451,8 @@
 
         },
         formConf: {
-
+          accessControlServerIp: '',
+          accessControlServerPort: ''
         },
       }
     },
@@ -521,12 +546,27 @@
           this.deviceLoading = false;
         });
       },
+      initSetting(row){
+        this.$axios.get(common.device_get).then(res => {
+          if (res.data.data){
+            this.formConf = {
+              accessControlServerIp: res.data.data.accessControlServerIp,
+              accessControlServerPort: res.data.data.accessControlServerPort,
+            };
+          }
+        });
+      },
+      confInfo(){
+        this.initSetting();
+        this.modalConfDeviceVisible = true;
+      },
       setCallbackUrl(){
         let params = {
-          wopadCallbackUrl: this.formConf.faceCallBack
+          accessControlServerIp: this.formConf.accessControlServerIp,
+          accessControlServerPort: this.formConf.accessControlServerPort,
         };
         params = this.$qs.stringify(params);
-        this.$axios.post(common.device_pad_local_check_down, params).then(res => {
+        this.$axios.post(common.device_door_down, params, {loading: false}).then(res => {
           if (res.data.code == 200){
 
           }else {
@@ -553,10 +593,6 @@
       },
       setInfo(row){
         this.initConfig(row);
-        this.modalConfVisible = true;
-      },
-      confInfo(){
-        this.initSetting();
         this.modalConfVisible = true;
       },
       deleteInfo(row){
@@ -719,6 +755,7 @@
         this.modalAddVisible = false;
         this.modalVisible = false;
         this.modalConfVisible = false;
+        this.modalConfDeviceVisible = false;
       },
       closeDrawerDialog(event){
         this.formSet = {
@@ -839,6 +876,30 @@
       },
       changeCollisionAvoidance(event, data){
         this.$set(this.form, 'collisionAvoidance', data);
+      },
+      okConfDeviceDialog(){
+        let url = "";
+        this.$refs['formConf'].validate((valid) => {
+          if (valid) {
+            this.dialogLoading = true;
+            let params = {
+              accessControlServerIp: this.formConf.accessControlServerIp,
+              accessControlServerPort: this.formConf.accessControlServerPort,
+            };
+
+            params = this.$qs.stringify(params);
+            this.$axios.post(common.device_set, params, {loading: false}).then(res => {
+              if (res.data.code == 200){
+                this.modalConfDeviceVisible = false;
+                this.setCallbackUrl();
+                MessageSuccess(res.data.desc);
+              }else {
+                MessageError(res.data.desc);
+              }
+              this.dialogLoading = false;
+            });
+          }
+        });
       }
     }
   }
