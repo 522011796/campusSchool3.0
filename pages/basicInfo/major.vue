@@ -75,7 +75,7 @@
         <el-form :model="form" :rules="rules" ref="form" label-width="140px">
           <el-form-item :label="$t('所属学院')" prop="collegeId">
             <!--<el-input :disabled="form.id != ''" v-model="form.no" class="width-260"></el-input>-->
-            <my-select :disabled="form.id != ''" :sel-value="form.collegeId" :options="collegeList" width-style="260" @change="handeChange"></my-select>
+            <my-select :sel-value="form.collegeId" :options="collegeList" width-style="260" @change="handeChange"></my-select>
           </el-form-item>
           <el-form-item :label="$t('专业编号')" prop="majorNo">
             <el-input :disabled="form.id != ''" v-model="form.majorNo" class="width-260"></el-input>
