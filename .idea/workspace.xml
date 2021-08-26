@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="">
+    <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="专业修改可以更改学院">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +76,10 @@
       <workItem from="1621838516076" duration="735000" />
       <workItem from="1621842159364" duration="557000" />
       <workItem from="1625551275200" duration="12924000" />
-      <workItem from="1628647951299" duration="217000" />
+      <workItem from="1628647951299" duration="1982000" />
+      <workItem from="1628826220902" duration="330000" />
+      <workItem from="1629345926337" duration="899000" />
+      <workItem from="1629947836516" duration="179000" />
     </task>
     <task id="LOCAL-00001" summary="修改bug">
       <created>1615953061597</created>
@@ -161,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628648046733</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="专业修改可以更改学院">
+      <created>1628648332381</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1628648332381</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,14 +184,14 @@
     <option name="LAST_COMMIT_MESSAGE" value="专业修改可以更改学院" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="229" y="25" width="981" height="795" key="CommitChangelistDialog2" timestamp="1628648044929">
+    <state x="229" y="25" width="972" height="791" key="CommitChangelistDialog2" timestamp="1629948013115">
       <screen x="0" y="25" width="1440" height="791" />
     </state>
-    <state x="229" y="25" key="CommitChangelistDialog2/0.25.1440.791@0.25.1440.791" timestamp="1628648044929" />
-    <state x="320" y="158" key="Vcs.Push.Dialog.v2" timestamp="1628648052657">
+    <state x="229" y="25" width="972" height="791" key="CommitChangelistDialog2/0.25.1440.791@0.25.1440.791" timestamp="1629948013115" />
+    <state x="320" y="158" key="Vcs.Push.Dialog.v2" timestamp="1628648958208">
       <screen x="0" y="25" width="1440" height="791" />
     </state>
-    <state x="320" y="158" key="Vcs.Push.Dialog.v2/0.25.1440.791@0.25.1440.791" timestamp="1628648052657" />
+    <state x="320" y="158" key="Vcs.Push.Dialog.v2/0.25.1440.791@0.25.1440.791" timestamp="1628648958208" />
     <state x="306" y="146" width="827" height="548" key="find.popup" timestamp="1625557263791">
       <screen x="0" y="25" width="1440" height="791" />
     </state>
