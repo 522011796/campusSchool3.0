@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="专业修改可以更改学院">
+    <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/search.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/search.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +81,11 @@
       <workItem from="1628647951299" duration="1982000" />
       <workItem from="1628826220902" duration="330000" />
       <workItem from="1629345926337" duration="899000" />
-      <workItem from="1629947836516" duration="179000" />
+      <workItem from="1629947836516" duration="1136000" />
+      <workItem from="1630979215013" duration="1086000" />
+      <workItem from="1630981547578" duration="184000" />
+      <workItem from="1630982113155" duration="4339000" />
+      <workItem from="1631008654327" duration="3587000" />
     </task>
     <task id="LOCAL-00001" summary="修改bug">
       <created>1615953061597</created>
@@ -172,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628648332381</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="专业修改可以更改学院">
+      <created>1629948039591</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1629948039591</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,17 +197,17 @@
     <option name="LAST_COMMIT_MESSAGE" value="专业修改可以更改学院" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="229" y="25" width="972" height="791" key="CommitChangelistDialog2" timestamp="1629948013115">
+    <state x="229" y="25" width="972" height="791" key="CommitChangelistDialog2" timestamp="1629948037734">
       <screen x="0" y="25" width="1440" height="791" />
     </state>
-    <state x="229" y="25" width="972" height="791" key="CommitChangelistDialog2/0.25.1440.791@0.25.1440.791" timestamp="1629948013115" />
-    <state x="320" y="158" key="Vcs.Push.Dialog.v2" timestamp="1628648958208">
+    <state x="229" y="25" width="972" height="791" key="CommitChangelistDialog2/0.25.1440.791@0.25.1440.791" timestamp="1629948037734" />
+    <state x="320" y="158" key="Vcs.Push.Dialog.v2" timestamp="1629948046364">
       <screen x="0" y="25" width="1440" height="791" />
     </state>
-    <state x="320" y="158" key="Vcs.Push.Dialog.v2/0.25.1440.791@0.25.1440.791" timestamp="1628648958208" />
-    <state x="306" y="146" width="827" height="548" key="find.popup" timestamp="1625557263791">
+    <state x="320" y="158" key="Vcs.Push.Dialog.v2/0.25.1440.791@0.25.1440.791" timestamp="1629948046364" />
+    <state x="306" y="146" width="827" height="548" key="find.popup" timestamp="1631080216590">
       <screen x="0" y="25" width="1440" height="791" />
     </state>
-    <state x="306" y="146" width="827" height="548" key="find.popup/0.25.1440.791@0.25.1440.791" timestamp="1625557263791" />
+    <state x="306" y="146" width="827" height="548" key="find.popup/0.25.1440.791@0.25.1440.791" timestamp="1631080216590" />
   </component>
 </project>
