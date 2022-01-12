@@ -1,6 +1,6 @@
 <template>
   <span>
-    <el-select v-model="value" v-bind="selectModel" :size="size" :placeholder="$t('请选择')" :clearable="clearable" @change="handleChange">
+    <el-select :filterable="filterable" v-model="value" v-bind="selectModel" :size="size" :placeholder="$t('请选择')" :clearable="clearable" @change="handleChange">
       <el-option v-for="(item, index) in courseList" :key="index" :value="item.id" :label="item.courseName"></el-option>
     </el-select>
   </span>
@@ -17,6 +17,10 @@
         type: [String, Number]
       },
       clearable: {
+        default: false,
+        type: Boolean
+      },
+      filterable: {
         default: false,
         type: Boolean
       },

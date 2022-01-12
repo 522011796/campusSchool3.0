@@ -87,7 +87,7 @@
               align="center"
               :label="$t('状态')">
               <template slot-scope="scope">
-                <span v-if="scope.row.status">{{studentTeachStatusInfo(scope.row.status, 'set')}}</span>
+                <span v-if="scope.row.status">{{c(scope.row.status, 'set')}}</span>
                 <span v-else>--</span>
               </template>
             </el-table-column>

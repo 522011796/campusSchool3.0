@@ -18,7 +18,7 @@
             <el-col :span="20" class="text-right">
               <i class="fa fa-file color-warning" @click="detailInfo"></i>
               <my-date-picker :sel-value="searchDate" :clearable="false" type="daterange" size="small" width-style="240" @change="handleChange" style="position: relative; top: 1px;"></my-date-picker>
-              <my-course-select size="small" :clearable="true" :sel-value="searchCourseId" @change="handleCourseChange"></my-course-select>
+              <my-course-select :filterable="true" size="small" :clearable="true" :sel-value="searchCourseId" @change="handleCourseChange"></my-course-select>
               <my-input-button size="small" :clearable="true" type="success" plain @click="search"></my-input-button>
             </el-col>
           </el-row>
@@ -342,7 +342,8 @@
       }
     },
     created() {
-      let startDate = this.$moment().subtract(7, 'days').format("YYYY-MM-DD");
+      //let startDate = this.$moment().subtract(7, 'days').format("YYYY-MM-DD");
+      let startDate = this.$moment().format("YYYY-MM-DD");
       let endDate = this.$moment().format("YYYY-MM-DD");
       this.searchDate = [startDate, endDate];
       this.init();

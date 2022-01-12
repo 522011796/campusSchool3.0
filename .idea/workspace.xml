@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="">
+    <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="专业修改可以更改学院">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/MyCourseSelect.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/MyCourseSelect.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/search.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/search.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/student.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/student.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,13 +27,14 @@
   <component name="ProjectId" id="1prn8q6uRHLyWh9ANO9CRzvCwCn" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -35,6 +42,8 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+    <property name="vuejs.nuxt.types-notification-shown" value="true" />
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -48,6 +57,7 @@
       </list>
     </option>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -85,7 +95,21 @@
       <workItem from="1630979215013" duration="1086000" />
       <workItem from="1630981547578" duration="184000" />
       <workItem from="1630982113155" duration="4339000" />
-      <workItem from="1631008654327" duration="3587000" />
+      <workItem from="1631008654327" duration="8264000" />
+      <workItem from="1631865887057" duration="27000" />
+      <workItem from="1631865947340" duration="25000" />
+      <workItem from="1632365415290" duration="20000" />
+      <workItem from="1632623052248" duration="25000" />
+      <workItem from="1632623175281" duration="40000" />
+      <workItem from="1632623595590" duration="8000" />
+      <workItem from="1633765889801" duration="20000" />
+      <workItem from="1634636836802" duration="114000" />
+      <workItem from="1635402357135" duration="6538000" />
+      <workItem from="1636610863046" duration="2945000" />
+      <workItem from="1636964715545" duration="1680000" />
+      <workItem from="1637560444685" duration="1297000" />
+      <workItem from="1638945691970" duration="1656000" />
+      <workItem from="1641950879481" duration="1342000" />
     </task>
     <task id="LOCAL-00001" summary="修改bug">
       <created>1615953061597</created>
@@ -185,29 +209,22 @@
       <option name="project" value="LOCAL" />
       <updated>1629948039591</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="专业修改可以更改学院">
+      <created>1631080734085</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1631080734085</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="修改bug" />
     <MESSAGE value="专业修改可以更改学院" />
     <option name="LAST_COMMIT_MESSAGE" value="专业修改可以更改学院" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="229" y="25" width="972" height="791" key="CommitChangelistDialog2" timestamp="1629948037734">
-      <screen x="0" y="25" width="1440" height="791" />
-    </state>
-    <state x="229" y="25" width="972" height="791" key="CommitChangelistDialog2/0.25.1440.791@0.25.1440.791" timestamp="1629948037734" />
-    <state x="320" y="158" key="Vcs.Push.Dialog.v2" timestamp="1629948046364">
-      <screen x="0" y="25" width="1440" height="791" />
-    </state>
-    <state x="320" y="158" key="Vcs.Push.Dialog.v2/0.25.1440.791@0.25.1440.791" timestamp="1629948046364" />
-    <state x="306" y="146" width="827" height="548" key="find.popup" timestamp="1631080216590">
-      <screen x="0" y="25" width="1440" height="791" />
-    </state>
-    <state x="306" y="146" width="827" height="548" key="find.popup/0.25.1440.791@0.25.1440.791" timestamp="1631080216590" />
   </component>
 </project>
