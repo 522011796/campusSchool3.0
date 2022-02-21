@@ -87,7 +87,7 @@
               align="center"
               :label="$t('状态')">
               <template slot-scope="scope">
-                <span v-if="scope.row.status">{{c(scope.row.status, 'set')}}</span>
+                <span v-if="scope.row.status">{{studentTeachStatusInfo(scope.row.status, 'set')}}</span>
                 <span v-else>--</span>
               </template>
             </el-table-column>
@@ -164,7 +164,7 @@
           <el-row :gutter="16">
             <el-col :span="12">
               <el-form-item :label="$t('入学时间')" prop="innerTime">
-                <my-date-picker :sel-value="form.innerTime" width-style="220" @change="handleChangeTime($event,2)"></my-date-picker type="month">
+                <my-date-picker :sel-value="form.innerTime" width-style="220" @change="handleChangeTime($event,2)"></my-date-picker>
               </el-form-item>
             </el-col>
             <el-col :span="12">
@@ -303,6 +303,7 @@
         params = this.$qs.stringify(params);
         this.$axios.post(common.student_list, params).then(res => {
           if (res.data.data){
+            console.log(res.data.data);
             this.tableData = res.data.data.list;
             this.total = res.data.data.totalCount;
             this.num = res.data.data.num;
