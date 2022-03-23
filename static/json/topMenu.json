@@ -20,6 +20,11 @@
     "key": "attendanceInfo"
   },
   {
+    "name": "服务大厅",
+    "show": true,
+    "key": "appletInfo"
+  },
+  {
     "name": "审批中心",
     "show": true,
     "key": "auditInfo"

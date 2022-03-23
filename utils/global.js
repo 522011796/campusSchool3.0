@@ -332,6 +332,17 @@ const filterUserAccountActiveStatusOptions = [
   { text: '未激活', value: false ,label: '未激活'}
 ];
 
+const filterAppManageStatus = [
+  { text: "待发布", value: 'false' ,label: '待发布'},
+  { text: '已发布', value: 'true' ,label: '已发布'}
+];
+
+const filterAppManageType = [
+  { text: "学生办事", value: '0' ,label: '学生办事'},
+  { text: '老师办事', value: '1' ,label: '老师办事'},
+  { text: '单位办事', value: '2' ,label: '单位办事'}
+];
+
 export default {
   total,
   page,
@@ -408,5 +419,7 @@ export default {
   filterAuthOptions,
   filterAuthOtherOptions,
   filterTimeStatusOptions,
-  filterUserAccountActiveStatusOptions
+  filterUserAccountActiveStatusOptions,
+  filterAppManageStatus,
+  filterAppManageType
 }

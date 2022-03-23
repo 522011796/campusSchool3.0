@@ -51,6 +51,16 @@ const _4a895283 = () => interopDefault(import('../pages/test/test1.vue' /* webpa
 const _4a976a04 = () => interopDefault(import('../pages/test/test2.vue' /* webpackChunkName: "pages/test/test2" */))
 const _4aa58185 = () => interopDefault(import('../pages/test/test3.vue' /* webpackChunkName: "pages/test/test3" */))
 const _4ab39906 = () => interopDefault(import('../pages/test/test4.vue' /* webpackChunkName: "pages/test/test4" */))
+const _6ddc2009 = () => interopDefault(import('../pages/appletInfo/app/appCreate.vue' /* webpackChunkName: "pages/appletInfo/app/appCreate" */))
+const _388480f7 = () => interopDefault(import('../pages/appletInfo/app/appData.vue' /* webpackChunkName: "pages/appletInfo/app/appData" */))
+const _9e2a801c = () => interopDefault(import('../pages/appletInfo/app/appManage.vue' /* webpackChunkName: "pages/appletInfo/app/appManage" */))
+const _10929347 = () => interopDefault(import('../pages/appletInfo/app/appTemplate.vue' /* webpackChunkName: "pages/appletInfo/app/appTemplate" */))
+const _b4dc4ef2 = () => interopDefault(import('../pages/appletInfo/app/appType.vue' /* webpackChunkName: "pages/appletInfo/app/appType" */))
+const _5cc30ea4 = () => interopDefault(import('../pages/appletInfo/flow/flowManage.vue' /* webpackChunkName: "pages/appletInfo/flow/flowManage" */))
+const _30b24cb3 = () => interopDefault(import('../pages/appletInfo/noti/business.vue' /* webpackChunkName: "pages/appletInfo/noti/business" */))
+const _1c23e410 = () => interopDefault(import('../pages/appletInfo/noti/feedback.vue' /* webpackChunkName: "pages/appletInfo/noti/feedback" */))
+const _2ceee2de = () => interopDefault(import('../pages/appletInfo/noti/notification.vue' /* webpackChunkName: "pages/appletInfo/noti/notification" */))
+const _c0d2d110 = () => interopDefault(import('../pages/appletInfo/staticCenter/formStatic.vue' /* webpackChunkName: "pages/appletInfo/staticCenter/formStatic" */))
 const _3becaaa8 = () => interopDefault(import('../pages/attendanceInfo/administration/faceRecord.vue' /* webpackChunkName: "pages/attendanceInfo/administration/faceRecord" */))
 const _0933525b = () => interopDefault(import('../pages/attendanceInfo/administration/leaveStatic.vue' /* webpackChunkName: "pages/attendanceInfo/administration/leaveStatic" */))
 const _15aa4d2a = () => interopDefault(import('../pages/attendanceInfo/administration/record.vue' /* webpackChunkName: "pages/attendanceInfo/administration/record" */))
@@ -360,6 +370,46 @@ export const routerOptions = {
     path: "/test/test4",
     component: _4ab39906,
     name: "test-test4"
+  }, {
+    path: "/appletInfo/app/appCreate",
+    component: _6ddc2009,
+    name: "appletInfo-app-appCreate"
+  }, {
+    path: "/appletInfo/app/appData",
+    component: _388480f7,
+    name: "appletInfo-app-appData"
+  }, {
+    path: "/appletInfo/app/appManage",
+    component: _9e2a801c,
+    name: "appletInfo-app-appManage"
+  }, {
+    path: "/appletInfo/app/appTemplate",
+    component: _10929347,
+    name: "appletInfo-app-appTemplate"
+  }, {
+    path: "/appletInfo/app/appType",
+    component: _b4dc4ef2,
+    name: "appletInfo-app-appType"
+  }, {
+    path: "/appletInfo/flow/flowManage",
+    component: _5cc30ea4,
+    name: "appletInfo-flow-flowManage"
+  }, {
+    path: "/appletInfo/noti/business",
+    component: _30b24cb3,
+    name: "appletInfo-noti-business"
+  }, {
+    path: "/appletInfo/noti/feedback",
+    component: _1c23e410,
+    name: "appletInfo-noti-feedback"
+  }, {
+    path: "/appletInfo/noti/notification",
+    component: _2ceee2de,
+    name: "appletInfo-noti-notification"
+  }, {
+    path: "/appletInfo/staticCenter/formStatic",
+    component: _c0d2d110,
+    name: "appletInfo-staticCenter-formStatic"
   }, {
     path: "/attendanceInfo/administration/faceRecord",
     component: _3becaaa8,

@@ -336,6 +336,76 @@
     "_name": "_4ab39906"
   },
   {
+    "name": "appletInfo-app-appCreate",
+    "path": "/appletInfo/app/appCreate",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/appletInfo/app/appCreate.vue",
+    "chunkName": "pages/appletInfo/app/appCreate",
+    "_name": "_6ddc2009"
+  },
+  {
+    "name": "appletInfo-app-appData",
+    "path": "/appletInfo/app/appData",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/appletInfo/app/appData.vue",
+    "chunkName": "pages/appletInfo/app/appData",
+    "_name": "_388480f7"
+  },
+  {
+    "name": "appletInfo-app-appManage",
+    "path": "/appletInfo/app/appManage",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/appletInfo/app/appManage.vue",
+    "chunkName": "pages/appletInfo/app/appManage",
+    "_name": "_9e2a801c"
+  },
+  {
+    "name": "appletInfo-app-appTemplate",
+    "path": "/appletInfo/app/appTemplate",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/appletInfo/app/appTemplate.vue",
+    "chunkName": "pages/appletInfo/app/appTemplate",
+    "_name": "_10929347"
+  },
+  {
+    "name": "appletInfo-app-appType",
+    "path": "/appletInfo/app/appType",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/appletInfo/app/appType.vue",
+    "chunkName": "pages/appletInfo/app/appType",
+    "_name": "_b4dc4ef2"
+  },
+  {
+    "name": "appletInfo-flow-flowManage",
+    "path": "/appletInfo/flow/flowManage",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/appletInfo/flow/flowManage.vue",
+    "chunkName": "pages/appletInfo/flow/flowManage",
+    "_name": "_5cc30ea4"
+  },
+  {
+    "name": "appletInfo-noti-business",
+    "path": "/appletInfo/noti/business",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/appletInfo/noti/business.vue",
+    "chunkName": "pages/appletInfo/noti/business",
+    "_name": "_30b24cb3"
+  },
+  {
+    "name": "appletInfo-noti-feedback",
+    "path": "/appletInfo/noti/feedback",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/appletInfo/noti/feedback.vue",
+    "chunkName": "pages/appletInfo/noti/feedback",
+    "_name": "_1c23e410"
+  },
+  {
+    "name": "appletInfo-noti-notification",
+    "path": "/appletInfo/noti/notification",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/appletInfo/noti/notification.vue",
+    "chunkName": "pages/appletInfo/noti/notification",
+    "_name": "_2ceee2de"
+  },
+  {
+    "name": "appletInfo-staticCenter-formStatic",
+    "path": "/appletInfo/staticCenter/formStatic",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/appletInfo/staticCenter/formStatic.vue",
+    "chunkName": "pages/appletInfo/staticCenter/formStatic",
+    "_name": "_c0d2d110"
+  },
+  {
     "name": "attendanceInfo-administration-faceRecord",
     "path": "/attendanceInfo/administration/faceRecord",
     "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/attendanceInfo/administration/faceRecord.vue",

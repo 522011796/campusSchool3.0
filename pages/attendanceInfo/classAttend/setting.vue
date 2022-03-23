@@ -220,7 +220,7 @@
     mixins: [mixins, classAttendSettingValidater],
     components: {
       MyCheck,
-      MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal,ClassroomTreeAndList,MyCheck,MySelect},
+      MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal,ClassroomTreeAndList},
     data(){
       return {
         tableData: [],

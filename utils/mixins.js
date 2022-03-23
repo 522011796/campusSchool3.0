@@ -83,6 +83,8 @@ export default {
       filterAuthOtherOptions: global.filterAuthOtherOptions,
       filterTimeStatusOptions: global.filterTimeStatusOptions,
       filterUserAccountActiveStatusOptions: global.filterUserAccountActiveStatusOptions,
+      filterAppManageStatus: global.filterAppManageStatus,
+      filterAppManageType: global.filterAppManageType,
       g_currentDate: {},
       currentYearData: '',
       currentTermData: '',

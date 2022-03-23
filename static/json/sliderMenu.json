@@ -1027,5 +1027,57 @@
         ]
       }
     ]
+  },
+  {
+    "key": "appletInfo",
+    "name": "服务大厅",
+    "id": 9,
+    "list": [
+      {
+        "name": "应用中心",
+        "icon": "fa fa-institution",
+        "toggle": false,
+        "id": 90000,
+        "key": "appCenter",
+        "keySub": "appletInfo",
+        "list": [
+          {
+            "name": "应用管理",
+            "key": "appManage",
+            "id": 91000,
+            "top": "appletInfo",
+            "path": "/appletInfo/app/appManage"
+          },
+          {
+            "name": "应用设计",
+            "key": "appCreate",
+            "id": 92000,
+            "top": "appletInfo",
+            "path": "/appletInfo/app/appCreate"
+          },
+          {
+            "name": "数据中心",
+            "key": "appData",
+            "id": 93000,
+            "top": "appletInfo",
+            "path": "/appletInfo/app/appData"
+          },
+          {
+            "name": "模版中心",
+            "key": "appTemplate",
+            "id": 94000,
+            "top": "appletInfo",
+            "path": "/appletInfo/app/appTemplate"
+          },
+          {
+            "name": "类别管理",
+            "key": "appType",
+            "id": 95000,
+            "top": "appletInfo",
+            "path": "/appletInfo/app/appType"
+          }
+        ]
+      }
+    ]
   }
 ]
