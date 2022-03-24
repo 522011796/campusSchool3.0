@@ -1,31 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="专业修改可以更改学院课程">
-      <change afterPath="$PROJECT_DIR$/pages/appletInfo/app/appCreate.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/appletInfo/app/appData.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/appletInfo/app/appManage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/appletInfo/app/appTemplate.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/appletInfo/app/appType.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/appletInfo/flow/flowManage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/appletInfo/noti/business.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/appletInfo/noti/feedback.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/appletInfo/noti/notification.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/appletInfo/staticCenter/formStatic.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/validater/appManageValidater.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/validater/appTypeValidater.js" afterDir="false" />
+    <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="服务中心ui搭建">
+      <change afterPath="$PROJECT_DIR$/utils/validater/appTemplateValidater.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/common.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/setting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/classAttend/setting.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/sliderMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/sliderMenu.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/sliderMenuBak.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/sliderMenuBak.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/topMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/topMenu.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/global.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appTemplate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appTemplate.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,9 +25,6 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
-  </component>
-  <component name="GithubDefaultAccount">
-    <option name="defaultAccountId" value="df87f580-3e79-445e-86b5-6efb110acb2a" />
   </component>
   <component name="ProjectId" id="1prn8q6uRHLyWh9ANO9CRzvCwCn" />
   <component name="ProjectViewState">
@@ -155,7 +135,7 @@
       <workItem from="1647066263062" duration="454000" />
       <workItem from="1647072650962" duration="1043000" />
       <workItem from="1647937930082" duration="783000" />
-      <workItem from="1648006165487" duration="14442000" />
+      <workItem from="1648006165487" duration="22148000" />
     </task>
     <task id="LOCAL-00001" summary="修改bug">
       <created>1615953061597</created>
@@ -276,7 +256,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645414885064</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="服务中心ui搭建">
+      <created>1648030316027</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1648030316027</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -298,6 +285,7 @@
     <MESSAGE value="修改bug" />
     <MESSAGE value="专业修改可以更改学院" />
     <MESSAGE value="专业修改可以更改学院课程" />
-    <option name="LAST_COMMIT_MESSAGE" value="专业修改可以更改学院课程" />
+    <MESSAGE value="服务中心ui搭建" />
+    <option name="LAST_COMMIT_MESSAGE" value="服务中心ui搭建" />
   </component>
 </project>
