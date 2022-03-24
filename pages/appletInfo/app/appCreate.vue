@@ -117,7 +117,7 @@
       </layout-lr>
     </div>
 
-    <drawer-layout-right tabindex="0" @changeDrawer="closeDialog" :visible="drawerVisible" size="500px" :title="$t('服务设置')" @right-close="cancelDrawDialog">
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDialog" :visible="drawerVisible" size="600px" :title="$t('服务设置')" @right-close="cancelDrawDialog">
       <div slot="content" class="color-muted">
         <div>
           <div class="color-muted margin-top-5">
@@ -138,7 +138,7 @@
                 <my-select class="layout-item width-300" size="small" :placeholder="$t('应用')" :sel-value="form.app" :options="apps" width-style="300" :clearable="true" @change="handleTypeChange($event, 4)"></my-select>
               </el-form-item>
               <el-form-item :label="$t('简介')" prop="dept">
-                <el-input v-model="form.remarks" type="textarea" :row="3" class="width-300"></el-input>
+                <el-input v-model="form.remarks" type="textarea" :row="3" style="width: 500px"></el-input>
               </el-form-item>
             </el-form>
           </div>
@@ -209,7 +209,7 @@
       </div>
     </drawer-layout-right>
 
-    <drawer-layout-right tabindex="0" @changeDrawer="closeDialog" :visible="drawerForm" size="800px">
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDialog" :visible="drawerForm" size="85%">
       <div slot="title">
         <div class="header-block padding-lr-10">
           <span class="tab-class font-bold" :class="activeName == 'form' ? 'color-grand' : ''" @click="handleClick('form')">

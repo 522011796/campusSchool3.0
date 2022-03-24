@@ -76,7 +76,7 @@
       </div>
     </layout-lr>
 
-    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerVisible" size="500px" :title="$t('模版设置')" @right-close="cancelDrawDialog">
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerVisible" size="600px" :title="$t('模版设置')" @right-close="cancelDrawDialog">
       <div slot="content" class="color-muted">
         <div>
           <div class="color-muted margin-top-5">
