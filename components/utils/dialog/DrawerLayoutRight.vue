@@ -25,6 +25,9 @@
             </div>
           </el-col>
         </el-row>
+        <div v-else>
+          <slot name="title"></slot>
+        </div>
       </div>
 
       <div class="drawer-normal-body" :style="hideFooter == false ? drawHeight : drawHeight2">

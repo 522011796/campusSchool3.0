@@ -153,7 +153,7 @@
               <label class="title-block-text color-warning">{{$t("应用设置")}}</label>
             </span>
           </div>
-          <div>
+          <div class="block-item-bg">
             <el-form :model="form" :rules="rules" ref="form" label-width="60px">
               <el-form-item :label="$t('名称')" prop="name">
                 <el-input v-model="form.name" size="small" class="width-300"></el-input>

@@ -1,22 +1,521 @@
 <template>
   <div class="container">
-    <div>create</div>
+    <div>
+      <layout-lr>
+        <div slot="left">
+          <div class="color-muted font-size-12 padding-tb-5 margin-top-10">
+            <!--<span class="layout-left-menu-tag"></span>-->
+            <span class="layout-left-menu-title">应用设计</span>
+          </div>
+          <my-el-tree type="4" sub-type="" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
+        </div>
+
+        <div slot="right">
+          <div class="layout-top-tab margin-top-5">
+            <el-row>
+              <el-col :span="8">
+                <div>
+                  <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo($event)">{{$t("创建服务")}}</el-button>
+                  <template v-if="$route.query.id">
+                    <span>标题标题标题标题标题标题标题</span>
+                  </template>
+                </div>
+              </el-col>
+              <el-col :span="16" class="text-right">
+                <div class="layout-inline">
+                  <my-select class="layout-item width-150" size="small" :placeholder="$t('类型')" :options="filterAppManageType" :clearable="true" @change="handleTypeChange($event, 1)"></my-select>
+                  <my-select class="layout-item width-150" size="small" :placeholder="$t('状态')" :options="filterAppManageStatus" :clearable="true" @change="handleTypeChange($event, 2)"></my-select>
+                  <my-input-button ref="teacher width-150" size="small" plain width-class="width: 180px" type="success" :clearable="true" :placeholder="$t('名称')" @click="search"></my-input-button>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+
+          <div class="margin-top-10">
+            <el-table
+              ref="refTable"
+              :data="tableData"
+              header-cell-class-name="custom-table-cell-bg"
+              size="medium"
+              :max-height="tableHeight2.height"
+              style="width: 100%">
+              <el-table-column
+                align="center"
+                :label="$t('创建日期')">
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">{{ scope.row.classroom_no }}</div>
+                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                        2022-11-11 11:11:11
+                    </span>
+                  </el-popover>
+                </template>
+              </el-table-column>
+              <el-table-column
+                align="center"
+                :label="$t('所属应用')">
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">{{ scope.row.classroom_no }}</div>
+                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                        {{ scope.row.classroom_no }}
+                      </span>
+                  </el-popover>
+                </template>
+              </el-table-column>
+              <el-table-column
+                align="center"
+                prop="appName"
+                :label="$t('名称')">
+              </el-table-column>
+              <el-table-column
+                align="center"
+                prop="appName"
+                :label="$t('类型')">
+              </el-table-column>
+              <el-table-column
+                align="center"
+                prop="appName"
+                :label="$t('图标')">
+                <template slot-scope="scope">
+                  <el-image class="table-cell-image-slot" src="https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg">
+                    <div slot="error" class="table-cell-image-slot">
+                      <i class="el-icon-picture-outline" style="font-size: 14px"></i>
+                    </div>
+                  </el-image>
+                </template>
+              </el-table-column>
+              <el-table-column
+                align="center"
+                prop="appName"
+                :label="$t('状态')">
+              </el-table-column>
+              <el-table-column
+                align="center"
+                width="120"
+                :label="$t('操作')">
+                <template slot-scope="scope">
+                  <i class="fa fa-stop-circle margin-right-5 color-warning" @click="statusInfo(scope.row)"></i>
+                  <i class="fa fa-cog margin-right-5 color-grand" @click="setInfo(scope.row)"></i>
+                  <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
+                </template>
+              </el-table-column>
+              <el-table-column
+                align="center"
+                width="60"
+                :label="$t('表单')">
+                <template slot-scope="scope">
+                  <i class="fa fa-cogs margin-right-5 color-grand" @click="formInfo(scope.row)"></i>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+          <div class="layout-right-footer text-right">
+            <my-pagination :total="total" :current-page="page" :page-size="num" @currentPage="currentPage" @sizeChange="sizeChange" @jumpChange="jumpPage" class="layout-pagination"></my-pagination>
+          </div>
+        </div>
+      </layout-lr>
+    </div>
+
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDialog" :visible="drawerVisible" size="500px" :title="$t('服务设置')" @right-close="cancelDrawDialog">
+      <div slot="content" class="color-muted">
+        <div>
+          <div class="color-muted margin-top-5">
+          <span>
+            <label class="title-block-tag"></label>
+            <label class="title-block-text color-warning">{{$t("服务设置")}}</label>
+          </span>
+          </div>
+          <div class="block-item-bg font-size-12">
+            <el-form :model="form" :rules="rules" ref="form" label-width="60px">
+              <el-form-item :label="$t('名称')" prop="name">
+                <el-input v-model="form.name" size="small" class="width-300"></el-input>
+              </el-form-item>
+              <el-form-item :label="$t('类型')" prop="type">
+                <my-select class="layout-item" size="small" :placeholder="$t('类型')" :sel-value="form.type" :options="filterAppManageType" width-style="300" :clearable="true" @change="handleTypeChange($event, 3)"></my-select>
+              </el-form-item>
+              <el-form-item :label="$t('应用')" prop="app">
+                <my-select class="layout-item width-300" size="small" :placeholder="$t('应用')" :sel-value="form.app" :options="apps" width-style="300" :clearable="true" @change="handleTypeChange($event, 4)"></my-select>
+              </el-form-item>
+              <el-form-item :label="$t('简介')" prop="dept">
+                <el-input v-model="form.remarks" type="textarea" :row="3" class="width-300"></el-input>
+              </el-form-item>
+            </el-form>
+          </div>
+        </div>
+
+        <div class="margin-top-20">
+          <div class="color-muted margin-top-5">
+          <span>
+            <label class="title-block-tag"></label>
+            <label class="title-block-text color-warning">{{$t("服务图标")}}</label>
+          </span>
+          </div>
+          <div class="block-item-bg font-size-12" style="position: relative">
+            <div>
+              <el-image :src="serverImg" class="item-img-set-class">
+                <div slot="error" class="margin-top-10 text-center">
+                  <i class="el-icon-picture-outline" style="font-size: 60px"></i>
+                </div>
+              </el-image>
+            </div>
+            <div style="position: absolute;left: 10px;bottom: 12px">
+              <upload-square :action="uploadFileUrl" max-size="1" :data="{path: 'logo'}" accept=".png,.jpg,.jpeg" @success="uploadFileSuccess">
+                <div class="upload-block-class">
+                  <span>{{$t("更换图标")}}</span>
+                </div>
+              </upload-square>
+            </div>
+            <div class="moon-clearfix"></div>
+          </div>
+        </div>
+
+        <div class="margin-top-20">
+          <div class="color-muted margin-top-5">
+          <span>
+            <label class="title-block-tag"></label>
+            <label class="title-block-text color-warning">{{$t("复制服务(表单)到本应用")}}</label>
+          </span>
+          </div>
+          <div class="block-item-bg font-size-12" style="position: relative">
+            <el-button type="success" size="mini">{{$t("复制")}}</el-button>
+          </div>
+        </div>
+
+        <div class="margin-top-20">
+          <div class="color-muted margin-top-5">
+          <span>
+            <label class="title-block-tag"></label>
+            <label class="title-block-text color-warning">{{$t("其他操作")}}</label>
+          </span>
+          </div>
+          <div class="block-item-bg font-size-12" style="position: relative">
+            <span>
+              <label>{{$t("允许评价")}}:</label>
+              <el-switch v-model="form.evaluate" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
+            </span>
+            <span class="margin-left-10">
+              <label>{{$t("允许评分")}}:</label>
+              <el-switch v-model="form.scope" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div slot="footer">
+        <div class="text-right padding-lr-10">
+          <el-button size="mini" @click="cancelDrawDialog">{{$t("取消")}}</el-button>
+          <el-button size="mini" type="success" @click="okAppDrawDialog">{{$t("应用")}}</el-button>
+        </div>
+      </div>
+    </drawer-layout-right>
+
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDialog" :visible="drawerForm" size="800px">
+      <div slot="title">
+        <div class="header-block padding-lr-10">
+          <span class="tab-class font-bold" :class="activeName == 'form' ? 'color-grand' : ''" @click="handleClick('form')">
+            <i class="fa fa-file"></i>
+            {{$t('表单设计')}}
+          </span>
+          <span class="tab-class font-bold margin-left-5" :class="activeName == 'flow' ? 'color-grand' : ''" @click="handleClick('flow')">
+            <i class="fa fa-line-chart"></i>
+            {{$t('流程设计')}}
+          </span>
+          <span class="tab-class font-bold margin-left-5" :class="activeName == 'set' ? 'color-grand' : ''" @click="handleClick('set')">
+            <i class="fa fa-cog"></i>
+            {{$t('表单设置')}}
+          </span>
+        </div>
+      </div>
+      <div slot="content" class="color-muted">
+        <div v-if="activeName == 'form'">
+          form
+        </div>
+        <div v-if="activeName == 'flow'">
+          flow
+        </div>
+        <div v-if="activeName == 'set'">
+          set
+        </div>
+      </div>
+      <div slot="footer">
+        <el-row>
+          <el-col :span="12" class="text-left padding-lr-10">
+            <el-button v-if="activeName == 'form'" size="mini" type="warning" @click="cancelDrawDialog">
+              <i class="fa fa-send"></i>
+              {{$t("发布到模版中心")}}
+            </el-button>
+            <span v-else>&nbsp;</span>
+          </el-col>
+          <el-col :span="12">
+            <div class="text-right padding-lr-10">
+              <el-button size="mini" @click="cancelDrawDialog">{{$t("取消")}}</el-button>
+              <el-button size="mini" type="success" @click="okFormDrawDialog">{{$t("保存")}}</el-button>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+    </drawer-layout-right>
+    <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="确认需要删除该信息？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
+
   </div>
 </template>
 
 <script>
+  import mixins from "~/utils/mixins";
+  import {common} from "~/utils/api/url";
+  import {MessageError, MessageSuccess} from "~/utils/utils";
+  import appCreateValidater from "~/utils/validater/appCreateValidater";
+  import MySelect from "~/components/MySelect";
+  import DrawerLayoutRight from "~/components/utils/dialog/DrawerLayoutRight";
+
   export default {
+    components: {DrawerLayoutRight, MySelect},
+    mixins: [mixins,appCreateValidater],
     data(){
       return {
-
+        tableData: [],
+        collegeList: [],
+        apps: [],
+        types: [],
+        subTitle: '',
+        collegeData: '',
+        searchKey: '',
+        searchType: '',
+        searchStatus: '',
+        detailData: '',
+        serverImg: 'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg',
+        uploadFileUrl: '',
+        activeName: 'form',
+        dialogLoading: false,
+        dialogApp: false,
+        visibleConfim: false,
+        drawerVisible: false,
+        drawerForm: false,
+        form: {
+          id: '',
+          name: '',
+          type: '',
+          app: '',
+          remarks: '',
+          scope: true,
+          evaluate:true
+        }
       }
     },
+    created() {
+      this.init();
+    },
     methods: {
+      init(){
+        let params = {
+          page: this.page,
+          num: this.num,
+          collegeData: this.collegeData,
+          searchType: this.searchType,
+          searchStatus: this.searchStatus,
+          searchKey: this.searchKey
+        };
+        this.$axios.get(common.classroom_page, {params: params}).then(res => {
+          if (res.data.data){
+            this.tableData = res.data.data.list;
+            this.total = res.data.data.totalCount;
+            this.num = res.data.data.num;
+            this.page = res.data.data.currentPage;
+          }
+        });
+      },
+      sizeChange(event){
+        this.page = 1;
+        this.num = event;
+        this.init();
+      },
+      currentPage(event){
+        this.page = event;
+        this.init();
+      },
+      jumpPage(data){
+        this.page = data;
+        this.init();
+      },
+      nodeClick(data){
+        this.collegeData = data.department_path;
+        this.page = 1;
+        this.init();
+      },
+      search(data){
+        this.searchKey = data.input;
+        this.page = 1;
+        this.init(data);
+      },
+      addInfo(){
+        this.activeName = 'form';
+        this.drawerVisible = true;
+      },
+      handleTypeChange(event, type){
+        if (type == 1){
+          this.searchType = event;
+        }else if (type == 2){
+          this.searchStatus = event;
+        }else if (type == 3){
+          this.form.type = event;
+        }else if (type == 4){
+          this.form.app = event;
+        }
+      },
+      handleClick(tab){
+        this.activeName = tab;
+      },
+      deleteInfo(item){
+        this.form.id = item.id;
+        this.visibleConfim = true;
+      },
+      setInfo(item){
+        this.detailData = item;
+        this.drawerVisible = true;
+      },
+      statusInfo(item){
 
+      },
+      formInfo(item){
+        this.drawerForm = true;
+      },
+      closeDialog(event){
+        this.form = {
+          id: '',
+          name: '',
+          type: '',
+          app: '',
+          remarks: '',
+          scope: true,
+          evaluate:true
+        };
+        this.subTitle = "";
+        this.resetCasadeSelector('SelectorCollege');
+        if (this.$refs['form']){
+          this.$refs['form'].resetFields();
+        }
+        this.drawerVisible = event;
+        this.drawerForm = false;
+      },
+      cancelDrawDialog(){
+        this.detailData = '';
+        this.drawerVisible = false;
+        this.drawerForm = false;
+      },
+      handleCancelChange(data) {
+        this.visibleConfim = false;
+      },
+      handleOkChange(data) {
+        this.dialogLoading = true;
+        let url = "";
+        let params = {
+          id: this.form.id
+        }
+        url = common.class_delete;
+        params = this.$qs.stringify(params);
+        this.$axios.post(url, params).then(res => {
+          if (res.data.code == 200){
+            this.init();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+          this.visibleConfim = false;
+          this.dialogLoading = false;
+        });
+      },
+      uploadFileSuccess(res, file){
+        if (res.code == 200){
+          this.serverImg = res.data.url;
+        }else {
+
+        }
+      },
+      okAppDrawDialog() {
+        let url = '';
+        this.$refs['form'].validate((valid) => {
+          if (valid) {
+            this.dialogLoading = true;
+            let params = {
+              id: this.form.id,
+              appName: this.form.appName,
+              type: this.form.type,
+              category: this.form.category,
+              dept: this.form.dept,
+            };
+            url = common.class_edit;
+            params = this.$qs.stringify(params);
+            this.$axios.post(url, params).then(res => {
+              if (res.data.code == 200) {
+                this.drawerVisible = false;
+                this.init();
+                MessageSuccess(res.data.desc);
+              } else {
+                MessageError(res.data.desc);
+              }
+              this.dialogLoading = false;
+            });
+          }
+        });
+      },
+      okFormDrawDialog() {
+        let url = '';
+        if (this.appName == 'form'){
+
+        }else if (this.appName == 'flow'){
+
+        }if (this.appName == 'set'){
+
+        }
+      }
     }
   }
 </script>
 
 <style scoped>
+.container {
 
+}
+.title-block-tag{
+  display: inline-block;
+  height: 20px;
+  width: 3px;
+  background: #E6A23C;
+  font-weight: bold;
+  border-radius: 3px;
+}
+.title-block-text{
+  font-weight: bold;
+  position: relative;
+  top: -5px;
+}
+.block-item-bg{
+  border-radius: 5px;
+  background: #FFFFFF;
+  padding: 10px;
+}
+.upload-block-class{
+  text-align: center;
+  font-size: 12px;
+  background: #000000;
+  width: 100px;
+  padding:5px 0px;
+  color: #FFFFFF;
+}
+.item-img-class{
+  height: 50px;
+  width: 50px
+}
+.item-img-set-class{
+  height: 100px;
+  width: 100px
+}
+.header-block{
+  height: 40px;
+  line-height: 40px;
+}
+.tab-class{
+  cursor: default;
+  padding: 10px;
+}
 </style>

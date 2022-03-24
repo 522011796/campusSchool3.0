@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="container">
+    <div>
       <layout-lr>
         <div slot="left">
           <div class="color-muted font-size-12 padding-tb-5 margin-top-10">
@@ -72,7 +72,7 @@
                 width="120"
                 :label="$t('操作')">
                 <template slot-scope="scope">
-                  <i class="fa fa-stop-circle margin-right-5 color-grand" @click="statusInfo(scope.row)"></i>
+                  <i class="fa fa-stop-circle margin-right-5 color-warning" @click="statusInfo(scope.row)"></i>
                   <i class="fa fa-edit margin-right-5 color-grand" @click="editInfo(scope.row)"></i>
                   <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
                 </template>
@@ -221,7 +221,15 @@
 
       },
       formInfo(item){
-
+        this.$router.push({
+          path: '/appletInfo/app/appCreate',
+          query: {
+            id: 1,
+            top: 'appletInfo',
+            key: 'appCreate',
+            sub: 'appCenter'
+          }
+        });
       },
       handleCascaderChange(data){
         this.form.dept = data;
