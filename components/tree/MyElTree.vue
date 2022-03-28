@@ -82,7 +82,11 @@
         type: String
       },
       subType: {
-        default: 1,
+        default: '1',
+        type: String
+      },
+      extraType: {
+        default: '',
         type: String
       },
       showCampus: {
@@ -133,7 +137,7 @@
           await this.getDeptInfo(this.subType);
           this.data = this.dataDept;
         }else if(this.type == 100){
-          await this.getAppletInfo();
+          await this.getAppletInfo(this.extraType);
           this.data = this.dataApplet;
         }
       },

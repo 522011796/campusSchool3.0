@@ -7,7 +7,7 @@
             <!--<span class="layout-left-menu-tag"></span>-->
             <span class="layout-left-menu-title">应用设计</span>
           </div>
-          <my-el-tree type="100" sub-type="" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
+          <my-el-tree type="100" :extra-type="$route.query.appName" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
         </div>
 
         <div slot="right">
@@ -17,7 +17,7 @@
                 <div>
                   <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo($event)">{{$t("创建服务")}}</el-button>
                   <template v-if="$route.query.id">
-                    <span></span>
+                    <span>{{$route.query.appName}}</span>
                   </template>
                 </div>
               </el-col>
@@ -344,7 +344,7 @@
         let params = {
           page: this.page,
           num: this.num,
-          appletId: this.searchAppId,
+          appletId: this.$route.query.id ? this.$route.query.id : this.searchAppId,
           formType: this.searchType,
           enable: this.searchStatus,
           searchKey: this.searchKey
@@ -550,6 +550,16 @@
         }if (this.appName == 'set'){
 
         }
+      }
+    },
+    watch: {
+      '$route': function (to, from) {//监听路由变化
+        this.$nextTick(() => {
+          this.searchKey = '';
+          this.searchAppId = '';
+          this.page = 1;
+          this.init();
+        });
       }
     }
   }

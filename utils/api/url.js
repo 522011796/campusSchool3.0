@@ -582,4 +582,7 @@ export const common = {
   server_list_save: '/proxy/school/applet/form/save',//保存服务列表
   server_list_update: '/proxy/school/applet/content/update',//修改服务模版
 
+  server_template_list: '/proxy/school/applet/form/save',//模版列表
+  server_template_list_detail: '/proxy/school/applet/content/update',//模版列表详细
+
 };

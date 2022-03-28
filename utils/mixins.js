@@ -533,16 +533,20 @@ export default {
      * 主要用于树形菜单，下来菜单等
      * @returns {Promise<void>}
      */
-    async getAppletInfo(type) {
-      let params = {};
-      await this.$axios.get(common.server_applet_all_list, {params: params}).then(res => {
+    async getAppletInfo(searchName) {
+      let params = {
+        page: 1,
+        num: 9999,
+        searchKey: searchName
+      };
+      await this.$axios.get(common.server_applet_list, {params: params}).then(res => {
         let arr = [];
         if (res.data.data){
-          for (let i = 0; i < res.data.data.length; i++){
-            res.data.data[i]['label'] = res.data.data[i].appletName;
-            res.data.data[i]['value'] = res.data.data[i].id;
+          for (let i = 0; i < res.data.data.list.length; i++){
+            res.data.data.list[i]['label'] = res.data.data.list[i].applet_name;
+            res.data.data.list[i]['value'] = res.data.data.list[i].id;
           }
-          this.dataApplet = res.data.data;
+          this.dataApplet = res.data.data.list;
         }
       });
     },

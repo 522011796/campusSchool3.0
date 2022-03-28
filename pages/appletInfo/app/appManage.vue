@@ -322,7 +322,8 @@
         this.$router.push({
           path: '/appletInfo/app/appCreate',
           query: {
-            id: 1,
+            id: item.id,
+            appName: item.applet_name,
             top: 'appletInfo',
             key: 'appCreate',
             sub: 'appCenter'
