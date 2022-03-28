@@ -27,7 +27,7 @@
             align="center"
             :label="$t('创建时间')">
             <template slot-scope="scope">
-              <span>{{scope.row.class_no}}</span>
+              <span>{{$moment(scope.row.create_time).format("YYYY-MM-DD HH:mm")}}</span>
             </template>
           </el-table-column>
           <el-table-column
@@ -35,9 +35,9 @@
             :label="$t('名称')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.class_no}}</div>
+                <div class="text-center">{{scope.row.category_name}}</div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <span>{{scope.row.class_no}}</span>
+                  <span>{{scope.row.category_name}}</span>
                 </div>
               </el-popover>
             </template>
@@ -48,7 +48,9 @@
             label="操作"
             width="140">
             <template slot-scope="scope">
-              <i class="fa fa-stop-circle color-warning margin-right-5" @click="statusInfo(scope.row)"></i>
+              <i v-if="scope.row.enable" class="fa fa-stop-circle color-warning margin-right-5" @click="statusInfo(scope.row, false)"></i>
+              <i v-if="!scope.row.enable" class="fa fa-play-circle color-success margin-right-5" @click="statusInfo(scope.row, true)"></i>
+
               <i class="fa fa-edit color-grand margin-right-5" @click="editInfo(scope.row)"></i>
               <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
             </template>
@@ -101,7 +103,8 @@
         searchKey: '',
         form: {
           id: '',
-          name: ''
+          name: '',
+          enable: true
         }
       }
     },
@@ -115,7 +118,7 @@
           num: this.num,
           searchKey: this.searchKey
         };
-        this.$axios.get(common.classroom_page, {params: params}).then(res => {
+        this.$axios.get(common.server_type_list, {params: params}).then(res => {
           if (res.data.data){
             this.tableData = res.data.data.list;
             this.total = res.data.data.totalCount;
@@ -146,19 +149,37 @@
         this.init();
       },
       editInfo(item){
-
+        this.form = {
+          id: item.id,
+          name: item.category_name,
+          enable: item.enable
+        };
+        this.dialogType = true;
       },
       deleteInfo(item){
         this.form.id = item.id;
         this.visibleConfim = true;
       },
-      statusInfo(item){
-
+      statusInfo(item, status){
+        let params = {
+          id: item.id,
+          enable: status
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.server_type_enable, params).then(res => {
+          if (res.data.code == 200){
+            this.init();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+        });
       },
       closeDialog(event){
         this.form = {
           id: '',
-          name: ''
+          name: '',
+          enable: true
         };
         this.subTitle = "";
         if (this.$refs['form']){
@@ -174,18 +195,16 @@
           if (valid) {
             this.dialogLoading = true;
             let params = {
-              name: this.form.name,
+              categoryName: this.form.name,
             };
             if (this.form.id != ''){
               params['id'] = this.form.id;
-              url = common.class_edit;
-            }else {
-              url = common.class_edit;
             }
+            url = common.server_type_save;
             params = this.$qs.stringify(params);
             this.$axios.post(url, params).then(res => {
               if (res.data.code == 200){
-                this.dialogApp = false;
+                this.dialogType = false;
                 this.init();
                 MessageSuccess(res.data.desc);
               }else {
@@ -205,7 +224,7 @@
         let params = {
           id: this.form.id
         }
-        url = common.class_delete;
+        url = common.server_type_delete;
         params = this.$qs.stringify(params);
         this.$axios.post(url, params).then(res => {
           if (res.data.code == 200){

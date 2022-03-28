@@ -561,4 +561,9 @@ export const common = {
   student_parent_unbind: '/proxy/user/user/unbind',//解绑学生信息
   student_parent_reset_pwd: '/proxy/uup/pass/reset',//重置学生密码
 
+  server_type_list: '/proxy/school/applet/category/page',//类别列表
+  server_type_save: '/proxy/school/applet/category/save',//添加、修改类别
+  server_type_enable: '/proxy/school/applet/category/enable',//类别启禁设置
+  server_type_delete: '/proxy/school/applet/category/del',//删除类别
+
 };

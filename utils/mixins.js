@@ -15,6 +15,7 @@ export default {
       collegeId: global.collegeId,
       collegeName: global.collegeName,
       campusName: global.campusName,
+      organizeName: global.organizeName,
       loginUserType: global.loginUserType,
       loginUserPhone: global.loginUserPhone,
       campusLogo: global.campusLogo,
