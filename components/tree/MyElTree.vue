@@ -132,6 +132,9 @@
         }else if(this.type == 4){
           await this.getDeptInfo(this.subType);
           this.data = this.dataDept;
+        }else if(this.type == 100){
+          await this.getAppletInfo();
+          this.data = this.dataApplet;
         }
       },
       filterNode(value, data) {

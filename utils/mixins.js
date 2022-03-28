@@ -6,7 +6,7 @@ import {
   setSchoolBuildChildren,
   setDormBuildChildren,
   setDeptChildren,
-  serverType
+  serverType, serverFormType
 } from "~/utils/utils";
 
 export default {
@@ -35,6 +35,7 @@ export default {
       dataSchoolBuild: global.dataSchoolBuildList,
       dataDormBuild: global.dataDormBuildList,
       dataDept: global.dataDeptList,
+      dataApplet: global.dataAppletList,
       currentSeciton: global.currentSeciton,
       currentYear: global.currentYear,
       currentMonth: global.currentMonth,
@@ -93,6 +94,7 @@ export default {
       filterUserAccountActiveStatusOptions: global.filterUserAccountActiveStatusOptions,
       filterAppManageStatus: global.filterAppManageStatus,
       filterAppManageType: global.filterAppManageType,
+      filterAppServerType: global.filterAppServerType,
       g_currentDate: {},
       currentYearData: '',
       currentTermData: '',
@@ -527,6 +529,24 @@ export default {
       });
     },
     /**
+     * 获取应用的list信息
+     * 主要用于树形菜单，下来菜单等
+     * @returns {Promise<void>}
+     */
+    async getAppletInfo(type) {
+      let params = {};
+      await this.$axios.get(common.server_applet_all_list, {params: params}).then(res => {
+        let arr = [];
+        if (res.data.data){
+          for (let i = 0; i < res.data.data.length; i++){
+            res.data.data[i]['label'] = res.data.data[i].appletName;
+            res.data.data[i]['value'] = res.data.data[i].id;
+          }
+          this.dataApplet = res.data.data;
+        }
+      });
+    },
+    /**
      * 重置集联下拉，否则会出现回显问题
      * 用于自定义集联下拉，非自定义不能使用
      */
@@ -612,6 +632,9 @@ export default {
     },
     serverTypeInfo(value, type){
       return serverType(type, value);
+    },
+    serverFormTypeInfo(value, type){
+      return serverFormType(type, value);
     }
   }
 }

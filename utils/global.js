@@ -12,6 +12,7 @@ const dataCollegeList= [];
 const dataSchoolBuildList = [];
 const dataDormBuildList = [];
 const dataDeptList = [];
+const dataAppletList = [];
 const currentYearList = [];
 const currentTermList = [];
 const currentWeekList = [];
@@ -343,6 +344,12 @@ const filterAppManageType = [
   { text: '单位办事', value: '2' ,label: '单位办事'}
 ];
 
+const filterAppServerType = [
+  { text: "普通服务", value: '0' ,label: '普通服务'},
+  { text: '流程服务', value: '1' ,label: '流程服务'},
+  { text: '统计服务', value: '2' ,label: '统计服务'}
+];
+
 export default {
   total,
   page,
@@ -358,6 +365,7 @@ export default {
   dataSchoolBuildList: [],
   dataDormBuildList: [],
   dataDeptList: [],
+  dataAppletList: [],
   currentDay,
   currentMonth,
   currentTermId,
@@ -421,5 +429,6 @@ export default {
   filterTimeStatusOptions,
   filterUserAccountActiveStatusOptions,
   filterAppManageStatus,
-  filterAppManageType
+  filterAppManageType,
+  filterAppServerType
 }

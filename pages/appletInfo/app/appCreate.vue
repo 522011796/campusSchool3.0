@@ -7,7 +7,7 @@
             <!--<span class="layout-left-menu-tag"></span>-->
             <span class="layout-left-menu-title">应用设计</span>
           </div>
-          <my-el-tree type="4" sub-type="" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
+          <my-el-tree type="100" sub-type="" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
         </div>
 
         <div slot="right">
@@ -17,13 +17,13 @@
                 <div>
                   <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo($event)">{{$t("创建服务")}}</el-button>
                   <template v-if="$route.query.id">
-                    <span>标题标题标题标题标题标题标题</span>
+                    <span></span>
                   </template>
                 </div>
               </el-col>
               <el-col :span="16" class="text-right">
                 <div class="layout-inline">
-                  <my-select class="layout-item width-150" size="small" :placeholder="$t('类型')" :options="filterAppManageType" :clearable="true" @change="handleTypeChange($event, 1)"></my-select>
+                  <my-select class="layout-item width-150" size="small" :placeholder="$t('类型')" :options="filterAppServerType" :clearable="true" @change="handleTypeChange($event, 1)"></my-select>
                   <my-select class="layout-item width-150" size="small" :placeholder="$t('状态')" :options="filterAppManageStatus" :clearable="true" @change="handleTypeChange($event, 2)"></my-select>
                   <my-input-button ref="teacher width-150" size="small" plain width-class="width: 180px" type="success" :clearable="true" :placeholder="$t('名称')" @click="search"></my-input-button>
                 </div>
@@ -44,9 +44,9 @@
                 :label="$t('创建日期')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{ scope.row.classroom_no }}</div>
+                    <div class="text-center">{{$moment(scope.row.create_time).format("YYYY-MM-DD")}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                        2022-11-11 11:11:11
+                      {{$moment(scope.row.create_time).format("YYYY-MM-DD")}}
                     </span>
                   </el-popover>
                 </template>
@@ -56,9 +56,22 @@
                 :label="$t('所属应用')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{ scope.row.classroom_no }}</div>
+                    <div class="text-center">{{ scope.row.applet_name }}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                        {{ scope.row.classroom_no }}
+                        {{ scope.row.applet_name }}
+                      </span>
+                  </el-popover>
+                </template>
+              </el-table-column>
+              <el-table-column
+                align="center"
+                prop="form_name"
+                :label="$t('名称')">
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">{{ scope.row.form_name }}</div>
+                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                        {{ scope.row.form_name }}
                       </span>
                   </el-popover>
                 </template>
@@ -66,19 +79,22 @@
               <el-table-column
                 align="center"
                 prop="appName"
-                :label="$t('名称')">
-              </el-table-column>
-              <el-table-column
-                align="center"
-                prop="appName"
                 :label="$t('类型')">
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">{{ serverFormTypeInfo(scope.row.form_type, 'set') }}</div>
+                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                        {{ serverFormTypeInfo(scope.row.form_type, 'set') }}
+                      </span>
+                  </el-popover>
+                </template>
               </el-table-column>
               <el-table-column
                 align="center"
                 prop="appName"
                 :label="$t('图标')">
                 <template slot-scope="scope">
-                  <el-image class="table-cell-image-slot" src="https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg">
+                  <el-image class="table-cell-image-slot" :src="scope.row.form_logo">
                     <div slot="error" class="table-cell-image-slot">
                       <i class="el-icon-picture-outline" style="font-size: 14px"></i>
                     </div>
@@ -89,13 +105,26 @@
                 align="center"
                 prop="appName"
                 :label="$t('状态')">
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">
+                      <label v-if="scope.row.enable" class="color-success">{{$t("已发布")}}</label>
+                      <label v-if="!scope.row.enable" class="color-warning">{{$t("待发布")}}</label>
+                    </div>
+                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      <label v-if="scope.row.enable" class="color-success">{{$t("已发布")}}</label>
+                      <label v-if="!scope.row.enable" class="color-warning">{{$t("待发布")}}</label>
+                    </span>
+                  </el-popover>
+                </template>
               </el-table-column>
               <el-table-column
                 align="center"
                 width="120"
                 :label="$t('操作')">
                 <template slot-scope="scope">
-                  <i class="fa fa-stop-circle margin-right-5 color-warning" @click="statusInfo(scope.row)"></i>
+                  <i v-if="scope.row.enable == true" class="fa fa-stop-circle margin-right-5 color-warning" @click="statusInfo(scope.row, false)"></i>
+                  <i v-if="scope.row.enable == false" class="fa fa-play-circle margin-right-5 color-success" @click="statusInfo(scope.row, true)"></i>
                   <i class="fa fa-cog margin-right-5 color-grand" @click="setInfo(scope.row)"></i>
                   <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
                 </template>
@@ -132,7 +161,7 @@
                 <el-input v-model="form.name" size="small" class="width-300"></el-input>
               </el-form-item>
               <el-form-item :label="$t('类型')" prop="type">
-                <my-select class="layout-item" size="small" :placeholder="$t('类型')" :sel-value="form.type" :options="filterAppManageType" width-style="300" :clearable="true" @change="handleTypeChange($event, 3)"></my-select>
+                <my-select class="layout-item" size="small" :placeholder="$t('类型')" :sel-value="form.type" :options="filterAppServerType" width-style="300" :clearable="true" @change="handleTypeChange($event, 3)"></my-select>
               </el-form-item>
               <el-form-item :label="$t('应用')" prop="app">
                 <my-select class="layout-item width-300" size="small" :placeholder="$t('应用')" :sel-value="form.app" :options="apps" width-style="300" :clearable="true" @change="handleTypeChange($event, 4)"></my-select>
@@ -153,14 +182,14 @@
           </div>
           <div class="block-item-bg font-size-12" style="position: relative">
             <div>
-              <el-image :src="serverImg" class="item-img-set-class">
+              <el-image :src="form.icon" class="item-img-set-class">
                 <div slot="error" class="margin-top-10 text-center">
                   <i class="el-icon-picture-outline" style="font-size: 60px"></i>
                 </div>
               </el-image>
             </div>
             <div style="position: absolute;left: 10px;bottom: 12px">
-              <upload-square :action="uploadFileUrl" max-size="1" :data="{path: 'logo'}" accept=".png,.jpg,.jpeg" @success="uploadFileSuccess">
+              <upload-square :action="uploadFileUrl" max-size="8" :data="{path: 'applet'}" accept=".png,.jpg,.jpeg" @success="uploadFileSuccess">
                 <div class="upload-block-class">
                   <span>{{$t("更换图标")}}</span>
                 </div>
@@ -263,13 +292,15 @@
 <script>
   import mixins from "~/utils/mixins";
   import {common} from "~/utils/api/url";
-  import {MessageError, MessageSuccess} from "~/utils/utils";
+  import {MessageError, MessageSuccess, MessageWarning} from "~/utils/utils";
   import appCreateValidater from "~/utils/validater/appCreateValidater";
   import MySelect from "~/components/MySelect";
   import DrawerLayoutRight from "~/components/utils/dialog/DrawerLayoutRight";
+  import UploadSquare from "~/components/utils/upload/UploadSquare";
+  import MyElTree from "~/components/tree/MyElTree";
 
   export default {
-    components: {DrawerLayoutRight, MySelect},
+    components: {MyElTree, UploadSquare, DrawerLayoutRight, MySelect},
     mixins: [mixins,appCreateValidater],
     data(){
       return {
@@ -279,12 +310,13 @@
         types: [],
         subTitle: '',
         collegeData: '',
+        searchAppId: '',
         searchKey: '',
         searchType: '',
         searchStatus: '',
         detailData: '',
-        serverImg: 'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg',
-        uploadFileUrl: '',
+        serverImg: '',
+        uploadFileUrl: common.upload_file,
         activeName: 'form',
         dialogLoading: false,
         dialogApp: false,
@@ -296,6 +328,7 @@
           name: '',
           type: '',
           app: '',
+          icon: '',
           remarks: '',
           scope: true,
           evaluate:true
@@ -304,23 +337,41 @@
     },
     created() {
       this.init();
+      this.initApp();
     },
     methods: {
       init(){
         let params = {
           page: this.page,
           num: this.num,
-          collegeData: this.collegeData,
-          searchType: this.searchType,
-          searchStatus: this.searchStatus,
+          appletId: this.searchAppId,
+          formType: this.searchType,
+          enable: this.searchStatus,
           searchKey: this.searchKey
         };
-        this.$axios.get(common.classroom_page, {params: params}).then(res => {
+        this.$axios.get(common.server_list_page, {params: params}).then(res => {
           if (res.data.data){
             this.tableData = res.data.data.list;
             this.total = res.data.data.totalCount;
             this.num = res.data.data.num;
             this.page = res.data.data.currentPage;
+          }
+        });
+      },
+      initApp(){
+        let params = {};
+        this.$axios.get(common.server_applet_all_list, {params: params}).then(res => {
+          if (res.data.data){
+            let array = [];
+            for (let i = 0; i < res.data.data.length; i++){
+              array.push({
+                text: res.data.data[i].appletName,
+                value: res.data.data[i].id+'',
+                label: res.data.data[i].appletName,
+                enable: res.data.data[i].enable
+              });
+            }
+            this.apps = array;
           }
         });
       },
@@ -338,7 +389,7 @@
         this.init();
       },
       nodeClick(data){
-        this.collegeData = data.department_path;
+        this.searchAppId = data.id;
         this.page = 1;
         this.init();
       },
@@ -371,10 +422,32 @@
       },
       setInfo(item){
         this.detailData = item;
+        this.form = {
+          id: item.id,
+          name: item.form_name,
+          type: item.form_type +'',
+          app: item.applet_id +'',
+          icon: item.form_logo,
+          remarks: item.des,
+          scope: item.allow_score,
+          evaluate:item.allow_appraise
+        };
         this.drawerVisible = true;
       },
-      statusInfo(item){
-
+      statusInfo(item, type){
+        let params = {
+          id: item.id,
+          enable: type
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.server_list_enable, params).then(res => {
+          if (res.data.code == 200){
+            this.init();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+        });
       },
       formInfo(item){
         this.drawerForm = true;
@@ -385,6 +458,7 @@
           name: '',
           type: '',
           app: '',
+          icon: '',
           remarks: '',
           scope: true,
           evaluate:true
@@ -411,7 +485,7 @@
         let params = {
           id: this.form.id
         }
-        url = common.class_delete;
+        url = common.server_list_del;
         params = this.$qs.stringify(params);
         this.$axios.post(url, params).then(res => {
           if (res.data.code == 200){
@@ -426,7 +500,7 @@
       },
       uploadFileSuccess(res, file){
         if (res.code == 200){
-          this.serverImg = res.data.url;
+          this.form.icon = res.data.url;
         }else {
 
         }
@@ -435,15 +509,24 @@
         let url = '';
         this.$refs['form'].validate((valid) => {
           if (valid) {
+            if (this.form.icon == ""){
+              MessageWarning(this.$t("请设置图标"));
+              return;
+            }
             this.dialogLoading = true;
             let params = {
-              id: this.form.id,
-              appName: this.form.appName,
-              type: this.form.type,
-              category: this.form.category,
-              dept: this.form.dept,
+              formName:  this.form.name,
+              appletId: this.form.app,
+              formType: this.form.type,
+              formLogo: this.form.icon,
+              allowAppraise: this.form.evaluate,
+              allowScore: this.form.scope,
+              des: this.form.remarks,
             };
-            url = common.class_edit;
+            if (this.form.id != ""){
+              params['id'] = this.form.id;
+            }
+            url = common.server_list_save;
             params = this.$qs.stringify(params);
             this.$axios.post(url, params).then(res => {
               if (res.data.code == 200) {

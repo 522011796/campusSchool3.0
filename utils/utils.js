@@ -791,6 +791,20 @@ export function serverType(type, str){
   }
 }
 
+export function serverFormType(type, str){
+  let serverFormType = {
+    "0": "普通服务",
+    "1": "流程服务",
+    "2": "统计服务"
+  };
+  if (str != null && type == 'set') {
+    return serverFormType[str];
+  }
+  if (!str && type == 'get'){
+    return serverFormType;
+  }
+}
+
 export function getWeekTotalSelect(){
   let arr = [];
   for (let i = 0; i < 52; i++){

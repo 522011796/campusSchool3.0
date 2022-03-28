@@ -561,7 +561,8 @@ export const common = {
   student_parent_unbind: '/proxy/user/user/unbind',//解绑学生信息
   student_parent_reset_pwd: '/proxy/uup/pass/reset',//重置学生密码
 
-  server_applet_list: '/proxy/school/applet/page',//应用列表
+  server_applet_list: '/proxy/school/applet/page',//应用列表--分页
+  server_applet_all_list: '/proxy/school/applet/list',//应用列表
   server_applet_save: '/proxy/school/applet/save',//添加、修改应用
   server_applet_enable: '/proxy/school/applet/enable',//应用启禁设置
   server_applet_delete: '/proxy/school/applet/del',//删除应用
@@ -572,5 +573,13 @@ export const common = {
   server_type_save: '/proxy/school/applet/category/save',//添加、修改类别
   server_type_enable: '/proxy/school/applet/category/enable',//类别启禁设置
   server_type_delete: '/proxy/school/applet/category/del',//删除类别
+
+  server_list_page: '/proxy/school/applet/form/page',//服务列表
+  server_list_list1: '/proxy/school/applet/form/list1',//服务列表-通过类型查询的列表
+  server_list_list2: '/proxy/school/applet/form/list2',//服务列表-当前人员提交能用的列表
+  server_list_del: '/proxy/school/applet/form/del',//删除服务列表
+  server_list_enable: '/proxy/school/applet/form/enable',//启、禁服务列表
+  server_list_save: '/proxy/school/applet/form/save',//保存服务列表
+  server_list_update: '/proxy/school/applet/content/update',//修改服务模版
 
 };

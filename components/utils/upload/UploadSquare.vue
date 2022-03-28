@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-upload
+      ref="uploadRef"
       class="avatar-uploader"
       :action="action"
       :accept="accept"
@@ -62,9 +63,11 @@
     },
     methods: {
       handleAvatarSuccess(res, file){
+        this.$refs.uploadRef.clearFiles();
         this.$emit('success', res, file);
       },
       handleAvatarError(res, file){
+        this.$refs.uploadRef.clearFiles();
         this.$emit('error', res, file);
       },
       beforeAvatarUpload(file){
