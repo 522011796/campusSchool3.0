@@ -777,6 +777,20 @@ export function classAttendStatus(type, str){
   }
 }
 
+export function serverType(type, str){
+  let serverType = {
+    "0": "学生办事",
+    "1": "老师办事",
+    "2": "单位办事"
+  };
+  if (str != null && type == 'set') {
+    return serverType[str];
+  }
+  if (!str && type == 'get'){
+    return serverType;
+  }
+}
+
 export function getWeekTotalSelect(){
   let arr = [];
   for (let i = 0; i < 52; i++){

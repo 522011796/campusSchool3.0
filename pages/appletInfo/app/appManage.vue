@@ -21,7 +21,7 @@
                 <div class="layout-inline">
                   <my-select class="layout-item width-150" size="small" :placeholder="$t('类型')" :options="filterAppManageType" :clearable="true" @change="handleTypeChange($event, 1)"></my-select>
                   <my-select class="layout-item width-150" size="small" :placeholder="$t('状态')" :options="filterAppManageStatus" :clearable="true" @change="handleTypeChange($event, 2)"></my-select>
-                  <my-input-button ref="teacher width-150" size="small" plain width-class="width: 180px" type="success" :clearable="true" :placeholder="$t('名称')" @click="search"></my-input-button>
+                  <my-input-button ref="teacher width-150" size="small" plain width-class="width: 180px" type="success" :clearable="true" :placeholder="$t('名称/编号')" @click="search"></my-input-button>
                 </div>
               </el-col>
             </el-row>
@@ -40,9 +40,9 @@
                 :label="$t('名称')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{ scope.row.classroom_no }}</div>
+                    <div class="text-center">{{ scope.row.applet_name }}</div>
                       <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                        {{ scope.row.classroom_no }}{{ scope.row.classroom_no }}
+                        {{ scope.row.applet_name }}
                       </span>
                   </el-popover>
                 </template>
@@ -51,28 +51,65 @@
                 align="center"
                 prop="appName"
                 :label="$t('部门')">
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">{{ scope.row.department_names }}</div>
+                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                        {{ scope.row.department_names }}
+                      </span>
+                  </el-popover>
+                </template>
               </el-table-column>
               <el-table-column
                 align="center"
                 prop="appName"
                 :label="$t('类型')">
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">{{ scope.row.applet_type }}</div>
+                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                        {{ serverTypeInfo(scope.row.applet_type, 'set') }}
+                      </span>
+                  </el-popover>
+                </template>
               </el-table-column>
               <el-table-column
                 align="center"
                 prop="appName"
                 :label="$t('类别')">
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">{{ scope.row.category_name }}</div>
+                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                        {{ scope.row.category_name }}
+                      </span>
+                  </el-popover>
+                </template>
               </el-table-column>
               <el-table-column
                 align="center"
                 prop="appName"
                 :label="$t('状态')">
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">
+                      <label v-if="scope.row.enable" class="color-success">{{$t("已发布")}}</label>
+                      <label v-if="!scope.row.enable" class="color-warning">{{$t("待发布")}}</label>
+                    </div>
+                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      <label v-if="scope.row.enable" class="color-success">{{$t("已发布")}}</label>
+                      <label v-if="!scope.row.enable" class="color-warning">{{$t("待发布")}}</label>
+                    </span>
+                  </el-popover>
+                </template>
               </el-table-column>
               <el-table-column
                 align="center"
                 width="120"
                 :label="$t('操作')">
                 <template slot-scope="scope">
-                  <i class="fa fa-stop-circle margin-right-5 color-warning" @click="statusInfo(scope.row)"></i>
+                  <i v-if="scope.row.enable" class="fa fa-stop-circle color-warning margin-right-5" @click="statusInfo(scope.row, false)"></i>
+                  <i v-if="!scope.row.enable" class="fa fa-play-circle color-success margin-right-5" @click="statusInfo(scope.row, true)"></i>
                   <i class="fa fa-edit margin-right-5 color-grand" @click="editInfo(scope.row)"></i>
                   <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
                 </template>
@@ -98,16 +135,19 @@
       <div class="margin-top-10">
         <el-form :model="form" :rules="rules" ref="form" label-width="140px">
           <el-form-item :label="$t('应用名称')" prop="appName">
-            <el-input :disabled="form.id != ''" v-model="form.appName" class="width-260"></el-input>
+            <el-input v-model="form.appName" class="width-260"></el-input>
           </el-form-item>
           <el-form-item :label="$t('应用类型')" prop="type">
-            <my-select :sel-value="form.type" :options="types" width-style="260" @change="handleFormChange($event, 1)"></my-select>
+            <my-select :sel-value="form.type" :options="filterAppManageType" width-style="260" @change="handleFormChange($event, 1)"></my-select>
           </el-form-item>
           <el-form-item :label="$t('应用类别')" prop="category">
-            <my-select :sel-value="form.category" :options="categorys" width-style="260" @change="handleFormChange($event, 2)"></my-select>
+<!--            <my-select :sel-value="form.category" :options="categorys" width-style="260" @change="handleFormChange($event, 2)"></my-select>-->
+            <el-select v-model="form.category" :placeholder="$t('请选择')" @change="handleFormChange($event, 2)" style="width: 260px">
+              <el-option v-for="item in categorys" :key="item.value" :label="item.label" :value="item.value" :disabled="item.enable == false"></el-option>
+            </el-select>
           </el-form-item>
           <el-form-item :label="$t('归宿部门')" prop="dept">
-            <my-cascader ref="SelectorCollege" :sel-value="form.dept" type="4" sub-type="id" width-style="260" @change="handleCascaderChange($event)"></my-cascader>
+            <my-cascader ref="SelectorCollege" :sel-value="form.dept" :props="{multiple: true}" type="4" sub-type="id" width-style="260" @change="handleCascaderChange($event)"></my-cascader>
           </el-form-item>
         </el-form>
       </div>
@@ -133,9 +173,10 @@
   import {common} from "~/utils/api/url";
   import {MessageError, MessageSuccess} from "~/utils/utils";
   import appManageValidater from "~/utils/validater/appManageValidater";
+  import MyCascader from "~/components/utils/select/MyCascader";
   export default {
     mixins: [mixins,appManageValidater],
-    components: {MySelect, MyInputButton},
+    components: {MyCascader, MySelect, MyInputButton},
     data(){
       return {
         tableData: [],
@@ -161,23 +202,44 @@
     },
     created() {
       this.init();
+      this.initCategory();
     },
     methods: {
       init(){
         let params = {
           page: this.page,
           num: this.num,
-          collegeData: this.collegeData,
-          searchType: this.searchType,
-          searchStatus: this.searchStatus,
+          departmentPath: this.collegeData,
+          appletType: this.searchType,
+          enable: this.searchStatus,
           searchKey: this.searchKey
         };
-        this.$axios.get(common.classroom_page, {params: params}).then(res => {
+        this.$axios.get(common.server_applet_list, {params: params}).then(res => {
           if (res.data.data){
             this.tableData = res.data.data.list;
             this.total = res.data.data.totalCount;
             this.num = res.data.data.num;
             this.page = res.data.data.currentPage;
+          }
+        });
+      },
+      initType(){
+
+      },
+      initCategory(){
+        let params = {};
+        this.$axios.get(common.server_type_all_list, {params: params}).then(res => {
+          if (res.data.data){
+            let array = [];
+            for (let i = 0; i < res.data.data.length; i++){
+              array.push({
+                text: res.data.data[i].categoryName,
+                value: res.data.data[i].id+'',
+                label: res.data.data[i].categoryName,
+                enable: res.data.data[i].enable
+              });
+            }
+            this.categorys = array;
           }
         });
       },
@@ -211,14 +273,50 @@
 
       },
       editInfo(item){
-
+        let deptArr = [];
+        let params = {
+          id: item.id
+        };
+        this.form = {
+          id: item.id,
+          appName: item.applet_name,
+          type: item.applet_type + '',
+          category: item.category_id + ''
+        }
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.server_applet_deptinfo, params).then(res => {
+          if (res.data.code == 200){
+            for (let i = 0; i < res.data.data.length; i++){
+              let dept = [];
+              let array = res.data.data[i].departmentIds.split(",");
+              for (let j = 0; j < array.length; j++){
+                dept.push(parseInt(array[j]));
+              }
+              deptArr.push(dept);
+            }
+            this.form.dept = deptArr;
+          }
+          this.dialogApp = true;
+        });
       },
       deleteInfo(item){
         this.form.id = item.id;
         this.visibleConfim = true;
       },
-      statusInfo(item){
-
+      statusInfo(item, type){
+        let params = {
+          id: item.id,
+          enable: type
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.server_applet_enable, params).then(res => {
+          if (res.data.code == 200){
+            this.init();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+        });
       },
       formInfo(item){
         this.$router.push({
@@ -232,6 +330,7 @@
         });
       },
       handleCascaderChange(data){
+        console.log(data);
         this.form.dept = data;
       },
       handleTypeChange(event, type){
@@ -256,18 +355,24 @@
         this.$refs['form'].validate((valid) => {
           if (valid) {
             this.dialogLoading = true;
+            let deptArrStr = '';
+            let deptArr = [];
+            for (let i = 0; i < this.form.dept.length; i++){
+              deptArrStr += this.form.dept[i].join();
+              if (this.form.dept.length - 1 != i){
+                deptArrStr += '|';
+              }
+            }
             let params = {
-              appName: this.form.appName,
-              type: this.form.type,
-              category: this.form.category,
-              dept: this.form.dept,
+              appletName: this.form.appName,
+              appletType: this.form.type,
+              categoryId: this.form.category,
+              departmentIds: deptArrStr,
             };
             if (this.form.id != ''){
               params['id'] = this.form.id;
-              url = common.class_edit;
-            }else {
-              url = common.class_edit;
             }
+            url = common.server_applet_save;
             params = this.$qs.stringify(params);
             this.$axios.post(url, params).then(res => {
               if (res.data.code == 200){
@@ -305,7 +410,7 @@
         let params = {
           id: this.form.id
         }
-        url = common.class_delete;
+        url = common.server_applet_delete;
         params = this.$qs.stringify(params);
         this.$axios.post(url, params).then(res => {
           if (res.data.code == 200){

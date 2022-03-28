@@ -1,6 +1,13 @@
 import global from "~/utils/global";
 import {common} from "~/utils/api/url";
-import {setChildren, setCollegeChildren, setSchoolBuildChildren, setDormBuildChildren, setDeptChildren} from "~/utils/utils";
+import {
+  setChildren,
+  setCollegeChildren,
+  setSchoolBuildChildren,
+  setDormBuildChildren,
+  setDeptChildren,
+  serverType
+} from "~/utils/utils";
 
 export default {
   data (){
@@ -602,6 +609,9 @@ export default {
           this.currentSetWeekNum = res.data.data.teachSetting.weekNum;
         }
       });
+    },
+    serverTypeInfo(value, type){
+      return serverType(type, value);
     }
   }
 }
