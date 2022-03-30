@@ -227,6 +227,10 @@
               <label>{{$t("允许评分")}}:</label>
               <el-switch v-model="form.scope" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
             </span>
+            <span class="margin-left-10">
+              <label>{{$t("首页推荐")}}:</label>
+              <el-switch v-model="form.recommend" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
+            </span>
           </div>
         </div>
       </div>
@@ -238,7 +242,7 @@
       </div>
     </drawer-layout-right>
 
-    <drawer-layout-right tabindex="0" @changeDrawer="closeDialog" :visible="drawerForm" size="85%">
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDialog" @opened="openedForm" :visible="drawerForm" size="85%">
       <div slot="title">
         <div class="header-block padding-lr-10">
           <span class="tab-class font-bold" :class="activeName == 'form' ? 'color-grand' : ''" @click="handleClick('form')">
@@ -257,19 +261,19 @@
       </div>
       <div slot="content" class="color-muted">
         <div v-if="activeName == 'form'">
-          form
+          <fc-designer ref="designer" :style="drawHeight"/>
         </div>
         <div v-if="activeName == 'flow'">
-          flow
+
         </div>
         <div v-if="activeName == 'set'">
-          set
+          <my-form-set :formId="serverDataItem"></my-form-set>
         </div>
       </div>
-      <div slot="footer">
+      <div slot="footer" v-if="showFooter">
         <el-row>
           <el-col :span="12" class="text-left padding-lr-10">
-            <el-button v-if="activeName == 'form'" size="mini" type="warning" @click="cancelDrawDialog">
+            <el-button v-if="activeName == 'form'" size="mini" type="warning" :loading="btnLoading" @click="sendTempShop">
               <i class="fa fa-send"></i>
               {{$t("发布到模版中心")}}
             </el-button>
@@ -278,7 +282,7 @@
           <el-col :span="12">
             <div class="text-right padding-lr-10">
               <el-button size="mini" @click="cancelDrawDialog">{{$t("取消")}}</el-button>
-              <el-button size="mini" type="success" @click="okFormDrawDialog">{{$t("保存")}}</el-button>
+              <el-button size="mini" type="success" :loading="btnLoading" @click="okFormDrawDialog">{{$t("保存")}}</el-button>
             </div>
           </el-col>
         </el-row>
@@ -298,9 +302,11 @@
   import DrawerLayoutRight from "~/components/utils/dialog/DrawerLayoutRight";
   import UploadSquare from "~/components/utils/upload/UploadSquare";
   import MyElTree from "~/components/tree/MyElTree";
+  import TestForm from "~/formJs/form/TestForm";
+  import MyFormSet from "~/components/form/MyFormSet";
 
   export default {
-    components: {MyElTree, UploadSquare, DrawerLayoutRight, MySelect},
+    components: {MyFormSet, MyElTree, UploadSquare, DrawerLayoutRight, MySelect},
     mixins: [mixins,appCreateValidater],
     data(){
       return {
@@ -323,6 +329,9 @@
         visibleConfim: false,
         drawerVisible: false,
         drawerForm: false,
+        btnLoading: false,
+        showFooter: true,
+        serverDataItem: '',
         form: {
           id: '',
           name: '',
@@ -331,7 +340,8 @@
           icon: '',
           remarks: '',
           scope: true,
-          evaluate:true
+          evaluate: true,
+          recommend: false
         }
       }
     },
@@ -415,6 +425,11 @@
       },
       handleClick(tab){
         this.activeName = tab;
+        if (tab == 'set'){
+          this.showFooter = false;
+        }else {
+          this.showFooter = true;
+        }
       },
       deleteInfo(item){
         this.form.id = item.id;
@@ -430,7 +445,8 @@
           icon: item.form_logo,
           remarks: item.des,
           scope: item.allow_score,
-          evaluate:item.allow_appraise
+          evaluate:item.allow_appraise,
+          recommend: item.recommend
         };
         this.drawerVisible = true;
       },
@@ -450,7 +466,11 @@
         });
       },
       formInfo(item){
+        this.serverDataItem = item;
         this.drawerForm = true;
+      },
+      openedForm(){
+        this.$refs.designer.setRule(this.serverDataItem.form_content);
       },
       closeDialog(event){
         this.form = {
@@ -461,7 +481,8 @@
           icon: '',
           remarks: '',
           scope: true,
-          evaluate:true
+          evaluate:true,
+          recommend: false
         };
         this.subTitle = "";
         this.resetCasadeSelector('SelectorCollege');
@@ -469,6 +490,8 @@
           this.$refs['form'].resetFields();
         }
         this.drawerVisible = event;
+        this.serverDataItem = '';
+        this.activeName = 'form';
         this.drawerForm = false;
       },
       cancelDrawDialog(){
@@ -521,6 +544,7 @@
               formLogo: this.form.icon,
               allowAppraise: this.form.evaluate,
               allowScore: this.form.scope,
+              recommend: this.form.recommend,
               des: this.form.remarks,
             };
             if (this.form.id != ""){
@@ -541,13 +565,48 @@
           }
         });
       },
+      sendTempShop(){
+        let url = '';
+        let params = {
+          id: this.serverDataItem.id,
+          content: JSON.stringify(this.$refs.designer.getRule())
+        };
+        url = common.server_form_template_shop;
+        params = this.$qs.stringify(params);
+        this.btnLoading = true;
+        this.$axios.post(url, params).then(res => {
+          if (res.data.code == 200) {
+            this.init();
+            MessageSuccess(res.data.desc);
+          } else {
+            MessageError(res.data.desc);
+          }
+          this.btnLoading = false;
+        });
+      },
       okFormDrawDialog() {
         let url = '';
-        if (this.appName == 'form'){
+        if (this.activeName == 'form'){
+          //console.log(this.$refs.designer.getRule());
+          let params = {
+            id: this.serverDataItem.id,
+            content: JSON.stringify(this.$refs.designer.getRule())
+          };
+          url = common.server_form_template_update;
+          params = this.$qs.stringify(params);
+          this.btnLoading = true;
+          this.$axios.post(url, params).then(res => {
+            if (res.data.code == 200) {
+              this.init();
+              MessageSuccess(res.data.desc);
+            } else {
+              MessageError(res.data.desc);
+            }
+            this.btnLoading = false;
+          });
+        }else if (this.activeName == 'flow'){
 
-        }else if (this.appName == 'flow'){
-
-        }if (this.appName == 'set'){
+        }if (this.activeName == 'set'){
 
         }
       }

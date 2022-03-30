@@ -581,6 +581,13 @@ export const common = {
   server_list_enable: '/proxy/school/applet/form/enable',//启、禁服务列表
   server_list_save: '/proxy/school/applet/form/save',//保存服务列表
   server_list_update: '/proxy/school/applet/content/update',//修改服务模版
+  server_form_template_update: '/proxy/school/applet/form/content/update',//设置表单组件
+  server_form_template_shop: '/proxy/school/applet/form/content/shop',//设置表单组件发布到模版中心
+  server_form_template_permission_save: '/proxy/school/applet/permission/save',//设置表单权限
+  server_form_template_permission_list: '/proxy/school/applet/permission/page',//表单权限列表
+
+  server_form_template_list: '/proxy/school/applet/template/page',//模版中心分页
+
 
   server_template_list: '/proxy/school/applet/form/save',//模版列表
   server_template_list_detail: '/proxy/school/applet/content/update',//模版列表详细

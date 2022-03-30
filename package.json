@@ -19,6 +19,8 @@
     }
   },
   "dependencies": {
+    "@form-create/designer": "^1.0.6",
+    "@form-create/element-ui": "^2.5.19",
     "@nuxtjs/axios": "^5.12.2",
     "core-js": "^3.6.5",
     "cross-env": "^7.0.3",
@@ -30,6 +32,5 @@
     "qs": "^6.9.1",
     "vue-i18n": "^8.15.3",
     "vue-quill-editor": "^3.0.6"
-  },
-  "devDependencies": {}
+  }
 }

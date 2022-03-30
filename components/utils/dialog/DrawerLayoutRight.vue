@@ -8,7 +8,9 @@
       :wrapperClosable="true"
       :show-close="false"
       :modal-append-to-body="false"
+      :append-to-body="appendToBody"
       :size="size"
+      @opened="opened"
       @close="handleColse">
 
       <div slot="title" class="drawer-normal-title">
@@ -68,6 +70,10 @@ export default {
       default: false,
       type: Boolean
     },
+    appendToBody: {
+      default: false,
+      type: Boolean
+    },
     size: {
       defalult: '30%',
       type: String
@@ -101,6 +107,9 @@ export default {
 
   },
   methods: {
+    opened(){
+      this.$emit("opened");
+    },
     handleClose(data){
       this.$emit("right-close", data);
     },

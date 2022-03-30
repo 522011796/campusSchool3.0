@@ -226,12 +226,9 @@
         let params = {
           page: this.page,
           num: this.num,
-          collegeData: this.collegeData,
-          searchType: this.searchType,
-          searchStatus: this.searchStatus,
           searchKey: this.searchKey
         };
-        this.$axios.get(common.classroom_page, {params: params}).then(res => {
+        this.$axios.get(common.server_form_template_list, {params: params}).then(res => {
           if (res.data.data){
             this.tableData = res.data.data.list;
             this.total = res.data.data.totalCount;
