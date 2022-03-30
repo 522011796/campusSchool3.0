@@ -141,9 +141,11 @@
         :label="$t('状态')">
         <template slot-scope="scope">
           <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-            <div class="text-center">1</div>
+            <div class="text-center">
+              <my-enable :status="scope.row.enable"></my-enable>
+            </div>
             <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              1
+              <my-enable :status="scope.row.enable"></my-enable>
             </span>
           </el-popover>
         </template>
@@ -267,10 +269,11 @@
   import appFormSetValidater from "~/utils/validater/appFormSetValidater";
   import {common} from "~/utils/api/url";
   import {MessageError, MessageSuccess, MessageWarning} from "~/utils/utils";
+  import MyEnable from "~/components/utils/status/MyEnable";
 
   export default {
     name: 'myFormSetRole',
-    components: {DrawerLayoutRight},
+    components: {MyEnable, DrawerLayoutRight},
     mixins: [mixins,appFormSetValidater],
     props: {
       data: {
