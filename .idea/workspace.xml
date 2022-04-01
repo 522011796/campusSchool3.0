@@ -2,7 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="服务中心ui搭建">
+      <change afterPath="$PROJECT_DIR$/components/form/MyFormSetNotice.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/validater/appCreateBasicValidater.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/validater/appFormSetNoticeValidater.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/form/MyFormSet.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/form/MyFormSet.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/form/MyFormSetRole.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/form/MyFormSetRole.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/treeAndList/StudentTreeAndListNoPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/treeAndList/StudentTreeAndListNoPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/treeAndList/TeacherTreeAndListNoPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/treeAndList/TeacherTreeAndListNoPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appCreate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appCreate.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +144,7 @@
       <workItem from="1647072650962" duration="1043000" />
       <workItem from="1647937930082" duration="783000" />
       <workItem from="1648006165487" duration="38067000" />
-      <workItem from="1648170997160" duration="61208000" />
+      <workItem from="1648170997160" duration="89548000" />
     </task>
     <task id="LOCAL-00001" summary="修改bug">
       <created>1615953061597</created>
@@ -316,7 +328,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648637118047</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="服务中心ui搭建">
+      <created>1648637376798</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1648637376798</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

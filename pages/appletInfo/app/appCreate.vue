@@ -242,7 +242,7 @@
       </div>
     </drawer-layout-right>
 
-    <drawer-layout-right tabindex="0" @changeDrawer="closeDialog" @opened="openedForm" :visible="drawerForm" size="85%">
+    <drawer-layout-right tabindex="0" :hide-footer="true" @changeDrawer="closeDialog" @opened="openedForm" :visible="drawerForm" size="85%">
       <div slot="title">
         <div class="header-block padding-lr-10">
           <span class="tab-class font-bold" :class="activeName == 'form' ? 'color-grand' : ''" @click="handleClick('form')">
@@ -427,6 +427,9 @@
         this.activeName = tab;
         if (tab == 'set'){
           this.showFooter = false;
+        }else if (tab == 'form'){
+          this.openedForm();
+          this.showFooter = true;
         }else {
           this.showFooter = true;
         }
@@ -470,7 +473,15 @@
         this.drawerForm = true;
       },
       openedForm(){
-        this.$refs.designer.setRule(this.serverDataItem.form_content);
+        setTimeout(()=>{
+          if (this.serverDataItem.form_content){
+            let form_content = JSON.parse(this.serverDataItem.form_content);
+            this.$refs.designer.setRule(form_content.rule);
+            this.$refs.designer.setOption(form_content.option);
+          }else {
+            this.$refs.designer.setRule([]);
+          }
+        },800);
       },
       closeDialog(event){
         this.form = {
@@ -492,6 +503,7 @@
         this.drawerVisible = event;
         this.serverDataItem = '';
         this.activeName = 'form';
+        this.init();
         this.drawerForm = false;
       },
       cancelDrawDialog(){
@@ -586,11 +598,15 @@
       },
       okFormDrawDialog() {
         let url = '';
+        let rules = {};
         if (this.activeName == 'form'){
-          //console.log(this.$refs.designer.getRule());
+          rules = {
+            rule: this.$refs.designer.getRule(),
+            option: this.$refs.designer.getOption()
+          };
           let params = {
             id: this.serverDataItem.id,
-            content: JSON.stringify(this.$refs.designer.getRule())
+            content: JSON.stringify(rules)
           };
           url = common.server_form_template_update;
           params = this.$qs.stringify(params);

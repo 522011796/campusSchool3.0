@@ -585,6 +585,12 @@ export const common = {
   server_form_template_shop: '/proxy/school/applet/form/content/shop',//设置表单组件发布到模版中心
   server_form_template_permission_save: '/proxy/school/applet/permission/save',//设置表单权限
   server_form_template_permission_list: '/proxy/school/applet/permission/page',//表单权限列表
+  server_form_template_permission_enable: '/proxy/school/applet/permission/enable',//表单权限启禁用
+  server_form_template_permission_del: '/proxy/school/applet/permission/del',//表单权限删除
+  server_form_template_basic_set: '/proxy/school/applet/form/setting',//表单基础信息设置
+  server_form_template_notice_page: '/proxy/school/applet/notice/page',//表单通知推送分页
+  server_form_template_notice_save: '/proxy/school/applet/notice/save',//表单通知推送保存
+  server_form_template_notice_del: '/proxy/school/applet/notice/del',//表单通知推送删除
 
   server_form_template_list: '/proxy/school/applet/template/page',//模版中心分页
 

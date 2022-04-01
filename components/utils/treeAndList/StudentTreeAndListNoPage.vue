@@ -260,10 +260,13 @@
             }
             this.checkboxCount++;
           }else {
+            let checked = inArray(this.tableTeacherCommData[i], this.commSelUserArr, 'user_id');
+            this.commSelUserArr.splice(checked,1);
             this.tableTeacherCommData[i]._checked = false;
             this.checkboxCount--;
           }
         }
+        this.$emit("select", this.commSelUserArr);
       },
       _handleSelectionChange(data){
 

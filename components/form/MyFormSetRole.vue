@@ -111,27 +111,27 @@
               <el-tag size="mini" v-if="scope.row.permission_student_switch">
                 {{ $t("所有学生") }}
               </el-tag>
-              <el-tag size="mini" v-else-if="scope.row.permission_teacher_switch">
+              <el-tag size="mini" v-if="scope.row.permission_teacher_switch">
                 {{ $t("所有老师") }}
               </el-tag>
-              <el-tag size="mini" v-else-if="scope.row.permission_content != ''">
+              <el-tag size="mini" v-if="scope.row.permission_content != ''">
                 {{ $t("老师") }}: 0
                 {{ $t("学生") }}: 0
               </el-tag>
-              <span v-else>--</span>
+              <span v-if="!scope.row.permission_student_switch && !scope.row.permission_teacher_switch && scope.row.permission_content == ''">--</span>
             </div>
             <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
               <el-tag size="mini" v-if="scope.row.permission_student_switch">
                 {{ $t("所有学生") }}
               </el-tag>
-              <el-tag size="mini" v-else-if="scope.row.permission_teacher_switch">
+              <el-tag size="mini" v-if="scope.row.permission_teacher_switch">
                 {{ $t("所有老师") }}
               </el-tag>
-              <el-tag size="mini" v-else-if="scope.row.permission_content != ''">
+              <el-tag size="mini" v-if="scope.row.permission_content != ''">
                 {{ $t("老师") }}: 0
                 {{ $t("学生") }}: 0
               </el-tag>
-              <span v-else>--</span>
+              <span v-if="!scope.row.permission_student_switch && !scope.row.permission_teacher_switch && scope.row.permission_content == ''">--</span>
             </span>
           </el-popover>
         </template>
@@ -155,10 +155,13 @@
         width="120"
         :label="$t('操作')">
         <template slot-scope="scope">
-          <i class="fa fa-edit color-success margin-right-5"></i>
-          <i class="fa fa-copy color-warning margin-right-5"></i>
-          <i class="fa fa-stop-circle color-grand margin-right-5"></i>
-          <i class="fa fa-trash color-danger"></i>
+          <i class="fa fa-edit color-success margin-right-5" @click="editForm($event, scope.row)"></i>
+<!--          <i class="fa fa-copy color-warning margin-right-5" @click="copyForm($event, scope.row)"></i>-->
+
+          <i v-if="scope.row.enable" class="fa fa-stop-circle color-grand margin-right-5" @click="enableForm($event, scope.row, false)"></i>
+          <i v-if="!scope.row.enable" class="fa fa-play-circle color-success margin-right-5" @click="enableForm($event, scope.row, true)"></i>
+
+          <i class="fa fa-trash color-danger" @click="deleteForm($event, scope.row)"></i>
         </template>
       </el-table-column>
     </el-table>
@@ -214,9 +217,9 @@
           </div>
           <div class="block-item-bg font-size-12" style="position: relative">
             <div>
-              <el-checkbox :label="form.roleOprLook" @change="changeFormOprLook"><span class="font-size-12">{{$t("查看")}}</span></el-checkbox>
-              <el-checkbox :label="form.roleOprDel" @change="changeFormOprDel"><span class="font-size-12">{{$t("删除")}}</span></el-checkbox>
-              <el-checkbox :label="form.roleOprImOrEx" @change="changeFormOprSubmit"><span class="font-size-12">{{$t("导入导出")}}</span></el-checkbox>
+              <el-checkbox v-model="form.roleOprLook" @change="changeFormOprLook"><span class="font-size-12">{{$t("查看")}}</span></el-checkbox>
+              <el-checkbox v-model="form.roleOprDel" @change="changeFormOprDel"><span class="font-size-12">{{$t("删除")}}</span></el-checkbox>
+              <el-checkbox v-model="form.roleOprImOrEx" @change="changeFormOprSubmit"><span class="font-size-12">{{$t("导入导出")}}</span></el-checkbox>
             </div>
           </div>
         </div>
@@ -233,8 +236,8 @@
                 <span>{{$t("成员范围")}}: </span>
               </div>
               <div>
-                <el-checkbox :label="form.roleTeachers" @change="changeFormTeacher"><span class="font-size-12">{{$t("所有学生")}}</span></el-checkbox>
-                <el-checkbox :label="form.roleStudents" @change="changeFormStudent"><span class="font-size-12">{{$t("所有老师")}}</span></el-checkbox>
+                <el-checkbox v-model="form.roleStudents" @change="changeFormStudent"><span class="font-size-12">{{$t("所有学生")}}</span></el-checkbox>
+                <el-checkbox v-model="form.roleTeachers" @change="changeFormTeacher"><span class="font-size-12">{{$t("所有老师")}}</span></el-checkbox>
               </div>
             </div>
             <div class="margin-top-10">
@@ -242,8 +245,39 @@
                 <span>{{$t("组织范围")}}: </span>
               </div>
               <div class="margin-top-10">
-                <el-button size="mini"><span class="font-size-12">{{$t("组织部门")}}(0)</span></el-button>
-                <el-button size="mini"><span class="font-size-12">{{$t("班级")}}(0)</span></el-button>
+<!--                <el-button size="mini"><span class="font-size-12">{{$t("组织部门")}}(0)</span></el-button>-->
+<!--                <el-button size="mini"><span class="font-size-12">{{$t("班级")}}(0)</span></el-button>-->
+                <el-popover
+                  popper-class="custom-popper-class-form"
+                  placement="top"
+                  width="700"
+                  trigger="click"
+                  @show="handleShowTeacher(1)">
+                  <div>
+                    <teacher-tree-and-list-no-page ref="popverTeacherRef" user-type="user" :group-id="form.id" :sel-arr="form.permissionContentArray" set-type="check" @select="handleSelUser($event, 1)"></teacher-tree-and-list-no-page>
+                  </div>
+                  <el-button slot="reference" type="success" plain size="small" @click="loadingShow(1)">
+                    <i v-if="refreshTeacherStatus == true" class="fa fa-refresh fa-spin"></i>
+                    {{$t("教师")}}
+                  </el-button>
+                </el-popover>
+
+                <el-popover
+                  popper-class="custom-popper-class-form"
+                  placement="top"
+                  width="700"
+                  trigger="click"
+                  @show="handleShowTeacher(2)">
+                  <div>
+                    <student-tree-and-list-no-page ref="popverStudentRef" :group-id="form.id" :sel-arr="form.permissionContentArray" set-type="check" @select="handleSelUser($event, 2)"></student-tree-and-list-no-page>
+                  </div>
+                  <el-button slot="reference" type="success" plain size="small" @click="loadingShow(2)">
+                    <i v-if="refreshStudentStatus == true" class="fa fa-refresh fa-spin"></i>
+                    {{$t("学生")}}
+                  </el-button>
+                </el-popover>
+
+                <span>{{$t("人数")}}: {{approverUsers.length}}</span>
               </div>
             </div>
           </div>
@@ -292,7 +326,11 @@
         drawerRole: false,
         subTitle: '',
         btnLoading: false,
+        refreshTeacherStatus: false,
+        refreshStudentStatus: false,
+        approverUsers: [],
         form: {
+          id: '',
           name: '',
           des: '',
           roleType: '0',
@@ -305,7 +343,10 @@
           roleUsers: [],
           roleUserGroup: [],
           enable: true,
-          permissionContent: ''
+          permissionContent: '',
+          permissionContentArray: [],
+          approverTeacherId: [],
+          approverStudentId: [],
         }
       }
     },
@@ -333,6 +374,7 @@
       },
       closeDialog(){
         this.form = {
+          id: '',
           name: '',
           des: '',
           roleType: '0',
@@ -340,11 +382,18 @@
           roleOprDel: false,
           roleOprSubmit: false,
           roleOprImOrEx: false,
+          roleTeachers: false,
+          roleStudents: false,
           roleUsers: [],
           roleUserGroup: [],
-          enable: true
+          enable: true,
+          permissionContent: '',
+          permissionContentArray: [],
+          approverTeacherId: [],
+          approverStudentId: [],
         };
         this.subTitle = "";
+        this.approverUsers = [];
         if (this.$refs['formRole']){
           this.$refs['formRole'].resetFields();
         }
@@ -365,11 +414,19 @@
               permissionCondition3: this.form.roleOprImOrEx,
               permissionStudentSwitch: this.form.roleStudents,
               permissionTeacherSwitch: this.form.roleTeachers,
-              permissionContent: this.form.permissionContent,
               permissionName: this.form.name,
               enable: this.form.enable,
               des: this.form.des,
             };
+
+            let contentArray = [];
+            for (let i = 0 ; i < this.approverUsers.length; i++){
+              contentArray.push(this.approverUsers[i].user_id);
+            }
+            params['permissionContent'] = contentArray.join();
+            if (this.form.id != ""){
+              params['id'] = this.form.id;
+            }
             url = common.server_form_template_permission_save;
             params = this.$qs.stringify(params);
             this.btnLoading = true;
@@ -388,6 +445,118 @@
       },
       initParent(){
         this.$emit('init');
+      },
+      editForm($event, data){
+        console.log(data);
+        this.form = {
+          id: data.id,
+          name: data.permission_name,
+          des: data.des,
+          roleType: data.permission_type,
+          roleOprLook: data.permission_condition1,
+          roleOprDel: data.permission_condition2,
+          roleOprSubmit: false,
+          roleOprImOrEx: data.permission_condition3,
+          roleTeachers: data.permission_teacher_switch,
+          roleStudents: data.permission_student_switch,
+          roleUsers: [],
+          roleUserGroup: [],
+          enable: true,
+          permissionContent: data.permission_content
+        };
+
+        let permissionUserIds = [];
+        this.form.permissionContentArray = [];
+        if (data.permission_content != ""){
+          this.approverUsers = data.permission_content.split(",");
+          permissionUserIds = data.permission_content.split(",");
+          for (let i = 0; i < permissionUserIds.length; i++){
+            this.form.permissionContentArray.push({
+              user_id: permissionUserIds[i]
+            });
+          }
+        }
+        this.drawerRole = true;
+      },
+      deleteForm($event, data){
+        let params = {
+          id: data.id
+        };
+        params = this.$qs.stringify(params);
+        this.btnLoading = true;
+        this.$axios.post(common.server_form_template_permission_del, params).then(res => {
+          if (res.data.code == 200) {
+            this.drawerRole = false;
+            this.initParent();
+            MessageSuccess(res.data.desc);
+          } else {
+            MessageError(res.data.desc);
+          }
+          this.btnLoading = false;
+        });
+      },
+      copyForm($event, data){
+
+      },
+      enableForm($event, data, type){
+        let params = {
+          id: data.id,
+          enable: type
+        };
+        params = this.$qs.stringify(params);
+        this.btnLoading = true;
+        this.$axios.post(common.server_form_template_permission_enable, params).then(res => {
+          if (res.data.code == 200) {
+            this.drawerRole = false;
+            this.initParent();
+            MessageSuccess(res.data.desc);
+          } else {
+            MessageError(res.data.desc);
+          }
+          this.btnLoading = false;
+        });
+      },
+      loadingShow(type){
+        let timer = null;
+        clearTimeout(timer);
+        switch (type) {
+          case 1:
+            this.refreshTeacherStatus = true;
+            timer = setTimeout(() => {
+              this.refreshTeacherStatus = false;
+              clearTimeout(timer);
+            },1000);
+            break;
+          case 2:
+            this.refreshStudentStatus = true;
+            timer = setTimeout(() => {
+              this.refreshStudentStatus = false;
+              clearTimeout(timer);
+            },1000);
+            break;
+        }
+      },
+      handleShowTeacher(type){
+        setTimeout(()=>{
+          if (type == 1){
+            this.$refs.popverTeacherRef._handleOpen();
+          }else if (type == 2){
+            this.$refs.popverStudentRef._handleOpen();
+          }
+        },800);
+      },
+      handleSelUser(data, type){
+        if (type == 1){
+          this.form.approverTeacherId = data;
+          let studentArr = this.form.approverStudentId ? this.form.approverStudentId : [];
+          this.form.roleUsers = studentArr.concat(this.form.approverTeacherId);
+        }else if (type == 2){
+          this.form.approverStudentId = data;
+          let tesacherArr = this.form.approverTeacherId ? this.form.approverTeacherId : [];
+          this.form.roleUsers = tesacherArr.concat(this.form.approverStudentId);
+        }
+        console.log(this.form.roleUsers);
+        this.approverUsers = this.form.roleUsers;
       }
     }
   }
