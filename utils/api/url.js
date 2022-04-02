@@ -591,6 +591,9 @@ export const common = {
   server_form_template_notice_page: '/proxy/school/applet/notice/page',//表单通知推送分页
   server_form_template_notice_save: '/proxy/school/applet/notice/save',//表单通知推送保存
   server_form_template_notice_del: '/proxy/school/applet/notice/del',//表单通知推送删除
+  server_form_template_form_set_rule_save: '/proxy/school/applet/form/setting/hide/save',//表单规则添加
+  server_form_template_form_rule_search: '/proxy/school/applet/form/setting/hide/get',//表单规则查询
+  server_form_template_form_rule_del: '/proxy/school/applet/form/setting/hide/del',//表单规则删除
 
   server_form_template_list: '/proxy/school/applet/template/page',//模版中心分页
 

@@ -350,6 +350,48 @@ const filterAppServerType = [
   { text: '统计服务', value: '2' ,label: '统计服务'}
 ];
 
+const filterAppServerConditionnalNumType = [
+  { text: "等于", value: '0' ,label: '等于'},
+  { text: '不等于', value: '1' ,label: '不等于'},
+  { text: '大于等于', value: '2' ,label: '大于等于'},
+  { text: '小于', value: '2' ,label: '小于'},
+  { text: '小于等于', value: '2' ,label: '小于等于'},
+  { text: '选择范围', value: '2' ,label: '选择范围'},
+  { text: '为空', value: '2' ,label: '为空'},
+  { text: '不为空', value: '2' ,label: '不为空'}
+];
+
+const filterAppServerConditionnalTextType = [
+  { text: "等于", value: '0' ,label: '等于'},
+  { text: '不等于', value: '1' ,label: '不等于'},
+  { text: '等于任一', value: '2' ,label: '等于任一'},
+  { text: '为空', value: '2' ,label: '为空'},
+  { text: '不为空', value: '2' ,label: '不为空'}
+];
+
+const filterAppServerConditionnalRadioType = [
+  { text: "包含任一", value: '0' ,label: '等于'},
+  { text: '同时包含', value: '1' ,label: '不等于'},
+  { text: '等于', value: '2' ,label: '等于'},
+  { text: '为空', value: '2' ,label: '为空'},
+  { text: '不为空', value: '2' ,label: '不为空'}
+];
+
+const filterAppServerConditionnalAllType = [
+  { text: "等于", value: 'is' ,label: '等于'},
+  { text: '不等于', value: 'ne' ,label: '不等于'},
+  { text: '大于', value: 'gt' ,label: '大于'},
+  { text: '大于等于', value: 'gte' ,label: '大于等于'},
+  { text: '小于', value: 'lt' ,label: '小于'},
+  { text: '小于等于', value: 'lte' ,label: '小于等于'},
+  { text: '在范围内', value: 'in' ,label: '在范围内'},
+  { text: "不在范围内", value: 'nin' ,label: '不在范围内'},
+  { text: '范围内满足全部', value: 'all' ,label: '范围内满足全部'},
+  { text: '选择范围', value: 'between' ,label: '选择范围'},
+  { text: '为空', value: 'null' ,label: '为空'},
+  { text: '不为空', value: 'nnull' ,label: '不为空'}
+];
+
 export default {
   total,
   page,
@@ -430,5 +472,9 @@ export default {
   filterUserAccountActiveStatusOptions,
   filterAppManageStatus,
   filterAppManageType,
-  filterAppServerType
+  filterAppServerType,
+  filterAppServerConditionnalNumType,
+  filterAppServerConditionnalTextType,
+  filterAppServerConditionnalRadioType,
+  filterAppServerConditionnalAllType
 }

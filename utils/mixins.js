@@ -95,6 +95,10 @@ export default {
       filterAppManageStatus: global.filterAppManageStatus,
       filterAppManageType: global.filterAppManageType,
       filterAppServerType: global.filterAppServerType,
+      filterAppServerConditionnalNumType: global.filterAppServerConditionnalNumType,
+      filterAppServerConditionnalTextType: global.filterAppServerConditionnalTextType,
+      filterAppServerConditionnalRadioType: global.filterAppServerConditionnalRadioType,
+      filterAppServerConditionnalAllType: global.filterAppServerConditionnalAllType,
       g_currentDate: {},
       currentYearData: '',
       currentTermData: '',
@@ -208,6 +212,9 @@ export default {
         'height': ''
       },
       drawHeight3: {
+        'height': ''
+      },
+      drawHeight4: {
         'height': ''
       }
     }
@@ -373,6 +380,7 @@ export default {
         this.drawHeight.height = window.innerHeight - 80 + 'px';
         this.drawHeight2.height = window.innerHeight - 15 + 'px';
         this.drawHeight3.height = window.innerHeight - 100 + 'px';
+        this.drawHeight4.height = window.innerHeight - 90 + 'px';
       }
     },
     async initVersionData(){

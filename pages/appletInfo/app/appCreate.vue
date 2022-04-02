@@ -242,7 +242,7 @@
       </div>
     </drawer-layout-right>
 
-    <drawer-layout-right tabindex="0" :hide-footer="true" @changeDrawer="closeDialog" @opened="openedForm" :visible="drawerForm" size="85%">
+    <drawer-layout-right tabindex="0" :hide-footer="!showFooter" @changeDrawer="closeDialog" @opened="openedForm" :visible="drawerForm" size="85%">
       <div slot="title">
         <div class="header-block padding-lr-10">
           <span class="tab-class font-bold" :class="activeName == 'form' ? 'color-grand' : ''" @click="handleClick('form')">
@@ -261,7 +261,7 @@
       </div>
       <div slot="content" class="color-muted">
         <div v-if="activeName == 'form'">
-          <fc-designer ref="designer" :style="drawHeight"/>
+          <fc-designer ref="designer" :style="drawHeight4"/>
         </div>
         <div v-if="activeName == 'flow'">
 
@@ -270,7 +270,7 @@
           <my-form-set :formId="serverDataItem"></my-form-set>
         </div>
       </div>
-      <div slot="footer" v-if="showFooter">
+      <div slot="footer">
         <el-row>
           <el-col :span="12" class="text-left padding-lr-10">
             <el-button v-if="activeName == 'form'" size="mini" type="warning" :loading="btnLoading" @click="sendTempShop">
@@ -614,6 +614,7 @@
           this.$axios.post(url, params).then(res => {
             if (res.data.code == 200) {
               this.init();
+              this.$set(this.serverDataItem, 'form_content' , JSON.stringify(rules));
               MessageSuccess(res.data.desc);
             } else {
               MessageError(res.data.desc);

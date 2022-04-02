@@ -115,8 +115,9 @@
                 {{ $t("所有老师") }}
               </el-tag>
               <el-tag size="mini" v-if="scope.row.permission_content != ''">
-                {{ $t("老师") }}: 0
-                {{ $t("学生") }}: 0
+<!--                {{ $t("老师") }}: 0-->
+<!--                {{ $t("学生") }}: 0-->
+                <span>{{ $t("人数") }}: {{scope.row.permission_content.split(",").length}}</span>
               </el-tag>
               <span v-if="!scope.row.permission_student_switch && !scope.row.permission_teacher_switch && scope.row.permission_content == ''">--</span>
             </div>
@@ -128,8 +129,9 @@
                 {{ $t("所有老师") }}
               </el-tag>
               <el-tag size="mini" v-if="scope.row.permission_content != ''">
-                {{ $t("老师") }}: 0
-                {{ $t("学生") }}: 0
+<!--                {{ $t("老师") }}: 0-->
+<!--                {{ $t("学生") }}: 0-->
+                <span>{{ $t("人数") }}: {{scope.row.permission_content.split(",").length}}</span>
               </el-tag>
               <span v-if="!scope.row.permission_student_switch && !scope.row.permission_teacher_switch && scope.row.permission_content == ''">--</span>
             </span>
@@ -447,7 +449,6 @@
         this.$emit('init');
       },
       editForm($event, data){
-        console.log(data);
         this.form = {
           id: data.id,
           name: data.permission_name,

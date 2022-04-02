@@ -7,6 +7,7 @@
       :width="widthStyle"
       :show-close="false"
       :modal-append-to-body="false"
+      :append-to-body="appendToBody"
       :before-close="handleBeforeClose"
       @close="closeDialog">
 
@@ -71,6 +72,10 @@ export default {
     },
     showFooter: {
       default: true,
+      type: Boolean
+    },
+    appendToBody: {
+      default: false,
       type: Boolean
     }
   },
