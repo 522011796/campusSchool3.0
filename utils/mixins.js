@@ -99,6 +99,7 @@ export default {
       filterAppServerConditionnalTextType: global.filterAppServerConditionnalTextType,
       filterAppServerConditionnalRadioType: global.filterAppServerConditionnalRadioType,
       filterAppServerConditionnalAllType: global.filterAppServerConditionnalAllType,
+      fiterTeacherRoleType: global.fiterTeacherRoleType,
       g_currentDate: {},
       currentYearData: '',
       currentTermData: '',
@@ -215,6 +216,9 @@ export default {
         'height': ''
       },
       drawHeight4: {
+        'height': ''
+      },
+      drawHeight5: {
         'height': ''
       }
     }
@@ -381,6 +385,7 @@ export default {
         this.drawHeight2.height = window.innerHeight - 15 + 'px';
         this.drawHeight3.height = window.innerHeight - 100 + 'px';
         this.drawHeight4.height = window.innerHeight - 90 + 'px';
+        this.drawHeight5.height = window.innerHeight - 160 + 'px';
       }
     },
     async initVersionData(){

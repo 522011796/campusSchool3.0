@@ -805,6 +805,23 @@ export function serverFormType(type, str){
   }
 }
 
+export function flowAuditItemType(str, type){
+  let flowAuditType = {
+    "1": "固定人审批",
+    "2": "系统角色审批",
+    "3": "发起人自选审批",
+    "4": "抄送给固定人",
+    "5": "抄送给系统角色",
+    "6": "自选抄送人"
+  };
+  if (str && type == 'set') {
+    return flowAuditType[str];
+  }
+  if (!str && type == 'get'){
+    return flowAuditType;
+  }
+}
+
 export function getWeekTotalSelect(){
   let arr = [];
   for (let i = 0; i < 52; i++){

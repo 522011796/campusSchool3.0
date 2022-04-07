@@ -392,6 +392,44 @@ const filterAppServerConditionnalAllType = [
   { text: '不为空', value: 'nnull' ,label: '不为空'}
 ];
 
+const fiterTeacherRoleType = [
+  {
+    label: '班主任审批',
+    value: 'MasterTeacher',
+    text: '班主任审批',
+  },
+  {
+    label: '辅导员审批',
+    value: 'CoachTeacher',
+    text: '辅导员审批',
+  },
+  {
+    label: '系主任审批',
+    value: 'DirectorTeacher',
+    text: '系主任审批'
+  },
+  {
+    label: '系副主任审批',
+    value: 'DeputyDirectorTeacher',
+    text: '系副主任审批',
+  },
+  {
+    label: '学管主任审批',
+    value: 'StudentManageTeacher',
+    text: '学管主任审批',
+  },
+  {
+    label: '系部干事审批',
+    value: 'SecretaryTeacher',
+    text: '系部干事审批'
+  },
+  {
+    label: '宿管员审批',
+    value: 'DormitoryTeacher',
+    text: '宿管员审批'
+  }
+];
+
 export default {
   total,
   page,
@@ -476,5 +514,6 @@ export default {
   filterAppServerConditionnalNumType,
   filterAppServerConditionnalTextType,
   filterAppServerConditionnalRadioType,
-  filterAppServerConditionnalAllType
+  filterAppServerConditionnalAllType,
+  fiterTeacherRoleType
 }

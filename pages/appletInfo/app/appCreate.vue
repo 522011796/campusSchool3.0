@@ -134,7 +134,7 @@
                 width="60"
                 :label="$t('表单')">
                 <template slot-scope="scope">
-                  <i class="fa fa-cogs margin-right-5 color-grand" @click="formInfo(scope.row)"></i>
+                  <i class="fa fa-cogs margin-right-5 color-grand" @click="formInfo(scope.row, scope.$index)"></i>
                 </template>
               </el-table-column>
             </el-table>
@@ -263,8 +263,8 @@
         <div v-if="activeName == 'form'">
           <fc-designer ref="designer" :style="drawHeight4"/>
         </div>
-        <div v-if="activeName == 'flow'">
-
+        <div v-if="activeName == 'flow'" style="position: relative">
+          <my-form-flow ref="flow" :formId="serverDataItem" @versionClick="versionClick"></my-form-flow>
         </div>
         <div v-if="activeName == 'set'">
           <my-form-set :formId="serverDataItem"></my-form-set>
@@ -282,10 +282,61 @@
           <el-col :span="12">
             <div class="text-right padding-lr-10">
               <el-button size="mini" @click="cancelDrawDialog">{{$t("取消")}}</el-button>
-              <el-button size="mini" type="success" :loading="btnLoading" @click="okFormDrawDialog">{{$t("保存")}}</el-button>
+              <el-button size="mini" type="success" :loading="btnLoading" @click="okFormDrawDialog()">{{$t("保存")}}</el-button>
+              <el-button v-if="activeName == 'flow'" size="mini" type="warning" :loading="btnNewLoading" @click="okFormDrawDialog('new')">{{$t("保存为新版本")}}</el-button>
             </div>
           </el-col>
         </el-row>
+      </div>
+    </drawer-layout-right>
+
+    <drawer-layout-right tabindex="0" :hideFooter="true" @changeDrawer="closeVersionDialog" :visible="drawerVersion" size="600px" :title="$t('版本管理')" @right-close="cancelVersionDrawDialog">
+      <div slot="content" class="color-muted">
+        <el-table
+          ref="refTable"
+          :data="flowVersionData"
+          header-cell-class-name="custom-table-cell-bg"
+          size="medium"
+          style="width: 100%">
+          <el-table-column
+            align="center"
+            :label="$t('版本名称')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.version_name}}</div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      {{scope.row.version_name}}
+                    </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            :label="$t('状态')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">
+                  <label v-if="serverDataItem.form_process_id == scope.row.id" class="color-success">{{$t("当前版本")}}</label>
+                  <label v-if="serverDataItem.form_process_id != scope.row.id" class="color-danger">{{$t("未启用")}}</label>
+                </div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  <label v-if="serverDataItem.form_process_id == scope.row.id" class="color-success">{{$t("当前版本")}}</label>
+                  <label v-if="serverDataItem.form_process_id != scope.row.id" class="color-danger">{{$t("未启用")}}</label>
+                </span>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            width="100"
+            align="center"
+            :label="$t('操作')">
+            <template slot-scope="scope">
+              <i class="fa fa-edit margin-right-5 color-success" @click="editFlowInfo(scope.row)"></i>
+              <i class="fa fa-trash margin-right-5 color-danger" @click="delFlowInfo(scope.row)"></i>
+              <i v-if="serverDataItem.form_process_id != scope.row.id" class="fa fa-cog margin-right-5 color-grand" @click="currentFlowInfo(scope.row)"></i>
+            </template>
+          </el-table-column>
+        </el-table>
       </div>
     </drawer-layout-right>
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="确认需要删除该信息？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
@@ -304,14 +355,16 @@
   import MyElTree from "~/components/tree/MyElTree";
   import TestForm from "~/formJs/form/TestForm";
   import MyFormSet from "~/components/form/MyFormSet";
+  import MyFormFlow from "~/components/form/MyFormFlow";
 
   export default {
-    components: {MyFormSet, MyElTree, UploadSquare, DrawerLayoutRight, MySelect},
+    components: {MyFormFlow, MyFormSet, MyElTree, UploadSquare, DrawerLayoutRight, MySelect},
     mixins: [mixins,appCreateValidater],
     data(){
       return {
         tableData: [],
         collegeList: [],
+        flowVersionData: [],
         apps: [],
         types: [],
         subTitle: '',
@@ -330,8 +383,11 @@
         drawerVisible: false,
         drawerForm: false,
         btnLoading: false,
+        btnNewLoading: false,
         showFooter: true,
+        drawerVersion: false,
         serverDataItem: '',
+        serverDataIndex: '',
         form: {
           id: '',
           name: '',
@@ -382,6 +438,20 @@
               });
             }
             this.apps = array;
+          }
+        });
+      },
+      initVersion(){
+        let params = {
+          page: 1,
+          num: 9999
+        };
+        this.$axios.get(common.server_form_template_form_process_page, {params: params}).then(res => {
+          if (res.data.data){
+            this.flowVersionData = res.data.data.list;
+            this.total = res.data.data.totalCount;
+            this.num = res.data.data.num;
+            this.page = res.data.data.currentPage;
           }
         });
       },
@@ -468,8 +538,9 @@
           }
         });
       },
-      formInfo(item){
+      formInfo(item, index){
         this.serverDataItem = item;
+        this.serverDataIndex = index;
         this.drawerForm = true;
       },
       openedForm(){
@@ -482,6 +553,10 @@
             this.$refs.designer.setRule([]);
           }
         },800);
+      },
+      closeVersionDialog(event){
+        this.flowVersionData = [];
+        this.drawerVersion = event;
       },
       closeDialog(event){
         this.form = {
@@ -502,9 +577,13 @@
         }
         this.drawerVisible = event;
         this.serverDataItem = '';
+        this.serverDataIndex = '';
         this.activeName = 'form';
         this.init();
         this.drawerForm = false;
+      },
+      cancelVersionDrawDialog(){
+        this.drawerVersion = false;
       },
       cancelDrawDialog(){
         this.detailData = '';
@@ -539,6 +618,10 @@
         }else {
 
         }
+      },
+      versionClick(){
+        this.initVersion();
+        this.drawerVersion = true;
       },
       okAppDrawDialog() {
         let url = '';
@@ -596,7 +679,7 @@
           this.btnLoading = false;
         });
       },
-      okFormDrawDialog() {
+      okFormDrawDialog(type) {
         let url = '';
         let rules = {};
         if (this.activeName == 'form'){
@@ -622,10 +705,124 @@
             this.btnLoading = false;
           });
         }else if (this.activeName == 'flow'){
+          let flowData = this.$refs.flow.flowData;
+          let flowForm = this.$refs.flow.form;
+          let ntype = '';
+          let htype = '';
+          let hid = [];
+          let hname = [];
+          let flowDataArray = [];
+          let flowDataOjb = {};
+          if (flowData.length == 0){
+            MessageWarning(this.$t("请设置流程信息！"));
+            return;
+          }
+          if (flowForm.name == ''){
+            MessageWarning(this.$t("流程属性中未设置流程名称！"));
+            return;
+          }
+          for (let i = 0; i < flowData.length; i++){
+            hid = [];
+            hname = [];
+            if (flowData[i].extra == 'audit'){
+              ntype = 'handle';
+            }else if (flowData[i].extra == 'send'){
+              ntype = 'cc';
+            }
+            if (flowData[i].type == 1 || flowData[i].type == 4){
+              htype = 'AnyUser';
+              let flowDataUsers = flowData[i].users;
+              for (let j = 0; j < flowDataUsers.length; j++){
+                hid.push(flowDataUsers[j].user_id);
+                hname.push(flowDataUsers[j].real_name);
+              }
+            }else if (flowData[i].type == 2 || flowData[i].type == 5){
+              htype = flowData[i].htype;
+            }
+            let obj = {
+              ntype: ntype,
+              nname: flowData[i].name,
+              horder: i + 1,
+              htype: htype,
+              hid: hid,
+              hname: hname,
+              andor: flowData[i].andor,
+              sign: flowData[i].waitName,
+              agreed1: flowData[i].allowShow,
+              agreed2: flowData[i].allowMuti,
+              notagreed1: flowData[i].rejectShow,
+              notagreed2: flowData[i].rejectMuti,
+              trans1: flowData[i].transferShow,
+              trans2: flowData[i].transferMuti,
+              right1:[],
+              right2:[],
+            }
+            flowDataArray.push(obj);
+          }
+          flowDataOjb = {
+            versionName: flowForm.name,
+            formId: this.serverDataItem.id,
+            formProcess: JSON.stringify(flowDataArray),
+            allowRevoke: flowForm.allowBack,
+            allowUrge: flowForm.urge,
+            allowAuto: flowForm.autoAudit,
+            allowMerge: flowForm.merge
+          };
+          if (type == 'new'){
+            flowDataOjb['current'] = false;
+          }else {
+            flowDataOjb['current'] = true;
+          }
+
+          flowDataOjb = this.$qs.stringify(flowDataOjb);
+          console.log(flowDataOjb);
+          this.btnLoading = true;
+          this.$axios.post(common.server_form_template_form_process_save, flowDataOjb, {loading: false}).then(res => {
+            if (res.data.code == 200){
+              MessageSuccess(res.data.desc);
+            }else {
+              MessageError(res.data.desc);
+            }
+            this.btnLoading = false;
+          });
 
         }if (this.activeName == 'set'){
 
         }
+      },
+      editFlowInfo(data){
+
+      },
+      delFlowInfo(data){
+        let params = {
+          id: data.id
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.server_form_template_form_process_del, params).then(res => {
+          if (res.data.code == 200){
+            this.initVersion();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+        });
+      },
+      currentFlowInfo(data){
+        let params = {
+          id: this.serverDataItem.id,
+          processId: data.id
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.server_form_template_form_process_current, params).then(res => {
+          if (res.data.code == 200){
+            this.initVersion();
+            this.tableData[this.serverDataIndex].form_process_id = data.id;
+            this.serverDataItem.form_process_id = data.id;
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+        });
       }
     },
     watch: {
