@@ -51,7 +51,7 @@
                       {{$t("抄送人")}}({{$t("人数")}}:{{approverUsers.length}})
                     </el-button>
                   </el-popover>
-                  <my-select v-if="flowDetailData.type == 5" size="mini" :sel-value="flowDetailData.htype" :options="fiterTeacherRoleType" @change="handleUserType"></my-select>
+                  <my-select v-if="flowDetailData.type == 5" size="mini" :sel-value="flowDetailData.hType" :options="fiterTeacherRoleType" @change="handleUserType"></my-select>
                 </div>
               </template>
               <template v-if="flowDetailData.extra == 'audit'">
@@ -72,7 +72,7 @@
                       {{$t("审批人")}}({{$t("人数")}}:{{approverUsers.length}})
                     </el-button>
                   </el-popover>
-                  <my-select v-if="flowDetailData.type == 2" size="mini" :sel-value="flowDetailData.htype" :options="fiterTeacherRoleType" @change="handleUserType"></my-select>
+                  <my-select v-if="flowDetailData.type == 2" size="mini" :sel-value="flowDetailData.hType" :options="fiterTeacherRoleType" @change="handleUserType"></my-select>
                 </div>
               </template>
             </div>
@@ -291,7 +291,10 @@
         </div>
       </div>
       <div class="form-set-left">
-        <div class="padding-lr-10 padding-tb-10 text-right">
+        <div class="padding-lr-10 padding-tb-10 text-right border-bottom-1">
+          <span v-if="form.name != ''" class="color-muted margin-right-10 font-size-12">
+            {{$t("当前版本")}}: {{form.name}}
+          </span>
           <el-button size="mini" @click="versionList">{{$t("版本管理")}}</el-button>
         </div>
         <div class="text-center flow-main-block" style="overflow-y: auto;position: relative" :style="drawHeight5">
@@ -311,7 +314,7 @@
                   <el-row>
                     <el-col :span="20">
                       <i class="fa fa-tag"></i>
-                      <label>{{ auditFlowTypeItemInfo(item.type, 'set') }}</label>
+                      <label>{{ item.name }}</label>
                     </el-col>
                     <el-col :span="4" class="text-right">
                       <i class="fa fa-cog"></i>
@@ -327,20 +330,39 @@
                       <label>{{ $t("人员") }}: </label>
                     </span>
                     <span>
-                      <el-tag size="mini" v-for="(itemUser ,indexUser) in item.users" :key="indexUser" v-if="indexUser < 4" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
-                        xxxxxxxxxxxx
-                      </el-tag>
-                      <label class="flow-user-count-tag margin-left-5" v-if="item.users.length >= 4">4+</label>
+                      <template v-if="item.type == 1 || item.type == 3 || item.type == 4 || item.type == 6">
+                        <el-tag size="mini" v-for="(itemUser ,indexUser) in item.hName" :key="indexUser" v-if="indexUser < 4" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
+                          {{ itemUser }}
+                        </el-tag>
+                        <label class="flow-user-count-tag margin-left-5" v-if="item.users.length >= 4">4+</label>
+                      </template>
+                      <template v-if="item.type == 2 || item.type == 5">
+                        <el-tag size="mini" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
+                          <label v-if="item.hType == 'MasterTeacher'">{{$t("班主任")}}</label>
+                          <label v-if="item.hType == 'CoachTeacher'">{{$t("辅导员")}}</label>
+                          <label v-if="item.hType == 'DirectorTeacher'">{{$t("系主任")}}</label>
+                          <label v-if="item.hType == 'DormitorTeacher'">{{$t("宿管员")}}</label>
+                          <label v-if="item.hType == 'DeputyDirectorTeacher'">{{$t("系副主任")}}</label>
+                          <label v-if="item.hType == 'StudentManageTeacher'">{{$t("学管主任")}}</label>
+                          <label v-if="item.hType == 'SecretaryTeacher'">{{$t("系部主任")}}</label>
+                        </el-tag>
+                      </template>
                     </span>
                   </div>
-                  <div class="margin-top-5">
+                  <div class="margin-top-5" v-if="item.extra != 'send'">
                     <span style="position: relative; top: -5px">
                       <i class="fa fa-cog"></i>
                       <label>{{ $t("权限") }}: </label>
                     </span>
                     <span>
-                      <el-tag size="mini" type="success" v-for="(itemUser ,indexUser) in 2" :key="indexUser" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
-                        提交
+                      <el-tag size="mini" type="success" v-if="item.allowShow || item.allowMuti" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
+                        {{ $t("提交") }}
+                      </el-tag>
+                      <el-tag size="mini" type="success" v-if="item.rejectShow || item.rejectMuti" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
+                        {{ $t("驳回") }}
+                      </el-tag>
+                      <el-tag size="mini" type="success" v-if="item.transferShow || item.transferMuti" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
+                        {{ $t("转交") }}
                       </el-tag>
                     </span>
                   </div>
@@ -375,14 +397,32 @@
     components: {MyFormAuditType, MySelect},
     mixins: [mixins],
     props: {
-      formId: Object
+      formId: Object,
+      flowData: {
+        default: function () {
+          return [];
+        },
+        type: Array
+      },
+      form: {
+        default: function () {
+          return {
+            auditType: '',
+            name: '',
+            allowBack: false,
+            urge: false,
+            autoAudit: false,
+            merge: false
+          };
+        },
+        type: Object
+      }
     },
     computed: {
 
     },
     data() {
       return {
-        flowData: [],
         popVisible: false,
         refreshTeacherStatus: false,
         activeName: 'only',
@@ -396,15 +436,7 @@
           {label: this.$t("抄送给固定人"), text: this.$t("抄送给固定人"), value: 4},
           {label: this.$t("抄送给系统角色"), text: this.$t("抄送给系统角色"), value: 5},
           {label: this.$t("自选抄送人"), text: this.$t("自选抄送人"), value: 6},
-        ],
-        form: {
-          auditType: '',
-          name: '',
-          allowBack: false,
-          urge: false,
-          autoAudit: false,
-          merge: false
-        }
+        ]
       }
     },
     created() {
@@ -453,6 +485,7 @@
       },
       selFlowItemBlock(event, data, index){
         this.flowDetailData = data;
+        this.approverUsers = data.users;
         this.flowDetailIndex = index;
       },
       loadingShow(type){
@@ -478,6 +511,10 @@
       handleSelUser(data, type){
         if (type == 1){
           this.flowDetailData.users = data;
+          this.flowDetailData.hName = [];
+          for (let i = 0; i < data.length; i++){
+            this.flowDetailData.hName.push(data[i].real_name);
+          }
         }
         this.approverUsers = this.flowDetailData.users;
       },

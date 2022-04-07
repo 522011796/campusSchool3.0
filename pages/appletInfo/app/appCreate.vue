@@ -264,7 +264,7 @@
           <fc-designer ref="designer" :style="drawHeight4"/>
         </div>
         <div v-if="activeName == 'flow'" style="position: relative">
-          <my-form-flow ref="flow" :formId="serverDataItem" @versionClick="versionClick"></my-form-flow>
+          <my-form-flow ref="flow" :formId="serverDataItem" :flow-data="flowListData" :form="flowFormData" @versionClick="versionClick"></my-form-flow>
         </div>
         <div v-if="activeName == 'set'">
           <my-form-set :formId="serverDataItem"></my-form-set>
@@ -367,6 +367,8 @@
         flowVersionData: [],
         apps: [],
         types: [],
+        flowListData: [],
+        flowFormData: {},
         subTitle: '',
         collegeData: '',
         searchAppId: '',
@@ -441,13 +443,67 @@
           }
         });
       },
-      initVersion(){
+      initVersion(type){
         let params = {
           page: 1,
           num: 9999
         };
         this.$axios.get(common.server_form_template_form_process_page, {params: params}).then(res => {
           if (res.data.data){
+            if (type == 'current'){
+              for (let i = 0 ; i < res.data.data.list.length; i++){
+                let processId = res.data.data.list[i].id;
+                if (processId == this.serverDataItem.form_process_id){
+                  let formProcess = JSON.parse(res.data.data.list[i].form_process);
+                  let ntype = '';
+                  this.flowListData = [];
+                  for (let j = 0; j < formProcess.length; j++){
+                    let users = [];
+                    if (formProcess[j].ntype == 'handle'){
+                      ntype = 'audit';
+                    }else if (formProcess[j].ntype == 'cc'){
+                      ntype = 'send';
+                    }
+                    let obj = {
+                      type: formProcess[j].nChildType,
+                      extra: ntype,
+                      name: formProcess[j].nname,
+                      hType: formProcess[j].htype,
+                      hName: formProcess[j].hname,
+                      andor: formProcess[j].andor,
+                      waitName: formProcess[j].sign,
+                      allowShow: formProcess[j].agreed1,
+                      allowMuti: formProcess[j].agreed2,
+                      rejectShow: formProcess[j].notagreed1,
+                      rejectMuti: formProcess[j].notagreed2,
+                      transferShow: formProcess[j].trans1,
+                      transferMuti: formProcess[j].trans2
+                    };
+
+                    for (let k = 0; k < formProcess[j].hid.length; k++){
+                      users.push({
+                        user_id: formProcess[j].hid[k],
+                        real_name: formProcess[j].hname[k],
+                      });
+                    }
+                    obj['users'] = users;
+
+                    console.log(obj);
+                    this.flowListData.push(obj);
+                  }
+                  let formObj = {
+                    id: res.data.data.list[i].id,
+                    auditType: '',
+                    name: res.data.data.list[i].version_name,
+                    allowBack: res.data.data.list[i].allow_revoke,
+                    urge: res.data.data.list[i].allow_urge,
+                    autoAudit: res.data.data.list[i].allow_auto,
+                    merge: res.data.data.list[i].allow_merge
+                  };
+                  this.flowFormData = formObj;
+                }
+              }
+            }
             this.flowVersionData = res.data.data.list;
             this.total = res.data.data.totalCount;
             this.num = res.data.data.num;
@@ -541,6 +597,7 @@
       formInfo(item, index){
         this.serverDataItem = item;
         this.serverDataIndex = index;
+        this.initVersion('current');
         this.drawerForm = true;
       },
       openedForm(){
@@ -569,6 +626,15 @@
           scope: true,
           evaluate:true,
           recommend: false
+        };
+        this.flowListData = [];
+        this.flowFormData = {
+          auditType: '',
+          name: '',
+          allowBack: false,
+          urge: false,
+          autoAudit: false,
+          merge: false
         };
         this.subTitle = "";
         this.resetCasadeSelector('SelectorCollege');
@@ -741,6 +807,7 @@
             }
             let obj = {
               ntype: ntype,
+              nChildType: flowData[i].type,
               nname: flowData[i].name,
               horder: i + 1,
               htype: htype,
@@ -768,6 +835,9 @@
             allowAuto: flowForm.autoAudit,
             allowMerge: flowForm.merge
           };
+          if (flowForm.id != ''){
+            flowDataOjb['id'] = flowForm.id;
+          }
           if (type == 'new'){
             flowDataOjb['current'] = false;
           }else {
@@ -775,7 +845,6 @@
           }
 
           flowDataOjb = this.$qs.stringify(flowDataOjb);
-          console.log(flowDataOjb);
           this.btnLoading = true;
           this.$axios.post(common.server_form_template_form_process_save, flowDataOjb, {loading: false}).then(res => {
             if (res.data.code == 200){
