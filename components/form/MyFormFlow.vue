@@ -203,31 +203,58 @@
                     <el-col :span="16">
                       <span>{{$t("全选")}}</span>
                     </el-col>
-                    <el-col :span="8" class="text-center">
+                    <el-col :span="4" class="text-center">
                       <el-row>
-                        <el-col :span="12" class="text-center">
-                          <el-checkbox></el-checkbox>
+                        <el-col :span="24" class="text-center">
+                          <el-checkbox v-model="checkRight1All" @change="handleCheckAllChangeRight1"></el-checkbox>
                         </el-col>
-                        <el-col :span="12" class="text-center">
-                          <el-checkbox></el-checkbox>
+                      </el-row>
+                    </el-col>
+                    <el-col :span="4" class="text-center">
+                      <el-row>
+                        <el-col :span="24" class="text-center">
+                          <el-checkbox v-model="checkRight2All" @change="handleCheckAllChangeRight2"></el-checkbox>
                         </el-col>
                       </el-row>
                     </el-col>
                   </el-row>
                   <el-row class="margin-top-5">
                     <el-col :span="16">
-                      <span>{{$t("申请人")}}</span>
-                    </el-col>
-                    <el-col :span="8" class="text-center">
-                      <el-row>
-                        <el-col :span="12" class="text-center">
-                          <el-checkbox></el-checkbox>
-                        </el-col>
-                        <el-col :span="12" class="text-center">
-                          <el-checkbox></el-checkbox>
+                      <el-row v-for="(item, index) in formFieldList" :key="index">
+                        <el-col :span="24">
+                          <span>{{ item.title }}</span>
                         </el-col>
                       </el-row>
                     </el-col>
+                    <el-col :span="4" class="text-center displaynone-checkbox">
+                      <el-checkbox-group v-model="flowDetailData.right1" @change="handleCheckedRight1Change">
+                        <el-row v-for="(item, index) in formFieldList" :key="index">
+                          <el-col :span="24" class="text-center">
+                            <el-checkbox :label="item.field">&nbsp;</el-checkbox>
+                          </el-col>
+                        </el-row>
+                      </el-checkbox-group>
+                    </el-col>
+                    <el-col :span="4" class="text-center displaynone-checkbox">
+                      <el-checkbox-group v-model="flowDetailData.right2" @change="handleCheckedRight2Change">
+                        <el-row v-for="(item, index) in formFieldList" :key="index">
+                          <el-col :span="24">
+                            <el-checkbox :label="item.field">&nbsp;</el-checkbox>
+                          </el-col>
+                        </el-row>
+                      </el-checkbox-group>
+                    </el-col>
+
+<!--                    <el-col :span="8" class="text-center">-->
+<!--                      <el-row>-->
+<!--                        <el-col :span="12" class="text-center">-->
+<!--                          <el-checkbox :true-label="item.field" :false-label="item.field" @change="handleCheckedRight1Change"></el-checkbox>-->
+<!--                        </el-col>-->
+<!--                        <el-col :span="12" class="text-center">-->
+<!--                          <el-checkbox v-model="item.field" @change="handleCheckedRight2Change"></el-checkbox>-->
+<!--                        </el-col>-->
+<!--                      </el-row>-->
+<!--                    </el-col>-->
                   </el-row>
                 </div>
               </div>
@@ -423,12 +450,15 @@
     },
     data() {
       return {
+        checkRight1All: false,
+        checkRight2All: false,
         popVisible: false,
         refreshTeacherStatus: false,
         activeName: 'only',
         flowDetailIndex: '',
         flowDetailData: '',
         approverUsers: [],
+        formFieldList: [],
         auditFlowType: [
           {label: this.$t("固定人审批"), text: this.$t("固定人审批"), value: 1},
           {label: this.$t("系统角色审批"), text: this.$t("系统角色审批"), value: 2},
@@ -463,8 +493,8 @@
           allEdit: false,
           applicantShow: false,
           applicantEdit: false,
-          classShow: false,
-          classEdit: false,
+          right1: [],
+          right2: [],
         };
         this.flowData.splice(index, 0, obj);
       },
@@ -479,6 +509,7 @@
       },
       handleUserType(data){
         this.flowDetailData.htype = data;
+        this.flowDetailData.hType = data;
       },
       auditFlowTypeItemInfo(value, type){
         return flowAuditItemType(value, type);
@@ -487,6 +518,22 @@
         this.flowDetailData = data;
         this.approverUsers = data.users;
         this.flowDetailIndex = index;
+        if (this.formId.form_content){
+          let form_content = JSON.parse(this.formId.form_content);
+          this.formFieldList = form_content.rule;
+
+          if (this.formFieldList.length == this.flowDetailData.right1.length){
+            this.checkRight1All = true;
+          }else {
+            this.checkRight1All = false;
+          }
+
+          if (this.formFieldList.length == this.flowDetailData.right2.length){
+            this.checkRight2All = true;
+          }else {
+            this.checkRight2All = false;
+          }
+        }
       },
       loadingShow(type){
         let timer = null;
@@ -520,6 +567,48 @@
       },
       versionList(){
         this.$emit("versionClick");
+      },
+      handleCheckedRight1Change(data){
+        this.flowDetailData.right1 = data;
+        if (this.formFieldList.length == this.flowDetailData.right1.length){
+          this.checkRight1All = true;
+        }else {
+          this.checkRight1All = false;
+        }
+      },
+      handleCheckedRight2Change(data){
+        this.flowDetailData.right2 = data;
+        if (this.formFieldList.length == this.flowDetailData.right2.length){
+          this.checkRight2All = true;
+        }else {
+          this.checkRight2All = false;
+        }
+      },
+      handleCheckAllChangeRight1(data){
+        if (data == true){
+          if (this.formId.form_content){
+            let arr = [];
+            for(let i = 0; i < this.formFieldList.length; i++){
+              arr.push(this.formFieldList[i].field);
+            }
+            this.flowDetailData.right1 = arr;
+          }
+        }else{
+          this.flowDetailData.right1 = [];
+        }
+      },
+      handleCheckAllChangeRight2(data){
+        if (data == true){
+          if (this.formId.form_content){
+            let arr = [];
+            for(let i = 0; i < this.formFieldList.length; i++){
+              arr.push(this.formFieldList[i].field);
+            }
+            this.flowDetailData.right2 = arr;
+          }
+        }else{
+          this.flowDetailData.right2 = [];
+        }
       }
     }
   }

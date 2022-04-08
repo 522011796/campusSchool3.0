@@ -316,12 +316,16 @@
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                 <div class="text-center">
-                  <label v-if="serverDataItem.form_process_id == scope.row.id" class="color-success">{{$t("当前版本")}}</label>
-                  <label v-if="serverDataItem.form_process_id != scope.row.id" class="color-danger">{{$t("未启用")}}</label>
+                  <label v-if="serverDataItem.form_process_id == scope.row.id && versionStatus == ''" class="color-success">{{$t("当前版本")}}</label>
+                  <label v-if="serverDataItem.form_process_id != scope.row.id && versionStatus == ''" class="color-danger">{{$t("未启用")}}</label>
+                  <label v-if="serverDataItem.form_process_id != scope.row.id && versionStatus == 'edit'" class="color-danger">--</label>
+                  <label v-if="serverDataItem.form_process_id == scope.row.id && versionStatus == 'edit'" class="color-warning">{{$t("编辑中")}}</label>
                 </div>
                 <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <label v-if="serverDataItem.form_process_id == scope.row.id" class="color-success">{{$t("当前版本")}}</label>
-                  <label v-if="serverDataItem.form_process_id != scope.row.id" class="color-danger">{{$t("未启用")}}</label>
+                  <label v-if="serverDataItem.form_process_id == scope.row.id && versionStatus == ''" class="color-success">{{$t("当前版本")}}</label>
+                  <label v-if="serverDataItem.form_process_id != scope.row.id && versionStatus == ''" class="color-danger">{{$t("未启用")}}</label>
+                  <label v-if="serverDataItem.form_process_id != scope.row.id && versionStatus == 'edit'" class="color-danger">--</label>
+                  <label v-if="serverDataItem.form_process_id == scope.row.id && versionStatus == 'edit'" class="color-warning">{{$t("编辑中")}}</label>
                 </span>
               </el-popover>
             </template>
@@ -368,6 +372,7 @@
         apps: [],
         types: [],
         flowListData: [],
+        formFieldList: [],
         flowFormData: {},
         subTitle: '',
         collegeData: '',
@@ -388,6 +393,7 @@
         btnNewLoading: false,
         showFooter: true,
         drawerVersion: false,
+        versionStatus: '',
         serverDataItem: '',
         serverDataIndex: '',
         form: {
@@ -477,7 +483,9 @@
                       rejectShow: formProcess[j].notagreed1,
                       rejectMuti: formProcess[j].notagreed2,
                       transferShow: formProcess[j].trans1,
-                      transferMuti: formProcess[j].trans2
+                      transferMuti: formProcess[j].trans2,
+                      right1: formProcess[j].right1 ? formProcess[j].right1 : [],
+                      right2: formProcess[j].right2 ? formProcess[j].right2 : [],
                     };
 
                     for (let k = 0; k < formProcess[j].hid.length; k++){
@@ -488,7 +496,7 @@
                     }
                     obj['users'] = users;
 
-                    console.log(obj);
+                    console.log(formProcess[j]);
                     this.flowListData.push(obj);
                   }
                   let formObj = {
@@ -637,6 +645,7 @@
           merge: false
         };
         this.subTitle = "";
+        this.versionStatus = '';
         this.resetCasadeSelector('SelectorCollege');
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
@@ -646,6 +655,7 @@
         this.serverDataIndex = '';
         this.activeName = 'form';
         this.init();
+        this.btnLoading = false;
         this.drawerForm = false;
       },
       cancelVersionDrawDialog(){
@@ -687,6 +697,7 @@
       },
       versionClick(){
         this.initVersion();
+        //this.versionStatus = '';
         this.drawerVersion = true;
       },
       okAppDrawDialog() {
@@ -803,7 +814,14 @@
                 hname.push(flowDataUsers[j].real_name);
               }
             }else if (flowData[i].type == 2 || flowData[i].type == 5){
-              htype = flowData[i].htype;
+              htype = flowData[i].hType;
+            }else if (flowData[i].type == 3 || flowData[i].type == 6){
+              htype = '';
+              let flowDataUsers = flowData[i].users;
+              for (let j = 0; j < flowDataUsers.length; j++){
+                hid.push(flowDataUsers[j].user_id);
+                hname.push(flowDataUsers[j].real_name);
+              }
             }
             let obj = {
               ntype: ntype,
@@ -821,8 +839,8 @@
               notagreed2: flowData[i].rejectMuti,
               trans1: flowData[i].transferShow,
               trans2: flowData[i].transferMuti,
-              right1:[],
-              right2:[],
+              right1: flowData[i].right1,
+              right2: flowData[i].right2,
             }
             flowDataArray.push(obj);
           }
@@ -835,10 +853,10 @@
             allowAuto: flowForm.autoAudit,
             allowMerge: flowForm.merge
           };
-          if (flowForm.id != ''){
+          if (flowForm.id != '' && type != 'new'){
             flowDataOjb['id'] = flowForm.id;
           }
-          if (type == 'new'){
+          if (type == 'new' || this.versionStatus == "edit"){
             flowDataOjb['current'] = false;
           }else {
             flowDataOjb['current'] = true;
@@ -860,7 +878,10 @@
         }
       },
       editFlowInfo(data){
-
+        this.drawerVersion = false;
+        this.versionStatus = 'edit';
+        this.serverDataItem.form_process_id = data.id;
+        this.initVersion('current');
       },
       delFlowInfo(data){
         let params = {
@@ -881,12 +902,13 @@
           id: this.serverDataItem.id,
           processId: data.id
         };
+        this.versionStatus = '';
         params = this.$qs.stringify(params);
         this.$axios.post(common.server_form_template_form_process_current, params).then(res => {
           if (res.data.code == 200){
-            this.initVersion();
             this.tableData[this.serverDataIndex].form_process_id = data.id;
             this.serverDataItem.form_process_id = data.id;
+            this.initVersion('current');
             MessageSuccess(res.data.desc);
           }else {
             MessageError(res.data.desc);
