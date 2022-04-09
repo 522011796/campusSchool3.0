@@ -330,7 +330,7 @@
           </div>
 
           <div class="margin-bottom-20 margin-top-20">
-            <my-form-audit-type item-index="0" @click="selAuditType"></my-form-audit-type>
+            <my-form-audit-type item-index="0" :custom-user-status="flowCustonUserStatus" @click="selAuditType" @showPop="showPop"></my-form-audit-type>
           </div>
 
           <div v-if="flowData.length > 0" v-for="(item, index) in flowData" :key="index">
@@ -455,6 +455,7 @@
         popVisible: false,
         refreshTeacherStatus: false,
         activeName: 'only',
+        flowCustonUserStatus: false,
         flowDetailIndex: '',
         flowDetailData: '',
         approverUsers: [],
@@ -608,6 +609,15 @@
           }
         }else{
           this.flowDetailData.right2 = [];
+        }
+      },
+      showPop(){
+        this.flowCustonUserStatus = false;
+        for (let i = 0; i < this.flowData.length; i++){
+          if(this.flowData[i].hType == 'CustomUser'){
+            this.flowCustonUserStatus = true;
+            break;
+          }
         }
       }
     }

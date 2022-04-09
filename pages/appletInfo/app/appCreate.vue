@@ -406,6 +406,17 @@
           scope: true,
           evaluate: true,
           recommend: false
+        },
+        formOption: {
+          "form": {
+            "inline": false,
+            "labelPosition": "right",
+            "size": "mini",
+            "labelWidth": "125px",
+            "hideRequiredAsterisk": false,
+            "showMessage": true,
+            "inlineMessage": false
+          }
         }
       }
     },
@@ -616,6 +627,7 @@
             this.$refs.designer.setOption(form_content.option);
           }else {
             this.$refs.designer.setRule([]);
+            this.$refs.designer.setOption(this.formOption);
           }
         },800);
       },
@@ -816,7 +828,7 @@
             }else if (flowData[i].type == 2 || flowData[i].type == 5){
               htype = flowData[i].hType;
             }else if (flowData[i].type == 3 || flowData[i].type == 6){
-              htype = '';
+              htype = 'CustomUser';
               let flowDataUsers = flowData[i].users;
               for (let j = 0; j < flowDataUsers.length; j++){
                 hid.push(flowDataUsers[j].user_id);

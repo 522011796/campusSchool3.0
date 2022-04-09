@@ -4,6 +4,7 @@
       placement="right"
       width="100"
       trigger="hover"
+      @show="showPop"
       v-model="popVisible">
       <div class="font-size-12">
         <div class="">
@@ -19,7 +20,7 @@
               <i class="fa fa-cog"></i>
               <span>{{$t("系统角色审批")}}</span>
             </div>
-            <div class="flow-item-child-block padding-tb-5" @click="selAuditType($event, 3, 'audit')">
+            <div v-if="customUserStatus == false" class="flow-item-child-block padding-tb-5" @click="selAuditType($event, 3, 'audit')">
               <i class="fa fa-flag"></i>
               <span>{{$t("发起人自选审批")}}</span>
             </div>
@@ -38,10 +39,10 @@
               <i class="fa fa-cog"></i>
               <span>{{$t("抄送给系统角色")}}</span>
             </div>
-            <div class="flow-item-child-block padding-tb-5" @click="selAuditType($event, 6, 'send')">
-              <i class="fa fa-flag"></i>
-              <span>{{$t("自选抄送人")}}</span>
-            </div>
+<!--            <div class="flow-item-child-block padding-tb-5" @click="selAuditType($event, 6, 'send')">-->
+<!--              <i class="fa fa-flag"></i>-->
+<!--              <span>{{$t("自选抄送人")}}</span>-->
+<!--            </div>-->
           </div>
         </div>
       </div>
@@ -59,6 +60,10 @@
       itemIndex: {
         type: [Number, String],
         default: 0
+      },
+      customUserStatus: {
+        type: Boolean,
+        default: false
       }
     },
     computed: {
@@ -77,6 +82,9 @@
       selAuditType(event, type, extra){
         this.popVisible = false;
         this.$emit("click", type, extra, parseInt(this.itemIndex));
+      },
+      showPop(){
+        this.$emit("showPop");
       }
     }
   }

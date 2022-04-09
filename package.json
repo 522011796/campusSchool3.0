@@ -30,6 +30,7 @@
     "moment": "^2.24.0",
     "nuxt": "^2.14.6",
     "qs": "^6.9.1",
+    "vue-codemirror": "^4.0.6",
     "vue-i18n": "^8.15.3",
     "vue-quill-editor": "^3.0.6"
   }
