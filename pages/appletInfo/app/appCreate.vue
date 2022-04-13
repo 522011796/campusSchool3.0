@@ -524,9 +524,9 @@
               }
             }
             this.flowVersionData = res.data.data.list;
-            this.total = res.data.data.totalCount;
-            this.num = res.data.data.num;
-            this.page = res.data.data.currentPage;
+            // this.total = res.data.data.totalCount;
+            // this.num = res.data.data.num;
+            // this.page = res.data.data.currentPage;
           }
         });
       },
