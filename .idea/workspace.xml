@@ -6,12 +6,7 @@
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/form/MyFormAuditType.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/form/MyFormAuditType.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/form/MyFormFlow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/form/MyFormFlow.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appCreate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appCreate.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/formCreate.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/formCreate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/form/MyFormSet.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/form/MyFormSet.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +34,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/form" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -142,6 +137,7 @@
       <workItem from="1647937930082" duration="783000" />
       <workItem from="1648006165487" duration="38067000" />
       <workItem from="1648170997160" duration="184540000" />
+      <workItem from="1649821794900" duration="1247000" />
     </task>
     <task id="LOCAL-00001" summary="修改bug">
       <created>1615953061597</created>

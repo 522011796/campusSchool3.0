@@ -308,6 +308,7 @@
         let params = {
           page: this.page,
           num:9999,
+          formId: this.formId.id,
           searchKey: this.searchKey
         };
         this.$axios.get(common.server_form_template_permission_list, {params: params}).then(res => {
