@@ -152,7 +152,7 @@
 
       <div class="login-footer">
         <div class="color-muted text-center">
-          <span class="font-size-15">Copyright © 2006-2017 All Rights Reserved. 大连网月科技股份有限公司 版权所有 辽ICP备12008717号</span>
+          <span class="font-size-15">{{copyright_information}}</span>
         </div>
       </div>
     </div>
@@ -209,6 +209,7 @@
       return {
         userType: '1',
         userSubType: '1',
+        copyright_information: '',
         dialogLoading: false,
         modalVisible: false,
         showContent: false,
@@ -229,6 +230,7 @@
       }
     },
     mounted() {
+      //Copyright © 2006-2017 All Rights Reserved. 大连网月科技股份有限公司 版权所有 辽ICP备12008717号
       // 监听窗口大小
       window.onresize = () => {
         this.hh();
@@ -241,12 +243,20 @@
     },
     created() {
       this.hh();
+      this.initInfo();
     },
     methods: {
       hh(){
         if (process.browser) {
           this.fullHeight.height = window.innerHeight + 20 + 'px';
         }
+      },
+      initInfo(){
+        this.$axios.get("http://campus.9451.com/campusmanage/campus/get-copyright-information",{loading: false}).then(res => {
+          if (res.data.code == 200){
+            this.copyright_information = res.data.data.copyright_information;
+          }
+        })
       },
       changeUserType(type){
         this.form.username = "";

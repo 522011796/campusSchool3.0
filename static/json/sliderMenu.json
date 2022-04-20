@@ -1056,20 +1056,6 @@
             "path": "/appletInfo/app/appCreate"
           },
           {
-            "name": "数据中心",
-            "key": "appData",
-            "id": 93000,
-            "top": "appletInfo",
-            "path": "/appletInfo/app/appData"
-          },
-          {
-            "name": "模版中心",
-            "key": "appTemplate",
-            "id": 94000,
-            "top": "appletInfo",
-            "path": "/appletInfo/app/appTemplate"
-          },
-          {
             "name": "类别管理",
             "key": "appType",
             "id": 95000,

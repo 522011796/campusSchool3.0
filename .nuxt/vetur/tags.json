@@ -71,36 +71,6 @@
   "LazyLayoutTb": {
     "description": "Auto imported from components/Layout/LayoutTb.vue"
   },
-  "MyFormAuditType": {
-    "description": "Auto imported from components/form/MyFormAuditType.vue"
-  },
-  "LazyMyFormAuditType": {
-    "description": "Auto imported from components/form/MyFormAuditType.vue"
-  },
-  "MyFormFlow": {
-    "description": "Auto imported from components/form/MyFormFlow.vue"
-  },
-  "LazyMyFormFlow": {
-    "description": "Auto imported from components/form/MyFormFlow.vue"
-  },
-  "MyFormSet": {
-    "description": "Auto imported from components/form/MyFormSet.vue"
-  },
-  "LazyMyFormSet": {
-    "description": "Auto imported from components/form/MyFormSet.vue"
-  },
-  "MyFormSetNotice": {
-    "description": "Auto imported from components/form/MyFormSetNotice.vue"
-  },
-  "LazyMyFormSetNotice": {
-    "description": "Auto imported from components/form/MyFormSetNotice.vue"
-  },
-  "MyFormSetRole": {
-    "description": "Auto imported from components/form/MyFormSetRole.vue"
-  },
-  "LazyMyFormSetRole": {
-    "description": "Auto imported from components/form/MyFormSetRole.vue"
-  },
   "BarChart": {
     "description": "Auto imported from components/charts/BarChart.vue"
   },
@@ -166,6 +136,36 @@
   },
   "LazyTableBarChart": {
     "description": "Auto imported from components/charts/TableBarChart.vue"
+  },
+  "MyFormAuditType": {
+    "description": "Auto imported from components/form/MyFormAuditType.vue"
+  },
+  "LazyMyFormAuditType": {
+    "description": "Auto imported from components/form/MyFormAuditType.vue"
+  },
+  "MyFormFlow": {
+    "description": "Auto imported from components/form/MyFormFlow.vue"
+  },
+  "LazyMyFormFlow": {
+    "description": "Auto imported from components/form/MyFormFlow.vue"
+  },
+  "MyFormSet": {
+    "description": "Auto imported from components/form/MyFormSet.vue"
+  },
+  "LazyMyFormSet": {
+    "description": "Auto imported from components/form/MyFormSet.vue"
+  },
+  "MyFormSetNotice": {
+    "description": "Auto imported from components/form/MyFormSetNotice.vue"
+  },
+  "LazyMyFormSetNotice": {
+    "description": "Auto imported from components/form/MyFormSetNotice.vue"
+  },
+  "MyFormSetRole": {
+    "description": "Auto imported from components/form/MyFormSetRole.vue"
+  },
+  "LazyMyFormSetRole": {
+    "description": "Auto imported from components/form/MyFormSetRole.vue"
   },
   "MyInputButton": {
     "description": "Auto imported from components/search/MyInputButton.vue"
