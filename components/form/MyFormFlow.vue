@@ -498,6 +498,7 @@
           right2: [],
         };
         this.flowData.splice(index, 0, obj);
+        this.selFlowItemBlock(null, obj, index);
       },
       delAuditType(event, data, index){
         this.flowData.splice(index, 1);

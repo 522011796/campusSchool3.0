@@ -19,7 +19,7 @@
     }
   },
   "dependencies": {
-    "@form-create/designer": "^1.0.6",
+    "@form-create/designer": "^1.0.7",
     "@form-create/element-ui": "^2.5.19",
     "@nuxtjs/axios": "^5.12.2",
     "codemirror": "^5.65.2",

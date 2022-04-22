@@ -30,6 +30,11 @@ export default function({ $axios, redirect }) {
     }
   });
 
+  // 服务器返回异常拦截
+  $axios.onError((error) => {
+    return error
+  })
+
   // response interceptor
   $axios.interceptors.response.use(
     /**
