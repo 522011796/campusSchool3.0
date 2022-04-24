@@ -199,17 +199,17 @@
           </div>
         </div>
 
-        <div class="margin-top-20">
-          <div class="color-muted margin-top-5">
-          <span>
-            <label class="title-block-tag"></label>
-            <label class="title-block-text color-warning">{{$t("复制服务(表单)到本应用")}}</label>
-          </span>
-          </div>
-          <div class="block-item-bg font-size-12" style="position: relative">
-            <el-button type="success" size="mini">{{$t("复制")}}</el-button>
-          </div>
-        </div>
+<!--        <div class="margin-top-20">-->
+<!--          <div class="color-muted margin-top-5">-->
+<!--          <span>-->
+<!--            <label class="title-block-tag"></label>-->
+<!--            <label class="title-block-text color-warning">{{$t("复制服务(表单)到本应用")}}</label>-->
+<!--          </span>-->
+<!--          </div>-->
+<!--          <div class="block-item-bg font-size-12" style="position: relative">-->
+<!--            <el-button type="success" size="mini">{{$t("复制")}}</el-button>-->
+<!--          </div>-->
+<!--        </div>-->
 
         <div class="margin-top-20">
           <div class="color-muted margin-top-5">
@@ -260,7 +260,11 @@
         </div>
       </div>
       <div slot="content" class="color-muted">
-        <div v-if="activeName == 'form'">
+        <div v-if="activeName == 'form'"
+             v-loading="formLoading"
+             element-loading-text="拼命加载中"
+             element-loading-spinner="el-icon-loading"
+             element-loading-background="rgba(0, 0, 0, 0.01)">
           <fc-designer ref="designer" :style="drawHeight4"/>
         </div>
         <div v-if="activeName == 'flow'" style="position: relative">
@@ -385,6 +389,7 @@
         uploadFileUrl: common.upload_file,
         activeName: 'form',
         dialogLoading: false,
+        formLoading: false,
         dialogApp: false,
         visibleConfim: false,
         drawerVisible: false,
@@ -620,6 +625,7 @@
         this.drawerForm = true;
       },
       openedForm(){
+        this.formLoading = true;
         setTimeout(()=>{
           if (this.serverDataItem.form_content){
             let form_content = JSON.parse(this.serverDataItem.form_content);
@@ -629,6 +635,7 @@
             this.$refs.designer.setRule([]);
             this.$refs.designer.setOption(this.formOption);
           }
+          this.formLoading = false;
         },800);
       },
       closeVersionDialog(event){
@@ -661,6 +668,10 @@
         this.resetCasadeSelector('SelectorCollege');
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
+        }
+        if (this.$refs.designer){
+          this.$refs.designer.setRule([]);
+          this.$refs.designer.setOption(this.formOption);
         }
         this.drawerVisible = event;
         this.serverDataItem = '';

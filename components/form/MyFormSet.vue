@@ -58,7 +58,7 @@
                     <el-row :gutter="16">
                       <el-col :span="12" v-for="(item, index) in ruleList" :key="index" @click.native="editRuleList(item)">
                         <div class="item-tag-block margin-bottom-10" style="position: relative">
-                          <div class="moon-content-text-ellipsis-class">{{ item.hideName }}</div>
+                          <div class="moon-content-text-ellipsis-class color-white">{{ item.hideName }}</div>
                           <span style="position: absolute;right: -5px;top: -10px"><i class="fa fa-close" @click.stop="delRuleList(item)"></i></span>
                         </div>
                       </el-col>
