@@ -340,8 +340,6 @@
       expandInfo(){
         let url = "";
         let params = {
-          page: this.page,
-          num: 99999,
           queryApplyListType: this.queryApplyListType,
           status: this.searchStatus
         };
