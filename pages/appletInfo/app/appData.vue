@@ -90,9 +90,13 @@
               :label="item.title">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{ scope.row.classroom_no }}</div>
+                  <div class="text-center">
+                    <label v-if="scope.row.applyContentObj[index]">{{scope.row.applyContentObj[index].value}}</label>
+                    <label v-else>--</label>
+                  </div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{item.value}}
+                    <label v-if="scope.row.applyContentObj[index]">{{scope.row.applyContentObj[index].value}}</label>
+                    <label v-else>--</label>
                   </span>
                 </el-popover>
               </template>
@@ -115,7 +119,7 @@
       </div>
     </layout-lr>
 
-    <drawer-layout-right tabindex="0" :hide-footer="true" @changeDrawer="closeDialog" :visible="dialogServerDetail" size="600px" :title="$t('详情')" @right-close="cancelDrawDialog">
+    <drawer-layout-right tabindex="0" :hide-footer="true" @changeDrawer="closeDrawerDialog" :visible="dialogServerDetail" size="600px" :title="$t('详情')" @right-close="cancelDrawDialog">
       <div slot="content" class="color-muted">
         <div class="detail-block-title padding-lr-10 padding-tb-10 font-size-12">
           <el-row>
@@ -296,16 +300,25 @@
           status: this.searchAuditStatus
         };
         let applyContentArr = [];
+        let applyContent = [];
         this.$axios.get(common.server_form_template_form_apply_page, {params: params}).then(res => {
           if (res.data.data){
             if (res.data.data.list.length > 0 && res.data.data.list[0].applyContent){
               applyContentArr = JSON.parse(res.data.data.list[0].applyContent);
             }
+
+            for (let i = 0; i < res.data.data.list.length; i++){
+              if (res.data.data.list[i].applyContent){
+                let applyContent = JSON.parse(res.data.data.list[i].applyContent);
+                res.data.data.list[i]['applyContentObj'] = JSON.parse(res.data.data.list[i].applyContent);
+              }
+            }
+
             this.applyContentArr = applyContentArr;
             this.tableData = res.data.data.list;
-            this.total = res.data.data.totalCount;
+            this.total = res.data.data.total;
             this.num = res.data.data.num;
-            this.page = res.data.data.currentPage;
+            this.page = res.data.data.page;
           }
         });
       },
@@ -369,6 +382,7 @@
       },
       closeDrawerDialog(event){
         this.drawerVisible = event;
+        this.dialogServerDetail = event;
       },
       closeDrawDialog(event){
         this.drawerVisible = false;
