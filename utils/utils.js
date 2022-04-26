@@ -57,6 +57,34 @@ export function setDeptChildren(tree, obj, param, param2, type){//迭代方法--
   }
 }
 
+export function setFormServerChildren(tree) {//迭代方法--表单服务列表
+  let _self = this;
+  let arr = [];
+  if (tree && tree.length > 0) {
+    for (let i = 0; i < tree.length; i++) {
+      arr.push({
+        label: tree[i].appletName,
+        value: tree[i].id,
+        id: tree[i].id,
+        unit: 1
+      });
+      if (tree[i].formList && tree[i].formList.length > 0){
+        let childList = tree[i].formList;
+        arr[i]['children'] = [];
+        for (let j = 0; j < childList.length; j++) {
+          arr[i]['children'].push({
+            label: childList[j].formName,
+            value: childList[j].id,
+            id: childList[j].id,
+            unit: 2
+          });
+        }
+      }
+    }
+  }
+  return arr;
+}
+
 export function setSchoolBuildChildren(tree, type){//迭代方法--教学楼
   let _self = this;
   let arr = [];

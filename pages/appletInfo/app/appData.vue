@@ -6,14 +6,14 @@
           <!--<span class="layout-left-menu-tag"></span>-->
           <span class="layout-left-menu-title">数据中心</span>
         </div>
-
+        <my-el-tree type="110" :extra-type="$route.query.appName" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
       </div>
 
       <div slot="right">
         <div class="layout-top-tab margin-top-5">
           <el-row>
             <el-col :span="8">
-              <el-button size="small" type="success" plain  icon="el-icon-notebook-2" @click="uploadData($event)">{{$t("导入")}}</el-button>
+<!--              <el-button size="small" type="success" plain  icon="el-icon-notebook-2" @click="uploadData($event)">{{$t("导入")}}</el-button>-->
               <el-button size="small" type="warning"  icon="el-icon-download" @click="expandInfo($event)">{{$t("导出")}}</el-button>
             </el-col>
             <el-col :span="16" class="text-right">
@@ -32,67 +32,67 @@
             style="width: 100%">
             <el-table-column
               align="center"
-              width="100"
               :label="$t('申请日期')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{ scope.row.classroom_no }}</div>
+                  <div class="text-center">{{ $moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss") }}</div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{ scope.row.classroom_no }}
+                    {{ $moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss") }}
                   </span>
                 </el-popover>
               </template>
             </el-table-column>
             <el-table-column
               align="center"
-              width="100"
               :label="$t('姓名')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{ scope.row.classroom_no }}</div>
+                  <div class="text-center">{{ scope.row.applyUserName }}</div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{ scope.row.classroom_no }}
+                    {{ scope.row.applyUserName }}
                   </span>
                 </el-popover>
               </template>
             </el-table-column>
             <el-table-column
               align="center"
-              width="100"
               :label="$t('学号/工号')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{ scope.row.classroom_no }}</div>
+                  <div class="text-center">{{ scope.row.userNo }}</div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{ scope.row.classroom_no }}
+                    {{ scope.row.userNo }}
                   </span>
                 </el-popover>
               </template>
             </el-table-column>
             <el-table-column
               align="center"
-              width="100"
               :label="$t('班级/部门')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{ scope.row.classroom_no }}</div>
+                  <div class="text-center">
+                    <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
+                    <label v-else>{{scope.row.className}}</label>
+                  </div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{ scope.row.classroom_no }}
+                    <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
+                    <label v-else>{{scope.row.className}}</label>
                   </span>
                 </el-popover>
               </template>
             </el-table-column>
             <el-table-column
-              v-for="n in 10"
-              :key="n"
+              v-for="(item, index) in applyContentArr"
+              :key="index"
               align="center"
               width="100"
-              label="列">
+              :label="item.title">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                   <div class="text-center">{{ scope.row.classroom_no }}</div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    xx
+                    {{item.value}}
                   </span>
                 </el-popover>
               </template>
@@ -104,7 +104,7 @@
               :label="$t('操作')">
               <template slot-scope="scope">
                 <i class="fa fa-file-text margin-right-5 color-grand" @click="detailInfo(scope.row)"></i>
-                <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
+<!--                <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>-->
               </template>
             </el-table-column>
           </el-table>
@@ -115,9 +115,129 @@
       </div>
     </layout-lr>
 
+    <drawer-layout-right tabindex="0" :hide-footer="true" @changeDrawer="closeDialog" :visible="dialogServerDetail" size="600px" :title="$t('详情')" @right-close="cancelDrawDialog">
+      <div slot="content" class="color-muted">
+        <div class="detail-block-title padding-lr-10 padding-tb-10 font-size-12">
+          <el-row>
+            <el-col :span="12">
+              <span>{{$t("申请人")}}:</span>
+              <span>{{ detailData.applyUserName }}</span>
+            </el-col>
+            <el-col :span="12">
+              <span>{{$t("学号/工号")}}:</span>
+              <span>{{ detailData.userNo }}</span>
+            </el-col>
+          </el-row>
+          <el-row class="margin-top-5">
+            <el-col :span="12">
+              <span>{{$t("服务名称")}}:</span>
+              <span>{{ detailData.formName }}</span>
+            </el-col>
+            <el-col :span="12">
+              <span>{{$t("班级/部门")}}:</span>
+              <span>
+                <label v-if="detailData.userType == 5">{{ detailData.className }}</label>
+                <label v-if="detailData.userType == 4">{{ detailData.departmentName }}</label>
+              </span>
+            </el-col>
+          </el-row>
+          <el-row class="margin-top-5">
+            <el-col :span="12">
+              <span>{{$t("申请日期")}}:</span>
+              <span>{{ $moment(detailData.applyTime).format("YYYY-MM-DD HH:mm") }}</span>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="margin-top-10">
+          <div class="color-muted margin-top-5 font-size-12 border-bottom-1">
+              <span>
+                <label class="title-block-tag"></label>
+                <label class="title-block-text color-warning">{{$t("申请内容")}}</label>
+              </span>
+          </div>
+          <div class="block-item-bg font-size-12 margin-top-10 color-sub-title">
+            <div class="block-item-row padding-lr-10 font-bold" v-for="(item, index) in detailApplyContentData">
+              <span class="color-muted" style="position: relative;top: -13px">{{item.title}}: </span>
+              <el-tooltip class="item" effect="dark" :content="item.value" placement="top">
+                  <span class="moon-content-text-ellipsis-class" style="max-width: 400px;display: inline-block">
+                    {{ item.value }}
+                  </span>
+              </el-tooltip>
+            </div>
+          </div>
+        </div>
+        <div class="margin-top-10">
+          <div class="color-muted margin-top-5 font-size-12 border-bottom-1">
+              <span>
+                <label class="title-block-tag"></label>
+                <label class="title-block-text color-warning">{{$t("审批进度")}}</label>
+              </span>
+          </div>
+          <div class="block-item-bg font-size-12 margin-top-10 color-sub-title">
+            <el-steps direction="vertical" space="60px">
+              <el-step v-for="(item, index) in detailApplyAuditList" :key="index">
+                <div slot="icon">
+                  <i class="fa fa-flag" style="font-size: 12px"></i>
+                </div>
+                <div slot="title" class="font-size-12">
+                  <span v-if="item.nodeType == 'handle'" class="color-success">
+                    {{ $t("审批") }}
+                    <label v-if="item.andor == 'and'"> ({{ $t("与签") }}) </label>
+                    <label v-if="item.andor == 'or'"> ({{ $t("或签") }}) </label>
+                  </span>
+                  <span v-if="item.nodeType == 'cc'" class="color-warning">{{ $t("抄送") }}</span>
+                </div>
+                <div slot="description" class="font-size-12 color-sub-title">
+                  <div>
+                    <template v-if="item.nodeType == 'handle'">
+                      <div v-for="(itemUser, indexUser) in item.handleUserList" :key="indexUser">
+                        <span class="color-grand"> <i class="fa fa-user"></i> {{ itemUser.userName }} </span>
+                        <span class="margin-left-10">
+                          <label v-if="itemUser.status === -1" class="color-warning">{{$t("撤销")}}</label>
+                          <label v-if="itemUser.status === 0" class="color-warning">{{$t("待审核")}}</label>
+                          <label v-if="itemUser.status === 3" class="color-success">{{$t("通过")}}</label>
+                          <label v-if="itemUser.status === 4" class="color-danger">{{$t("未通过")}}</label>
+                        </span>
+                      </div>
+                    </template>
+                    <template v-if="item.nodeType == 'cc'">
+                      <el-tag size="mini" v-for="(itemUser, indexUser) in item.handleUserNameList" :key="indexUser" v-if="indexUser <= 5">
+                        <div class="moon-content-text-ellipsis-class" style="width: 50px">
+                          {{ itemUser }}
+                        </div>
+                      </el-tag>
+
+                      <el-popover
+                        placement="left"
+                        width="200"
+                        trigger="hover"
+                        v-if="item.handleUserNameList.length > 5">
+                        <div style="height: 100px;overflow-y: auto">
+                          <div v-for="(itemUser, indexUser) in item.handleUserNameList" :key="indexUser">
+                            <div class="font-size-12 padding-tb-5">
+                              <span>{{itemUser}}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <el-tag slot="reference" size="mini" type="success">
+                          <div class="moon-content-text-ellipsis-class padding-lr-5">
+                            <i class="fa fa-user"></i>
+                            <label class="margin-left-5">{{item.handleUserNameList.length}}</label>
+                          </div>
+                        </el-tag>
+                      </el-popover>
+                    </template>
+                  </div>
+                </div>
+              </el-step>
+            </el-steps>
+          </div>
+        </div>
+      </div>
+    </drawer-layout-right>
+
     <drawer-right @changeDrawer="closeDrawerDialog" :visible="drawerVisible" accept=".png,.jpg,.jpeg" :data="{all: true}" :loading="drawerLoading" :hide-footer="true" size="400px" :title="$t('导入数据')" :action="uploadAction" :download-file="uploadFile" :result="uploadResult" :process="uploadProcess" @right-close="cancelDrawDialog" @success="uploadSuccess" @error="uploadError"></drawer-right>
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="确认需要删除该信息？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
-
   </div>
 </template>
 
@@ -125,30 +245,42 @@
   import mixins from "~/utils/mixins";
   import {common} from "~/utils/api/url";
   import {MessageError, MessageSuccess} from "~/utils/utils";
+  import MyElTree from "~/components/tree/MyElTree";
+  import DrawerLayoutRight from "~/components/utils/dialog/DrawerLayoutRight";
 
   export default {
+    components: {DrawerLayoutRight, MyElTree},
     mixins: [mixins],
     data(){
       return {
         tableData: [],
         collegeList: [],
         categorys: [],
+        applyContentArr: [],
         types: [],
         subTitle: '',
         collegeData: '',
         searchKey: '',
         searchType: '',
         searchStatus: '',
+        searchAuditStatus: '',
+        queryApplyListType: 0,
+        formId: '',
         listId: '',
         uploadFile: common.doomroom_import_file + "?fileName=" + encodeURIComponent(this.$t("模板.xlsx")),
         uploadAction: common.doomroom_import,
         uploadResult: {},
+        detailData: '',
         uploadProcess: '',
+        detailApplyContentData: [],
+        detailApplyAuditList: [],
         dialogLoading: false,
         dialogApp: false,
         visibleConfim: false,
         drawerVisible: false,
         drawerLoading: false,
+        dialogServer: false,
+        dialogServerDetail: false,
       }
     },
     created() {
@@ -159,17 +291,33 @@
         let params = {
           page: this.page,
           num: this.num,
-          collegeData: this.collegeData,
-          searchType: this.searchType,
-          searchStatus: this.searchStatus,
-          searchKey: this.searchKey
+          queryApplyListType: this.queryApplyListType,
+          formId: this.formId,
+          status: this.searchAuditStatus
         };
-        this.$axios.get(common.classroom_page, {params: params}).then(res => {
+        let applyContentArr = [];
+        this.$axios.get(common.server_form_template_form_apply_page, {params: params}).then(res => {
           if (res.data.data){
+            if (res.data.data.list.length > 0 && res.data.data.list[0].applyContent){
+              applyContentArr = JSON.parse(res.data.data.list[0].applyContent);
+            }
+            this.applyContentArr = applyContentArr;
             this.tableData = res.data.data.list;
             this.total = res.data.data.totalCount;
             this.num = res.data.data.num;
             this.page = res.data.data.currentPage;
+          }
+        });
+      },
+      initAuditDetailList(id){
+        let params = {
+          id: id
+        };
+        this.$axios.get(common.server_form_audit_query, {params: params}).then(res=>{
+          if (res.data.code == 200){
+            if (res.data.data){
+              this.detailApplyAuditList = res.data.data.handleList;
+            }
           }
         });
       },
@@ -190,10 +338,25 @@
         this.drawerVisible = true;
       },
       expandInfo(){
-
+        let url = "";
+        let params = {
+          page: this.page,
+          num: 99999,
+          queryApplyListType: this.queryApplyListType,
+          status: this.searchStatus
+        };
+        params['formId'] = this.formId;
+        params = this.$qs.stringify(params);
+        url = common.server_form_audit_export;
+        window.open(url+"?"+params, "_self");
       },
       detailInfo(item){
-
+        this.detailData = item;
+        if (item.applyContent  && item.applyContent != "[]"){
+          this.detailApplyContentData = JSON.parse(item.applyContent);
+        }
+        this.initAuditDetailList(item._id);
+        this.dialogServerDetail = true;
       },
       deleteInfo(item){
         this.listId = item.id;
@@ -202,6 +365,9 @@
       closeDialog(event){
         this.listId = "";
         this.subTitle = "";
+        this.detailData = '';
+        this.detailApplyContentData = [];
+        this.detailApplyAuditList = [];
       },
       closeDrawerDialog(event){
         this.drawerVisible = event;
@@ -211,6 +377,7 @@
       },
       cancelDrawDialog(){
         this.drawerVisible = false;
+        this.dialogServerDetail = false;
       },
       handleCancelChange(data) {
         this.visibleConfim = false;
@@ -260,11 +427,24 @@
       },
       uploadError(res, file){
         this.uploadProcess = res.data.data;
+      },
+      nodeClick(data){
+        this.formId = "";
+        this.page = 1;
+        if (data.unit == 2){
+          this.formId = data.id;
+        }
+        if (data.unit != 1){
+          this.init();
+        }
       }
     }
   }
 </script>
 
 <style scoped>
-
+.block-item-row{
+  height: 35px;
+  line-height: 35px;
+}
 </style>

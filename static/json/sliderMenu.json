@@ -1056,6 +1056,13 @@
             "path": "/appletInfo/app/appCreate"
           },
           {
+            "name": "数据中心",
+            "key": "appData",
+            "id": 93000,
+            "top": "appletInfo",
+            "path": "/appletInfo/app/appData"
+          },
+          {
             "name": "类别管理",
             "key": "appType",
             "id": 95000,

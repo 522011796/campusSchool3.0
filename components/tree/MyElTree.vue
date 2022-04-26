@@ -139,6 +139,9 @@
         }else if(this.type == 100){
           await this.getAppletInfo(this.extraType);
           this.data = this.dataApplet;
+        }else if(this.type == 110){
+          await this.getAppletServerInfo(this.extraType);
+          this.data = this.dataAppletServer;
         }
       },
       filterNode(value, data) {

@@ -6,7 +6,7 @@ import {
   setSchoolBuildChildren,
   setDormBuildChildren,
   setDeptChildren,
-  serverType, serverFormType
+  serverType, serverFormType, setFormServerChildren
 } from "~/utils/utils";
 
 export default {
@@ -36,6 +36,7 @@ export default {
       dataDormBuild: global.dataDormBuildList,
       dataDept: global.dataDeptList,
       dataApplet: global.dataAppletList,
+      dataAppletServer: global.dataAppletServer,
       currentSeciton: global.currentSeciton,
       currentYear: global.currentYear,
       currentMonth: global.currentMonth,
@@ -568,6 +569,23 @@ export default {
             res.data.data.list[i]['value'] = res.data.data.list[i].id;
           }
           this.dataApplet = res.data.data.list;
+        }
+      });
+    },
+    /**
+     * 获取应用服务的list信息
+     * 主要用于树形菜单，下来菜单等
+     * @returns {Promise<void>}
+     */
+    async getAppletServerInfo(searchName) {
+      let params = {
+        page: 1,
+        num: 9999
+      };
+      await this.$axios.get(common.server_form_template_form_list, {params: params}).then(res => {
+        let arr = [];
+        if (res.data.data){
+          this.dataAppletServer = setFormServerChildren(res.data.data);
         }
       });
     },

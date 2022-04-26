@@ -573,6 +573,7 @@ export const common = {
   server_type_save: '/proxy/school/applet/category/save',//添加、修改类别
   server_type_enable: '/proxy/school/applet/category/enable',//类别启禁设置
   server_type_delete: '/proxy/school/applet/category/del',//删除类别
+  server_form_template_form_list: '/proxy/school/applet-form/list',//表单服务列表
 
   server_list_page: '/proxy/school/applet/form/page',//服务列表
   server_list_list1: '/proxy/school/applet/form/list1',//服务列表-通过类型查询的列表
@@ -598,6 +599,9 @@ export const common = {
   server_form_template_form_process_page: '/proxy/school/applet/form/process/page',//表单流程分页
   server_form_template_form_process_del: '/proxy/school/applet/form/process/del',//表单流程删除
   server_form_template_form_process_current: '/proxy/school/applet/form/process/version',//表单流程当前设置
+  server_form_template_form_apply_page: '/proxy/school/applet/form/apply/page',//表单数据分页
+  server_form_audit_query: '/proxy/school/applet/form/apply/query',//服务审批详细列表
+  server_form_audit_export: '/proxy/school/applet/form/apply/export',//服务数据导出
 
   server_form_template_list: '/proxy/school/applet/template/page',//模版中心分页
 

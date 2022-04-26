@@ -446,6 +446,7 @@ export default {
   dataDormBuildList: [],
   dataDeptList: [],
   dataAppletList: [],
+  dataAppletServer: [],
   currentDay,
   currentMonth,
   currentTermId,
