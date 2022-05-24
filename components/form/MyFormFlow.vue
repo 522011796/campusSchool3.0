@@ -520,9 +520,12 @@
         this.flowDetailData = data;
         this.approverUsers = data.users;
         this.flowDetailIndex = index;
+        let ruleList = [];
         if (this.formId.form_content){
           let form_content = JSON.parse(this.formId.form_content);
-          this.formFieldList = form_content.rule;
+          //this.formFieldList = form_content.rule;
+
+          this.formFieldList = this.setRuleChild(form_content.rule, ruleList);
 
           if (this.formFieldList.length == this.flowDetailData.right1.length){
             this.checkRight1All = true;
@@ -536,6 +539,26 @@
             this.checkRight2All = false;
           }
         }
+      },
+      setRuleChild(rule, ruleList){
+        let obj = {};
+        for (let i = 0; i < rule.length; i++){
+          if (rule[i]['children'] && rule[i]['children'].length > 0){
+            this.setRuleChild(rule[i]['children'], ruleList);
+            continue;
+          }else {
+            if (rule[i].field){
+              obj = {
+                field: rule[i].field,
+                title: rule[i].title,
+                type: rule[i].type,
+                value: rule[i].value
+              }
+              ruleList.push(obj);
+            }
+          }
+        }
+        return ruleList;
       },
       loadingShow(type){
         let timer = null;

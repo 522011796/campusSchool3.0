@@ -52,9 +52,13 @@
                 prop="appName"
                 :label="$t('部门')">
                 <template slot-scope="scope">
-                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{ scope.row.department_names }}</div>
-                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  <el-popover trigger="hover" placement="right" popper-class="custom-table-right-popover">
+                    <div class="text-center" style="max-height: 150px;overflow-y: auto">
+                      <div v-for="(item, index) in scope.row.department_names.split(',')">
+                        <span>{{item}}</span>
+                      </div>
+                    </div>
+                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class" style="width: 120px;display: inline-block">
                         {{ scope.row.department_names }}
                       </span>
                   </el-popover>
@@ -66,7 +70,7 @@
                 :label="$t('类型')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{ scope.row.applet_type }}</div>
+                    <div class="text-center">{{ serverTypeInfo(scope.row.applet_type, 'set') }}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                         {{ serverTypeInfo(scope.row.applet_type, 'set') }}
                       </span>
@@ -146,7 +150,7 @@
               <el-option v-for="item in categorys" :key="item.value" :label="item.label" :value="item.value" :disabled="item.enable == false"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item :label="$t('归宿部门')" prop="dept">
+          <el-form-item :label="$t('归属部门')" prop="dept">
             <my-cascader ref="SelectorCollege" :sel-value="form.dept" :props="{multiple: true}" type="4" sub-type="id" width-style="260" @change="handleCascaderChange($event)"></my-cascader>
           </el-form-item>
         </el-form>

@@ -10,7 +10,7 @@ export default {
           { required: true, message: this.$t("请选择类别"), trigger: 'change' }
         ],
         type: [
-          { required: true, message: this.$t("请选择时间"), trigger: 'change' }
+          { required: true, message: this.$t("请选择类型"), trigger: 'change' }
         ],
         dept: [
           { type: 'array', required: true, min: 1, message: this.$t("请选择部门"), trigger: 'change' }

@@ -83,24 +83,44 @@
               </template>
             </el-table-column>
             <el-table-column
-              v-for="(item, index) in applyContentArr"
-              :key="index"
               align="center"
-              width="100"
-              :label="item.title">
+              :label="$t('状态')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                   <div class="text-center">
-                    <label v-if="scope.row.applyContentObj[index]">{{scope.row.applyContentObj[index].value}}</label>
-                    <label v-else>--</label>
+                    <label v-if="scope.row.status === -1" class="color-warning">{{$t("撤销")}}</label>
+                    <label v-if="scope.row.status === 0" class="color-warning">{{$t("待审核")}}</label>
+                    <label v-if="scope.row.status === 3" class="color-success">{{$t("通过")}}</label>
+                    <label v-if="scope.row.status === 4" class="color-danger">{{$t("未通过")}}</label>
                   </div>
-                  <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    <label v-if="scope.row.applyContentObj[index]">{{scope.row.applyContentObj[index].value}}</label>
-                    <label v-else>--</label>
-                  </span>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    <label v-if="scope.row.status === -1" class="color-warning">{{$t("撤销")}}</label>
+                    <label v-if="scope.row.status === 0" class="color-warning">{{$t("待审核")}}</label>
+                    <label v-if="scope.row.status === 3" class="color-success">{{$t("通过")}}</label>
+                    <label v-if="scope.row.status === 4" class="color-danger">{{$t("未通过")}}</label>
+                  </div>
                 </el-popover>
               </template>
             </el-table-column>
+<!--            <el-table-column-->
+<!--              v-for="(item, index) in applyContentArr"-->
+<!--              :key="index"-->
+<!--              align="center"-->
+<!--              width="100"-->
+<!--              :label="item.title">-->
+<!--              <template slot-scope="scope">-->
+<!--                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">-->
+<!--                  <div class="text-center">-->
+<!--                    <label v-if="scope.row.applyContentObj[index]">{{scope.row.applyContentObj[index].value}}</label>-->
+<!--                    <label v-else>&#45;&#45;</label>-->
+<!--                  </div>-->
+<!--                  <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">-->
+<!--                    <label v-if="scope.row.applyContentObj[index]">{{scope.row.applyContentObj[index].value}}</label>-->
+<!--                    <label v-else>&#45;&#45;</label>-->
+<!--                  </span>-->
+<!--                </el-popover>-->
+<!--              </template>-->
+<!--            </el-table-column>-->
             <el-table-column
               align="center"
               width="100"
@@ -119,7 +139,7 @@
       </div>
     </layout-lr>
 
-    <drawer-layout-right tabindex="0" :hide-footer="true" @changeDrawer="closeDrawerDialog" :visible="dialogServerDetail" size="600px" :title="$t('详情')" @right-close="cancelDrawDialog">
+    <drawer-layout-right tabindex="0" :hide-footer="(detailData.status == -1 || detailData.status == 3) ? false : true" @changeDrawer="closeDrawerDialog" :visible="dialogServerDetail" size="600px" :title="$t('详情')" @right-close="cancelDrawDialog">
       <div slot="content" class="color-muted">
         <div class="detail-block-title padding-lr-10 padding-tb-10 font-size-12">
           <el-row>
@@ -170,7 +190,7 @@
             </div>
           </div>
         </div>
-        <div class="margin-top-10">
+        <div class="margin-top-10" v-if="detailData.formType != 0">
           <div class="color-muted margin-top-5 font-size-12 border-bottom-1">
               <span>
                 <label class="title-block-tag"></label>
@@ -238,6 +258,10 @@
           </div>
         </div>
       </div>
+      <div slot="footer">
+        <div v-if="detailData.status === -1" class="color-white text-center bg-warning">{{$t("撤销")}}</div>
+        <div v-if="detailData.status === 3" class="color-white text-center bg-success">{{$t("已通过")}}</div>
+      </div>
     </drawer-layout-right>
 
     <drawer-right @changeDrawer="closeDrawerDialog" :visible="drawerVisible" accept=".png,.jpg,.jpeg" :data="{all: true}" :loading="drawerLoading" :hide-footer="true" size="400px" :title="$t('导入数据')" :action="uploadAction" :download-file="uploadFile" :result="uploadResult" :process="uploadProcess" @right-close="cancelDrawDialog" @success="uploadSuccess" @error="uploadError"></drawer-right>
@@ -303,7 +327,7 @@
         let applyContent = [];
         this.$axios.get(common.server_form_template_form_apply_page, {params: params}).then(res => {
           if (res.data.data){
-            if (res.data.data.list.length > 0 && res.data.data.list[0].applyContent){
+            if (res.data.data.list && res.data.data.list.length > 0 && res.data.data.list[0].applyContent){
               applyContentArr = JSON.parse(res.data.data.list[0].applyContent);
             }
 
@@ -364,7 +388,9 @@
       detailInfo(item){
         this.detailData = item;
         if (item.applyContent  && item.applyContent != "[]"){
-          this.detailApplyContentData = JSON.parse(item.applyContent);
+          let ruleList = [];
+          //this.detailApplyContentData = JSON.parse(item.applyContent);
+          this.detailApplyContentData = this.setRuleChild(JSON.parse(item.applyContent), ruleList);
         }
         this.initAuditDetailList(item._id);
         this.dialogServerDetail = true;
@@ -449,6 +475,26 @@
         if (data.unit != 1){
           this.init();
         }
+      },
+      setRuleChild(rule, ruleList){
+        let obj = {};
+        for (let i = 0; i < rule.length; i++){
+          if (rule[i]['children'] && rule[i]['children'].length > 0){
+            this.setRuleChild(rule[i]['children'], ruleList);
+            continue;
+          }else {
+            if (rule[i].field){
+              obj = {
+                field: rule[i].field,
+                title: rule[i].title,
+                type: rule[i].type,
+                value: rule[i].value
+              }
+              ruleList.push(obj);
+            }
+          }
+        }
+        return ruleList;
       }
     }
   }

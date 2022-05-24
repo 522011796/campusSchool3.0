@@ -375,6 +375,11 @@
               if (res.data.code == 200) {
                 MessageSuccess(res.data.desc);
                 this.initParent();
+                this.formId.form_name = this.formBasic.name;
+                this.formId.submit_only = this.formBasic.subRule;
+                this.formId.submit_button = this.formBasic.subBtn;
+                this.formId.button_name = this.formBasic.subBtnText;
+                this.formId.hideIds = this.formBasic.rules.join();
               } else {
                 MessageError(res.data.desc);
               }
@@ -427,26 +432,25 @@
       addRule(){
         this.formContent = "";
         let rule = "";
+        let ruleList = [];
+        let ruleCodList = [];
         if (this.formId.form_content != ""){
           rule = JSON.parse(this.formId.form_content);
           this.conditionalItemList1 = [];
           this.resultList = [];
-          for (let i = 0; i < rule.rule.length; i++){
-            this.conditionalItemList1.push({
-              label: rule.rule[i].title,
-              value: rule.rule[i].field,
-              text: rule.rule[i].title,
-              type: rule.rule[i].type,
-              props: rule.rule[i].props,
-            });
-            this.resultList.push({
-              label: rule.rule[i].title,
-              value: rule.rule[i].field,
-              text: rule.rule[i].title,
-              type: rule.rule[i].type,
-              props: rule.rule[i].props,
-            });
-          }
+
+          this.resultList = this.setRuleChild(rule.rule, ruleList);
+          this.conditionalItemList1 = this.setRuleChild(rule.rule, ruleCodList);
+
+          // for (let i = 0; i < rule.rule.length; i++){
+          //   this.conditionalItemList1.push({
+          //     label: rule.rule[i].title,
+          //     value: rule.rule[i].field,
+          //     text: rule.rule[i].title,
+          //     type: rule.rule[i].type,
+          //     props: rule.rule[i].props,
+          //   });
+          // }
         }
         this.formContent = rule;
         this.dialogRule = true;
@@ -571,6 +575,29 @@
       },
       handleResultChange(data){
         this.formRule.result = data;
+      },
+      setRuleChild(rule, ruleList){
+        let obj = {};
+        for (let i = 0; i < rule.length; i++){
+          if (rule[i]['children'] && rule[i]['children'].length > 0){
+            this.setRuleChild(rule[i]['children'], ruleList);
+            continue;
+          }else {
+            if (rule[i].field){
+              obj = {
+                label: rule[i].title,
+                field: rule[i].field,
+                title: rule[i].title,
+                type: rule[i].type,
+                value: rule[i].field,
+                text: rule[i].title,
+                props: rule[i].props
+              }
+              ruleList.push(obj);
+            }
+          }
+        }
+        return ruleList;
       }
     }
   }

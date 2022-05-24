@@ -125,7 +125,7 @@
                 <template slot-scope="scope">
                   <i v-if="scope.row.enable == true" class="fa fa-stop-circle margin-right-5 color-warning" @click="statusInfo(scope.row, false)"></i>
                   <i v-if="scope.row.enable == false" class="fa fa-play-circle margin-right-5 color-success" @click="statusInfo(scope.row, true)"></i>
-                  <i class="fa fa-cog margin-right-5 color-grand" @click="setInfo(scope.row)"></i>
+                  <i class="fa fa-edit margin-right-5 color-grand" @click="setInfo(scope.row)"></i>
                   <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
                 </template>
               </el-table-column>
@@ -167,7 +167,7 @@
                 <my-select class="layout-item width-300" size="small" :placeholder="$t('应用')" :sel-value="form.app" :options="apps" width-style="300" :clearable="true" @change="handleTypeChange($event, 4)"></my-select>
               </el-form-item>
               <el-form-item :label="$t('简介')" prop="dept">
-                <el-input v-model="form.remarks" type="textarea" :row="3" style="width: 500px"></el-input>
+                <el-input v-model="form.remarks" type="textarea" :autosize="{ minRows: 5}" maxlength="150" show-word-limit style="width: 500px; resize: vertical;"></el-input>
               </el-form-item>
             </el-form>
           </div>
@@ -242,14 +242,14 @@
       </div>
     </drawer-layout-right>
 
-    <drawer-layout-right tabindex="0" :hide-footer="!showFooter" @changeDrawer="closeDialog" @opened="openedForm" :visible="drawerForm" size="85%">
+    <drawer-layout-right tabindex="0" :show-close="true" :hide-footer="!showFooter" @changeDrawer="closeDialog" @opened="openedForm" :visible="drawerForm" size="85%">
       <div slot="title">
         <div class="header-block padding-lr-10">
           <span class="tab-class font-bold" :class="activeName == 'form' ? 'color-grand' : ''" @click="handleClick('form')">
             <i class="fa fa-file"></i>
             {{$t('表单设计')}}
           </span>
-          <span class="tab-class font-bold margin-left-5" :class="activeName == 'flow' ? 'color-grand' : ''" @click="handleClick('flow')">
+          <span class="tab-class font-bold margin-left-5" v-if="serverDataItem.form_type != 0" :class="activeName == 'flow' ? 'color-grand' : ''" @click="handleClick('flow')">
             <i class="fa fa-line-chart"></i>
             {{$t('流程设计')}}
           </span>
@@ -468,7 +468,8 @@
       initVersion(type){
         let params = {
           page: 1,
-          num: 9999
+          num: 9999,
+          formId: this.serverDataItem.id,
         };
         this.$axios.get(common.server_form_template_form_process_page, {params: params}).then(res => {
           if (res.data.data){
@@ -512,7 +513,6 @@
                     }
                     obj['users'] = users;
 
-                    console.log(formProcess[j]);
                     this.flowListData.push(obj);
                   }
                   let formObj = {
@@ -677,6 +677,7 @@
         this.serverDataItem = '';
         this.serverDataIndex = '';
         this.activeName = 'form';
+        this.showFooter = true;
         this.init();
         this.btnLoading = false;
         this.drawerForm = false;

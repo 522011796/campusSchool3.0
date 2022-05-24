@@ -29,7 +29,11 @@
         :label="$t('触发条件')">
         <template slot-scope="scope">
           <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-            <div class="text-center">{{ scope.row.des }}</div>
+            <div class="text-center">
+              <el-tag size="mini" v-if="scope.row.notice_condition1">{{$t("提交")}}</el-tag>
+              <el-tag size="mini" v-if="scope.row.notice_condition2">{{$t("通过")}}</el-tag>
+              <el-tag size="mini" v-if="scope.row.notice_condition3">{{$t("驳回")}}</el-tag>
+            </div>
             <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
               <el-tag size="mini" v-if="scope.row.notice_condition1">{{$t("提交")}}</el-tag>
               <el-tag size="mini" v-if="scope.row.notice_condition2">{{$t("通过")}}</el-tag>
@@ -251,7 +255,7 @@
       okFormDrawDialog(){
         let url = '';
 
-        if (!this.form.noticeCondition1 && !this.form.noticeCondition1 && !this.form.noticeCondition1){
+        if (!this.form.noticeCondition1 && !this.form.noticeCondition2 && !this.form.noticeCondition3){
           MessageWarning(this.$t("请设置触发条件"));
           return;
         }else if (this.form.noticeTitle == "" && this.form.noticeContent == ""){

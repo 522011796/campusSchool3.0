@@ -6,7 +6,7 @@
       :visible.sync="drawer_"
       :direction="direction"
       :wrapperClosable="true"
-      :show-close="false"
+      :show-close="showClose"
       :modal-append-to-body="false"
       :append-to-body="appendToBody"
       :size="size"
@@ -77,6 +77,10 @@ export default {
     size: {
       defalult: '30%',
       type: String
+    },
+    showClose: {
+      default: false,
+      type: Boolean
     }
   },
   computed: {

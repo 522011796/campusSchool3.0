@@ -3,7 +3,20 @@
   <component name="ChangeListManager">
     <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="服务中心ui搭建">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/common.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/form/MyFormFlow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/form/MyFormFlow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/form/MyFormSet.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/form/MyFormSet.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/form/MyFormSetNotice.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/form/MyFormSetNotice.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/form/MyFormSetRole.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/form/MyFormSetRole.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/dialog/DrawerLayoutRight.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/dialog/DrawerLayoutRight.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appCreate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appCreate.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appData.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/validater/appCreateValidater.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/appCreateValidater.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/validater/appManageValidater.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/appManageValidater.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +154,10 @@
       <workItem from="1650506959307" duration="455000" />
       <workItem from="1650520930697" duration="630000" />
       <workItem from="1650521637198" duration="2622000" />
-      <workItem from="1650612687353" duration="18082000" />
+      <workItem from="1650612687353" duration="33340000" />
+      <workItem from="1652750384431" duration="47000" />
+      <workItem from="1652750744624" duration="32000" />
+      <workItem from="1652950158685" duration="13175000" />
     </task>
     <task id="LOCAL-00001" summary="修改bug">
       <created>1615953061597</created>
@@ -423,7 +439,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650952526138</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="服务中心ui搭建">
+      <created>1650954183495</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1650954183495</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
