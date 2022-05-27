@@ -973,6 +973,12 @@ ul{
 .displaynone-checkbox .el-checkbox__label{
   display: none;
 }
+.custom-avatar .el-avatar>img {
+  display: block;
+  height: 100%;
+  width: 100%;
+  vertical-align: middle;
+}
 /***自定义radio组件颜色***/
 /*.el-radio__input.is-checked + .el-radio__label {
   color: #fd7624 !important;
