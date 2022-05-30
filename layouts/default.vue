@@ -694,7 +694,7 @@
             <div class="moon-clearfix"></div>
           </div>
           <div class="moon-right-content" :style="rightHeight">
-            <Nuxt ref="child"/>
+            <Nuxt keep-alive ref="child"/>
           </div>
         </div>
         <div class="moon-clearfix"></div>

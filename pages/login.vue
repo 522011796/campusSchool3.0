@@ -174,9 +174,9 @@
           <el-form-item :label="$t('验证码')" prop="code">
             <el-input v-model="formAuth.code" class="width-260">
               <template slot="append">
-                &lt;!&ndash;<timeout-button :action="updatePhoneMms" :data="{newPhone: this.formAuth.phone, userId: this.formAuth.userId}" :auth-before="authBefore">
-                <template>{{$t("获取验证码")}}</template>
-              </timeout-button>&ndash;&gt;
+                <timeout-button :action="updatePhoneMms" :data="{newPhone: this.formAuth.phone, userId: this.formAuth.userId}" :auth-before="authBefore">
+                  <template>{{$t("获取验证码")}}</template>
+                </timeout-button>
               </template>
             </el-input>
           </el-form-item>
@@ -207,7 +207,7 @@
     components: {DialogNormal,TimeoutButton},
     data(){
       return {
-        userType: '1',
+        userType: '2',
         userSubType: '1',
         copyright_information: '',
         dialogLoading: false,
