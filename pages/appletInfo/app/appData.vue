@@ -208,8 +208,8 @@
                   <el-image style="width: 30px; height: 30px"
                     :src="itemImg"
                     :preview-src-list="item.value">
-                    </el-image>
-                  </span>
+                  </el-image>
+                </span>
               </div>
               <div v-else class="padding-lr-10">
                 <span class="color-muted font-bold" style="position: relative;top: -150px">{{item.title}}: </span>
