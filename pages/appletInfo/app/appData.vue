@@ -128,7 +128,7 @@
               :label="$t('操作')">
               <template slot-scope="scope">
                 <i class="fa fa-file-text margin-right-5 color-grand" @click="detailInfo(scope.row)"></i>
-<!--                <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>-->
+                <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
               </template>
             </el-table-column>
           </el-table>
@@ -432,7 +432,7 @@
         this.dialogServerDetail = true;
       },
       deleteInfo(item){
-        this.listId = item.id;
+        this.listId = item._id;
         this.visibleConfim = true;
       },
       closeDialog(event){
@@ -462,7 +462,7 @@
         let params = {
           id: this.listId
         }
-        url = common.class_delete;
+        url = common.server_form_audit_delete;
         params = this.$qs.stringify(params);
         this.$axios.post(url, params).then(res => {
           if (res.data.code == 200){

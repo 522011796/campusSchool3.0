@@ -602,6 +602,7 @@ export const common = {
   server_form_template_form_apply_page: '/proxy/school/applet/form/apply/page',//表单数据分页
   server_form_audit_query: '/proxy/school/applet/form/apply/query',//服务审批详细列表
   server_form_audit_export: '/proxy/school/applet/form/apply/export',//服务数据导出
+  server_form_audit_delete: '/proxy/school/applet/form/apply/del',//服务数据删除
 
   server_form_template_list: '/proxy/school/applet/template/page',//模版中心分页
 

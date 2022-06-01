@@ -3,7 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="修改bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/common.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appCreate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appCreate.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appData.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,14 +151,9 @@
       <workItem from="1650612687353" duration="33340000" />
       <workItem from="1652750384431" duration="47000" />
       <workItem from="1652750744624" duration="32000" />
-      <workItem from="1652950158685" duration="31032000" />
-    </task>
-    <task id="LOCAL-00001" summary="修改bug">
-      <created>1615953061597</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1615953061598</updated>
+      <workItem from="1652950158685" duration="33561000" />
+      <workItem from="1654054761234" duration="668000" />
+      <workItem from="1654068205924" duration="2922000" />
     </task>
     <task id="LOCAL-00002" summary="修改bug">
       <created>1615953640130</created>
@@ -489,7 +491,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653979231382</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="修改bug">
+      <created>1653984984611</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1653984984611</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

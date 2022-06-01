@@ -167,7 +167,7 @@
                 <my-select class="layout-item width-300" size="small" :placeholder="$t('应用')" :sel-value="form.app" :options="apps" width-style="300" :clearable="true" @change="handleTypeChange($event, 4)"></my-select>
               </el-form-item>
               <el-form-item :label="$t('简介')" prop="dept">
-                <el-input v-model="form.remarks" type="textarea" :autosize="{ minRows: 5}" maxlength="150" show-word-limit style="width: 500px; resize: vertical;"></el-input>
+                <el-input v-model="form.remarks" type="textarea" :autosize="{ minRows: 5}" maxlength="150" show-word-limit  class="custom-textarea-inner" style="width: 500px; resize: vertical;resize: none;"></el-input>
               </el-form-item>
             </el-form>
           </div>

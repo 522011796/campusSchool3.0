@@ -987,6 +987,9 @@ ul{
   font-size: 40px;
   color: #fff;
 }
+.custom-textarea-inner .el-textarea__inner {
+  resize: none !important;
+}
 /***自定义radio组件颜色***/
 /*.el-radio__input.is-checked + .el-radio__label {
   color: #fd7624 !important;
