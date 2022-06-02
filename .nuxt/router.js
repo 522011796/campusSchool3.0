@@ -112,6 +112,19 @@ const _55facb90 = () => interopDefault(import('../pages/logisticsInfo/onecard/me
 const _f19391cc = () => interopDefault(import('../pages/logisticsInfo/onecard/onecardPay.vue' /* webpackChunkName: "pages/logisticsInfo/onecard/onecardPay" */))
 const _d2ff932c = () => interopDefault(import('../pages/logisticsInfo/onecard/stuOnecard.vue' /* webpackChunkName: "pages/logisticsInfo/onecard/stuOnecard" */))
 const _679bae5d = () => interopDefault(import('../pages/logisticsInfo/onecard/terOnecard.vue' /* webpackChunkName: "pages/logisticsInfo/onecard/terOnecard" */))
+const _a636efbc = () => interopDefault(import('../pages/newStudent/data/dormData.vue' /* webpackChunkName: "pages/newStudent/data/dormData" */))
+const _b7988fe4 = () => interopDefault(import('../pages/newStudent/data/flowStatic.vue' /* webpackChunkName: "pages/newStudent/data/flowStatic" */))
+const _7a195fa7 = () => interopDefault(import('../pages/newStudent/data/linkCustomData.vue' /* webpackChunkName: "pages/newStudent/data/linkCustomData" */))
+const _5cc1fbe0 = () => interopDefault(import('../pages/newStudent/data/payData.vue' /* webpackChunkName: "pages/newStudent/data/payData" */))
+const _4cda2e38 = () => interopDefault(import('../pages/newStudent/data/pickUpData.vue' /* webpackChunkName: "pages/newStudent/data/pickUpData" */))
+const _1188b8bf = () => interopDefault(import('../pages/newStudent/data/registerData.vue' /* webpackChunkName: "pages/newStudent/data/registerData" */))
+const _8fe4ca4e = () => interopDefault(import('../pages/newStudent/data/signData.vue' /* webpackChunkName: "pages/newStudent/data/signData" */))
+const _51532446 = () => interopDefault(import('../pages/newStudent/data/signStatic.vue' /* webpackChunkName: "pages/newStudent/data/signStatic" */))
+const _43786374 = () => interopDefault(import('../pages/newStudent/log/log.vue' /* webpackChunkName: "pages/newStudent/log/log" */))
+const _0c0b77e7 = () => interopDefault(import('../pages/newStudent/manage/admissionManage.vue' /* webpackChunkName: "pages/newStudent/manage/admissionManage" */))
+const _a6fb01ac = () => interopDefault(import('../pages/newStudent/manage/flowManage.vue' /* webpackChunkName: "pages/newStudent/manage/flowManage" */))
+const _29c21ef6 = () => interopDefault(import('../pages/newStudent/manage/linkManage.vue' /* webpackChunkName: "pages/newStudent/manage/linkManage" */))
+const _e484fdf2 = () => interopDefault(import('../pages/newStudent/manage/newSetting.vue' /* webpackChunkName: "pages/newStudent/manage/newSetting" */))
 const _71627526 = () => interopDefault(import('../pages/studentInfo/class/classChecked.vue' /* webpackChunkName: "pages/studentInfo/class/classChecked" */))
 const _5efa961d = () => interopDefault(import('../pages/studentInfo/class/object.vue' /* webpackChunkName: "pages/studentInfo/class/object" */))
 const _4b31862f = () => interopDefault(import('../pages/studentInfo/class/record.vue' /* webpackChunkName: "pages/studentInfo/class/record" */))
@@ -614,6 +627,58 @@ export const routerOptions = {
     path: "/logisticsInfo/onecard/terOnecard",
     component: _679bae5d,
     name: "logisticsInfo-onecard-terOnecard"
+  }, {
+    path: "/newStudent/data/dormData",
+    component: _a636efbc,
+    name: "newStudent-data-dormData"
+  }, {
+    path: "/newStudent/data/flowStatic",
+    component: _b7988fe4,
+    name: "newStudent-data-flowStatic"
+  }, {
+    path: "/newStudent/data/linkCustomData",
+    component: _7a195fa7,
+    name: "newStudent-data-linkCustomData"
+  }, {
+    path: "/newStudent/data/payData",
+    component: _5cc1fbe0,
+    name: "newStudent-data-payData"
+  }, {
+    path: "/newStudent/data/pickUpData",
+    component: _4cda2e38,
+    name: "newStudent-data-pickUpData"
+  }, {
+    path: "/newStudent/data/registerData",
+    component: _1188b8bf,
+    name: "newStudent-data-registerData"
+  }, {
+    path: "/newStudent/data/signData",
+    component: _8fe4ca4e,
+    name: "newStudent-data-signData"
+  }, {
+    path: "/newStudent/data/signStatic",
+    component: _51532446,
+    name: "newStudent-data-signStatic"
+  }, {
+    path: "/newStudent/log/log",
+    component: _43786374,
+    name: "newStudent-log-log"
+  }, {
+    path: "/newStudent/manage/admissionManage",
+    component: _0c0b77e7,
+    name: "newStudent-manage-admissionManage"
+  }, {
+    path: "/newStudent/manage/flowManage",
+    component: _a6fb01ac,
+    name: "newStudent-manage-flowManage"
+  }, {
+    path: "/newStudent/manage/linkManage",
+    component: _29c21ef6,
+    name: "newStudent-manage-linkManage"
+  }, {
+    path: "/newStudent/manage/newSetting",
+    component: _e484fdf2,
+    name: "newStudent-manage-newSetting"
   }, {
     path: "/studentInfo/class/classChecked",
     component: _71627526,

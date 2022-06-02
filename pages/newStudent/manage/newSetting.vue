@@ -1,0 +1,318 @@
+<template>
+  <div class="container">
+    <layout-tb>
+      <template slot="tag">迎新设置</template>
+
+      <div slot="tab">
+        <el-row>
+          <el-col :span="6">
+            <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo($event)">{{$t("创建年度")}}</el-button>
+          </el-col>
+          <el-col :span="18" class="text-right">
+            <div class="layout-inline">
+              <my-select class="layout-item width-150" size="small" :placeholder="$t('选择年度')" :options="yearOptions" :clearable="true" @change="handleSearchChange($event, 1)"></my-select>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+
+      <div slot="content">
+        <el-table
+          ref="refTable"
+          :data="tableData"
+          header-cell-class-name="custom-table-cell-bg"
+          size="medium"
+          row-key="id"
+          :max-height="tableHeight.height"
+          style="width: 100%">
+          <el-table-column
+            align="center"
+            :label="$t('创建时间')">
+            <template slot-scope="scope">
+              <span>{{$moment(scope.row.create_time).format("YYYY-MM-DD HH:mm")}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            :label="$t('年度')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.category_name}}</div>
+                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  <span>{{scope.row.category_name}}</span>
+                </div>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            :label="$t('名称')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.category_name}}</div>
+                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  <span>{{scope.row.category_name}}</span>
+                </div>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            :label="$t('登录方式')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.category_name}}</div>
+                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  <span>{{scope.row.category_name}}</span>
+                </div>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            :label="$t('开放周期')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.category_name}}</div>
+                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  <span>{{scope.row.category_name}}</span>
+                </div>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            fixed="right"
+            label="操作"
+            width="140">
+            <template slot-scope="scope">
+              <i v-if="scope.row.enable" class="fa fa-flag color-warning margin-right-5" @click="statusInfo(scope.row, false)"></i>
+              <i v-if="!scope.row.enable" class="fa fa-cog color-success margin-right-5" @click="statusInfo(scope.row, true)"></i>
+
+              <i class="fa fa-edit color-grand margin-right-5" @click="editInfo(scope.row)"></i>
+              <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
+            </template>
+          </el-table-column>
+        </el-table>
+
+        <div class="layout-right-footer text-right">
+          <my-pagination :total="total" :current-page="page" :page-size="num" @currentPage="currentPage" @sizeChange="sizeChange" @jumpChange="jumpPage" class="layout-pagination"></my-pagination>
+        </div>
+      </div>
+    </layout-tb>
+
+    <dialog-normal top="10vh" :visible="dialogSetting" :title="$t('年度设置')" @close="closeDialog" @right-close="cancelDialog">
+      <div class="margin-top-10">
+        <el-form :model="form" :rules="rules" ref="form" label-width="140px">
+          <el-form-item :label="$t('选择年度')" prop="year">
+            <my-select :sel-value="form.year" :options="yearOptions" width-style="260" @change="handleFormChange($event, 1)"></my-select>
+          </el-form-item>
+          <el-form-item :label="$t('年度名称')" prop="name">
+            <el-input v-model="form.name" class="width-260"></el-input>
+          </el-form-item>
+          <el-form-item :label="$t('默认登录')" prop="ty[e">
+            <my-select :sel-value="form.type" :options="typeOptions" width-style="260" @change="handleFormChange($event, 2)"></my-select>
+          </el-form-item>
+          <el-form-item :label="$t('开放周期')" prop="time">
+            <el-date-picker
+              v-model="form.time"
+              type="daterange"
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+              style="width: 260px"
+              @change="handleFormChange($event, 3)">
+            </el-date-picker>
+          </el-form-item>
+        </el-form>
+      </div>
+
+      <div slot="footer">
+        <el-button size="small" @click="cancelDialog">{{$t("取消")}}</el-button>
+        <el-button size="small" type="primary" @click="dialogLoading == false ? okDialog() : ''">
+          <i class="el-icon-loading" v-if="dialogLoading"></i>
+          {{$t("确定")}}
+        </el-button>
+      </div>
+    </dialog-normal>
+
+    <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="确认需要删除该信息？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
+  </div>
+</template>
+
+<script>
+  import mixins from "~/utils/mixins";
+  import {common} from "~/utils/api/url";
+  import {MessageError, MessageSuccess} from "~/utils/utils";
+  import newSettingValidater from "~/utils/validater/newSettingValidater";
+  import MyNormalDialog from "~/components/utils/dialog/MyNormalDialog";
+  export default {
+    components: {MyNormalDialog},
+    mixins: [mixins,newSettingValidater],
+    data(){
+      return {
+        subTitle: '',
+        visibleConfim: false,
+        tableData: [],
+        dialogSetting: false,
+        dialogLoading: false,
+        searchKey: '',
+        yearOptions: [],
+        typeOptions: [],
+        form: {
+          id: '',
+          year: '',
+          name: '',
+          type: '',
+          time: ''
+        }
+      }
+    },
+    created() {
+      this.init();
+    },
+    methods: {
+      init(){
+        let params = {
+          page: this.page,
+          num: this.num,
+          searchKey: this.searchKey
+        };
+        this.$axios.get(common.server_type_list, {params: params}).then(res => {
+          if (res.data.data){
+            this.tableData = res.data.data.list;
+            this.total = res.data.data.totalCount;
+            this.num = res.data.data.num;
+            this.page = res.data.data.currentPage;
+          }
+        });
+      },
+      sizeChange(event){
+        this.page = 1;
+        this.num = event;
+        this.init();
+      },
+      currentPage(event){
+        this.page = event;
+        this.init();
+      },
+      jumpPage(data){
+        this.page = data;
+        this.init();
+      },
+      handleSearchChange(event){
+        this.searchKey = event;
+        this.page = 1;
+        this.init();
+      },
+      handleFormChange(event, type){
+        if (type == 1){
+          this.form.year = event;
+        }else if (type == 2){
+          this.form.type = event;
+        }else if (type == 3){
+          this.form.time = event;
+        }
+      },
+      addInfo(){
+        this.dialogSetting = true;
+      },
+      editInfo(item){
+        this.form = {
+          id: item.id,
+          name: item.category_name,
+          enable: item.enable
+        };
+        this.dialogSetting = true;
+      },
+      deleteInfo(item){
+        console.log(1);
+        this.form.id = item.id;
+        this.visibleConfim = true;
+      },
+      statusInfo(item, status){
+        let params = {
+          id: item.id,
+          enable: status
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.server_type_enable, params).then(res => {
+          if (res.data.code == 200){
+            this.init();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+        });
+      },
+      closeDialog(event){
+        this.form = {
+          id: '',
+          name: '',
+          enable: true
+        };
+        this.subTitle = "";
+        if (this.$refs['form']){
+          this.$refs['form'].resetFields();
+        }
+      },
+      handleCancelChange(data) {
+        this.visibleConfim = false;
+      },
+      handleOkChange(data) {
+        this.dialogLoading = true;
+        let url = "";
+        let params = {
+          id: this.form.id
+        }
+        url = common.server_type_delete;
+        params = this.$qs.stringify(params);
+        this.$axios.post(url, params).then(res => {
+          if (res.data.code == 200){
+            this.init();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+          this.visibleConfim = false;
+          this.dialogLoading = false;
+        });
+      },
+      cancelDialog(){
+        this.dialogSetting = false;
+      },
+      okDialog(){
+        let url = '';
+        this.$refs['form'].validate((valid) => {
+          if (valid) {
+            this.dialogLoading = true;
+            let params = {
+              categoryName: this.form.name,
+            };
+            if (this.form.id != ''){
+              params['id'] = this.form.id;
+            }
+            url = common.server_type_save;
+            params = this.$qs.stringify(params);
+            this.$axios.post(url, params).then(res => {
+              if (res.data.code == 200){
+                this.dialogSetting = false;
+                this.init();
+                MessageSuccess(res.data.desc);
+              }else {
+                MessageError(res.data.desc);
+              }
+              this.dialogLoading = false;
+            });
+          }
+        });
+      }
+    }
+  }
+</script>
+
+<style scoped>
+.container {
+  padding: 10px 15px;
+}
+</style>

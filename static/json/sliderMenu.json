@@ -1072,5 +1072,133 @@
         ]
       }
     ]
+  },
+  {
+    "key": "enrollInfo",
+    "name": "智慧迎新",
+    "id": 10,
+    "list": [
+      {
+        "name": "迎新管理",
+        "icon": "fa fa-graduation-cap",
+        "toggle": false,
+        "id": 100000,
+        "key": "newArrivalManage",
+        "keySub": "enrollInfo",
+        "list": [
+          {
+            "name": "录取管理",
+            "key": "admissionManage",
+            "id": 100100,
+            "top": "enrollInfo",
+            "path": "/newStudent/manage/admissionManage"
+          },
+          {
+            "name": "流程管理",
+            "key": "flowManage",
+            "id": 100200,
+            "top": "enrollInfo",
+            "path": "/newStudent/manage/flowManage"
+          },
+          {
+            "name": "环节管理",
+            "key": "linkManage",
+            "id": 100300,
+            "top": "enrollInfo",
+            "path": "/newStudent/manage/linkManage"
+          },
+          {
+            "name": "迎新设置",
+            "key": "newSetting",
+            "id": 100400,
+            "top": "enrollInfo",
+            "path": "/newStudent/manage/newSetting"
+          }
+        ]
+      },
+      {
+        "name": "数据中心",
+        "icon": "fa fa-institution",
+        "toggle": false,
+        "id": 101000,
+        "key": "dataCenter",
+        "keySub": "enrollInfo",
+        "list": [
+          {
+            "name": "报道统计",
+            "key": "signStatic",
+            "id": 101100,
+            "top": "enrollInfo",
+            "path": "/newStudent/data/signStatic"
+          },
+          {
+            "name": "流程统计",
+            "key": "flowStatic",
+            "id": 101200,
+            "top": "enrollInfo",
+            "path": "/newStudent/data/flowStatic"
+          },
+          {
+            "name": "报道数据",
+            "key": "signData",
+            "id": 101300,
+            "top": "enrollInfo",
+            "path": "/newStudent/data/signData"
+          },
+          {
+            "name": "缴费数据",
+            "key": "payData",
+            "id": 101400,
+            "top": "enrollInfo",
+            "path": "/newStudent/data/payData"
+          },
+          {
+            "name": "选寝数据",
+            "key": "dormData",
+            "id": 101500,
+            "top": "enrollInfo",
+            "path": "/newStudent/data/dormData"
+          },
+          {
+            "name": "接站数据",
+            "key": "pickUpData",
+            "id": 101600,
+            "top": "enrollInfo",
+            "path": "/newStudent/data/pickUpData"
+          },
+          {
+            "name": "报道数据",
+            "key": "registerData",
+            "id": 101700,
+            "top": "enrollInfo",
+            "path": "/newStudent/data/registerData"
+          },
+          {
+            "name": "自定义环节数据",
+            "key": "linkCustomData",
+            "id": 101800,
+            "top": "enrollInfo",
+            "path": "/newStudent/data/linkCustomData"
+          }
+        ]
+      },
+      {
+        "name": "操作日志",
+        "icon": "fa fa-tags",
+        "toggle": false,
+        "id": 103000,
+        "key": "arrivalLogOpr",
+        "keySub": "enrollInfo",
+        "list": [
+          {
+            "name": "操作日志",
+            "key": "log",
+            "id": 103100,
+            "top": "enrollInfo",
+            "path": "/newStudent/log/log"
+          }
+        ]
+      }
+    ]
   }
 ]

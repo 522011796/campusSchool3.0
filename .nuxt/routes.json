@@ -763,6 +763,97 @@
     "_name": "_679bae5d"
   },
   {
+    "name": "newStudent-data-dormData",
+    "path": "/newStudent/data/dormData",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/newStudent/data/dormData.vue",
+    "chunkName": "pages/newStudent/data/dormData",
+    "_name": "_a636efbc"
+  },
+  {
+    "name": "newStudent-data-flowStatic",
+    "path": "/newStudent/data/flowStatic",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/newStudent/data/flowStatic.vue",
+    "chunkName": "pages/newStudent/data/flowStatic",
+    "_name": "_b7988fe4"
+  },
+  {
+    "name": "newStudent-data-linkCustomData",
+    "path": "/newStudent/data/linkCustomData",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/newStudent/data/linkCustomData.vue",
+    "chunkName": "pages/newStudent/data/linkCustomData",
+    "_name": "_7a195fa7"
+  },
+  {
+    "name": "newStudent-data-payData",
+    "path": "/newStudent/data/payData",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/newStudent/data/payData.vue",
+    "chunkName": "pages/newStudent/data/payData",
+    "_name": "_5cc1fbe0"
+  },
+  {
+    "name": "newStudent-data-pickUpData",
+    "path": "/newStudent/data/pickUpData",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/newStudent/data/pickUpData.vue",
+    "chunkName": "pages/newStudent/data/pickUpData",
+    "_name": "_4cda2e38"
+  },
+  {
+    "name": "newStudent-data-registerData",
+    "path": "/newStudent/data/registerData",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/newStudent/data/registerData.vue",
+    "chunkName": "pages/newStudent/data/registerData",
+    "_name": "_1188b8bf"
+  },
+  {
+    "name": "newStudent-data-signData",
+    "path": "/newStudent/data/signData",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/newStudent/data/signData.vue",
+    "chunkName": "pages/newStudent/data/signData",
+    "_name": "_8fe4ca4e"
+  },
+  {
+    "name": "newStudent-data-signStatic",
+    "path": "/newStudent/data/signStatic",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/newStudent/data/signStatic.vue",
+    "chunkName": "pages/newStudent/data/signStatic",
+    "_name": "_51532446"
+  },
+  {
+    "name": "newStudent-log-log",
+    "path": "/newStudent/log/log",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/newStudent/log/log.vue",
+    "chunkName": "pages/newStudent/log/log",
+    "_name": "_43786374"
+  },
+  {
+    "name": "newStudent-manage-admissionManage",
+    "path": "/newStudent/manage/admissionManage",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/newStudent/manage/admissionManage.vue",
+    "chunkName": "pages/newStudent/manage/admissionManage",
+    "_name": "_0c0b77e7"
+  },
+  {
+    "name": "newStudent-manage-flowManage",
+    "path": "/newStudent/manage/flowManage",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/newStudent/manage/flowManage.vue",
+    "chunkName": "pages/newStudent/manage/flowManage",
+    "_name": "_a6fb01ac"
+  },
+  {
+    "name": "newStudent-manage-linkManage",
+    "path": "/newStudent/manage/linkManage",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/newStudent/manage/linkManage.vue",
+    "chunkName": "pages/newStudent/manage/linkManage",
+    "_name": "_29c21ef6"
+  },
+  {
+    "name": "newStudent-manage-newSetting",
+    "path": "/newStudent/manage/newSetting",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/newStudent/manage/newSetting.vue",
+    "chunkName": "pages/newStudent/manage/newSetting",
+    "_name": "_e484fdf2"
+  },
+  {
     "name": "studentInfo-class-classChecked",
     "path": "/studentInfo/class/classChecked",
     "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/studentInfo/class/classChecked.vue",

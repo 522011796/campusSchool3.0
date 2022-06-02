@@ -20,6 +20,11 @@
     "key": "attendanceInfo"
   },
   {
+    "name": "智慧迎新",
+    "show": true,
+    "key": "enrollInfo"
+  },
+  {
     "name": "服务大厅",
     "show": true,
     "key": "appletInfo"
