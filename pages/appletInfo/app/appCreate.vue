@@ -7,7 +7,7 @@
             <!--<span class="layout-left-menu-tag"></span>-->
             <span class="layout-left-menu-title">应用设计</span>
           </div>
-          <my-el-tree type="100" :extra-type="$route.query.appName" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
+          <my-el-tree ref="myElTree" type="100" :extra-type="$route.query.appName" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
         </div>
 
         <div slot="right">
@@ -946,6 +946,7 @@
           this.searchKey = '';
           this.searchAppId = '';
           this.page = 1;
+          this.$refs.myElTree.initInfo();
           this.init();
         });
       }

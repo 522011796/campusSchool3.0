@@ -359,7 +359,9 @@
                     <span>
                       <template v-if="item.type == 1 || item.type == 3 || item.type == 4 || item.type == 6">
                         <el-tag size="mini" v-for="(itemUser ,indexUser) in item.hName" :key="indexUser" v-if="indexUser < 4" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
-                          {{ itemUser }}
+                          <el-tooltip class="item" effect="dark" :content="itemUser" placement="top-start">
+                            <span>{{ itemUser }}</span>
+                          </el-tooltip>
                         </el-tag>
                         <label class="flow-user-count-tag margin-left-5" v-if="item.users.length >= 4">4+</label>
                       </template>

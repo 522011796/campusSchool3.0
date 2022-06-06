@@ -263,7 +263,9 @@
                     <template v-if="item.nodeType == 'cc'">
                       <el-tag size="mini" v-for="(itemUser, indexUser) in item.handleUserNameList" :key="indexUser" v-if="indexUser <= 5">
                         <div class="moon-content-text-ellipsis-class" style="width: 50px">
-                          {{ itemUser }}
+                          <el-tooltip class="item" effect="dark" :content="itemUser" placement="top-start">
+                            <span>{{ itemUser }}</span>
+                          </el-tooltip>
                         </div>
                       </el-tag>
 
