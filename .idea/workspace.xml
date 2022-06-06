@@ -1,28 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="修改bug">
-      <change afterPath="$PROJECT_DIR$/pages/newStudent/data/dormData.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/newStudent/data/flowStatic.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/newStudent/data/linkCustomData.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/newStudent/data/payData.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/newStudent/data/pickUpData.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/newStudent/data/registerData.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/newStudent/data/signData.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/newStudent/data/signStatic.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/newStudent/log/log.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/newStudent/manage/admissionManage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/newStudent/manage/flowManage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/newStudent/manage/linkManage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/newStudent/manage/newSetting.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/validater/newSettingValidater.js" afterDir="false" />
+    <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="智慧迎新ui">
+      <change afterPath="$PROJECT_DIR$/utils/validater/admissionValidater.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appCreate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appCreate.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/sliderMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/sliderMenu.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/topMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/topMenu.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/newStudent/log/log.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/log/log.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/admissionManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/admissionManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,14 +152,7 @@
       <workItem from="1652750744624" duration="32000" />
       <workItem from="1652950158685" duration="33561000" />
       <workItem from="1654054761234" duration="668000" />
-      <workItem from="1654068205924" duration="14495000" />
-    </task>
-    <task id="LOCAL-00003" summary="修改bug">
-      <created>1615965304894</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1615965304894</updated>
+      <workItem from="1654068205924" duration="29165000" />
     </task>
     <task id="LOCAL-00004" summary="修改bug">
       <created>1615968406991</created>
@@ -510,7 +490,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654072091776</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="智慧迎新ui">
+      <created>1654163686695</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1654163686695</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -533,6 +520,7 @@
     <MESSAGE value="专业修改可以更改学院课程" />
     <MESSAGE value="服务中心ui搭建" />
     <MESSAGE value="修改bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改bug" />
+    <MESSAGE value="智慧迎新ui" />
+    <option name="LAST_COMMIT_MESSAGE" value="智慧迎新ui" />
   </component>
 </project>
