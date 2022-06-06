@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="智慧迎新ui">
-      <change afterPath="$PROJECT_DIR$/utils/validater/admissionValidater.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/common.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/newStudent/log/log.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/log/log.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/admissionManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/admissionManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,14 +150,7 @@
       <workItem from="1652750744624" duration="32000" />
       <workItem from="1652950158685" duration="33561000" />
       <workItem from="1654054761234" duration="668000" />
-      <workItem from="1654068205924" duration="29165000" />
-    </task>
-    <task id="LOCAL-00004" summary="修改bug">
-      <created>1615968406991</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1615968406991</updated>
+      <workItem from="1654068205924" duration="35280000" />
     </task>
     <task id="LOCAL-00005" summary="修改bug">
       <created>1616034748876</created>
@@ -497,7 +488,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654163686695</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="智慧迎新ui">
+      <created>1654501540832</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1654501540834</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

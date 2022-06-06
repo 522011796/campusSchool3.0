@@ -15,7 +15,7 @@
             <el-col :span="24">
               <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo($event)">{{$t("添加")}}</el-button>
               <el-button size="small" type="info"  icon="el-icon-upload" @click="importInfo($event)">{{$t("导入")}}</el-button>
-              <el-button size="small" type="info"  icon="el-icon-download" @click="exoprtInfo($event)">{{$t("导出")}}</el-button>
+              <el-button size="small" type="info"  icon="el-icon-download" @click="exportInfo($event)">{{$t("导出")}}</el-button>
               <el-button size="small" type="warning"  icon="el-icon-s-custom" @click="manageInfo($event)">{{$t("管理员")}}</el-button>
             </el-col>
 <!--            <el-col :span="16" class="text-right">-->
@@ -35,10 +35,80 @@
             size="medium"
             :max-height="tableHeight2.height"
             style="width: 100%">
+            <el-table-column align="center" :label="$t('录取日期')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.name}}</div>
+                  <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.name}}
+                  </span>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column align="center" :label="$t('录取号')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.name}}</div>
+                  <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.name}}
+                  </span>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column align="center" :label="$t('姓名')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.name}}</div>
+                  <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.name}}
+                  </span>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column align="center" :label="$t('学院')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.name}}</div>
+                  <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.name}}
+                  </span>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column align="center" :label="$t('院系')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.name}}</div>
+                  <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.name}}
+                  </span>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column align="center" :label="$t('班级')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.name}}</div>
+                  <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.name}}
+                  </span>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column align="center" :label="$t('招生老师')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.name}}</div>
+                  <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.name}}
+                  </span>
+                </el-popover>
+              </template>
+            </el-table-column>
             <el-table-column
               v-for="(item, index) in tableColData" :key="index"
               align="center"
-              :label=item.label>
+              :label=item>
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                   <div class="text-center">{{scope.row.values[index].value}}</div>
@@ -77,8 +147,47 @@
       </div>
       <div slot="content" class="color-muted">
         <el-form :model="form" ref="form" :rules="rules" label-width="90px">
-          <template>
+          <template v-if="form.id != '' && oprType == 'detail'">
             <div class="color-muted margin-top-5">
+              <span>
+                <label class="title-block-tag"></label>
+                <label class="title-block-text color-warning">{{$t("照片信息")}}</label>
+              </span>
+            </div>
+            <div class="block-item-bg font-size-12">
+              <div class="custom-el-image pull-left">
+                <div class="text-center" style="width: 80px; height: 80px;">
+                  <div class="block">
+                    <el-image style="width: 60px; height: 60px;">
+                      <div slot="error" class="image-slot">
+                        <i class="el-icon-picture-outline"></i>
+                      </div>
+                    </el-image>
+                  </div>
+                  <div class="font-size-12 color-sub-grand margin-top-5">
+                    <span>{{$t("高考照片")}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="custom-el-image pull-left margin-left-10">
+                <div class="text-center" style="width: 80px; height: 80px;">
+                  <div class="block">
+                    <el-image style="width: 60px; height: 60px;">
+                      <div slot="error" class="image-slot">
+                        <i class="el-icon-picture-outline"></i>
+                      </div>
+                    </el-image>
+                  </div>
+                  <div class="font-size-12 color-sub-grand margin-top-5">
+                    <span>{{$t("采集照片")}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="moon-clearfix"></div>
+            </div>
+          </template>
+          <template>
+            <div :class="form.id != '' && oprType == 'detail' ? 'margin-top-20' : 'margin-top-5'">
               <span>
                 <label class="title-block-tag"></label>
                 <label class="title-block-text color-warning">{{$t("基础信息")}}</label>
@@ -88,67 +197,67 @@
               <el-row :gutter="8">
                 <el-col :span="12">
                   <el-form-item :label="$t('迎新年度')" prop="year">
-                    <my-select class="layout-item" size="small" :placeholder="$t('请选择')" :sel-value="form.year" :options="yearOptions" width-style="220" :clearable="true" @change="handleSelectChange($event, 1)"></my-select>
+                    <my-select :disabled="form.id != '' && oprType == 'detail'" class="layout-item" size="small" :placeholder="$t('请选择')" :sel-value="form.year" :options="yearOptions" width-style="220" :clearable="true" @change="handleSelectChange($event, 1)"></my-select>
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
                   <el-form-item :label="$t('姓名')" prop="name">
-                    <el-input v-model="form.name" size="small" class="width-220"></el-input>
+                    <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.name" size="small" class="width-220"></el-input>
                   </el-form-item>
                 </el-col>
               </el-row>
               <el-row :gutter="8">
                 <el-col :span="12">
                   <el-form-item :label="$t('录取号')" prop="adNo">
-                    <el-input v-model="form.adNo" size="small" class="width-220"></el-input>
+                    <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.adNo" size="small" class="width-220"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
                   <el-form-item :label="$t('一卡通号')" prop="oneCardNo">
-                    <el-input v-model="form.oneCardNo" size="small" class="width-220"></el-input>
+                    <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.oneCardNo" size="small" class="width-220"></el-input>
                   </el-form-item>
                 </el-col>
               </el-row>
               <el-row :gutter="8">
                 <el-col :span="12">
                   <el-form-item :label="$t('学号')" prop="stuNo">
-                    <el-input v-model="form.stuNo" size="small" class="width-220"></el-input>
+                    <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.stuNo" size="small" class="width-220"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
                   <el-form-item :label="$t('考号')" prop="examNo">
-                    <el-input v-model="form.examNo" size="small" class="width-220"></el-input>
+                    <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.examNo" size="small" class="width-220"></el-input>
                   </el-form-item>
                 </el-col>
               </el-row>
               <el-row :gutter="8">
                 <el-col :span="12">
                   <el-form-item :label="$t('性别')" prop="sex">
-                    <my-select :sel-value="form.sex" :options="g_sex" width-style="220" @change="handleSelectChange($event, 2)"></my-select>
+                    <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.sex" :options="g_sex" width-style="220" @change="handleSelectChange($event, 2)"></my-select>
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
                   <el-form-item :label="$t('身份证')" prop="idCardNo">
-                    <el-input v-model="form.idCardNo" size="small" class="width-220"></el-input>
+                    <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.idCardNo" size="small" class="width-220"></el-input>
                   </el-form-item>
                 </el-col>
               </el-row>
               <el-row :gutter="8">
                 <el-col :span="12">
                   <el-form-item :label="$t('出生日期')" prop="birthday">
-                    <my-date-picker :sel-value="form.birthday" width-style="220" @change="handleChangeTime($event,1)"></my-date-picker>
+                    <my-date-picker :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.birthday" width-style="220" @change="handleChangeTime($event,1)"></my-date-picker>
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
                   <el-form-item :label="$t('国籍')" prop="nationality">
-                    <my-select :sel-value="form.nationality" :options="nationalityInfoText()" width-style="220" @change="handleSelectChange($event, 3)"></my-select>
+                    <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.nationality" :options="nationalityInfoText()" width-style="220" @change="handleSelectChange($event, 3)"></my-select>
                   </el-form-item>
                 </el-col>
               </el-row>
               <el-row :gutter="8">
                 <el-col :span="24">
                   <el-form-item :label="$t('民族')" prop="nation">
-                    <my-select :sel-value="form.nation" :options="nationInfoText()" width-style="220" @change="handleSelectChange($event, 4)"></my-select>
+                    <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.nation" :options="nationInfoText()" width-style="220" @change="handleSelectChange($event, 4)"></my-select>
                   </el-form-item>
                 </el-col>
               </el-row>
@@ -167,55 +276,55 @@
                 <el-row :gutter="8">
                   <el-col :span="12">
                     <el-form-item :label="$t('手机号')" prop="phone">
-                      <el-input v-model="form.phone" size="small" class="width-220"></el-input>
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.phone" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="12">
                     <el-form-item :label="$t('QQ')" prop="qq">
-                      <el-input v-model="form.qq" size="small" class="width-220"></el-input>
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.qq" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
                 </el-row>
                 <el-row :gutter="8">
                   <el-col :span="12">
                     <el-form-item :label="$t('邮箱')" prop="email">
-                      <el-input v-model="form.email" size="small" class="width-220"></el-input>
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.email" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="12">
                     <el-form-item :label="$t('微信号')" prop="wechat">
-                      <el-input v-model="form.wechat" size="small" class="width-220"></el-input>
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.wechat" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
                 </el-row>
                 <el-row :gutter="8">
                   <el-col :span="12">
                     <el-form-item :label="$t('父亲姓名')" prop="fatherName">
-                      <el-input v-model="form.fatherName" size="small" class="width-220"></el-input>
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.fatherName" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="12">
                     <el-form-item :label="$t('父亲电话')" prop="fatherPhone">
-                      <el-input v-model="form.fatherPhone" size="small" class="width-220"></el-input>
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.fatherPhone" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
                 </el-row>
                 <el-row :gutter="8">
                   <el-col :span="12">
                     <el-form-item :label="$t('母亲姓名')" prop="motherName">
-                      <el-input v-model="form.motherName" size="small" class="width-220"></el-input>
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.motherName" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="12">
                     <el-form-item :label="$t('母亲电话')" prop="motherPhone">
-                      <el-input v-model="form.motherPhone" size="small" class="width-220"></el-input>
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.motherPhone" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
                 </el-row>
                 <el-row :gutter="8">
                   <el-col :span="24">
                     <el-form-item :label="$t('详细地址')" prop="address">
-                      <el-input v-model="form.address" size="small"></el-input>
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.address" size="small"></el-input>
                     </el-form-item>
                   </el-col>
                 </el-row>
@@ -235,36 +344,36 @@
                 <el-row :gutter="8">
                   <el-col :span="12">
                     <el-form-item :label="$t('学历')" prop="education">
-                      <my-select :sel-value="form.education" :options="educationInfoText()" width-style="220" @change="handleSelectChange($event, 5)"></my-select>
+                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.education" :options="educationInfoText()" width-style="220" @change="handleSelectChange($event, 5)"></my-select>
                     </el-form-item>
                   </el-col>
                   <el-col :span="12">
                     <el-form-item :label="$t('学院/专业')" prop="college">
-                      <my-cascader ref="SelectorCollege" width-style="220" :sel-value="form.college" type="1" sub-type="2" @change="handleCascaderChange($event, 1)"></my-cascader>
+                      <my-cascader :disabled="form.id != '' && oprType == 'detail'" ref="SelectorCollege" width-style="220" :sel-value="form.college" type="1" sub-type="2" @change="handleCascaderChange($event, 1)"></my-cascader>
                     </el-form-item>
                   </el-col>
                 </el-row>
                 <el-row :gutter="8">
                   <el-col :span="12">
                     <el-form-item :label="$t('班级')" prop="class">
-                      <my-cascader ref="selectorDept" :sel-value="form.class" type="1" sub-type="4" width-style="220" @change="handleCascaderChange($event, 2)"></my-cascader>
+                      <my-cascader :disabled="form.id != '' && oprType == 'detail'" ref="selectorDept" :sel-value="form.class" type="1" sub-type="4" width-style="220" @change="handleCascaderChange($event, 2)"></my-cascader>
                     </el-form-item>
                   </el-col>
                   <el-col :span="12">
                     <el-form-item :label="$t('班主任')" prop="headmaster">
-                      <el-input v-model="form.headmaster" size="small" class="width-220"></el-input>
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.headmaster" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
                 </el-row>
                 <el-row :gutter="8">
                   <el-col :span="12">
                     <el-form-item :label="$t('学制')" prop="eduSystem">
-                      <el-input v-model="form.eduSystem" size="small" class="width-220"></el-input>
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.eduSystem" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="12">
                     <el-form-item :label="$t('招生老师')" prop="recruitingTeacher">
-                      <el-input v-model="form.recruitingTeacher" size="small" class="width-220"></el-input>
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.recruitingTeacher" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
                 </el-row>
@@ -284,36 +393,36 @@
                 <el-row :gutter="8">
                   <el-col :span="12">
                     <el-form-item :label="$t('录取批次')" prop="adBath">
-                      <my-select :sel-value="form.adBath" :options="bathOptions" width-style="220" @change="handleSelectChange($event, 7)"></my-select>
+                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.adBath" :options="bathOptions" width-style="220" @change="handleSelectChange($event, 7)"></my-select>
                     </el-form-item>
                   </el-col>
                   <el-col :span="12">
                     <el-form-item :label="$t('科目')" prop="type">
-                      <my-select :sel-value="form.subject" :options="subjectOptions" width-style="220" @change="handleSelectChange($event, 8)"></my-select>
+                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.subject" :options="subjectOptions" width-style="220" @change="handleSelectChange($event, 8)"></my-select>
                     </el-form-item>
                   </el-col>
                 </el-row>
                 <el-row :gutter="8">
                   <el-col :span="12">
                     <el-form-item :label="$t('录取省份')" prop="adProvince">
-                      <my-select :sel-value="form.adProvince" :options="provinceInfoText()" width-style="220" @change="handleSelectChange($event, 9)"></my-select>
+                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.adProvince" :options="provinceInfoText()" width-style="220" @change="handleSelectChange($event, 9)"></my-select>
                     </el-form-item>
                   </el-col>
                   <el-col :span="12">
                     <el-form-item :label="$t('录取城市')" prop="adCity">
-                      <my-select :sel-value="form.adCity" :options="cityInfoText()" width-style="220" @change="handleSelectChange($event, 10)"></my-select>
+                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.adCity" :options="cityInfoText()" width-style="220" @change="handleSelectChange($event, 10)"></my-select>
                     </el-form-item>
                   </el-col>
                 </el-row>
                 <el-row :gutter="8">
                   <el-col :span="12">
                     <el-form-item :label="$t('毕业学校')" prop="graduationSchool">
-                      <el-input v-model="form.graduationSchool" size="small" class="width-220"></el-input>
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.graduationSchool" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="12">
                     <el-form-item :label="$t('高考成绩')" prop="examScore">
-                      <el-input v-model="form.examScore" size="small" class="width-220"></el-input>
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.examScore" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
                 </el-row>
@@ -333,7 +442,7 @@
                 <el-row>
                   <el-col :span="24">
                     <el-form-item :label="$t('其他信息')" prop="otherMsg">
-                      <el-input v-model="form.otherMsg" type="textarea" :rows="5" size="small"></el-input>
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.otherMsg" type="textarea" :rows="5" size="small"></el-input>
                     </el-form-item>
                   </el-col>
                 </el-row>
@@ -342,13 +451,86 @@
           </template>
         </el-form>
       </div>
-      <div slot="footer">
+      <div slot="footer" v-if="footerHidden == true">
         <div class="text-right padding-lr-10">
           <el-button size="mini" @click="cancelFormDrawDialog">{{$t("取消")}}</el-button>
           <el-button size="mini" type="success" :loading="btnLoading" @click="okFormDrawDialog()">{{$t("保存")}}</el-button>
         </div>
       </div>
     </drawer-layout-right>
+
+    <drawer-layout-right tabindex="0" :show-close="true" @changeDrawer="closeDialog" :visible="drawerManage" size="550px">
+      <div slot="title">
+        <div class="header-block padding-lr-10">
+          <span class="tab-class font-bold">
+            {{$t('管理员')}}
+          </span>
+        </div>
+      </div>
+      <div slot="content" class="color-muted">
+        <div>
+          <div class="color-muted margin-top-5">
+            <span>
+              <label class="title-block-tag"></label>
+              <label class="title-block-text color-warning">
+                {{$t("设置管理员")}}
+                <span style="color: #909399;font-weight: normal">({{$t("管理员可以添加、编辑、删除学生")}})</span>
+              </label>
+            </span>
+          </div>
+          <div class="block-item-bg font-size-12">
+            <el-popover
+              popper-class="custom-popper-class-form"
+              placement="top"
+              width="700"
+              trigger="click"
+              @show="handleShowTeacher(1)">
+              <div>
+                <teacher-tree-and-list-no-page ref="popverTeacherRef" user-type="user" :sel-arr="teacherArray" set-type="check" @select="handleSelUser($event, 1)"></teacher-tree-and-list-no-page>
+              </div>
+              <el-button slot="reference" type="success" plain size="small" @click="loadingShow(1)">
+                <i v-if="refreshTeacherStatus == true" class="fa fa-refresh fa-spin"></i>
+                {{$t("添加老师")}}
+              </el-button>
+            </el-popover>
+            <span>{{$t("人数")}}: {{approverUsers.length}}</span>
+          </div>
+        </div>
+
+        <div class="margin-top-20">
+          <div class="color-muted margin-top-5">
+            <span>
+              <label class="title-block-tag"></label>
+              <label class="title-block-text color-warning">
+                {{$t("字段显示管理")}}
+                <span style="color: #909399;font-weight: normal">({{$t("未选中的字段不予显示")}})</span>
+              </label>
+            </span>
+          </div>
+          <div class="block-item-bg font-size-12">
+            <el-checkbox-group v-model="tableSelColData">
+              <el-row>
+                <el-col :span="6" v-for="(item, index) in tableAllColData" :key="index">
+                  <el-checkbox :label=item.name>
+                    <span class="font-size-12">{{item.name}}</span>
+                  </el-checkbox>
+                </el-col>
+              </el-row>
+            </el-checkbox-group>
+          </div>
+        </div>
+      </div>
+      <div slot="footer">
+        <div class="text-right padding-lr-10">
+          <el-button size="mini" @click="cancelManageDrawDialog">{{$t("取消")}}</el-button>
+          <el-button size="mini" type="success" :loading="btnLoading" @click="okManageDrawDialog()">{{$t("保存")}}</el-button>
+        </div>
+      </div>
+    </drawer-layout-right>
+
+    <drawer-right @changeDrawer="closeDialog" :visible="drawerUpload" accept=".xls,.xlsx" :loading="btnLoading" :hide-footer="true" size="400px" :title="$t('导入学生')" :action="uploadAction" :download-file="uploadFile" :result="uploadResult" :process="uploadProcess" @right-close="closeDialog" @success="uploadSuccess" @error="uploadError">
+
+    </drawer-right>
   </div>
 </template>
 
@@ -374,6 +556,7 @@
       return {
         tableData: [],
         tableColData: [],
+        tableSelColData: [],
         tableColValueData: [],
         collegeList: [],
         categorys: [],
@@ -384,16 +567,81 @@
         searchKey: '',
         searchType: '',
         searchStatus: '',
+        oprType: '',
         dialogLoading: false,
         dialogVisible: false,
         visibleConfim: false,
         dialogAd: false,
         dialogDetail: false,
         drawerForm: false,
+        drawerManage: false,
+        drawerUpload: false,
+        drawerDetail: false,
         btnLoading: false,
+        footerHidden: true,
         yearOptions: [],
         bathOptions: [],
         subjectOptions: [],
+        teacherArray: [],
+        approverUsers: [],
+        refreshTeacherStatus: false,
+        uploadProcess: '',
+        uploadResult: [],
+        uploadFile: common.teacher_file + "?fileName=" + encodeURIComponent(this.$t("学生导入模板20180130_v2.xls")),
+        uploadAction: common.student_upload,
+        loopTimer: null,
+        resultList: [],
+        tableAllColData: [{
+          "name": this.$t("考号")
+        },{
+          "name": this.$t("手机号")
+        },{
+          "name": this.$t("一卡通号")
+        },{
+          "name": this.$t("身份证")
+        },{
+          "name": this.$t("民族")
+        },{
+          "name": this.$t("父亲姓名")
+        },{
+          "name": this.$t("出生日期")
+        },{
+          "name": this.$t("国籍")
+        },{
+          "name": this.$t("微信号")
+        },{
+          "name": this.$t("详细地址")
+        },{
+          "name": this.$t("QQ")
+        },{
+          "name": this.$t("邮箱")
+        },{
+          "name": this.$t("母亲电话")
+        },{
+          "name": this.$t("科类")
+        },{
+          "name": this.$t("父亲电话")
+        },{
+          "name": this.$t("母亲姓名")
+        },{
+          "name": this.$t("录取批次")
+        },{
+          "name": this.$t("高考成绩")
+        },{
+          "name": this.$t("学历")
+        },{
+          "name": this.$t("班主任")
+        },{
+          "name": this.$t("毕业学校")
+        },{
+          "name": this.$t("录取省份")
+        },{
+          "name": this.$t("学制")
+        },{
+          "name": this.$t("录取城市")
+        },{
+          "name": this.$t("其他信息")
+        }],
         form: {
           id: '',
           year: '',
@@ -449,30 +697,12 @@
             let valuesArr = [];
             for (let i = 0; i < res.data.data.list.length; i++){
               res.data.data.list[i]['values'] = [
-                {label: i+'', value: i},
-                {label: i+'', value: i},
-                {label: i+'', value: i},
-                {label: i+'', value: i},
-                {label: i+'', value: i},
-                {label: i+'', value: i},
-                {label: i+'', value: i},
-                {label: i+'', value: i},
-                {label: i+'', value: i},
-                {label: i+'', value: i},
-                {label: i+'', value: i},
-                {label: i+'', value: i},
-                {label: i+'', value: i},
-                {label: i+'', value: i},
                 {label: i+'', value: i}
               ];
             }
 
-            for (let i = 0; i < 15; i++){
-              valuesArr.push({label: 'test'});
-            }
-
             this.tableData = res.data.data.list;
-            this.tableColData = valuesArr;
+            //this.tableColData = valuesArr;
             this.total = res.data.data.total;
             this.num = res.data.data.num;
             this.page = res.data.data.page;
@@ -535,22 +765,35 @@
         });
       },
       addInfo(){
+        this.oprType = 'add';
+        this.footerHidden = true;
         this.drawerForm = true;
       },
       importInfo(){
-        this.dialogAd = true;
+        this.drawerUpload = true;
       },
       exportInfo(){
-        this.dialogAd = true;
+        let url = "";
+        let params = {
+
+        };
+        params = this.$qs.stringify(params);
+        url = common.server_form_audit_export;
+        window.open(url+"?"+params, "_self");
       },
       manageInfo(){
-        this.dialogAd = true;
+        this.drawerManage = true;
       },
       editInfo(item){
-        this.dialogDetail = true;
+        this.oprType = 'edit';
+        this.footerHidden = true;
+        this.drawerForm = true;
       },
       detailInfo(){
-        this.dialogDetail = true;
+        this.oprType = 'detail';
+        this.form.id = "1";
+        this.footerHidden = false;
+        this.drawerForm = true;
       },
       deleteInfo(item){
         this.form.id = item.id;
@@ -600,8 +843,16 @@
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
         }
+        this.uploadProcess = '';
+        this.uploadResult = [];
+        clearTimeout(this.loopTimer);
+        this.loopTimer = null;
+        this.teacherArray = [];
+        this.approverUsers = [];
         this.btnLoading = false;
         this.drawerForm = false;
+        this.drawerManage = false;
+        this.drawerUpload = false;
       },
       nationInfoText(){
         let arr = nationInfo();
@@ -679,9 +930,39 @@
             break;
         }
       },
+      handleShowTeacher(type){
+        setTimeout(()=>{
+          if (type == 1){
+            this.$refs.popverTeacherRef._handleOpen();
+          }
+        },800);
+      },
+      loadingShow(type){
+        let timer = null;
+        clearTimeout(timer);
+        switch (type) {
+          case 1:
+            this.refreshTeacherStatus = true;
+            timer = setTimeout(() => {
+              this.refreshTeacherStatus = false;
+              clearTimeout(timer);
+            },1000);
+            break;
+        }
+      },
+      handleSelUser(data, type){
+        if (type == 1){
+          this.teacherArray = data;
+        }
+        this.approverUsers = this.teacherArray;
+      },
       cancelFormDrawDialog(){
         this.closeDialog();
         this.drawerForm = false;
+      },
+      cancelManageDrawDialog(){
+        this.closeDialog();
+        this.drawerManage = false;
       },
       okFormDrawDialog(event){
         let url = "";
@@ -715,6 +996,42 @@
             });
           }
         });
+      },
+      okManageDrawDialog(event){
+        let params = {
+
+        };
+
+        let url = common.circular_add;
+        //params = this.$qs.stringify(params);
+        this.btnLoading = true;
+        this.$axios.post(url, params, {loading: false}).then(res => {
+          if (res.data.code == 200){
+            this.drawerManage = false;
+            this.init();
+            this.closeDialog();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+          this.btnLoading = false;
+        });
+      },
+      uploadSuccess(res, file){
+        this.uploadProcess = res.desc;
+
+        if (res.code == 200){
+          this.uploadResult = res.data ? res.data : [res.desc];;
+        }else {
+          if (res.data){
+            this.uploadResult = res.data;
+          }else {
+            this.uploadResult = [res.desc];
+          }
+        }
+      },
+      uploadError(res, file){
+        this.uploadProcess = res.data.data;
       }
     }
   }

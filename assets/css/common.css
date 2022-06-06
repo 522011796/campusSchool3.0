@@ -990,6 +990,14 @@ ul{
 .custom-textarea-inner .el-textarea__inner {
   resize: none !important;
 }
+.custom-el-image .block, .custom-el-image .block, .custom-el-image .block {
+  padding: 0px 0;
+  text-align: center;
+  border: 1px solid #eff2f6;
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: top;
+}
 /***自定义radio组件颜色***/
 /*.el-radio__input.is-checked + .el-radio__label {
   color: #fd7624 !important;
