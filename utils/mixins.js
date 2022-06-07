@@ -580,7 +580,8 @@ export default {
     async getAppletServerInfo(searchName) {
       let params = {
         page: 1,
-        num: 9999
+        num: 9999,
+        appletId: searchName
       };
       await this.$axios.get(common.server_form_template_form_list, {params: params}).then(res => {
         let arr = [];

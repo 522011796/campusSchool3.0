@@ -53,6 +53,7 @@ const _4aa58185 = () => interopDefault(import('../pages/test/test3.vue' /* webpa
 const _4ab39906 = () => interopDefault(import('../pages/test/test4.vue' /* webpackChunkName: "pages/test/test4" */))
 const _6ddc2009 = () => interopDefault(import('../pages/appletInfo/app/appCreate.vue' /* webpackChunkName: "pages/appletInfo/app/appCreate" */))
 const _388480f7 = () => interopDefault(import('../pages/appletInfo/app/appData.vue' /* webpackChunkName: "pages/appletInfo/app/appData" */))
+const _011e81c5 = () => interopDefault(import('../pages/appletInfo/app/appDataBak.vue' /* webpackChunkName: "pages/appletInfo/app/appDataBak" */))
 const _9e2a801c = () => interopDefault(import('../pages/appletInfo/app/appManage.vue' /* webpackChunkName: "pages/appletInfo/app/appManage" */))
 const _10929347 = () => interopDefault(import('../pages/appletInfo/app/appTemplate.vue' /* webpackChunkName: "pages/appletInfo/app/appTemplate" */))
 const _b4dc4ef2 = () => interopDefault(import('../pages/appletInfo/app/appType.vue' /* webpackChunkName: "pages/appletInfo/app/appType" */))
@@ -391,6 +392,10 @@ export const routerOptions = {
     path: "/appletInfo/app/appData",
     component: _388480f7,
     name: "appletInfo-app-appData"
+  }, {
+    path: "/appletInfo/app/appDataBak",
+    component: _011e81c5,
+    name: "appletInfo-app-appDataBak"
   }, {
     path: "/appletInfo/app/appManage",
     component: _9e2a801c,

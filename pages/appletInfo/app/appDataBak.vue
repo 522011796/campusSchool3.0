@@ -6,31 +6,14 @@
           <!--<span class="layout-left-menu-tag"></span>-->
           <span class="layout-left-menu-title">数据中心</span>
         </div>
-        <my-el-tree v-if="mainMenu == '1'" type="4" @node-click="nodeAppClick" @all-click="nodeAppClick"></my-el-tree>
-        <my-el-tree ref="appRef" v-if="mainMenu == '2'" type="110" :extra-type="appName" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
+        <my-el-tree type="110" :extra-type="$route.query.appName" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
       </div>
 
       <div slot="right">
-        <div class="layout-top-tab" v-if="mainMenu == 1">
-          <el-row>
-            <el-col :span="24">
-              <div class="text-right layout-inline">
-                <div class="layout-inline">
-                  <my-select class="layout-item width-150" size="small" :placeholder="$t('类型')" :sel-value="searchType" :options="filterAppManageType" :clearable="true" @change="handleTypeChange($event, 1)"></my-select>
-                  <my-select class="layout-item width-150" size="small" :placeholder="$t('状态')" :sel-value="searchStatus" :options="filterAppManageStatus" :clearable="true" @change="handleTypeChange($event, 2)"></my-select>
-                  <my-input-button ref="teacher width-150" size="small" plain width-class="width: 180px" type="success" :clearable="true" :placeholder="$t('名称/编号')" @click="search"></my-input-button>
-                </div>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <div class="layout-top-tab margin-top-5" v-else>
+        <div class="layout-top-tab margin-top-5">
           <el-row>
             <el-col :span="8">
-              <el-button size="small" type="text" @click="returnMain($event)">
-                <i class="fa fa-arrow-left"></i>
-                {{$t("返回")}}
-              </el-button>
+<!--              <el-button size="small" type="success" plain  icon="el-icon-notebook-2" @click="uploadData($event)">{{$t("导入")}}</el-button>-->
               <el-button size="small" type="warning"  icon="el-icon-download" @click="expandInfo($event)">{{$t("导出")}}</el-button>
             </el-col>
             <el-col :span="16" class="text-right">
@@ -40,61 +23,9 @@
         </div>
 
         <div class="margin-top-10">
-          <div v-if="mainMenu == 1" class="bg-white border-bottom-1 padding-lr-5 padding-tb-5" :style="divHeight">
-            <div v-if="tableData.length <= 0">
-              <div class="text-center padding-tb-10">
-                <span class="color-disabeld">{{$t("暂无数据")}}</span>
-              </div>
-            </div>
-            <el-row v-else :gutter="16">
-              <el-col :span="6" v-for="(item, index) in tableData" :key="index" class="margin-bottom-20">
-                <el-card :body-style="{padding: '10px 10px', height: '110px'}" style="position: relative" @click.native="detailAppInfo(item)">
-                  <div class="color-muted">
-                    <el-row class="color-warning">
-                      <el-col :span="18">
-                        <i class="fa fa-id-card"></i>
-                        <span>{{item.applet_num}}</span>
-                      </el-col>
-                      <el-col :span="6">
-                        <div class="text-right">
-                          <label v-if="item.enable" class="color-success">{{$t("已发布")}}</label>
-                          <label v-if="!item.enable" class="color-warning">{{$t("待发布")}}</label>
-                        </div>
-                      </el-col>
-                    </el-row>
-                  </div>
-                  <div class="color-muted margin-top-10">
-                    <el-row>
-                      <el-col :span="8">
-                        <div>
-                          <i class="el-icon-collection" style="font-size: 50px"></i>
-                        </div>
-                        <div class="color-success font-size-12 text-left margin-top-5">
-                          <span>{{ serverTypeInfo(item.applet_type, 'set') }}</span>
-                        </div>
-                      </el-col>
-                      <el-col :span="16">
-                        <div class="text-right" style="position: relative">
-                          <div class="moon-content-text-ellipsis-class color-grand margin-top-5" style="cursor:default;">
-                            <span>
-                              {{item.applet_name}}
-                            </span>
-                          </div>
-                          <div class="moon-content-text-ellipsis-class font-size-12 margin-top-5">
-                            {{$moment(item.create_time).format("YYYY-MM-DD HH:mm:ss")}}
-                          </div>
-                        </div>
-                      </el-col>
-                    </el-row>
-                  </div>
-                </el-card>
-              </el-col>
-            </el-row>
-          </div>
           <el-table
-            v-else
             ref="refTable"
-            :data="tableDetailData"
+            :data="tableData"
             header-cell-class-name="custom-table-cell-bg"
             size="medium"
             :max-height="tableHeight2.height"
@@ -203,7 +134,7 @@
           </el-table>
         </div>
         <div class="layout-right-footer text-right">
-          <my-pagination :total="mainMenu == 1 ? total : totalDetail" :current-page="mainMenu == 1 ? page : pageDetail" :page-size="mainMenu == 1 ? num : numDetail" @currentPage="currentPage" @sizeChange="sizeChange" @jumpChange="jumpPage" class="layout-pagination"></my-pagination>
+          <my-pagination :total="total" :current-page="page" :page-size="num" @currentPage="currentPage" @sizeChange="sizeChange" @jumpChange="jumpPage" class="layout-pagination"></my-pagination>
         </div>
       </div>
     </layout-lr>
@@ -382,19 +313,13 @@
   import {MessageError, MessageSuccess} from "~/utils/utils";
   import MyElTree from "~/components/tree/MyElTree";
   import DrawerLayoutRight from "~/components/utils/dialog/DrawerLayoutRight";
-  import MyInputButton from "~/components/search/MyInputButton";
 
   export default {
-    components: {MyInputButton, DrawerLayoutRight, MyElTree},
+    components: {DrawerLayoutRight, MyElTree},
     mixins: [mixins],
     data(){
       return {
-        appName: '',
-        pageDetail: 1,
-        numDetail: 20,
-        totalDetail: 0,
         tableData: [],
-        tableDetailData: [],
         collegeList: [],
         categorys: [],
         applyContentArr: [],
@@ -408,7 +333,6 @@
         queryApplyListType: 0,
         formId: '',
         listId: '',
-        appletId: '',
         uploadFile: common.doomroom_import_file + "?fileName=" + encodeURIComponent(this.$t("模板.xlsx")),
         uploadAction: common.doomroom_import,
         uploadResult: {},
@@ -423,22 +347,18 @@
         drawerLoading: false,
         dialogServer: false,
         dialogServerDetail: false,
-        mainMenuType: 1,
-        subMenuType: 4,
-        mainMenu: 1
       }
     },
     created() {
-      this.initApp();
+      this.init();
     },
     methods: {
       init(){
         let params = {
-          page: this.pageDetail,
-          num: this.numDetail,
+          page: this.page,
+          num: this.num,
           queryApplyListType: this.queryApplyListType,
           formId: this.formId,
-          appletId: this.appletId,
           status: this.searchAuditStatus
         };
         let applyContentArr = [];
@@ -457,28 +377,10 @@
             }
 
             this.applyContentArr = applyContentArr;
-            this.tableDetailData = res.data.data.list;
-            this.totalDetail = res.data.data.total;
-            this.numDetail = res.data.data.num;
-            this.pageDetail = res.data.data.page;
-          }
-        });
-      },
-      initApp(){
-        let params = {
-          page: this.page,
-          num: this.num,
-          departmentPath: this.collegeData,
-          appletType: this.searchType,
-          enable: this.searchStatus,
-          searchKey: this.searchKey
-        };
-        this.$axios.get(common.server_applet_list, {params: params}).then(res => {
-          if (res.data.data){
             this.tableData = res.data.data.list;
-            this.total = res.data.data.totalCount;
+            this.total = res.data.data.total;
             this.num = res.data.data.num;
-            this.page = res.data.data.currentPage;
+            this.page = res.data.data.page;
           }
         });
       },
@@ -495,41 +397,20 @@
         });
       },
       sizeChange(event){
-        if (this.mainMenu == 1){
-          this.page = 1;
-          this.num = event;
-          this.initApp();
-        }else {
-          this.pageDetail = 1;
-          this.numDetail = event;
-          this.init();
-        }
+        this.page = 1;
+        this.num = event;
+        this.init();
       },
       currentPage(event){
-        if (this.mainMenu == 1){
-          this.page = event;
-          this.initApp();
-        }else {
-          this.pageDetail = event;
-          this.init();
-        }
+        this.page = event;
+        this.init();
       },
       jumpPage(data){
-        if (this.mainMenu == 1){
-          this.pageDetail = data;
-          this.initApp();
-        }else {
-          this.page = data;
-          this.init();
-        }
+        this.page = data;
+        this.init();
       },
       uploadData(){
         this.drawerVisible = true;
-      },
-      returnMain(){
-        this.searchKey = "";
-        this.mainMenu = 1;
-        this.initApp();
       },
       expandInfo(){
         let url = "";
@@ -538,17 +419,9 @@
           status: this.searchStatus
         };
         params['formId'] = this.formId;
-        params['appletId'] = this.appletId;
         params = this.$qs.stringify(params);
         url = common.server_form_audit_export;
         window.open(url+"?"+params, "_self");
-      },
-      detailAppInfo(item){
-        this.mainMenu = 2;
-        this.pageDetail = 1;
-        this.appName = ''+item.id;
-        this.appletId = item.id;
-        this.init();
       },
       detailInfo(item){
         this.detailData = item;
@@ -631,11 +504,6 @@
       uploadError(res, file){
         this.uploadProcess = res.data.data;
       },
-      nodeAppClick(data){
-        this.collegeData = data.department_path;
-        this.page = 1;
-        this.initApp();
-      },
       nodeClick(data){
         this.formId = "";
         this.page = 1;
@@ -645,18 +513,6 @@
         if (data.unit != 1){
           this.init();
         }
-      },
-      handleTypeChange(event, type){
-        if (type == 1){
-          this.searchType = event;
-        }else if (type == 2){
-          this.searchStatus = event;
-        }
-      },
-      search(data){
-        this.searchKey = data.input;
-        this.page = 1;
-        this.initApp(data);
       },
       setRuleChild(rule, ruleList){
         let obj = {};
