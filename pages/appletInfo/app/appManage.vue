@@ -175,7 +175,7 @@
   import MySelect from "~/components/MySelect";
   import mixins from "~/utils/mixins";
   import {common} from "~/utils/api/url";
-  import {MessageError, MessageSuccess} from "~/utils/utils";
+  import {MessageError, MessageSuccess, MessageWarning} from "~/utils/utils";
   import appManageValidater from "~/utils/validater/appManageValidater";
   import MyCascader from "~/components/utils/select/MyCascader";
   export default {
@@ -359,9 +359,12 @@
         let url = '';
         this.$refs['form'].validate((valid) => {
           if (valid) {
-            this.dialogLoading = true;
             let deptArrStr = '';
             let deptArr = [];
+            if (this.form.dept.length == 0){
+              MessageWarning(this.$t("请选择部门"));
+              return;
+            }
             for (let i = 0; i < this.form.dept.length; i++){
               deptArrStr += this.form.dept[i].join();
               if (this.form.dept.length - 1 != i){
@@ -379,6 +382,7 @@
             }
             url = common.server_applet_save;
             params = this.$qs.stringify(params);
+            this.dialogLoading = true;
             this.$axios.post(url, params).then(res => {
               if (res.data.code == 200){
                 this.dialogApp = false;

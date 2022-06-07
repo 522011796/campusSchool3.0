@@ -103,19 +103,19 @@
                   </el-row>
                 </div>
               </div>
-              <div class="margin-top-10 border-bottom-1 padding-bottom-5">
-                <div class="font-bold">{{$t("审批签名")}}</div>
-                <div class="margin-top-10">
-                  <el-row>
-                    <el-col :span="20">
-                      <span>{{$t("开启签名")}}</span>
-                    </el-col>
-                    <el-col :span="4" class="text-center">
-                      <el-checkbox v-model="flowDetailData.waitName"></el-checkbox>
-                    </el-col>
-                  </el-row>
-                </div>
-              </div>
+<!--              <div class="margin-top-10 border-bottom-1 padding-bottom-5">-->
+<!--                <div class="font-bold">{{$t("审批签名")}}</div>-->
+<!--                <div class="margin-top-10">-->
+<!--                  <el-row>-->
+<!--                    <el-col :span="20">-->
+<!--                      <span>{{$t("开启签名")}}</span>-->
+<!--                    </el-col>-->
+<!--                    <el-col :span="4" class="text-center">-->
+<!--                      <el-checkbox v-model="flowDetailData.waitName"></el-checkbox>-->
+<!--                    </el-col>-->
+<!--                  </el-row>-->
+<!--                </div>-->
+<!--              </div>-->
               <div class="margin-top-10 border-bottom-1 padding-bottom-5">
                 <div class="font-bold">{{$t("按钮权限")}}</div>
                 <div class="margin-top-10">
@@ -126,10 +126,11 @@
                     <el-col :span="8" class="text-center">
                       <el-row>
                         <el-col :span="12" class="text-center">
-                          <span>{{$t("显示")}}</span>
+<!--                          <span>{{$t("批量")}}</span>-->
+                          &nbsp;
                         </el-col>
                         <el-col :span="12" class="text-center">
-                          <span>{{$t("批量")}}</span>
+                          <span>{{$t("显示")}}</span>
                         </el-col>
                       </el-row>
                     </el-col>
@@ -141,10 +142,11 @@
                     <el-col :span="8" class="text-center">
                       <el-row>
                         <el-col :span="12" class="text-center">
-                          <el-checkbox v-model="flowDetailData.allowShow"></el-checkbox>
+<!--                          <el-checkbox v-model="flowDetailData.allowMuti"></el-checkbox>-->
+                          &nbsp;
                         </el-col>
                         <el-col :span="12" class="text-center">
-                          <el-checkbox v-model="flowDetailData.allowMuti"></el-checkbox>
+                          <el-checkbox v-model="flowDetailData.allowShow"></el-checkbox>
                         </el-col>
                       </el-row>
                     </el-col>
@@ -156,108 +158,98 @@
                     <el-col :span="8" class="text-center">
                       <el-row>
                         <el-col :span="12" class="text-center">
+<!--                          <el-checkbox v-model="flowDetailData.rejectMuti"></el-checkbox>-->
+                          &nbsp;
+                        </el-col>
+                        <el-col :span="12" class="text-center">
                           <el-checkbox v-model="flowDetailData.rejectShow"></el-checkbox>
                         </el-col>
-                        <el-col :span="12" class="text-center">
-                          <el-checkbox v-model="flowDetailData.rejectMuti"></el-checkbox>
-                        </el-col>
                       </el-row>
                     </el-col>
                   </el-row>
-                  <el-row class="margin-top-5">
-                    <el-col :span="16">
-                      <span>{{$t("转交")}}</span>
-                    </el-col>
-                    <el-col :span="8" class="text-center">
-                      <el-row>
-                        <el-col :span="12" class="text-center">
-                          <el-checkbox v-model="flowDetailData.transferShow"></el-checkbox>
-                        </el-col>
-                        <el-col :span="12" class="text-center">
-                          <el-checkbox v-model="flowDetailData.transferMuti"></el-checkbox>
-                        </el-col>
-                      </el-row>
-                    </el-col>
-                  </el-row>
-                </div>
-              </div>
-              <div class="margin-top-10 border-bottom-1 padding-bottom-5">
-                <div class="font-bold">{{$t("节点字段权限")}}</div>
-                <div class="margin-top-10">
-                  <el-row>
-                    <el-col :span="16">
-                      &nbsp;
-                    </el-col>
-                    <el-col :span="8" class="text-center">
-                      <el-row>
-                        <el-col :span="12" class="text-center">
-                          <span>{{$t("显示")}}</span>
-                        </el-col>
-                        <el-col :span="12" class="text-center">
-                          <span>{{$t("编辑")}}</span>
-                        </el-col>
-                      </el-row>
-                    </el-col>
-                  </el-row>
-                  <el-row class="margin-top-5">
-                    <el-col :span="16">
-                      <span>{{$t("全选")}}</span>
-                    </el-col>
-                    <el-col :span="4" class="text-center">
-                      <el-row>
-                        <el-col :span="24" class="text-center">
-                          <el-checkbox v-model="checkRight1All" @change="handleCheckAllChangeRight1"></el-checkbox>
-                        </el-col>
-                      </el-row>
-                    </el-col>
-                    <el-col :span="4" class="text-center">
-                      <el-row>
-                        <el-col :span="24" class="text-center">
-                          <el-checkbox v-model="checkRight2All" @change="handleCheckAllChangeRight2"></el-checkbox>
-                        </el-col>
-                      </el-row>
-                    </el-col>
-                  </el-row>
-                  <el-row class="margin-top-5">
-                    <el-col :span="16">
-                      <el-row v-for="(item, index) in formFieldList" :key="index">
-                        <el-col :span="24">
-                          <span>{{ item.title }}</span>
-                        </el-col>
-                      </el-row>
-                    </el-col>
-                    <el-col :span="4" class="text-center displaynone-checkbox">
-                      <el-checkbox-group v-model="flowDetailData.right1" @change="handleCheckedRight1Change">
-                        <el-row v-for="(item, index) in formFieldList" :key="index">
-                          <el-col :span="24" class="text-center">
-                            <el-checkbox :label="item.field">&nbsp;</el-checkbox>
-                          </el-col>
-                        </el-row>
-                      </el-checkbox-group>
-                    </el-col>
-                    <el-col :span="4" class="text-center displaynone-checkbox">
-                      <el-checkbox-group v-model="flowDetailData.right2" @change="handleCheckedRight2Change">
-                        <el-row v-for="(item, index) in formFieldList" :key="index">
-                          <el-col :span="24">
-                            <el-checkbox :label="item.field">&nbsp;</el-checkbox>
-                          </el-col>
-                        </el-row>
-                      </el-checkbox-group>
-                    </el-col>
-
+<!--                  <el-row class="margin-top-5">-->
+<!--                    <el-col :span="16">-->
+<!--                      <span>{{$t("转交")}}</span>-->
+<!--                    </el-col>-->
 <!--                    <el-col :span="8" class="text-center">-->
 <!--                      <el-row>-->
 <!--                        <el-col :span="12" class="text-center">-->
-<!--                          <el-checkbox :true-label="item.field" :false-label="item.field" @change="handleCheckedRight1Change"></el-checkbox>-->
+<!--                          <el-checkbox v-model="flowDetailData.transferShow"></el-checkbox>-->
 <!--                        </el-col>-->
 <!--                        <el-col :span="12" class="text-center">-->
-<!--                          <el-checkbox v-model="item.field" @change="handleCheckedRight2Change"></el-checkbox>-->
+<!--                          <el-checkbox v-model="flowDetailData.transferMuti"></el-checkbox>-->
 <!--                        </el-col>-->
 <!--                      </el-row>-->
 <!--                    </el-col>-->
-                  </el-row>
+<!--                  </el-row>-->
                 </div>
               </div>
+<!--              <div class="margin-top-10 border-bottom-1 padding-bottom-5">-->
+<!--                <div class="font-bold">{{$t("节点字段权限")}}</div>-->
+<!--                <div class="margin-top-10">-->
+<!--                  <el-row>-->
+<!--                    <el-col :span="16">-->
+<!--                      &nbsp;-->
+<!--                    </el-col>-->
+<!--                    <el-col :span="8" class="text-center">-->
+<!--                      <el-row>-->
+<!--                        <el-col :span="12" class="text-center">-->
+<!--                          <span>{{$t("显示")}}</span>-->
+<!--                        </el-col>-->
+<!--                        <el-col :span="12" class="text-center">-->
+<!--                          <span>{{$t("编辑")}}</span>-->
+<!--                        </el-col>-->
+<!--                      </el-row>-->
+<!--                    </el-col>-->
+<!--                  </el-row>-->
+<!--                  <el-row class="margin-top-5">-->
+<!--                    <el-col :span="16">-->
+<!--                      <span>{{$t("全选")}}</span>-->
+<!--                    </el-col>-->
+<!--                    <el-col :span="4" class="text-center">-->
+<!--                      <el-row>-->
+<!--                        <el-col :span="24" class="text-center">-->
+<!--                          <el-checkbox v-model="checkRight1All" @change="handleCheckAllChangeRight1"></el-checkbox>-->
+<!--                        </el-col>-->
+<!--                      </el-row>-->
+<!--                    </el-col>-->
+<!--                    <el-col :span="4" class="text-center">-->
+<!--                      <el-row>-->
+<!--                        <el-col :span="24" class="text-center">-->
+<!--                          <el-checkbox v-model="checkRight2All" @change="handleCheckAllChangeRight2"></el-checkbox>-->
+<!--                        </el-col>-->
+<!--                      </el-row>-->
+<!--                    </el-col>-->
+<!--                  </el-row>-->
+<!--                  <el-row class="margin-top-5">-->
+<!--                    <el-col :span="16">-->
+<!--                      <el-row v-for="(item, index) in formFieldList" :key="index">-->
+<!--                        <el-col :span="24">-->
+<!--                          <span>{{ item.title }}</span>-->
+<!--                        </el-col>-->
+<!--                      </el-row>-->
+<!--                    </el-col>-->
+<!--                    <el-col :span="4" class="text-center displaynone-checkbox">-->
+<!--                      <el-checkbox-group v-model="flowDetailData.right1" @change="handleCheckedRight1Change">-->
+<!--                        <el-row v-for="(item, index) in formFieldList" :key="index">-->
+<!--                          <el-col :span="24" class="text-center">-->
+<!--                            <el-checkbox :label="item.field">&nbsp;</el-checkbox>-->
+<!--                          </el-col>-->
+<!--                        </el-row>-->
+<!--                      </el-checkbox-group>-->
+<!--                    </el-col>-->
+<!--                    <el-col :span="4" class="text-center displaynone-checkbox">-->
+<!--                      <el-checkbox-group v-model="flowDetailData.right2" @change="handleCheckedRight2Change">-->
+<!--                        <el-row v-for="(item, index) in formFieldList" :key="index">-->
+<!--                          <el-col :span="24">-->
+<!--                            <el-checkbox :label="item.field">&nbsp;</el-checkbox>-->
+<!--                          </el-col>-->
+<!--                        </el-row>-->
+<!--                      </el-checkbox-group>-->
+<!--                    </el-col>-->
+<!--                  </el-row>-->
+<!--                </div>-->
+<!--              </div>-->
             </template>
           </template>
 
@@ -283,16 +275,16 @@
                   </el-col>
                 </el-row>
               </div>
-              <div class="margin-top-10">
-                <el-row>
-                  <el-col :span="20">
-                    <span>{{$t("允许流程发起人催办")}}</span>
-                  </el-col>
-                  <el-col :span="4" class="text-center">
-                    <el-checkbox v-model="form.urge"></el-checkbox>
-                  </el-col>
-                </el-row>
-              </div>
+<!--              <div class="margin-top-10">-->
+<!--                <el-row>-->
+<!--                  <el-col :span="20">-->
+<!--                    <span>{{$t("允许流程发起人催办")}}</span>-->
+<!--                  </el-col>-->
+<!--                  <el-col :span="4" class="text-center">-->
+<!--                    <el-checkbox v-model="form.urge"></el-checkbox>-->
+<!--                  </el-col>-->
+<!--                </el-row>-->
+<!--              </div>-->
               <div class="margin-top-10">
                 <el-row>
                   <el-col :span="20">
@@ -390,9 +382,9 @@
                       <el-tag size="mini" type="success" v-if="item.rejectShow || item.rejectMuti" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
                         {{ $t("驳回") }}
                       </el-tag>
-                      <el-tag size="mini" type="success" v-if="item.transferShow || item.transferMuti" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
-                        {{ $t("转交") }}
-                      </el-tag>
+<!--                      <el-tag size="mini" type="success" v-if="item.transferShow || item.transferMuti" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">-->
+<!--                        {{ $t("转交") }}-->
+<!--                      </el-tag>-->
                     </span>
                   </div>
                 </div>

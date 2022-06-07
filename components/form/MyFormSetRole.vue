@@ -357,6 +357,8 @@
         this.drawerRole = true;
       },
       changeFormType(data){
+        this.approverUsers = [];
+        this.form.permissionContentArray = [];
         this.form.roleType = data;
       },
       changeFormOprLook(data){
@@ -422,8 +424,8 @@
             };
 
             let contentArray = [];
-            for (let i = 0 ; i < this.approverUsers.length; i++){
-              contentArray.push(this.approverUsers[i].user_id);
+            for (let i = 0 ; i < this.form.permissionContentArray.length; i++){
+              contentArray.push(this.form.permissionContentArray[i].user_id);
             }
             params['permissionContent'] = contentArray.join();
             if (this.form.id != ""){
@@ -477,6 +479,7 @@
             });
           }
         }
+        //console.log(this.approverUsers,this.form.permissionContentArray);
         this.drawerRole = true;
       },
       deleteForm($event, data){
@@ -556,7 +559,8 @@
           let tesacherArr = this.form.approverTeacherId ? this.form.approverTeacherId : [];
           this.form.roleUsers = tesacherArr.concat(this.form.approverStudentId);
         }
-        console.log(this.form.roleUsers);
+        this.form.roleUsers = [...new Set(this.form.roleUsers)];
+        //console.log(this.form.roleUsers);
         this.approverUsers = this.form.roleUsers;
       }
     }

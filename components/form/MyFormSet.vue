@@ -53,19 +53,19 @@
                 <el-form-item :label="$t('按钮文字')" prop="subBtnText">
                   <el-input v-model="formBasic.subBtnText" size="small" class="width-300"></el-input>
                 </el-form-item>
-                <el-form-item :label="$t('显隐规则')">
-                  <div style="width: 300px;height: 180px;overflow-y: auto;border: 1px solid #dddddd; border-radius: 5px;padding:5px;display: inline-block">
-                    <el-row :gutter="16">
-                      <el-col :span="12" v-for="(item, index) in ruleList" :key="index" @click.native="editRuleList(item)">
-                        <div class="item-tag-block margin-bottom-10" style="position: relative">
-                          <div class="moon-content-text-ellipsis-class color-white">{{ item.hideName }}</div>
-                          <span style="position: absolute;right: -5px;top: -10px"><i class="fa fa-close" @click.stop="delRuleList(item)"></i></span>
-                        </div>
-                      </el-col>
-                    </el-row>
-                  </div>
-                  <i class="fa fa-plus-circle color-success" style="position: relative; top: -100px;font-size: 30px" @click="addRule"></i>
-                </el-form-item>
+<!--                <el-form-item :label="$t('显隐规则')">-->
+<!--                  <div style="width: 300px;height: 180px;overflow-y: auto;border: 1px solid #dddddd; border-radius: 5px;padding:5px;display: inline-block">-->
+<!--                    <el-row :gutter="16">-->
+<!--                      <el-col :span="12" v-for="(item, index) in ruleList" :key="index" @click.native="editRuleList(item)">-->
+<!--                        <div class="item-tag-block margin-bottom-10" style="position: relative">-->
+<!--                          <div class="moon-content-text-ellipsis-class color-white">{{ item.hideName }}</div>-->
+<!--                          <span style="position: absolute;right: -5px;top: -10px"><i class="fa fa-close" @click.stop="delRuleList(item)"></i></span>-->
+<!--                        </div>-->
+<!--                      </el-col>-->
+<!--                    </el-row>-->
+<!--                  </div>-->
+<!--                  <i class="fa fa-plus-circle color-success" style="position: relative; top: -100px;font-size: 30px" @click="addRule"></i>-->
+<!--                </el-form-item>-->
                 <el-form-item class="text-center">
                   <el-button type="primary" size="mini" :loading="btnLoading" @click="onSubmitBasic">{{ $t('保存') }}</el-button>
                 </el-form-item>
