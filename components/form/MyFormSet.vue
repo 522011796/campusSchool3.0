@@ -293,7 +293,8 @@
         let params = {
           page: this.page,
           num:9999,
-          searchKey: this.searchKey
+          searchKey: this.searchKey,
+          formId: this.formId.id,
         };
         this.$axios.get(common.server_form_template_notice_page, {params: params}).then(res => {
           if (res.data.data){
