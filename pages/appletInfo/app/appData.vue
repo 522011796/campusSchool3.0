@@ -67,7 +67,7 @@
                     <el-row>
                       <el-col :span="8">
                         <div>
-                          <i class="el-icon-collection" style="font-size: 50px"></i>
+                          <i class="el-icon-notebook-2 color-grand" style="font-size: 50px"></i>
                         </div>
                         <div class="color-success font-size-12 text-left margin-top-5">
                           <span>{{ serverTypeInfo(item.applet_type, 'set') }}</span>
