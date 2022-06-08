@@ -150,7 +150,8 @@
               <el-option v-for="item in categorys" :key="item.value" :label="item.label" :value="item.value" :disabled="item.enable == false"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item :label="$t('归属部门')" prop="dept">
+          <el-form-item>
+            <span slot="label" class="custon-form-start-tag">{{$t('归属部门')}}</span>
             <my-cascader ref="SelectorCollege" :sel-value="form.dept" :props="{multiple: true}" type="4" sub-type="id" width-style="260" @change="handleCascaderChange($event)"></my-cascader>
           </el-form-item>
         </el-form>
@@ -405,6 +406,7 @@
           dept: []
         };
         this.subTitle = "";
+        this.$set(this.form,'dept', []);
         this.resetCasadeSelector('SelectorCollege');
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
@@ -437,5 +439,9 @@
 </script>
 
 <style scoped>
-
+.custon-form-start-tag:before {
+  content: '*';
+  color: #F56C6C;
+  margin-right: 4px;
+}
 </style>
