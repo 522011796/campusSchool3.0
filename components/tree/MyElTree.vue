@@ -17,12 +17,15 @@
       <div v-if="showCampus" :class="selectCampusAll == true ? 'tree-el-tree-all' : 'tree-el-tree-all-no'" @click="nodeClickCampusAll">
         {{campusName}}
       </div>
+
       <el-tree
         class="filter-tree"
         :data="data"
         :show-checkbox="showCheckbox"
         :filter-node-method="filterNode"
         :default-checked-keys="defaultCheckedKeys"
+        :default-expanded-keys="defaultExpandedKeys"
+        :currentNodeKey="currentNodeKey"
         ref="tree"
         node-key="id"
         :highlight-current="selectCampusAll == true ? false : true"
@@ -56,6 +59,16 @@
           return [];
         },
         type: Array
+      },
+      defaultExpandedKeys: {
+        default: function () {
+          return [];
+        },
+        type: Array
+      },
+      currentNodeKey: {
+        default: '',
+        type: [String, Number]
       },
       width: {
         default: '',
@@ -139,7 +152,16 @@
         }else if(this.type == 100){
           await this.getAppletInfo(this.extraType);
           this.data = this.dataApplet;
-        }else if(this.type == 110){
+        }else if(this.type == 110){//应用默认选择用，不显示学校和默认选中第一个
+          await this.getAppletServerInfo(this.extraType);
+          this.data = this.dataAppletServer;
+          this.selectCampusAll = false;
+          this.$nextTick(() => {
+            if (this.$refs.tree){
+              this.$refs.tree.setCurrentKey(this.currentNodeKey); //一定要加这个选中了否则样式没有出来
+            }
+          });
+        }else if(this.type == 111){
           await this.getAppletServerInfo(this.extraType);
           this.data = this.dataAppletServer;
         }

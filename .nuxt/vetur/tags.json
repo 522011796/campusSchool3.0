@@ -137,30 +137,6 @@
   "LazyTableBarChart": {
     "description": "Auto imported from components/charts/TableBarChart.vue"
   },
-  "MyInputButton": {
-    "description": "Auto imported from components/search/MyInputButton.vue"
-  },
-  "LazyMyInputButton": {
-    "description": "Auto imported from components/search/MyInputButton.vue"
-  },
-  "MySearchOfDate": {
-    "description": "Auto imported from components/search/MySearchOfDate.vue"
-  },
-  "LazyMySearchOfDate": {
-    "description": "Auto imported from components/search/MySearchOfDate.vue"
-  },
-  "MySearchOfDateGroup": {
-    "description": "Auto imported from components/search/MySearchOfDateGroup.vue"
-  },
-  "LazyMySearchOfDateGroup": {
-    "description": "Auto imported from components/search/MySearchOfDateGroup.vue"
-  },
-  "MyYearTerm": {
-    "description": "Auto imported from components/search/MyYearTerm.vue"
-  },
-  "LazyMyYearTerm": {
-    "description": "Auto imported from components/search/MyYearTerm.vue"
-  },
   "MyFormAuditType": {
     "description": "Auto imported from components/form/MyFormAuditType.vue"
   },
@@ -190,6 +166,30 @@
   },
   "LazyMyFormSetRole": {
     "description": "Auto imported from components/form/MyFormSetRole.vue"
+  },
+  "MyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
+  },
+  "LazyMyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
+  },
+  "MySearchOfDate": {
+    "description": "Auto imported from components/search/MySearchOfDate.vue"
+  },
+  "LazyMySearchOfDate": {
+    "description": "Auto imported from components/search/MySearchOfDate.vue"
+  },
+  "MySearchOfDateGroup": {
+    "description": "Auto imported from components/search/MySearchOfDateGroup.vue"
+  },
+  "LazyMySearchOfDateGroup": {
+    "description": "Auto imported from components/search/MySearchOfDateGroup.vue"
+  },
+  "MyYearTerm": {
+    "description": "Auto imported from components/search/MyYearTerm.vue"
+  },
+  "LazyMyYearTerm": {
+    "description": "Auto imported from components/search/MyYearTerm.vue"
   },
   "MyBlockListChildTree": {
     "description": "Auto imported from components/tree/MyBlockListChildTree.vue"

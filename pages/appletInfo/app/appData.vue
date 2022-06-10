@@ -7,7 +7,7 @@
           <span class="layout-left-menu-title">数据中心</span>
         </div>
         <my-el-tree v-if="mainMenu == '1'" type="4" @node-click="nodeAppClick" @all-click="nodeAppClick"></my-el-tree>
-        <my-el-tree ref="appRef" v-if="mainMenu == '2'" type="110" :extra-type="appName" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
+        <my-el-tree ref="appRef" v-if="mainMenu == '2'" type="110" :extra-type="appName" :currentNodeKey="currentNodeKey" :default-expanded-keys="defaultExpandedKeys" :show-campus="false" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
       </div>
 
       <div slot="right">
@@ -101,6 +101,18 @@
             style="width: 100%">
             <el-table-column
               align="center"
+              :label="$t('服务')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{ scope.row.formName }}</div>
+                  <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{ scope.row.formName }}
+                  </span>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
               :label="$t('申请日期')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
@@ -171,25 +183,25 @@
                 </el-popover>
               </template>
             </el-table-column>
-<!--            <el-table-column-->
-<!--              v-for="(item, index) in applyContentArr"-->
-<!--              :key="index"-->
-<!--              align="center"-->
-<!--              width="100"-->
-<!--              :label="item.title">-->
-<!--              <template slot-scope="scope">-->
-<!--                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">-->
-<!--                  <div class="text-center">-->
-<!--                    <label v-if="scope.row.applyContentObj[index]">{{scope.row.applyContentObj[index].value}}</label>-->
-<!--                    <label v-else>&#45;&#45;</label>-->
-<!--                  </div>-->
-<!--                  <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">-->
-<!--                    <label v-if="scope.row.applyContentObj[index]">{{scope.row.applyContentObj[index].value}}</label>-->
-<!--                    <label v-else>&#45;&#45;</label>-->
-<!--                  </span>-->
-<!--                </el-popover>-->
-<!--              </template>-->
-<!--            </el-table-column>-->
+            <el-table-column
+              v-for="(item, index) in tableDataTitles"
+              :key="index"
+              align="center"
+              width="100"
+              :label="item">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">
+                    <label v-if="scope.row[item]" class="moon-content-text-ellipsis-class" style="max-width: 200px !important;display: inline-block">{{scope.row[item]}}</label>
+                    <label v-else>--</label>
+                  </div>
+                  <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    <label v-if="scope.row[item]" class="moon-content-text-ellipsis-class" style="max-width: 90px !important;display: inline-block">{{scope.row[item]}}</label>
+                    <label v-else>--</label>
+                  </span>
+                </el-popover>
+              </template>
+            </el-table-column>
             <el-table-column
               align="center"
               width="100"
@@ -395,9 +407,12 @@
         totalDetail: 0,
         tableData: [],
         tableDetailData: [],
+        tableDataTitles: [],
         collegeList: [],
         categorys: [],
         applyContentArr: [],
+        defaultExpandedKeys: [],
+        currentNodeKey: '',
         types: [],
         subTitle: '',
         collegeData: '',
@@ -457,6 +472,7 @@
             }
 
             this.applyContentArr = applyContentArr;
+            this.tableDataTitles = res.data.data.title;
             this.tableDetailData = res.data.data.list;
             this.totalDetail = res.data.data.total;
             this.numDetail = res.data.data.num;
@@ -528,6 +544,10 @@
       },
       returnMain(){
         this.searchKey = "";
+        this.collegeData = "";
+        this.searchType = "";
+        this.searchStatus = "";
+        this.page = 1;
         this.mainMenu = 1;
         this.initApp();
       },
@@ -543,11 +563,21 @@
         url = common.server_form_audit_export;
         window.open(url+"?"+params, "_self");
       },
-      detailAppInfo(item){
+      async detailAppInfo(item){
         this.mainMenu = 2;
         this.pageDetail = 1;
         this.appName = ''+item.id;
         this.appletId = item.id;
+        this.formId = '';
+
+        await this.getAppletServerInfo(this.appName);
+        let data = this.dataAppletServer;
+        if (data && data[0]['children']){
+          this.formId = data[0]['children'][0].id;
+          this.defaultExpandedKeys = [data[0].id, data[0]['children'][0].id];
+          this.currentNodeKey = data[0]['children'][0].id;
+        }
+
         this.init();
       },
       detailInfo(item){
@@ -639,12 +669,14 @@
       nodeClick(data){
         this.formId = "";
         this.page = 1;
+
         if (data.unit == 2){
           this.formId = data.id;
-        }
-        if (data.unit != 1){
           this.init();
         }
+        // if (data.unit != 1){
+        //   this.init();
+        // }
       },
       handleTypeChange(event, type){
         if (type == 1){
