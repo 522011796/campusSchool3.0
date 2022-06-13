@@ -2,16 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="智慧迎新ui">
-      <change afterPath="$PROJECT_DIR$/components/flow/MyNewStudentFlow.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/flow/MyNewStudentFlowType.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/validater/flowManageValidater.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/charts/HBarChart.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/file_disabled_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/file_edit_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/user_icon.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/flowManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/flowManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/newStudent/data/flowStatic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/data/flowStatic.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/newStudent/data/signStatic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/data/signStatic.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +39,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/flow" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/charts" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -52,11 +52,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/components/charts" />
+      <recent name="$PROJECT_DIR$/static/img" />
       <recent name="$PROJECT_DIR$/components/flow" />
       <recent name="$PROJECT_DIR$/utils/validater" />
       <recent name="$PROJECT_DIR$/pages/appletInfo/app" />
-      <recent name="$PROJECT_DIR$/pages/newStudent/data" />
-      <recent name="$PROJECT_DIR$/pages/newStudent/log" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/pages/serviceArea/app" />
@@ -154,14 +154,7 @@
       <workItem from="1652750744624" duration="32000" />
       <workItem from="1652950158685" duration="33561000" />
       <workItem from="1654054761234" duration="668000" />
-      <workItem from="1654068205924" duration="84013000" />
-    </task>
-    <task id="LOCAL-00013" summary="专业修改可以更改学院">
-      <created>1628648332381</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1628648332381</updated>
+      <workItem from="1654068205924" duration="96947000" />
     </task>
     <task id="LOCAL-00014" summary="专业修改可以更改学院">
       <created>1629948039591</created>
@@ -499,7 +492,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654843411457</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="智慧迎新ui">
+      <created>1654931538826</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1654931538826</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
