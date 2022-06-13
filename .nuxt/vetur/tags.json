@@ -71,6 +71,108 @@
   "LazyLayoutTb": {
     "description": "Auto imported from components/Layout/LayoutTb.vue"
   },
+  "BarChart": {
+    "description": "Auto imported from components/charts/BarChart.vue"
+  },
+  "LazyBarChart": {
+    "description": "Auto imported from components/charts/BarChart.vue"
+  },
+  "CircleChart": {
+    "description": "Auto imported from components/charts/CircleChart.vue"
+  },
+  "LazyCircleChart": {
+    "description": "Auto imported from components/charts/CircleChart.vue"
+  },
+  "HBarChart": {
+    "description": "Auto imported from components/charts/HBarChart.vue"
+  },
+  "LazyHBarChart": {
+    "description": "Auto imported from components/charts/HBarChart.vue"
+  },
+  "LineChart": {
+    "description": "Auto imported from components/charts/LineChart.vue"
+  },
+  "LazyLineChart": {
+    "description": "Auto imported from components/charts/LineChart.vue"
+  },
+  "LineClassPopChart": {
+    "description": "Auto imported from components/charts/LineClassPopChart.vue"
+  },
+  "LazyLineClassPopChart": {
+    "description": "Auto imported from components/charts/LineClassPopChart.vue"
+  },
+  "LinePopChart": {
+    "description": "Auto imported from components/charts/LinePopChart.vue"
+  },
+  "LazyLinePopChart": {
+    "description": "Auto imported from components/charts/LinePopChart.vue"
+  },
+  "PopChart": {
+    "description": "Auto imported from components/charts/PopChart.vue"
+  },
+  "LazyPopChart": {
+    "description": "Auto imported from components/charts/PopChart.vue"
+  },
+  "RadarChart": {
+    "description": "Auto imported from components/charts/RadarChart.vue"
+  },
+  "LazyRadarChart": {
+    "description": "Auto imported from components/charts/RadarChart.vue"
+  },
+  "RadarDormChart": {
+    "description": "Auto imported from components/charts/RadarDormChart.vue"
+  },
+  "LazyRadarDormChart": {
+    "description": "Auto imported from components/charts/RadarDormChart.vue"
+  },
+  "SexPieChart": {
+    "description": "Auto imported from components/charts/SexPieChart.vue"
+  },
+  "LazySexPieChart": {
+    "description": "Auto imported from components/charts/SexPieChart.vue"
+  },
+  "SexPieMoreChart": {
+    "description": "Auto imported from components/charts/SexPieMoreChart.vue"
+  },
+  "LazySexPieMoreChart": {
+    "description": "Auto imported from components/charts/SexPieMoreChart.vue"
+  },
+  "TableBarChart": {
+    "description": "Auto imported from components/charts/TableBarChart.vue"
+  },
+  "LazyTableBarChart": {
+    "description": "Auto imported from components/charts/TableBarChart.vue"
+  },
+  "MyFormAuditType": {
+    "description": "Auto imported from components/form/MyFormAuditType.vue"
+  },
+  "LazyMyFormAuditType": {
+    "description": "Auto imported from components/form/MyFormAuditType.vue"
+  },
+  "MyFormFlow": {
+    "description": "Auto imported from components/form/MyFormFlow.vue"
+  },
+  "LazyMyFormFlow": {
+    "description": "Auto imported from components/form/MyFormFlow.vue"
+  },
+  "MyFormSet": {
+    "description": "Auto imported from components/form/MyFormSet.vue"
+  },
+  "LazyMyFormSet": {
+    "description": "Auto imported from components/form/MyFormSet.vue"
+  },
+  "MyFormSetNotice": {
+    "description": "Auto imported from components/form/MyFormSetNotice.vue"
+  },
+  "LazyMyFormSetNotice": {
+    "description": "Auto imported from components/form/MyFormSetNotice.vue"
+  },
+  "MyFormSetRole": {
+    "description": "Auto imported from components/form/MyFormSetRole.vue"
+  },
+  "LazyMyFormSetRole": {
+    "description": "Auto imported from components/form/MyFormSetRole.vue"
+  },
   "MyNewStudentFlow": {
     "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
   },
@@ -82,6 +184,30 @@
   },
   "LazyMyNewStudentFlowType": {
     "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
+  },
+  "MyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
+  },
+  "LazyMyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
+  },
+  "MySearchOfDate": {
+    "description": "Auto imported from components/search/MySearchOfDate.vue"
+  },
+  "LazyMySearchOfDate": {
+    "description": "Auto imported from components/search/MySearchOfDate.vue"
+  },
+  "MySearchOfDateGroup": {
+    "description": "Auto imported from components/search/MySearchOfDateGroup.vue"
+  },
+  "LazyMySearchOfDateGroup": {
+    "description": "Auto imported from components/search/MySearchOfDateGroup.vue"
+  },
+  "MyYearTerm": {
+    "description": "Auto imported from components/search/MyYearTerm.vue"
+  },
+  "LazyMyYearTerm": {
+    "description": "Auto imported from components/search/MyYearTerm.vue"
   },
   "MyBlockListChildTree": {
     "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
@@ -185,6 +311,18 @@
   "LazyTerleaveDetail": {
     "description": "Auto imported from components/utils/auditDetail/TerleaveDetail.vue"
   },
+  "MyHeadImg": {
+    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
+  },
+  "LazyMyHeadImg": {
+    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
+  },
+  "MyViewImg": {
+    "description": "Auto imported from components/utils/common/MyViewImg.vue"
+  },
+  "LazyMyViewImg": {
+    "description": "Auto imported from components/utils/common/MyViewImg.vue"
+  },
   "AuditStatusButton": {
     "description": "Auto imported from components/utils/button/AuditStatusButton.vue"
   },
@@ -208,18 +346,6 @@
   },
   "LazyTimeoutButton": {
     "description": "Auto imported from components/utils/button/TimeoutButton.vue"
-  },
-  "MyHeadImg": {
-    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
-  },
-  "LazyMyHeadImg": {
-    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
-  },
-  "MyViewImg": {
-    "description": "Auto imported from components/utils/common/MyViewImg.vue"
-  },
-  "LazyMyViewImg": {
-    "description": "Auto imported from components/utils/common/MyViewImg.vue"
   },
   "DialogNormal": {
     "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
@@ -394,131 +520,5 @@
   },
   "LazyUploadSquare": {
     "description": "Auto imported from components/utils/upload/UploadSquare.vue"
-  },
-  "MyInputButton": {
-    "description": "Auto imported from components/search/MyInputButton.vue"
-  },
-  "LazyMyInputButton": {
-    "description": "Auto imported from components/search/MyInputButton.vue"
-  },
-  "MySearchOfDate": {
-    "description": "Auto imported from components/search/MySearchOfDate.vue"
-  },
-  "LazyMySearchOfDate": {
-    "description": "Auto imported from components/search/MySearchOfDate.vue"
-  },
-  "MySearchOfDateGroup": {
-    "description": "Auto imported from components/search/MySearchOfDateGroup.vue"
-  },
-  "LazyMySearchOfDateGroup": {
-    "description": "Auto imported from components/search/MySearchOfDateGroup.vue"
-  },
-  "MyYearTerm": {
-    "description": "Auto imported from components/search/MyYearTerm.vue"
-  },
-  "LazyMyYearTerm": {
-    "description": "Auto imported from components/search/MyYearTerm.vue"
-  },
-  "MyFormAuditType": {
-    "description": "Auto imported from components/form/MyFormAuditType.vue"
-  },
-  "LazyMyFormAuditType": {
-    "description": "Auto imported from components/form/MyFormAuditType.vue"
-  },
-  "MyFormFlow": {
-    "description": "Auto imported from components/form/MyFormFlow.vue"
-  },
-  "LazyMyFormFlow": {
-    "description": "Auto imported from components/form/MyFormFlow.vue"
-  },
-  "MyFormSet": {
-    "description": "Auto imported from components/form/MyFormSet.vue"
-  },
-  "LazyMyFormSet": {
-    "description": "Auto imported from components/form/MyFormSet.vue"
-  },
-  "MyFormSetNotice": {
-    "description": "Auto imported from components/form/MyFormSetNotice.vue"
-  },
-  "LazyMyFormSetNotice": {
-    "description": "Auto imported from components/form/MyFormSetNotice.vue"
-  },
-  "MyFormSetRole": {
-    "description": "Auto imported from components/form/MyFormSetRole.vue"
-  },
-  "LazyMyFormSetRole": {
-    "description": "Auto imported from components/form/MyFormSetRole.vue"
-  },
-  "BarChart": {
-    "description": "Auto imported from components/charts/BarChart.vue"
-  },
-  "LazyBarChart": {
-    "description": "Auto imported from components/charts/BarChart.vue"
-  },
-  "CircleChart": {
-    "description": "Auto imported from components/charts/CircleChart.vue"
-  },
-  "LazyCircleChart": {
-    "description": "Auto imported from components/charts/CircleChart.vue"
-  },
-  "HBarChart": {
-    "description": "Auto imported from components/charts/HBarChart.vue"
-  },
-  "LazyHBarChart": {
-    "description": "Auto imported from components/charts/HBarChart.vue"
-  },
-  "LineChart": {
-    "description": "Auto imported from components/charts/LineChart.vue"
-  },
-  "LazyLineChart": {
-    "description": "Auto imported from components/charts/LineChart.vue"
-  },
-  "LineClassPopChart": {
-    "description": "Auto imported from components/charts/LineClassPopChart.vue"
-  },
-  "LazyLineClassPopChart": {
-    "description": "Auto imported from components/charts/LineClassPopChart.vue"
-  },
-  "LinePopChart": {
-    "description": "Auto imported from components/charts/LinePopChart.vue"
-  },
-  "LazyLinePopChart": {
-    "description": "Auto imported from components/charts/LinePopChart.vue"
-  },
-  "PopChart": {
-    "description": "Auto imported from components/charts/PopChart.vue"
-  },
-  "LazyPopChart": {
-    "description": "Auto imported from components/charts/PopChart.vue"
-  },
-  "RadarChart": {
-    "description": "Auto imported from components/charts/RadarChart.vue"
-  },
-  "LazyRadarChart": {
-    "description": "Auto imported from components/charts/RadarChart.vue"
-  },
-  "RadarDormChart": {
-    "description": "Auto imported from components/charts/RadarDormChart.vue"
-  },
-  "LazyRadarDormChart": {
-    "description": "Auto imported from components/charts/RadarDormChart.vue"
-  },
-  "SexPieChart": {
-    "description": "Auto imported from components/charts/SexPieChart.vue"
-  },
-  "LazySexPieChart": {
-    "description": "Auto imported from components/charts/SexPieChart.vue"
-  },
-  "SexPieMoreChart": {
-    "description": "Auto imported from components/charts/SexPieMoreChart.vue"
-  },
-  "LazySexPieMoreChart": {
-    "description": "Auto imported from components/charts/SexPieMoreChart.vue"
-  },
-  "TableBarChart": {
-    "description": "Auto imported from components/charts/TableBarChart.vue"
-  },
-  "LazyTableBarChart": {
-    "description": "Auto imported from components/charts/TableBarChart.vue"
   }
 }
