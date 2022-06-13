@@ -1167,7 +1167,7 @@
             "path": "/newStudent/data/pickUpData"
           },
           {
-            "name": "报道数据",
+            "name": "报道记录",
             "key": "registerData",
             "id": 101700,
             "top": "enrollInfo",

@@ -5,7 +5,7 @@
         <div slot="left">
           <div class="color-muted font-size-12 padding-tb-5 margin-top-10">
             <!--<span class="layout-left-menu-tag"></span>-->
-            <span class="layout-left-menu-title">报道数据</span>
+            <span class="layout-left-menu-title">报道记录</span>
           </div>
           <my-el-tree type="4" sub-type="" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
         </div>
@@ -15,13 +15,8 @@
             <el-row>
               <el-col :span="12">
                 <div class="layout-inline">
-                  <el-button class="layout-item" size="small" type="warning"  icon="el-icon-download" @click="expandInfo($event)">{{$t("导出")}}</el-button>
-                  <tab-group-button size="small" :options='[
-                    {label:$t("总人数"), value: "1", extra: countNum},
-                    {label:$t("已报道"), value: "3", extra: signNum},
-                    {label:$t("未报道"), value: "0", extra: unSignNum}]' @click="changeStatus">
-                  </tab-group-button>
-                  <my-cascader class="layout-item" size="small" ref="SelectorCollege" :sel-value="searchCascader" type="4" sub-type="id" width-style="160" @change="handleCascaderChange($event)"></my-cascader>
+                  <my-select class="layout-item width-150" size="small" :placeholder="$t('类型')" :sel-value="searchTopType" :options="typeOptions" :clearable="true" @change="handleTypeChange($event, 1)"></my-select>
+                  <my-select class="layout-item width-150" size="small" :placeholder="$t('状态')" :sel-value="searchTopStatus" :options="statusOptions" :clearable="true" @change="handleTypeChange($event, 2)"></my-select>
                 </div>
               </el-col>
               <el-col :span="12" class="text-right">
@@ -49,15 +44,14 @@
               header-cell-class-name="custom-table-cell-bg"
               size="medium"
               :max-height="tableHeight2.height"
-              @filter-change="fliterTable"
               style="width: 100%">
-              <el-table-column align="center" :label="$t('录取日期')">
+              <el-table-column align="center" :label="$t('姓名')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                     <div class="text-center">{{scope.row.name}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
+                      1
+                    </span>
                   </el-popover>
                 </template>
               </el-table-column>
@@ -71,20 +65,7 @@
                   </el-popover>
                 </template>
               </el-table-column>
-              <el-table-column align="center" :label="$t('姓名')">
-                <template slot-scope="scope">
-                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
-                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      <a href="javascript:;" @click="detailInfo(scope.row)">1</a>
-                    </span>
-                  </el-popover>
-                </template>
-              </el-table-column>
-              <el-table-column align="center" :label="$t('性别')"
-                               column-key="sexType"
-                               :filter-multiple="false"
-                               :filters="filtersSexType">
+              <el-table-column align="center" :label="$t('性别')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                     <div class="text-center">{{scope.row.name}}</div>
@@ -104,7 +85,7 @@
                   </el-popover>
                 </template>
               </el-table-column>
-              <el-table-column align="center" :label="$t('院系')">
+              <el-table-column align="center" :label="$t('专业')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                     <div class="text-center">{{scope.row.name}}</div>
@@ -124,32 +105,7 @@
                   </el-popover>
                 </template>
               </el-table-column>
-              <el-table-column align="center" :label="$t('招生老师')">
-                <template slot-scope="scope">
-                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
-                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
-                  </el-popover>
-                </template>
-              </el-table-column>
-              <el-table-column align="center" :label="$t('状态')">
-                <template slot-scope="scope">
-                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
-                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
-                  </el-popover>
-                </template>
-              </el-table-column>
-              <el-table-column align="center"
-                               width="120"
-                               :label="$t('核验方式')"
-                               column-key="auditType"
-                               :filter-multiple="false"
-                               :filters="filtersAuditType">
+              <el-table-column align="center" :label="$t('报道类型')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                     <div class="text-center">{{scope.row.name}}</div>
@@ -169,11 +125,12 @@
                   </el-popover>
                 </template>
               </el-table-column>
-              <el-table-column align="center" :label="$t('准时报道')"
-                               width="120"
-                               column-key="signType"
-                               :filter-multiple="false"
-                               :filters="filtersSignType">
+              <el-table-column align="center" :label="$t('照片抓拍')">
+                <template slot-scope="scope">
+                  <my-head-img :head-img="scope.row"></my-head-img>
+                </template>
+              </el-table-column>
+              <el-table-column align="center" :label="$t('抓拍状态')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                     <div class="text-center">{{scope.row.name}}</div>
@@ -181,51 +138,6 @@
                     {{scope.row.name}}
                   </span>
                   </el-popover>
-                </template>
-              </el-table-column>
-              <el-table-column align="center" :label="$t('是否接站')"
-                               width="120"
-                               column-key="interfaceType"
-                               :filter-multiple="false"
-                               :filters="filtersSignType">
-                <template slot-scope="scope">
-                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
-                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
-                  </el-popover>
-                </template>
-              </el-table-column>
-              <el-table-column align="center" :label="$t('陪同人员')">
-                <template slot-scope="scope">
-                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
-                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
-                  </el-popover>
-                </template>
-              </el-table-column>
-              <el-table-column align="center" :label="$t('到达站')">
-                <template slot-scope="scope">
-                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
-                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
-                  </el-popover>
-                </template>
-              </el-table-column>
-              <el-table-column
-                align="center"
-                width="260"
-                fixed="right"
-                :label="$t('操作')">
-                <template slot-scope="scope">
-                  <el-button size="mini" type="success" @click="statusInfo(scope.row, 1)">{{$t("已到")}}</el-button>
-                  <el-button size="mini" type="danger" @click="statusInfo(scope.row, -1)">{{$t("撤销")}}</el-button>
-                  <el-button size="mini" type="primary" @click="signInfo(scope.row)">{{$t("报道单")}}</el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -364,330 +276,6 @@
         </div>
       </div>
     </drawer-layout-right>
-
-    <drawer-layout-right tabindex="0" :show-close="true" @changeDrawer="closeDialog" :visible="dialogDetail" size="680px">
-      <div slot="title">
-        <div class="header-block padding-lr-10">
-          <span class="tab-class font-bold">
-            <i class="fa fa-user"></i>
-            {{$t('学生信息')}}
-          </span>
-        </div>
-      </div>
-      <div slot="content" class="color-muted">
-        <el-form :model="form" ref="form" label-width="90px">
-          <template v-if="form.id != ''">
-            <div class="color-muted margin-top-5">
-              <span>
-                <label class="title-block-tag"></label>
-                <label class="title-block-text color-warning">{{$t("照片信息")}}</label>
-              </span>
-            </div>
-            <div class="block-item-bg font-size-12">
-              <div class="custom-el-image pull-left">
-                <div class="text-center" style="width: 80px; height: 80px;">
-                  <div class="block">
-                    <el-image style="width: 60px; height: 60px;">
-                      <div slot="error" class="image-slot">
-                        <i class="el-icon-picture-outline"></i>
-                      </div>
-                    </el-image>
-                  </div>
-                  <div class="font-size-12 color-sub-grand margin-top-5">
-                    <span>{{$t("高考照片")}}</span>
-                  </div>
-                </div>
-              </div>
-              <div class="custom-el-image pull-left margin-left-10">
-                <div class="text-center" style="width: 80px; height: 80px;">
-                  <div class="block">
-                    <el-image style="width: 60px; height: 60px;">
-                      <div slot="error" class="image-slot">
-                        <i class="el-icon-picture-outline"></i>
-                      </div>
-                    </el-image>
-                  </div>
-                  <div class="font-size-12 color-sub-grand margin-top-5">
-                    <span>{{$t("采集照片")}}</span>
-                  </div>
-                </div>
-              </div>
-              <div class="moon-clearfix"></div>
-            </div>
-          </template>
-          <template>
-            <div :class="form.id != '' ? 'margin-top-20' : 'margin-top-5'">
-              <span>
-                <label class="title-block-tag"></label>
-                <label class="title-block-text color-warning">{{$t("基础信息")}}</label>
-              </span>
-            </div>
-            <div class="block-item-bg font-size-12">
-              <el-row :gutter="8">
-                <el-col :span="12">
-                  <el-form-item :label="$t('迎新年度')" prop="year">
-                    <my-select :disabled="form.id != ''" class="layout-item" size="small" :placeholder="$t('请选择')" :sel-value="form.year" :options="yearOptions" width-style="220" :clearable="true" @change="handleSelectChange($event, 1)"></my-select>
-                  </el-form-item>
-                </el-col>
-                <el-col :span="12">
-                  <el-form-item :label="$t('姓名')" prop="name">
-                    <el-input :disabled="form.id != ''" v-model="form.name" size="small" class="width-220"></el-input>
-                  </el-form-item>
-                </el-col>
-              </el-row>
-              <el-row :gutter="8">
-                <el-col :span="12">
-                  <el-form-item :label="$t('录取号')" prop="adNo">
-                    <el-input :disabled="form.id != ''" v-model="form.adNo" size="small" class="width-220"></el-input>
-                  </el-form-item>
-                </el-col>
-                <el-col :span="12">
-                  <el-form-item :label="$t('一卡通号')" prop="oneCardNo">
-                    <el-input :disabled="form.id != ''" v-model="form.oneCardNo" size="small" class="width-220"></el-input>
-                  </el-form-item>
-                </el-col>
-              </el-row>
-              <el-row :gutter="8">
-                <el-col :span="12">
-                  <el-form-item :label="$t('学号')" prop="stuNo">
-                    <el-input :disabled="form.id != ''" v-model="form.stuNo" size="small" class="width-220"></el-input>
-                  </el-form-item>
-                </el-col>
-                <el-col :span="12">
-                  <el-form-item :label="$t('考号')" prop="examNo">
-                    <el-input :disabled="form.id != ''" v-model="form.examNo" size="small" class="width-220"></el-input>
-                  </el-form-item>
-                </el-col>
-              </el-row>
-              <el-row :gutter="8">
-                <el-col :span="12">
-                  <el-form-item :label="$t('性别')" prop="sex">
-                    <my-select :disabled="form.id != ''" :sel-value="form.sex" :options="g_sex" width-style="220" @change="handleSelectChange($event, 2)"></my-select>
-                  </el-form-item>
-                </el-col>
-                <el-col :span="12">
-                  <el-form-item :label="$t('身份证')" prop="idCardNo">
-                    <el-input :disabled="form.id != ''" v-model="form.idCardNo" size="small" class="width-220"></el-input>
-                  </el-form-item>
-                </el-col>
-              </el-row>
-              <el-row :gutter="8">
-                <el-col :span="12">
-                  <el-form-item :label="$t('出生日期')" prop="birthday">
-                    <my-date-picker :disabled="form.id != ''" :sel-value="form.birthday" width-style="220" @change="handleChangeTime($event,1)"></my-date-picker>
-                  </el-form-item>
-                </el-col>
-                <el-col :span="12">
-                  <el-form-item :label="$t('国籍')" prop="nationality">
-                    <my-select :disabled="form.id != ''" :sel-value="form.nationality" :options="nationalityInfoText()" width-style="220" @change="handleSelectChange($event, 3)"></my-select>
-                  </el-form-item>
-                </el-col>
-              </el-row>
-              <el-row :gutter="8">
-                <el-col :span="24">
-                  <el-form-item :label="$t('民族')" prop="nation">
-                    <my-select :disabled="form.id != ''" :sel-value="form.nation" :options="nationInfoText()" width-style="220" @change="handleSelectChange($event, 4)"></my-select>
-                  </el-form-item>
-                </el-col>
-              </el-row>
-            </div>
-          </template>
-
-          <template>
-            <div class="margin-top-20">
-              <div class="color-muted margin-top-5">
-              <span>
-                <label class="title-block-tag"></label>
-                <label class="title-block-text color-warning">{{$t("联系方式")}}</label>
-              </span>
-              </div>
-              <div class="block-item-bg font-size-12">
-                <el-row :gutter="8">
-                  <el-col :span="12">
-                    <el-form-item :label="$t('手机号')" prop="phone">
-                      <el-input :disabled="form.id != ''" v-model="form.phone" size="small" class="width-220"></el-input>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form-item :label="$t('QQ')" prop="qq">
-                      <el-input :disabled="form.id != ''" v-model="form.qq" size="small" class="width-220"></el-input>
-                    </el-form-item>
-                  </el-col>
-                </el-row>
-                <el-row :gutter="8">
-                  <el-col :span="12">
-                    <el-form-item :label="$t('邮箱')" prop="email">
-                      <el-input :disabled="form.id != ''" v-model="form.email" size="small" class="width-220"></el-input>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form-item :label="$t('微信号')" prop="wechat">
-                      <el-input :disabled="form.id != ''" v-model="form.wechat" size="small" class="width-220"></el-input>
-                    </el-form-item>
-                  </el-col>
-                </el-row>
-                <el-row :gutter="8">
-                  <el-col :span="12">
-                    <el-form-item :label="$t('父亲姓名')" prop="fatherName">
-                      <el-input :disabled="form.id != ''" v-model="form.fatherName" size="small" class="width-220"></el-input>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form-item :label="$t('父亲电话')" prop="fatherPhone">
-                      <el-input :disabled="form.id != ''" v-model="form.fatherPhone" size="small" class="width-220"></el-input>
-                    </el-form-item>
-                  </el-col>
-                </el-row>
-                <el-row :gutter="8">
-                  <el-col :span="12">
-                    <el-form-item :label="$t('母亲姓名')" prop="motherName">
-                      <el-input :disabled="form.id != ''" v-model="form.motherName" size="small" class="width-220"></el-input>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form-item :label="$t('母亲电话')" prop="motherPhone">
-                      <el-input :disabled="form.id != ''" v-model="form.motherPhone" size="small" class="width-220"></el-input>
-                    </el-form-item>
-                  </el-col>
-                </el-row>
-                <el-row :gutter="8">
-                  <el-col :span="24">
-                    <el-form-item :label="$t('详细地址')" prop="address">
-                      <el-input :disabled="form.id != ''" v-model="form.address" size="small"></el-input>
-                    </el-form-item>
-                  </el-col>
-                </el-row>
-              </div>
-            </div>
-          </template>
-
-          <template>
-            <div class="margin-top-20">
-              <div class="color-muted margin-top-5">
-                <span>
-                  <label class="title-block-tag"></label>
-                  <label class="title-block-text color-warning">{{$t("入学信息")}}</label>
-                </span>
-              </div>
-              <div class="block-item-bg font-size-12">
-                <el-row :gutter="8">
-                  <el-col :span="12">
-                    <el-form-item :label="$t('学历')" prop="education">
-                      <my-select :disabled="form.id != ''" :sel-value="form.education" :options="educationInfoText()" width-style="220" @change="handleSelectChange($event, 5)"></my-select>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form-item :label="$t('学院/专业')" prop="college">
-                      <my-cascader :disabled="form.id != ''" ref="SelectorCollege" width-style="220" :sel-value="form.college" type="1" sub-type="2" @change="handleCascaderChange($event, 1)"></my-cascader>
-                    </el-form-item>
-                  </el-col>
-                </el-row>
-                <el-row :gutter="8">
-                  <el-col :span="12">
-                    <el-form-item :label="$t('班级')" prop="class">
-                      <my-cascader :disabled="form.id != ''" ref="selectorDept" :sel-value="form.class" type="1" sub-type="4" width-style="220" @change="handleCascaderChange($event, 2)"></my-cascader>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form-item :label="$t('班主任')" prop="headmaster">
-                      <el-input :disabled="form.id != ''" v-model="form.headmaster" size="small" class="width-220"></el-input>
-                    </el-form-item>
-                  </el-col>
-                </el-row>
-                <el-row :gutter="8">
-                  <el-col :span="12">
-                    <el-form-item :label="$t('学制')" prop="eduSystem">
-                      <el-input :disabled="form.id != ''" v-model="form.eduSystem" size="small" class="width-220"></el-input>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form-item :label="$t('招生老师')" prop="recruitingTeacher">
-                      <el-input :disabled="form.id != ''" v-model="form.recruitingTeacher" size="small" class="width-220"></el-input>
-                    </el-form-item>
-                  </el-col>
-                </el-row>
-              </div>
-            </div>
-          </template>
-
-          <template>
-            <div class="margin-top-20">
-              <div class="color-muted margin-top-5">
-                <span>
-                  <label class="title-block-tag"></label>
-                  <label class="title-block-text color-warning">{{$t("学历信息")}}</label>
-                </span>
-              </div>
-              <div class="block-item-bg font-size-12">
-                <el-row :gutter="8">
-                  <el-col :span="12">
-                    <el-form-item :label="$t('录取批次')" prop="adBath">
-                      <my-select :disabled="form.id != ''" :sel-value="form.adBath" :options="bathOptions" width-style="220" @change="handleSelectChange($event, 7)"></my-select>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form-item :label="$t('科目')" prop="type">
-                      <my-select :disabled="form.id != ''" :sel-value="form.subject" :options="subjectOptions" width-style="220" @change="handleSelectChange($event, 8)"></my-select>
-                    </el-form-item>
-                  </el-col>
-                </el-row>
-                <el-row :gutter="8">
-                  <el-col :span="12">
-                    <el-form-item :label="$t('录取省份')" prop="adProvince">
-                      <my-select :disabled="form.id != ''" :sel-value="form.adProvince" :options="provinceInfoText()" width-style="220" @change="handleSelectChange($event, 9)"></my-select>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form-item :label="$t('录取城市')" prop="adCity">
-                      <my-select :disabled="form.id != ''" :sel-value="form.adCity" :options="cityInfoText()" width-style="220" @change="handleSelectChange($event, 10)"></my-select>
-                    </el-form-item>
-                  </el-col>
-                </el-row>
-                <el-row :gutter="8">
-                  <el-col :span="12">
-                    <el-form-item :label="$t('毕业学校')" prop="graduationSchool">
-                      <el-input :disabled="form.id != ''" v-model="form.graduationSchool" size="small" class="width-220"></el-input>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form-item :label="$t('高考成绩')" prop="examScore">
-                      <el-input :disabled="form.id != ''" v-model="form.examScore" size="small" class="width-220"></el-input>
-                    </el-form-item>
-                  </el-col>
-                </el-row>
-              </div>
-            </div>
-          </template>
-
-          <template>
-            <div class="margin-top-20">
-              <div class="color-muted margin-top-5">
-                <span>
-                  <label class="title-block-tag"></label>
-                  <label class="title-block-text color-warning">{{$t("其他信息")}}</label>
-                </span>
-              </div>
-              <div class="block-item-bg font-size-12 custom-textarea-inner">
-                <el-row>
-                  <el-col :span="24">
-                    <el-form-item :label="$t('其他信息')" prop="otherMsg">
-                      <el-input :disabled="form.id != ''" v-model="form.otherMsg" type="textarea" :rows="5" size="small"></el-input>
-                    </el-form-item>
-                  </el-col>
-                </el-row>
-              </div>
-            </div>
-          </template>
-        </el-form>
-      </div>
-      <div slot="footer">
-        <div class="text-right padding-lr-10">
-          <el-button size="mini" @click="cancelFormDrawDialog">{{$t("取消")}}</el-button>
-          <el-button size="mini" type="success" :loading="btnLoading" @click="okFormDrawDialog($event, 1)">{{$t("已到")}}</el-button>
-          <el-button size="mini" type="danger" :loading="btnLoading" @click="okFormDrawDialog($event, 1)">{{$t("撤销")}}</el-button>
-        </div>
-      </div>
-    </drawer-layout-right>
   </div>
 </template>
 
@@ -721,67 +309,16 @@ import {
         searchKey: '',
         searchType: '',
         searchStatus: '',
-        dialogLoading: false,
-        dialogVisible: false,
-        dialogDetail: false,
-        visibleConfim: false,
-        footerHidden: false,
-        btnLoading: false,
+        searchTopType: '',
+        searchTopStatus : '',
         searchCascader: [],
-        yearOptions: [],
-        bathOptions: [],
-        subjectOptions: [],
-        filtersAuditType: [],
+        typeOptions: [],
+        statusOptions: [],
         searchTimeData: [],
-        filtersSexType: [
-          {value: 0, text: this.$t("未知")},
-          {value: 1, text: this.$t("男")},
-          {value: 2, text: this.$t("女")}
-        ],
-        filtersSignType: [
-          {value: 0, text: this.$t("是")},
-          {value: 1, text: this.$t("否")}
-        ],
         searchAuditType: '',
         searchSexType: '',
         searchSignTimeStatus: '',
         searchInterface: '',
-        form: {
-          id: '',
-          year: '',
-          name: '',
-          adNo: '',
-          oneCardNo: '',
-          stuNo: '',
-          examNo: '',
-          sex: '',
-          idCardNo: '',
-          birthday: '',
-          nationality: '',
-          nation: '',
-          phone: '',
-          qq: '',
-          wechat: '',
-          fatherName: '',
-          fatherPhone: '',
-          motherName: '',
-          motherPhone: '',
-          address: '',
-          education: '',
-          college: [],
-          major: '',
-          class: [],
-          eduSystem: '',
-          headmaster: '',
-          recruitingTeacher: '',
-          adBath: '',
-          subject: '',
-          adProvince: '',
-          adCity: '',
-          graduationSchool: '',
-          examScore: '',
-          otherMsg: ''
-        }
       }
     },
     created() {
@@ -912,6 +449,13 @@ import {
           arr[i]['value'] = arr[i].CityID;
         }
         return arr;
+      },
+      handleTypeChange(event, type){
+        if (type == 1){
+          this.searchTopType = event;
+        }else if (type == 2){
+          this.searchTopStatus = event;
+        }
       },
       closeDialog(event){
         this.form = {
