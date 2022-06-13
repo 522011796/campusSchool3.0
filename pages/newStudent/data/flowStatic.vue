@@ -78,33 +78,13 @@
                 header-cell-class-name="custom-table-cell-bg"
                 size="medium"
                 style="width: 100%">
-                <el-table-column align="center" :label="$t('录取日期')">
-                  <template slot-scope="scope">
-                    <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                      <div class="text-center">{{scope.row.name}}</div>
-                      <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
-                    </el-popover>
-                  </template>
-                </el-table-column>
-                <el-table-column align="center" :label="$t('录取号')">
-                  <template slot-scope="scope">
-                    <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                      <div class="text-center">{{scope.row.name}}</div>
-                      <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
-                    </el-popover>
-                  </template>
-                </el-table-column>
                 <el-table-column align="center" :label="$t('姓名')">
                   <template slot-scope="scope">
                     <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                       <div class="text-center">{{scope.row.name}}</div>
                       <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
+                        <a href="javascript:;" class="color-grand" @click="detailInfo($event, scope.row)">1</a>
+                      </span>
                     </el-popover>
                   </template>
                 </el-table-column>
@@ -187,6 +167,124 @@
         </div>
       </layout-lr>
     </div>
+
+    <dialog-normal top="10vh" width-style="750px" :visible="dialogVisible" :title="$t('详细信息')" :show-footer="false" @close="closeDialog" @right-close="cancelDialog">
+      <div class="margin-top-10">
+        <div>
+          <div>
+            <div class="padding-tb-10 padding-lr-10">
+              <span class="title-block-tag"></span>
+              <span class="title-block-text">{{$t("照片信息")}}</span>
+            </div>
+          </div>
+          <div>
+            <el-image v-for="(item, index) in form.imgList" :key="index" style="width: 80px; height: 80px; margin-right: 10px" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" fit="fill"></el-image>
+          </div>
+        </div>
+        <div class="margin-top-10">
+          <div>
+            <div class="padding-tb-10 padding-lr-10">
+              <span class="title-block-tag"></span>
+              <span class="title-block-text">{{$t("基础信息")}}</span>
+            </div>
+          </div>
+          <div>
+            <el-form :model="form" ref="form" label-width="90px">
+              <el-row :gutter="8">
+                <el-col :span="12">
+                  <el-form-item :label="$t('迎新年度')" prop="year">
+                    <my-select :disabled="form.id != ''" class="layout-item" size="small" :placeholder="$t('请选择')" :sel-value="form.year" :options="yearOptions" width-style="220" :clearable="true" @change="handleSelectChange($event, 1)"></my-select>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="12">
+                  <el-form-item :label="$t('姓名')" prop="name">
+                    <el-input :disabled="form.id != ''" v-model="form.name" size="small" class="width-220"></el-input>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+              <el-row :gutter="8">
+                <el-col :span="12">
+                  <el-form-item :label="$t('录取号')" prop="year">
+                    <my-cascader :disabled="form.id != ''" ref="SelectorCollege" width-style="220" :sel-value="form.college" type="1" sub-type="2"></my-cascader>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="12">
+                  <el-form-item :label="$t('性别')" prop="name">
+                    <my-select :disabled="form.id != ''" :sel-value="form.sex" :options="g_sex" width-style="220"></my-select>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+              <el-row :gutter="8">
+                <el-col :span="12">
+                  <el-form-item :label="$t('学院/专业')" prop="college">
+                    <my-cascader :disabled="form.id != ''" ref="SelectorCollege" width-style="220" :sel-value="form.college" type="1" sub-type="2"></my-cascader>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="12">
+                  <el-form-item :label="$t('班级')" prop="class">
+                    <my-cascader :disabled="form.id != ''" ref="selectorDept" :sel-value="form.class" type="1" sub-type="4" width-style="220"></my-cascader>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+              <el-row :gutter="8">
+                <el-col :span="12">
+                  <el-form-item :label="$t('迎新老师')" prop="year">
+                    <el-input :disabled="form.id != ''" v-model="form.teacher" size="small" class="width-220"></el-input>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+            </el-form>
+          </div>
+        </div>
+        <div class="margin-top-10">
+          <div>
+            <div class="padding-tb-10 padding-lr-10">
+              <span class="title-block-tag"></span>
+              <span class="title-block-text">{{$t("流程完成情况")}}</span>
+            </div>
+          </div>
+          <div>
+            <el-table
+              ref="refDetailTable"
+              :data="tableDetailData"
+              header-cell-class-name="custom-table-cell-bg"
+              size="medium"
+              style="width: 100%">
+              <el-table-column align="center" :label="$t('流程名称')">
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">{{scope.row.name}}</div>
+                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      1
+                    </span>
+                  </el-popover>
+                </template>
+              </el-table-column>
+              <el-table-column align="center" :label="$t('环节数量')">
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">{{scope.row.name}}</div>
+                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      1
+                    </span>
+                  </el-popover>
+                </template>
+              </el-table-column>
+              <el-table-column v-for="(item, index) in tableColData" :key="index" align="center" :label="$t('环节x')">
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">{{scope.row.name}}</div>
+                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      1
+                    </span>
+                  </el-popover>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </div>
+      </div>
+    </dialog-normal>
   </div>
 </template>
 
@@ -195,8 +293,9 @@
   import mixins from "~/utils/mixins";
   import BarChart from "~/components/charts/BarChart";
   import LineChart from "~/components/charts/LineChart";
+  import DialogNormal from "~/components/utils/dialog/DialogNormal";
   export default {
-    components: {LineChart, BarChart},
+    components: {DialogNormal, LineChart, BarChart},
     mixins: [mixins],
     data(){
       return {
@@ -219,7 +318,32 @@
         complatedNum: 0,
         unComplateNum: 0,
         searchTime: '',
-        timeOptions: []
+        timeOptions: [],
+        tableColData: [],
+        tableDetailData: [],
+        dialogVisible: false,
+        yearOptions: [],
+        form: {
+          imgList: [1,2,3],
+          id: '',
+          year: '',
+          name: '',
+          adNo: '',
+          oneCardNo: '',
+          stuNo: '',
+          examNo: '',
+          sex: '',
+          idCardNo: '',
+          birthday: '',
+          nationality: '',
+          nation: '',
+          phone: '',
+          qq: '',
+          college: [],
+          major: '',
+          class: [],
+          teacher: ''
+        }
       }
     },
     created() {
@@ -364,6 +488,18 @@
       jumpPage(data){
         this.page = data;
         this.initStudent();
+      },
+      closeDialog(event){
+        this.form = {
+
+        };
+      },
+      cancelDialog(){
+        this.dialogVisible = false;
+      },
+      detailInfo(event, item){
+        console.log(1111);
+        this.dialogVisible = true;
       }
     }
   }
