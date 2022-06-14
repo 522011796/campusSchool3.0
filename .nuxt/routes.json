@@ -861,6 +861,13 @@
     "_name": "_29c21ef6"
   },
   {
+    "name": "newStudent-manage-linkPayManage",
+    "path": "/newStudent/manage/linkPayManage",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/newStudent/manage/linkPayManage.vue",
+    "chunkName": "pages/newStudent/manage/linkPayManage",
+    "_name": "_2d4d482c"
+  },
+  {
     "name": "newStudent-manage-newSetting",
     "path": "/newStudent/manage/newSetting",
     "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/newStudent/manage/newSetting.vue",

@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <div v-if="subPageVisible == true">
-      <link-dorm-manage :page-title="subPageTitle"  @returnClick="returnClick"></link-dorm-manage>
+      <link-dorm-manage v-if="subPageType == 1" :page-title="subPageTitle"  @returnClick="returnClick"></link-dorm-manage>
+      <link-pay-manage v-if="subPageType == 2" :page-title="subPageTitle"  @returnClick="returnClick"></link-pay-manage>
     </div>
     <div v-if="subPageVisible == false">
       <layout-lr>
@@ -139,7 +140,7 @@
                   <i v-if="scope.row.enable == true" class="fa fa-minus-circle margin-right-5 color-warning" @click="statusInfo(scope.row, false)"></i>
                   <i v-if="scope.row.enable == false" class="fa fa-check-square margin-right-5 color-success" @click="statusInfo(scope.row, true)"></i>
                   <i class="fa fa-cog margin-right-5 color-grand" @click="setInfo(scope.row, 1)"></i>
-                  <i class="fa fa-tags margin-right-5 color-grand" @click="setInfo(scope.row, 2, 1)"></i>
+                  <i class="fa fa-tags margin-right-5 color-grand" @click="setInfo(scope.row, 2, 2)"></i>
                   <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
                 </template>
               </el-table-column>
@@ -233,8 +234,9 @@
   import MyCascader from "~/components/utils/select/MyCascader";
   import newStudentParamsValidater from "~/utils/validater/newStudentParamsValidater";
   import LinkDormManage from "~/pages/newStudent/manage/linkDormManage";
+  import LinkPayManage from "~/pages/newStudent/manage/linkPayManage";
   export default {
-    components: {LinkDormManage, MyCascader},
+    components: {LinkPayManage, LinkDormManage, MyCascader},
     mixins: [mixins, newStudentParamsValidater],
     data(){
       return {
@@ -261,6 +263,7 @@
         drawerVersion: false,
         drawerSubVisible: false,
         subPageVisible: false,
+        subPageType: '',
         subTitle: '',
         subPageTitle: '',
         serverImg: '',
@@ -370,6 +373,7 @@
         this.drawerForm = false;
         this.drawerSubVisible = false;
         this.subPageVisible = false;
+        this.subPageType = '';
       },
       handleCancelChange(data) {
         this.visibleConfim = false;
@@ -416,11 +420,16 @@
         }else if (type == 2){
           if (subType == 1){
             this.subPageTitle = "xxx-xxx";
-            this.subPageVisible = true;
+            this.subPageType = 1;
+          }else if (subType == 2){
+            this.subPageTitle = "xxx-xxx";
+            this.subPageType = 2;
           }
+          this.subPageVisible = true;
         }
       },
       returnClick(){
+        this.subPageType = '';
         this.subPageVisible = false;
       },
       uploadFileSuccess(res, file){

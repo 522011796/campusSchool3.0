@@ -2,20 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="智慧迎新ui">
-      <change afterPath="$PROJECT_DIR$/pages/newStudent/manage/linkDormManage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/validater/linkDormValidater.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/validater/newStudentParamsValidater.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/newStudent/manage/linkPayManage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/router.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/basicInfo/dormRoom.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/dormRoom.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/flowManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/flowManage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/linkManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/linkManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/global.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +35,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/utils/validater" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pages/newStudent/manage" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -56,8 +48,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/utils/validater" />
       <recent name="$PROJECT_DIR$/pages/newStudent/manage" />
+      <recent name="$PROJECT_DIR$/utils/validater" />
       <recent name="$PROJECT_DIR$/components/charts" />
       <recent name="$PROJECT_DIR$/static/img" />
       <recent name="$PROJECT_DIR$/components/flow" />
@@ -158,14 +150,7 @@
       <workItem from="1652750744624" duration="32000" />
       <workItem from="1652950158685" duration="33561000" />
       <workItem from="1654054761234" duration="668000" />
-      <workItem from="1654068205924" duration="129949000" />
-    </task>
-    <task id="LOCAL-00019" summary="服务中心ui搭建">
-      <created>1648093329246</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1648093329246</updated>
+      <workItem from="1654068205924" duration="138429000" />
     </task>
     <task id="LOCAL-00020" summary="服务中心ui搭建">
       <created>1648110407602</created>
@@ -503,7 +488,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655116608349</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="智慧迎新ui">
+      <created>1655185698785</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1655185698788</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
