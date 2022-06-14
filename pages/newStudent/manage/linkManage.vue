@@ -3,6 +3,7 @@
     <div v-if="subPageVisible == true">
       <link-dorm-manage v-if="subPageType == 1" :page-title="subPageTitle"  @returnClick="returnClick"></link-dorm-manage>
       <link-pay-manage v-if="subPageType == 2" :page-title="subPageTitle"  @returnClick="returnClick"></link-pay-manage>
+      <link-station-manage v-if="subPageType == 3" :page-title="subPageTitle"  @returnClick="returnClick"></link-station-manage>
     </div>
     <div v-if="subPageVisible == false">
       <layout-lr>
@@ -140,7 +141,7 @@
                   <i v-if="scope.row.enable == true" class="fa fa-minus-circle margin-right-5 color-warning" @click="statusInfo(scope.row, false)"></i>
                   <i v-if="scope.row.enable == false" class="fa fa-check-square margin-right-5 color-success" @click="statusInfo(scope.row, true)"></i>
                   <i class="fa fa-cog margin-right-5 color-grand" @click="setInfo(scope.row, 1)"></i>
-                  <i class="fa fa-tags margin-right-5 color-grand" @click="setInfo(scope.row, 2, 2)"></i>
+                  <i class="fa fa-tags margin-right-5 color-grand" @click="setInfo(scope.row, 2, 1, scope.$index)"></i>
                   <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
                 </template>
               </el-table-column>
@@ -223,6 +224,35 @@
       </div>
     </drawer-layout-right>
 
+    <drawer-layout-right tabindex="0" :show-close="true" @changeDrawer="closeDialog" @opened="openedForm" :visible="drawerForm" size="85%">
+      <div slot="title">
+        <div class="header-block padding-lr-10">
+          <span class="tab-class font-bold" @click="handleClick('form')">
+            <i class="fa fa-file"></i>
+            {{$t('环节设计')}}
+          </span>
+        </div>
+      </div>
+      <div slot="content" class="color-muted">
+        <div v-loading="formLoading"
+             element-loading-text="拼命加载中"
+             element-loading-spinner="el-icon-loading"
+             element-loading-background="rgba(0, 0, 0, 0.01)">
+          <fc-designer ref="designer" :style="drawHeight4"/>
+        </div>
+      </div>
+      <div slot="footer">
+        <el-row>
+          <el-col :span="4">
+            <div class="text-right padding-lr-10">
+              <el-button size="mini" @click="cancelDrawDialog">{{$t("取消")}}</el-button>
+              <el-button size="mini" type="success" :loading="btnLoading" @click="okFormDrawDialog()">{{$t("保存")}}</el-button>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+    </drawer-layout-right>
+
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="确认需要删除该信息？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
   </div>
 </template>
@@ -235,8 +265,9 @@
   import newStudentParamsValidater from "~/utils/validater/newStudentParamsValidater";
   import LinkDormManage from "~/pages/newStudent/manage/linkDormManage";
   import LinkPayManage from "~/pages/newStudent/manage/linkPayManage";
+  import LinkStationManage from "~/pages/newStudent/manage/linkStationManage";
   export default {
-    components: {LinkPayManage, LinkDormManage, MyCascader},
+    components: {LinkStationManage, LinkPayManage, LinkDormManage, MyCascader},
     mixins: [mixins, newStudentParamsValidater],
     data(){
       return {
@@ -263,6 +294,8 @@
         drawerVersion: false,
         drawerSubVisible: false,
         subPageVisible: false,
+        serverDataItem: {},
+        serverDataIndex: '',
         subPageType: '',
         subTitle: '',
         subPageTitle: '',
@@ -276,6 +309,17 @@
           remarks: '',
           data: '1',
           dataItem: ''
+        },
+        formOption: {
+          "form": {
+            "inline": false,
+            "labelPosition": "right",
+            "size": "mini",
+            "labelWidth": "125px",
+            "hideRequiredAsterisk": false,
+            "showMessage": true,
+            "inlineMessage": false
+          }
         }
       }
     },
@@ -361,14 +405,14 @@
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
         }
-        // if (this.$refs.designer){
-        //   this.$refs.designer.setRule([]);
-        //   this.$refs.designer.setOption(this.formOption);
-        // }
+        if (this.$refs.designer){
+          this.$refs.designer.setRule([]);
+          this.$refs.designer.setOption(this.formOption);
+        }
         this.drawerVisible = event;
-        this.serverDataItem = '';
+        this.serverDataItem = {};
         this.serverDataIndex = '';
-        this.init();
+        //this.init();
         this.btnLoading = false;
         this.drawerForm = false;
         this.drawerSubVisible = false;
@@ -414,7 +458,7 @@
       handleCascaderChange(data){
         this.searchCascader = data;
       },
-      setInfo(item, type, subType){
+      setInfo(item, type, subType, index){
         if (type == 1){
           this.drawerVisible = true;
         }else if (type == 2){
@@ -424,6 +468,12 @@
           }else if (subType == 2){
             this.subPageTitle = "xxx-xxx";
             this.subPageType = 2;
+          }else if (subType == 3){
+            this.subPageTitle = "xxx-xxx";
+            this.subPageType = 3;
+          }else if (subType == 4){
+            this.subPageType = 4;
+            this.formInfo(item, index);
           }
           this.subPageVisible = true;
         }
@@ -479,6 +529,50 @@
               this.dialogLoading = false;
             });
           }
+        });
+      },
+      formInfo(item, index){
+        this.serverDataItem = item;
+        this.serverDataIndex = index;
+        this.drawerForm = true;
+      },
+      openedForm(){
+        this.formLoading = true;
+        setTimeout(()=>{
+          if (this.serverDataItem.form_content){
+            let form_content = JSON.parse(this.serverDataItem.form_content);
+            this.$refs.designer.setRule(form_content.rule);
+            this.$refs.designer.setOption(form_content.option);
+          }else {
+            this.$refs.designer.setRule([]);
+            this.$refs.designer.setOption(this.formOption);
+          }
+          this.formLoading = false;
+        },800);
+      },
+      okFormDrawDialog(type) {
+        let url = '';
+        let rules = {};
+        rules = {
+          rule: this.$refs.designer.getRule(),
+          option: this.$refs.designer.getOption()
+        };
+        let params = {
+          id: this.serverDataItem.id,
+          content: JSON.stringify(rules)
+        };
+        url = common.server_form_template_update;
+        params = this.$qs.stringify(params);
+        this.btnLoading = true;
+        this.$axios.post(url, params).then(res => {
+          if (res.data.code == 200) {
+            this.init();
+            this.$set(this.serverDataItem, 'form_content' , JSON.stringify(rules));
+            MessageSuccess(res.data.desc);
+          } else {
+            MessageError(res.data.desc);
+          }
+          this.btnLoading = false;
         });
       }
     }

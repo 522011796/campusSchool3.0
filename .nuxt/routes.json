@@ -868,6 +868,13 @@
     "_name": "_2d4d482c"
   },
   {
+    "name": "newStudent-manage-linkStationManage",
+    "path": "/newStudent/manage/linkStationManage",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/newStudent/manage/linkStationManage.vue",
+    "chunkName": "pages/newStudent/manage/linkStationManage",
+    "_name": "_4f4de390"
+  },
+  {
     "name": "newStudent-manage-newSetting",
     "path": "/newStudent/manage/newSetting",
     "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/newStudent/manage/newSetting.vue",
