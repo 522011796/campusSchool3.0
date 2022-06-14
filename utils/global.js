@@ -430,6 +430,11 @@ const fiterTeacherRoleType = [
   }
 ];
 
+const filterFlowParamType = [
+  { text: "系统固定", value: '0' ,label: '系统固定'},
+  { text: '自定义环节', value: '1' ,label: '自定义环节'}
+];
+
 export default {
   total,
   page,
@@ -516,5 +521,6 @@ export default {
   filterAppServerConditionnalTextType,
   filterAppServerConditionnalRadioType,
   filterAppServerConditionnalAllType,
-  fiterTeacherRoleType
+  fiterTeacherRoleType,
+  filterFlowParamType
 }

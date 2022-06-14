@@ -124,6 +124,7 @@ const _51532446 = () => interopDefault(import('../pages/newStudent/data/signStat
 const _43786374 = () => interopDefault(import('../pages/newStudent/log/log.vue' /* webpackChunkName: "pages/newStudent/log/log" */))
 const _0c0b77e7 = () => interopDefault(import('../pages/newStudent/manage/admissionManage.vue' /* webpackChunkName: "pages/newStudent/manage/admissionManage" */))
 const _a6fb01ac = () => interopDefault(import('../pages/newStudent/manage/flowManage.vue' /* webpackChunkName: "pages/newStudent/manage/flowManage" */))
+const _6c0229c8 = () => interopDefault(import('../pages/newStudent/manage/linkDormManage.vue' /* webpackChunkName: "pages/newStudent/manage/linkDormManage" */))
 const _29c21ef6 = () => interopDefault(import('../pages/newStudent/manage/linkManage.vue' /* webpackChunkName: "pages/newStudent/manage/linkManage" */))
 const _e484fdf2 = () => interopDefault(import('../pages/newStudent/manage/newSetting.vue' /* webpackChunkName: "pages/newStudent/manage/newSetting" */))
 const _71627526 = () => interopDefault(import('../pages/studentInfo/class/classChecked.vue' /* webpackChunkName: "pages/studentInfo/class/classChecked" */))
@@ -676,6 +677,10 @@ export const routerOptions = {
     path: "/newStudent/manage/flowManage",
     component: _a6fb01ac,
     name: "newStudent-manage-flowManage"
+  }, {
+    path: "/newStudent/manage/linkDormManage",
+    component: _6c0229c8,
+    name: "newStudent-manage-linkDormManage"
   }, {
     path: "/newStudent/manage/linkManage",
     component: _29c21ef6,

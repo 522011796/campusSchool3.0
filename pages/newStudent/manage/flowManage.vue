@@ -343,6 +343,10 @@
         flowListData: [],
         formFieldList: [],
         flowFormData: {},
+        searchStudnetCollege: '',
+        searchStudnetMajor: '',
+        searchStudnetGrade: '',
+        searchStudnetClass: '',
         form: {
           id: '',
           year: '',

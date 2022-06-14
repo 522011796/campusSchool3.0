@@ -154,7 +154,6 @@ export default {
       searchBuildId: '',
       searchFloorNum: '',
       modalVisible: false,
-      modalVisible: false,
       dialogLoading: false,
       visibleConfim: false,
       drawerVisible: false,
