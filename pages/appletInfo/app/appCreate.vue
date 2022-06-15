@@ -249,7 +249,7 @@
             <i class="fa fa-file"></i>
             {{$t('表单设计')}}
           </span>
-          <span class="tab-class font-bold margin-left-5" v-if="serverDataItem.form_type != 0 || serverDataItem.form_type != 2" :class="activeName == 'flow' ? 'color-grand' : ''" @click="handleClick('flow')">
+          <span class="tab-class font-bold margin-left-5" v-if="serverDataItem.form_type != 0 && serverDataItem.form_type != 2" :class="activeName == 'flow' ? 'color-grand' : ''" @click="handleClick('flow')">
             <i class="fa fa-line-chart"></i>
             {{$t('流程设计')}}
           </span>
@@ -635,6 +635,7 @@
             this.$refs.designer.setRule([]);
             this.$refs.designer.setOption(this.formOption);
           }
+          this.$refs.designer.removeMenuItem('span');
           this.formLoading = false;
         },800);
       },

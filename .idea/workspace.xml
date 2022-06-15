@@ -3,8 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="智慧迎新ui">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/newStudent/data/linkCustomData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/data/linkCustomData.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appCreate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appCreate.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/linkManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/linkManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/newSetting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/newSetting.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,14 +153,7 @@
       <workItem from="1652750744624" duration="32000" />
       <workItem from="1652950158685" duration="33561000" />
       <workItem from="1654054761234" duration="668000" />
-      <workItem from="1654068205924" duration="146781000" />
-    </task>
-    <task id="LOCAL-00022" summary="服务中心ui搭建">
-      <created>1648433168152</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1648433168152</updated>
+      <workItem from="1654068205924" duration="157842000" />
     </task>
     <task id="LOCAL-00023" summary="服务中心ui搭建">
       <created>1648450859216</created>
@@ -492,7 +491,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655199351175</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="智慧迎新ui">
+      <created>1655204935784</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1655204935784</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

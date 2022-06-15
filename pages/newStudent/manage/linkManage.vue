@@ -547,6 +547,7 @@
             this.$refs.designer.setRule([]);
             this.$refs.designer.setOption(this.formOption);
           }
+          this.$refs.designer.removeMenuItem('span');
           this.formLoading = false;
         },800);
       },

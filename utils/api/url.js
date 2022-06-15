@@ -603,11 +603,14 @@ export const common = {
   server_form_audit_query: '/proxy/school/applet/form/apply/query',//服务审批详细列表
   server_form_audit_export: '/proxy/school/applet/form/apply/export',//服务数据导出
   server_form_audit_delete: '/proxy/school/applet/form/apply/del',//服务数据删除
-
   server_form_template_list: '/proxy/school/applet/template/page',//模版中心分页
-
-
   server_template_list: '/proxy/school/applet/form/save',//模版列表
   server_template_list_detail: '/proxy/school/applet/content/update',//模版列表详细
+
+  enroll_page: '/proxy/school/enroll/page', //迎新分页
+  enroll_add: '/proxy/school/enroll/add', //迎新添加
+  enroll_del: '/proxy/school/enroll/del', //迎新删除
+  enroll_edit: '/proxy/school/enroll/edit', //迎新编辑
+  enroll_set_current: '/proxy/school/enroll/set-current', //迎新设置当前
 
 };
