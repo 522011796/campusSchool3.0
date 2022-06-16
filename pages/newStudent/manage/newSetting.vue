@@ -113,8 +113,8 @@
             label="操作"
             width="140">
             <template slot-scope="scope">
-              <el-tooltip class="item" effect="dark" :content="$t('设为当前')" placement="top-start">
-                <i v-if="!scope.row.current" class="fa fa-cog color-warning margin-right-5" @click="statusInfo(scope.row, true)"></i>
+              <el-tooltip v-if="!scope.row.current" class="item" effect="dark" :content="$t('设为当前')" placement="top">
+                <i class="fa fa-cog color-warning margin-right-5" @click="statusInfo(scope.row, true)"></i>
               </el-tooltip>
 
               <i class="fa fa-edit color-grand margin-right-5" @click="editInfo(scope.row)"></i>
