@@ -38,9 +38,9 @@
             <el-table-column align="center" :label="$t('录取日期')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.name}}</div>
+                  <div class="text-center">{{$moment(scope.row.regist_date).format("YYYY-MM-DD")}}</div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{$moment(scope.row.regist_date).format("YYYY-MM-DD")}}
                   </span>
                 </el-popover>
               </template>
@@ -48,9 +48,9 @@
             <el-table-column align="center" :label="$t('录取号')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.name}}</div>
+                  <div class="text-center">{{scope.row.enroll_no}}</div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.enroll_no}}
                   </span>
                 </el-popover>
               </template>
@@ -58,9 +58,9 @@
             <el-table-column align="center" :label="$t('姓名')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.name}}</div>
+                  <div class="text-center">{{scope.row.real_name}}</div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.real_name}}
                   </span>
                 </el-popover>
               </template>
@@ -68,19 +68,19 @@
             <el-table-column align="center" :label="$t('学院')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.name}}</div>
+                  <div class="text-center">{{scope.row.college_name}}</div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.college_name}}
                   </span>
                 </el-popover>
               </template>
             </el-table-column>
-            <el-table-column align="center" :label="$t('院系')">
+            <el-table-column align="center" :label="$t('专业')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.name}}</div>
+                  <div class="text-center">{{scope.row.major_name}}</div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.major_name}}
                   </span>
                 </el-popover>
               </template>
@@ -88,9 +88,9 @@
             <el-table-column align="center" :label="$t('班级')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.name}}</div>
+                  <div class="text-center">{{scope.row.class_name}}</div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.class_name}}
                   </span>
                 </el-popover>
               </template>
@@ -98,9 +98,9 @@
             <el-table-column align="center" :label="$t('招生老师')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.name}}</div>
+                  <div class="text-center">{{scope.row.enroll_teacher ? scope.row.enroll_teacher : '--'}}</div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    <label>{{scope.row.enroll_teacher ? scope.row.enroll_teacher : '--'}}</label>
                   </span>
                 </el-popover>
               </template>
@@ -137,7 +137,7 @@
       </div>
     </layout-lr>
 
-    <drawer-layout-right tabindex="0" :show-close="true" @changeDrawer="closeDialog" :visible="drawerForm" size="680px">
+    <drawer-layout-right tabindex="0" :show-close="true" @changeDrawer="closeDialog" :visible="drawerForm" size="730px">
       <div slot="title">
         <div class="header-block padding-lr-10">
           <span class="tab-class font-bold">
@@ -146,7 +146,7 @@
         </div>
       </div>
       <div slot="content" class="color-muted">
-        <el-form :model="form" ref="form" :rules="rules" label-width="90px">
+        <el-form :model="form" ref="form" :rules="rules" label-width="120px">
           <template v-if="form.id != '' && oprType == 'detail'">
             <div class="color-muted margin-top-5">
               <span>
@@ -155,35 +155,11 @@
               </span>
             </div>
             <div class="block-item-bg font-size-12">
-              <div class="custom-el-image pull-left">
-                <div class="text-center" style="width: 80px; height: 80px;">
-                  <div class="block">
-                    <el-image style="width: 60px; height: 60px;">
-                      <div slot="error" class="image-slot">
-                        <i class="el-icon-picture-outline"></i>
-                      </div>
-                    </el-image>
-                  </div>
-                  <div class="font-size-12 color-sub-grand margin-top-5">
-                    <span>{{$t("高考照片")}}</span>
-                  </div>
+              <el-image style="width: 60px; height: 60px; margin-right: 10px" v-for="(item, index) in form.facePhotos" :key="index" :src="item">
+                <div slot="error" class="image-slot">
+                  <i class="el-icon-picture-outline"></i>
                 </div>
-              </div>
-              <div class="custom-el-image pull-left margin-left-10">
-                <div class="text-center" style="width: 80px; height: 80px;">
-                  <div class="block">
-                    <el-image style="width: 60px; height: 60px;">
-                      <div slot="error" class="image-slot">
-                        <i class="el-icon-picture-outline"></i>
-                      </div>
-                    </el-image>
-                  </div>
-                  <div class="font-size-12 color-sub-grand margin-top-5">
-                    <span>{{$t("采集照片")}}</span>
-                  </div>
-                </div>
-              </div>
-              <div class="moon-clearfix"></div>
+              </el-image>
             </div>
           </template>
           <template>
@@ -197,7 +173,7 @@
               <el-row :gutter="8">
                 <el-col :span="12">
                   <el-form-item :label="$t('迎新年度')" prop="year">
-                    <my-select :disabled="form.id != '' && oprType == 'detail'" class="layout-item" size="small" :placeholder="$t('请选择')" :sel-value="form.year" :options="yearOptions" width-style="220" :clearable="true" @change="handleSelectChange($event, 1)"></my-select>
+                    <my-select :disabled="form.id != '' && oprType == 'detail'" class="layout-item" size="small" :placeholder="$t('请选择')" :sel-value="form.year" :options="years" width-style="220" :clearable="false" @change="handleSelectChange($event, 1)"></my-select>
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
@@ -348,24 +324,17 @@
                     </el-form-item>
                   </el-col>
                   <el-col :span="12">
-                    <el-form-item :label="$t('学院/专业')" prop="college">
-                      <my-cascader :disabled="form.id != '' && oprType == 'detail'" ref="SelectorCollege" width-style="220" :sel-value="form.college" type="1" sub-type="2" @change="handleCascaderChange($event, 1)"></my-cascader>
+                    <el-form-item :label="$t('学院/专业/班级')" prop="college">
+                      <my-cascader :disabled="form.id != '' && oprType == 'detail'" ref="SelectorCollege" width-style="220" :sel-value="form.college" type="1" sub-type="4" @change="handleCascaderChange($event, 1)"></my-cascader>
                     </el-form-item>
                   </el-col>
                 </el-row>
                 <el-row :gutter="8">
-                  <el-col :span="12">
-                    <el-form-item :label="$t('班级')" prop="class">
-                      <my-cascader :disabled="form.id != '' && oprType == 'detail'" ref="selectorDept" :sel-value="form.class" type="1" sub-type="4" width-style="220" @change="handleCascaderChange($event, 2)"></my-cascader>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form-item :label="$t('班主任')" prop="headmaster">
-                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.headmaster" size="small" class="width-220"></el-input>
-                    </el-form-item>
-                  </el-col>
-                </el-row>
-                <el-row :gutter="8">
+<!--                  <el-col :span="12">-->
+<!--                    <el-form-item :label="$t('班级')" prop="class">-->
+<!--                      <my-cascader :disabled="form.id != '' && oprType == 'detail'" ref="selectorDept" :sel-value="form.class" type="1" sub-type="4" width-style="220" @change="handleCascaderChange($event, 2)"></my-cascader>-->
+<!--                    </el-form-item>-->
+<!--                  </el-col>-->
                   <el-col :span="12">
                     <el-form-item :label="$t('学制')" prop="eduSystem">
                       <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.eduSystem" size="small" class="width-220"></el-input>
@@ -393,24 +362,30 @@
                 <el-row :gutter="8">
                   <el-col :span="12">
                     <el-form-item :label="$t('录取批次')" prop="adBath">
-                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.adBath" :options="bathOptions" width-style="220" @change="handleSelectChange($event, 7)"></my-select>
+<!--                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.adBath" :options="bathOptions" width-style="220" @change="handleSelectChange($event, 7)"></my-select>-->
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.adBath" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="12">
                     <el-form-item :label="$t('科目')" prop="type">
-                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.subject" :options="subjectOptions" width-style="220" @change="handleSelectChange($event, 8)"></my-select>
+<!--                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.subject" :options="subjectOptions" width-style="220" @change="handleSelectChange($event, 8)"></my-select>-->
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.subject" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
                 </el-row>
                 <el-row :gutter="8">
                   <el-col :span="12">
                     <el-form-item :label="$t('录取省份')" prop="adProvince">
-                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.adProvince" :options="provinceInfoText()" width-style="220" @change="handleSelectChange($event, 9)"></my-select>
+<!--                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.adProvince" :options="provinceInfoText()" width-style="220" @change="handleSelectChange($event, 9)"></my-select>-->
+                      <el-cascader ref="selectorProvince" size="small" :disabled="form.id != '' && oprType == 'detail'" v-model="form.adProvince" :options="provinceInfoText()" @change="handleSelectChange($event, 9)" style="width: 220px"></el-cascader>
                     </el-form-item>
                   </el-col>
                   <el-col :span="12">
-                    <el-form-item :label="$t('录取城市')" prop="adCity">
-                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.adCity" :options="cityInfoText()" width-style="220" @change="handleSelectChange($event, 10)"></my-select>
+<!--                    <el-form-item :label="$t('录取城市')" prop="adCity">-->
+<!--                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.adCity" :options="cityInfoText()" width-style="220" @change="handleSelectChange($event, 10)"></my-select>-->
+<!--                    </el-form-item>-->
+                    <el-form-item :label="$t('高考成绩')" prop="examScore">
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.examScore" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
                 </el-row>
@@ -418,11 +393,6 @@
                   <el-col :span="12">
                     <el-form-item :label="$t('毕业学校')" prop="graduationSchool">
                       <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.graduationSchool" size="small" class="width-220"></el-input>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form-item :label="$t('高考成绩')" prop="examScore">
-                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.examScore" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
                 </el-row>
@@ -543,17 +513,20 @@
     MessageError,
     MessageSuccess,
     nationalityInfo,
-    nationInfo,
+    nationInfo, provinceArrayInfo,
     provinceInfo
   } from "~/utils/utils";
   import DrawerLayoutRight from "~/components/utils/dialog/DrawerLayoutRight";
   import admissionValidater from "~/utils/validater/admissionValidater";
+  import MySelect from "~/components/MySelect";
+  import MyCascader from "~/components/utils/select/MyCascader";
 
   export default {
-    components: {DrawerLayoutRight},
+    components: {MyCascader, MySelect, DrawerLayoutRight},
     mixins: [mixins, admissionValidater],
     data(){
       return {
+        years: [],
         tableData: [],
         tableColData: [],
         tableSelColData: [],
@@ -587,10 +560,11 @@
         refreshTeacherStatus: false,
         uploadProcess: '',
         uploadResult: [],
-        uploadFile: common.teacher_file + "?fileName=" + encodeURIComponent(this.$t("学生导入模板20180130_v2.xls")),
-        uploadAction: common.student_upload,
+        uploadFile: common.enroll_student_template_download,
+        uploadAction: common.enroll_student_import,
         loopTimer: null,
         resultList: [],
+        displayField: [],
         tableAllColData: [{
           "name": this.$t("考号")
         },{
@@ -644,6 +618,7 @@
         }],
         form: {
           id: '',
+          user_id: '',
           year: '',
           name: '',
           adNo: '',
@@ -657,6 +632,7 @@
           nation: '',
           phone: '',
           qq: '',
+          email: '',
           wechat: '',
           fatherName: '',
           fatherPhone: '',
@@ -672,19 +648,40 @@
           recruitingTeacher: '',
           adBath: '',
           subject: '',
-          adProvince: '',
+          adProvince: [],
           adCity: '',
           graduationSchool: '',
           examScore: '',
-          otherMsg: ''
+          otherMsg: '',
+          facePhotos: []
         }
       }
     },
     created() {
       this.init();
       this.initCollegeAndDorm();
+      this.getYearInfo();
     },
     methods: {
+      getYearInfo(){
+        let params = {
+          page: 1,
+          num: 9999
+        };
+        this.$axios.get(common.enroll_page, {params: params}).then(res => {
+          if (res.data.data){
+            let years = [];
+            for (let i = 0; i < res.data.data.list.length; i++){
+              years.push({
+                label: res.data.data.list[i].enrollName,
+                text: res.data.data.list[i].enrollName,
+                value: res.data.data.list[i].id
+              });
+            }
+            this.years = years;
+          }
+        });
+      },
       init(){
         let params = {
           page: this.page,
@@ -692,7 +689,7 @@
         };
         let contentArr = [];
         let contentValArr = [];
-        this.$axios.get(common.server_applet_list, {params: params}).then(res => {
+        this.$axios.get(common.enroll_student_page, {params: params}).then(res => {
           if (res.data.data){
             let valuesArr = [];
             for (let i = 0; i < res.data.data.list.length; i++){
@@ -700,12 +697,11 @@
                 {label: i+'', value: i}
               ];
             }
-
             this.tableData = res.data.data.list;
             //this.tableColData = valuesArr;
-            this.total = res.data.data.total;
+            this.total = res.data.data.totalCount;
             this.num = res.data.data.num;
-            this.page = res.data.data.page;
+            this.page = res.data.data.currentPage;
           }
         });
       },
@@ -775,23 +771,130 @@
       exportInfo(){
         let url = "";
         let params = {
-
+          page: 1,
+          num: 864000
         };
         params = this.$qs.stringify(params);
-        url = common.server_form_audit_export;
+        url = common.enroll_student_export;
         window.open(url+"?"+params, "_self");
       },
       manageInfo(){
+        let teacherArray = [];
+        this.$axios.get(common.enroll_admin_get).then(res => {
+          if (res.data.data && res.data.data.teacherId.length > 0){
+            for (let i = 0; i < res.data.data.teacherId.length; i++){
+              teacherArray.push({
+                user_id: res.data.data.teacherId[i]
+              });
+            }
+            this.teacherArray = teacherArray;
+            this.approverUsers = teacherArray;
+          }
+        });
+
         this.drawerManage = true;
       },
-      editInfo(item){
+      async editInfo(item){
         this.oprType = 'edit';
+        let params = {
+          userId: item.user_id
+        };
+        await this.$axios.get(common.enroll_student_detail, {params: params}).then(res => {
+          if (res.data.data){
+            let photos = item.face_photos ? item.face_photos.split("|") : [];
+            this.form = {
+              id: res.data.data.id,
+              user_id: res.data.data.user_id,
+              year: res.data.data.enroll_id,
+              name: res.data.data.real_name,
+              adNo: res.data.data.enroll_no,
+              oneCardNo: res.data.data.school_car_no,
+              stuNo: res.data.data.student_id,
+              examNo: res.data.data.exam_no,
+              sex: res.data.data.sex+'',
+              idCardNo: res.data.data.certificate_num,
+              birthday: res.data.data.birthday ? this.$moment(res.data.data.birthday).format("YYYY-MM-DD") : '',
+              nationality: ''+res.data.data.nationality,
+              nation: res.data.data.nation,
+              phone: res.data.data.phone,
+              qq: res.data.data.qq,
+              email: res.data.data.email,
+              wechat: res.data.data.wechat,
+              fatherName: res.data.data.father_name,
+              fatherPhone: res.data.data.father_phone,
+              motherName: res.data.data.mather_name,
+              motherPhone: res.data.data.mather_phone,
+              address: res.data.data.native_place,
+              education: res.data.data.edu_level,
+              college: [item.college_id, item.major_id, item.grade, item.clasz],
+              major: '',
+              class: [item.college_id, item.major_id, item.grade, item.clasz],
+              eduSystem: res.data.data.edu_year,
+              headmaster: res.data.data.master_teacher_name,
+              recruitingTeacher: res.data.data.enroll_teacher,
+              adBath: res.data.data.enroll_batch,
+              subject: res.data.data.enroll_type,
+              adProvince: [res.data.data.enroll_province,res.data.data.enroll_city],
+              adCity: res.data.data.enroll_city+'',
+              graduationSchool: res.data.data.high_school,
+              examScore: res.data.data.gaokao_score,
+              otherMsg: res.data.data.des,
+              facePhotos: photos
+            };
+          }
+        });
+        this.$set(this.form, 'class', [item.college_id, item.major_id, item.grade, item.clasz]);
         this.footerHidden = true;
         this.drawerForm = true;
       },
-      detailInfo(){
+      async detailInfo(item){
         this.oprType = 'detail';
-        this.form.id = "1";
+        let params = {
+          userId: item.user_id
+        };
+        await this.$axios.get(common.enroll_student_detail, {params: params}).then(res => {
+          if (res.data.data){
+            this.form = {
+              id: res.data.data.id,
+              user_id: res.data.data.user_id,
+              year: res.data.data.enroll_id,
+              name: res.data.data.real_name,
+              adNo: res.data.data.enroll_no,
+              oneCardNo: res.data.data.school_car_no,
+              stuNo: res.data.data.student_id,
+              examNo: res.data.data.exam_no,
+              sex: res.data.data.sex+'',
+              idCardNo: res.data.data.certificate_num,
+              birthday: res.data.data.birthday ? this.$moment(res.data.data.birthday).format("YYYY-MM-DD") : '',
+              nationality: ''+res.data.data.nationality,
+              nation: res.data.data.nation,
+              phone: res.data.data.phone,
+              qq: res.data.data.qq,
+              email: res.data.data.email,
+              wechat: res.data.data.wechat,
+              fatherName: res.data.data.father_name,
+              fatherPhone: res.data.data.father_phone,
+              motherName: res.data.data.mather_name,
+              motherPhone: res.data.data.mather_phone,
+              address: res.data.data.native_place,
+              education: res.data.data.edu_level,
+              college: [item.college_id, item.major_id, item.grade, item.clasz],
+              major: '',
+              class: [item.college_id, item.major_id, item.grade, item.clasz],
+              eduSystem: res.data.data.edu_year,
+              headmaster: res.data.data.master_teacher_name,
+              recruitingTeacher: res.data.data.enroll_teacher,
+              adBath: res.data.data.enroll_batch,
+              subject: res.data.data.enroll_type,
+              adProvince: [res.data.data.enroll_province,res.data.data.enroll_city],
+              adCity: res.data.data.enroll_city+'',
+              graduationSchool: res.data.data.high_school,
+              examScore: res.data.data.gaokao_score,
+              otherMsg: res.data.data.des
+            };
+          }
+        });
+        this.$set(this.form, 'class', [item.college_id, item.major_id, item.grade, item.clasz]);
         this.footerHidden = false;
         this.drawerForm = true;
       },
@@ -802,6 +905,7 @@
       closeDialog(event){
         this.form = {
           id: '',
+          user_id: '',
           year: '',
           name: '',
           adNo: '',
@@ -815,6 +919,7 @@
           nation: '',
           phone: '',
           qq: '',
+          email: '',
           wechat: '',
           fatherName: '',
           fatherPhone: '',
@@ -830,16 +935,18 @@
           recruitingTeacher: '',
           adBath: '',
           subject: '',
-          adProvince: '',
+          adProvince: [],
           adCity: '',
           graduationSchool: '',
           examScore: '',
-          otherMsg: ''
+          otherMsg: '',
+          facePhotos: []
         };
         this.subTitle = "";
         this.versionStatus = '';
         this.resetCasadeSelector('SelectorCollege');
         this.resetCasadeSelector('selectorDept');
+        this.resetCasadeSelector('selectorProvince');
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
         }
@@ -866,7 +973,8 @@
         let arr = nationalityInfo();
         for (let i = 0; i < arr.length; i++){
           arr[i]['label'] = arr[i].country_name_cn;
-          arr[i]['value'] = arr[i].country_code;
+          arr[i]['value'] = ""+arr[i].country_code;
+          arr[i]['text'] = arr[i].country_name_cn;
         }
         return arr;
       },
@@ -874,23 +982,37 @@
         let arr = educationInfo();
         for (let i = 0; i < arr.length; i++){
           arr[i]['label'] = arr[i].name;
-          arr[i]['value'] = arr[i].value;
+          arr[i]['value'] = ""+arr[i].value;
+          arr[i]['text'] = arr[i].name;
         }
         return arr;
       },
       provinceInfoText(){
-        let arr = provinceInfo();
+        let arr = provinceArrayInfo();
+        let province = [];
         for (let i = 0; i < arr.length; i++){
-          arr[i]['label'] = arr[i].name;
-          arr[i]['value'] = arr[i].ProID;
+          province.push({
+            label: arr[i].label,
+            value: arr[i].label
+          });
+          if (arr[i]['children']){
+            province[i]['children'] = [];
+            for (let j = 0; j < arr[i].children.length; j++){
+              province[i]['children'].push({
+                label: arr[i].children[j],
+                value: arr[i].children[j]
+              });
+            }
+          }
         }
-        return arr;
+        return province;
       },
       cityInfoText(){
         let arr = cityInfo();
         for (let i = 0; i < arr.length; i++){
           arr[i]['label'] = arr[i].name;
-          arr[i]['value'] = arr[i].CityID;
+          arr[i]['value'] = ""+arr[i].CityID;
+          arr[i]['text'] = arr[i].name;
         }
         return arr;
       },
@@ -912,7 +1034,9 @@
         }else if (type == 8){
           this.form.subjectOptions = event;
         }else if (type == 9){
-
+          this.form.adProvince = event;
+        }else if (type == 10){
+          this.form.adCity = event;
         }
       },
       handleChangeTime(event, type){
@@ -969,25 +1093,55 @@
         this.$refs['form'].validate((valid) => {
           if (valid) {
             let params = {
-              title: this.form.title,
-              titleDesc: this.form.titleDesc,
-              content: this.form.content,
-              actionType: 2,
-              titleImg: this.form.thumnbnail,
+              enrollId: this.form.year,
+              realName: this.form.name,
+              enrollNo: this.form.adNo,
+              schoolCarNo: this.form.oneCardNo,
+              studentId: this.form.stuNo,
+              examNo: this.form.examNo,
+              sex: this.form.sex,
+              certificateNum: this.form.idCardNo,
+              birthday: this.form.birthday,
+              nationality: this.form.nationality,
+              nation: this.form.nation,
+              phone: this.form.phone,
+              email: this.form.email,
+              qq: this.form.qq,
+              wechat: this.form.wechat,
+              fatherPhone: this.form.fatherPhone,
+              fatherName: this.form.fatherName,
+              matherPhone: this.form.motherPhone,
+              matherName: this.form.motherName,
+              nativePlace: this.form.address,
+              eduLevel: this.form.education,
+              collegeId: this.form.college[0],
+              majorId: this.form.college[1],
+              clasz: this.form.college[3],
+              eduYear: this.form.eduSystem,
+              enrollTeacher: this.form.recruitingTeacher,
+              enrollBatch: this.form.adBath,
+              enrollType: this.form.subject,
+              enrollProvince: this.form.adProvince.length > 0 ? this.form.adProvince[0] : '',
+              enrollCity: this.form.adProvince.length > 0 ? this.form.adProvince[1] : '',
+              highSchool: this.form.graduationSchool,
+              gaokaoScore: this.form.examScore,
+              des: this.form.otherMsg,
             };
 
+            url = common.enroll_student_save;
             if (this.form.id != ""){
+              params['userId'] = this.form.user_id;
               params['id'] = this.form.id;
             }
 
-            url = common.circular_add;
-            //params = this.$qs.stringify(params);
+            url = common.enroll_student_save;
+            params = this.$qs.stringify(params);
             this.btnLoading = true;
-            this.$axios.post(url, params, {dataType: 'stringfy'}).then(res => {
+            this.$axios.post(url, params, {loading: false}).then(res => {
               if (res.data.code == 200){
                 this.drawerForm = false;
                 this.init();
-                this.clearDrawerDialog();
+                this.closeDialog();
                 MessageSuccess(res.data.desc);
               }else {
                 MessageError(res.data.desc);
@@ -998,12 +1152,17 @@
         });
       },
       okManageDrawDialog(event){
+        let array = [];
+        for (let i = 0; i < this.teacherArray.length; i++){
+          array.push(this.teacherArray[i].user_id);
+        }
         let params = {
-
+          teacherId: array.join(),
+          displayField: [].join()
         };
 
-        let url = common.circular_add;
-        //params = this.$qs.stringify(params);
+        let url = common.enroll_admin_setting;
+        params = this.$qs.stringify(params);
         this.btnLoading = true;
         this.$axios.post(url, params, {loading: false}).then(res => {
           if (res.data.code == 200){

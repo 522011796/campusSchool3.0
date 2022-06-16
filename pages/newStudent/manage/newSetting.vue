@@ -129,7 +129,7 @@
       </div>
     </layout-tb>
 
-    <dialog-normal top="10vh" :visible="dialogSetting" :title="$t('年度设置')" @close="closeDialog" @right-close="cancelDialog">
+    <dialog-normal top="10vh" width-style="650px" :visible="dialogSetting" :title="$t('年度设置')" @close="closeDialog" @right-close="cancelDialog">
       <div class="margin-top-10">
         <el-form :model="form" :rules="rules" ref="form" label-width="140px">
           <el-form-item :label="$t('选择年度')" prop="year">
@@ -137,13 +137,13 @@
               v-model="form.year"
               type="year"
               :placeholder="$t('选择年度')"
-              style="width: 260px"
+              style="width: 350px"
               value-format="yyyy"
               @change="handleFormChange($event, 1)">
             </el-date-picker>
           </el-form-item>
           <el-form-item :label="$t('年度名称')" prop="name">
-            <el-input v-model="form.name" class="width-260"></el-input>
+            <el-input v-model="form.name" class="width-350"></el-input>
           </el-form-item>
 <!--          <el-form-item :label="$t('默认登录')" prop="ty[e">-->
 <!--            <my-select :sel-value="form.type" :options="typeOptions" width-style="260" @change="handleFormChange($event, 2)"></my-select>-->
@@ -152,11 +152,12 @@
             <el-date-picker
               unlink-panels
               v-model="form.time"
-              type="daterange"
+              type="datetimerange"
               range-separator="至"
               start-placeholder="开始日期"
               end-placeholder="结束日期"
-              style="width: 260px"
+              style="width: 350px"
+              format="yyyy-MM-dd HH:mm"
               @change="handleFormChange($event, 3)">
             </el-date-picker>
           </el-form-item>
@@ -259,7 +260,7 @@
         }else if (type == 2){
           this.form.type = event;
         }else if (type == 3){
-          this.form.time = [this.$moment(event[0]).format("YYYY-MM-DD"), this.$moment(event[1]).format("YYYY-MM-DD")];
+          this.form.time = [this.$moment(event[0]).format("YYYY-MM-DD HH:mm"), this.$moment(event[1]).format("YYYY-MM-DD HH:mm")];
         }
       },
       addInfo(){
@@ -271,7 +272,7 @@
           name: item.enrollName,
           year: item.year,
           type: '',
-          time: [this.$moment(item.beginTime).format("YYYY-MM-DD"), this.$moment(item.endTime).format("YYYY-MM-DD")]
+          time: [this.$moment(item.beginTime).format("YYYY-MM-DD HH:mm"), this.$moment(item.endTime).format("YYYY-MM-DD HH:mm")]
         };
         this.dialogSetting = true;
       },
@@ -339,8 +340,8 @@
             let params = {
               year: this.form.year,
               enrollName: this.form.name,
-              beginTime: this.form.time[0] + " 00:00",
-              endTime: this.form.time[1] + " 23:59"
+              beginTime: this.form.time[0],
+              endTime: this.form.time[1]
             };
             if (this.form.id != ''){
               params['id'] = this.form.id;

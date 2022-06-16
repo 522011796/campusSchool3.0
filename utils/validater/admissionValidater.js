@@ -29,7 +29,16 @@ export default {
           { validator: rules.FormValidate.Form().validatePhone, trigger: 'blur' }
         ],
         college: [
-          { type: 'array', required: true, min: 2, message: this.$t("请选择院系"), trigger: 'change' }
+          { type: 'array', required: true, min: 4, message: this.$t("请选择班级"), trigger: 'change' }
+        ],
+        fatherPhone: [
+          { required: false, validator: rules.FormValidate.Form().validatePhone, trigger: 'blur' }
+        ],
+        motherPhone: [
+          { required: false, validator: rules.FormValidate.Form().validatePhone, trigger: 'blur' }
+        ],
+        email: [
+          { required: false, validator: rules.FormValidate.Form().validateEmail, trigger: 'blur' }
         ]
       }
     }
