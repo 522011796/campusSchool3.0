@@ -108,7 +108,7 @@
               <el-table-column align="center" :label="$t('专业')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">{{scope.row.major_name}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                     {{scope.row.major_name}}
                   </span>
