@@ -630,6 +630,9 @@ export const common = {
   enroll_checkin_pay_list_by_user: '/proxy/school/enroll/checkin/payment-list-by-user', //报道数据已报道
   enroll_checkin_export: '/proxy/school/enroll/checkin/export', //报道数据导出
 
+  enroll_arrive_page: '/proxy/school/enroll/arrive/page', //接站数据分页
+  enroll_arrive_export: '/proxy/school/enroll/arrive/export', //接站数据导出
+
   enroll_process_page: '/proxy/school/enroll-process/page', //流程分页
 
 };

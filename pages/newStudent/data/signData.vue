@@ -845,6 +845,8 @@ export default {
         majorId: this.searchMajor,
         grade: this.searchGrade,
         classId: this.searchClass,
+        checkStatus: this.searchStatus,
+        checkType: this.searchAuditType
       };
       this.$axios.get(common.enroll_checkin_page, {params: params}).then(res => {
         if (res.data.data){

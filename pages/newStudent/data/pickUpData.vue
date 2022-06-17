@@ -7,29 +7,39 @@
             <!--<span class="layout-left-menu-tag"></span>-->
             <span class="layout-left-menu-title">接站数据</span>
           </div>
-          <my-el-tree type="4" sub-type="" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
+          <my-el-tree type="1" sub-type="4" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
         </div>
 
         <div slot="right">
           <div class="layout-top-tab margin-top-5">
             <el-row>
-              <el-col :span="8">
+              <el-col :span="6">
                 <div class="layout-inline">
                   <el-button class="layout-item" size="small" type="warning"  icon="el-icon-download" @click="expandInfo($event)">{{$t("导出")}}</el-button>
-                  <my-cascader class="layout-item" size="small" ref="SelectorCollege" :sel-value="searchCascader" type="4" sub-type="id" width-style="160" @change="handleCascaderChange($event)"></my-cascader>
+                  <my-select class="layout-item width-150" size="small" :clearable="true" :sel-value="searchProcess" :options="processData" @change="handleChangeSelect($event)"></my-select>
                 </div>
               </el-col>
-              <el-col :span="16" class="text-right">
+              <el-col :span="18" class="text-right">
                 <div class="layout-inline">
+                  <el-date-picker
+                    size="small"
+                    v-model="searchArriveTimeData"
+                    type="daterange"
+                    range-separator="至"
+                    start-placeholder="开始登记日期"
+                    end-placeholder="结束登记日期"
+                    @change="handleChangeTime($event, 1)"
+                    style="width: 240px">
+                  </el-date-picker>
                   <el-date-picker
                     size="small"
                     v-model="searchTimeData"
                     type="daterange"
                     range-separator="至"
-                    start-placeholder="开始日期"
-                    end-placeholder="结束日期"
-                    @change="handleChangeTime"
-                    style="width: 220px">
+                    start-placeholder="开始接到日期"
+                    end-placeholder="结束接到日期"
+                    @change="handleChangeTime($event, 2)"
+                    style="width: 240px">
                   </el-date-picker>
                   <my-input-button ref="teacher width-150" size="small" plain width-class="width: 120px" type="success" :clearable="true" :placeholder="$t('姓名/录取号')" @click="search"></my-input-button>
                 </div>
@@ -49,9 +59,9 @@
               <el-table-column align="center" :label="$t('姓名')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">{{scope.row.real_name}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      1
+                      {{scope.row.real_name}}
                     </span>
                   </el-popover>
                 </template>
@@ -59,9 +69,9 @@
               <el-table-column align="center" :label="$t('录取号')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">{{scope.row.student_id}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.student_id}}
                   </span>
                   </el-popover>
                 </template>
@@ -72,9 +82,9 @@
                                :filters="filtersSexType">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center"><my-sex tag="text" :sex="scope.row.sex"></my-sex></div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    <my-sex tag="text" :sex="scope.row.sex"></my-sex>
                   </span>
                   </el-popover>
                 </template>
@@ -82,19 +92,19 @@
               <el-table-column align="center" :label="$t('学院')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">{{scope.row.college_name}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.college_name}}
                   </span>
                   </el-popover>
                 </template>
               </el-table-column>
-              <el-table-column align="center" :label="$t('院系')">
+              <el-table-column align="center" :label="$t('专业')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">{{scope.row.major_name}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.major_name}}
                   </span>
                   </el-popover>
                 </template>
@@ -102,9 +112,9 @@
               <el-table-column align="center" :label="$t('班级')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">{{scope.row.class_name}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.class_name}}
                   </span>
                   </el-popover>
                 </template>
@@ -112,10 +122,14 @@
               <el-table-column align="center" :label="$t('报道时间')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">
+                      <label v-if="scope.row.check_time">{{$moment(scope.row.check_time).format("YYYY-MM-DD HH:mm:ss")}}</label>
+                      <label v-else>--</label>
+                    </div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
+                      <label v-if="scope.row.check_time">{{$moment(scope.row.check_time).format("YYYY-MM-DD HH:mm:ss")}}</label>
+                      <label v-else>--</label>
+                    </span>
                   </el-popover>
                 </template>
               </el-table-column>
@@ -126,9 +140,13 @@
                                :filters="filtersSignType">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">
+                      <label class="color-success" v-if="scope.row.check_on_time">{{$t("是")}}</label>
+                      <label class="color-danger" v-if="!scope.row.check_on_time">{{$t("否")}}</label>
+                    </div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                      <label class="color-success" v-if="scope.row.check_on_time">{{$t("是")}}</label>
+                      <label class="color-danger" v-if="!scope.row.check_on_time">{{$t("否")}}</label>
                   </span>
                   </el-popover>
                 </template>
@@ -140,10 +158,14 @@
                                :filters="filtersSignType">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">
+                      <label class="color-success" v-if="scope.row.need_receive">{{$t("是")}}</label>
+                      <label class="color-danger" v-if="!scope.row.need_receive">{{$t("否")}}</label>
+                    </div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
+                      <label class="color-success" v-if="scope.row.need_receive">{{$t("是")}}</label>
+                      <label class="color-danger" v-if="!scope.row.need_receive">{{$t("否")}}</label>
+                    </span>
                   </el-popover>
                 </template>
               </el-table-column>
@@ -152,30 +174,34 @@
                                width="140">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">
+                      <label v-if="scope.row.estimate">{{$moment(scope.row.estimate).format("YYYY-MM-DD HH:mm:ss")}}</label>
+                      <label v-else>--</label>
+                    </div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
+                      <label v-if="scope.row.estimate">{{$moment(scope.row.estimate).format("YYYY-MM-DD HH:mm:ss")}}</label>
+                      <label v-else>--</label>
+                    </span>
                   </el-popover>
                 </template>
               </el-table-column>
               <el-table-column align="center" :label="$t('陪同人员')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">{{scope.row.escorts_num}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
+                      {{scope.row.escorts_num}}
+                    </span>
                   </el-popover>
                 </template>
               </el-table-column>
               <el-table-column align="center" :label="$t('到达站')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">{{scope.row.arrive_station}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
+                      {{scope.row.arrive_station}}
+                    </span>
                   </el-popover>
                 </template>
               </el-table-column>
@@ -186,9 +212,9 @@
                                :filters="filtersVehicleType">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">{{scope.row.train_type}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.train_type}}
                   </span>
                   </el-popover>
                 </template>
@@ -196,19 +222,19 @@
               <el-table-column align="center" :label="$t('班次号')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">{{scope.row.train_no}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
+                      {{scope.row.train_no}}
+                    </span>
                   </el-popover>
                 </template>
               </el-table-column>
               <el-table-column align="center" :label="$t('备注')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">{{scope.row.des}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.des}}
                   </span>
                   </el-popover>
                 </template>
@@ -220,29 +246,37 @@
                                :filters="filtersInterFaceStatusType">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">
+                      <label class="color-success" v-if="scope.row.arrive_status">{{$t("已接到")}}</label>
+                      <label class="color-danger" v-if="!scope.row.arrive_status">{{$t("未接到")}}</label>
+                    </div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
+                      <label class="color-success" v-if="scope.row.arrive_status">{{$t("已接到")}}</label>
+                      <label class="color-danger" v-if="!scope.row.arrive_status">{{$t("未接到")}}</label>
+                    </span>
                   </el-popover>
                 </template>
               </el-table-column>
               <el-table-column align="center" :label="$t('接到时间')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">
+                      <label v-if="scope.row.estimate">{{$moment(scope.row.arrive_time).format("YYYY-MM-DD HH:mm:ss")}}</label>
+                      <label v-else>--</label>
+                    </div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
+                      <label v-if="scope.row.estimate">{{$moment(scope.row.arrive_time).format("YYYY-MM-DD HH:mm:ss")}}</label>
+                      <label v-else>--</label>
+                    </span>
                   </el-popover>
                 </template>
               </el-table-column>
               <el-table-column align="center" :label="$t('接站人')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">{{scope.row.receive_user_name}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.receive_user_name}}
                   </span>
                   </el-popover>
                 </template>
@@ -275,6 +309,7 @@ export default {
   mixins: [mixins],
   data(){
     return {
+      processData: [],
       tableData: [],
       tableSignData: [],
       countNum: 0,
@@ -300,14 +335,16 @@ export default {
       subjectOptions: [],
       filtersAuditType: [],
       searchTimeData: [],
+      searchArriveTimeData: [],
+      searchProcess: '',
       filtersSexType: [
-        {value: 0, text: this.$t("未知")},
+        {value: 3, text: this.$t("未知")},
         {value: 1, text: this.$t("男")},
         {value: 2, text: this.$t("女")}
       ],
       filtersSignType: [
-        {value: 0, text: this.$t("是")},
-        {value: 1, text: this.$t("否")}
+        {value: true, text: this.$t("是")},
+        {value: false, text: this.$t("否")}
       ],
       filtersVehicleType: [
         {value: 0, text: this.$t("火车")},
@@ -318,13 +355,19 @@ export default {
         {value: 5, text: this.$t("其他")}
       ],
       filtersInterFaceStatusType: [
-        {value: 0, text: this.$t("已接到")},
-        {value: 1, text: this.$t("未接到")},
+        {value: true, text: this.$t("已接到")},
+        {value: false, text: this.$t("未接到")},
       ],
       searchAuditType: '',
       searchSexType: '',
       searchSignTimeStatus: '',
       searchInterface: '',
+      searchInterFaceStatusType: '',
+      searchVehicleType: '',
+      searchCollege: '',
+      searchMajor: '',
+      searchGrade: '',
+      searchClass: '',
       form: {
         id: '',
         year: '',
@@ -364,6 +407,7 @@ export default {
     }
   },
   created() {
+    this.initProcess();
     this.init();
   },
   methods: {
@@ -371,17 +415,46 @@ export default {
       let params = {
         page: this.page,
         num: this.num,
-        departmentPath: this.collegeData,
-        appletType: this.searchType,
-        enable: this.searchStatus,
-        searchKey: this.searchKey
+        arriveEstimateStartTime: (this.searchArriveTimeData && this.searchArriveTimeData.length > 0) ? this.$moment(this.searchArriveTimeData[0]).format("YYYY-MM-DD") : '',
+        arriveEstimateEndTime: (this.searchArriveTimeData && this.searchArriveTimeData.length > 0) ? this.$moment(this.searchArriveTimeData[1]).format("YYYY-MM-DD") : '',
+        arriveStartTime: (this.searchTimeData && this.searchTimeData.length > 0) ? this.$moment(this.searchTimeData[0]).format("YYYY-MM-DD") : '',
+        arriveEndTime: (this.searchTimeData && this.searchTimeData.length > 0) ? this.$moment(this.searchTimeData[1]).format("YYYY-MM-DD") : '',
+        searchKey: this.searchKey,
+        collegeId: this.searchCollege,
+        majorId: this.searchMajor,
+        grade: this.searchGrade,
+        classId: this.searchClass,
+        sex: this.searchSexType,
+        checkinOnTime: this.searchSignTimeStatus,
+        arriveStatus: this.searchInterFaceStatusType,
+        needReceive: this.searchInterface,
+        processId: this.searchProcess
       };
-      this.$axios.get(common.server_applet_list, {params: params}).then(res => {
+      this.$axios.get(common.enroll_arrive_page, {params: params}).then(res => {
         if (res.data.data){
           this.tableData = res.data.data.list;
           this.total = res.data.data.totalCount;
           this.num = res.data.data.num;
           this.page = res.data.data.currentPage;
+        }
+      });
+    },
+    initProcess(){
+      let params = {
+        page: 1,
+        num: 99999
+      };
+      this.$axios.get(common.enroll_process_page, {params: params}).then(res => {
+        if (res.data.data){
+          let process = [];
+          for (let i = 0; i < res.data.data.length; i++){
+            process.push({
+              label: res.data.data.name,
+              value: res.data.data.id,
+              text: res.data.data.name,
+            });
+          }
+          this.processData = process;
         }
       });
     },
@@ -399,15 +472,36 @@ export default {
       this.init();
     },
     nodeClick(data){
-      this.collegeData = data.department_path;
+      this.searchCollege = "";
+      this.searchMajor = "";
+      this.searchGrade = "";
+      this.searchClass = "";
+      if (data.unit == 1){
+        this.searchCollege = data.id;
+      }else if (data.unit == 2){
+        this.searchCollege = data.college_id;
+        this.searchMajor = data.id;
+      }else if (data.unit == 3){
+        this.searchMajor = data.major_id;
+        this.searchGrade = data.grade;
+      }else if (data.unit == 4){
+        this.searchClass = data.id;
+      }
       this.page = 1;
       this.init();
     },
     handleCascaderChange(data){
       this.searchCascader = data;
     },
-    handleChangeTime(data){
-      this.searchTimeData = data;
+    handleChangeSelect(data){
+      this.searchProcess = data;
+    },
+    handleChangeTime(data, type){
+      if (type == 1){
+        this.searchArriveTimeData = data ? data : [];
+      }else if (type == 2){
+        this.searchTimeData = data ? data : [];
+      }
     },
     search(data){
       this.searchKey = data.input;
@@ -415,10 +509,22 @@ export default {
       this.init();
     },
     expandInfo() {
-      let url = common.housework_query_class_record_export;
+      let url = common.enroll_arrive_export;
       let params = {
-        page: this.page,
-        num: this.num,
+        page: 1,
+        num: 99999,
+        arriveStartTime: (this.searchTimeData && this.searchTimeData.length > 0) ? this.$moment(this.searchTimeData[0]).format("YYYY-MM-DD") : '',
+        arriveEndTime: (this.searchTimeData && this.searchTimeData.length > 0) ? this.$moment(this.searchTimeData[1]).format("YYYY-MM-DD") : '',
+        searchKey: this.searchKey,
+        collegeId: this.searchCollege,
+        majorId: this.searchMajor,
+        grade: this.searchGrade,
+        classId: this.searchClass,
+        sex: this.searchSexType,
+        checkinOnTime: this.searchSignTimeStatus,
+        arriveStatus: this.searchInterFaceStatusType,
+        needReceive: this.searchInterface,
+        processId: this.searchProcess
       };
       params = this.$qs.stringify(params);
       window.open(url + "?" + params, "_self");
@@ -439,9 +545,9 @@ export default {
         }else if (item == 'interfaceType'){
           this.searchInterface = value[item][0];
         }else if (item == 'vehicleType'){
-          this.filtersVehicleType = value[item][0];
+          this.searchVehicleType = value[item][0];
         }else if (item == 'interFaceStatusType'){
-          this.filtersInterFaceStatusType = value[item][0];
+          this.searchInterFaceStatusType = value[item][0];
         }
       }
       this.init();
