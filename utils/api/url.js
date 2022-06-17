@@ -621,5 +621,15 @@ export const common = {
   enroll_student_save: '/proxy/school/enroll-student/save', //录取保存
   enroll_student_template_download: '/proxy/school/enroll-student/template/download', //录取模版下载
   enroll_student_detail: '/proxy/school/enroll-student/detail', //录取分页
+  enroll_student_del: '/proxy/school/enroll-student/del', //录取分页删除
+
+  enroll_checkin_page: '/proxy/school/enroll/checkin/page', //报道数据分页
+  enroll_checkin_revoke: '/proxy/school/enroll/checkin/revoke', //报道数据撤销
+  enroll_checkin_student_detail: '/proxy/school/enroll/checkin/student-detail', //报道数据学生详细
+  enroll_checkin_handle: '/proxy/school/enroll/checkin/handle', //报道数据已报道
+  enroll_checkin_pay_list_by_user: '/proxy/school/enroll/checkin/payment-list-by-user', //报道数据已报道
+  enroll_checkin_export: '/proxy/school/enroll/checkin/export', //报道数据导出
+
+  enroll_process_page: '/proxy/school/enroll-process/page', //流程分页
 
 };

@@ -501,6 +501,8 @@
     <drawer-right @changeDrawer="closeDialog" :visible="drawerUpload" accept=".xls,.xlsx" :loading="btnLoading" :hide-footer="true" size="400px" :title="$t('导入学生')" :action="uploadAction" :download-file="uploadFile" :result="uploadResult" :process="uploadProcess" @right-close="closeDialog" @success="uploadSuccess" @error="uploadError">
 
     </drawer-right>
+
+    <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="确认需要删除该信息？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
   </div>
 </template>
 
@@ -526,6 +528,10 @@
     mixins: [mixins, admissionValidater],
     data(){
       return {
+        searchCollege: '',
+        searchMajor: '',
+        searchGrade: '',
+        searchClass: '',
         years: [],
         tableData: [],
         tableColData: [],
@@ -685,7 +691,11 @@
       init(){
         let params = {
           page: this.page,
-          num: this.num
+          num: this.num,
+          collegeId: this.searchCollege,
+          majorId: this.searchMajor,
+          grade: this.searchGrade,
+          classId: this.searchClass,
         };
         let contentArr = [];
         let contentValArr = [];
@@ -719,7 +729,21 @@
         this.init();
       },
       nodeClick(data){
-        this.collegeData = data.department_path;
+        this.searchCollege = "";
+        this.searchMajor = "";
+        this.searchGrade = "";
+        this.searchClass = "";
+        if (data.unit == 1){
+          this.searchCollege = data.id;
+        }else if (data.unit == 2){
+          this.searchCollege = data.college_id;
+          this.searchMajor = data.id;
+        }else if (data.unit == 3){
+          this.searchMajor = data.major_id;
+          this.searchGrade = data.grade;
+        }else if (data.unit == 4){
+          this.searchClass = data.id;
+        }
         this.page = 1;
         this.init();
       },
@@ -900,6 +924,7 @@
       },
       deleteInfo(item){
         this.form.id = item.id;
+        this.form.user_id = item.user_id;
         this.visibleConfim = true;
       },
       closeDialog(event){
@@ -956,6 +981,7 @@
         this.loopTimer = null;
         this.teacherArray = [];
         this.approverUsers = [];
+        this.dialogLoading = false;
         this.btnLoading = false;
         this.drawerForm = false;
         this.drawerManage = false;
@@ -1191,6 +1217,28 @@
       },
       uploadError(res, file){
         this.uploadProcess = res.data.data;
+      },
+      handleCancelChange(data) {
+        this.visibleConfim = false;
+      },
+      handleOkChange(data) {
+        this.dialogLoading = true;
+        let url = "";
+        let params = {
+          userId: this.form.user_id
+        }
+        url = common.enroll_student_del;
+        params = this.$qs.stringify(params);
+        this.$axios.post(url, params, {loading: false}).then(res => {
+          if (res.data.code == 200){
+            this.init();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+          this.visibleConfim = false;
+          this.dialogLoading = false;
+        });
       }
     }
   }
