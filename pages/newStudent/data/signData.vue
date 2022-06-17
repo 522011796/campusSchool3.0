@@ -283,7 +283,7 @@
           <table class="custom-table">
             <tr>
               <td style="width: 20%" rowspan="2">
-                <el-image style="width: 80px; height: 80px;margin-top: 5px" :src="detailData.photo_simple"></el-image>
+                <img v-if="detailData.photo_simple" :src="detailData.photo_simple"style="width: 80px; height: 80px;margin-top: 5px">
               </td>
               <td style="width: 10%" class="font-size-12 font-bold">{{$t("姓名")}}</td>
               <td style="width: 20%" class="color-muted font-size-12">{{detailData.real_name}}</td>
@@ -801,6 +801,7 @@ export default {
         check_status: '',
         checkStatus: '',
         checkinId: '',
+        checkin_id: ''
       }
     }
   },
@@ -830,7 +831,6 @@ export default {
       });
     },
     init(){
-      console.log(this.searchTimeData);
       let params = {
         page: this.page,
         num: this.num,
@@ -872,7 +872,6 @@ export default {
       };
       this.$axios.get(common.enroll_process_page, {params: params}).then(res => {
         if (res.data.data){
-          console.log(res.data.data);
           let process = [];
           for (let i = 0; i < res.data.data.length; i++){
             process.push({
@@ -977,7 +976,7 @@ export default {
     },
     statusCancelInfo(item, type){
       let params = {
-        checkinId: item.checkinId
+        checkinId: item.checkin_id
       };
 
       let url = common.enroll_checkin_revoke;
@@ -1040,6 +1039,7 @@ export default {
             otherMsg: res.data.data.des,
             checkStatus: res.data.data.check_status,
             checkinId: res.data.data.checkin_id,
+            checkin_id: res.data.data.checkin_id,
           };
         }
       });
@@ -1168,6 +1168,7 @@ export default {
         otherMsg: '',
         checkStatus: '',
         checkinId: '',
+        checkin_id: ''
       };
       this.subTitle = "";
       this.versionStatus = '';
