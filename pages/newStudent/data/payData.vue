@@ -7,25 +7,25 @@
             <!--<span class="layout-left-menu-tag"></span>-->
             <span class="layout-left-menu-title">缴费数据</span>
           </div>
-          <my-el-tree type="4" sub-type="" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
+          <my-el-tree type="1" sub-type="4" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
         </div>
 
         <div slot="right">
-          <div class="layout-top-tab margin-top-5">
+          <div class="layout-top-tab margin-top-5 custom-button-search">
             <el-row>
-              <el-col :span="13">
+              <el-col :span="14">
                 <div class="layout-inline">
                   <el-button class="layout-item" size="small" type="warning"  icon="el-icon-download" @click="expandInfo($event)">{{$t("导出")}}</el-button>
-                  <tab-group-button size="small" :options='[
-                    {label:$t("总人数"), value: "1", extra: countNum},
-                    {label:$t("已缴清"), value: "2", extra: payedNum},
-                    {label:$t("部分缴清"), value: "3", extra: diffPayedNum},
-                    {label:$t("未缴清"), value: "4", extra: unPayedNum}]' @click="changeStatus">
-                  </tab-group-button>
-                  <my-cascader class="layout-item" size="small" ref="SelectorCollege" :sel-value="searchCascader" type="4" sub-type="id" width-style="120" @change="handleCascaderChange($event)"></my-cascader>
+                  <el-button-group class="layout-item" style="position: relative;top: -1px">
+                    <el-button size="small" type="default">{{$t("总人数")}} | {{countNum}}</el-button>
+                    <el-button size="small" type="default">{{$t("已缴清")}} | {{payedNum}}</el-button>
+                    <el-button size="small" type="default">{{$t("部分缴清")}} | {{diffPayedNum}}</el-button>
+                    <el-button size="small" type="default">{{$t("未缴清")}} | {{unPayedNum}}</el-button>
+                  </el-button-group>
+                  <my-select class="layout-item width-100" size="small" :placeholder="$t('流程名称')" :sel-value="processId" :options="flowOptions" :clearable="true" @change="handleSearchChange($event, 2)"></my-select>
                 </div>
               </el-col>
-              <el-col :span="11" class="text-right">
+              <el-col :span="10" class="text-right">
                 <div class="layout-inline">
                   <el-date-picker
                     size="small"
@@ -35,7 +35,7 @@
                     start-placeholder="开始日期"
                     end-placeholder="结束日期"
                     @change="handleChangeTime"
-                    style="width: 220px">
+                    style="width: 215px">
                   </el-date-picker>
                   <my-input-button ref="teacher width-150" size="small" plain width-class="width: 120px" type="success" :clearable="true" :placeholder="$t('姓名/录取号')" @click="search"></my-input-button>
                 </div>
@@ -55,9 +55,9 @@
               <el-table-column align="center" :label="$t('姓名')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">{{scope.row.real_name}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      <a href="javascript:;" @click="detailInfo(scope.row)">1</a>
+                      <a href="javascript:;" class="color-grand" @click="detailInfo(scope.row)">{{scope.row.real_name}}</a>
                     </span>
                   </el-popover>
                 </template>
@@ -65,9 +65,9 @@
               <el-table-column align="center" :label="$t('录取号')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">{{scope.row.student_id}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.student_id}}
                   </span>
                   </el-popover>
                 </template>
@@ -78,29 +78,31 @@
                                :filters="filtersSexType">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">
+                      <my-sex :sex="scope.row.sex" tag="text"></my-sex>
+                    </div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
+                      <my-sex :sex="scope.row.sex" tag="text"></my-sex>
+                    </span>
                   </el-popover>
                 </template>
               </el-table-column>
               <el-table-column align="center" :label="$t('学院')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">{{scope.row.college_name}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.college_name}}
                   </span>
                   </el-popover>
                 </template>
               </el-table-column>
-              <el-table-column align="center" :label="$t('院系')">
+              <el-table-column align="center" :label="$t('专业')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">{{scope.row.major_name}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.major_name}}
                   </span>
                   </el-popover>
                 </template>
@@ -108,9 +110,9 @@
               <el-table-column align="center" :label="$t('班级')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">{{scope.row.class_name}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.class_name}}
                   </span>
                   </el-popover>
                 </template>
@@ -121,40 +123,60 @@
                                :filters="filtersStatusType">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">
+                      <label v-if="scope.row.payment_status == 3" class="color-success">{{$t("已缴费")}}</label>
+                      <label v-else-if="scope.row.payment_status == 2" class="color-danger">{{$t("部分缴费")}}</label>
+                      <label v-else-if="scope.row.payment_status == 1" class="color-danger">{{$t("未缴费")}}</label>
+                      <label v-else>--</label>
+                    </div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
+                      <label v-if="scope.row.payment_status == 3" class="color-success">{{$t("已缴费")}}</label>
+                      <label v-else-if="scope.row.payment_status == 2" class="color-danger">{{$t("部分缴费")}}</label>
+                      <label v-else-if="scope.row.payment_status == 1" class="color-danger">{{$t("未缴费")}}</label>
+                      <label v-else>--</label>
+                    </span>
                   </el-popover>
                 </template>
               </el-table-column>
               <el-table-column align="center" :label="$t('缴费时间')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">
+                      <label v-if="scope.row.payment_time">{{scope.row.payment_time ? $moment(scope.row.payment_time).format("YYYY-MM-DD HH:mm:ss") : ''}}</label>
+                      <label v-else>--</label>
+                    </div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
+                      <label v-if="scope.row.payment_time">{{scope.row.payment_time ? $moment(scope.row.payment_time).format("YYYY-MM-DD HH:mm:ss") : ''}}</label>
+                      <label v-else>--</label>
+                    </span>
                   </el-popover>
                 </template>
               </el-table-column>
               <el-table-column align="center" :label="$t('缴费方式')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">
+                      <label v-if="scope.row.payment_type == 1" class="color-success">{{$t("线下缴费")}}</label>
+                      <label v-else-if="scope.row.payment_type == 2" class="color-success">{{$t("二维码")}}</label>
+                      <label class="color-muted" v-else-if="scope.row.payment_user_real_name">({{scope.row.payment_user_real_name}})</label>
+                      <label v-else>--</label>
+                    </div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
+                      <label v-if="scope.row.payment_type == 1" class="color-success">{{$t("线下缴费")}}</label>
+                      <label v-else-if="scope.row.payment_type == 2" class="color-success">{{$t("二维码")}}</label>
+                      <label class="color-muted" v-else-if="scope.row.payment_user_real_name">({{scope.row.payment_user_real_name}})</label>
+                      <label v-else>--</label>
+                    </span>
                   </el-popover>
                 </template>
               </el-table-column>
               <el-table-column align="center" :label="$t('学费')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">{{scope.row.amount}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
+                      {{scope.row.amount}}
+                    </span>
                   </el-popover>
                 </template>
               </el-table-column>
@@ -164,8 +186,8 @@
                 fixed="right"
                 :label="$t('操作')">
                 <template slot-scope="scope">
-                  <el-button size="mini" type="success" @click="statusInfo(scope.row, 1)">{{$t("缴清")}}</el-button>
-                  <el-button size="mini" type="danger" @click="statusInfo(scope.row, -1)">{{$t("撤销")}}</el-button>
+                  <el-button size="mini" type="success" v-if="scope.row.payment_status != 3" @click="statusInfo(scope.row, 3)">{{$t("缴清")}}</el-button>
+                  <el-button size="mini" type="danger" @click="statusInfo(scope.row, 1)">{{$t("撤销")}}</el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -196,7 +218,7 @@
               </span>
             </div>
             <div class="block-item-bg font-size-12">
-              <el-image style="width: 80px; height: 80px; margin-right: 10px" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg">
+              <el-image v-if="form.photo_simple" style="width: 80px; height: 80px; margin-right: 10px" :src="form.photo_simple">
                 <div slot="error" class="image-slot">
                   <i class="el-icon-picture-outline"></i>
                 </div>
@@ -278,9 +300,9 @@
                 <el-table-column align="center" :label="$t('费用名称')">
                   <template slot-scope="scope">
                     <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                      <div class="text-center">{{scope.row.name}}</div>
+                      <div class="text-center">{{scope.row.item_name}}</div>
                       <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                        1
+                        {{scope.row.item_name}}
                       </span>
                     </el-popover>
                   </template>
@@ -288,19 +310,19 @@
                 <el-table-column align="center" :label="$t('缓缴')">
                   <template slot-scope="scope">
                     <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                      <div class="text-center">{{scope.row.name}}</div>
+                      <div class="text-center">{{scope.row.delay_amount}}</div>
                       <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
+                        {{scope.row.delay_amount}}
+                      </span>
                     </el-popover>
                   </template>
                 </el-table-column>
-                <el-table-column align="center" :label="$t('贷缴')">
+                <el-table-column align="center" :label="$t('贷款')">
                   <template slot-scope="scope">
                     <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                      <div class="text-center">{{scope.row.name}}</div>
+                      <div class="text-center">{{scope.row.loan_amount}}</div>
                       <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.loan_amount}}
                   </span>
                     </el-popover>
                   </template>
@@ -308,9 +330,9 @@
                 <el-table-column align="center" :label="$t('减免')">
                   <template slot-scope="scope">
                     <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                      <div class="text-center">{{scope.row.name}}</div>
+                      <div class="text-center">{{scope.row.deduction_amount}}</div>
                       <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.deduction_amount}}
                   </span>
                     </el-popover>
                   </template>
@@ -318,24 +340,24 @@
                 <el-table-column align="center" :label="$t('实缴')">
                   <template slot-scope="scope">
                     <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                      <div class="text-center">{{scope.row.name}}</div>
+                      <div class="text-center">{{scope.row.should_amount}}</div>
                       <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.should_amount}}
                   </span>
                     </el-popover>
                   </template>
                 </el-table-column>
                 <el-table-column align="center" :label="$t('已缴')">
                   <template slot-scope="scope">
-                    <el-input size="mini" style="width: 70px"></el-input>
+                    <el-input size="mini" style="width: 70px" v-model="scope.row.paid_amount" @input="changeInputValue(scope.row.paid_amount, scope.$index)"></el-input>
                   </template>
                 </el-table-column>
                 <el-table-column align="center" :label="$t('待缴金额')">
                   <template slot-scope="scope">
                     <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                      <div class="text-center">{{scope.row.name}}</div>
+                      <div class="text-center">{{scope.row.wait_amount}}</div>
                       <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                        {{scope.row.name}}
+                        {{scope.row.wait_amount}}
                       </span>
                     </el-popover>
                   </template>
@@ -352,9 +374,9 @@
               </div>
               <div class="padding-lr-30">
                 <el-radio-group v-model="payType">
-                  <el-radio :label="0">{{$t("全部已缴清")}}</el-radio>
-                  <el-radio :label="1">{{$t("部分缴清")}}</el-radio>
-                  <el-radio :label="2">{{$t("未缴清")}}</el-radio>
+                  <el-radio :label="3">{{$t("全部已缴清")}}</el-radio>
+                  <el-radio :label="2">{{$t("部分缴清")}}</el-radio>
+                  <el-radio :label="1">{{$t("未缴清")}}</el-radio>
                 </el-radio-group>
               </div>
             </div>
@@ -364,8 +386,8 @@
       <div slot="footer">
         <div class="text-right padding-lr-10">
           <el-button size="mini" @click="cancelFormDrawDialog">{{$t("取消")}}</el-button>
-          <el-button size="mini" type="success" :loading="btnLoading" @click="okFormDrawDialog($event, 1)">{{$t("确定")}}</el-button>
-          <el-button size="mini" type="danger" :loading="btnLoading" @click="okFormDrawDialog($event, -1)">{{$t("撤销")}}</el-button>
+          <el-button size="mini" type="success" :loading="btnLoading" @click="okFormDrawDialog($event, 3)">{{$t("确定")}}</el-button>
+<!--          <el-button size="mini" type="danger" :loading="btnLoading" @click="okFormDrawDialog($event, -1)">{{$t("撤销")}}</el-button>-->
         </div>
       </div>
     </drawer-layout-right>
@@ -381,7 +403,7 @@ import {
   cityInfo,
   educationInfo,
   MessageError,
-  MessageSuccess,
+  MessageSuccess, MessageWarning,
   nationalityInfo,
   nationInfo,
   provinceInfo
@@ -391,13 +413,19 @@ export default {
   mixins: [mixins],
   data(){
     return {
+      searchCollege: '',
+      searchMajor: '',
+      searchGrade: '',
+      searchClass: '',
       tableData: [],
       tablePayData: [],
       tableSignData: [],
+      flowOptions: [],
       countNum: 0,
       payedNum: 0,
       diffPayedNum: 0,
       unPayedNum: 0,
+      partialPaid: 0,
       collegeList: [],
       categorys: [],
       types: [],
@@ -412,6 +440,7 @@ export default {
       visibleConfim: false,
       footerHidden: false,
       btnLoading: false,
+      oprStatus: '',
       searchCascader: [],
       yearOptions: [],
       bathOptions: [],
@@ -420,20 +449,21 @@ export default {
       searchTimeData: [],
       listId: '',
       messageTips: '',
+      processId: '',
       filtersSexType: [
-        {value: 0, text: this.$t("未知")},
+        {value: 3, text: this.$t("未知")},
         {value: 1, text: this.$t("男")},
         {value: 2, text: this.$t("女")}
       ],
       filtersStatusType: [
-        {value: 0, text: this.$t("已缴清")},
-        {value: 1, text: this.$t("未缴清")}
+        {value: true, text: this.$t("已缴清")},
+        {value: false, text: this.$t("未缴清")}
       ],
       searchAuditType: '',
       searchSexType: '',
       searchSignTimeStatus: '',
       searchInterface: '',
-      payType: 0,
+      payType: 3,
       form: {
         id: '',
         year: '',
@@ -468,24 +498,34 @@ export default {
         adCity: '',
         graduationSchool: '',
         examScore: '',
-        otherMsg: ''
+        otherMsg: '',
+        photo_simple: ''
       }
     }
   },
   created() {
     this.init();
+    this.initPayStatic();
   },
   methods: {
     init(){
       let params = {
         page: this.page,
         num: this.num,
-        departmentPath: this.collegeData,
-        appletType: this.searchType,
-        enable: this.searchStatus,
-        searchKey: this.searchKey
+        collegeId: this.searchCollege,
+        majorId: this.searchMajor,
+        grade: this.searchGrade,
+        classId: this.searchClass,
+        processId: this.processId,
+        searchKey: this.searchKey,
+        sex: this.searchSexType,
+        status: this.searchInterface
       };
-      this.$axios.get(common.server_applet_list, {params: params}).then(res => {
+      if (this.searchTimeData && this.searchTimeData.length > 0){
+        params['startTime'] = this.$moment(this.searchTimeData[0]).format("YYYY-MM-DD");
+        params['endTime'] = this.$moment(this.searchTimeData[1]).format("YYYY-MM-DD");
+      }
+      this.$axios.get(common.enroll_payment_page, {params: params}).then(res => {
         if (res.data.data){
           this.tableData = res.data.data.list;
           this.total = res.data.data.totalCount;
@@ -496,12 +536,32 @@ export default {
     },
     initPay(item){
       let params = {
-        page: this.page,
-        num: 9999
+        userId: item.user_id
       };
-      this.$axios.get(common.server_applet_list, {params: params}).then(res => {
+      this.$axios.get(common.enroll_checkin_pay_list_by_user, {params: params}).then(res => {
         if (res.data.data){
-          this.tablePayData = res.data.data.list;
+          for (let i = 0; i < res.data.data.length; i++){
+            res.data.data[i]['wait_amount'] = res.data.data[i].should_amount - res.data.data[i].paid_amount;
+          }
+          this.tablePayData = res.data.data;
+        }
+      });
+    },
+    initPayStatic(){
+      let params = {
+        processId: this.processId,
+        searchKey: this.searchKey,
+      };
+      if (this.searchTimeData && this.searchTimeData.length > 0){
+        params['startTime'] = this.$moment(this.searchTimeData[0]).format("YYYY-MM-DD");
+        params['endTime'] = this.$moment(this.searchTimeData[1]).format("YYYY-MM-DD");
+      }
+      this.$axios.get(common.enroll_payment_statistics_by_payment_status, {params: params, loading: false}).then(res => {
+        if (res.data.data){
+          this.countNum = res.data.data.totalCount;
+          this.payedNum = res.data.data.paid;
+          this.unPayedNum = res.data.data.unPaid;
+          this.diffPayedNum = res.data.data.partialPaid;
         }
       });
     },
@@ -519,9 +579,35 @@ export default {
       this.init();
     },
     nodeClick(data){
-      this.collegeData = data.department_path;
+      this.searchCollege = "";
+      this.searchMajor = "";
+      this.searchGrade = "";
+      this.searchClass = "";
+      if (data.unit == 1){
+        this.searchCollege = data.id;
+      }else if (data.unit == 2){
+        this.searchCollege = data.college_id;
+        this.searchMajor = data.id;
+      }else if (data.unit == 3){
+        this.searchMajor = data.major_id;
+        this.searchGrade = data.grade;
+      }else if (data.unit == 4){
+        this.searchClass = data.id;
+      }
       this.page = 1;
       this.init();
+    },
+    changeInputValue(data, index){
+      let reg = /^([0-9]+[0-9]*(\.[0-9]{1,2})?|0\.[1-9][0-9]?|0\.0[1-9])$/;
+      if (data > this.tablePayData[index].should_amount){
+        //MessageWarning(this.$t("输入金额不能大于实际缴费金额！"));
+        return;
+      }
+      if(!reg.test(data)){
+        //MessageWarning(this.$t("正整数或者两位小数！"));
+        return;
+      }
+      this.tablePayData[index]['wait_amount'] = this.tablePayData[index].should_amount - data;
     },
     handleCascaderChange(data){
       this.searchCascader = data;
@@ -533,13 +619,26 @@ export default {
       this.searchKey = data.input;
       this.page = 1;
       this.init();
+      this.initPayStatic();
     },
     expandInfo() {
-      let url = common.housework_query_class_record_export;
+      let url = common.enroll_payment_export;
       let params = {
-        page: this.page,
-        num: this.num,
+        page: 1,
+        num: 86400,
+        collegeId: this.searchCollege,
+        majorId: this.searchMajor,
+        grade: this.searchGrade,
+        classId: this.searchClass,
+        processId: this.processId,
+        searchKey: this.searchKey,
+        sex: this.searchSexType,
+        status: this.searchInterface
       };
+      if (this.searchTimeData && this.searchTimeData.length > 0){
+        params['startTime'] = this.$moment(this.searchTimeData[0]).format("YYYY-MM-DD");
+        params['endTime'] = this.$moment(this.searchTimeData[1]).format("YYYY-MM-DD");
+      }
       params = this.$qs.stringify(params);
       window.open(url + "?" + params, "_self");
     },
@@ -549,16 +648,67 @@ export default {
       this.init();
     },
     statusInfo(item, type){
-      this.listId = item.id;
-      if (type == 1){
+      this.listId = item.user_id;
+      this.oprStatus = type;
+      if (type == 3){
         this.messageTips = "确定该数据已缴清？";
-      }else if (type == -1){
+      }else if (type == 1){
         this.messageTips = "确定要撤销该数据？";
       }
       this.visibleConfim = true;
     },
-    detailInfo(item, type){
-      this.form.id = 1;
+    async detailInfo(item, type){
+      let params = {
+        userId: item.user_id
+      };
+      this.listId = item.user_id;
+      this.oprType = 'detail';
+      await this.$axios.get(common.enroll_checkin_student_detail, {params: params}).then(res => {
+        if (res.data.data){
+          this.form = {
+            id: res.data.data.id,
+            user_id: res.data.data.user_id,
+            year: res.data.data.enroll_id,
+            name: res.data.data.real_name,
+            adNo: res.data.data.enroll_no,
+            oneCardNo: res.data.data.school_car_no,
+            stuNo: res.data.data.student_id,
+            examNo: res.data.data.exam_no,
+            sex: res.data.data.sex+'',
+            idCardNo: res.data.data.certificate_num,
+            birthday: res.data.data.birthday ? this.$moment(res.data.data.birthday).format("YYYY-MM-DD") : '',
+            nationality: ''+res.data.data.nationality,
+            nation: res.data.data.nation,
+            phone: res.data.data.phone,
+            qq: res.data.data.qq,
+            email: res.data.data.email,
+            wechat: res.data.data.wechat,
+            fatherName: res.data.data.father_name,
+            fatherPhone: res.data.data.father_phone,
+            motherName: res.data.data.mather_name,
+            motherPhone: res.data.data.mather_phone,
+            address: res.data.data.native_place,
+            education: res.data.data.edu_level,
+            college: [res.data.data.college_id, res.data.data.major_id, res.data.data.grade, res.data.data.class_id],
+            major: '',
+            class: [res.data.data.college_id, res.data.data.major_id, res.data.data.grade, res.data.data.class_id],
+            eduSystem: res.data.data.edu_year,
+            headmaster: res.data.data.master_teacher_name,
+            recruitingTeacher: res.data.data.enroll_teacher,
+            adBath: res.data.data.enroll_batch,
+            subject: res.data.data.enroll_type,
+            adProvince: [res.data.data.enroll_province,res.data.data.enroll_city],
+            adCity: res.data.data.enroll_city+'',
+            graduationSchool: res.data.data.high_school,
+            examScore: res.data.data.gaokao_score,
+            otherMsg: res.data.data.des,
+            checkStatus: res.data.data.check_status,
+            checkinId: res.data.data.checkin_id,
+            checkin_id: res.data.data.checkin_id,
+            photo_simple: res.data.data.photo_simple,
+          };
+        }
+      });
       this.initPay(item);
       this.dialogDetail = true;
     },
@@ -654,7 +804,8 @@ export default {
         adCity: '',
         graduationSchool: '',
         examScore: '',
-        otherMsg: ''
+        otherMsg: '',
+        photo_simple: '',
       };
       this.subTitle = "";
       this.versionStatus = '';
@@ -673,23 +824,63 @@ export default {
       this.dialogVisible = false;
       this.dialogDetail = false;
     },
+    handleSearchChange(event, type){
+      if (type == 2){
+        this.processId = event;
+      }
+    },
     cancelFormDrawDialog(){
       this.closeDialog();
       this.drawerForm = false;
     },
     okFormDrawDialog(event, type){
-      let params = {
+      let url = "";
+      let array = [];
+      let error1 = 0;
+      let error2 = 0;
+      for (let i = 0; i < this.tablePayData.length; i++){
+        let reg = /^([0-9]+[0-9]*(\.[0-9]{1,2})?|0\.[1-9][0-9]?|0\.0[1-9])$/;
+        if (this.tablePayData[i].should_amount > this.tablePayData[i].total_amount){
+          error1++;
+          break;
+        }
+        if(!reg.test(this.tablePayData[i].should_amount)){
+          error2++;
+          break;
+        }
 
+        array.push({
+          id: this.tablePayData[i].id,
+          paidAmount: this.tablePayData[i].paid_amount
+        });
+      }
+
+      if (error1 > 1 && type != -1){
+        MessageWarning(this.$t("输入金额不能大于实际缴费金额！"));
+        return;
+      }
+      if (error2 > 1 && type != -1){
+        MessageWarning(this.$t("正整数或者两位小数！"));
+        return;
+      }
+
+      let valObj = {
+        paidAmountValList: type != -1 ? array : [],
+        paymentStatus: type == -1 ? 1 : this.payType,
+        paymentType: 1,
+        userId: this.listId
       };
-
-      let url = common.circular_add;
+      let params = {
+        val: valObj
+      }
+      url = common.enroll_payment_set_student_payment;
       //params = this.$qs.stringify(params);
       this.btnLoading = true;
-      this.$axios.post(url, params, {loading: false}).then(res => {
+      this.$axios.post(url, JSON.stringify(valObj), {dataType: 'stringfy', loading: false}).then(res => {
         if (res.data.code == 200){
-          this.drawerManage = false;
           this.init();
-          this.closeDialog();
+          this.initPayStatic();
+          this.dialogDetail = false;
           MessageSuccess(res.data.desc);
         }else {
           MessageError(res.data.desc);
@@ -703,14 +894,21 @@ export default {
     handleOkChange(data) {
       this.dialogLoading = true;
       let url = "";
+      let valObj = {
+        paidAmountValList: [],
+        paymentStatus: this.oprStatus,
+        paymentType: 1,
+        userId: this.listId
+      };
       let params = {
-        id: this.listId
+        val: valObj
       }
-      url = common.server_form_audit_delete;
-      params = this.$qs.stringify(params);
-      this.$axios.post(url, params).then(res => {
+      url = common.enroll_payment_set_student_payment;
+      //params = this.$qs.stringify(params);
+      this.$axios.post(url, JSON.stringify(valObj), {dataType: 'stringfy', loading: false}).then(res => {
         if (res.data.code == 200){
           this.init();
+          this.initPayStatic();
           MessageSuccess(res.data.desc);
         }else {
           MessageError(res.data.desc);

@@ -7,7 +7,7 @@
             <!--<span class="layout-left-menu-tag"></span>-->
             <span class="layout-left-menu-title">应用管理</span>
           </div>
-          <my-el-tree type="4" sub-type="" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
+          <my-el-tree type="1" sub-type="4" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
         </div>
 
         <div slot="right">
@@ -35,7 +35,7 @@
                       </el-col>
                       <el-col :span="12">
                         <div class="layout-inline text-right">
-                          <my-select class="layout-item width-150" size="mini" :placeholder="$t('选择时间')" :sel-value="searchTime" :options="timeOptions" :clearable="false" @change="handleSearchChange($event, 2)"></my-select>
+                          <my-select class="layout-item width-150" size="mini" :placeholder="$t('选择时间')" :sel-value="searchMonth" :options="monthOptions" :clearable="false" @change="handleSearchChange($event, 2)"></my-select>
                         </div>
                       </el-col>
                     </el-row>
@@ -68,8 +68,18 @@
           </div>
           <div class="margin-top-10 top-block">
             <div class="padding-tb-10 padding-lr-10">
-              <span class="title-block-tag"></span>
-              <span class="title-block-text">{{$t("完成状态数据表")}}</span>
+              <el-row>
+                <el-col :span="12">
+                  <span class="title-block-tag"></span>
+                  <span class="title-block-text">{{$t("完成状态数据表")}}</span>
+                </el-col>
+                <el-col :span="12">
+                  <div class="layout-inline text-right">
+                    <el-button class="layout-item" size="small" type="warning"  icon="el-icon-download" @click="expandInfo($event)">{{$t("导出")}}</el-button>
+                    <my-input-button ref="teacher width-150" size="small" plain width-class="width: 180px" type="success" :clearable="true" :placeholder="$t('名称/录取号')" @click="search"></my-input-button>
+                  </div>
+                </el-col>
+              </el-row>
             </div>
             <div style="min-height: 300px">
               <el-table
@@ -77,7 +87,8 @@
                 :data="tableData"
                 header-cell-class-name="custom-table-cell-bg"
                 size="medium"
-                style="width: 100%">
+                style="width: 100%"
+                @filter-change="fliterTable">
                 <el-table-column align="center" :label="$t('姓名')">
                   <template slot-scope="scope">
                     <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
@@ -148,7 +159,10 @@
                     </el-popover>
                   </template>
                 </el-table-column>
-                <el-table-column align="center" :label="$t('完成状态')">
+                <el-table-column align="center" :label="$t('完成状态')"
+                                 :filter-multiple="false"
+                                 column-key="status"
+                                 :filters="filterStatus">
                   <template slot-scope="scope">
                     <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                       <div class="text-center">{{scope.row.name}}</div>
@@ -299,14 +313,23 @@
     mixins: [mixins],
     data(){
       return {
+        searchCollege: '',
+        searchMajor: '',
+        searchGrade: '',
+        searchClass: '',
         collegeData: [],
         flowOptions: [],
+        monthOptions: [],
         searchName: '',
+        processId: '',
         lineChartData: [],
         barChartData: [],
         circleChartData: [],
         tableData: [],
         searchKey: '',
+        userId: '',
+        searchStatus: '',
+        searchMonth: '',
         barDataKey: [],
         barData: [],
         barDataLegned: [],
@@ -323,6 +346,15 @@
         tableDetailData: [],
         dialogVisible: false,
         yearOptions: [],
+        filterStatus: [{
+          label: this.$t("已完成"),
+          text: this.$t("已完成"),
+          value: true
+        },{
+          label: this.$t("未完成"),
+          text: this.$t("未完成"),
+          value: false
+        }],
         form: {
           imgList: [1,2,3],
           id: '',
@@ -347,21 +379,57 @@
       }
     },
     created() {
+      let year = this.$moment().format("YYYY-MM");
+      let college = '';
+      this.initMonth();
       this.init();
     },
     methods: {
       nodeClick(data){
-        this.collegeData = data.department_path;
+        this.searchCollege = "";
+        this.searchMajor = "";
+        this.searchGrade = "";
+        this.searchClass = "";
+        if (data.unit == 1){
+          this.searchCollege = data.id;
+        }else if (data.unit == 2){
+          this.searchCollege = data.college_id;
+          this.searchMajor = data.id;
+        }else if (data.unit == 3){
+          this.searchMajor = data.major_id;
+          this.searchGrade = data.grade;
+        }else if (data.unit == 4){
+          this.searchClass = data.id;
+        }
+        this.page = 1;
         this.init();
       },
       handleSearchChange(event, type){
         if (type == 1){
           this.searchName = event;
         }else if (type == 2){
-          this.searchTime = event;
+          this.searchMonth = event;
+          this.initLine(this.searchMonth);
         }
       },
+      initMonth(){
+        let year = this.$moment().format("YYYY");
+        let month = [];
+        for (let i = 0 ; i < 12; i++){
+          month.push({
+            label: year + "-" + (i+1),
+            value: year + "-" + (i+1),
+            text: year + "-" + (i+1)
+          });
+        }
+        this.monthOptions = month;
+        this.searchMonth = this.$moment().format("YYYY-MM");
+      },
       init(){
+        this.initProcess();
+      },
+      initProcess(params){
+        this.processId = 1;
         this.initBar();
         this.initLine();
         this.initStudent();
@@ -369,9 +437,17 @@
       initStudent(){
         let params = {
           page: this.page,
-          num: this.num
+          num: this.num,
+          status: this.searchStatus,
+          searchKey: this.searchKey,
+          processId: this.processId,
+          userId: this.userId,
+          collegeId: this.searchCollege,
+          majorId: this.searchMajor,
+          grade: this.searchGrade,
+          classId: this.searchClass
         };
-        this.$axios.get(common.server_applet_list, {params: params}).then(res => {
+        this.$axios.get(common.enroll_stat_process_by_user, {params: params}).then(res => {
           if (res.data.data){
             this.tableData = res.data.data.list;
             this.total = res.data.data.total;
@@ -382,99 +458,69 @@
       },
       initBar(){
         let params = {
-
+          processId: this.processId,
+          collegeId: this.searchCollege,
+          majorId: this.searchMajor,
+          grade: this.searchGrade,
+          classId: this.searchClass
         };
-        this.barDataLegned = [this.$t("总人数"),this.$t("已完成"),this.$t("未完成")];
-        this.barDataKey = ["环节1","环节2","环节3"];
-        this.barData = [
-          {
-            name:'总人数',
-            type:'bar',
-            barWidth:25,
-            data: [1,2,3]
-          },
-          {
-            name:'已完成',
-            type:'bar',
-            barWidth:25,
-            data: [4,5,6]
-          },
-          {
-            name:'未完成',
-            type:'bar',
-            barWidth:25,
-            data: [7,8,9]
-          }
-        ];
 
-        // this.$axios.get(common.school_static_pic, {params: params}).then(res => {
-        //   if (res.data.data){
-        //     this.barDataLegned = [this.$t("总人数"),this.$t("已完成"),this.$t("未完成")];
-        //     this.barDataKey = res.data.data.key;
-        //     this.barData = [
-        //       {
-        //         name:'总人数',
-        //         type:'bar',
-        //         barWidth:25,
-        //         data: []
-        //       },
-        //       {
-        //         name:'已完成',
-        //         type:'bar',
-        //         barWidth:25,
-        //         data: []
-        //       },
-        //       {
-        //         name:'未完成',
-        //         type:'bar',
-        //         stack: '迟到',
-        //         data: []
-        //       }
-        //     ];
-        //   }
-        // });
-      },
-      initLine(){
-        let params = {};
-        this.lineLegned = [];
-        this.lineData = [];
-        this.lineKeyData = [1,2,3,4];
-        this.lineLegned = [this.$t("已完成"),this.$t("未完成")];
-        this.lineData = [
-          {
-            name: this.$t("已完成"),
-            type: 'line',
-            data: [1,2,3,4]
-          },
-          {
-            name: this.$t("未完成"),
-            type: 'line',
-            data: [4,5,6,7]
+        this.$axios.get(common.enroll_stat_link_general, {params: params}).then(res => {
+          if (res.data.data){
+            console.log(res.data.data);
+            this.barDataLegned = [this.$t("总人数"),this.$t("已完成"),this.$t("未完成")];
+            this.barDataKey = ["环节1","环节2","环节3"];
+            this.barData = [
+              {
+                name:'总人数',
+                type:'bar',
+                barWidth:25,
+                data: [1,2,3]
+              },
+              {
+                name:'已完成',
+                type:'bar',
+                barWidth:25,
+                data: [4,5,6]
+              },
+              {
+                name:'未完成',
+                type:'bar',
+                barWidth:25,
+                data: [7,8,9]
+              }
+            ];
           }
-        ];
-        // this.$axios.get(common.school_static_line, {params: params}).then(res => {
-        //   if (res.data.data){
-        //     this.lineKeyData = res.data.data.key;
-        //     this.lineLegned = [this.$t("已报道"),this.$t("未报道"),this.$t("总人数")];
-        //     this.lineData = [
-        //       {
-        //         name: this.$t("已报道"),
-        //         type: 'line',
-        //         data: []
-        //       },
-        //       {
-        //         name: this.$t("未报道"),
-        //         type: 'line',
-        //         data: []
-        //       },
-        //       {
-        //         name: this.$t("总人数"),
-        //         type: 'line',
-        //         data: []
-        //       }
-        //     ];
-        //   }
-        // });
+        });
+      },
+      initLine(year){
+        let params = {
+          month: year,
+          collegeId: this.searchCollege,
+          majorId: this.searchMajor,
+          grade: this.searchGrade,
+          classId: this.searchClass
+        };
+        this.$axios.get(common.enroll_stat_process_by_time, {params: params}).then(res => {
+          if (res.data.data){
+            this.lineLegned = [];
+            this.lineData = [];
+            this.lineKeyData = [1,2,3,4];
+            this.lineLegned = [this.$t("已完成"),this.$t("未完成")];
+            this.lineData = [
+              {
+                name: this.$t("已完成"),
+                type: 'line',
+                data: [1,2,3,4]
+              },
+              {
+                name: this.$t("未完成"),
+                type: 'line',
+                data: [4,5,6,7]
+              }
+            ];
+          }
+        });
       },
       sizeChange(event){
         this.page = 1;
@@ -500,6 +546,29 @@
       detailInfo(event, item){
         console.log(1111);
         this.dialogVisible = true;
+      },
+      search(){
+        this.page = 1;
+        this.initStudent();
+      },
+      expandInfo(){
+        let url = "";
+        let params = {
+          status: this.searchStatus,
+          searchKey: this.searchKey
+        };
+        params = this.$qs.stringify(params);
+        url = common.enroll_stat_process_student_export;
+        window.open(url+"?"+params, "_self");
+      },
+      fliterTable(value, row, column){
+        for (let item in value){
+          if (item == 'status'){
+            this.searchStatus = value[item][0];
+          }
+        }
+        this.page = 1;
+        this.initStudent();
       }
     }
   }

@@ -66,7 +66,8 @@ export default {
           data : this.dataKey
         },
         xAxis : {
-          type : 'value'
+          type : 'value',
+          minInterval : 1
         },
         dataZoom: [
           //y轴内置滑动

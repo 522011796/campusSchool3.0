@@ -11,7 +11,7 @@
         </div>
 
         <div slot="right">
-          <div class="layout-top-tab margin-top-5">
+          <div class="layout-top-tab margin-top-5 custom-button-search">
             <el-row>
               <el-col :span="12">
                 <div class="layout-inline">
@@ -32,7 +32,7 @@
                       <span class="color-muted font-size-12">{{$t("未报道")}}|{{unSignNum}}</span>
                     </el-button>
                   </el-button-group>
-                  <my-select class="layout-item width-150" size="small" :clearable="true" :sel-value="searchProcess" :options="processData" @change="handleChangeSelect($event)"></my-select>
+                  <my-select class="layout-item width-100" size="small" :clearable="true" :placeholder="$t('流程名称')" :sel-value="searchProcess" :options="processData" @change="handleChangeSelect($event)"></my-select>
                 </div>
               </el-col>
               <el-col :span="12" class="text-right">
@@ -247,7 +247,7 @@
               </el-table-column>
               <el-table-column
                 align="center"
-                width="260"
+                width="160"
                 fixed="right"
                 :label="$t('操作')">
                 <template slot-scope="scope">

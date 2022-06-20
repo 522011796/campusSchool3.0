@@ -634,6 +634,19 @@ export const common = {
   enroll_arrive_page: '/proxy/school/enroll/arrive/page', //接站数据分页
   enroll_arrive_export: '/proxy/school/enroll/arrive/export', //接站数据导出
 
+  enroll_stat_student_general: '/proxy/school/enroll/stat/student-general', //总统计
+  enroll_stat_checkin_by_college: '/proxy/school/enroll/stat/checkin-by-college', //各院系报道统计
+  enroll_stat_checkin_by_time: '/proxy/school/enroll/stat/checkin-by-time', //报道趋势
+  enroll_stat_link_general: '/proxy/school/enroll/stat/link-general', //完成情况对比
+  enroll_stat_process_by_time: '/proxy/school/enroll/stat/process-by-time', //整体完成率趋势
+  enroll_stat_process_by_user: '/proxy/school/enroll/stat/process-by-user', //完成状态数据表
+  enroll_stat_process_student_export: '/proxy/school/enroll/stat/process-student-export', //完成状态数据表导出
+
+  enroll_payment_page: '/proxy/school/enroll/payment/page', //缴费数据分页
+  enroll_payment_export: '/proxy/school/enroll/payment/export', //缴费数据导出
+  enroll_payment_set_student_payment: '/proxy/school/enroll/payment/set-student-payment', //缴费数据设置状态
+  enroll_payment_statistics_by_payment_status: '/proxy/school/enroll/payment/statistics-by-payment-status', //缴费数据统计
+
   enroll_process_page: '/proxy/school/enroll-process/page', //流程分页
 
 };

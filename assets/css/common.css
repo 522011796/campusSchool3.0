@@ -998,6 +998,9 @@ ul{
   box-sizing: border-box;
   vertical-align: top;
 }
+.custom-button-search .el-button--small, .el-button--small.is-round {
+  padding: 9px 5px;
+}
 /***自定义radio组件颜色***/
 /*.el-radio__input.is-checked + .el-radio__label {
   color: #fd7624 !important;
