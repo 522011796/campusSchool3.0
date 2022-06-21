@@ -639,14 +639,33 @@ export const common = {
   enroll_stat_checkin_by_time: '/proxy/school/enroll/stat/checkin-by-time', //报道趋势
   enroll_stat_link_general: '/proxy/school/enroll/stat/link-general', //完成情况对比
   enroll_stat_process_by_time: '/proxy/school/enroll/stat/process-by-time', //整体完成率趋势
-  enroll_stat_process_by_user: '/proxy/school/enroll/stat/process-by-user', //完成状态数据表
+  enroll_stat_process_by_user_page: '/proxy/school/enroll/stat/process-student-page', //完成状态数据表
+  enroll_stat_process_by_user: '/proxy/school/enroll/stat/process-by-user', //完成状态数据表详细
   enroll_stat_process_student_export: '/proxy/school/enroll/stat/process-student-export', //完成状态数据表导出
+  enroll_stat_link_list_by_user: '/proxy/school/enroll/stat/link-list-by-user', //完成状态数据表详细表
+  enroll_stat_process_general: '/proxy/school/enroll/stat/process-general', //整体完成率
 
   enroll_payment_page: '/proxy/school/enroll/payment/page', //缴费数据分页
   enroll_payment_export: '/proxy/school/enroll/payment/export', //缴费数据导出
   enroll_payment_set_student_payment: '/proxy/school/enroll/payment/set-student-payment', //缴费数据设置状态
   enroll_payment_statistics_by_payment_status: '/proxy/school/enroll/payment/statistics-by-payment-status', //缴费数据统计
+  enroll_payment_set_student_revoke: '/proxy/school/enroll/payment/set-student-payment-revoke', //缴费撤销
+
+  enroll_room_student_page: '/proxy/school/enroll/room/student-page', //选寝分页
+  enroll_room_student_export: '/proxy/school/enroll/room/student-export', //导出选寝分页
+  enroll_room_student_static: '/proxy/school/enroll/room/student-count-by-room-status', //选寝统计
+  enroll_room_student_selectable_room_page: '/proxy/school/enroll/room/selectable-room-page', //宿舍分页--可选择的
+  enroll_room_bed_list_by_room_id: '/proxy/school/enroll/room/bed-list-by-room-id', //床位分页
+  enroll_room_revoke: '/proxy/school/enroll/room/revoke', //床位移除
+  enroll_room_handle: '/proxy/school/enroll/room/handle', //床位选择
+
+  enroll_form_data_page: '/proxy/school/enroll/form-data/page', //自定义环节分页
+  enroll_form_data_export: '/proxy/school/enroll/form-data/export', //自定义环节导出
+  enroll_form_data_set_status: '/proxy/school/enroll/form-data/set-status', //自定义环节状态设置
 
   enroll_process_page: '/proxy/school/enroll-process/page', //流程分页
+  enroll_process_edit: '/proxy/school/enroll-process/edit', //流程编辑
+  enroll_process_del: '/proxy/school/enroll-process/del', //流程删除
+  enroll_process_publish: '/proxy/school/enroll-process/publish', //流程设置
 
 };

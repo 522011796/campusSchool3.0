@@ -6,7 +6,7 @@
           <!--<span class="layout-left-menu-tag"></span>-->
           <span class="layout-left-menu-title">数据中心</span>
         </div>
-        <my-el-tree ref="appRef" type="110" :show-campus="false" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
+        <my-el-tree ref="appRef" type="110" :show-campus="false" :extra-type="appName" :currentNodeKey="currentNodeKey" :default-expanded-keys="defaultExpandedKeys" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
       </div>
 
       <div slot="right">
@@ -16,7 +16,7 @@
               <div class="text-left layout-inline">
                 <div class="layout-inline">
                   <el-button size="small" type="warning"  icon="el-icon-download" @click="expandInfo($event)">{{$t("导出")}}</el-button>
-                  <my-cascader class="layout-item" size="small" ref="SelectorCollege" :sel-value="searchCascader" type="4" sub-type="id" width-style="160" @change="handleCascaderChange($event)"></my-cascader>
+                  <my-cascader class="layout-item" size="small" ref="SelectorCollege" :clearable="true" :sel-value="searchCascader" type="1" sub-type="4" width-style="160" @change="handleCascaderChange($event)"></my-cascader>
                 </div>
               </div>
             </el-col>
@@ -24,6 +24,7 @@
               <div class="text-right layout-inline">
                 <el-date-picker
                   size="small"
+                  unlink-panels
                   v-model="searchTimeData"
                   type="daterange"
                   range-separator="至"
@@ -44,15 +45,24 @@
             header-cell-class-name="custom-table-cell-bg"
             size="medium"
             :max-height="tableHeight2.height"
+            @filter-change="fliterTable"
             style="width: 100%">
             <el-table-column
               align="center"
+              width="120"
+              column-key="commitInfo"
+              :filter-multiple="false"
+              :filters="filtersCommitType"
               :label="$t('完成状态')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{ scope.row.formName }}</div>
+                  <div class="text-center">
+                    <label v-if="scope.row.status" class="color-success">{{$t("已完成")}}</label>
+                    <label v-if="!scope.row.status" class="color-danger">{{$t("未完成")}}</label>
+                  </div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{ scope.row.formName }}
+                    <label v-if="scope.row.status" class="color-success">{{$t("已完成")}}</label>
+                    <label v-if="!scope.row.status" class="color-danger">{{$t("未完成")}}</label>
                   </span>
                 </el-popover>
               </template>
@@ -62,21 +72,31 @@
               :label="$t('完成时间')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{ $moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss") }}</div>
+                  <div class="text-center">
+                    <label v-if="detailData.completeTime">{{ $moment(scope.row.completeTime).format("YYYY-MM-DD HH:mm:ss") }}</label>
+                  </div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{ $moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss") }}
+                    <label v-if="detailData.completeTime">{{ $moment(scope.row.completeTime).format("YYYY-MM-DD HH:mm:ss") }}</label>
                   </span>
                 </el-popover>
               </template>
             </el-table-column>
             <el-table-column
               align="center"
-              :label="$t('环境类型')">
+              :label="$t('环节类型')"
+              width="120"
+              column-key="typeInfo"
+              :filter-multiple="false"
+              :filters="filtersStatusType">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{ $moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss") }}</div>
+                  <div class="text-center">
+                    <label v-if="scope.row.link.linkType == 1" class="color-success">{{$t("线上环节")}}</label>
+                    <label v-if="scope.row.link.linkType == 0" class="color-danger">{{$t("线下环节")}}</label>
+                  </div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{ $moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss") }}
+                    <label v-if="scope.row.link.linkType == 1" class="color-success">{{$t("线上环节")}}</label>
+                    <label v-if="scope.row.link.linkType == 0" class="color-danger">{{$t("线下环节")}}</label>
                   </span>
                 </el-popover>
               </template>
@@ -86,9 +106,9 @@
               :label="$t('姓名')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">1</div>
+                  <div class="text-center">{{scope.row.realName}}</div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    1
+                    {{scope.row.realName}}
                   </span>
                 </el-popover>
               </template>
@@ -98,9 +118,9 @@
               :label="$t('录取号')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{ scope.row.userNo }}</div>
+                  <div class="text-center">{{ scope.row.studentId }}</div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{ scope.row.userNo }}
+                    {{ scope.row.studentId }}
                   </span>
                 </el-popover>
               </template>
@@ -111,12 +131,10 @@
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                   <div class="text-center">
-                    <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                    <label v-else>{{scope.row.className}}</label>
+                    <label>{{scope.row.collegeName}}</label>
                   </div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                    <label v-else>{{scope.row.className}}</label>
+                    <label>{{scope.row.collegeName}}</label>
                   </span>
                 </el-popover>
               </template>
@@ -127,12 +145,10 @@
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                   <div class="text-center">
-                    <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                    <label v-else>{{scope.row.className}}</label>
+                    <label>{{scope.row.majorName}}</label>
                   </div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                    <label v-else>{{scope.row.className}}</label>
+                    <label>{{scope.row.majorName}}</label>
                   </span>
                 </el-popover>
               </template>
@@ -143,12 +159,10 @@
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                   <div class="text-center">
-                    <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                    <label v-else>{{scope.row.className}}</label>
+                    <label>{{scope.row.className}}</label>
                   </div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                    <label v-else>{{scope.row.className}}</label>
+                    <label>{{scope.row.className}}</label>
                   </span>
                 </el-popover>
               </template>
@@ -179,7 +193,8 @@
               :label="$t('操作')">
               <template slot-scope="scope">
                 <i class="fa fa-file-text margin-right-5 color-grand" @click="detailInfo(scope.row)"></i>
-                <i class="fa fa-check-circle color-danger" @click="deleteInfo(scope.row)"></i>
+                <i v-if="scope.row.status == true" class="fa fa-check-circle color-success" @click="statusInfo(scope.row, true)"></i>
+                <i v-if="scope.row.status == false" class="fa fa-times-circle color-danger" @click="statusInfo(scope.row, false)"></i>
               </template>
             </el-table-column>
           </el-table>
@@ -199,7 +214,7 @@
               <span>{{ detailData.applyUserName }}</span>
             </el-col>
             <el-col :span="12">
-              <span>{{$t("学号/工号")}}:</span>
+              <span>{{$t("学号")}}:</span>
               <span>{{ detailData.userNo }}</span>
             </el-col>
           </el-row>
@@ -209,17 +224,16 @@
               <span>{{ detailData.formName }}</span>
             </el-col>
             <el-col :span="12">
-              <span>{{$t("班级/部门")}}:</span>
+              <span>{{$t("班级")}}:</span>
               <span>
-                <label v-if="detailData.userType == 5">{{ detailData.className }}</label>
-                <label v-if="detailData.userType == 4">{{ detailData.departmentName }}</label>
+                <label>{{ detailData.className }}</label>
               </span>
             </el-col>
           </el-row>
           <el-row class="margin-top-5">
             <el-col :span="12">
-              <span>{{$t("申请日期")}}:</span>
-              <span>{{ $moment(detailData.applyTime).format("YYYY-MM-DD HH:mm") }}</span>
+              <span>{{$t("完成日期")}}:</span>
+              <span v-if="detailData.completeTime">{{ $moment(detailData.completeTime).format("YYYY-MM-DD HH:mm") }}</span>
             </el-col>
           </el-row>
         </div>
@@ -276,41 +290,70 @@
   import MyElTree from "~/components/tree/MyElTree";
   import DrawerLayoutRight from "~/components/utils/dialog/DrawerLayoutRight";
   import MyInputButton from "~/components/search/MyInputButton";
+  import MyCascader from "~/components/utils/select/MyCascader";
   export default {
+    components: {MyCascader},
     mixins: [mixins],
     data(){
       return {
+        searchCollege: '',
+        searchMajor: '',
+        searchGrade: '',
+        searchClass: '',
         tableData: [],
         tableDataTitles: [],
         searchKey: '',
         appName: '',
         dialogServerDetail: false,
         formId: '',
+        linkId: '',
         detailData: {},
         detailApplyContentData: [],
         searchAuditStatus: '',
         queryApplyListType: 0,
         appletId: '',
+        searchStatusInfo: '',
+        searchCommitInfo: '',
         searchTimeData: [],
-        searchCascader: []
+        searchCascader: [],
+        defaultExpandedKeys: [],
+        currentNodeKey: '',
+        filtersStatusType: [
+          {text: '线下环节',value: "0"},
+          {text: '线上环节',value: "1"}
+        ],
+        filtersCommitType: [
+          {text: '已完成',value: 1},
+          {text: '未完成',value: 0}
+        ]
       }
     },
     created() {
-      this.init();
+      this.initLink();
     },
     methods: {
       init(){
         let params = {
           page: this.page,
           num: this.num,
-          queryApplyListType: this.queryApplyListType,
-          formId: this.formId,
-          appletId: this.appletId,
-          status: this.searchAuditStatus
+          collegeId: this.searchCollege,
+          majorId: this.searchMajor,
+          grade: this.searchGrade,
+          classId: this.searchClass,
+          linkType: this.searchStatusInfo,
+          status: this.searchCommitInfo,
+          searchKey: this.searchKey,
+          linkId: 9
         };
+
+        if (this.searchTimeData && this.searchTimeData.length > 0){
+          params['startTime'] = this.$moment(this.searchTimeData[0]).format("YYYY-MM-DD");
+          params['endTime'] = this.$moment(this.searchTimeData[1]).format("YYYY-MM-DD");
+        }
+
         let applyContentArr = [];
         let applyContent = [];
-        this.$axios.get(common.server_form_template_form_apply_page, {params: params}).then(res => {
+        this.$axios.get(common.enroll_form_data_page, {params: params}).then(res => {
           if (res.data.data){
             if (res.data.data.list && res.data.data.list.length > 0 && res.data.data.list[0].applyContent){
               applyContentArr = JSON.parse(res.data.data.list[0].applyContent);
@@ -331,6 +374,22 @@
             this.page = res.data.data.page;
           }
         });
+      },
+      async initLink(){
+        this.mainMenu = 2;
+        this.pageDetail = 1;
+        this.appName = '';
+        this.appletId = '';
+        this.formId = '';
+
+        await this.getAppletServerInfo(this.appName);
+        let data = this.dataAppletServer;
+        if (data && data[0]['children']){
+          this.linkId = data[0]['children'][0].id;
+          this.defaultExpandedKeys = [data[0].id, data[0]['children'][0].id];
+          this.currentNodeKey = data[0]['children'][0].id;
+        }
+        this.init();
       },
       sizeChange(event){
         this.page = 1;
@@ -356,7 +415,7 @@
         this.page = 1;
 
         if (data.unit == 2){
-          this.appletId = data.id;
+          this.linkId = data.id;
           this.init();
         }
         // if (data.unit != 1){
@@ -369,21 +428,43 @@
       expandInfo(){
         let url = "";
         let params = {
-          queryApplyListType: this.queryApplyListType,
-          status: this.searchStatus
+          page: 1,
+          num: 86400,
+          collegeId: this.searchCollege,
+          majorId: this.searchMajor,
+          grade: this.searchGrade,
+          classId: this.searchClass,
+          linkType: this.searchStatusInfo,
+          status: this.searchCommitInfo,
+          searchKey: this.searchKey,
+          linkId: this.linkId
         };
-        params['formId'] = this.formId;
-        params['appletId'] = this.appletId;
         params = this.$qs.stringify(params);
-        url = common.server_form_audit_export;
+        url = common.enroll_form_data_export;
         window.open(url+"?"+params, "_self");
+      },
+      statusInfo(item, type){
+        let params = {
+          id: item.id,
+          status: type,
+        };
+        let url = common.enroll_form_data_set_status;
+        params = this.$qs.stringify(params);
+        this.$axios.post(url, params).then(res => {
+          if (res.data.code == 200){
+            this.init();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+        });
       },
       detailInfo(item){
         this.detailData = item;
-        if (item.applyContent  && item.applyContent != "[]"){
+        if (item.dataContent  && item.dataContent != "[]"){
           let ruleList = [];
           //this.detailApplyContentData = JSON.parse(item.applyContent);
-          this.detailApplyContentData = this.setRuleChild(JSON.parse(item.applyContent), ruleList);
+          this.detailApplyContentData = this.setRuleChild(item.dataContent, ruleList);
         }
         this.dialogServerDetail = true;
       },
@@ -413,7 +494,37 @@
         this.init();
       },
       handleCascaderChange(data){
-        this.searchCascader = data;
+        this.searchCollege = "";
+        this.searchMajor = "";
+        this.searchGrade = "";
+        this.searchClass = "";
+        if (data.length == 1){
+          this.searchCollege = data[0];
+        }else if (data.length == 2){
+          this.searchCollege = data[0];
+          this.searchMajor = data[1];
+        }else if (data.length == 3){
+          this.searchCollege = data[0];
+          this.searchMajor = data[1];
+          this.searchGrade = data[2];
+        }else if (data.length == 4){
+          this.searchCollege = data[0];
+          this.searchMajor = data[1];
+          this.searchGrade = data[2];
+          this.searchClass = data[3];
+        }
+        this.page = 1;
+        this.init();
+      },
+      fliterTable(value, row, column){
+        for (let item in value){
+          if (item == 'typeInfo'){
+            this.searchStatusInfo = value[item][0];
+          }else if (item == 'commitInfo'){
+            this.searchCommitInfo = value[item][0];
+          }
+        }
+        this.init();
       }
     }
   }

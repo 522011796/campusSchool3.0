@@ -39,6 +39,7 @@
                 <div class="layout-inline">
                   <el-date-picker
                     size="small"
+                    unlink-panels
                     v-model="searchTimeData"
                     type="daterange"
                     range-separator="至"
@@ -323,9 +324,9 @@
             <el-table-column align="center" :label="$t('费用名称')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.name}}</div>
+                  <div class="text-center">{{scope.row.item_name}}</div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.item_name}}
                   </span>
                 </el-popover>
               </template>
@@ -333,19 +334,19 @@
             <el-table-column align="center" :label="$t('缓缴')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.name}}</div>
+                  <div class="text-center">{{scope.row.delay_amount}}</div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.delay_amount}}
                   </span>
                 </el-popover>
               </template>
             </el-table-column>
-            <el-table-column align="center" :label="$t('贷缴')">
+            <el-table-column align="center" :label="$t('贷款')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.name}}</div>
+                  <div class="text-center">{{scope.row.loan_amount}}</div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.loan_amount}}
                   </span>
                 </el-popover>
               </template>
@@ -353,9 +354,9 @@
             <el-table-column align="center" :label="$t('减免')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.name}}</div>
+                  <div class="text-center">{{scope.row.deduction_amount}}</div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.deduction_amount}}
                   </span>
                 </el-popover>
               </template>
@@ -363,9 +364,9 @@
             <el-table-column align="center" :label="$t('实缴')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.name}}</div>
+                  <div class="text-center">{{scope.row.should_amount}}</div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.should_amount}}
                   </span>
                 </el-popover>
               </template>
@@ -373,9 +374,9 @@
             <el-table-column align="center" :label="$t('已缴')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.name}}</div>
+                  <div class="text-center">{{scope.row.paid_amount}}</div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.paid_amount}}
                   </span>
                 </el-popover>
               </template>
@@ -383,9 +384,9 @@
             <el-table-column align="center" :label="$t('未缴金额')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.name}}</div>
+                  <div class="text-center">{{scope.row.wait_amount}}</div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.wait_amount}}
                   </span>
                 </el-popover>
               </template>
@@ -801,7 +802,8 @@ export default {
         check_status: '',
         checkStatus: '',
         checkinId: '',
-        checkin_id: ''
+        checkin_id: '',
+        facePhotos: []
       }
     }
   },
@@ -863,7 +865,10 @@ export default {
       };
       this.$axios.get(common.enroll_checkin_pay_list_by_user, {params: params}).then(res => {
         if (res.data.data){
-          this.tableSignData = res.data.data.list;
+          for (let i = 0; i < res.data.data.length; i++){
+            res.data.data[i]['wait_amount'] = res.data.data[i].should_amount - res.data.data[i].paid_amount;
+          }
+          this.tableSignData = res.data.data;
         }
       });
     },
@@ -875,11 +880,11 @@ export default {
       this.$axios.get(common.enroll_process_page, {params: params}).then(res => {
         if (res.data.data){
           let process = [];
-          for (let i = 0; i < res.data.data.length; i++){
+          for (let i = 0; i < res.data.data.list.length; i++){
             process.push({
-              label: res.data.data.name,
-              value: res.data.data.id,
-              text: res.data.data.name,
+              label: res.data.data.list[i].processName,
+              value: res.data.data.list[i].id,
+              text: res.data.data.list[i].processName,
             });
           }
           this.processData = process;
@@ -1002,6 +1007,7 @@ export default {
       this.oprType = 'detail';
       await this.$axios.get(common.enroll_checkin_student_detail, {params: params}).then(res => {
         if (res.data.data){
+          let photos = res.data.data.face_photos ? res.data.data.face_photos.split("|") : [];
           this.form = {
             id: res.data.data.id,
             user_id: res.data.data.user_id,
@@ -1042,6 +1048,7 @@ export default {
             checkStatus: res.data.data.check_status,
             checkinId: res.data.data.checkin_id,
             checkin_id: res.data.data.checkin_id,
+            facePhotos: photos
           };
         }
       });
@@ -1170,7 +1177,8 @@ export default {
         otherMsg: '',
         checkStatus: '',
         checkinId: '',
-        checkin_id: ''
+        checkin_id: '',
+        facePhotos: []
       };
       this.subTitle = "";
       this.versionStatus = '';

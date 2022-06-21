@@ -825,7 +825,7 @@
         };
         await this.$axios.get(common.enroll_student_detail, {params: params}).then(res => {
           if (res.data.data){
-            let photos = item.face_photos ? item.face_photos.split("|") : [];
+            let photos = res.data.data.face_photos ? res.data.data.face_photos.split("|") : [];
             this.form = {
               id: res.data.data.id,
               user_id: res.data.data.user_id,

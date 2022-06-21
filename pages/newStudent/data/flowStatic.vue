@@ -12,7 +12,7 @@
 
         <div slot="right">
           <div>
-            <my-select class="layout-item width-150" size="small" :placeholder="$t('选择流程')" :sel-value="searchName" :options="flowOptions" :clearable="false" @change="handleSearchChange($event, 1)"></my-select>
+            <my-select class="layout-item width-150" size="small" :placeholder="$t('选择流程')" :sel-value="searchName" :options="flowOptions" :clearable="true" @change="handleSearchChange($event, 1)"></my-select>
           </div>
           <div class="margin-top-10 top-block">
             <div class="padding-tb-10 padding-lr-10">
@@ -40,7 +40,7 @@
                       </el-col>
                     </el-row>
                   </div>
-                  <div style="height: 260px">
+                  <div style="height: 255px">
                     <line-chart chart-id="lineId" :data-key="lineKeyData" :data="lineData" :data-legned="lineLegned"></line-chart>
                   </div>
                 </div>
@@ -92,9 +92,9 @@
                 <el-table-column align="center" :label="$t('姓名')">
                   <template slot-scope="scope">
                     <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                      <div class="text-center">{{scope.row.name}}</div>
+                      <div class="text-center">{{scope.row.real_name}}</div>
                       <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                        <a href="javascript:;" class="color-grand" @click="detailInfo($event, scope.row)">1</a>
+                        <a href="javascript:;" class="color-grand" @click="detailInfo($event, scope.row)">{{scope.row.real_name}}</a>
                       </span>
                     </el-popover>
                   </template>
@@ -102,29 +102,29 @@
                 <el-table-column align="center" :label="$t('学院')">
                   <template slot-scope="scope">
                     <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                      <div class="text-center">{{scope.row.name}}</div>
+                      <div class="text-center">{{scope.row.college_name}}</div>
                       <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
+                        {{scope.row.college_name}}
+                      </span>
                     </el-popover>
                   </template>
                 </el-table-column>
-                <el-table-column align="center" :label="$t('院系')">
+                <el-table-column align="center" :label="$t('专业')">
                   <template slot-scope="scope">
                     <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                      <div class="text-center">{{scope.row.name}}</div>
+                      <div class="text-center">{{scope.row.major_name}}</div>
                       <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
+                        {{scope.row.major_name}}
+                      </span>
                     </el-popover>
                   </template>
                 </el-table-column>
                 <el-table-column align="center" :label="$t('班级')">
                   <template slot-scope="scope">
                     <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                      <div class="text-center">{{scope.row.name}}</div>
+                      <div class="text-center">{{scope.row.class_name}}</div>
                       <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
+                    {{scope.row.class_name}}
                   </span>
                     </el-popover>
                   </template>
@@ -132,30 +132,30 @@
                 <el-table-column align="center" :label="$t('招生老师')">
                   <template slot-scope="scope">
                     <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                      <div class="text-center">{{scope.row.name}}</div>
+                      <div class="text-center">{{scope.row.enroll_teacher}}</div>
                       <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
+                        {{scope.row.enroll_teacher}}
+                      </span>
                     </el-popover>
                   </template>
                 </el-table-column>
                 <el-table-column align="center" :label="$t('环节总数')">
                   <template slot-scope="scope">
                     <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                      <div class="text-center">{{scope.row.name}}</div>
+                      <div class="text-center">{{scope.row.link_size}}</div>
                       <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
+                        {{scope.row.link_size}}
+                      </span>
                     </el-popover>
                   </template>
                 </el-table-column>
                 <el-table-column align="center" :label="$t('已完成')">
                   <template slot-scope="scope">
                     <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                      <div class="text-center">{{scope.row.name}}</div>
+                      <div class="text-center">{{scope.row.completed_link_size}}</div>
                       <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
+                        {{scope.row.completed_link_size}}
+                    </span>
                     </el-popover>
                   </template>
                 </el-table-column>
@@ -167,8 +167,9 @@
                     <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                       <div class="text-center">{{scope.row.name}}</div>
                       <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.name}}
-                  </span>
+                        <label v-if="scope.row.status" class="color-success">{{$t("已完成")}}</label>
+                        <label v-if="!scope.row.status" class="color-danger">{{$t("未完成")}}</label>
+                      </span>
                     </el-popover>
                   </template>
                 </el-table-column>
@@ -192,7 +193,11 @@
             </div>
           </div>
           <div>
-            <el-image v-for="(item, index) in form.imgList" :key="index" style="width: 80px; height: 80px; margin-right: 10px" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" fit="fill"></el-image>
+            <el-image style="width: 60px; height: 60px; margin-right: 10px" v-for="(item, index) in form.facePhotos" :key="index" :src="item">
+              <div slot="error" class="image-slot">
+                <i class="el-icon-picture-outline"></i>
+              </div>
+            </el-image>
           </div>
         </div>
         <div class="margin-top-10">
@@ -267,9 +272,9 @@
               <el-table-column align="center" :label="$t('流程名称')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">{{scope.row.label}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      1
+                      {{scope.row.label}}
                     </span>
                   </el-popover>
                 </template>
@@ -277,19 +282,23 @@
               <el-table-column align="center" :label="$t('环节数量')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">{{scope.row.size}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      1
+                      {{scope.row.size}}
                     </span>
                   </el-popover>
                 </template>
               </el-table-column>
-              <el-table-column v-for="(item, index) in tableColData" :key="index" align="center" :label="$t('环节x')">
+              <el-table-column v-for="(item, index) in tableColData" :key="index" align="center" :label="item.linkName">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.name}}</div>
+                    <div class="text-center">
+                      <label v-if="scope.row.status" class="color-success">{{$t("已完成")}}</label>
+                      <label v-if="!scope.row.status" class="color-danger">{{$t("未完成")}}</label>
+                    </div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      1
+                      <label v-if="scope.row.status" class="color-success">{{$t("已完成")}}</label>
+                      <label v-if="!scope.row.status" class="color-danger">{{$t("未完成")}}</label>
                     </span>
                   </el-popover>
                 </template>
@@ -308,8 +317,10 @@
   import BarChart from "~/components/charts/BarChart";
   import LineChart from "~/components/charts/LineChart";
   import DialogNormal from "~/components/utils/dialog/DialogNormal";
+  import {MessageError, MessageSuccess} from "~/utils/utils";
+  import MySelect from "~/components/MySelect";
   export default {
-    components: {DialogNormal, LineChart, BarChart},
+    components: {MySelect, DialogNormal, LineChart, BarChart},
     mixins: [mixins],
     data(){
       return {
@@ -356,7 +367,7 @@
           value: false
         }],
         form: {
-          imgList: [1,2,3],
+          imgList: [],
           id: '',
           year: '',
           name: '',
@@ -374,7 +385,8 @@
           college: [],
           major: '',
           class: [],
-          teacher: ''
+          teacher: '',
+          facePhotos: []
         }
       }
     },
@@ -407,6 +419,10 @@
       handleSearchChange(event, type){
         if (type == 1){
           this.searchName = event;
+          this.initBar();
+          this.initLine(this.searchMonth);
+          this.initStudent();
+          this.initRate();
         }else if (type == 2){
           this.searchMonth = event;
           this.initLine(this.searchMonth);
@@ -427,12 +443,30 @@
       },
       init(){
         this.initProcess();
-      },
-      initProcess(params){
-        this.processId = 1;
+        this.initMonth();
         this.initBar();
-        this.initLine();
+        this.initLine(this.searchMonth);
         this.initStudent();
+        this.initRate();
+      },
+      initProcess(){
+        let params = {
+          page: 1,
+          num: 99999
+        };
+        this.$axios.get(common.enroll_process_page, {params: params}).then(res => {
+          if (res.data.data){
+            let process = [];
+            for (let i = 0; i < res.data.data.list.length; i++){
+              process.push({
+                label: res.data.data.list[i].processName,
+                value: res.data.data.list[i].id,
+                text: res.data.data.list[i].processName,
+              });
+            }
+            this.flowOptions = process;
+          }
+        });
       },
       initStudent(){
         let params = {
@@ -441,18 +475,17 @@
           status: this.searchStatus,
           searchKey: this.searchKey,
           processId: this.processId,
-          userId: this.userId,
           collegeId: this.searchCollege,
           majorId: this.searchMajor,
           grade: this.searchGrade,
           classId: this.searchClass
         };
-        this.$axios.get(common.enroll_stat_process_by_user, {params: params}).then(res => {
+        this.$axios.get(common.enroll_stat_process_by_user_page, {params: params}).then(res => {
           if (res.data.data){
             this.tableData = res.data.data.list;
-            this.total = res.data.data.total;
+            this.total = res.data.data.totalCount;
             this.num = res.data.data.num;
-            this.page = res.data.data.page;
+            this.page = res.data.data.currentPage;
           }
         });
       },
@@ -467,27 +500,29 @@
 
         this.$axios.get(common.enroll_stat_link_general, {params: params}).then(res => {
           if (res.data.data){
-            console.log(res.data.data);
-            this.barDataLegned = [this.$t("总人数"),this.$t("已完成"),this.$t("未完成")];
-            this.barDataKey = ["环节1","环节2","环节3"];
+            let barDataKey = [];
+            let barDataDown = [];
+            let barDataUnDown = [];
+            for (let item in res.data.data){
+              barDataKey.push(res.data.data[item].linkName);
+              barDataDown.push(res.data.data[item].downCount);
+              barDataUnDown.push(res.data.data[item].undownCount);
+            }
+
+            this.barDataLegned = [this.$t("已完成"),this.$t("未完成")];
+            this.barDataKey = barDataKey;
             this.barData = [
-              {
-                name:'总人数',
-                type:'bar',
-                barWidth:25,
-                data: [1,2,3]
-              },
               {
                 name:'已完成',
                 type:'bar',
                 barWidth:25,
-                data: [4,5,6]
+                data: barDataDown
               },
               {
                 name:'未完成',
                 type:'bar',
                 barWidth:25,
-                data: [7,8,9]
+                data: barDataUnDown
               }
             ];
           }
@@ -499,26 +534,79 @@
           collegeId: this.searchCollege,
           majorId: this.searchMajor,
           grade: this.searchGrade,
-          classId: this.searchClass
+          classId: this.searchClass,
+          processId: this.processId,
         };
         this.$axios.get(common.enroll_stat_process_by_time, {params: params}).then(res => {
           if (res.data.data){
             this.lineLegned = [];
-            this.lineData = [];
-            this.lineKeyData = [1,2,3,4];
-            this.lineLegned = [this.$t("已完成"),this.$t("未完成")];
+            let lineData = [];
+            let lineKeyData = [];
+            this.lineLegned = [this.$t("已完成")];
+            for (let i = 0; i < res.data.data.length; i++){
+              lineData.push(res.data.data[i].num);
+              lineKeyData.push(res.data.data[i].day);
+            }
+            this.lineKeyData = lineKeyData;
             this.lineData = [
               {
                 name: this.$t("已完成"),
                 type: 'line',
-                data: [1,2,3,4]
-              },
-              {
-                name: this.$t("未完成"),
-                type: 'line',
-                data: [4,5,6,7]
+                data: lineData
               }
             ];
+          }
+        });
+      },
+      initRate(){
+        let params = {
+          collegeId: this.searchCollege,
+          majorId: this.searchMajor,
+          grade: this.searchGrade,
+          classId: this.searchClass,
+          processId: this.processId,
+        };
+        this.$axios.get(common.enroll_stat_process_general, {params: params}).then(res => {
+          if (res.data.data) {
+            this.complateCount = parseInt(res.data.data.downCount) + parseInt(res.data.data.undownCount);
+            this.complatedNum = res.data.data.downCount;
+            this.unComplateNum = res.data.data.undownCount;
+            let rate = parseInt(res.data.data.downCount) / (parseInt(res.data.data.downCount) + parseInt(res.data.data.undownCount)) * 100;
+            this.complateRate = rate.toFixed(2);
+          }
+        });
+      },
+      initDetail(userId){
+        let params = {
+          processId: this.processId,
+          userId: userId
+        };
+        let array = [];
+        let children = [];
+        this.$axios.get(common.enroll_stat_process_by_user, {params: params}).then(res => {
+          if (res.data.data){
+            let label = res.data.data.process_name;
+            let size = res.data.data.link_size;
+            let status = res.data.data.status;
+            this.$axios.get(common.enroll_stat_link_list_by_user, {params: params}).then(resItem => {
+              if (res.data.data){
+                for (let i = 0; i < resItem.data.data.length; i++){
+                  array.push({
+                    label: label,
+                    size: size,
+                    status: status,
+                  });
+
+                  children.push({
+                    linkName: resItem.data.data[i].link_name,
+                    procesNname: resItem.data.data[i].process_name,
+                    status: resItem.data.data[i].status,
+                  });
+                }
+              }
+            });
+            this.tableDetailData = array;
+            this.tableColData = children;
           }
         });
       },
@@ -537,14 +625,84 @@
       },
       closeDialog(event){
         this.form = {
-
+          imgList: [],
+          id: '',
+          year: '',
+          name: '',
+          adNo: '',
+          oneCardNo: '',
+          stuNo: '',
+          examNo: '',
+          sex: '',
+          idCardNo: '',
+          birthday: '',
+          nationality: '',
+          nation: '',
+          phone: '',
+          qq: '',
+          college: [],
+          major: '',
+          class: [],
+          teacher: '',
+          facePhotos: []
         };
       },
       cancelDialog(){
         this.dialogVisible = false;
       },
-      detailInfo(event, item){
-        console.log(1111);
+      async detailInfo(event, item){
+        let params = {
+          userId: item.user_id
+        };
+        this.oprType = 'detail';
+        await this.$axios.get(common.enroll_checkin_student_detail, {params: params}).then(res => {
+          if (res.data.data){
+            let photos = res.data.data.face_photos ? res.data.data.face_photos.split("|") : [];
+            this.form = {
+              id: res.data.data.id,
+              user_id: res.data.data.user_id,
+              year: res.data.data.enroll_id,
+              name: res.data.data.real_name,
+              adNo: res.data.data.enroll_no,
+              oneCardNo: res.data.data.school_car_no,
+              stuNo: res.data.data.student_id,
+              examNo: res.data.data.exam_no,
+              sex: res.data.data.sex+'',
+              idCardNo: res.data.data.certificate_num,
+              birthday: res.data.data.birthday ? this.$moment(res.data.data.birthday).format("YYYY-MM-DD") : '',
+              nationality: ''+res.data.data.nationality,
+              nation: res.data.data.nation,
+              phone: res.data.data.phone,
+              qq: res.data.data.qq,
+              email: res.data.data.email,
+              wechat: res.data.data.wechat,
+              fatherName: res.data.data.father_name,
+              fatherPhone: res.data.data.father_phone,
+              motherName: res.data.data.mather_name,
+              motherPhone: res.data.data.mather_phone,
+              address: res.data.data.native_place,
+              education: res.data.data.edu_level,
+              college: [res.data.data.college_id, res.data.data.major_id, res.data.data.grade, res.data.data.class_id],
+              major: '',
+              class: [res.data.data.college_id, res.data.data.major_id, res.data.data.grade, res.data.data.class_id],
+              eduSystem: res.data.data.edu_year,
+              headmaster: res.data.data.master_teacher_name,
+              recruitingTeacher: res.data.data.enroll_teacher,
+              adBath: res.data.data.enroll_batch,
+              subject: res.data.data.enroll_type,
+              adProvince: [res.data.data.enroll_province,res.data.data.enroll_city],
+              adCity: res.data.data.enroll_city+'',
+              graduationSchool: res.data.data.high_school,
+              examScore: res.data.data.gaokao_score,
+              otherMsg: res.data.data.des,
+              checkStatus: res.data.data.check_status,
+              checkinId: res.data.data.checkin_id,
+              checkin_id: res.data.data.checkin_id,
+              facePhotos: photos
+            };
+          }
+        });
+        this.initDetail(item.user_id);
         this.dialogVisible = true;
       },
       search(){
@@ -569,6 +727,28 @@
         }
         this.page = 1;
         this.initStudent();
+      },
+      handleCancelChange(data) {
+        this.visibleConfim = false;
+      },
+      handleOkChange(data) {
+        this.dialogLoading = true;
+        let url = "";
+        let params = {
+          ids: this.id
+        };
+        url = common.dormaccess_exception_unbind;
+        params = this.$qs.stringify(params);
+        this.$axios.post(url, params).then(res => {
+          if (res.data.code == 200){
+            this.init();
+            MessageSuccess(res.data.desc);
+          }else {
+            MessageError(res.data.desc);
+          }
+          this.visibleConfim = false;
+          this.dialogLoading = false;
+        });
       }
     }
   }

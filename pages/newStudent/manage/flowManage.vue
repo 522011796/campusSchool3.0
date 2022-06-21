@@ -30,7 +30,7 @@
             align="center"
             :label="$t('创建时间')">
             <template slot-scope="scope">
-              <span>{{$moment(scope.row.create_time).format("YYYY-MM-DD HH:mm")}}</span>
+              <span>{{$moment(scope.row.createTime).format("YYYY-MM-DD HH:mm")}}</span>
             </template>
           </el-table-column>
           <el-table-column
@@ -38,9 +38,9 @@
             :label="$t('流程名称')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.category_name}}</div>
+                <div class="text-center">{{scope.row.processName}}</div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <span>{{scope.row.category_name}}</span>
+                  <span>{{scope.row.processName}}</span>
                 </div>
               </el-popover>
             </template>
@@ -50,9 +50,9 @@
             :label="$t('环节数量')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.category_name}}</div>
+                <div class="text-center">{{scope.row.linkSize}}</div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <span>{{scope.row.category_name}}</span>
+                  <span>{{scope.row.linkSize}}</span>
                 </div>
               </el-popover>
             </template>
@@ -62,9 +62,9 @@
             :label="$t('学生数量')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.category_name}}</div>
+                <div class="text-center">{{scope.row.studentSize}}</div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <span>{{scope.row.category_name}}</span>
+                  <span>{{scope.row.studentSize}}</span>
                 </div>
               </el-popover>
             </template>
@@ -325,6 +325,7 @@
         dialogFlowSetting: false,
         yearOptions: [],
         searchKey: '',
+        searchEnable: '',
         searchStatus: '',
         statusOptions: [],
         typeOptions: [],
@@ -364,10 +365,10 @@
         let params = {
           page: this.page,
           num: this.num,
-          searchStatus: this.searchStatus,
+          enable: this.searchStatus,
           searchKey: this.searchKey
         };
-        this.$axios.get(common.server_type_list, {params: params}).then(res => {
+        this.$axios.get(common.enroll_process_page, {params: params}).then(res => {
           if (res.data.data){
             this.tableData = res.data.data.list;
             this.total = res.data.data.totalCount;
@@ -445,7 +446,7 @@
         let params = {
           id: this.form.id
         }
-        url = common.server_type_delete;
+        url = common.enroll_process_del;
         params = this.$qs.stringify(params);
         this.$axios.post(url, params).then(res => {
           if (res.data.code == 200){
@@ -486,7 +487,7 @@
           enable: status
         };
         params = this.$qs.stringify(params);
-        this.$axios.post(common.server_type_enable, params).then(res => {
+        this.$axios.post(common.enroll_process_publish, params).then(res => {
           if (res.data.code == 200){
             this.init();
             MessageSuccess(res.data.desc);

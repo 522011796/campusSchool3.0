@@ -23,6 +23,7 @@
                 <div class="layout-inline">
                   <el-date-picker
                     size="small"
+                    unlink-panels
                     v-model="searchTimeData"
                     type="daterange"
                     range-separator="至"

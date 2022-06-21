@@ -29,6 +29,7 @@
                 <div class="layout-inline">
                   <el-date-picker
                     size="small"
+                    unlink-panels
                     v-model="searchTimeData"
                     type="daterange"
                     range-separator="至"
@@ -504,10 +505,30 @@ export default {
     }
   },
   created() {
+    this.initProcess();
     this.init();
     this.initPayStatic();
   },
   methods: {
+    initProcess(){
+      let params = {
+        page: 1,
+        num: 99999
+      };
+      this.$axios.get(common.enroll_process_page, {params: params}).then(res => {
+        if (res.data.data){
+          let process = [];
+          for (let i = 0; i < res.data.data.list.length; i++){
+            process.push({
+              label: res.data.data.list[i].processName,
+              value: res.data.data.list[i].id,
+              text: res.data.data.list[i].processName,
+            });
+          }
+          this.flowOptions = process;
+        }
+      });
+    },
     init(){
       let params = {
         page: this.page,
@@ -892,8 +913,15 @@ export default {
       this.visibleConfim = false;
     },
     handleOkChange(data) {
+      if (this.oprStatus == 1){
+        this.cancelOpr();
+      }else {
+        this.okOpr();
+      }
+    },
+    okOpr(){
       this.dialogLoading = true;
-      let url = "";
+      let url = common.enroll_payment_set_student_payment;
       let valObj = {
         paidAmountValList: [],
         paymentStatus: this.oprStatus,
@@ -903,9 +931,27 @@ export default {
       let params = {
         val: valObj
       }
-      url = common.enroll_payment_set_student_payment;
       //params = this.$qs.stringify(params);
       this.$axios.post(url, JSON.stringify(valObj), {dataType: 'stringfy', loading: false}).then(res => {
+        if (res.data.code == 200){
+          this.init();
+          this.initPayStatic();
+          MessageSuccess(res.data.desc);
+        }else {
+          MessageError(res.data.desc);
+        }
+        this.visibleConfim = false;
+        this.dialogLoading = false;
+      });
+    },
+    cancelOpr(){
+      this.dialogLoading = true;
+      let url = common.enroll_payment_set_student_revoke;
+      let params = {
+        userId: this.listId
+      }
+      params = this.$qs.stringify(params);
+      this.$axios.post(url, params).then(res => {
         if (res.data.code == 200){
           this.init();
           this.initPayStatic();

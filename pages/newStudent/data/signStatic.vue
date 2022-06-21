@@ -3,7 +3,6 @@
     <div class="layout-inline text-right">
 <!--      <my-select class="layout-item width-150" size="small" :placeholder="$t('选择年度')" :sel-value="searchYear" :options="yearOptions" :clearable="true" @change="handleSearchChange($event, 1)"></my-select>-->
       <my-select class="layout-item width-150" size="small" :placeholder="$t('流程名称')" :sel-value="searchName" :options="flowOptions" :clearable="true" @change="handleSearchChange($event, 2)"></my-select>
-      <el-button size="small" type="success" @click="search">{{$t("搜索")}}</el-button>
     </div>
 
     <div class="margin-top-10">
@@ -169,10 +168,8 @@
     created() {
       let year = this.$moment().format("YYYY-MM");
       let college = '';
-      this.initMonth();
-      this.initCount();
-      this.initStatic();
-      this.initSearch(year,college);
+      this.initProcess(year, college);
+
     },
     methods: {
       handleSearchChange(event, type){
@@ -180,6 +177,9 @@
           this.searchYear = event;
         }else if (type == 2){
           this.searchName = event;
+          this.initCount();
+          this.initStatic();
+          this.initSearch(this.searchMonth,this.collegeId);
         }else if (type == 3){
           this.searchMonth = event;
           this.initSearch(this.searchMonth, this.collegeId);
@@ -192,6 +192,30 @@
       },
       search(){
 
+      },
+      initProcess(year, college){
+        let params = {
+          page: 1,
+          num: 9999
+        };
+        this.$axios.get(common.enroll_process_page, {params: params}).then(res => {
+          if (res.data.data){
+            let arr = [];
+            for (let i = 0; i < res.data.data.list.length; i++){
+              arr.push({
+                label: res.data.data.list[i].processName,
+                value: res.data.data.list[i].id,
+                text: res.data.data.list[i].processName,
+              });
+            }
+            this.flowOptions= arr;
+            this.searchName = arr[0].value;
+            this.initMonth();
+            this.initCount();
+            this.initStatic();
+            this.initSearch(year,college);
+          }
+        });
       },
       initMonth(){
         let year = this.$moment().format("YYYY");
@@ -212,7 +236,10 @@
         this.initLine(year, this.searchCollege);
       },
       initCount(){
-        this.$axios.get(common.enroll_stat_student_general).then(res => {
+        let params = {
+          processId: this.searchName,
+        };
+        this.$axios.get(common.enroll_stat_student_general,{params:params}).then(res => {
           if (res.data.data) {
             this.maleCount = res.data.data.sexMaleCount;
             this.famaleCount = res.data.data.sexFemaleCount;
@@ -226,9 +253,9 @@
       },
       initStatic(){
         let params = {
-          termId: this.currentTermId,
+          processId: this.searchName,
         };
-        this.$axios.get(common.enroll_stat_checkin_by_college).then(res => {
+        this.$axios.get(common.enroll_stat_checkin_by_college, {params: params}).then(res => {
           if (res.data.data){
             let legned = [];
             let key = [];
@@ -260,7 +287,8 @@
       initLine(year, college){
         let params = {
           month: year,
-          collegeId: college
+          collegeId: college,
+          processId: this.searchName
         };
         this.$axios.get(common.enroll_stat_checkin_by_time, {params: params}).then(res => {
           if (res.data.data){
