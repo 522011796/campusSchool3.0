@@ -572,7 +572,7 @@
             this.complatedNum = res.data.data.downCount;
             this.unComplateNum = res.data.data.undownCount;
             let rate = parseInt(res.data.data.downCount) / (parseInt(res.data.data.downCount) + parseInt(res.data.data.undownCount)) * 100;
-            this.complateRate = rate.toFixed(2);
+            this.complateRate = parseInt(rate.toFixed(0));
           }
         });
       },
