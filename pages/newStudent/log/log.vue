@@ -5,25 +5,25 @@
 
       <div slot="tab">
         <el-row>
-          <el-col :span="6">
-            <el-popover
-              placement="right"
-              width="180"
-              v-model="visible"
-              @hide="closePopover">
-              <div>
-                <my-date-picker :sel-value="clearTime" :clearable="true" size="small" width-style="180" @change="handleClear"></my-date-picker>
-              </div>
-              <div class="margin-top-5 text-right">
-                <el-button size="mini" type="text" @click="visible = false">取消</el-button>
-                <el-button type="text" class="color-danger" size="mini" @click="clearInfo">确定</el-button>
-              </div>
-              <el-button slot="reference" size="small" type="primary"  icon="el-icon-delete">{{$t("清空")}}</el-button>
-            </el-popover>
-          </el-col>
-          <el-col :span="18" class="text-right">
+<!--          <el-col :span="6">-->
+<!--            <el-popover-->
+<!--              placement="right"-->
+<!--              width="180"-->
+<!--              v-model="visible"-->
+<!--              @hide="closePopover">-->
+<!--              <div>-->
+<!--                <my-date-picker :sel-value="clearTime" :clearable="true" size="small" width-style="180" @change="handleClear"></my-date-picker>-->
+<!--              </div>-->
+<!--              <div class="margin-top-5 text-right">-->
+<!--                <el-button size="mini" type="text" @click="visible = false">取消</el-button>-->
+<!--                <el-button type="text" class="color-danger" size="mini" @click="clearInfo">确定</el-button>-->
+<!--              </div>-->
+<!--              <el-button slot="reference" size="small" type="primary"  icon="el-icon-delete">{{$t("清空")}}</el-button>-->
+<!--            </el-popover>-->
+<!--          </el-col>-->
+          <el-col :span="24" class="text-right">
             <div class="layout-inline text-right">
-              <my-select size="small" :clearable="true" :group="true" :options="typeList" class="layout-item" @change="handleSelect"></my-select>
+              <my-select size="small" :clearable="true" :options="typeList" class="layout-item" @change="handleSelect"></my-select>
               <my-date-picker :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChange" style="position: relative; top: 1px;"></my-date-picker>
               <my-input-button size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('登录人')" @click="search"></my-input-button>
             </div>
@@ -137,7 +137,8 @@ export default {
         endTime: this.searchDate && this.searchDate.length > 0 ? (this.searchDate[1] + " 23:59:59") : '',
         userName: this.searchKey,
         queryType: 2,
-        action: this.action
+        action: this.action,
+        parentId: 16
       };
       this.$axios.get(common.log_list, {params: params}).then(res => {
         if (res.data.data){
@@ -149,25 +150,18 @@ export default {
       });
     },
     initType(){
-      this.$axios.get(common.log_type).then(res => {
+      let params = {
+        parentId: 16
+      };
+      this.$axios.get(common.enroll_list_by_parent_id, {params: params}).then(res => {
         if (res.data.data){
           let arr = [];
           for (let i = 0; i < res.data.data.length; i++){
             arr.push({
               label: res.data.data[i].name,
-              id: res.data.data[i].id
+              id: res.data.data[i].id,
+              value: res.data.data[i].id,
             });
-            if (res.data.data[i].list && res.data.data[i].list.length > 0){
-              arr[i]['options'] = [];
-              for (let j = 0; j < res.data.data[i].list.length; j++){
-                arr[i]['options'].push({
-                  label: res.data.data[i].list[j].name,
-                  id: res.data.data[i].list[j].id,
-                  action: res.data.data[i].list[j].action,
-                  value: res.data.data[i].list[j].action
-                });
-              }
-            }
           }
           this.typeList = arr;
         }

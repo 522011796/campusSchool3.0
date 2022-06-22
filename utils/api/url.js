@@ -668,4 +668,6 @@ export const common = {
   enroll_process_del: '/proxy/school/enroll-process/del', //流程删除
   enroll_process_publish: '/proxy/school/enroll-process/publish', //流程设置
 
+  enroll_list_by_parent_id: '/proxy/log/logtype/get/select/list-by-parent-id', //日志类型
+
 };
