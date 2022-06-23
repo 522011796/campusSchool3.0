@@ -13,11 +13,11 @@
           </el-row>
         </div>
         <div class="margin-top-10 padding-lr-10 font-size-12">
-          <template v-if="activeName == 'only'">
+          <template>
             <div>
               <div class="font-bold">{{$t("节点类型")}}</div>
-               <div v-if="flowDetailData.extra == 'audit'" class="margin-top-10">{{$t("线上流程")}}</div>
-                <div v-if="flowDetailData.extra == 'send'" class="margin-top-10">{{$t("线下流程")}}</div>
+                <div v-if="flowDetailData.type === 1" class="margin-top-10">{{$t("线上流程")}}</div>
+                <div v-if="flowDetailData.type === 0" class="margin-top-10">{{$t("线下流程")}}</div>
             </div>
             <div class="margin-top-10">
               <div class="font-bold">{{$t("节点名称")}}</div>
@@ -26,7 +26,7 @@
               </div>
             </div>
             <div class="margin-top-10">
-              <template v-if="flowDetailData.extra == 'audit' || flowDetailData.extra == 'send'">
+              <template>
                 <div class="font-bold">{{$t("管理员")}}</div>
                 <div class="margin-top-5">
                   <el-popover
@@ -58,40 +58,16 @@
               <div class="margin-top-10">
                 <el-row>
                   <el-col :span="20">
-                    <span>{{$t("系部报道")}}</span>
+                    <div v-if="flowDetailData != ''" v-for="(item, index) in flowData" :key="index">
+                      <span>{{ item.name }}</span>
+                    </div>
                   </el-col>
                   <el-col :span="4" class="text-center">
-                    <el-checkbox v-model="form.allowBack"></el-checkbox>
-                  </el-col>
-                </el-row>
-              </div>
-              <div class="margin-top-10">
-                <el-row>
-                  <el-col :span="20">
-                    <span>{{$t("现场缴费")}}</span>
-                  </el-col>
-                  <el-col :span="4" class="text-center">
-                    <el-checkbox v-model="form.autoAudit"></el-checkbox>
-                  </el-col>
-                </el-row>
-              </div>
-            </div>
-          </template>
-
-          <template>
-            <div class="margin-top-10">
-              <div>
-                <div>
-                  <span class="font-bold">{{$t("依赖数据")}}</span>
-                </div>
-              </div>
-              <div class="margin-top-10">
-                <el-row>
-                  <el-col :span="20">
-                    <span>数据1</span>
-                  </el-col>
-                  <el-col :span="4" class="text-center">
-                    <el-checkbox v-model="form.allowBack"></el-checkbox>
+                    <el-checkbox-group v-if="flowDetailData != ''" v-model="flowDetailData.items" @change="handleChangeBox">
+                      <div v-for="(item, index) in flowData" :key="index" class="text-right">
+                        <el-checkbox :label="index" :disabled="index === flowDetailIndex">&nbsp</el-checkbox>
+                      </div>
+                    </el-checkbox-group>
                   </el-col>
                 </el-row>
               </div>
@@ -107,14 +83,16 @@
               </div>
               <div class="margin-top-10">
                 <el-date-picker
-                  v-model="form.datetimerange"
+                  v-model="flowDetailData.datetimerange"
                   :unlink-panels="true"
                   size="mini"
                   style="width: 100%"
+                  format="yyyy-MM-dd HH:mm"
                   type="datetimerange"
                   range-separator="至"
                   start-placeholder="开始日期"
-                  end-placeholder="结束日期">
+                  end-placeholder="结束日期"
+                  @change="handleFormChange($event)">
                 </el-date-picker>
               </div>
             </div>
@@ -133,7 +111,7 @@
                     <span>可重复提交</span>
                   </el-col>
                   <el-col :span="4" class="text-center">
-                    <el-checkbox v-model="form.allowBack"></el-checkbox>
+                    <el-checkbox v-model="flowDetailData.allowRepeat"></el-checkbox>
                   </el-col>
                 </el-row>
               </div>
@@ -143,14 +121,14 @@
                     <span>允许撤销</span>
                   </el-col>
                   <el-col :span="4" class="text-center">
-                    <el-checkbox v-model="form.allowBack"></el-checkbox>
+                    <el-checkbox v-model="flowDetailData.allowBack"></el-checkbox>
                   </el-col>
                 </el-row>
               </div>
             </div>
           </template>
 
-          <template>
+          <template v-if="flowDetailData.report == true">
             <div class="margin-top-10">
               <div>
                 <div>
@@ -163,7 +141,7 @@
                     <span>人工手动</span>
                   </el-col>
                   <el-col :span="4" class="text-center">
-                    <el-checkbox v-model="form.allowBack"></el-checkbox>
+                    <el-checkbox v-model="flowDetailData.custom"></el-checkbox>
                   </el-col>
                 </el-row>
               </div>
@@ -173,7 +151,7 @@
                     <span>二维码(主扫)</span>
                   </el-col>
                   <el-col :span="4" class="text-center">
-                    <el-checkbox v-model="form.allowBack"></el-checkbox>
+                    <el-checkbox v-model="flowDetailData.qrcode"></el-checkbox>
                   </el-col>
                 </el-row>
               </div>
@@ -183,14 +161,14 @@
                     <span>人脸识别</span>
                   </el-col>
                   <el-col :span="4" class="text-center">
-                    <el-checkbox v-model="form.allowBack"></el-checkbox>
+                    <el-checkbox v-model="flowDetailData.face"></el-checkbox>
                   </el-col>
                 </el-row>
               </div>
             </div>
           </template>
 
-          <template>
+          <template v-if="flowDetailData.report == false">
             <div class="margin-top-10">
               <div>
                 <div>
@@ -203,7 +181,7 @@
                     <span>设为报道成功</span>
                   </el-col>
                   <el-col :span="4" class="text-center">
-                    <el-checkbox v-model="form.allowBack"></el-checkbox>
+                    <el-checkbox v-model="flowDetailData.reportSuccess"></el-checkbox>
                   </el-col>
                 </el-row>
               </div>
@@ -223,7 +201,7 @@
 
           <div v-if="flowData.length > 0" v-for="(item, index) in flowData" :key="index">
             <div class="flow-item-block" @click="selFlowItemBlock($event, item, index)">
-              <div class="flow-item-title-block" :class="item.extra == 'audit' ? 'bg-warning' : 'bg-success'">
+              <div class="flow-item-title-block" :class="item.subType == '1' ? 'bg-warning' : 'bg-success'">
                 <i class="fa fa-times-circle flow-item-close-block color-danger" @click.stop="delAuditType($event, item, index)"></i>
                 <span class="font-bold font-size-12">
                   <el-row>
@@ -245,7 +223,7 @@
                       <label>{{ $t("人员") }}: </label>
                     </span>
                     <span>
-                      <template v-if="item.type == 1 || item.type == 3 || item.type == 4 || item.type == 6">
+                      <template>
                         <el-tag size="mini" v-for="(itemUser ,indexUser) in item.hName" :key="indexUser" v-if="indexUser < 4" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
                           <el-tooltip class="item" effect="dark" :content="itemUser" placement="top-start">
                             <span>{{ itemUser }}</span>
@@ -253,31 +231,41 @@
                         </el-tag>
                         <label class="flow-user-count-tag margin-left-5" v-if="item.users.length >= 4">4+</label>
                       </template>
-                      <template v-if="item.type == 2 || item.type == 5">
-                        <el-tag size="mini" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
-                          <label v-if="item.hType == 'MasterTeacher'">{{$t("班主任")}}</label>
-                          <label v-if="item.hType == 'CoachTeacher'">{{$t("辅导员")}}</label>
-                          <label v-if="item.hType == 'DirectorTeacher'">{{$t("系主任")}}</label>
-                          <label v-if="item.hType == 'DormitorTeacher'">{{$t("宿管员")}}</label>
-                          <label v-if="item.hType == 'DeputyDirectorTeacher'">{{$t("系副主任")}}</label>
-                          <label v-if="item.hType == 'StudentManageTeacher'">{{$t("学管主任")}}</label>
-                          <label v-if="item.hType == 'SecretaryTeacher'">{{$t("系部主任")}}</label>
-                        </el-tag>
-                      </template>
                     </span>
                   </div>
-                  <div class="margin-top-5" v-if="item.extra != 'send'">
+                  <div class="margin-top-5">
                     <span style="position: relative; top: -5px">
                       <i class="fa fa-cog"></i>
                       <label>{{ $t("权限") }}: </label>
                     </span>
                     <span>
-                      <el-tag size="mini" type="success" v-if="item.allowShow || item.allowMuti" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
-                        {{ $t("提交") }}
+                      <el-tag size="mini" type="success" v-if="item.allowBack" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 80px">
+                        {{ $t("允许撤销") }}
                       </el-tag>
-                      <el-tag size="mini" type="success" v-if="item.rejectShow || item.rejectMuti" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
-                        {{ $t("驳回") }}
+                      <el-tag size="mini" type="warning" v-if="item.allowRepeat" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 80px">
+                        {{ $t("可重复提交") }}
                       </el-tag>
+                    </span>
+                  </div>
+                  <div class="margin-top-5">
+                    <span style="position: relative; top: -5px">
+                      <i class="fa fa-history"></i>
+                      <label>{{ $t("时间") }}: </label>
+                    </span>
+                    <span>
+                      <template>
+<!--                        <el-tag size="mini" v-for="(itemUser ,indexUser) in item.items" :key="indexUser" v-if="indexUser < 4" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">-->
+<!--                          <el-tooltip class="item" effect="dark" :content="flowData[itemUser].name" placement="top-start">-->
+<!--                            <span>{{ flowData[itemUser].name }}</span>-->
+<!--                          </el-tooltip>-->
+<!--                        </el-tag>-->
+<!--                        <label class="flow-user-count-tag margin-left-5" v-if="item.users.length >= 4">4+</label>-->
+                        <el-tag size="mini" type="success" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 240px">
+                          {{$moment(item.datetimerange[0]).format("YYYY-MM-DD HH:mm")}}
+                          -
+                          {{$moment(item.datetimerange[1]).format("YYYY-MM-DD HH:mm")}}
+                        </el-tag>
+                      </template>
                     </span>
                   </div>
                 </div>
@@ -330,11 +318,18 @@
           return {
             auditType: '',
             name: '',
+            allowRepeat: false,
             allowBack: false,
-            urge: false,
-            autoAudit: false,
-            merge: false,
-            datetimerange: []
+            reportSuccess: false,
+            face: false,
+            qrcode: false,
+            custom: false,
+            report: '',
+            datetimerange: [],
+            items: [],
+            hType: '',
+            hName: '',
+            subType: ''
           };
         },
         type: Object
@@ -369,28 +364,24 @@
 
     },
     methods: {
-      selAuditType(type, extra, index){
+      selAuditType(subType, extra, index, type){
         let obj = {
           type: type,
           extra: extra,
-          name: this.auditFlowTypeItemInfo(type, 'set'),
+          name: this.auditFlowTypeItemInfo(subType, 'set'),
           users: [],
+          allowRepeat: false,
+          allowBack: false,
+          reportSuccess: false,
+          face: false,
+          qrcode: false,
+          custom: false,
+          report: subType == 1 ? true : false,
+          datetimerange: [],
+          items: [],
           hType: '',
           hName: '',
-          andor: 'or',
-          waitName: false,
-          allowShow: false,
-          allowMuti: false,
-          rejectShow: false,
-          rejectMuti: false,
-          transferShow: false,
-          transferMuti: false,
-          allShow: false,
-          allEdit: false,
-          applicantShow: false,
-          applicantEdit: false,
-          right1: [],
-          right2: [],
+          subType: subType
         };
         this.flowData.splice(index, 0, obj);
         this.selFlowItemBlock(null, obj, index);
@@ -415,45 +406,6 @@
         this.flowDetailData = data;
         this.approverUsers = data.users;
         this.flowDetailIndex = index;
-        let ruleList = [];
-        if (this.formId.form_content){
-          let form_content = JSON.parse(this.formId.form_content);
-          //this.formFieldList = form_content.rule;
-
-          this.formFieldList = this.setRuleChild(form_content.rule, ruleList);
-
-          if (this.formFieldList.length == this.flowDetailData.right1.length){
-            this.checkRight1All = true;
-          }else {
-            this.checkRight1All = false;
-          }
-
-          if (this.formFieldList.length == this.flowDetailData.right2.length){
-            this.checkRight2All = true;
-          }else {
-            this.checkRight2All = false;
-          }
-        }
-      },
-      setRuleChild(rule, ruleList){
-        let obj = {};
-        for (let i = 0; i < rule.length; i++){
-          if (rule[i]['children'] && rule[i]['children'].length > 0){
-            this.setRuleChild(rule[i]['children'], ruleList);
-            continue;
-          }else {
-            if (rule[i].field){
-              obj = {
-                field: rule[i].field,
-                title: rule[i].title,
-                type: rule[i].type,
-                value: rule[i].value
-              }
-              ruleList.push(obj);
-            }
-          }
-        }
-        return ruleList;
       },
       loadingShow(type){
         let timer = null;
@@ -485,50 +437,15 @@
         }
         this.approverUsers = this.flowDetailData.users;
       },
+      handleFormChange(event, type){
+        this.flowData[this.flowDetailIndex]['datetimerange'] = [this.$moment(event[0]).format("YYYY-MM-DD HH:mm"), this.$moment(event[1]).format("YYYY-MM-DD HH:mm")];
+      },
       versionList(){
         this.$emit("versionClick");
       },
-      handleCheckedRight1Change(data){
-        this.flowDetailData.right1 = data;
-        if (this.formFieldList.length == this.flowDetailData.right1.length){
-          this.checkRight1All = true;
-        }else {
-          this.checkRight1All = false;
-        }
-      },
-      handleCheckedRight2Change(data){
-        this.flowDetailData.right2 = data;
-        if (this.formFieldList.length == this.flowDetailData.right2.length){
-          this.checkRight2All = true;
-        }else {
-          this.checkRight2All = false;
-        }
-      },
-      handleCheckAllChangeRight1(data){
-        if (data == true){
-          if (this.formId.form_content){
-            let arr = [];
-            for(let i = 0; i < this.formFieldList.length; i++){
-              arr.push(this.formFieldList[i].field);
-            }
-            this.flowDetailData.right1 = arr;
-          }
-        }else{
-          this.flowDetailData.right1 = [];
-        }
-      },
-      handleCheckAllChangeRight2(data){
-        if (data == true){
-          if (this.formId.form_content){
-            let arr = [];
-            for(let i = 0; i < this.formFieldList.length; i++){
-              arr.push(this.formFieldList[i].field);
-            }
-            this.flowDetailData.right2 = arr;
-          }
-        }else{
-          this.flowDetailData.right2 = [];
-        }
+      handleChangeBox(data){
+        this.flowData[this.flowDetailIndex].items = data;
+        console.log(this.flowData,this.flowDetailIndex);
       },
       showPop(){
         this.flowCustonUserStatus = false;

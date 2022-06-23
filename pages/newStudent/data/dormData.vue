@@ -261,6 +261,10 @@
           <div class="padding-tb-10 padding-lr-10">
             <span class="title-block-tag"></span>
             <span class="title-block-text">{{$t("基本信息")}}</span>
+
+            <div class="pull-right">
+              <el-image style="width: 120px; height: 30px" :src="g_BarCode"></el-image>
+            </div>
           </div>
           <table class="custom-table">
             <tr>
@@ -286,7 +290,7 @@
             </tr>
             <tr>
               <td class="font-size-12 font-bold">{{$t("宿舍信息")}}</td>
-              <td colspan="6" v-if="detailData.build_name" class="color-muted font-size-12">{{detailData.build_name}}{{$("楼")}}{{detailData.floor_num}}{{$("层")}}{{detailData.dormitory_no}}</td>
+              <td colspan="6" v-if="detailData.build_name" class="color-muted font-size-12">{{detailData.build_name}}{{$t("楼")}}{{detailData.floor_num}}{{$t("层")}}{{detailData.dormitory_no}}</td>
             </tr>
           </table>
         </div>
@@ -373,6 +377,9 @@
               </template>
             </el-table-column>
           </el-table>
+        </div>
+        <div class="margin-top-20">
+          <el-image style="width: 80px; height: 80px" :src="g_QrCode"></el-image>
         </div>
       </div>
     </drawer-layout-right>
@@ -848,6 +855,8 @@ export default {
         }
       });
       this.initPay(item);
+      this.getUserQrcode(item.user_id);
+      this.getUserBarcode(item.user_id);
       this.dialogVisible = true;
     },
     dormTypeTextInfo(val){

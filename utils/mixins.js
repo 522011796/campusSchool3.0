@@ -110,6 +110,8 @@ export default {
       currentVersion: '',
       versionData: [],
       currentDateStatus: null,
+      g_QrCode: '',
+      g_BarCode: '',
       tableHeight: {
         'height': ''
       },
@@ -684,6 +686,26 @@ export default {
     },
     serverFormTypeInfo(value, type){
       return serverFormType(type, value);
+    },
+    async getUserQrcode(value){
+      let params = {
+        userId: value
+      };
+      await this.$axios.get(common.enroll_student_qrcode, {params: params}).then(res => {
+        if (res.data.data){
+          this.g_QrCode = res.data.data.qrcodeImageBase64;
+        }
+      });
+    },
+    async getUserBarcode(value){
+      let params = {
+        userId: value
+      };
+      await this.$axios.get(common.enroll_student_barcode, {params: params}).then(res => {
+        if (res.data.data){
+          this.g_BarCode = res.data.data.barcodeImageBase64;
+        }
+      });
     }
   }
 }

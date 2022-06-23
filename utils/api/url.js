@@ -622,6 +622,8 @@ export const common = {
   enroll_student_template_download: '/proxy/school/enroll-student/template/download', //录取模版下载
   enroll_student_detail: '/proxy/school/enroll-student/detail', //录取分页
   enroll_student_del: '/proxy/school/enroll-student/del', //录取分页删除
+  enroll_student_barcode: '/proxy/school/enroll-student/barcode', //条形码
+  enroll_student_qrcode: '/proxy/school/enroll-student/qrcode', //二维码
 
   enroll_checkin_page: '/proxy/school/enroll/checkin/page', //报道数据分页
   enroll_checkin_revoke: '/proxy/school/enroll/checkin/revoke', //报道数据撤销
@@ -667,6 +669,13 @@ export const common = {
   enroll_process_edit: '/proxy/school/enroll-process/edit', //流程编辑
   enroll_process_del: '/proxy/school/enroll-process/del', //流程删除
   enroll_process_publish: '/proxy/school/enroll-process/publish', //流程设置
+  enroll_process_add: '/proxy/school/enroll-process/add', //流程添加
+  enroll_process_user_ids: '/proxy/school/enroll-process/get-user-id-list', //流程用户详细
+
+  enroll_process_link_page: '/proxy/school/process/link/page', //环节分页
+  enroll_process_link_update: '/proxy/school/process/link/update', //环节修改
+  enroll_process_link_save: '/proxy/school/process/link/save', //环节添加
+  enroll_process_link_list: '/proxy/school/process/link/list', //流程环节详细
 
   enroll_list_by_parent_id: '/proxy/log/logtype/get/select/list-by-parent-id', //日志类型
 

@@ -883,12 +883,16 @@ export function flowAuditItemType(str, type){
 }
 
 export function newStudentFlowAuditItemType(str, type){
+  if (str == 0){
+    str = '00';
+  }
   let flowAuditType = {
     "1": "现场报道(系统)",
-    "2": "现场缴费(系统)",
-    "3": "信息采集(系统)",
-    "4": "接站登记(系统)",
-    "5": "线上选寝(系统)"
+    "3": "现场缴费(系统)",
+    "4": "信息采集(系统)",
+    "00": "接站登记(系统)",
+    "2": "线上选寝(系统)",
+    "9": "自定义环节"
   };
   if (str && type == 'set') {
     return flowAuditType[str];

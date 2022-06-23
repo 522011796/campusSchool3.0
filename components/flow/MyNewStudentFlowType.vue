@@ -12,11 +12,11 @@
             <span>{{$t("线下流程")}}</span>
           </div>
           <div class="margin-left-5">
-            <div class="flow-item-child-block padding-tb-5" @click="selAuditType($event, 1, 'audit')">
+            <div class="flow-item-child-block padding-tb-5" @click="selAuditType($event, 1, 'audit', 0)">
               <i class="fa fa-user"></i>
               <span>{{$t("现场报道")}} ({{$t("系统")}})</span>
             </div>
-            <div class="flow-item-child-block padding-tb-5" @click="selAuditType($event, 2, 'audit')">
+            <div class="flow-item-child-block padding-tb-5" @click="selAuditType($event, 3, 'audit', 0)">
               <i class="fa fa-cog"></i>
               <span>{{$t("现场缴费")}} ({{$t("系统")}})</span>
             </div>
@@ -27,17 +27,21 @@
             <span>{{$t("线上流程")}}</span>
           </div>
           <div class="margin-left-5">
-            <div class="flow-item-child-block padding-tb-5" @click="selAuditType($event, 3, 'send')">
+            <div class="flow-item-child-block padding-tb-5" @click="selAuditType($event, 4, 'send', 1)">
               <i class="fa fa-user"></i>
               <span>{{$t("信息采集")}} ({{$t("系统")}})</span>
             </div>
-            <div class="flow-item-child-block padding-tb-5" @click="selAuditType($event, 4, 'send')">
+            <div class="flow-item-child-block padding-tb-5" @click="selAuditType($event, 0, 'send', 1)">
               <i class="fa fa-cog"></i>
               <span>{{$t("接站登记")}} ({{$t("系统")}})</span>
             </div>
-            <div class="flow-item-child-block padding-tb-5" @click="selAuditType($event, 5, 'send')">
+            <div class="flow-item-child-block padding-tb-5" @click="selAuditType($event, 2, 'send', 1)">
               <i class="fa fa-cog"></i>
               <span>{{$t("线上选寝")}} ({{$t("系统")}})</span>
+            </div>
+            <div class="flow-item-child-block padding-tb-5" @click="selAuditType($event, 9, 'send', 1)">
+              <i class="fa fa-cog"></i>
+              <span>{{$t("自定义环节")}}</span>
             </div>
           </div>
         </div>
@@ -75,9 +79,9 @@
       addPop(){
         this.popVisible = true;
       },
-      selAuditType(event, type, extra){
+      selAuditType(event, type, extra, subType){
         this.popVisible = false;
-        this.$emit("click", type, extra, parseInt(this.itemIndex));
+        this.$emit("click", type, extra, parseInt(this.itemIndex), subType);
       },
       showPop(){
         this.$emit("showPop");
