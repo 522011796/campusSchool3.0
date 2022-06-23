@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div v-if="subPageVisible == true">
-      <link-dorm-manage v-if="subPageType == 1" :page-title="subPageTitle"  @returnClick="returnClick"></link-dorm-manage>
-      <link-pay-manage v-if="subPageType == 2" :page-title="subPageTitle"  @returnClick="returnClick"></link-pay-manage>
-      <link-station-manage v-if="subPageType == 3" :page-title="subPageTitle"  @returnClick="returnClick"></link-station-manage>
+      <link-dorm-manage v-if="subPageType == 2" :page-title="subPageTitle"  @returnClick="returnClick"></link-dorm-manage>
+      <link-pay-manage v-if="subPageType == 3" :page-title="subPageTitle"  @returnClick="returnClick"></link-pay-manage>
+      <link-station-manage v-if="subPageType == 0" :page-title="subPageTitle"  @returnClick="returnClick"></link-station-manage>
     </div>
     <div v-if="subPageVisible == false">
       <layout-lr>
@@ -12,7 +12,7 @@
             <!--<span class="layout-left-menu-tag"></span>-->
             <span class="layout-left-menu-title">环节管理</span>
           </div>
-          <my-el-tree ref="myElTree" type="100" :extra-type="$route.query.appName" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
+          <my-el-tree ref="myElTree" type="120" :show-campus="false" :currentNodeKey="currentNodeKey" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
         </div>
 
         <div slot="right">
@@ -20,10 +20,10 @@
             <el-row>
               <el-col :span="16">
                 <div class="layout-inline">
-                  <my-cascader class="layout-item" size="small" ref="SelectorCollege" :placeholder="$t('部门选择')" :sel-value="searchCascader" type="4" sub-type="id" width-style="160" @change="handleCascaderChange($event)"></my-cascader>
-                  <my-select class="layout-item width-150" size="small" :sel-value="searchParam" :placeholder="$t('属性')" :options="paramTypes" :clearable="true" @change="handleTypeChange($event, 3)"></my-select>
-                  <my-select class="layout-item width-150" size="small" :sel-value="searchType" :placeholder="$t('类型')" :options="filterFlowParamType" :clearable="true" @change="handleTypeChange($event, 1)"></my-select>
-                  <my-select class="layout-item width-150" size="small" :sel-value="searchStatus" :placeholder="$t('状态')" :options="filterAppManageStatus" :clearable="true" @change="handleTypeChange($event, 2)"></my-select>
+<!--                  <my-cascader class="layout-item" size="small" ref="SelectorCollege" :placeholder="$t('部门选择')" :sel-value="searchCascader" type="4" sub-type="id" width-style="160" @change="handleCascaderChange($event)"></my-cascader>-->
+                  <my-select class="layout-item width-150" size="small" :sel-value="searchParam" :placeholder="$t('属性')" :options="filterProcessLinkParamType" :clearable="true" @change="handleTypeChange($event, 1)"></my-select>
+                  <my-select class="layout-item width-150" size="small" :sel-value="searchType" :placeholder="$t('类型')" :options="filterFlowParamType" :clearable="true" @change="handleTypeChange($event, 2)"></my-select>
+<!--                  <my-select class="layout-item width-150" size="small" :sel-value="searchStatus" :placeholder="$t('状态')" :options="filterAppManageStatus" :clearable="true" @change="handleTypeChange($event, 2)"></my-select>-->
                 </div>
               </el-col>
               <el-col :span="8" class="text-right">
@@ -47,9 +47,9 @@
                 :label="$t('环节名称')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{$moment(scope.row.create_time).format("YYYY-MM-DD")}}</div>
+                    <div class="text-center">{{scope.row.link_name}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      {{$moment(scope.row.create_time).format("YYYY-MM-DD")}}
+                      {{scope.row.link_name}}
                     </span>
                   </el-popover>
                 </template>
@@ -59,36 +59,27 @@
                 :label="$t('环节类型')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{ scope.row.applet_name }}</div>
+                    <div class="text-center">
+                      <label v-if="scope.row.link_type == 1" class="color-warning">{{$t("线上环节")}}</label>
+                      <label v-if="scope.row.link_type == 0" class="color-success">{{$t("线下环节")}}</label>
+                    </div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                        {{ scope.row.applet_name }}
-                      </span>
-                  </el-popover>
-                </template>
-              </el-table-column>
-              <el-table-column
-                align="center"
-                prop="form_name"
-                :label="$t('部门/院系')">
-                <template slot-scope="scope">
-                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{ scope.row.form_name }}</div>
-                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                        {{ scope.row.form_name }}
-                      </span>
+                      <label v-if="scope.row.link_type == 1" class="color-warning">{{$t("线上环节")}}</label>
+                      <label v-if="scope.row.link_type == 0" class="color-success">{{$t("线下环节")}}</label>
+                    </span>
                   </el-popover>
                 </template>
               </el-table-column>
               <el-table-column
                 align="center"
                 prop="appName"
-                :label="$t('所属类型')">
+                :label="$t('所属流程')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{ serverFormTypeInfo(scope.row.form_type, 'set') }}</div>
+                    <div class="text-center">{{ scope.row.process_name }}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                        {{ serverFormTypeInfo(scope.row.form_type, 'set') }}
-                      </span>
+                        {{ scope.row.process_name }}
+                    </span>
                   </el-popover>
                 </template>
               </el-table-column>
@@ -97,11 +88,14 @@
                 prop="appName"
                 :label="$t('环节属性')">
                 <template slot-scope="scope">
-                  <el-image class="table-cell-image-slot" :src="scope.row.form_logo">
-                    <div slot="error" class="table-cell-image-slot">
-                      <i class="el-icon-picture-outline" style="font-size: 14px"></i>
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">
+                      {{auditFlowTypeItemInfo(scope.row.link_sub_type, 'set')}}
                     </div>
-                  </el-image>
+                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      {{auditFlowTypeItemInfo(scope.row.link_sub_type, 'set')}}
+                    </span>
+                  </el-popover>
                 </template>
               </el-table-column>
               <el-table-column
@@ -109,28 +103,12 @@
                 prop="appName"
                 :label="$t('环节图标')">
                 <template slot-scope="scope">
-                  <el-image class="table-cell-image-slot" :src="scope.row.form_logo">
+                  <el-image v-if="scope.row.link_logo" class="table-cell-image-slot" :src="scope.row.link_logo">
                     <div slot="error" class="table-cell-image-slot">
                       <i class="el-icon-picture-outline" style="font-size: 14px"></i>
                     </div>
                   </el-image>
-                </template>
-              </el-table-column>
-              <el-table-column
-                align="center"
-                prop="appName"
-                :label="$t('状态')">
-                <template slot-scope="scope">
-                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">
-                      <label v-if="scope.row.enable" class="color-success">{{$t("已发布")}}</label>
-                      <label v-if="!scope.row.enable" class="color-warning">{{$t("待发布")}}</label>
-                    </div>
-                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      <label v-if="scope.row.enable" class="color-success">{{$t("已发布")}}</label>
-                      <label v-if="!scope.row.enable" class="color-warning">{{$t("待发布")}}</label>
-                    </span>
-                  </el-popover>
+                  <span v-else>--</span>
                 </template>
               </el-table-column>
               <el-table-column
@@ -138,11 +116,11 @@
                 width="120"
                 :label="$t('操作')">
                 <template slot-scope="scope">
-                  <i v-if="scope.row.enable == true" class="fa fa-minus-circle margin-right-5 color-warning" @click="statusInfo(scope.row, false)"></i>
-                  <i v-if="scope.row.enable == false" class="fa fa-check-square margin-right-5 color-success" @click="statusInfo(scope.row, true)"></i>
-                  <i class="fa fa-cog margin-right-5 color-grand" @click="setInfo(scope.row, 1)"></i>
-                  <i class="fa fa-tags margin-right-5 color-grand" @click="setInfo(scope.row, 2, 1, scope.$index)"></i>
-                  <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
+<!--                  <i v-if="scope.row.enable == true" class="fa fa-minus-circle margin-right-5 color-warning" @click="statusInfo(scope.row, false)"></i>-->
+<!--                  <i v-if="scope.row.enable == false" class="fa fa-check-square margin-right-5 color-success" @click="statusInfo(scope.row, true)"></i>-->
+                  <i class="fa fa-edit margin-right-5 color-success" @click="setInfo(scope.row, 1)"></i>
+                  <i v-if="scope.row.link_sub_type != 1 && scope.row.link_sub_type != 4" class="fa fa-tags margin-right-5 color-grand" @click="setInfo(scope.row, 2, scope.row.link_sub_type, scope.$index)"></i>
+<!--                  <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>-->
                 </template>
               </el-table-column>
             </el-table>
@@ -176,11 +154,12 @@
               </el-form-item>
               <el-form-item :label="$t('数据管理')" prop="app">
                 <el-radio-group v-model="form.data" @change="handleDataChange">
-                  <el-radio :label="1">{{$t('部门')}}</el-radio>
-                  <el-radio :label="2">{{$t('院系')}}</el-radio>
+                  <el-radio label="0">{{$t('部门')}}</el-radio>
+                  <el-radio label="1">{{$t('院系')}}</el-radio>
                 </el-radio-group>
                 <div>
-                  <my-select class="layout-item width-300" size="small" :sel-value="form.dataItem" :options="dataItems" :clearable="true" @change="handleTypeChange($event, 4)"></my-select>
+                  <my-cascader v-if="form.data == 0" ref="SelectorCollege" :sel-value="form.dataItem" :props="{multiple: true}" type="4" sub-type="id" width-style="300" @change="handleCascaderChange($event, 2)"></my-cascader>
+                  <my-cascader v-if="form.data == 1" ref="SelectorCollege" :sel-value="form.dataItem" :props="{multiple: true}" type="1" sub-type="2" width-style="300" @change="handleCascaderChange($event, 2)"></my-cascader>
                 </div>
               </el-form-item>
               <el-form-item :label="$t('简介')" prop="dept">
@@ -206,7 +185,7 @@
               </el-image>
             </div>
             <div style="position: absolute;left: 10px;bottom: 12px">
-              <upload-square :action="uploadFileUrl" max-size="8" :data="{path: 'applet'}" accept=".png,.jpg,.jpeg" @success="uploadFileSuccess">
+              <upload-square :action="uploadFileUrl" max-size="8" :data="{path: 'link'}" accept=".png,.jpg,.jpeg" @success="uploadFileSuccess">
                 <div class="upload-block-class">
                   <span>{{$t("更换图标")}}</span>
                 </div>
@@ -227,7 +206,7 @@
     <drawer-layout-right tabindex="0" :show-close="true" @changeDrawer="closeDialog" @opened="openedForm" :visible="drawerForm" size="85%">
       <div slot="title">
         <div class="header-block padding-lr-10">
-          <span class="tab-class font-bold" @click="handleClick('form')">
+          <span class="tab-class font-bold">
             <i class="fa fa-file"></i>
             {{$t('环节设计')}}
           </span>
@@ -260,14 +239,15 @@
 <script>
   import {common} from "~/utils/api/url";
   import mixins from "~/utils/mixins";
-  import {MessageError, MessageSuccess, MessageWarning} from "~/utils/utils";
+  import {MessageError, MessageSuccess, MessageWarning, newStudentFlowAuditItemType} from "~/utils/utils";
   import MyCascader from "~/components/utils/select/MyCascader";
   import newStudentParamsValidater from "~/utils/validater/newStudentParamsValidater";
   import LinkDormManage from "~/pages/newStudent/manage/linkDormManage";
   import LinkPayManage from "~/pages/newStudent/manage/linkPayManage";
   import LinkStationManage from "~/pages/newStudent/manage/linkStationManage";
+  import MyElTree from "~/components/tree/MyElTree";
   export default {
-    components: {LinkStationManage, LinkPayManage, LinkDormManage, MyCascader},
+    components: {MyElTree, LinkStationManage, LinkPayManage, LinkDormManage, MyCascader},
     mixins: [mixins, newStudentParamsValidater],
     data(){
       return {
@@ -282,6 +262,7 @@
         paramTypes: [],
         dataItems: [],
         detailData: '',
+        currentNodeKey: '',
         dialogLoading: false,
         formLoading: false,
         dialogApp: false,
@@ -301,14 +282,16 @@
         subPageTitle: '',
         serverImg: '',
         uploadFileUrl: common.upload_file,
+        processId: '',
         form: {
           id: '',
           name: '',
           params: '',
           flow: '',
           remarks: '',
-          data: '1',
-          dataItem: ''
+          data: 1,
+          dataItem: [],
+          icon: ''
         },
         formOption: {
           "form": {
@@ -324,19 +307,31 @@
       }
     },
     created() {
-      this.init();
+      this.initProcess();
     },
     methods: {
+      async initProcess(){
+        await this.getLinkProcessInfo();
+        let data = this.dataProcessServer;
+        if (data){
+          this.defaultExpandedKeys = [data[0].id];
+          this.currentNodeKey = data[0].id;
+          this.processid = data[0].id;
+        }
+        if (this.dataProcessServer.length > 0){
+          this.init();
+        }
+      },
       init(){
         let params = {
           page: this.page,
           num: this.num,
-          appletId: this.$route.query.id ? this.$route.query.id : this.searchAppId,
-          formType: this.searchType,
-          enable: this.searchStatus,
-          searchKey: this.searchKey
+          processId: this.processid,
+          linkType: this.searchType,
+          linkSubType: this.searchParam,
+          linkName: this.searchKey
         };
-        this.$axios.get(common.server_list_page, {params: params}).then(res => {
+        this.$axios.get(common.enroll_process_link_page, {params: params}).then(res => {
           if (res.data.data){
             this.tableData = res.data.data.list;
             this.total = res.data.data.totalCount;
@@ -359,7 +354,7 @@
         this.init();
       },
       nodeClick(data){
-        this.searchFlowId = data.id;
+        this.processid = data.id;
         this.page = 1;
         this.init();
       },
@@ -394,6 +389,9 @@
           params: '',
           flow: '',
           remarks: '',
+          data: 1,
+          dataItem: [],
+          icon: ''
         };
         this.flowListData = [];
         this.flowFormData = {
@@ -443,36 +441,58 @@
       },
       handleDataChange(event){
         this.form.data = event;
+        this.form.dataItem = [];
+        this.resetCasadeSelector('SelectorCollege');
       },
       handleTypeChange(event, type){
         if (type == 1){
-          this.searchType = event;
-        }else if (type == 2){
-          this.searchStatus = event;
-        }else if (type == 3){
           this.searchParam = event;
-        }else if (type == 4){
-          this.form.dataItem = event;
+        }else if (type == 2){
+          this.searchType = event;
         }
       },
-      handleCascaderChange(data){
-        this.searchCascader = data;
+      handleCascaderChange(data, type){
+        if (type == 2){
+          this.form.dataItem = data;
+        }
       },
       setInfo(item, type, subType, index){
         if (type == 1){
+          this.form = {
+            id: item.id,
+            name: item.link_name,
+            params: this.auditFlowTypeItemInfo(item.link_sub_type, 'set'),
+            flow: item.process_name,
+            remarks: item.des,
+            data: ''+item.data_belong_type,
+            icon: item.link_logo
+          };
+
+          let deptArr = [];
+          let belongRange = item.data_belong_range != '' ? item.data_belong_range.split("|") : [];
+          for (let i = 0; i < belongRange.length; i++){
+            let dept = [];
+            let array = belongRange[i].split(",");
+            for (let j = 0; j < array.length; j++){
+              dept.push(parseInt(array[j]));
+            }
+            deptArr.push(dept);
+          }
+          this.form.dataItem = deptArr;
+
           this.drawerVisible = true;
         }else if (type == 2){
-          if (subType == 1){
+          if (subType == 0){
             this.subPageTitle = "xxx-xxx";
-            this.subPageType = 1;
+            this.subPageType = 0;
           }else if (subType == 2){
             this.subPageTitle = "xxx-xxx";
             this.subPageType = 2;
           }else if (subType == 3){
             this.subPageTitle = "xxx-xxx";
             this.subPageType = 3;
-          }else if (subType == 4){
-            this.subPageType = 4;
+          }else if (subType == 9){
+            this.subPageType = 9;
             this.formInfo(item, index);
           }
           this.subPageVisible = true;
@@ -496,27 +516,36 @@
       },
       okAppDrawDialog() {
         let url = '';
+        let deptArrStr = '';
         this.$refs['form'].validate((valid) => {
           if (valid) {
+            if (this.form.dataItem.length == 0){
+              MessageWarning(this.$t("请设置数据范围！"));
+              return;
+            }
             if (this.form.icon == ""){
               MessageWarning(this.$t("请设置图标"));
               return;
             }
-            this.dialogLoading = true;
+            for (let i = 0; i < this.form.dataItem.length; i++){
+              deptArrStr += this.form.dataItem[i].join();
+              if (this.form.dataItem.length - 1 != i){
+                deptArrStr += '|';
+              }
+            }
+
             let params = {
-              formName:  this.form.name,
-              appletId: this.form.app,
-              formType: this.form.type,
-              formLogo: this.form.icon,
-              allowAppraise: this.form.evaluate,
-              allowScore: this.form.scope,
-              recommend: this.form.recommend,
+              linkName:  this.form.name,
+              linkLogo: this.form.icon,
+              dataBelongType: this.form.data,
+              dataBelongRange: deptArrStr,
               des: this.form.remarks,
             };
             if (this.form.id != ""){
               params['id'] = this.form.id;
             }
-            url = common.server_list_save;
+            this.dialogLoading = true;
+            url = common.enroll_process_link_update;
             params = this.$qs.stringify(params);
             this.$axios.post(url, params).then(res => {
               if (res.data.code == 200) {
@@ -575,6 +604,9 @@
           }
           this.btnLoading = false;
         });
+      },
+      auditFlowTypeItemInfo(value, type){
+        return newStudentFlowAuditItemType(value, type);
       }
     }
   }

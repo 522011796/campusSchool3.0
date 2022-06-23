@@ -37,6 +37,7 @@ export default {
       dataDept: global.dataDeptList,
       dataApplet: global.dataAppletList,
       dataAppletServer: global.dataAppletServer,
+      dataProcessServer: global.dataProcessServer,
       currentSeciton: global.currentSeciton,
       currentYear: global.currentYear,
       currentMonth: global.currentMonth,
@@ -102,6 +103,7 @@ export default {
       filterAppServerConditionnalRadioType: global.filterAppServerConditionnalRadioType,
       filterAppServerConditionnalAllType: global.filterAppServerConditionnalAllType,
       fiterTeacherRoleType: global.fiterTeacherRoleType,
+      filterProcessLinkParamType: global.filterProcessLinkParamType,
       g_currentDate: {},
       currentYearData: '',
       currentTermData: '',
@@ -594,6 +596,29 @@ export default {
         let arr = [];
         if (res.data.data){
           this.dataAppletServer = setFormServerChildren(res.data.data);
+        }
+      });
+    },
+    /**
+     * 获取流程服务的list信息
+     * 主要用于树形菜单，下来菜单等
+     * @returns {Promise<void>}
+     */
+    async getLinkProcessInfo(searchName) {
+      let params = {
+        page: 1,
+        num: 9999
+      };
+      await this.$axios.get(common.enroll_process_page, {params: params}).then(res => {
+        let arr = [];
+        if (res.data.data){
+          let arr = [];
+          for (let i = 0; i < res.data.data.list.length; i++) {
+            res.data.data.list[i]['label'] = res.data.data.list[i].processName;
+            res.data.data.list[i]['value'] = res.data.data.list[i].id;
+            res.data.data.list[i]['unit'] = 1;
+          }
+          this.dataProcessServer = res.data.data.list;
         }
       });
     },

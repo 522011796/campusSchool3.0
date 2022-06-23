@@ -164,6 +164,15 @@
         }else if(this.type == 111){
           await this.getAppletServerInfo(this.extraType);
           this.data = this.dataAppletServer;
+        }else if(this.type == 120){
+          await this.getLinkProcessInfo();
+          this.data = this.dataProcessServer;
+          this.selectCampusAll = false;
+          this.$nextTick(() => {
+            if (this.$refs.tree){
+              this.$refs.tree.setCurrentKey(this.currentNodeKey); //一定要加这个选中了否则样式没有出来
+            }
+          });
         }
       },
       filterNode(value, data) {

@@ -431,8 +431,17 @@ const fiterTeacherRoleType = [
 ];
 
 const filterFlowParamType = [
-  { text: "系统固定", value: '0' ,label: '系统固定'},
-  { text: '自定义环节', value: '1' ,label: '自定义环节'}
+  { text: "线上环节", value: '1' ,label: '线上环节'},
+  { text: '线下环节', value: '0' ,label: '线下环节'}
+];
+
+const filterProcessLinkParamType = [
+  { text: "接站登记(系统)", value: '0' ,label: '接站登记(系统)'},
+  { text: '现场缴费(系统)', value: '1' ,label: '现场缴费(系统)'},
+  { text: '线上选寝(系统)', value: '2' ,label: '线上选寝(系统)'},
+  { text: '现场缴费(系统)', value: '3' ,label: '现场缴费(系统)'},
+  { text: '信息采集(系统)', value: '4' ,label: '信息采集(系统)'},
+  { text: '自定义环节', value: '9' ,label: '自定义环节'}
 ];
 
 export default {
@@ -452,6 +461,7 @@ export default {
   dataDeptList: [],
   dataAppletList: [],
   dataAppletServer: [],
+  dataProcessServer: [],
   currentDay,
   currentMonth,
   currentTermId,
@@ -522,5 +532,6 @@ export default {
   filterAppServerConditionnalRadioType,
   filterAppServerConditionnalAllType,
   fiterTeacherRoleType,
-  filterFlowParamType
+  filterFlowParamType,
+  filterProcessLinkParamType
 }
