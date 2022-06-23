@@ -214,10 +214,12 @@
                                :filters="filtersVehicleType">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.train_type}}</div>
+                    <div class="text-center">
+                      {{trainsTypeInfo(scope.row.train_type, 'set')}}
+                    </div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.train_type}}
-                  </span>
+                      {{trainsTypeInfo(scope.row.train_type, 'set')}}
+                    </span>
                   </el-popover>
                 </template>
               </el-table-column>
@@ -304,7 +306,7 @@ import {
   MessageSuccess,
   nationalityInfo,
   nationInfo,
-  provinceInfo
+  provinceInfo, trainsType
 } from "~/utils/utils";
 
 export default {
@@ -348,14 +350,7 @@ export default {
         {value: true, text: this.$t("是")},
         {value: false, text: this.$t("否")}
       ],
-      filtersVehicleType: [
-        {value: 0, text: this.$t("火车")},
-        {value: 1, text: this.$t("飞机")},
-        {value: 2, text: this.$t("客车")},
-        {value: 3, text: this.$t("私家车")},
-        {value: 4, text: this.$t("其他")},
-        {value: 5, text: this.$t("其他")}
-      ],
+      filtersVehicleType: [],
       filtersInterFaceStatusType: [
         {value: true, text: this.$t("已接到")},
         {value: false, text: this.$t("未接到")},
@@ -411,6 +406,7 @@ export default {
   created() {
     this.initProcess();
     this.init();
+    this.initTransType();
   },
   methods: {
     init(){
@@ -430,7 +426,8 @@ export default {
         checkinOnTime: this.searchSignTimeStatus,
         arriveStatus: this.searchInterFaceStatusType,
         needReceive: this.searchInterface,
-        processId: this.searchProcess
+        processId: this.searchProcess,
+        trainType: this.searchVehicleType
       };
       this.$axios.get(common.enroll_arrive_page, {params: params}).then(res => {
         if (res.data.data){
@@ -457,6 +454,18 @@ export default {
             });
           }
           this.processData = process;
+        }
+      });
+    },
+    initTransType(){
+      let params = {};
+      this.$axios.get(common.enroll_link_arrive_trans_type, {params: params}).then(res => {
+        if (res.data.data){
+          let obj = [];
+          for (let item in res.data.data){
+            obj.push({value: item, text: res.data.data[item]},)
+          }
+          this.filtersVehicleType = obj;
         }
       });
     },
@@ -509,6 +518,9 @@ export default {
       this.searchKey = data.input;
       this.page = 1;
       this.init();
+    },
+    trainsTypeInfo(value, type){
+      return trainsType(value,type);
     },
     expandInfo() {
       let url = common.enroll_arrive_export;

@@ -902,6 +902,22 @@ export function newStudentFlowAuditItemType(str, type){
   }
 }
 
+export function trainsType(str, type){
+  let trainsType = {
+    "1": "飞机",
+    "2": "火车",
+    "3": "轮船",
+    "4": "巴士",
+    "5": "自驾"
+  };
+  if (str && type == 'set') {
+    return trainsType[str];
+  }
+  if (!str && type == 'get'){
+    return trainsType;
+  }
+}
+
 export function getWeekTotalSelect(){
   let arr = [];
   for (let i = 0; i < 52; i++){

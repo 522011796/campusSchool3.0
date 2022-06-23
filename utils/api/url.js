@@ -677,6 +677,25 @@ export const common = {
   enroll_process_link_save: '/proxy/school/process/link/save', //环节添加
   enroll_process_link_list: '/proxy/school/process/link/list', //流程环节详细
 
+  enroll_link_dorm_rule: '/proxy/school/link-setting/rule/page', //选寝规则分页
+  enroll_link_dorm_del: '/proxy/school/link-setting/rule/del', //选寝规则删除
+  enroll_link_dorm_save: '/proxy/school/link-setting/rule/save', //选寝规则保存
+
+  enroll_link_pay_item_list: '/proxy/school/link-setting/item/list', //收款项列表
+  enroll_link_pay_item_save: '/proxy/school/link-setting/item/save', //收款项保存
+  enroll_link_pay_item_user_del: '/proxy/school/link-setting/item/user/del', //收款人删除
+  enroll_link_pay_item_user_list: '/proxy/school/link-setting/item/user/page', //收款人列表
+  enroll_link_pay_item_user_save: '/proxy/school/link-setting/item/user/save', //收款人保存
+
+  enroll_link_form_save: '/proxy/school/link-setting/link/form/save', //自定义表单保存
+
+  enroll_link_arrive_del: '/proxy/school/link-setting/arrive/del', //接站规则删除
+  enroll_link_arrive_enable: '/proxy/school/link-setting/arrive/enable', //接站规则启禁用
+  enroll_link_arrive_info: '/proxy/school/link-setting/arrive/info', //接站规则详细
+  enroll_link_arrive_page: '/proxy/school/link-setting/arrive/page', //接站规则分页
+  enroll_link_arrive_save: '/proxy/school/link-setting/arrive/save', //接站规则保存
+  enroll_link_arrive_trans_type: '/proxy/school/link-setting/arrive/trans-type/list', //接站规则保存
+
   enroll_list_by_parent_id: '/proxy/log/logtype/get/select/list-by-parent-id', //日志类型
 
 };
