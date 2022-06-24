@@ -406,11 +406,15 @@
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                     <div class="text-center">
-                      <label v-if="scope.row.major_name">{{scope.row.major_name}}</label>
+                      <label v-if="scope.row.room_no">
+                        {{scope.row.build_name}}{{scope.row.floor_num}}{{$t("层")}}{{scope.row.room_no}}
+                      </label>
                       <label v-else>--</label>
                     </div>
                     <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      <label v-if="scope.row.major_name">{{scope.row.major_name}}</label>
+                      <label v-if="scope.row.room_no">
+                        {{scope.row.build_name}}{{scope.row.floor_num}}{{$t("层")}}{{scope.row.room_no}}
+                      </label>
                       <label v-else>--</label>
                     </div>
                   </el-popover>
