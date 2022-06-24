@@ -688,6 +688,7 @@ export const common = {
   enroll_link_pay_item_user_save: '/proxy/school/link-setting/item/user/save', //收款人保存
 
   enroll_link_form_save: '/proxy/school/link-setting/link/form/save', //自定义表单保存
+  enroll_process_link_info: '/proxy/school/process/link/info', //自定义表单详细
 
   enroll_link_arrive_del: '/proxy/school/link-setting/arrive/del', //接站规则删除
   enroll_link_arrive_enable: '/proxy/school/link-setting/arrive/enable', //接站规则启禁用

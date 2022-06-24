@@ -222,7 +222,7 @@
       </div>
       <div slot="footer">
         <el-row>
-          <el-col :span="4">
+          <el-col :span="24">
             <div class="text-right padding-lr-10">
               <el-button size="mini" @click="cancelDrawDialog">{{$t("取消")}}</el-button>
               <el-button size="mini" type="success" :loading="btnLoading" @click="okFormDrawDialog()">{{$t("保存")}}</el-button>
@@ -356,6 +356,7 @@
       },
       nodeClick(data){
         this.processid = data.id;
+        this.currentNodeKey = data.id;
         this.page = 1;
         this.init();
       },
@@ -487,17 +488,29 @@
           if (subType == 0){
             this.subPageTitle = this.$t("接站登记-规则设置");
             this.subPageType = 0;
+            this.subPageVisible = true;
           }else if (subType == 2){
             this.subPageTitle = this.$t("线上选寝-规则设置");
             this.subPageType = 2;
+            this.subPageVisible = true;
           }else if (subType == 3){
             this.subPageTitle = this.$t("财务缴费-规则设置");
             this.subPageType = 3;
+            this.subPageVisible = true;
           }else if (subType == 9){
             this.subPageType = 9;
-            this.formInfo(item, index);
+            let itemData = {};
+            let params = {
+              linkId: item.id
+            };
+            this.$axios.get(common.enroll_process_link_info, {params: params}).then(res => {
+              if (res.data.data) {
+                //form_content
+                item['form_content'] = res.data.data.linkContent;
+                this.formInfo(item, index);
+              }
+            });
           }
-          this.subPageVisible = true;
         }
       },
       returnClick(){
@@ -590,16 +603,18 @@
           option: this.$refs.designer.getOption()
         };
         let params = {
-          id: this.serverDataItem.id,
-          content: JSON.stringify(rules)
+          linkId: this.linkId,
+          linkContent: JSON.stringify(rules)
         };
-        url = common.server_form_template_update;
+        url = common.enroll_link_form_save;
         params = this.$qs.stringify(params);
         this.btnLoading = true;
         this.$axios.post(url, params).then(res => {
           if (res.data.code == 200) {
             this.init();
             this.$set(this.serverDataItem, 'form_content' , JSON.stringify(rules));
+            this.drawerForm = false;
+            this.subPageVisible = false;
             MessageSuccess(res.data.desc);
           } else {
             MessageError(res.data.desc);
