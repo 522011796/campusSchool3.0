@@ -71,6 +71,36 @@
   "LazyLayoutTb": {
     "description": "Auto imported from components/Layout/LayoutTb.vue"
   },
+  "MyFormAuditType": {
+    "description": "Auto imported from components/form/MyFormAuditType.vue"
+  },
+  "LazyMyFormAuditType": {
+    "description": "Auto imported from components/form/MyFormAuditType.vue"
+  },
+  "MyFormFlow": {
+    "description": "Auto imported from components/form/MyFormFlow.vue"
+  },
+  "LazyMyFormFlow": {
+    "description": "Auto imported from components/form/MyFormFlow.vue"
+  },
+  "MyFormSet": {
+    "description": "Auto imported from components/form/MyFormSet.vue"
+  },
+  "LazyMyFormSet": {
+    "description": "Auto imported from components/form/MyFormSet.vue"
+  },
+  "MyFormSetNotice": {
+    "description": "Auto imported from components/form/MyFormSetNotice.vue"
+  },
+  "LazyMyFormSetNotice": {
+    "description": "Auto imported from components/form/MyFormSetNotice.vue"
+  },
+  "MyFormSetRole": {
+    "description": "Auto imported from components/form/MyFormSetRole.vue"
+  },
+  "LazyMyFormSetRole": {
+    "description": "Auto imported from components/form/MyFormSetRole.vue"
+  },
   "BarChart": {
     "description": "Auto imported from components/charts/BarChart.vue"
   },
@@ -154,36 +184,6 @@
   },
   "LazyMyNewStudentFlowType": {
     "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
-  },
-  "MyFormAuditType": {
-    "description": "Auto imported from components/form/MyFormAuditType.vue"
-  },
-  "LazyMyFormAuditType": {
-    "description": "Auto imported from components/form/MyFormAuditType.vue"
-  },
-  "MyFormFlow": {
-    "description": "Auto imported from components/form/MyFormFlow.vue"
-  },
-  "LazyMyFormFlow": {
-    "description": "Auto imported from components/form/MyFormFlow.vue"
-  },
-  "MyFormSet": {
-    "description": "Auto imported from components/form/MyFormSet.vue"
-  },
-  "LazyMyFormSet": {
-    "description": "Auto imported from components/form/MyFormSet.vue"
-  },
-  "MyFormSetNotice": {
-    "description": "Auto imported from components/form/MyFormSetNotice.vue"
-  },
-  "LazyMyFormSetNotice": {
-    "description": "Auto imported from components/form/MyFormSetNotice.vue"
-  },
-  "MyFormSetRole": {
-    "description": "Auto imported from components/form/MyFormSetRole.vue"
-  },
-  "LazyMyFormSetRole": {
-    "description": "Auto imported from components/form/MyFormSetRole.vue"
   },
   "MyInputButton": {
     "description": "Auto imported from components/search/MyInputButton.vue"
@@ -323,6 +323,12 @@
   "LazyMyViewImg": {
     "description": "Auto imported from components/utils/common/MyViewImg.vue"
   },
+  "MyCascader": {
+    "description": "Auto imported from components/utils/select/MyCascader.vue"
+  },
+  "LazyMyCascader": {
+    "description": "Auto imported from components/utils/select/MyCascader.vue"
+  },
   "AuditStatusButton": {
     "description": "Auto imported from components/utils/button/AuditStatusButton.vue"
   },
@@ -370,12 +376,6 @@
   },
   "LazyMyNormalDialog": {
     "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
-  },
-  "MyCascader": {
-    "description": "Auto imported from components/utils/select/MyCascader.vue"
-  },
-  "LazyMyCascader": {
-    "description": "Auto imported from components/utils/select/MyCascader.vue"
   },
   "MyAdminAtten": {
     "description": "Auto imported from components/utils/status/MyAdminAtten.vue"

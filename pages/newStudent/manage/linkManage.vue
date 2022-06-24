@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div v-if="subPageVisible == true">
-      <link-dorm-manage v-if="subPageType == 2" :page-title="subPageTitle"  @returnClick="returnClick"></link-dorm-manage>
-      <link-pay-manage v-if="subPageType == 3" :page-title="subPageTitle"  @returnClick="returnClick"></link-pay-manage>
-      <link-station-manage v-if="subPageType == 0" :page-title="subPageTitle"  @returnClick="returnClick"></link-station-manage>
+      <link-dorm-manage v-if="subPageType == 2" :page-title="subPageTitle" :link-id="linkId"  @returnClick="returnClick"></link-dorm-manage>
+      <link-pay-manage v-if="subPageType == 3" :page-title="subPageTitle" :link-id="linkId"  @returnClick="returnClick"></link-pay-manage>
+      <link-station-manage v-if="subPageType == 0" :page-title="subPageTitle" :link-id="linkId"  @returnClick="returnClick"></link-station-manage>
     </div>
     <div v-if="subPageVisible == false">
       <layout-lr>
@@ -283,6 +283,7 @@
         serverImg: '',
         uploadFileUrl: common.upload_file,
         processId: '',
+        linkId: '',
         form: {
           id: '',
           name: '',
@@ -482,14 +483,15 @@
 
           this.drawerVisible = true;
         }else if (type == 2){
+          this.linkId = item.id;
           if (subType == 0){
-            this.subPageTitle = "xxx-xxx";
+            this.subPageTitle = this.$t("接站登记-规则设置");
             this.subPageType = 0;
           }else if (subType == 2){
-            this.subPageTitle = "xxx-xxx";
+            this.subPageTitle = this.$t("线上选寝-规则设置");
             this.subPageType = 2;
           }else if (subType == 3){
-            this.subPageTitle = "xxx-xxx";
+            this.subPageTitle = this.$t("财务缴费-规则设置");
             this.subPageType = 3;
           }else if (subType == 9){
             this.subPageType = 9;

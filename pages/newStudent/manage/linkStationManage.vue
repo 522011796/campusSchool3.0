@@ -31,9 +31,11 @@
             :label="$t('创建日期')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center"></div>
+                <div class="text-center">
+                  {{$moment(scope.row.create_time).format("YYYY-MM-DD HH:mm:ss")}}
+                </div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  1
+                  {{$moment(scope.row.create_time).format("YYYY-MM-DD HH:mm:ss")}}
                 </div>
               </el-popover>
             </template>
@@ -44,9 +46,11 @@
             :label="$t('名称')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center"></div>
+                <div class="text-center">
+                  {{scope.row.rule_name}}
+                </div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  1
+                  {{scope.row.rule_name}}
                 </div>
               </el-popover>
             </template>
@@ -57,22 +61,42 @@
             :label="$t('接站员')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center"></div>
+                <div class="text-center">
+                  {{scope.row.teacher_size}}
+                </div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  1
+                  {{scope.row.teacher_size}}
                 </div>
               </el-popover>
             </template>
-          </el-table-column>
+          </el-table-column><el-table-column
+          align="center"
+          prop="user_name"
+          :label="$t('状态')">
+          <template slot-scope="scope">
+            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+              <div class="text-center">
+                <label v-if="scope.row.enable" class="color-success">{{$t("已启用")}}</label>
+                <label v-if="!scope.row.enable" class="color-danger">{{$t("已禁用")}}</label>
+              </div>
+              <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                <label v-if="scope.row.enable" class="color-success">{{$t("已启用")}}</label>
+                <label v-if="!scope.row.enable" class="color-danger">{{$t("已禁用")}}</label>
+              </div>
+            </el-popover>
+          </template>
+        </el-table-column>
           <el-table-column
             align="center"
             prop="user_name"
             :label="$t('到达站')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center"></div>
+                <div class="text-center">
+                  {{scope.row.arrive_station}}
+                </div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  1
+                  {{scope.row.arrive_station}}
                 </div>
               </el-popover>
             </template>
@@ -108,13 +132,13 @@
           <el-form-item :label="$t('老师范围')" prop="dorm">
             <el-button size="mini" type="warning" @click="teacherManage">{{$t('添加老师')}}</el-button>
             <span class="color-muted margin-left-10">{{$t('老师人数')}}</span>
-            <span class="color-muted">0</span>
+            <span class="color-muted">{{selTeacherDataOk.length}}</span>
             <span class="color-muted">{{$t('人')}}</span>
           </el-form-item>
           <el-form-item :label="$t('学生范围')" prop="student">
             <el-button size="mini" type="warning" @click="studentManage">{{$t('添加学生')}}</el-button>
             <span class="color-muted margin-left-10">{{$t('学生人数')}}</span>
-            <span class="color-muted">0</span>
+            <span class="color-muted">{{selStudentDataOk.length}}</span>
             <span class="color-muted">{{$t('人')}}</span>
           </el-form-item>
         </el-form>
@@ -129,6 +153,24 @@
     </dialog-normal>
 
     <drawer-layout-right tabindex="0" @changeDrawer="closeDrawDialog" :visible="drawerTeacher" size="700px" :title="$t('老师设置')" @right-close="cancelDrawDialog">
+      <div slot="title">
+        <div class="header-block padding-lr-10">
+          <el-row>
+            <el-col :span="12">
+              <span class="tab-class font-bold">
+                <i class="fa fa-user"></i>
+                {{$t('管理教师')}}
+              </span>
+            </el-col>
+            <el-col :span="12" class="text-right">
+              <span class="tab-class font-bold">
+                <el-button size="small" @click="cancelDrawDialog">{{$t("取消")}}</el-button>
+                <el-button size="small" type="primary" :loading="drawerLoading" @click="okDrawDialog($event, 1)">{{$t("保存")}}</el-button>
+              </span>
+            </el-col>
+          </el-row>
+        </div>
+      </div>
       <div slot="content" class="color-muted">
         <div>
           <div class="layout-inline">
@@ -136,25 +178,31 @@
           </div>
           <div>
             <el-table class="margin-top-10"
-                      ref="dormTableRef"
+                      ref="tableTeacherRef"
                       :data="tableTeacherData"
                       size="mini"
-                      v-loading="tableDormLoading">
+                      :row-key="getTeacherRowKeys"
+                      v-loading="tableDormLoading"
+                      @selection-change="handleSelectionTeacherChange">
               <el-table-column
+                :reserve-selection="true"
                 type="selection"
                 width="55">
               </el-table-column>
               <el-table-column
-                label="录入时间"
+                prop="floor_num"
+                :label="$t('姓名')"
                 align="center">
                 <template slot-scope="scope">
-
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">
+                      {{scope.row.real_name}}
+                    </div>
+                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      {{scope.row.real_name}}
+                    </div>
+                  </el-popover>
                 </template>
-              </el-table-column>
-              <el-table-column
-                prop="floor_num"
-                :label="$t('录取号')"
-                align="center">
               </el-table-column>
               <el-table-column
                 :label="$t('性别')"
@@ -163,39 +211,54 @@
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                     <div class="text-center">
-                      <label>{{scope.row.teacher_name ? scope.row.teacher_name : '--'}}</label>
+                      <my-sex :sex="scope.row.sex"></my-sex>
                     </div>
                     <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      <label>{{scope.row.teacher_name ? scope.row.teacher_name : '--'}}</label>
+                      <my-sex :sex="scope.row.sex"></my-sex>
                     </div>
                   </el-popover>
                 </template>
               </el-table-column>
               <el-table-column
-                :label="$t('院系')"
+                :label="$t('工号')"
                 align="center">
                 <template slot-scope="scope">
-                  <span>{{scope.row.has_people_num}}</span>
-                  /
-                  <span>{{scope.row.people_num}}</span>
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">
+                      <my-sex :sex="scope.row.job_num"></my-sex>
+                    </div>
+                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      <my-sex :sex="scope.row.job_num"></my-sex>
+                    </div>
+                  </el-popover>
                 </template>
               </el-table-column>
               <el-table-column
-                :label="$t('专业')"
+                :label="$t('部门')"
                 align="center">
                 <template slot-scope="scope">
-                  <span>{{scope.row.has_people_num}}</span>
-                  /
-                  <span>{{scope.row.people_num}}</span>
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">
+                      {{scope.row.department_name}}
+                    </div>
+                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      {{scope.row.department_name}}
+                    </div>
+                  </el-popover>
                 </template>
               </el-table-column>
               <el-table-column
-                :label="$t('宿舍')"
+                :label="$t('手机号')"
                 align="center">
                 <template slot-scope="scope">
-                  <span>{{scope.row.has_people_num}}</span>
-                  /
-                  <span>{{scope.row.people_num}}</span>
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">
+                      <my-sex :sex="scope.row.phone"></my-sex>
+                    </div>
+                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      <my-sex :sex="scope.row.phone"></my-sex>
+                    </div>
+                  </el-popover>
                 </template>
               </el-table-column>
             </el-table>
@@ -210,6 +273,24 @@
     </drawer-layout-right>
 
     <drawer-layout-right tabindex="0" @changeDrawer="closeDrawDialog" :visible="drawerStudent" size="700px" :title="$t('学生设置')" @right-close="cancelDrawDialog">
+      <div slot="title">
+        <div class="header-block padding-lr-10">
+          <el-row>
+            <el-col :span="12">
+              <span class="tab-class font-bold">
+                <i class="fa fa-user"></i>
+                {{$t('管理学生')}}
+              </span>
+            </el-col>
+            <el-col :span="12" class="text-right">
+              <span class="tab-class font-bold">
+                <el-button size="small" @click="cancelDrawDialog">{{$t("取消")}}</el-button>
+                <el-button size="small" type="primary" :loading="drawerLoading" @click="okDrawDialog($event, 2)">{{$t("保存")}}</el-button>
+              </span>
+            </el-col>
+          </el-row>
+        </div>
+      </div>
       <div slot="content" class="color-muted">
         <div>
           <div class="layout-inline">
@@ -217,11 +298,14 @@
           </div>
           <div>
             <el-table class="margin-top-10"
-                      ref="dormTableRef"
+                      ref="tableStudentRef"
                       :data="tableStudnetData"
                       size="mini"
-                      v-loading="tableDormLoading">
+                      v-loading="tableDormLoading"
+                      :row-key="getStudentRowKeys"
+                      @selection-change="handleSelectionChange">
               <el-table-column
+                :reserve-selection="true"
                 type="selection"
                 width="55">
               </el-table-column>
@@ -229,13 +313,45 @@
                 label="录入时间"
                 align="center">
                 <template slot-scope="scope">
-
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">
+                      <label>{{$moment(scope.row.regist_date).format("YYYY-MM-DD HH:mm:ss")}}</label>
+                    </div>
+                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      <label>{{$moment(scope.row.regist_date).format("YYYY-MM-DD HH:mm:ss")}}</label>
+                    </div>
+                  </el-popover>
+                </template>
+              </el-table-column>
+              <el-table-column
+                prop="floor_num"
+                :label="$t('姓名')"
+                align="center">
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">
+                      {{scope.row.real_name}}
+                    </div>
+                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      {{scope.row.real_name}}
+                    </div>
+                  </el-popover>
                 </template>
               </el-table-column>
               <el-table-column
                 prop="floor_num"
                 :label="$t('录取号')"
                 align="center">
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">
+                      {{scope.row.enroll_no}}
+                    </div>
+                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      {{scope.row.enroll_no}}
+                    </div>
+                  </el-popover>
+                </template>
               </el-table-column>
               <el-table-column
                 :label="$t('性别')"
@@ -244,10 +360,10 @@
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                     <div class="text-center">
-                      <label>{{scope.row.teacher_name ? scope.row.teacher_name : '--'}}</label>
+                      <my-sex :sex="scope.row.sex"></my-sex>
                     </div>
                     <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      <label>{{scope.row.teacher_name ? scope.row.teacher_name : '--'}}</label>
+                      <my-sex :sex="scope.row.sex"></my-sex>
                     </div>
                   </el-popover>
                 </template>
@@ -256,27 +372,48 @@
                 :label="$t('院系')"
                 align="center">
                 <template slot-scope="scope">
-                  <span>{{scope.row.has_people_num}}</span>
-                  /
-                  <span>{{scope.row.people_num}}</span>
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">
+                      <label v-if="scope.row.college_name">{{scope.row.college_name}}</label>
+                      <label v-else>--</label>
+                    </div>
+                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      <label v-if="scope.row.college_name">{{scope.row.college_name}}</label>
+                      <label v-else>--</label>
+                    </div>
+                  </el-popover>
                 </template>
               </el-table-column>
               <el-table-column
                 :label="$t('专业')"
                 align="center">
                 <template slot-scope="scope">
-                  <span>{{scope.row.has_people_num}}</span>
-                  /
-                  <span>{{scope.row.people_num}}</span>
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">
+                      <label v-if="scope.row.major_name">{{scope.row.major_name}}</label>
+                      <label v-else>--</label>
+                    </div>
+                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      <label v-if="scope.row.major_name">{{scope.row.major_name}}</label>
+                      <label v-else>--</label>
+                    </div>
+                  </el-popover>
                 </template>
               </el-table-column>
               <el-table-column
                 :label="$t('宿舍')"
                 align="center">
                 <template slot-scope="scope">
-                  <span>{{scope.row.has_people_num}}</span>
-                  /
-                  <span>{{scope.row.people_num}}</span>
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">
+                      <label v-if="scope.row.major_name">{{scope.row.major_name}}</label>
+                      <label v-else>--</label>
+                    </div>
+                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      <label v-if="scope.row.major_name">{{scope.row.major_name}}</label>
+                      <label v-else>--</label>
+                    </div>
+                  </el-popover>
                 </template>
               </el-table-column>
             </el-table>
@@ -298,7 +435,7 @@
 import MyPagination from "~/components/MyPagination";
 import mixins from "~/utils/mixins";
 import {common} from "~/utils/api/url";
-import {dormTypeText, MessageError, MessageSuccess} from "~/utils/utils";
+import {dormTypeText, inArray, MessageError, MessageSuccess, MessageWarning} from "~/utils/utils";
 import LayoutTb from "~/components/Layout/LayoutTb";
 import MySelect from "~/components/MySelect";
 import MyUserType from "~/components/utils/MyUserType";
@@ -306,11 +443,13 @@ import MyDatePicker from "~/components/MyDatePicker";
 import MyInputButton from "~/components/search/MyInputButton";
 import DialogNormal from "~/components/utils/dialog/DialogNormal";
 import linkStationValidater from "~/utils/validater/linkStationValidater";
+import MySex from "~/components/MySex";
 export default {
   mixins: [mixins,linkStationValidater],
-  components: {DialogNormal, MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton},
+  components: {MySex, DialogNormal, MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton},
   props: {
-    pageTitle: ''
+    pageTitle: '',
+    linkId: ''
   },
   data(){
     return {
@@ -331,11 +470,18 @@ export default {
       tableStudnetData: [],
       tablePayData: [],
       tablePayObjData: [],
+      selTeacherData: [],
+      selTeacherDataOk: [],
+      selTeacherDataBakOk: [],
+      selStudentData: [],
+      selStudentDataOk: [],
+      selStudentDataBakOk: [],
       searchKey: '',
       commSearchBuild: '',
       commSearchFloor: '',
       searchDormBuild: '',
       searchDormFloor: '',
+      departmentId: '',
       visible: false,
       visibleConfim: false,
       dialogVisible: false,
@@ -347,15 +493,17 @@ export default {
       tableDormLoading: false,
       dialogLoading: false,
       dialogMutiVisible: false,
+      drawerLoading: false,
       clearTime: '',
       action: '',
       subTitle: '',
       searchDorm: '',
+      serverDataItem: {},
       searchStudnetCollege: '',
       searchStudnetMajor: '',
       searchStudnetGrade: '',
       searchStudnetClass: '',
-      serverDataItem: {},
+      detailData: {},
       form: {
         id: '',
         name: '',
@@ -373,13 +521,9 @@ export default {
       let params = {
         page: this.page,
         num: this.num,
-        startTime: this.searchDate && this.searchDate.length > 0 ? (this.searchDate[0] + " 00:00:00") : '',
-        endTime: this.searchDate && this.searchDate.length > 0 ? (this.searchDate[1] + " 23:59:59") : '',
-        userName: this.searchKey,
-        queryType: 2,
-        action: this.action
+        linkId: this.linkId
       };
-      this.$axios.get(common.log_list, {params: params}).then(res => {
+      this.$axios.get(common.enroll_link_arrive_page, {params: params}).then(res => {
         if (res.data.data){
           this.tableData = res.data.data.list;
           this.total = res.data.data.totalCount;
@@ -392,17 +536,30 @@ export default {
       let params = {
         page: this.pageStudent,
         num: this.numStudent,
-        buildId: this.searchBuildId,
-        floorNum: this.searchFloorNum
+        collegeId: this.searchStudnetCollege,
+        majorId: this.searchStudnetMajor,
+        grade: this.searchStudnetGrade,
+        classId: this.searchStudnetClass,
+        searchKey: this.searchStudnetKey,
       };
       this.tableDormLoading = true;
-      this.$axios.get(common.dormroom_page, {params: params}).then(res => {
+      this.$axios.get(common.enroll_student_page, {params: params}).then(res => {
         if (res.data.data){
           this.tableStudnetData = res.data.data.list;
           this.totalStudent = res.data.data.totalCount;
           this.numStudent = res.data.data.num;
           this.pageStudent = res.data.data.currentPage;
 
+          let selArr = [];
+          let arr = [].concat(res.data.data.list);
+          let arrTempUser = [].concat(this.selStudentDataOk);
+
+          for (let i = 0; i < arr.length; i++){
+            let sel = inArray(arr[i], arrTempUser, 'user_id');
+            if (sel > -1){
+              this.$refs.tableStudentRef.toggleRowSelection(arr[i], true);
+            }
+          }
           this.tableDormLoading = false;
         }
       });
@@ -411,20 +568,40 @@ export default {
       let params = {
         page: this.pageTeacher,
         num: this.numTeacher,
-        buildId: this.searchBuildId,
-        floorNum: this.searchFloorNum
+        departPath: this.departmentId,
       };
       this.tableDormLoading = true;
-      this.$axios.get(common.dormroom_page, {params: params}).then(res => {
+      this.$axios.get(common.teacher_list, {params: params}).then(res => {
         if (res.data.data){
-          this.tableTeacherData = res.data.data.list;
-          this.totalTeacher = res.data.data.totalCount;
-          this.numTeacher = res.data.data.num;
-          this.pageTeacher = res.data.data.currentPage;
+          this.tableTeacherData = res.data.data.page.list;
+          this.totalTeacher = res.data.data.page.totalCount;
+          this.numTeacher = res.data.data.page.num;
+          this.pageTeacher = res.data.data.page.currentPage;
 
+          let selArr = [];
+          let arr = [].concat(res.data.data.page.list);
+          let arrTempUser = [].concat(this.selTeacherDataOk);
+          for (let i = 0; i < arr.length; i++){
+            let sel = inArray(arr[i], arrTempUser, 'user_id');
+            if (sel > -1){
+              this.$refs.tableTeacherRef.toggleRowSelection(arr[i], true);
+            }
+          }
           this.tableDormLoading = false;
         }
       });
+    },
+    getStudentRowKeys(row) {
+      return row.user_id
+    },
+    getTeacherRowKeys(row) {
+      return row.user_id
+    },
+    handleSelectionChange(data){
+      this.selStudentData = data;
+    },
+    handleSelectionTeacherChange(data){
+      this.selTeacherData = data;
     },
     search(data){
       this.page = 1;
@@ -477,7 +654,42 @@ export default {
       this.dialogVisible = true;
     },
     editInfo(item){
+      let params = {
+        id: item.id
+      };
+      this.$axios.get(common.enroll_link_arrive_info, {params: params}).then(res => {
+        if (res.data.data){
+          this.detailData = res.data.data;
+          this.form = {
+            id: res.data.data.arrive.id,
+            name: res.data.data.arrive.ruleName,
+            address: res.data.data.arrive.arriveStation,
+            students: [],
+            dorm: []
+          };
+          let arrayStudent = [];
+          let arrayTeacher = [];
+          for (let i = 0; i < res.data.data.studentList.length; i++){
+            arrayStudent.push({
+              user_id: res.data.data.studentList[i].userId
+            });
+          }
+          for (let i = 0; i < res.data.data.teacherList.length; i++){
+            arrayTeacher.push({
+              user_id: res.data.data.teacherList[i].userId
+            });
+          }
 
+          this.selStudentData = arrayStudent;
+          this.selStudentDataOk = arrayStudent;
+          this.selStudentDataBakOk = arrayStudent;
+
+          this.selTeacherData = arrayTeacher;
+          this.selTeacherDataOk = arrayTeacher;
+          this.selTeacherDataBakOk = arrayTeacher;
+        }
+      });
+      this.dialogVisible = true;
     },
     statusInfo(item, type){
       let params = {
@@ -485,7 +697,7 @@ export default {
         enable: type
       };
       params = this.$qs.stringify(params);
-      this.$axios.post(common.server_applet_enable, params).then(res => {
+      this.$axios.post(common.enroll_link_arrive_enable, params).then(res => {
         if (res.data.code == 200){
           this.init();
           MessageSuccess(res.data.desc);
@@ -513,10 +725,18 @@ export default {
       this.tablePayData.splice(index, 1);
     },
     teacherManage(){
+      if (this.$refs.tableTeacherRef){
+        this.$refs.tableTeacherRef.clearSelection();
+      }
+      this.pageTeacher = 1;
       this.initTeacher();
       this.drawerTeacher = true;
     },
     studentManage(){
+      if (this.$refs.tableStudentRef){
+        this.$refs.tableStudentRef.clearSelection();
+      }
+      this.pageStudent = 1;
       this.initStudent();
       this.drawerStudent = true;
     },
@@ -525,6 +745,8 @@ export default {
     },
     handleCascaderDeptChange(data){
       this.searchDeptCascader = data;
+      this.departmentId = data[data.length-1];
+      this.initTeacher();
     },
     handleCascaderBedChange(data){
       this.commSearchBuild = "";
@@ -579,7 +801,7 @@ export default {
       let params = {
         id: this.form.id
       }
-      url = common.server_list_del;
+      url = common.enroll_link_arrive_del;
       params = this.$qs.stringify(params);
       this.$axios.post(url, params).then(res => {
         if (res.data.code == 200){
@@ -604,6 +826,13 @@ export default {
       }
       this.serverDataItem = {};
       this.serverDataIndex = '';
+      this.selStudentDataOk = [];
+      this.selStudentDataBakOk = [];
+      this.selStudentData = [];
+      this.selTeacherDataOk = [];
+      this.selTeacherDataBakOk = [];
+      this.selTeacherData = [];
+      this.detailData = {};
       this.btnLoading = false;
       this.formLoading = false;
       this.dialogVisible = false;
@@ -627,6 +856,18 @@ export default {
       this.searchCommDeptBedData = [];
       this.searchCommDormData = [];
       this.tablePayObjData = [];
+
+      this.selStudentDataOk = this.selStudentDataBakOk;
+      this.selStudentData = [];
+
+      this.selTeacherDataOk = this.selTeacherDataBakOk;
+      this.selTeacherData = [];
+      if (this.$refs.tableStudentRef){
+        this.$refs.tableStudentRef.clearSelection();
+      }
+      if (this.$refs.tableTeacherRef){
+        this.$refs.tableTeacherRef.clearSelection();
+      }
       this.resetCasadeSelector('SelectorCollege');
       this.resetCasadeSelector('SelectorDept');
       this.drawerTeacher = false;
@@ -636,6 +877,26 @@ export default {
     cancelDrawDialog(event){
       this.drawerTeacher = false;
       this.drawerStudent = false;
+    },
+    okDrawDialog(event, type){
+      let url = "";
+      if (type == 1){
+        if (this.selTeacherData.length == 0){
+          MessageWarning(this.$t("请选择教师"));
+          return;
+        }
+        this.selTeacherDataOk = JSON.parse(JSON.stringify(this.selTeacherData));
+        this.selTeacherDataBakOk = JSON.parse(JSON.stringify(this.selTeacherData));
+      }else if (type == 2){
+        if (this.selStudentData.length == 0){
+          MessageWarning(this.$t("请选择学生"));
+          return;
+        }
+        this.selStudentDataOk = JSON.parse(JSON.stringify(this.selStudentData));
+        this.selStudentDataBakOk = JSON.parse(JSON.stringify(this.selStudentData));
+      }
+      this.drawerStudent = false;
+      this.drawerTeacher = false;
     },
     cancelDialog(){
       if (this.$refs['form']){
@@ -647,15 +908,35 @@ export default {
       let url = '';
       this.$refs['form'].validate((valid) => {
         if (valid) {
-          this.dialogLoading = true;
+          let studentIds = [];
+          let teacherIds = [];
+          if (this.selStudentDataOk.length == 0){
+            MessageWarning(this.$t("请选择学生！"));
+            return;
+          }
+          if (this.selTeacherDataOk.length == 0){
+            MessageWarning(this.$t("请选择教师！"));
+            return;
+          }
+          for (let i = 0;i < this.selStudentDataOk.length; i++){
+            studentIds.push(this.selStudentDataOk[i].user_id);
+          }
+          for (let i = 0;i < this.selTeacherDataOk.length; i++){
+            teacherIds.push(this.selTeacherDataOk[i].user_id);
+          }
           let params = {
-            categoryName: this.form.name,
+            linkId: this.linkId,
+            ruleName: this.form.name,
+            arriveStation: this.form.address,
+            teacherUserIds: teacherIds.join(),
+            studentUserIds: studentIds.join(),
           };
           if (this.form.id != ''){
             params['id'] = this.form.id;
           }
-          url = common.server_type_save;
+          url = common.enroll_link_arrive_save;
           params = this.$qs.stringify(params);
+          this.dialogLoading = true;
           this.$axios.post(url, params).then(res => {
             if (res.data.code == 200){
               this.dialogVisible = false;
@@ -676,5 +957,9 @@ export default {
 <style scoped>
 .container {
   padding: 10px 15px;
+}
+.header-block{
+  height: 40px;
+  line-height: 40px;
 }
 </style>
