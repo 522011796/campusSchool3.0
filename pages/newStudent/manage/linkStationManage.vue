@@ -294,7 +294,7 @@
       <div slot="content" class="color-muted">
         <div>
           <div class="layout-inline">
-            <my-cascader class="layout-item" :placeholder="$t('请选择专业/班级')" ref="SelectorCollege" size="small" width-style="160" :sel-value="searchCollegeData" type="1" sub-type="4" @change="handleCascaderStudentChange($event)"></my-cascader>
+            <my-cascader class="layout-item" :placeholder="$t('请选择专业/班级')" ref="SelectorCollege" size="small" width-style="160" :clearable="true" :sel-value="searchCollegeData" type="1" sub-type="4" @change="handleCascaderStudentChange($event)"></my-cascader>
           </div>
           <div>
             <el-table class="margin-top-10"

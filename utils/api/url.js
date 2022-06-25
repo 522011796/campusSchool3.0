@@ -680,6 +680,7 @@ export const common = {
   enroll_link_dorm_rule: '/proxy/school/link-setting/rule/page', //选寝规则分页
   enroll_link_dorm_del: '/proxy/school/link-setting/rule/del', //选寝规则删除
   enroll_link_dorm_save: '/proxy/school/link-setting/rule/save', //选寝规则保存
+  enroll_link_dorm_info: '/proxy/school/link-setting/rule/info', //选寝规则详细
 
   enroll_link_pay_item_list: '/proxy/school/link-setting/item/list', //收款项列表
   enroll_link_pay_item_save: '/proxy/school/link-setting/item/save', //收款项保存
