@@ -6,7 +6,7 @@
           <!--<span class="layout-left-menu-tag"></span>-->
           <span class="layout-left-menu-title">数据中心</span>
         </div>
-        <my-el-tree ref="appRef" type="110" :show-campus="false" :extra-type="appName" :currentNodeKey="currentNodeKey" :default-expanded-keys="defaultExpandedKeys" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
+        <my-el-tree ref="appRef" type="121" sub-type="9" :show-campus="false" :currentNodeKey="currentNodeKey" :default-expanded-keys="defaultExpandedKeys" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
       </div>
 
       <div slot="right">
@@ -73,10 +73,10 @@
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                   <div class="text-center">
-                    <label v-if="detailData.completeTime">{{ $moment(scope.row.completeTime).format("YYYY-MM-DD HH:mm:ss") }}</label>
+                    <label v-if="scope.row.completeTime">{{ $moment(scope.row.completeTime).format("YYYY-MM-DD HH:mm:ss") }}</label>
                   </div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    <label v-if="detailData.completeTime">{{ $moment(scope.row.completeTime).format("YYYY-MM-DD HH:mm:ss") }}</label>
+                    <label v-if="scope.row.completeTime">{{ $moment(scope.row.completeTime).format("YYYY-MM-DD HH:mm:ss") }}</label>
                   </span>
                 </el-popover>
               </template>
@@ -118,9 +118,9 @@
               :label="$t('录取号')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{ scope.row.studentId }}</div>
+                  <div class="text-center">{{ scope.row.enrollNo }}</div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{ scope.row.studentId }}
+                    {{ scope.row.enrollNo }}
                   </span>
                 </el-popover>
               </template>
@@ -211,17 +211,17 @@
           <el-row>
             <el-col :span="12">
               <span>{{$t("申请人")}}:</span>
-              <span>{{ detailData.applyUserName }}</span>
+              <span>{{ detailData.realName }}</span>
             </el-col>
             <el-col :span="12">
               <span>{{$t("学号")}}:</span>
-              <span>{{ detailData.userNo }}</span>
+              <span>{{ detailData.studentId }}</span>
             </el-col>
           </el-row>
           <el-row class="margin-top-5">
             <el-col :span="12">
-              <span>{{$t("服务名称")}}:</span>
-              <span>{{ detailData.formName }}</span>
+              <span>{{$t("性别")}}:</span>
+              <span><my-sex tag="text" :sex="detailData.sex"></my-sex></span>
             </el-col>
             <el-col :span="12">
               <span>{{$t("班级")}}:</span>
@@ -258,8 +258,8 @@
                 <span v-if="!item.value || item.value.length <= 0" class="color-muted" style="position: relative;top: 10px">{{item.title}}: </span>
                 <span v-else class="color-muted" style="position: relative;top: -13px">{{item.title}}: </span>
                 <span v-if="!item.value || item.value.length <= 0">
-                    <div style="height: 20px;line-height: 20px"></div>
-                  </span>
+                  <div style="height: 20px;line-height: 20px"></div>
+                </span>
                 <span v-else class="custom-avatar" style="display: inline-block;margin-right: 5px;" v-for="(itemImg, indexImg) in item.value" :key="indexImg">
                   <el-image style="width: 30px; height: 30px"
                             :src="itemImg"
@@ -291,8 +291,9 @@
   import DrawerLayoutRight from "~/components/utils/dialog/DrawerLayoutRight";
   import MyInputButton from "~/components/search/MyInputButton";
   import MyCascader from "~/components/utils/select/MyCascader";
+  import MySexSelect from "~/components/utils/MySexSelect";
   export default {
-    components: {MyCascader},
+    components: {MySexSelect, MyElTree, MyCascader},
     mixins: [mixins],
     data(){
       return {
@@ -343,7 +344,7 @@
           linkType: this.searchStatusInfo,
           status: this.searchCommitInfo,
           searchKey: this.searchKey,
-          linkId: 9
+          linkId: this.currentNodeKey
         };
 
         if (this.searchTimeData && this.searchTimeData.length > 0){
@@ -411,16 +412,12 @@
         this.dialogServerDetail = false;
       },
       nodeClick(data){
-        this.formId = "";
-        this.page = 1;
-
         if (data.unit == 2){
-          this.linkId = data.id;
+          //this.processid = data.id;
+          this.currentNodeKey = data.value;
+          this.page = 1;
           this.init();
         }
-        // if (data.unit != 1){
-        //   this.init();
-        // }
       },
       handleChangeTime(data){
         this.searchTimeData = data;
@@ -461,10 +458,12 @@
       },
       detailInfo(item){
         this.detailData = item;
+        console.log(item.dataContent);
         if (item.dataContent  && item.dataContent != "[]"){
           let ruleList = [];
-          //this.detailApplyContentData = JSON.parse(item.applyContent);
-          this.detailApplyContentData = this.setRuleChild(item.dataContent, ruleList);
+          //let detailApplyContentData = JSON.parse(item.dataContent);
+          //this.detailApplyContentData = this.setRuleChild(item.dataContent, ruleList);
+          this.detailApplyContentData = item.dataContent;
         }
         this.dialogServerDetail = true;
       },

@@ -462,6 +462,7 @@ export default {
   dataAppletList: [],
   dataAppletServer: [],
   dataProcessServer: [],
+  dataProcessLinkServer: [],
   currentDay,
   currentMonth,
   currentTermId,

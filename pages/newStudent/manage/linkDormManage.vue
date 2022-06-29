@@ -154,6 +154,7 @@
         <div>
           <div class="layout-inline">
             <my-cascader class="layout-item" :clearable="true" ref="SelectorDormDept" size="small" width-style="160" :sel-value="searchCommDeptBedData" type="2" sub-type="2" @change="handleCascaderBedChange($event)"></my-cascader>
+            <my-select class="layout-item" size="small" :clearable="true" :options="filtersDormType" @change="handleSearchChange($event, 1)"></my-select>
           </div>
           <div>
             <el-table class="margin-top-10"
@@ -272,6 +273,7 @@
         <div>
           <div class="layout-inline">
             <my-cascader class="layout-item" ref="SelectorCollege" size="small" width-style="160" :sel-value="searchCollegeData" type="1" sub-type="4" @change="handleCascaderStudentChange($event)"></my-cascader>
+            <my-select class="layout-item" size="small" :clearable="true" :options="g_sex" @change="handleSearchChange($event, 2)"></my-select>
           </div>
           <div>
             <el-table class="margin-top-10"
@@ -448,6 +450,8 @@ export default {
       searchKey: '',
       commSearchBuild: '',
       commSearchFloor: '',
+      searchDormSex: '',
+      searchDormType: '',
       visible: false,
       visibleConfim: false,
       dialogVisible: false,
@@ -470,6 +474,10 @@ export default {
       selDormData: [],
       selDormDataOk: [],
       selDormDataBakOk: [],
+      filtersDormType: [
+        {text: '男生宿舍',value: "0", label: '男生宿舍'},
+        {text: '女生宿舍',value: "1", label: '女生宿舍'}
+      ],
       form: {
         id: '',
         name: '',
@@ -502,7 +510,8 @@ export default {
         page: this.pageDorm,
         num: this.numDorm,
         buildId: this.searchBuildId,
-        floorNum: this.searchFloorNum
+        floorNum: this.searchFloorNum,
+        type: this.searchDormType
       };
       this.tableDormLoading = true;
       this.$axios.get(common.dormroom_page, {params: params}).then(res => {
@@ -535,6 +544,7 @@ export default {
         grade: this.searchStudnetGrade,
         classId: this.searchStudnetClass,
         searchKey: this.searchStudnetKey,
+        sex: this.searchDormSex
       };
       this.tableDormLoading = true;
       this.$axios.get(common.enroll_student_page, {params: params}).then(res => {
@@ -569,6 +579,17 @@ export default {
     },
     handleDormSelectionChange(data){
       this.selDormData = data;
+    },
+    removeDuplicateObj(arr){
+      let newArr = []
+      let obj = {};
+      for (let i = 0; i < arr.length; i++) {
+        if (!obj[arr[i].id]) {
+          newArr.push(arr[i]);
+          obj[arr[i].id] = true;
+        }
+      }
+      return newArr
     },
     dormTypeInfo(val){
       return dormTypeText(val);
@@ -678,6 +699,15 @@ export default {
     },
     handleCancelChange(data) {
       this.visibleConfim = false;
+    },
+    handleSearchChange(event, type){
+      if (type == 1){
+        this.searchDormType = event;
+        this.initDorm();
+      }else if (type == 2){
+        this.searchDormSex = event;
+        this.initStudent();
+      }
     },
     handleCascaderBedChange(data){
       this.commSearchBuild = "";
@@ -843,6 +873,7 @@ export default {
           MessageWarning(this.$t("请选择宿舍"));
           return;
         }
+        console.log(this.selDormData);
         this.selDormDataOk = JSON.parse(JSON.stringify(this.selDormData));
         this.selDormDataBakOk = JSON.parse(JSON.stringify(this.selDormData));
       }else if (type == 2){

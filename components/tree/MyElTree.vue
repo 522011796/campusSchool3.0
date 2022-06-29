@@ -164,9 +164,18 @@
         }else if(this.type == 111){
           await this.getAppletServerInfo(this.extraType);
           this.data = this.dataAppletServer;
-        }else if(this.type == 120){
+        }else if(this.type == 120){//只查询流程
           await this.getLinkProcessInfo();
           this.data = this.dataProcessServer;
+          this.selectCampusAll = false;
+          this.$nextTick(() => {
+            if (this.$refs.tree){
+              this.$refs.tree.setCurrentKey(this.currentNodeKey); //一定要加这个选中了否则样式没有出来
+            }
+          });
+        }else if(this.type == 121){ //自定义环节
+          await this.getLinkProcessLinkInfo(this.subType);
+          this.data = this.dataProcessLinkServer;
           this.selectCampusAll = false;
           this.$nextTick(() => {
             if (this.$refs.tree){

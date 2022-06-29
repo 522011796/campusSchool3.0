@@ -15,6 +15,9 @@ export default {
         ],
         time: [
           { required: true, message: this.$t("请选择信息"), trigger: 'change' }
+        ],
+        url: [
+          { required: true, message: this.$t("请输入信息"), trigger: 'blur' }
         ]
       }
     }

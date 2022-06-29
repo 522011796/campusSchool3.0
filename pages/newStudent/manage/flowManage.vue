@@ -799,6 +799,10 @@
             }
           }
 
+          if (flowData[i].id){
+            obj['id'] = flowData[i].id;
+          }
+
           flowDataArray.push(obj);
         }
         flowDataOjb = {

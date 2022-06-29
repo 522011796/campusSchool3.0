@@ -7,6 +7,7 @@
         <el-row>
           <el-col :span="6">
             <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo($event)">{{$t("创建年度")}}</el-button>
+            <el-button size="small" type="warning"  icon="el-icon-plus" @click="payInfo($event)">{{$t("缴费链接")}}</el-button>
           </el-col>
           <el-col :span="18" class="text-right">
             <div class="layout-inline">
@@ -173,6 +174,25 @@
       </div>
     </dialog-normal>
 
+
+    <dialog-normal top="10vh" width-style="650px" :visible="dialogPay" :title="$t('链接设置')" @close="closeDialog" @right-close="cancelDialog">
+      <div class="margin-top-10">
+        <el-form :model="formPay" :rules="rulesPay" ref="formPay" label-width="140px">
+          <el-form-item :label="$t('缴费链接')" prop="url">
+            <el-input v-model="formPay.url" class="width-350"></el-input>
+          </el-form-item>
+        </el-form>
+      </div>
+
+      <div slot="footer">
+        <el-button size="small" @click="cancelDialog">{{$t("取消")}}</el-button>
+        <el-button size="small" type="primary" @click="dialogLoading == false ? okPayDialog() : ''">
+          <i class="el-icon-loading" v-if="dialogLoading"></i>
+          {{$t("确定")}}
+        </el-button>
+      </div>
+    </dialog-normal>
+
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="确认需要删除该信息？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
   </div>
 </template>
@@ -183,9 +203,10 @@
   import {MessageError, MessageSuccess} from "~/utils/utils";
   import newSettingValidater from "~/utils/validater/newSettingValidater";
   import MyNormalDialog from "~/components/utils/dialog/MyNormalDialog";
+  import newSettingPayValidater from "~/utils/validater/newSettingPayValidater";
   export default {
     components: {MyNormalDialog},
-    mixins: [mixins,newSettingValidater],
+    mixins: [mixins,newSettingValidater,newSettingPayValidater],
     data(){
       return {
         subTitle: '',
@@ -193,6 +214,7 @@
         tableData: [],
         dialogSetting: false,
         dialogLoading: false,
+        dialogPay: false,
         searchKey: '',
         yearOptions: [],
         typeOptions: [],
@@ -201,7 +223,11 @@
           year: '',
           name: '',
           type: '',
-          time: []
+          time: [],
+          url: ''
+        },
+        formPay: {
+          url: ''
         }
       }
     },
@@ -236,6 +262,16 @@
           }
         });
       },
+      getPayInfo(){
+        let params = {};
+        this.$axios.get(common.enroll_pay_link_get, {params: params}).then(res => {
+          if (res.data.data){
+            this.formPay = {
+              url: res.data.data.enrollPayUrl
+            };
+          }
+        });
+      },
       sizeChange(event){
         this.page = 1;
         this.num = event;
@@ -263,6 +299,10 @@
           this.form.time = [this.$moment(event[0]).format("YYYY-MM-DD HH:mm"), this.$moment(event[1]).format("YYYY-MM-DD HH:mm")];
         }
       },
+      payInfo(){
+        this.getPayInfo();
+        this.dialogPay = true;
+      },
       addInfo(){
         this.dialogSetting = true;
       },
@@ -272,7 +312,7 @@
           name: item.enrollName,
           year: item.year,
           type: '',
-          time: [this.$moment(item.beginTime).format("YYYY-MM-DD HH:mm"), this.$moment(item.endTime).format("YYYY-MM-DD HH:mm")]
+          time: [this.$moment(item.beginTime).format("YYYY-MM-DD HH:mm"), this.$moment(item.endTime).format("YYYY-MM-DD HH:mm")],
         };
         this.dialogSetting = true;
       },
@@ -300,7 +340,11 @@
           year: '',
           name: '',
           type: '',
-          time: []
+          time: [],
+          url: ''
+        };
+        this.formPay = {
+          url: ''
         };
         this.subTitle = "";
         if (this.$refs['form']){
@@ -331,6 +375,7 @@
       },
       cancelDialog(){
         this.dialogSetting = false;
+        this.dialogPay = false;
       },
       okDialog(){
         let url = common.enroll_add;
@@ -341,7 +386,8 @@
               year: this.form.year,
               enrollName: this.form.name,
               beginTime: this.form.time[0],
-              endTime: this.form.time[1]
+              endTime: this.form.time[1],
+              url: this.form.url
             };
             if (this.form.id != ''){
               params['id'] = this.form.id;
@@ -351,6 +397,28 @@
             this.$axios.post(url, params).then(res => {
               if (res.data.code == 200){
                 this.dialogSetting = false;
+                this.init();
+                MessageSuccess(res.data.desc);
+              }else {
+                MessageError(res.data.desc);
+              }
+              this.dialogLoading = false;
+            });
+          }
+        });
+      },
+      okPayDialog(){
+        let url = common.enroll_pay_link_add;
+        this.$refs['formPay'].validate((valid) => {
+          if (valid) {
+            this.dialogLoading = true;
+            let params = {
+              enrollPayUrl: this.formPay.url
+            };
+            params = this.$qs.stringify(params);
+            this.$axios.post(url, params, {loading: false}).then(res => {
+              if (res.data.code == 200){
+                this.dialogPay = false;
                 this.init();
                 MessageSuccess(res.data.desc);
               }else {

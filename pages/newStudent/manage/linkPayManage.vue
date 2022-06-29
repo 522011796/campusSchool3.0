@@ -1110,6 +1110,9 @@ export default {
           loanAmount: this.tablePayObjData[i].loanAmount,
           totalAmount: this.tablePayObjData[i].totalAmount
         });
+        if (this.tablePayObjData[i].id){
+          pays[i]['id'] = this.tablePayObjData[i].id;
+        }
       }
 
       if (errorNum > 0){

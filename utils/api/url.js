@@ -693,6 +693,7 @@ export const common = {
 
   enroll_link_form_save: '/proxy/school/link-setting/link/form/save', //自定义表单保存
   enroll_process_link_info: '/proxy/school/process/link/info', //自定义表单详细
+  enroll_custom_form_tree: '/proxy/school/enroll-process/link/tree', //自定义表单树形
 
   enroll_link_arrive_del: '/proxy/school/link-setting/arrive/del', //接站规则删除
   enroll_link_arrive_enable: '/proxy/school/link-setting/arrive/enable', //接站规则启禁用
@@ -700,6 +701,9 @@ export const common = {
   enroll_link_arrive_page: '/proxy/school/link-setting/arrive/page', //接站规则分页
   enroll_link_arrive_save: '/proxy/school/link-setting/arrive/save', //接站规则保存
   enroll_link_arrive_trans_type: '/proxy/school/link-setting/arrive/trans-type/list', //接站规则保存
+
+  enroll_pay_link_get: '/proxy/school/enroll/payment/pay-url/get', //支付二维码查询
+  enroll_pay_link_add: '/proxy/school/enroll/payment/pay-url/update', //支付二维码添加
 
   enroll_list_by_parent_id: '/proxy/log/logtype/get/select/list-by-parent-id', //日志类型
 

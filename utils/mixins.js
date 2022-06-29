@@ -38,6 +38,7 @@ export default {
       dataApplet: global.dataAppletList,
       dataAppletServer: global.dataAppletServer,
       dataProcessServer: global.dataProcessServer,
+      dataProcessLinkServer: global.dataProcessLinkServer,
       currentSeciton: global.currentSeciton,
       currentYear: global.currentYear,
       currentMonth: global.currentMonth,
@@ -619,6 +620,40 @@ export default {
             res.data.data.list[i]['unit'] = 1;
           }
           this.dataProcessServer = res.data.data.list;
+        }
+      });
+    },
+    /**
+     * 获取流程服务的环节list信息
+     * 主要用于树形菜单，下来菜单等
+     * @returns {Promise<void>}
+     */
+    async getLinkProcessLinkInfo(type) {
+      let params = {};
+      await this.$axios.get(common.enroll_custom_form_tree, {params: params}).then(res => {
+        let arr = [];
+        if (res.data.data){
+          let arr = [];
+          for (let i = 0; i < res.data.data.length; i++) {
+            res.data.data[i]['label'] = res.data.data[i].processName;
+            res.data.data[i]['value'] = res.data.data[i].id;
+            res.data.data[i]['unit'] = 1;
+            if (res.data.data[i]['linkList'] && res.data.data[i]['linkList'].length > 0){
+              res.data.data[i]['children'] = [];
+              let children = [];
+              for (let j = 0; j < res.data.data[i]['linkList'].length; j++){
+                if (res.data.data[i]['linkList'][j].linkSubType == type){
+                  children.push({
+                    label: res.data.data[i]['linkList'][j].linkName,
+                    value: res.data.data[i]['linkList'][j].id,
+                    unit: 2
+                  });
+                }
+              }
+              res.data.data[i]['children'] = children;
+            }
+          }
+          this.dataProcessLinkServer = res.data.data;
         }
       });
     },

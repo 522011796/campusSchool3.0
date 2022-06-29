@@ -128,12 +128,14 @@
                       <label v-if="scope.row.payment_status == 3" class="color-success">{{$t("已缴费")}}</label>
                       <label v-else-if="scope.row.payment_status == 2" class="color-danger">{{$t("部分缴费")}}</label>
                       <label v-else-if="scope.row.payment_status == 1" class="color-danger">{{$t("未缴费")}}</label>
+                      <label v-else-if="scope.row.payment_status == 4" class="color-danger">{{$t("待核实")}}</label>
                       <label v-else>--</label>
                     </div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                       <label v-if="scope.row.payment_status == 3" class="color-success">{{$t("已缴费")}}</label>
                       <label v-else-if="scope.row.payment_status == 2" class="color-danger">{{$t("部分缴费")}}</label>
                       <label v-else-if="scope.row.payment_status == 1" class="color-danger">{{$t("未缴费")}}</label>
+                      <label v-else-if="scope.row.payment_status == 4" class="color-danger">{{$t("待核实")}}</label>
                       <label v-else>--</label>
                     </span>
                   </el-popover>
@@ -457,8 +459,9 @@ export default {
         {value: 2, text: this.$t("女")}
       ],
       filtersStatusType: [
-        {value: true, text: this.$t("已缴清")},
-        {value: false, text: this.$t("未缴清")}
+        {value: 3, text: this.$t("已缴清")},
+        {value: 1, text: this.$t("未缴清")},
+        {value: 4, text: this.$t("待核实")}
       ],
       searchAuditType: '',
       searchSexType: '',

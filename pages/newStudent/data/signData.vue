@@ -153,6 +153,30 @@
                   </el-popover>
                 </template>
               </el-table-column>
+              <el-table-column align="center" :label="$t('缴费状态')"
+                               column-key="payType"
+                               :filter-multiple="false"
+                               :filters="filtersPayStatusType"
+                                width="120">
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">
+                      <label v-if="scope.row.payment_status == 3" class="color-success">{{$t("已缴费")}}</label>
+                      <label v-else-if="scope.row.payment_status == 2" class="color-danger">{{$t("部分缴费")}}</label>
+                      <label v-else-if="scope.row.payment_status == 1" class="color-danger">{{$t("未缴费")}}</label>
+                      <label v-else-if="scope.row.payment_status == 4" class="color-danger">{{$t("待核实")}}</label>
+                      <label v-else>--</label>
+                    </div>
+                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      <label v-if="scope.row.payment_status == 3" class="color-success">{{$t("已缴费")}}</label>
+                      <label v-else-if="scope.row.payment_status == 2" class="color-danger">{{$t("部分缴费")}}</label>
+                      <label v-else-if="scope.row.payment_status == 1" class="color-danger">{{$t("未缴费")}}</label>
+                      <label v-else-if="scope.row.payment_status == 4" class="color-danger">{{$t("待核实")}}</label>
+                      <label v-else>--</label>
+                    </span>
+                  </el-popover>
+                </template>
+              </el-table-column>
               <el-table-column align="center"
                                width="120"
                                :label="$t('核验方式')"
@@ -766,10 +790,16 @@ export default {
         {value: true, text: this.$t("已报道")},
         {value: false, text: this.$t("未报道")}
       ],
+      filtersPayStatusType: [
+        {value: 3, text: this.$t("已缴清")},
+        {value: 1, text: this.$t("未缴清")},
+        {value: 4, text: this.$t("待核实")}
+      ],
       searchAuditType: '',
       searchSexType: '',
       searchSignTimeStatus: '',
       searchInterface: '',
+      searchPayStatus: '',
       oprType: '',
       form: {
         id: '',
@@ -855,7 +885,8 @@ export default {
         grade: this.searchGrade,
         classId: this.searchClass,
         checkStatus: this.searchStatus,
-        checkType: this.searchAuditType
+        checkType: this.searchAuditType,
+        payStatus: this.searchPayStatus
       };
       this.$axios.get(common.enroll_checkin_page, {params: params}).then(res => {
         if (res.data.data){
@@ -1089,6 +1120,8 @@ export default {
           this.searchInterface = value[item][0];
         }else if (item == 'statusType'){
           this.searchStatus = value[item][0];
+        }else if (item == 'payType'){
+          this.searchPayStatus = value[item][0];
         }
       }
       this.init();
