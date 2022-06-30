@@ -563,8 +563,23 @@ export default {
       this.tableDormLoading = true;
       this.$axios.get(common.enroll_student_page, {params: params}).then(res => {
         if (res.data.data){
+          let intersection=[];
+
+          if (this.selStudentData.length == 0){
+            intersection = [].concat(this.selStudentDataOk);
+            this.selStudentData = [].concat(this.selStudentDataOk);
+          }else {
+            this.selStudentDataOk.forEach(x=>{
+              this.selStudentData.forEach(y=>{
+                if(x.user_id == y.user_id){//找到相同的就push进新的数组
+                  intersection.push(x);
+                }
+              });
+            });
+          }
+
           for (let i = 0; i < res.data.data.list.length; i++){
-            let sel = inArray(res.data.data.list[i], this.selStudentDataOk, 'user_id');
+            let sel = inArray(res.data.data.list[i], intersection, 'user_id');
             if (sel > -1){
               this.commFlag = true;
               res.data.data.list[i]['_checked'] = true;
@@ -608,8 +623,23 @@ export default {
       this.tableDormLoading = true;
       this.$axios.get(common.teacher_list, {params: params}).then(res => {
         if (res.data.data){
+          let intersection=[];
+
+          if (this.selTeacherData.length == 0){
+            intersection = [].concat(this.selTeacherDataOk);
+            this.selTeacherData = [].concat(this.selTeacherDataOk);
+          }else {
+            this.selTeacherDataOk.forEach(x=>{
+              this.selTeacherData.forEach(y=>{
+                if(x.user_id == y.user_id){//找到相同的就push进新的数组
+                  intersection.push(x);
+                }
+              });
+            });
+          }
+
           for (let i = 0; i < res.data.data.page.list.length; i++){
-            let sel = inArray(res.data.data.page.list[i], this.selTeacherDataOk, 'user_id');
+            let sel = inArray(res.data.data.page.list[i], intersection, 'user_id');
             if (sel > -1){
               this.commFlag = true;
               res.data.data.page.list[i]['_checked'] = true;

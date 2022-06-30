@@ -533,8 +533,22 @@ export default {
       this.tableDormLoading = true;
       this.$axios.get(common.dormroom_page, {params: params}).then(res => {
         if (res.data.data){
+          let intersection=[];
+
+          if (this.selDormData.length == 0){
+            intersection = this.selDormDataOk;
+            this.selDormData = this.selDormDataOk;
+          }else {
+            this.selDormDataOk.forEach(x=>{
+              this.selDormData.forEach(y=>{
+                if(x.id == y.id){//找到相同的就push进新的数组
+                  intersection.push(x);
+                }
+              });
+            });
+          }
           for (let i = 0; i < res.data.data.list.length; i++){
-            let sel = inArray(res.data.data.list[i], this.selDormDataOk, 'id');
+            let sel = inArray(res.data.data.list[i], intersection, 'id');
             if (sel > -1){
               this.commFlag = true;
               res.data.data.list[i]['_checked'] = true;
@@ -585,8 +599,23 @@ export default {
       this.tableDormLoading = true;
       this.$axios.get(common.enroll_student_page, {params: params}).then(res => {
         if (res.data.data){
+          let intersection=[];
+
+          if (this.selStudentData.length == 0){
+            intersection = this.selStudentDataOk;
+            this.selStudentData = this.selStudentDataOk;
+          }else {
+            this.selStudentDataOk.forEach(x=>{
+              this.selStudentData.forEach(y=>{
+                if(x.user_id == y.user_id){//找到相同的就push进新的数组
+                  intersection.push(x);
+                }
+              });
+            });
+          }
+
           for (let i = 0; i < res.data.data.list.length; i++){
-            let sel = inArray(res.data.data.list[i], this.selStudentDataOk, 'user_id');
+            let sel = inArray(res.data.data.list[i], intersection, 'user_id');
             if (sel > -1){
               this.commFlag = true;
               res.data.data.list[i]['_checked'] = true;
@@ -931,6 +960,7 @@ export default {
       if (this.$refs.tableDormRef){
         this.$refs.tableDormRef.clearSelection();
       }
+      console.log(this.selDormData);
       this.commAllCheck = false;
       this.drawerDorm = false;
       this.drawerStudent = false;
