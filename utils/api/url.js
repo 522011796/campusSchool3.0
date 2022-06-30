@@ -701,6 +701,7 @@ export const common = {
   enroll_link_arrive_page: '/proxy/school/link-setting/arrive/page', //接站规则分页
   enroll_link_arrive_save: '/proxy/school/link-setting/arrive/save', //接站规则保存
   enroll_link_arrive_trans_type: '/proxy/school/link-setting/arrive/trans-type/list', //接站规则保存
+  enroll_link_arrive_receive: '/proxy/school/enroll-app/arrive/receive', //接站确认
 
   enroll_pay_link_get: '/proxy/school/enroll/payment/pay-url/get', //支付二维码查询
   enroll_pay_link_add: '/proxy/school/enroll/payment/pay-url/update', //支付二维码添加

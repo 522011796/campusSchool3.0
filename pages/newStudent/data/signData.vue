@@ -886,7 +886,7 @@ export default {
         classId: this.searchClass,
         checkStatus: this.searchStatus,
         checkType: this.searchAuditType,
-        payStatus: this.searchPayStatus
+        paymentStatus: this.searchPayStatus
       };
       this.$axios.get(common.enroll_checkin_page, {params: params}).then(res => {
         if (res.data.data){

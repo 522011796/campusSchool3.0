@@ -285,6 +285,15 @@
                   </el-popover>
                 </template>
               </el-table-column>
+              <el-table-column
+                align="center"
+                fixed="right"
+                label="操作"
+                width="100">
+                <template slot-scope="scope">
+                  <el-button type="success" size="mini" :disabled="scope.row.arrive_data_id == null || scope.row.arrive_status == true" @click="okStation($event, scope.row)">{{$t("确认到站")}}</el-button>
+                </template>
+              </el-table-column>
             </el-table>
           </div>
           <div class="layout-right-footer text-right">
@@ -565,6 +574,20 @@ export default {
         }
       }
       this.init();
+    },
+    okStation($event, item){
+      let params = {
+        id: item.arrive_data_id
+      };
+      params = this.$qs.stringify(params);
+      this.$axios.post(common.enroll_link_arrive_receive, params).then(res => {
+        if (res.data.code == 200){
+          this.init();
+          MessageSuccess(res.data.desc);
+        }else {
+          MessageError(res.data.desc);
+        }
+      });
     }
   }
 }

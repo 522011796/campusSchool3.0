@@ -165,9 +165,14 @@
                       :row-key="getDormRowKeys"
                       @selection-change="handleDormSelectionChange">
               <el-table-column
-                :reserve-selection="true"
-                type="selection"
                 width="55">
+                <template slot="header" slot-scope="scope">
+                  <el-checkbox v-model="commAllCheck" @change="_handleSelectionAllSelect"></el-checkbox>
+                </template>
+
+                <template slot-scope="scope">
+                  <el-checkbox v-model="scope.row._checked" @change="_handleSelectionSelect($event, scope.row)"></el-checkbox>
+                </template>
               </el-table-column>
               <el-table-column
                 label="楼栋"
@@ -284,9 +289,14 @@
                       :row-key="getStudentRowKeys"
                       @selection-change="handleSelectionChange">
               <el-table-column
-                :reserve-selection="true"
-                type="selection"
                 width="55">
+                <template slot="header" slot-scope="scope">
+                  <el-checkbox v-model="commAllCheck" @change="_handleSelectionStudentAllSelect"></el-checkbox>
+                </template>
+
+                <template slot-scope="scope">
+                  <el-checkbox v-model="scope.row._checked" @change="_handleSelectionStudentSelect($event, scope.row)"></el-checkbox>
+                </template>
               </el-table-column>
               <el-table-column
                 label="录入时间"
@@ -434,6 +444,9 @@ export default {
   },
   data(){
     return {
+      commAllCheck: false,
+      commAllCheckCount: 0,
+      checkboxCount: 0,
       pageDorm: 1,
       numDorm: 20,
       totalDorm: 0,
@@ -452,6 +465,7 @@ export default {
       commSearchFloor: '',
       searchDormSex: '',
       searchDormType: '',
+      commFlag: false,
       visible: false,
       visibleConfim: false,
       dialogVisible: false,
@@ -460,6 +474,7 @@ export default {
       drawerStudent: false,
       tableDormLoading: false,
       dialogLoading: false,
+      rowSelectFlag:false,
       clearTime: '',
       action: '',
       subTitle: '',
@@ -474,6 +489,7 @@ export default {
       selDormData: [],
       selDormDataOk: [],
       selDormDataBakOk: [],
+      commRow: '',
       filtersDormType: [
         {text: '男生宿舍',value: "0", label: '男生宿舍'},
         {text: '女生宿舍',value: "1", label: '女生宿舍'}
@@ -513,24 +529,43 @@ export default {
         floorNum: this.searchFloorNum,
         type: this.searchDormType
       };
+      this.checkboxCount = 0;
       this.tableDormLoading = true;
       this.$axios.get(common.dormroom_page, {params: params}).then(res => {
         if (res.data.data){
+          for (let i = 0; i < res.data.data.list.length; i++){
+            let sel = inArray(res.data.data.list[i], this.selDormDataOk, 'id');
+            if (sel > -1){
+              this.commFlag = true;
+              res.data.data.list[i]['_checked'] = true;
+              this.checkboxCount++;
+            }else {
+              res.data.data.list[i]['_checked'] = false;
+            }
+          }
+          if (this.checkboxCount != 0 && this.checkboxCount == this.tableDormData.length){
+            this.commAllCheck = true;
+          }else {
+            this.commAllCheck = false;
+          }
+          this.commFlag = false;
           this.tableDormData = res.data.data.list;
           this.totalDorm = res.data.data.totalCount;
           this.numDorm = res.data.data.num;
           this.pageDorm = res.data.data.currentPage;
 
-          let selArr = [];
-          let arr = [].concat(res.data.data.list);
-          let arrTempUser = [].concat(this.selDormDataOk);
-
-          for (let i = 0; i < arr.length; i++){
-            let sel = inArray(arr[i], arrTempUser, 'id');
-            if (sel > -1){
-              this.$refs.tableDormRef.toggleRowSelection(arr[i], true);
-            }
-          }
+          // this.rowSelectFlag = true
+          // let selArr = [];
+          // let arr = [].concat(res.data.data.list);
+          // let arrTempUser = [].concat(this.selDormDataOk);
+          //
+          // for (let i = 0; i < arr.length; i++){
+          //   let sel = inArray(arr[i], arrTempUser, 'id');
+          //   if (sel > -1){
+          //     this.$refs.tableDormRef.toggleRowSelection(arr[i], true);
+          //   }
+          // }
+          // this.rowSelectFlag = false
           this.tableDormLoading = false;
         }
       });
@@ -546,24 +581,44 @@ export default {
         searchKey: this.searchStudnetKey,
         sex: this.searchDormSex
       };
+      this.checkboxCount = 0;
       this.tableDormLoading = true;
       this.$axios.get(common.enroll_student_page, {params: params}).then(res => {
         if (res.data.data){
+          for (let i = 0; i < res.data.data.list.length; i++){
+            let sel = inArray(res.data.data.list[i], this.selStudentDataOk, 'user_id');
+            if (sel > -1){
+              this.commFlag = true;
+              res.data.data.list[i]['_checked'] = true;
+              this.checkboxCount++;
+            }else {
+              res.data.data.list[i]['_checked'] = false;
+            }
+          }
+          if (this.checkboxCount != 0 && this.checkboxCount == this.tableStudnetData.length){
+            this.commAllCheck = true;
+          }else {
+            this.commAllCheck = false;
+          }
+          this.commFlag = false;
+
           this.tableStudnetData = res.data.data.list;
           this.totalStudent = res.data.data.totalCount;
           this.numStudent = res.data.data.num;
           this.pageStudent = res.data.data.currentPage;
 
-          let selArr = [];
-          let arr = [].concat(res.data.data.list);
-          let arrTempUser = [].concat(this.selStudentDataOk);
-
-          for (let i = 0; i < arr.length; i++){
-            let sel = inArray(arr[i], arrTempUser, 'user_id');
-            if (sel > -1){
-              this.$refs.tableStudentRef.toggleRowSelection(arr[i], true);
-            }
-          }
+          // this.rowSelectFlag = true
+          // let selArr = [];
+          // let arr = [].concat(res.data.data.list);
+          // let arrTempUser = [].concat(this.selStudentDataOk);
+          //
+          // for (let i = 0; i < arr.length; i++){
+          //   let sel = inArray(arr[i], arrTempUser, 'user_id');
+          //   if (sel > -1){
+          //     this.$refs.tableStudentRef.toggleRowSelection(arr[i], true);
+          //   }
+          // }
+          // this.rowSelectFlag = false
           this.tableDormLoading = false;
         }
       });
@@ -572,13 +627,80 @@ export default {
       return row.user_id
     },
     getDormRowKeys(row) {
-      return row.id
+      return row.id;
     },
     handleSelectionChange(data){
-      this.selStudentData = data;
+      //this.selStudentData = data;
     },
     handleDormSelectionChange(data){
-      this.selDormData = data;
+      //console.log(data);
+      //this.selDormData = data;
+    },
+    _handleSelectionSelect(event, row){
+      if (event){//选中
+        this.selDormData.push(row);
+        row._checked = true;
+        this.checkboxCount++;
+      }else {//取消选中
+        let checked = inArray(row, this.selDormData, 'id');
+        this.selDormData.splice(checked,1);
+        row._checked = false;
+        this.checkboxCount--;
+      }
+      if (this.checkboxCount != 0 && this.checkboxCount == this.tableDormData.length){
+        this.commAllCheck = true;
+      }else {
+        this.commAllCheck = false;
+      }
+    },
+    _handleSelectionAllSelect(selection){
+      this.commAllCheck = selection;
+      for (let i = 0; i < this.tableDormData.length; i++){
+        if (selection == true){
+          this.tableDormData[i]._checked = true;
+          let checked = inArray(this.tableDormData[i], this.selDormData, 'id');
+          if (checked == -1){
+            this.selDormData.push(this.tableDormData[i]);
+          }
+          this.checkboxCount++;
+        }else {
+          this.tableDormData[i]._checked = false;
+          this.checkboxCount--;
+        }
+      }
+    },
+    _handleSelectionStudentSelect(event, row){
+      if (event){//选中
+        this.selStudentData.push(row);
+        row._checked = true;
+        this.checkboxCount++;
+      }else {//取消选中
+        let checked = inArray(row, this.selStudentData, 'user_id');
+        this.selStudentData.splice(checked,1);
+        row._checked = false;
+        this.checkboxCount--;
+      }
+      if (this.checkboxCount != 0 && this.checkboxCount == this.tableStudnetData.length){
+        this.commAllCheck = true;
+      }else {
+        this.commAllCheck = false;
+      }
+    },
+    _handleSelectionStudentAllSelect(selection){
+      this.commAllCheck = selection;
+      for (let i = 0; i < this.tableStudnetData.length; i++){
+        if (selection == true){
+          this.tableStudnetData[i]._checked = true;
+          let checked = inArray(this.tableStudnetData[i], this.selStudentData, 'user_id');
+          if (checked == -1){
+            this.selStudentData.push(this.tableStudnetData[i]);
+          }
+          this.checkboxCount++;
+        }else {
+          this.tableStudnetData[i]._checked = false;
+          this.checkboxCount--;
+        }
+      }
     },
     removeDuplicateObj(arr){
       let newArr = []
@@ -662,13 +784,13 @@ export default {
             });
           }
 
-          this.selStudentData = arrayStudent;
-          this.selStudentDataOk = arrayStudent;
-          this.selStudentDataBakOk = arrayStudent;
+          this.selStudentData = [].concat(arrayStudent);
+          this.selStudentDataOk = [].concat(arrayStudent);
+          this.selStudentDataBakOk = [].concat(arrayStudent);
 
-          this.selDormData = arrayDorm;
-          this.selDormDataOk = arrayDorm;
-          this.selDormDataBakOk = arrayDorm;
+          this.selDormData = [].concat(arrayDorm);
+          this.selDormDataOk = [].concat(arrayDorm);
+          this.selDormDataBakOk = [].concat(arrayDorm);
         }
       });
 
@@ -703,8 +825,10 @@ export default {
     handleSearchChange(event, type){
       if (type == 1){
         this.searchDormType = event;
+        this.pageDorm = 1;
         this.initDorm();
       }else if (type == 2){
+        this.pageStudent = 1;
         this.searchDormSex = event;
         this.initStudent();
       }
@@ -807,6 +931,7 @@ export default {
       if (this.$refs.tableDormRef){
         this.$refs.tableDormRef.clearSelection();
       }
+      this.commAllCheck = false;
       this.drawerDorm = false;
       this.drawerStudent = false;
     },
@@ -873,7 +998,6 @@ export default {
           MessageWarning(this.$t("请选择宿舍"));
           return;
         }
-        console.log(this.selDormData);
         this.selDormDataOk = JSON.parse(JSON.stringify(this.selDormData));
         this.selDormDataBakOk = JSON.parse(JSON.stringify(this.selDormData));
       }else if (type == 2){

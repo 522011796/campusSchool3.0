@@ -543,7 +543,7 @@ export default {
         processId: this.processId,
         searchKey: this.searchKey,
         sex: this.searchSexType,
-        status: this.searchInterface
+        paymentStatus: this.searchInterface
       };
       if (this.searchTimeData && this.searchTimeData.length > 0){
         params['startTime'] = this.$moment(this.searchTimeData[0]).format("YYYY-MM-DD");

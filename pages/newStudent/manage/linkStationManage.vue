@@ -185,9 +185,14 @@
                       v-loading="tableDormLoading"
                       @selection-change="handleSelectionTeacherChange">
               <el-table-column
-                :reserve-selection="true"
-                type="selection"
                 width="55">
+                <template slot="header" slot-scope="scope">
+                  <el-checkbox v-model="commAllCheck" @change="_handleSelectionAllSelect"></el-checkbox>
+                </template>
+
+                <template slot-scope="scope">
+                  <el-checkbox v-model="scope.row._checked" @change="_handleSelectionSelect($event, scope.row)"></el-checkbox>
+                </template>
               </el-table-column>
               <el-table-column
                 prop="floor_num"
@@ -305,9 +310,14 @@
                       :row-key="getStudentRowKeys"
                       @selection-change="handleSelectionChange">
               <el-table-column
-                :reserve-selection="true"
-                type="selection"
                 width="55">
+                <template slot="header" slot-scope="scope">
+                  <el-checkbox v-model="commAllCheck" @change="_handleSelectionStudentAllSelect"></el-checkbox>
+                </template>
+
+                <template slot-scope="scope">
+                  <el-checkbox v-model="scope.row._checked" @change="_handleSelectionStudentSelect($event, scope.row)"></el-checkbox>
+                </template>
               </el-table-column>
               <el-table-column
                 label="录入时间"
@@ -457,6 +467,9 @@ export default {
   },
   data(){
     return {
+      commAllCheck: false,
+      commAllCheckCount: 0,
+      checkboxCount: 0,
       pageTeacher: 1,
       numTeacher: 20,
       totalTeacher: 0,
@@ -546,24 +559,42 @@ export default {
         classId: this.searchStudnetClass,
         searchKey: this.searchStudnetKey,
       };
+      this.checkboxCount = 0;
       this.tableDormLoading = true;
       this.$axios.get(common.enroll_student_page, {params: params}).then(res => {
         if (res.data.data){
+          for (let i = 0; i < res.data.data.list.length; i++){
+            let sel = inArray(res.data.data.list[i], this.selStudentDataOk, 'user_id');
+            if (sel > -1){
+              this.commFlag = true;
+              res.data.data.list[i]['_checked'] = true;
+              this.checkboxCount++;
+            }else {
+              res.data.data.list[i]['_checked'] = false;
+            }
+          }
+          if (this.checkboxCount != 0 && this.checkboxCount == this.tableStudnetData.length){
+            this.commAllCheck = true;
+          }else {
+            this.commAllCheck = false;
+          }
+          this.commFlag = false;
+
           this.tableStudnetData = res.data.data.list;
           this.totalStudent = res.data.data.totalCount;
           this.numStudent = res.data.data.num;
           this.pageStudent = res.data.data.currentPage;
 
-          let selArr = [];
-          let arr = [].concat(res.data.data.list);
-          let arrTempUser = [].concat(this.selStudentDataOk);
-
-          for (let i = 0; i < arr.length; i++){
-            let sel = inArray(arr[i], arrTempUser, 'user_id');
-            if (sel > -1){
-              this.$refs.tableStudentRef.toggleRowSelection(arr[i], true);
-            }
-          }
+          // let selArr = [];
+          // let arr = [].concat(res.data.data.list);
+          // let arrTempUser = [].concat(this.selStudentDataOk);
+          //
+          // for (let i = 0; i < arr.length; i++){
+          //   let sel = inArray(arr[i], arrTempUser, 'user_id');
+          //   if (sel > -1){
+          //     this.$refs.tableStudentRef.toggleRowSelection(arr[i], true);
+          //   }
+          // }
           this.tableDormLoading = false;
         }
       });
@@ -577,20 +608,37 @@ export default {
       this.tableDormLoading = true;
       this.$axios.get(common.teacher_list, {params: params}).then(res => {
         if (res.data.data){
+          for (let i = 0; i < res.data.data.page.list.length; i++){
+            let sel = inArray(res.data.data.page.list[i], this.selTeacherDataOk, 'user_id');
+            if (sel > -1){
+              this.commFlag = true;
+              res.data.data.page.list[i]['_checked'] = true;
+              this.checkboxCount++;
+            }else {
+              res.data.data.page.list[i]['_checked'] = false;
+            }
+          }
+          if (this.checkboxCount != 0 && this.checkboxCount == this.tableTeacherData.length){
+            this.commAllCheck = true;
+          }else {
+            this.commAllCheck = false;
+          }
+          this.commFlag = false;
+
           this.tableTeacherData = res.data.data.page.list;
           this.totalTeacher = res.data.data.page.totalCount;
           this.numTeacher = res.data.data.page.num;
           this.pageTeacher = res.data.data.page.currentPage;
 
-          let selArr = [];
-          let arr = [].concat(res.data.data.page.list);
-          let arrTempUser = [].concat(this.selTeacherDataOk);
-          for (let i = 0; i < arr.length; i++){
-            let sel = inArray(arr[i], arrTempUser, 'user_id');
-            if (sel > -1){
-              this.$refs.tableTeacherRef.toggleRowSelection(arr[i], true);
-            }
-          }
+          // let selArr = [];
+          // let arr = [].concat(res.data.data.page.list);
+          // let arrTempUser = [].concat(this.selTeacherDataOk);
+          // for (let i = 0; i < arr.length; i++){
+          //   let sel = inArray(arr[i], arrTempUser, 'user_id');
+          //   if (sel > -1){
+          //     this.$refs.tableTeacherRef.toggleRowSelection(arr[i], true);
+          //   }
+          // }
           this.tableDormLoading = false;
         }
       });
@@ -602,10 +650,76 @@ export default {
       return row.user_id
     },
     handleSelectionChange(data){
-      this.selStudentData = data;
+      //this.selStudentData = data;
     },
     handleSelectionTeacherChange(data){
-      this.selTeacherData = data;
+      //this.selTeacherData = data;
+    },
+    _handleSelectionSelect(event, row){
+      if (event){//选中
+        this.selTeacherData.push(row);
+        row._checked = true;
+        this.checkboxCount++;
+      }else {//取消选中
+        let checked = inArray(row, this.selTeacherData, 'user_id');
+        this.selTeacherData.splice(checked,1);
+        row._checked = false;
+        this.checkboxCount--;
+      }
+      if (this.checkboxCount != 0 && this.checkboxCount == this.tableTeacherData.length){
+        this.commAllCheck = true;
+      }else {
+        this.commAllCheck = false;
+      }
+    },
+    _handleSelectionAllSelect(selection){
+      this.commAllCheck = selection;
+      for (let i = 0; i < this.tableTeacherData.length; i++){
+        if (selection == true){
+          this.tableTeacherData[i]._checked = true;
+          let checked = inArray(this.tableTeacherData[i], this.selTeacherData, 'user_id');
+          if (checked == -1){
+            this.selDormData.push(this.tableTeacherData[i]);
+          }
+          this.checkboxCount++;
+        }else {
+          this.tableTeacherData[i]._checked = false;
+          this.checkboxCount--;
+        }
+      }
+    },
+    _handleSelectionStudentSelect(event, row){
+      if (event){//选中
+        this.selStudentData.push(row);
+        row._checked = true;
+        this.checkboxCount++;
+      }else {//取消选中
+        let checked = inArray(row, this.selStudentData, 'user_id');
+        this.selStudentData.splice(checked,1);
+        row._checked = false;
+        this.checkboxCount--;
+      }
+      if (this.checkboxCount != 0 && this.checkboxCount == this.tableStudnetData.length){
+        this.commAllCheck = true;
+      }else {
+        this.commAllCheck = false;
+      }
+    },
+    _handleSelectionStudentAllSelect(selection){
+      this.commAllCheck = selection;
+      for (let i = 0; i < this.tableStudnetData.length; i++){
+        if (selection == true){
+          this.tableStudnetData[i]._checked = true;
+          let checked = inArray(this.tableStudnetData[i], this.selStudentData, 'user_id');
+          if (checked == -1){
+            this.selStudentData.push(this.tableStudnetData[i]);
+          }
+          this.checkboxCount++;
+        }else {
+          this.tableStudnetData[i]._checked = false;
+          this.checkboxCount--;
+        }
+      }
     },
     search(data){
       this.page = 1;
@@ -684,13 +798,13 @@ export default {
             });
           }
 
-          this.selStudentData = arrayStudent;
-          this.selStudentDataOk = arrayStudent;
-          this.selStudentDataBakOk = arrayStudent;
+          this.selStudentData = [].concat(arrayStudent);
+          this.selStudentDataOk = [].concat(arrayStudent);
+          this.selStudentDataBakOk = [].concat(arrayStudent);
 
-          this.selTeacherData = arrayTeacher;
-          this.selTeacherDataOk = arrayTeacher;
-          this.selTeacherDataBakOk = arrayTeacher;
+          this.selTeacherData = [].concat(arrayTeacher);
+          this.selTeacherDataOk = [].concat(arrayTeacher);
+          this.selTeacherDataBakOk = [].concat(arrayTeacher);
         }
       });
       this.dialogVisible = true;
