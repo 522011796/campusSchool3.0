@@ -462,8 +462,8 @@
         if (item.dataContent  && item.dataContent != "[]"){
           let ruleList = [];
           //let detailApplyContentData = JSON.parse(item.dataContent);
-          //this.detailApplyContentData = this.setRuleChild(item.dataContent, ruleList);
-          this.detailApplyContentData = item.dataContent;
+          this.detailApplyContentData = this.setRuleChild(JSON.parse(item.dataContent), ruleList);
+          //this.detailApplyContentData = JSON.parse(item.dataContent);
         }
         this.dialogServerDetail = true;
       },
