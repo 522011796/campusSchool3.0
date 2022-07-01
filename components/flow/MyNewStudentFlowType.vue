@@ -20,6 +20,10 @@
               <i class="fa fa-cog"></i>
               <span>{{$t("现场缴费")}} ({{$t("系统")}})</span>
             </div>
+            <div class="flow-item-child-block padding-tb-5" @click="selAuditType($event, 9, 'send', 0)">
+              <i class="fa fa-cog"></i>
+              <span>{{$t("自定义环节")}}</span>
+            </div>
           </div>
         </div>
         <div class="margin-top-5">

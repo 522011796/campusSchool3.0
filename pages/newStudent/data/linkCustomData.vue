@@ -193,8 +193,8 @@
               :label="$t('操作')">
               <template slot-scope="scope">
                 <i class="fa fa-file-text margin-right-5 color-grand" @click="detailInfo(scope.row)"></i>
-                <i v-if="scope.row.status == true" class="fa fa-times-circle color-danger" @click="statusInfo(scope.row, false)"></i>
-                <i v-if="scope.row.status == false" class="fa fa-check-circle color-success" @click="statusInfo(scope.row, true)"></i>
+                <i v-if="scope.row.status == true && scope.row.link.linkType == 0" class="fa fa-times-circle color-danger" @click="statusInfo(scope.row, false)"></i>
+                <i v-if="scope.row.status == false && scope.row.link.linkType == 0" class="fa fa-check-circle color-success" @click="statusInfo(scope.row, true)"></i>
               </template>
             </el-table-column>
           </el-table>

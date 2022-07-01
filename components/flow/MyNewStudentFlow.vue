@@ -58,7 +58,7 @@
               <div class="margin-top-10">
                 <el-row>
                   <el-col :span="20">
-                    <div v-if="flowDetailData != ''" v-for="(item, index) in flowData" :key="index">
+                    <div style="height: 19px;line-height: 19px" v-if="flowDetailData != ''" v-for="(item, index) in flowData" :key="index">
                       <span>{{ item.name }}</span>
                     </div>
                   </el-col>
@@ -208,6 +208,8 @@
                     <el-col :span="20">
                       <i class="fa fa-tag"></i>
                       <label>{{ item.name }}</label>
+                      <label v-if="item.type == 1 && item.subType == 9">({{$t("线上")}})</label>
+                      <label v-if="item.type == 0 && item.subType == 9">({{$t("线下")}})</label>
                     </el-col>
                     <el-col :span="4" class="text-right">
                       <i class="fa fa-cog"></i>
