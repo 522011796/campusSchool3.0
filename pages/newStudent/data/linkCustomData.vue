@@ -193,8 +193,8 @@
               :label="$t('操作')">
               <template slot-scope="scope">
                 <i class="fa fa-file-text margin-right-5 color-grand" @click="detailInfo(scope.row)"></i>
-                <i v-if="scope.row.status == true" class="fa fa-check-circle color-success" @click="statusInfo(scope.row, true)"></i>
-                <i v-if="scope.row.status == false" class="fa fa-times-circle color-danger" @click="statusInfo(scope.row, false)"></i>
+                <i v-if="scope.row.status == true" class="fa fa-times-circle color-danger" @click="statusInfo(scope.row, false)"></i>
+                <i v-if="scope.row.status == false" class="fa fa-check-circle color-success" @click="statusInfo(scope.row, true)"></i>
               </template>
             </el-table-column>
           </el-table>
@@ -442,7 +442,7 @@
       },
       statusInfo(item, type){
         let params = {
-          id: item.id,
+          id: item._id,
           status: type,
         };
         let url = common.enroll_form_data_set_status;
