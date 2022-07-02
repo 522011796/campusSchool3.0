@@ -470,7 +470,7 @@
             icon: item.link_logo
           };
 
-          let deptArr = [];
+          let deptArr = [[]];
           let belongRange = item.data_belong_range != '' ? item.data_belong_range.split("|") : [];
           for (let i = 0; i < belongRange.length; i++){
             let dept = [];
