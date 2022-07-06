@@ -45,7 +45,7 @@
                 </el-popover>
               </template>
             </el-table-column>
-            <el-table-column align="center" :label="$t('录取号')">
+            <el-table-column align="center" :label="$t('入学编号')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                   <div class="text-center">{{scope.row.enroll_no}}</div>
@@ -184,25 +184,13 @@
               </el-row>
               <el-row :gutter="8">
                 <el-col :span="12">
-                  <el-form-item :label="$t('录取号')" prop="adNo">
+                  <el-form-item :label="$t('入学编号')" prop="adNo">
                     <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.adNo" size="small" class="width-220"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
-                  <el-form-item :label="$t('一卡通号')" prop="oneCardNo">
-                    <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.oneCardNo" size="small" class="width-220"></el-input>
-                  </el-form-item>
-                </el-col>
-              </el-row>
-              <el-row :gutter="8">
-                <el-col :span="12">
                   <el-form-item :label="$t('学号')" prop="stuNo">
                     <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.stuNo" size="small" class="width-220"></el-input>
-                  </el-form-item>
-                </el-col>
-                <el-col :span="12">
-                  <el-form-item :label="$t('考号')" prop="examNo">
-                    <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.examNo" size="small" class="width-220"></el-input>
                   </el-form-item>
                 </el-col>
               </el-row>
@@ -409,6 +397,30 @@
                 </span>
               </div>
               <div class="block-item-bg font-size-12 custom-textarea-inner">
+                <el-row :gutter="8">
+                  <el-col :span="12">
+                    <el-form-item :label="$t('毕业类型')" prop="graduation">
+                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.graduation" :options="filterGraduationType" width-style="220" @change="handleSelectChange($event, 11)"></my-select>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form-item :label="$t('政治面貌')" prop="politics">
+                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.politics" :options="filterPoliticsType" width-style="220" @change="handleSelectChange($event, 12)"></my-select>
+                    </el-form-item>
+                  </el-col>
+                </el-row>
+                <el-row :gutter="8">
+                  <el-col :span="12">
+                    <el-form-item :label="$t('退役士兵')" prop="retire">
+                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.retire" :options="filterRetireType" width-style="220" @change="handleSelectChange($event, 13)"></my-select>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form-item :label="$t('困难类型')" prop="hard">
+                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.hard" :options="filterHardType" width-style="220" @change="handleSelectChange($event, 14)"></my-select>
+                    </el-form-item>
+                  </el-col>
+                </el-row>
                 <el-row>
                   <el-col :span="24">
                     <el-form-item :label="$t('其他信息')" prop="otherMsg">
@@ -659,7 +671,11 @@
           graduationSchool: '',
           examScore: '',
           otherMsg: '',
-          facePhotos: []
+          facePhotos: [],
+          graduation: '',
+          politics: '',
+          retire: '',
+          hard: '',
         }
       }
     },
@@ -1063,6 +1079,14 @@
           this.form.adProvince = event;
         }else if (type == 10){
           this.form.adCity = event;
+        }else if (type == 11){
+          this.form.graduation = event;
+        }else if (type == 12){
+          this.form.politics = event;
+        }else if (type == 13){
+          this.form.retire = event;
+        }else if (type == 14){
+          this.form.hard = event;
         }
       },
       handleChangeTime(event, type){

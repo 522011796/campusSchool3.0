@@ -102,23 +102,85 @@
       </div>
     </layout-tb>
 
-    <dialog-normal top="10vh" :visible="dialogVisible" :title="$t('规则设置')" @close="closeDialog" @right-close="cancelDialog">
+    <dialog-normal top="10vh" width-style="650px" :visible="dialogVisible" :title="$t('规则设置')" @close="closeDialog" @right-close="cancelDialog">
       <div class="margin-top-10">
-        <el-form :model="form" :rules="rules" ref="form" label-width="140px">
+        <el-form :model="form" :rules="rules" ref="form" label-width="200px">
           <el-form-item :label="$t('规则名称')" prop="name">
             <el-input v-model="form.name" class="width-260"></el-input>
           </el-form-item>
-          <el-form-item :label="$t('宿舍范围')" prop="dorm">
-            <el-button size="mini" type="warning" @click="dormManage">{{$t('添加宿舍')}}</el-button>
-            <span class="color-muted margin-left-10">{{$t('宿舍数量')}}</span>
-            <span class="color-muted">{{selDormDataOk.length}}</span>
+          <el-form-item :label="$t('选寝类型')" prop="type">
+            <my-select class="layout-item" width-style="260" :sel-value="form.type" :options="filterType" :clearable="true" @change="handleSearchChange($event, 3)"></my-select>
           </el-form-item>
+          <template v-if="form.type == 1">
+            <el-form-item :label="$t('宿舍范围')" prop="dorm">
+              <el-button size="mini" type="warning" @click="dormManage">{{$t('添加宿舍')}}</el-button>
+              <span class="color-muted margin-left-10">{{$t('宿舍数量')}}</span>
+              <span class="color-muted">{{selDormDataOk.length}}</span>
+            </el-form-item>
+          </template>
+          <template v-if="form.type == 2">
+            <el-form-item :label="$t('选寝范围')" prop="type">
+              <my-select class="layout-item" width-style="260" :sel-value="form.area" :options="filterArea" :clearable="true" @change="handleSearchChange($event, 4)"></my-select>
+            </el-form-item>
+          </template>
           <el-form-item :label="$t('学生范围')" prop="student">
             <el-button size="mini" type="warning" @click="studentManage">{{$t('添加学生')}}</el-button>
             <span class="color-muted margin-left-10">{{$t('学生人数')}}</span>
             <span class="color-muted">{{selStudentDataOk.length}}</span>
             <span class="color-muted">{{$t('人')}}</span>
           </el-form-item>
+          <template v-if="form.type == 2">
+            <div>
+              <el-button size="mini" icon="el-icon-plus" type="success" plain @click="addObj($event, -1)">{{$t("添加套餐")}}</el-button>
+            </div>
+            <div class="margin-top-5">
+              <el-table
+                border
+                ref="refTable"
+                :data="form.package"
+                header-cell-class-name="custom-table-cell-bg"
+                size="medium"
+                style="width: 100%">
+                <el-table-column align="center" :label="$t('套餐名称')">
+                  <template slot-scope="scope">
+                    <el-input size="mini" style="width: 80px" v-model="scope.row.itemName"></el-input>
+                  </template>
+                </el-table-column>
+                <el-table-column align="center" :label="$t('套餐价格')">
+                  <template slot-scope="scope">
+                    <el-input size="mini" style="width: 80px" v-model="scope.row.totalAmount"></el-input>
+                  </template>
+                </el-table-column>
+                <el-table-column align="center" :label="$t('套餐数量')">
+                  <template slot-scope="scope">
+                    <el-input size="mini" style="width: 80px" v-model="scope.row.deductionAmount"></el-input>
+                  </template>
+                </el-table-column>
+                <el-table-column align="center" :label="$t('示意图')">
+                  <template slot-scope="scope">
+                    <div class="layout-inline">
+                      <span class="custom-avatar layout-item" style="position: relative; top: 2px" v-if="scope.row.packageImg.length > 0">
+                        <el-image v-for="(item, index) in scope.row.packageImg" :key="index" style="width: 15px; height: 15px;margin-right: 5px" :src="item" fit="fill"></el-image>
+                      </span>
+                      <span>
+                      <upload-square class="layout-item" :action="uploadFileUrl" max-size="8" :limit="3" :data="{path: 'package'}" accept=".png,.jpg,.jpeg" @success="(res, file)=>uploadFileSuccess(res, file, scope.$index)">
+                        <div class="upload-block-class">
+                          <span class="fa fa-plus-circle color-success"></span>
+                        </div>
+                      </upload-square>
+                    </span>
+                    </div>
+                  </template>
+                </el-table-column>
+                <el-table-column align="center" width="80" :label="$t('操作')">
+                  <template slot-scope="scope">
+                    <i class="fa fa-plus color-success margin-right-5" @click="addObj($event, scope.$index)"></i>
+                    <i class="fa fa-times color-danger" @click="deleteObj($event, scope.$index)"></i>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+          </template>
         </el-form>
       </div>
 
@@ -435,9 +497,11 @@ import MyUserType from "~/components/utils/MyUserType";
 import MyDatePicker from "~/components/MyDatePicker";
 import MyInputButton from "~/components/search/MyInputButton";
 import linkDormValidater from "~/utils/validater/linkDormValidater";
+import UploadSquare from "~/components/utils/upload/UploadSquare";
+import DialogNormal from "~/components/utils/dialog/DialogNormal";
 export default {
   mixins: [mixins,linkDormValidater],
-  components: {MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton},
+  components: {DialogNormal, UploadSquare, MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton},
   props: {
     pageTitle: '',
     linkId: '',
@@ -490,15 +554,27 @@ export default {
       selDormDataOk: [],
       selDormDataBakOk: [],
       commRow: '',
+      uploadFileUrl: common.upload_file,
+      filterType: [
+        { text: this.$t("按宿舍选"), value: 1 ,label: this.$t("按宿舍选")},
+        { text: this.$t("按套餐选"), value: 2 ,label: this.$t("按套餐选")},
+      ],
       filtersDormType: [
         {text: '男生宿舍',value: "0", label: '男生宿舍'},
         {text: '女生宿舍',value: "1", label: '女生宿舍'}
+      ],
+      filterArea: [
+        {text: '校内宿舍',value: 1, label: '校内宿舍'},
+        {text: '校外公寓',value: 2, label: '校外公寓'}
       ],
       form: {
         id: '',
         name: '',
         students: [],
-        dorm: []
+        dorm: [],
+        type: 1,
+        package: [],
+        area: 1,
       }
     }
   },
@@ -860,6 +936,10 @@ export default {
         this.pageStudent = 1;
         this.searchDormSex = event;
         this.initStudent();
+      }else if (type == 3){
+        this.form.type = event;
+      }else if (type == 4){
+        this.form.area = event;
       }
     },
     handleCascaderBedChange(data){
@@ -920,7 +1000,10 @@ export default {
         id: '',
         name: '',
         students: [],
-        dorm: []
+        dorm: [],
+        type: 1,
+        package: [],
+        area: 1,
       };
       if (this.$refs['form']){
         this.$refs['form'].resetFields();
@@ -981,28 +1064,44 @@ export default {
         if (valid) {
           let studentIds = [];
           let roomIds = [];
+          let params = {};
+
+          if (this.form.type == 1){
+            if (this.selDormDataOk.length == 0){
+              MessageWarning(this.$t("请选择宿舍！"));
+              return;
+            }
+
+            for (let i = 0;i < this.selStudentDataOk.length; i++){
+              studentIds.push(this.selStudentDataOk[i].user_id);
+            }
+            for (let i = 0;i < this.selDormDataOk.length; i++){
+              roomIds.push(this.selDormDataOk[i].id);
+            }
+            params = {
+              linkId: this.linkId,
+              ruleName: this.form.name,
+              roomIds: roomIds.join(),
+              userIds: studentIds.join(),
+            }
+          }else if (this.form.type == 2){
+            if (this.form.package.length == 0){
+              MessageWarning(this.$t("请设置套餐！"));
+              return;
+            }
+            params = {
+              linkId: this.linkId,
+              ruleName: this.form.name,
+              packages: this.form.package,
+            }
+          }
           if (this.selStudentDataOk.length == 0){
             MessageWarning(this.$t("请选择学生！"));
             return;
           }
-          if (this.selDormDataOk.length == 0){
-            MessageWarning(this.$t("请选择宿舍！"));
-            return;
-          }
-          for (let i = 0;i < this.selStudentDataOk.length; i++){
-            studentIds.push(this.selStudentDataOk[i].user_id);
-          }
-          for (let i = 0;i < this.selDormDataOk.length; i++){
-            roomIds.push(this.selDormDataOk[i].id);
-          }
 
           this.dialogLoading = true;
-          let params = {
-            linkId: this.linkId,
-            ruleName: this.form.name,
-            roomIds: roomIds.join(),
-            userIds: studentIds.join(),
-          };
+
           if (this.form.id != ''){
             params['id'] = this.form.id;
           }
@@ -1040,6 +1139,32 @@ export default {
       }
       this.drawerStudent = false;
       this.drawerDorm = false;
+    },
+    addObj(item, index){
+      let obj = {
+        packageName: '',
+        packagePrice: 0,
+        packageNum: 0,
+        packageImg: [],
+      };
+      if (index == -1){
+        this.form.package.push(obj);
+      }else{
+        this.form.package.splice(index+1, 0, obj);
+      }
+    },
+    deleteObj(item, index){
+      this.form.package.splice(index, 1);
+    },
+    uploadFileSuccess(res, file, index){
+      if (res.code == 200){
+        let images = this.form.package[index]['packageImg'];
+        images.push(res.data.url);
+        this.$set(this.form.package[index], 'packageImg', images);
+        console.log(this.form.package,index);
+      }else {
+
+      }
     }
   }
 }

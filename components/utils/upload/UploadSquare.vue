@@ -62,9 +62,9 @@
       }
     },
     methods: {
-      handleAvatarSuccess(res, file){
+      handleAvatarSuccess(res, file, index){
         this.$refs.uploadRef.clearFiles();
-        this.$emit('success', res, file);
+        this.$emit('success', res, file, index);
       },
       handleAvatarError(res, file){
         this.$refs.uploadRef.clearFiles();

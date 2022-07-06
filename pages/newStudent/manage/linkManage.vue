@@ -152,16 +152,16 @@
               <el-form-item :label="$t('环节名称')" prop="name">
                 <el-input v-model="form.name" size="small" class="width-300"></el-input>
               </el-form-item>
-              <el-form-item :label="$t('数据管理')" prop="app">
-                <el-radio-group v-model="form.data" @change="handleDataChange">
-                  <el-radio label="0">{{$t('部门')}}</el-radio>
-                  <el-radio label="1">{{$t('院系')}}</el-radio>
-                </el-radio-group>
-                <div>
-                  <my-cascader v-if="form.data == 0" ref="SelectorCollege" :sel-value="form.dataItem" :props="{multiple: true}" type="4" sub-type="id" width-style="300" @change="handleCascaderChange($event, 2)"></my-cascader>
-                  <my-cascader v-if="form.data == 1" ref="SelectorCollege" :sel-value="form.dataItem" :props="{multiple: true}" type="1" sub-type="2" width-style="300" @change="handleCascaderChange($event, 2)"></my-cascader>
-                </div>
-              </el-form-item>
+<!--              <el-form-item :label="$t('数据管理')" prop="app">-->
+<!--                <el-radio-group v-model="form.data" @change="handleDataChange">-->
+<!--                  <el-radio label="0">{{$t('部门')}}</el-radio>-->
+<!--                  <el-radio label="1">{{$t('院系')}}</el-radio>-->
+<!--                </el-radio-group>-->
+<!--                <div>-->
+<!--                  <my-cascader v-if="form.data == 0" ref="SelectorCollege" :sel-value="form.dataItem" :props="{multiple: true}" type="4" sub-type="id" width-style="300" @change="handleCascaderChange($event, 2)"></my-cascader>-->
+<!--                  <my-cascader v-if="form.data == 1" ref="SelectorCollege" :sel-value="form.dataItem" :props="{multiple: true}" type="1" sub-type="2" width-style="300" @change="handleCascaderChange($event, 2)"></my-cascader>-->
+<!--                </div>-->
+<!--              </el-form-item>-->
               <el-form-item :label="$t('简介')" prop="dept">
                 <el-input v-model="form.remarks" type="textarea" :autosize="{ minRows: 5}" maxlength="150" show-word-limit  class="custom-textarea-inner" style="width: 100%; resize: vertical;resize: none;"></el-input>
               </el-form-item>
@@ -534,10 +534,10 @@
         let deptArrStr = '';
         this.$refs['form'].validate((valid) => {
           if (valid) {
-            if (this.form.dataItem.length == 0){
-              MessageWarning(this.$t("请设置数据范围！"));
-              return;
-            }
+            // if (this.form.dataItem.length == 0){
+            //   MessageWarning(this.$t("请设置数据范围！"));
+            //   return;
+            // }
             if (this.form.icon == ""){
               MessageWarning(this.$t("请设置图标"));
               return;
@@ -552,7 +552,7 @@
             let params = {
               linkName:  this.form.name,
               linkLogo: this.form.icon,
-              dataBelongType: this.form.data,
+              // dataBelongType: this.form.data,
               dataBelongRange: deptArrStr,
               des: this.form.remarks,
             };
