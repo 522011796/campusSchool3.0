@@ -312,8 +312,8 @@
                     </el-form-item>
                   </el-col>
                   <el-col :span="12">
-                    <el-form-item :label="$t('学院/专业/班级')" prop="college">
-                      <my-cascader :disabled="form.id != '' && oprType == 'detail'" ref="SelectorCollege" width-style="220" :sel-value="form.college" type="1" sub-type="4" @change="handleCascaderChange($event, 1)"></my-cascader>
+                    <el-form-item :label="$t('学院/专业')" prop="college">
+                      <my-cascader :disabled="form.id != '' && oprType == 'detail'" ref="SelectorCollege" width-style="220" :sel-value="form.college" type="1" sub-type="2" @change="handleCascaderChange($event, 1)"></my-cascader>
                     </el-form-item>
                   </el-col>
                 </el-row>

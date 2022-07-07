@@ -757,7 +757,7 @@
           hid = [];
           hname = [];
           let flowDataUsers = flowData[i].users;
-          if (flowDataUsers.length == 0){
+          if (flowData[i].subType != 5 && flowDataUsers.length == 0){
             errorNum++;
           }
           for (let j = 0; j < flowDataUsers.length; j++){
@@ -766,7 +766,7 @@
           }
 
           let flowDataDatetimerange = flowData[i].datetimerange;
-          if (flowDataDatetimerange.length == 0){
+          if (flowData[i].subType != 5 && flowDataDatetimerange.length == 0){
             errorNum++;
           }
 

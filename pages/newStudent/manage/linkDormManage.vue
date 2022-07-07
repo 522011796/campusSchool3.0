@@ -91,6 +91,7 @@
             <template slot-scope="scope">
 <!--              <i class="fa fa-flag margin-right-5 color-grand" @click="setInfo(scope.row)"></i>-->
               <i class="fa fa-edit margin-right-5 color-success" @click="editInfo(scope.row)"></i>
+              <i class="fa fa-eye margin-right-5 color-success" @click="detailInfo(scope.row)"></i>
               <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
             </template>
           </el-table-column>
@@ -482,6 +483,66 @@
       </div>
     </drawer-layout-right>
 
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawDialog" :visible="dialogPackage" size="700px" :title="$t('套餐详细')" @right-close="cancelDrawDialog">
+      <div slot="title">
+        <div class="header-block padding-lr-10">
+          <el-row>
+            <el-col :span="24">
+              <span class="tab-class font-bold">
+                <i class="fa fa-file"></i>
+                {{$t('套餐详细')}}
+              </span>
+            </el-col>
+          </el-row>
+        </div>
+      </div>
+      <div slot="content" class="color-muted">
+        <div>
+          <div>
+            <el-table class="margin-top-10"
+                      ref="tableDormRef"
+                      :data="tablePackagedata"
+                      size="mini"
+                      v-loading="tableDormLoading">
+              <el-table-column
+                prop="floor_num"
+                :label="$t('套餐名称')"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                :label="$t('套餐价格')"
+                align="center">
+                <template slot-scope="scope">
+                  <span></span>
+                </template>
+              </el-table-column>
+              <el-table-column
+                :label="$t('套餐总量')"
+                align="center">
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">
+                      <label></label>
+                    </div>
+                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      <label></label>
+                    </div>
+                  </el-popover>
+                </template>
+              </el-table-column>
+              <el-table-column
+                :label="$t('剩余总数')"
+                align="center">
+                <template slot-scope="scope">
+                  <span></span>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </div>
+      </div>
+    </drawer-layout-right>
+
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="确认需要删除该信息？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
   </div>
 </template>
@@ -524,6 +585,7 @@ export default {
       searchCollegeData: [],
       tableDormData: [],
       tableStudnetData: [],
+      tablePackagedata: [],
       searchKey: '',
       commSearchBuild: '',
       commSearchFloor: '',
@@ -538,7 +600,8 @@ export default {
       drawerStudent: false,
       tableDormLoading: false,
       dialogLoading: false,
-      rowSelectFlag:false,
+      rowSelectFlag: false,
+      dialogPackage: false,
       clearTime: '',
       action: '',
       subTitle: '',
@@ -728,6 +791,18 @@ export default {
         }
       });
     },
+    initPackage(){
+      // let params = {
+      //   page: 1,
+      //   num: 9999,
+      // };
+      // this.$axios.get(common.enroll_student_page, {params: params}).then(res => {
+      //   if (res.data.data) {
+      //     this.tablePackagedata = res.data.data;
+      //     this.tableDormLoading = false;
+      //   }
+      // });
+    },
     getStudentRowKeys(row) {
       return row.user_id
     },
@@ -865,6 +940,10 @@ export default {
     },
     addInfo(){
       this.dialogVisible = true;
+    },
+    detailInfo(){
+      this.initPackage();
+      this.dialogPackage = true;
     },
     editInfo(item){
       this.form = {
@@ -1047,6 +1126,7 @@ export default {
       this.commAllCheck = false;
       this.drawerDorm = false;
       this.drawerStudent = false;
+      this.dialogPackage = false;
     },
     cancelDrawDialog(event){
       this.drawerDorm = false;

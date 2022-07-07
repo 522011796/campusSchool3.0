@@ -25,7 +25,7 @@
                 <el-input size="mini" style="width: 100%" v-model="flowDetailData.name"></el-input>
               </div>
             </div>
-            <div class="margin-top-10">
+            <div class="margin-top-10" v-if="flowDetailData.subType != 5">
               <template>
                 <div class="font-bold">{{$t("管理员")}}</div>
                 <div class="margin-top-5">
@@ -48,7 +48,7 @@
             </div>
           </template>
 
-          <template>
+          <template v-if="flowDetailData.subType != 5">
             <div class="margin-top-10">
               <div>
                 <div>
@@ -74,7 +74,7 @@
             </div>
           </template>
 
-          <template>
+          <template v-if="flowDetailData.subType != 5">
             <div class="margin-top-10">
               <div>
                 <div>
@@ -98,7 +98,7 @@
             </div>
           </template>
 
-          <template>
+          <template v-if="flowDetailData.subType != 5">
             <div class="margin-top-10">
               <div>
                 <div>
@@ -128,7 +128,7 @@
             </div>
           </template>
 
-          <template v-if="flowDetailData.report == true">
+          <template v-if="flowDetailData.subType != 5 && flowDetailData.report == true">
             <div class="margin-top-10">
               <div>
                 <div>
@@ -168,7 +168,7 @@
             </div>
           </template>
 
-          <template v-if="flowDetailData.report == false">
+          <template v-if="flowDetailData.subType != 5 && flowDetailData.report == false">
             <div class="margin-top-10">
               <div>
                 <div>
@@ -218,7 +218,7 @@
                 </span>
               </div>
               <div class="padding-lr-10 padding-tb-10 text-left font-size-12">
-                <div>
+                <div v-if="item.subType != 5">
                   <div>
                     <span style="position: relative; top: -5px">
                       <i class="fa fa-users"></i>
