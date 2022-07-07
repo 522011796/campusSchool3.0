@@ -141,7 +141,7 @@
       </div>
     </dialog-normal>
 
-    <drawer-layout-right tabindex="1" :append-to-body="true" @close="closeDrawDialog" @right-close="cancelDrawDialog" :visible="drawerVisible" size="80%">
+    <drawer-layout-right tabindex="1" :append-to-body="true" @close="closeDrawDialog" @right-close="cancelDrawDialog" :visible="drawerVisible" size="850px">
       <div slot="title">
         <div class="header-block padding-lr-10">
           <el-row>
@@ -162,12 +162,25 @@
       </div>
       <div slot="content" class="color-muted">
         <div class="text-left layout-inline">
-          <el-col :span="14">
+          <el-col :span="18">
 <!--            <my-select class="layout-item width-100" size="small" :placeholder="$t('选择年度')" :sel-value="searchYear" :options="yearOptions" :clearable="true" @change="handleSearchChange($event, 2)"></my-select>-->
             <my-cascader class="layout-item" ref="SelectorDept" size="small" :clearable="true" width-style="140" :sel-value="searchCommDeptData" type="1" sub-type="4" @change="handleCascaderChange($event)"></my-cascader>
             <my-select class="layout-item " size="small" :placeholder="$t('选择性别')" :clearable="true" :sel-value="searchSex" :options="g_sex" width-style="100" @change="handleSearchChange($event, 3)"></my-select>
+<!--            <my-select class="layout-item " size="small" :placeholder="$t('选择时间')" :clearable="true" :sel-value="searchStudentTime" :options="fliterTimes" width-style="100" @change="handleSearchChange($event, 4)"></my-select>-->
+            <my-select class="layout-item " size="small" :placeholder="$t('选择批次')" :clearable="true" :sel-value="searchStudentPC" :options="fliterPCs" width-style="100" @change="handleSearchChange($event, 5)"></my-select>
+            <el-date-picker
+              size="small"
+              unlink-panels
+              v-model="searchStudentTime"
+              type="daterange"
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+              @change="handleChangeTime"
+              style="width: 215px">
+            </el-date-picker>
           </el-col>
-          <el-col :span="10" class="text-right">
+          <el-col :span="6" class="text-right">
             <my-input-button ref="teacher width-100" size="small" plain width-class="width: 120px" type="success" :clearable="true" :placeholder="$t('名称')" @click="searchStudent"></my-input-button>
           </el-col>
         </div>
@@ -369,11 +382,15 @@
         flowListData: [],
         formFieldList: [],
         flowFormData: {},
+        fliterTimes: [],
+        fliterPCs: [],
         searchStudnetCollege: '',
         searchStudnetMajor: '',
         searchStudnetGrade: '',
         searchStudnetClass: '',
         searchStudentKey: '',
+        searchStudentTime: [],
+        searchStudentPC: '',
         selData: [],
         selDataOk: [],
         selDataBakOk: [],
@@ -442,7 +459,12 @@
           grade: this.searchStudnetGrade,
           classId: this.searchStudnetClass,
           searchKey: this.searchStudnetKey,
+          enrollBatch: this.searchStudentPC
         };
+        if (this.searchStudentTime && this.searchStudentTime.length > 0){
+          params['beginTime'] = this.$moment(this.searchStudentTime[0]).format("YYYY-MM-DD");
+          params['beginTime'] = this.$moment(this.searchStudentTime[1]).format("YYYY-MM-DD");
+        }
         this.tableStudentLoading = true;
         this.$axios.get(common.enroll_student_page, {params: params}).then(res => {
           if (res.data.data){
@@ -680,6 +702,9 @@
           }
         });
       },
+      handleChangeTime(data){
+        this.searchStudentTime = data;
+      },
       handleSearchChange(event, type){
         if (type == 1){
           this.searchStatus = event;
@@ -687,6 +712,10 @@
           this.searchYear = event;
         }else if (type == 3){
           this.searchSex = event;
+        }else if (type == 4){
+          this.searchStudentTime = event;
+        }else if (type == 5){
+          this.searchStudentPC = event;
         }
       },
       handleCascaderChange(data){

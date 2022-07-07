@@ -3,16 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="智慧迎新--选寝规则">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/flow/MyNewStudentFlow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/flow/MyNewStudentFlow.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/flow/MyNewStudentFlowType.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/flow/MyNewStudentFlowType.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/admissionManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/admissionManage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/flowManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/flowManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/linkDormManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/linkDormManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/validater/admissionValidater.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/admissionValidater.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/global.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,14 +153,7 @@
       <workItem from="1655687143908" duration="197000" />
       <workItem from="1655687349465" duration="6000" />
       <workItem from="1655687384595" duration="178422000" />
-      <workItem from="1656656697719" duration="35261000" />
-    </task>
-    <task id="LOCAL-00050" summary="修改bug">
-      <created>1653984984611</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1653984984611</updated>
+      <workItem from="1656656697719" duration="41655000" />
     </task>
     <task id="LOCAL-00051" summary="修改bug">
       <created>1654072091776</created>
@@ -504,7 +491,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657109733296</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="智慧迎新--选寝规则">
+      <created>1657177898957</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1657177898957</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

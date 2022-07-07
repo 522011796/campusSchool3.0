@@ -866,7 +866,7 @@
               motherPhone: res.data.data.mather_phone,
               address: res.data.data.native_place,
               education: res.data.data.edu_level,
-              college: [item.college_id, item.major_id, item.grade, item.clasz],
+              college: [item.college_id, item.major_id],
               major: '',
               class: [item.college_id, item.major_id, item.grade, item.clasz],
               eduSystem: res.data.data.edu_year,
@@ -879,7 +879,11 @@
               graduationSchool: res.data.data.high_school,
               examScore: res.data.data.gaokao_score,
               otherMsg: res.data.data.des,
-              facePhotos: photos
+              facePhotos: photos,
+              graduation: res.data.data.graduation_type,
+              politics: res.data.data.political_type,
+              retire: res.data.data.soldier,
+              hard: res.data.data.difficulty_type,
             };
           }
         });
@@ -1166,7 +1170,7 @@
               eduLevel: this.form.education,
               collegeId: this.form.college[0],
               majorId: this.form.college[1],
-              clasz: this.form.college[3],
+              // clasz: this.form.college[3],
               eduYear: this.form.eduSystem,
               enrollTeacher: this.form.recruitingTeacher,
               enrollBatch: this.form.adBath,
@@ -1176,6 +1180,10 @@
               highSchool: this.form.graduationSchool,
               gaokaoScore: this.form.examScore,
               des: this.form.otherMsg,
+              graduationType: this.form.graduation,
+              politicalType: this.form.politics,
+              soldier: this.form.retire,
+              difficultyType: this.form.hard
             };
 
             url = common.enroll_student_save;
