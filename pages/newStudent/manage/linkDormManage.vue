@@ -1001,6 +1001,7 @@ export default {
 
           for (let i = 0; i < res.data.data.listPackage.length; i++){
             arrayPackage.push({
+              id: res.data.data.listPackage[i].id,
               packageArea: res.data.data.listPackage[i].pacRegion,
               packageName: res.data.data.listPackage[i].pacName,
               packagePrice: res.data.data.listPackage[i].pacPrice,
@@ -1222,6 +1223,9 @@ export default {
                 "pacNum": this.form.package[i].packageNum,
                 "pacLogo": this.form.package[i].packageImg.join()
               });
+              if (this.form.package[i].id){
+                packageArr[i]['id'] = this.form.package[i].id;
+              }
             }
             for (let i = 0;i < this.selStudentDataOk.length; i++){
               studentIds.push(this.selStudentDataOk[i].user_id);
