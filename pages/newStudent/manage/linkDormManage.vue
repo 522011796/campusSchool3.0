@@ -91,7 +91,7 @@
             <template slot-scope="scope">
 <!--              <i class="fa fa-flag margin-right-5 color-grand" @click="setInfo(scope.row)"></i>-->
               <i class="fa fa-edit margin-right-5 color-success" @click="editInfo(scope.row)"></i>
-              <i class="fa fa-eye margin-right-5 color-success" @click="detailInfo(scope.row)"></i>
+              <i class="fa fa-eye margin-right-5 color-success" v-if="scope.row.rule_type == 1" @click="detailInfo(scope.row)"></i>
               <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
             </template>
           </el-table-column>
@@ -112,25 +112,25 @@
           <el-form-item :label="$t('选寝类型')" prop="type">
             <my-select class="layout-item" width-style="260" :sel-value="form.type" :options="filterType" :clearable="true" @change="handleSearchChange($event, 3)"></my-select>
           </el-form-item>
-          <template v-if="form.type == 1">
+          <template v-if="form.type == 0">
             <el-form-item :label="$t('宿舍范围')" prop="dorm">
               <el-button size="mini" type="warning" @click="dormManage">{{$t('添加宿舍')}}</el-button>
               <span class="color-muted margin-left-10">{{$t('宿舍数量')}}</span>
               <span class="color-muted">{{selDormDataOk.length}}</span>
             </el-form-item>
           </template>
-          <template v-if="form.type == 2">
-            <el-form-item :label="$t('选寝范围')" prop="type">
-              <my-select class="layout-item" width-style="260" :sel-value="form.area" :options="filterArea" :clearable="true" @change="handleSearchChange($event, 4)"></my-select>
-            </el-form-item>
-          </template>
+<!--          <template v-if="form.type == 1">-->
+<!--            <el-form-item :label="$t('选寝范围')" prop="type">-->
+<!--              <my-select class="layout-item" width-style="260" :sel-value="form.area" :options="filterArea" :clearable="true" @change="handleSearchChange($event, 4)"></my-select>-->
+<!--            </el-form-item>-->
+<!--          </template>-->
           <el-form-item :label="$t('学生范围')" prop="student">
             <el-button size="mini" type="warning" @click="studentManage">{{$t('添加学生')}}</el-button>
             <span class="color-muted margin-left-10">{{$t('学生人数')}}</span>
             <span class="color-muted">{{selStudentDataOk.length}}</span>
             <span class="color-muted">{{$t('人')}}</span>
           </el-form-item>
-          <template v-if="form.type == 2">
+          <template v-if="form.type == 1">
             <div>
               <el-button size="mini" icon="el-icon-plus" type="success" plain @click="addObj($event, -1)">{{$t("添加套餐")}}</el-button>
             </div>
@@ -142,19 +142,24 @@
                 header-cell-class-name="custom-table-cell-bg"
                 size="medium"
                 style="width: 100%">
+                <el-table-column align="center" :label="$t('区域范围')">
+                  <template slot-scope="scope">
+                    <el-input size="mini" style="width: 80px" v-model="scope.row.packageArea"></el-input>
+                  </template>
+                </el-table-column>
                 <el-table-column align="center" :label="$t('套餐名称')">
                   <template slot-scope="scope">
-                    <el-input size="mini" style="width: 80px" v-model="scope.row.itemName"></el-input>
+                    <el-input size="mini" style="width: 80px" v-model="scope.row.packageName"></el-input>
                   </template>
                 </el-table-column>
                 <el-table-column align="center" :label="$t('套餐价格')">
                   <template slot-scope="scope">
-                    <el-input size="mini" style="width: 80px" v-model="scope.row.totalAmount"></el-input>
+                    <el-input size="mini" style="width: 80px" v-model="scope.row.packagePrice"></el-input>
                   </template>
                 </el-table-column>
                 <el-table-column align="center" :label="$t('套餐数量')">
                   <template slot-scope="scope">
-                    <el-input size="mini" style="width: 80px" v-model="scope.row.deductionAmount"></el-input>
+                    <el-input size="mini" style="width: 80px" v-model="scope.row.packageNum"></el-input>
                   </template>
                 </el-table-column>
                 <el-table-column align="center" :label="$t('示意图')">
@@ -508,12 +513,29 @@
                 prop="floor_num"
                 :label="$t('套餐名称')"
                 align="center">
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">
+                      <label>{{scope.row.pacName}}</label>
+                    </div>
+                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      <label>{{scope.row.pacName}}</label>
+                    </div>
+                  </el-popover>
+                </template>
               </el-table-column>
               <el-table-column
                 :label="$t('套餐价格')"
                 align="center">
                 <template slot-scope="scope">
-                  <span></span>
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">
+                      <label>{{scope.row.pacPrice}}</label>
+                    </div>
+                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      <label>{{scope.row.pacPrice}}</label>
+                    </div>
+                  </el-popover>
                 </template>
               </el-table-column>
               <el-table-column
@@ -522,10 +544,10 @@
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                     <div class="text-center">
-                      <label></label>
+                      <label>{{scope.row.pacNum}}</label>
                     </div>
                     <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      <label></label>
+                      <label>{{scope.row.pacNum}}</label>
                     </div>
                   </el-popover>
                 </template>
@@ -534,7 +556,14 @@
                 :label="$t('剩余总数')"
                 align="center">
                 <template slot-scope="scope">
-                  <span></span>
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">
+                      <label>{{scope.row.pacNum - scope.row.pacNumChose}}</label>
+                    </div>
+                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      <label>{{scope.row.pacNum - scope.row.pacNumChose}}</label>
+                    </div>
+                  </el-popover>
                 </template>
               </el-table-column>
             </el-table>
@@ -619,8 +648,8 @@ export default {
       commRow: '',
       uploadFileUrl: common.upload_file,
       filterType: [
-        { text: this.$t("按宿舍选"), value: 1 ,label: this.$t("按宿舍选")},
-        { text: this.$t("按套餐选"), value: 2 ,label: this.$t("按套餐选")},
+        { text: this.$t("按宿舍选"), value: 0 ,label: this.$t("按宿舍选")},
+        { text: this.$t("按套餐选"), value: 1 ,label: this.$t("按套餐选")},
       ],
       filtersDormType: [
         {text: '男生宿舍',value: "0", label: '男生宿舍'},
@@ -635,7 +664,7 @@ export default {
         name: '',
         students: [],
         dorm: [],
-        type: 1,
+        type: 0,
         package: [],
         area: 1,
       }
@@ -791,17 +820,17 @@ export default {
         }
       });
     },
-    initPackage(){
-      // let params = {
-      //   page: 1,
-      //   num: 9999,
-      // };
-      // this.$axios.get(common.enroll_student_page, {params: params}).then(res => {
-      //   if (res.data.data) {
-      //     this.tablePackagedata = res.data.data;
-      //     this.tableDormLoading = false;
-      //   }
-      // });
+    initPackage(item){
+      let params = {
+        id: item.id
+      };
+      this.tableDormLoading = true;
+      this.$axios.get(common.enroll_link_dorm_info, {params: params, loading: false}).then((res)=>{
+        if (res.data.data) {
+          this.tablePackagedata = res.data.data.listPackage;
+          this.tableDormLoading = false;
+        }
+      });
     },
     getStudentRowKeys(row) {
       return row.user_id
@@ -941,14 +970,15 @@ export default {
     addInfo(){
       this.dialogVisible = true;
     },
-    detailInfo(){
-      this.initPackage();
+    detailInfo(item){
+      this.initPackage(item);
       this.dialogPackage = true;
     },
     editInfo(item){
       this.form = {
         id: item.id,
-        name: item.rule_name
+        name: item.rule_name,
+        type: item.rule_type
       };
       let params = {
         id: item.id
@@ -957,6 +987,7 @@ export default {
         if (res.data.data){
           let arrayStudent = [];
           let arrayDorm = [];
+          let arrayPackage = [];
           for (let i = 0; i < res.data.data.userList.length; i++){
             arrayStudent.push({
               user_id: res.data.data.userList[i].userId
@@ -968,6 +999,16 @@ export default {
             });
           }
 
+          for (let i = 0; i < res.data.data.listPackage.length; i++){
+            arrayPackage.push({
+              packageArea: res.data.data.listPackage[i].pacRegion,
+              packageName: res.data.data.listPackage[i].pacName,
+              packagePrice: res.data.data.listPackage[i].pacPrice,
+              packageNum: res.data.data.listPackage[i].pacNum,
+              packageImg: res.data.data.listPackage[i].pacLogo ? res.data.data.listPackage[i].pacLogo.split(",") : [],
+            });
+          }
+
           this.selStudentData = [].concat(arrayStudent);
           this.selStudentDataOk = [].concat(arrayStudent);
           this.selStudentDataBakOk = [].concat(arrayStudent);
@@ -975,6 +1016,8 @@ export default {
           this.selDormData = [].concat(arrayDorm);
           this.selDormDataOk = [].concat(arrayDorm);
           this.selDormDataBakOk = [].concat(arrayDorm);
+
+          this.form.package = arrayPackage;
         }
       });
 
@@ -1080,7 +1123,7 @@ export default {
         name: '',
         students: [],
         dorm: [],
-        type: 1,
+        type: 0,
         package: [],
         area: 1,
       };
@@ -1146,7 +1189,7 @@ export default {
           let roomIds = [];
           let params = {};
 
-          if (this.form.type == 1){
+          if (this.form.type === 0){
             if (this.selDormDataOk.length == 0){
               MessageWarning(this.$t("请选择宿舍！"));
               return;
@@ -1161,18 +1204,34 @@ export default {
             params = {
               linkId: this.linkId,
               ruleName: this.form.name,
+              ruleType: this.form.type,
               roomIds: roomIds.join(),
               userIds: studentIds.join(),
             }
-          }else if (this.form.type == 2){
+          }else if (this.form.type === 1){
             if (this.form.package.length == 0){
               MessageWarning(this.$t("请设置套餐！"));
               return;
             }
+            let packageArr = [];
+            for(let i = 0; i < this.form.package.length; i++){
+              packageArr.push({
+                "pacRegion": this.form.package[i].packageArea,
+                "pacName": this.form.package[i].packageName,
+                "pacPrice": this.form.package[i].packagePrice,
+                "pacNum": this.form.package[i].packageNum,
+                "pacLogo": this.form.package[i].packageImg.join()
+              });
+            }
+            for (let i = 0;i < this.selStudentDataOk.length; i++){
+              studentIds.push(this.selStudentDataOk[i].user_id);
+            }
             params = {
               linkId: this.linkId,
               ruleName: this.form.name,
-              packages: this.form.package,
+              ruleType: this.form.type,
+              packages: JSON.stringify(packageArr),
+              userIds: studentIds.join(),
             }
           }
           if (this.selStudentDataOk.length == 0){
@@ -1222,6 +1281,7 @@ export default {
     },
     addObj(item, index){
       let obj = {
+        packageArea: '',
         packageName: '',
         packagePrice: 0,
         packageNum: 0,

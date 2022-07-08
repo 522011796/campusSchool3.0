@@ -405,6 +405,7 @@
     },
     created() {
       this.init();
+      this.initBatchList();
       this.getYearInfo();
     },
     methods: {
@@ -484,6 +485,23 @@
               }
             }
             this.tableStudentLoading = false;
+          }
+        });
+      },
+      initBatchList(){
+        let params = {};
+        this.tableStudentLoading = true;
+        this.$axios.get(common.enroll_batch_list, {params: params, loading: false}).then(res => {
+          if (res.data.data){
+            let arr = [];
+            for (let i = 0; i < res.data.data.length; i++){
+              arr.push({
+                label: res.data.data[i].enroll_batch,
+                value: res.data.data[i].enroll_batch,
+                text: res.data.data[i].enroll_batch
+              });
+            }
+            this.fliterPCs = arr;
           }
         });
       },
