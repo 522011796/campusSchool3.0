@@ -584,11 +584,7 @@
         resultList: [],
         displayField: [],
         tableAllColData: [{
-          "name": this.$t("考号")
-        },{
           "name": this.$t("手机号")
-        },{
-          "name": this.$t("一卡通号")
         },{
           "name": this.$t("身份证")
         },{
@@ -633,6 +629,14 @@
           "name": this.$t("录取城市")
         },{
           "name": this.$t("其他信息")
+        },{
+          "name": this.$t("毕业类型")
+        },{
+          "name": this.$t("政治面貌")
+        },{
+          "name": this.$t("退役士兵")
+        },{
+          "name": this.$t("困难类型")
         }],
         form: {
           id: '',
@@ -1214,6 +1218,7 @@
         for (let i = 0; i < this.teacherArray.length; i++){
           array.push(this.teacherArray[i].user_id);
         }
+        console.log(this.tableSelColData);
         let params = {
           teacherId: array.join(),
           displayField: [].join()
