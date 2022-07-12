@@ -298,7 +298,7 @@
                 :label="$t('操作')">
                 <template slot-scope="scope">
                   <el-button size="mini" type="success" @click="detailInfo(scope.row)">{{$t("入住")}}</el-button>
-                  <el-button size="mini" type="danger" v-if="scope.row.bed_no" @click="deleteInfo(scope.row, -1)">{{$t("移除")}}</el-button>
+                  <el-button size="mini" type="danger" v-if="scope.row.bed_no || scope.row.pac_name" @click="deleteInfo(scope.row, -1)">{{$t("移除")}}</el-button>
                   <el-button size="mini" type="primary" @click="signInfo(scope.row)">{{$t("详细")}}</el-button>
                 </template>
               </el-table-column>

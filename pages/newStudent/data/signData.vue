@@ -475,32 +475,8 @@
               </el-row>
               <el-row :gutter="8">
                 <el-col :span="12">
-                  <el-form-item :label="$t('录取号')" prop="adNo">
-                    <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.adNo" size="small" class="width-220"></el-input>
-                  </el-form-item>
-                </el-col>
-                <el-col :span="12">
-                  <el-form-item :label="$t('一卡通号')" prop="oneCardNo">
-                    <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.oneCardNo" size="small" class="width-220"></el-input>
-                  </el-form-item>
-                </el-col>
-              </el-row>
-              <el-row :gutter="8">
-                <el-col :span="12">
                   <el-form-item :label="$t('学号')" prop="stuNo">
                     <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.stuNo" size="small" class="width-220"></el-input>
-                  </el-form-item>
-                </el-col>
-                <el-col :span="12">
-                  <el-form-item :label="$t('考号')" prop="examNo">
-                    <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.examNo" size="small" class="width-220"></el-input>
-                  </el-form-item>
-                </el-col>
-              </el-row>
-              <el-row :gutter="8">
-                <el-col :span="12">
-                  <el-form-item :label="$t('性别')" prop="sex">
-                    <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.sex" :options="g_sex" width-style="220" @change="handleSelectChange($event, 2)"></my-select>
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
@@ -511,18 +487,23 @@
               </el-row>
               <el-row :gutter="8">
                 <el-col :span="12">
+                  <el-form-item :label="$t('性别')" prop="sex">
+                    <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.sex" :options="g_sex" width-style="220" @change="handleSelectChange($event, 2)"></my-select>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="12">
                   <el-form-item :label="$t('出生日期')" prop="birthday">
                     <my-date-picker :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.birthday" width-style="220" @change="handleChangeTime($event,1)"></my-date-picker>
                   </el-form-item>
                 </el-col>
+              </el-row>
+              <el-row :gutter="8">
                 <el-col :span="12">
                   <el-form-item :label="$t('国籍')" prop="nationality">
                     <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.nationality" :options="nationalityInfoText()" width-style="220" @change="handleSelectChange($event, 3)"></my-select>
                   </el-form-item>
                 </el-col>
-              </el-row>
-              <el-row :gutter="8">
-                <el-col :span="24">
+                <el-col :span="12">
                   <el-form-item :label="$t('民族')" prop="nation">
                     <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.nation" :options="nationInfoText()" width-style="220" @change="handleSelectChange($event, 4)"></my-select>
                   </el-form-item>
@@ -541,12 +522,12 @@
               </div>
               <div class="block-item-bg font-size-12">
                 <el-row :gutter="8">
-                  <el-col :span="12">
+                  <el-col v-if="item == '手机号'" :span="12">
                     <el-form-item :label="$t('手机号')" prop="phone">
                       <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.phone" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
-                  <el-col :span="12">
+                  <el-col v-if="item == 'QQ'" :span="12">
                     <el-form-item :label="$t('QQ')" prop="qq">
                       <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.qq" size="small" class="width-220"></el-input>
                     </el-form-item>
@@ -770,6 +751,7 @@ export default {
       yearOptions: [],
       bathOptions: [],
       subjectOptions: [],
+      tableSelColData: [],
       detailData: {},
       filtersAuditType: [
         {value: 0, text: this.$t("人工")},
@@ -1090,8 +1072,11 @@ export default {
           };
         }
       });
-      //this.$set(this.form, 'class', [item.college_id, item.major_id, item.grade, item.clasz]);
-      //console.log(this.form);
+
+      await this.$axios.get(common.enroll_admin_get).then(res => {
+        this.tableSelColData = res.data.data.displayField;
+      });
+
       this.dialogDetail = true;
     },
     signInfo(event, item){
@@ -1233,6 +1218,7 @@ export default {
       this.loopTimer = null;
       this.teacherArray = [];
       this.approverUsers = [];
+      this.tableSelColData = [];
       this.btnLoading = false;
       this.dialogVisible = false;
       this.dialogDetail = false;

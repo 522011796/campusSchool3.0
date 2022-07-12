@@ -137,7 +137,7 @@
       </div>
     </layout-lr>
 
-    <drawer-layout-right tabindex="0" :show-close="true" @changeDrawer="closeDialog" :visible="drawerForm" size="730px">
+    <drawer-layout-right tabindex="0" :show-close="true" @changeDrawer="closeDialog" :visible="drawerForm" size="750px">
       <div slot="title">
         <div class="header-block padding-lr-10">
           <span class="tab-class font-bold">
@@ -146,7 +146,7 @@
         </div>
       </div>
       <div slot="content" class="color-muted">
-        <el-form :model="form" ref="form" :rules="rules" label-width="120px">
+        <el-form :model="form" ref="form" :rules="rules" label-width="140px">
           <template v-if="form.id != '' && oprType == 'detail'">
             <div class="color-muted margin-top-5">
               <span>
@@ -312,8 +312,8 @@
                     </el-form-item>
                   </el-col>
                   <el-col :span="12">
-                    <el-form-item :label="$t('学院/专业')" prop="college">
-                      <my-cascader :disabled="form.id != '' && oprType == 'detail'" ref="SelectorCollege" width-style="220" :sel-value="form.college" type="1" sub-type="2" @change="handleCascaderChange($event, 1)"></my-cascader>
+                    <el-form-item :label="$t('学院/专业/(班级)')" prop="college">
+                      <my-cascader :props="{ checkStrictly: true }" :disabled="form.id != '' && oprType == 'detail'" ref="SelectorCollege" width-style="220" :sel-value="form.college" type="1" sub-type="4" @change="handleCascaderChange($event, 1)"></my-cascader>
                     </el-form-item>
                   </el-col>
                 </el-row>
@@ -525,7 +525,7 @@
     cityInfo,
     educationInfo,
     MessageError,
-    MessageSuccess,
+    MessageSuccess, MessageWarning,
     nationalityInfo,
     nationInfo, provinceArrayInfo,
     provinceInfo
@@ -834,6 +834,8 @@
             this.teacherArray = teacherArray;
             this.approverUsers = teacherArray;
           }
+
+          this.tableSelColData = res.data.data.displayField;
         });
 
         this.drawerManage = true;
@@ -870,9 +872,9 @@
               motherPhone: res.data.data.mather_phone,
               address: res.data.data.native_place,
               education: res.data.data.edu_level,
-              college: [item.college_id, item.major_id],
+              //college: [item.college_id, item.major_id],
               major: '',
-              class: [item.college_id, item.major_id, item.grade, item.clasz],
+              //class: [item.college_id, item.major_id, item.grade, item.clasz],
               eduSystem: res.data.data.edu_year,
               headmaster: res.data.data.master_teacher_name,
               recruitingTeacher: res.data.data.enroll_teacher,
@@ -891,7 +893,12 @@
             };
           }
         });
-        this.$set(this.form, 'class', [item.college_id, item.major_id, item.grade, item.clasz]);
+        if (!item.clasz){
+          this.$set(this.form, 'college', [item.college_id, item.major_id]);
+        }
+        if (item.clasz){
+          this.$set(this.form, 'college', [item.college_id, item.major_id, item.grade, item.clasz]);
+        }
         this.footerHidden = true;
         this.drawerForm = true;
       },
@@ -1150,6 +1157,10 @@
         let url = "";
         this.$refs['form'].validate((valid) => {
           if (valid) {
+            if (this.form.college.length == 3){
+              MessageWarning("请选择到班级");
+              return;
+            }
             let params = {
               enrollId: this.form.year,
               realName: this.form.name,
@@ -1174,7 +1185,7 @@
               eduLevel: this.form.education,
               collegeId: this.form.college[0],
               majorId: this.form.college[1],
-              // clasz: this.form.college[3],
+              clasz: this.form.college.length == 4 ? this.form.college[3] : '',
               eduYear: this.form.eduSystem,
               enrollTeacher: this.form.recruitingTeacher,
               enrollBatch: this.form.adBath,
@@ -1221,7 +1232,7 @@
         console.log(this.tableSelColData);
         let params = {
           teacherId: array.join(),
-          displayField: [].join()
+          displayField: this.tableSelColData.join()
         };
 
         let url = common.enroll_admin_setting;

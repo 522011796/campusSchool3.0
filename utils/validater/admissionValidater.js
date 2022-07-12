@@ -20,7 +20,7 @@ export default {
         nation: [
           { required: true, message: this.$t("请选择民族"), trigger: 'change' }
         ],
-        idCard: [
+        idCardNo: [
           { required: true, message: this.$t("请输入身份证"), trigger: 'blur' },
           { validator: rules.FormValidate.Form().validateIdCard, trigger: 'blur' }
         ],
