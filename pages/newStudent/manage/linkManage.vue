@@ -469,18 +469,18 @@
             data: ''+item.data_belong_type,
             icon: item.link_logo
           };
-
-          let deptArr = [[]];
-          let belongRange = item.data_belong_range != '' ? item.data_belong_range.split("|") : [];
-          for (let i = 0; i < belongRange.length; i++){
-            let dept = [];
-            let array = belongRange[i].split(",");
-            for (let j = 0; j < array.length; j++){
-              dept.push(parseInt(array[j]));
-            }
-            deptArr.push(dept);
-          }
-          this.form.dataItem = deptArr;
+          console.log(item);
+          // let deptArr = [[]];
+          // let belongRange = item.data_belong_range != '' ? item.data_belong_range.split("|") : [];
+          // for (let i = 0; i < belongRange.length; i++){
+          //   let dept = [];
+          //   let array = belongRange[i].split(",");
+          //   for (let j = 0; j < array.length; j++){
+          //     dept.push(parseInt(array[j]));
+          //   }
+          //   deptArr.push(dept);
+          // }
+          // this.form.dataItem = deptArr;
 
           this.drawerVisible = true;
         }else if (type == 2){
@@ -542,18 +542,18 @@
               MessageWarning(this.$t("请设置图标"));
               return;
             }
-            for (let i = 0; i < this.form.dataItem.length; i++){
-              deptArrStr += this.form.dataItem[i].join();
-              if (this.form.dataItem.length - 1 != i){
-                deptArrStr += '|';
-              }
-            }
+            // for (let i = 0; i < this.form.dataItem.length; i++){
+            //   deptArrStr += this.form.dataItem[i].join();
+            //   if (this.form.dataItem.length - 1 != i){
+            //     deptArrStr += '|';
+            //   }
+            // }
 
             let params = {
               linkName:  this.form.name,
               linkLogo: this.form.icon,
               // dataBelongType: this.form.data,
-              dataBelongRange: deptArrStr,
+              //dataBelongRange: deptArrStr,
               des: this.form.remarks,
             };
             if (this.form.id != ""){
