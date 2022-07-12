@@ -119,7 +119,7 @@
 <!--                  <i v-if="scope.row.enable == true" class="fa fa-minus-circle margin-right-5 color-warning" @click="statusInfo(scope.row, false)"></i>-->
 <!--                  <i v-if="scope.row.enable == false" class="fa fa-check-square margin-right-5 color-success" @click="statusInfo(scope.row, true)"></i>-->
                   <i class="fa fa-edit margin-right-5 color-success" @click="setInfo(scope.row, 1)"></i>
-                  <i v-if="scope.row.link_sub_type != 1 && scope.row.link_sub_type != 4" class="fa fa-cog margin-right-5 color-grand" @click="setInfo(scope.row, 2, scope.row.link_sub_type, scope.$index)"></i>
+                  <i v-if="scope.row.link_sub_type != 1 && scope.row.link_sub_type != 4 && scope.row.link_sub_type != 5" class="fa fa-cog margin-right-5 color-grand" @click="setInfo(scope.row, 2, scope.row.link_sub_type, scope.$index)"></i>
 <!--                  <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>-->
                 </template>
               </el-table-column>

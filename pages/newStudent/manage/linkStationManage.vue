@@ -69,23 +69,24 @@
                 </div>
               </el-popover>
             </template>
-          </el-table-column><el-table-column
-          align="center"
-          prop="user_name"
-          :label="$t('状态')">
-          <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">
-                <label v-if="scope.row.enable" class="color-success">{{$t("已启用")}}</label>
-                <label v-if="!scope.row.enable" class="color-danger">{{$t("已禁用")}}</label>
-              </div>
-              <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.enable" class="color-success">{{$t("已启用")}}</label>
-                <label v-if="!scope.row.enable" class="color-danger">{{$t("已禁用")}}</label>
-              </div>
-            </el-popover>
-          </template>
-        </el-table-column>
+          </el-table-column>
+<!--          <el-table-column-->
+<!--            align="center"-->
+<!--            prop="user_name"-->
+<!--            :label="$t('状态')">-->
+<!--            <template slot-scope="scope">-->
+<!--              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">-->
+<!--                <div class="text-center">-->
+<!--                  <label v-if="scope.row.enable" class="color-success">{{$t("已启用")}}</label>-->
+<!--                  <label v-if="!scope.row.enable" class="color-danger">{{$t("已禁用")}}</label>-->
+<!--                </div>-->
+<!--                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">-->
+<!--                  <label v-if="scope.row.enable" class="color-success">{{$t("已启用")}}</label>-->
+<!--                  <label v-if="!scope.row.enable" class="color-danger">{{$t("已禁用")}}</label>-->
+<!--                </div>-->
+<!--              </el-popover>-->
+<!--            </template>-->
+<!--          </el-table-column>-->
           <el-table-column
             align="center"
             prop="user_name"
@@ -106,8 +107,8 @@
             width="120"
             :label="$t('操作')">
             <template slot-scope="scope">
-              <i v-if="scope.row.enable" class="fa fa-stop-circle color-warning margin-right-5" @click="statusInfo(scope.row, false)"></i>
-              <i v-if="!scope.row.enable" class="fa fa-play-circle color-success margin-right-5" @click="statusInfo(scope.row, true)"></i>
+<!--              <i v-if="scope.row.enable" class="fa fa-stop-circle color-warning margin-right-5" @click="statusInfo(scope.row, false)"></i>-->
+<!--              <i v-if="!scope.row.enable" class="fa fa-play-circle color-success margin-right-5" @click="statusInfo(scope.row, true)"></i>-->
               <i class="fa fa-edit margin-right-5 color-success" @click="editInfo(scope.row)"></i>
               <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
             </template>

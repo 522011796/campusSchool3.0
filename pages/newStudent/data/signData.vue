@@ -22,14 +22,14 @@
 <!--                    {label:$t("未报道"), value: "0", extra: unSignNum}]' @click="changeStatus">-->
 <!--                  </tab-group-button>-->
                   <el-button-group class="layout-item" style="position: relative; top: -1px">
-                    <el-button size="small" type="default">
-                      <span class="color-muted font-size-12">{{$t("总人数")}}|{{countNum}}</span>
+                    <el-button size="small" type="text">
+                      <span class="color-muted font-size-12">{{$t("总人数")}} {{countNum}} | </span>
                     </el-button>
-                    <el-button size="small" type="default">
-                      <span class="color-muted font-size-12">{{$t("已报道")}}|{{signNum}}</span>
+                    <el-button size="small" type="text">
+                      <span class="color-muted font-size-12">{{$t("已报道")}} {{signNum}} | </span>
                     </el-button>
-                    <el-button size="small" type="default">
-                      <span class="color-muted font-size-12">{{$t("未报道")}}|{{unSignNum}}</span>
+                    <el-button size="small" type="text">
+                      <span class="color-muted font-size-12">{{$t("未报道")}} {{unSignNum}}</span>
                     </el-button>
                   </el-button-group>
                   <my-select class="layout-item width-100" size="small" :clearable="true" :placeholder="$t('流程名称')" :sel-value="searchProcess" :options="processData" @change="handleChangeSelect($event)"></my-select>

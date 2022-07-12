@@ -17,9 +17,15 @@
                 <div class="layout-inline">
                   <el-button class="layout-item" size="small" type="warning"  icon="el-icon-download" @click="expandInfo($event)">{{$t("导出")}}</el-button>
                   <el-button-group class="layout-item" style="position: relative;top: -1px">
-                    <el-button size="small" type="default">{{$t("总人数")}} | {{total}}</el-button>
-                    <el-button size="small" type="default">{{$t("已入住")}} | {{signNum}}</el-button>
-                    <el-button size="small" type="default">{{$t("未入住")}} | {{unSignNum}}</el-button>
+                    <el-button size="small" type="text">
+                      <label class="color-muted">{{$t("总人数")}}{{total}} | </label>
+                    </el-button>
+                    <el-button size="small" type="text">
+                      <label class="color-muted">{{$t("已入住")}}{{signNum}} | </label>
+                    </el-button>
+                    <el-button size="small" type="text">
+                      <label class="color-muted">{{$t("未入住")}}{{unSignNum}}</label>
+                    </el-button>
                   </el-button-group>
                   <my-select class="layout-item width-100" size="small" :placeholder="$t('流程名称')" :sel-value="processId" :options="flowOptions" :clearable="true" @change="handleSearchChange($event, 2)"></my-select>
                 </div>
@@ -133,6 +139,64 @@
                       <label v-if="scope.row.payment_status == 2" class="color-warning">{{$t("部分缴费")}}</label>
                       <label v-if="scope.row.payment_status == 3" class="color-success">{{$t("已缴费")}}</label>
                       <label v-if="!scope.row.payment_status">--</label>
+                    </span>
+                  </el-popover>
+                </template>
+              </el-table-column>
+              <el-table-column align="center" :label="$t('选寝类型')">
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">
+                      <label v-if="scope.row.rule_type == 0">{{$t('宿舍')}}</label>
+                      <label v-else-if="scope.row.rule_type == 1">{{$t('套餐')}}</label>
+                      <label v-else>--</label>
+                    </div>
+                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      <label v-if="scope.row.rule_type == 0">{{$t('宿舍')}}</label>
+                      <label v-else-if="scope.row.rule_type == 1">{{$t('套餐')}}</label>
+                      <label v-else>--</label>
+                    </span>
+                  </el-popover>
+                </template>
+              </el-table-column>
+              <el-table-column align="center" :label="$t('宿舍区域')">
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">
+                      <label v-if="scope.row.pac_region">{{scope.row.pac_region}}</label>
+                      <label v-else>--</label>
+                    </div>
+                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      <label v-if="scope.row.pac_region">{{scope.row.pac_region}}</label>
+                      <label v-else>--</label>
+                    </span>
+                  </el-popover>
+                </template>
+              </el-table-column>
+              <el-table-column align="center" :label="$t('套餐名称')">
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">
+                      <label v-if="scope.row.pac_name">{{scope.row.pac_name}}</label>
+                      <label v-else>--</label>
+                    </div>
+                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      <label v-if="scope.row.pac_name">{{scope.row.pac_name}}</label>
+                      <label v-else>--</label>
+                    </span>
+                  </el-popover>
+                </template>
+              </el-table-column>
+              <el-table-column align="center" :label="$t('套餐价格')">
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">
+                      <label v-if="scope.row.pac_price">{{scope.row.pac_price}}</label>
+                      <label v-else>--</label>
+                    </div>
+                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      <label v-if="scope.row.pac_price">{{scope.row.pac_price}}</label>
+                      <label v-else>--</label>
                     </span>
                   </el-popover>
                 </template>

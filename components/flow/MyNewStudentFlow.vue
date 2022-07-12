@@ -36,7 +36,7 @@
                     trigger="click"
                     @show="handleShowTeacher(1)">
                     <div>
-                      <teacher-tree-and-list-no-page ref="popverTeacherRef" user-type="user" :sel-arr="flowDetailData.users" set-type="check" @select="handleSelUser($event, 1)"></teacher-tree-and-list-no-page>
+                      <teacher-tree-and-list-role-no-page ref="popverTeacherRef" user-type="user" :sel-arr="flowDetailData.users" set-type="check" @select="handleSelUser($event, 1)" @selectType="selType" @selectRange="selRange"></teacher-tree-and-list-role-no-page>
                     </div>
                     <el-button slot="reference" type="success" plain size="small" @click="loadingShow(1)">
                       <i v-if="refreshTeacherStatus == true" class="fa fa-refresh fa-spin"></i>
@@ -302,10 +302,11 @@
   import MySelect from "~/components/MySelect";
   import MyFormAuditType from "~/components/form/MyFormAuditType";
   import MyNewStudentFlowType from "~/components/flow/MyNewStudentFlowType";
+  import TeacherTreeAndListRoleNoPage from "~/components/utils/treeAndList/TeacherTreeAndListRoleNoPage";
 
   export default {
     name: 'MyNewStudentFlow',
-    components: {MyNewStudentFlowType, MyFormAuditType, MySelect},
+    components: {TeacherTreeAndListRoleNoPage, MyNewStudentFlowType, MyFormAuditType, MySelect},
     mixins: [mixins],
     props: {
       formId: Object,
@@ -366,6 +367,22 @@
 
     },
     methods: {
+      selType(data, userId){
+        console.log(data);
+        for (let i = 0; i < this.flowDetailData.users.length; i++){
+          if (userId == this.flowDetailData.users[i].user_id){
+            this.flowDetailData.users[i]['right_type'] = data;
+          }
+        }
+      },
+      selRange(data, userId){
+        console.log(data);
+        for (let i = 0; i < this.flowDetailData.users.length; i++){
+          if (userId == this.flowDetailData.users[i].user_id){
+            this.flowDetailData.users[i]['right_range'] = data;
+          }
+        }
+      },
       selAuditType(subType, extra, index, type){
         let obj = {
           type: type,
@@ -405,6 +422,7 @@
         return newStudentFlowAuditItemType(value, type);
       },
       selFlowItemBlock(event, data, index){
+        console.log(data);
         this.flowDetailData = data;
         this.approverUsers = data.users;
         this.flowDetailIndex = index;
@@ -418,7 +436,7 @@
             timer = setTimeout(() => {
               this.refreshTeacherStatus = false;
               clearTimeout(timer);
-            },1000);
+            },1500);
             break;
         }
       },
@@ -431,6 +449,7 @@
       },
       handleSelUser(data, type){
         if (type == 1){
+          console.log(data);
           this.flowDetailData.users = data;
           this.flowDetailData.hName = [];
           for (let i = 0; i < data.length; i++){

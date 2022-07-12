@@ -665,7 +665,7 @@
                 name: res.data.data[i].linkName,
                 allowRepeat: res.data.data[i].checkRepeat,
                 allowBack: res.data.data[i].checkCancel,
-                datetimerange: [this.$moment(res.data.data[i].beginTime).format("YYYY-MM-DD HH:mm"),this.$moment(res.data.data[i].endTime).format("YYYY-MM-DD HH:mm")],
+                datetimerange: res.data.data[i].beginTime ? [this.$moment(res.data.data[i].beginTime).format("YYYY-MM-DD HH:mm"),this.$moment(res.data.data[i].endTime).format("YYYY-MM-DD HH:mm")] : [],
                 items: res.data.data[i].dependLinkId ? JSON.parse(res.data.data[i].dependLinkId) : [],
                 hType: '',
                 type: res.data.data[i].linkType,
@@ -679,11 +679,19 @@
                 formObj['report'] = true;
               }else {
                 let otherObj = JSON.parse(res.data.data[i].otherSetting);
-                formObj['reportSuccess'] = otherObj.linkReport;
-                formObj['report'] = false;
+                if (otherObj){
+                  formObj['reportSuccess'] = otherObj.linkReport;
+                }
+                if (otherObj){
+                  formObj['report'] = false;
+                }
               }
 
               for (let k = 0; k < res.data.data[i].adminList.length; k++){
+                let right_range = res.data.data[i].adminList[k].right_range ? res.data.data[i].adminList[k].right_range : '';
+                let right_type = res.data.data[i].adminList[k].right_type != '' ? res.data.data[i].adminList[k].right_type : 0;
+                res.data.data[i].adminList[k]['right_range'] = right_range != '' ? right_range.split(",") : [];
+                res.data.data[i].adminList[k]['right_type'] = right_type;
                 users.push(res.data.data[i].adminList[k]);
                 hname.push(res.data.data[i].adminList[k].real_name);
               }
@@ -793,6 +801,9 @@
         let flowForm = this.$refs.flow.form;
         let hid = [];
         let hname = [];
+        let hRightType = '';
+        let hRightRange = [];
+        let adminArr = [];
         let flowDataArray = [];
         let flowDataOjb = {};
         let errorNum = 0;
@@ -803,6 +814,8 @@
         for (let i = 0; i < flowData.length; i++){
           hid = [];
           hname = [];
+          hRightType = '';
+          adminArr = [];
           let flowDataUsers = flowData[i].users;
           if (flowData[i].subType != 5 && flowDataUsers.length == 0){
             errorNum++;
@@ -810,6 +823,12 @@
           for (let j = 0; j < flowDataUsers.length; j++){
             hid.push(flowDataUsers[j].user_id);
             hname.push(flowDataUsers[j].real_name);
+            let rightType =  flowDataUsers[j].right_type;
+            adminArr.push({
+              adminUserId: flowDataUsers[j].user_id,
+              rightRange: flowDataUsers[j].right_range.length > 0 ? flowDataUsers[j].right_range.join() : '',
+              rightType: flowDataUsers[j].right_type,
+            });
           }
 
           let flowDataDatetimerange = flowData[i].datetimerange;
@@ -822,7 +841,7 @@
             return;
           }
           let obj = {
-            adminUserId: hid,
+            adminUser: adminArr,
             //hname: hname,
             //andor: flowData[i].andor,
             beginTime: flowData[i].datetimerange[0],

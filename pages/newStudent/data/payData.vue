@@ -17,10 +17,18 @@
                 <div class="layout-inline">
                   <el-button class="layout-item" size="small" type="warning"  icon="el-icon-download" @click="expandInfo($event)">{{$t("导出")}}</el-button>
                   <el-button-group class="layout-item" style="position: relative;top: -1px">
-                    <el-button size="small" type="default">{{$t("总人数")}} | {{countNum}}</el-button>
-                    <el-button size="small" type="default">{{$t("已缴清")}} | {{payedNum}}</el-button>
-                    <el-button size="small" type="default">{{$t("部分缴清")}} | {{diffPayedNum}}</el-button>
-                    <el-button size="small" type="default">{{$t("未缴清")}} | {{unPayedNum}}</el-button>
+                    <el-button size="small" type="text">
+                      <label class="color-muted">{{$t("总人数")}} {{countNum}} | </label>
+                    </el-button>
+                    <el-button size="small" type="text">
+                      <label class="color-muted">{{$t("已缴清")}} {{payedNum}} | </label>
+                    </el-button>
+                    <el-button size="small" type="text">
+                      <label class="color-muted">{{$t("部分缴清")}} {{diffPayedNum}} | </label>
+                    </el-button>
+                    <el-button size="small" type="text">
+                      <label class="color-muted">{{$t("未缴清")}} {{unPayedNum}}</label>
+                    </el-button>
                   </el-button-group>
                   <my-select class="layout-item width-100" size="small" :placeholder="$t('流程名称')" :sel-value="processId" :options="flowOptions" :clearable="true" @change="handleSearchChange($event, 2)"></my-select>
                 </div>

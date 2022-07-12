@@ -309,6 +309,9 @@ a{
 .width-100{
   width: 100px;
 }
+.width-120{
+  width: 120px;
+}
 .width-150{
   width: 150px;
 }
@@ -1006,6 +1009,16 @@ ul{
 }
 .custom-button-search .el-button--small, .el-button--small.is-round {
   padding: 9px 5px;
+}
+.custom-select-tag .el-tag.el-tag--info {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+  background-color: #f4f4f5;
+  border-color: #e9e9eb;
+  color: #909399;
+  width: 50px;
 }
 /***自定义radio组件颜色***/
 /*.el-radio__input.is-checked + .el-radio__label {
