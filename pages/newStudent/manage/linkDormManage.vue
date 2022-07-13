@@ -346,7 +346,8 @@
         <div>
           <div class="layout-inline">
             <my-cascader :props="{ checkStrictly: true }" class="layout-item" ref="SelectorCollege" size="small" width-style="160" :clearable="true" :sel-value="searchCollegeData" type="1" sub-type="4" @change="handleCascaderStudentChange($event)"></my-cascader>
-            <my-select class="layout-item" size="small" :clearable="true" :options="g_sex" @change="handleSearchChange($event, 2)"></my-select>
+            <my-select class="layout-item" size="small" :clearable="true" :sel-value="searchDormSex" :options="g_sex" @change="handleSearchChange($event, 2)"></my-select>
+            <my-select class="layout-item " size="small" :placeholder="$t('选择批次')" :clearable="true" :sel-value="searchStudentPC" :options="fliterPCs" width-style="100" @change="handleSearchChange($event, 5)"></my-select>
           </div>
           <div>
             <el-table class="margin-top-10"
@@ -589,9 +590,12 @@ import MyInputButton from "~/components/search/MyInputButton";
 import linkDormValidater from "~/utils/validater/linkDormValidater";
 import UploadSquare from "~/components/utils/upload/UploadSquare";
 import DialogNormal from "~/components/utils/dialog/DialogNormal";
+import DrawerLayoutRight from "~/components/utils/dialog/DrawerLayoutRight";
 export default {
   mixins: [mixins,linkDormValidater],
-  components: {DialogNormal, UploadSquare, MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton},
+  components: {
+    DrawerLayoutRight,
+    DialogNormal, UploadSquare, MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton},
   props: {
     pageTitle: '',
     linkId: '',
@@ -615,6 +619,7 @@ export default {
       tableDormData: [],
       tableStudnetData: [],
       tablePackagedata: [],
+      fliterPCs: [],
       searchKey: '',
       commSearchBuild: '',
       commSearchFloor: '',
@@ -646,6 +651,7 @@ export default {
       selDormDataOk: [],
       selDormDataBakOk: [],
       commRow: '',
+      searchStudentPC: '',
       uploadFileUrl: common.upload_file,
       filterType: [
         { text: this.$t("按宿舍选"), value: 0 ,label: this.$t("按宿舍选")},
@@ -672,6 +678,7 @@ export default {
   },
   created() {
     this.init();
+    this.initBatchList();
   },
   methods: {
     init(){
@@ -761,7 +768,8 @@ export default {
         grade: this.searchStudnetGrade,
         classId: this.searchStudnetClass,
         searchKey: this.searchStudnetKey,
-        sex: this.searchDormSex
+        sex: this.searchDormSex,
+        enrollBatch: this.searchStudentPC
       };
       this.checkboxCount = 0;
       this.tableDormLoading = true;
@@ -829,6 +837,22 @@ export default {
         if (res.data.data) {
           this.tablePackagedata = res.data.data.listPackage;
           this.tableDormLoading = false;
+        }
+      });
+    },
+    initBatchList(){
+      let params = {};
+      this.$axios.get(common.enroll_batch_list, {params: params, loading: false}).then(res => {
+        if (res.data.data){
+          let arr = [];
+          for (let i = 0; i < res.data.data.length; i++){
+            arr.push({
+              label: res.data.data[i].enroll_batch,
+              value: res.data.data[i].enroll_batch,
+              text: res.data.data[i].enroll_batch
+            });
+          }
+          this.fliterPCs = arr;
         }
       });
     },
@@ -1063,6 +1087,9 @@ export default {
         this.form.type = event;
       }else if (type == 4){
         this.form.area = event;
+      }else if (type == 5){
+        this.searchStudentPC = event;
+        this.initStudent();
       }
     },
     handleCascaderBedChange(data){
@@ -1152,6 +1179,8 @@ export default {
       this.searchStudnetGrade = "";
       this.commSearchBuild = "";
       this.commSearchFloor = "";
+      this.searchStudentPC = "";
+      this.searchDormSex = "";
       this.searchCollegeData = [];
       this.searchCommDeptBedData = [];
       this.resetCasadeSelector('SelectorDormDept');
@@ -1166,13 +1195,13 @@ export default {
       if (this.$refs.tableDormRef){
         this.$refs.tableDormRef.clearSelection();
       }
-      console.log(this.selDormData);
       this.commAllCheck = false;
       this.drawerDorm = false;
       this.drawerStudent = false;
       this.dialogPackage = false;
     },
     cancelDrawDialog(event){
+      this.closeDrawDialog();
       this.drawerDorm = false;
       this.drawerStudent = false;
     },

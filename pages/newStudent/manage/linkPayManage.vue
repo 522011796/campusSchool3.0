@@ -417,6 +417,7 @@
           <div class="layout-inline">
             <my-cascader class="layout-item" :placeholder="$t('请选择专业/班级')" ref="SelectorCollege" :props="{ checkStrictly: true }" size="small" width-style="160" :clearable="true" :sel-value="searchCollegeData" type="1" sub-type="4" @change="handleCascaderDrawerStudentChange($event)"></my-cascader>
             <my-cascader class="layout-item" :placeholder="$t('请选择宿舍')" :clearable="true" ref="SelectorDrawDormDept" size="small" width-style="160" :sel-value="searchCommDormData" type="2" sub-type="3" @change="handleCascaderDormChange($event)"></my-cascader>
+            <my-select class="layout-item " size="small" :placeholder="$t('选择批次')" :clearable="true" :sel-value="searchStudentPC" :options="fliterPCs" width-style="100" @change="handleSearchChange($event, 5)"></my-select>
           </div>
           <div>
             <el-table class="margin-top-10"
@@ -594,6 +595,7 @@ export default {
       tablePayData: [],
       tablePayObjData: [],
       tablePayEditData: [],
+      fliterPCs: [],
       searchKey: '',
       commSearchBuild: '',
       commSearchFloor: '',
@@ -601,6 +603,7 @@ export default {
       searchDormBuild: '',
       searchDormFloor: '',
       searchDormRoom: '',
+      searchStudentPC: '',
       visible: false,
       visibleConfim: false,
       dialogVisible: false,
@@ -651,6 +654,7 @@ export default {
   },
   created() {
     this.init();
+    this.initBatchList();
   },
   methods: {
     init(){
@@ -717,7 +721,8 @@ export default {
         classId: this.searchStudnetDrawerClass,
         buildingId: this.searchDormBuild,
         floor: this.searchDormFloor,
-        roomId: this.searchDormRoom
+        roomId: this.searchDormRoom,
+        enrollBatch: this.searchStudentPC
       };
       this.tableDormLoading = true;
       this.$axios.get(common.enroll_student_page, {params: params}).then(res => {
@@ -728,6 +733,22 @@ export default {
           this.pageStudent = res.data.data.currentPage;
 
           this.tableDormLoading = false;
+        }
+      });
+    },
+    initBatchList(){
+      let params = {};
+      this.$axios.get(common.enroll_batch_list, {params: params, loading: false}).then(res => {
+        if (res.data.data){
+          let arr = [];
+          for (let i = 0; i < res.data.data.length; i++){
+            arr.push({
+              label: res.data.data[i].enroll_batch,
+              value: res.data.data[i].enroll_batch,
+              text: res.data.data[i].enroll_batch
+            });
+          }
+          this.fliterPCs = arr;
         }
       });
     },
@@ -903,6 +924,10 @@ export default {
     handleSelectionPayChange(data){
       this.selPayData = data;
     },
+    handleSearchChange(event){
+      this.searchStudentPC = event;
+      this.initStudent();
+    },
     handleCancelChange(data) {
       this.visibleConfim = false;
     },
@@ -1040,6 +1065,8 @@ export default {
       this.searchStudnetDrawerMajor = "";
       this.searchStudnetDrawerGrade = "";
       this.searchStudnetDrawerClass = "";
+      this.searchStudentPC = "";
+      this.searchDormRoom = "";
       this.searchCollegeData = [];
       this.searchCommDeptBedData = [];
       this.searchCommDormData = [];
@@ -1055,6 +1082,7 @@ export default {
       this.drawerPay = false;
     },
     cancelDrawDialog(event){
+      this.closeDrawDialog();
       this.drawerDorm = false;
       this.drawerStudent = false;
       this.drawerPay = false;
