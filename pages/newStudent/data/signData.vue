@@ -861,7 +861,10 @@ export default {
       });
     },
     initCountStatic(){
-      this.$axios.get(common.enroll_checkin_num).then(res => {
+      let params = {
+        processId: this.searchProcess
+      };
+      this.$axios.get(common.enroll_checkin_num, {params: params}).then(res => {
         if (res.data.data) {
           console.log(res);
           this.countNum = res.data.data.all;
