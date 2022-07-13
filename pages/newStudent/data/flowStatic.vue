@@ -272,9 +272,9 @@
               <el-table-column align="center" :label="$t('流程名称')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.label}}</div>
+                    <div class="text-center">{{scope.row.process_name}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      {{scope.row.label}}
+                      {{scope.row.process_name}}
                     </span>
                   </el-popover>
                 </template>
@@ -282,23 +282,23 @@
               <el-table-column align="center" :label="$t('环节数量')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.size}}</div>
+                    <div class="text-center">{{tableColData.length}}</div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      {{scope.row.size}}
+                      {{tableColData.length}}
                     </span>
                   </el-popover>
                 </template>
               </el-table-column>
-              <el-table-column v-for="(item, index) in tableColData" :key="index" align="center" :label="item.linkName">
+              <el-table-column v-for="(item, index) in tableColData" :key="index" align="center" :label="item.link_name">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                     <div class="text-center">
-                      <label v-if="scope.row.status" class="color-success">{{$t("已完成")}}</label>
-                      <label v-if="!scope.row.status" class="color-danger">{{$t("未完成")}}</label>
+                      <label v-if="item.status" class="color-success">{{$t("已完成")}}</label>
+                      <label v-if="!item.status" class="color-danger">{{$t("未完成")}}</label>
                     </div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      <label v-if="scope.row.status" class="color-success">{{$t("已完成")}}</label>
-                      <label v-if="!scope.row.status" class="color-danger">{{$t("未完成")}}</label>
+                      <label v-if="item.status" class="color-success">{{$t("已完成")}}</label>
+                      <label v-if="!item.status" class="color-danger">{{$t("未完成")}}</label>
                     </span>
                   </el-popover>
                 </template>
@@ -586,30 +586,13 @@
           userId: userId
         };
         let array = [];
-        let children = [];
-        this.$axios.get(common.enroll_stat_process_by_user, {params: params}).then(res => {
+        let children = '';
+        this.$axios.get(common.enroll_stat_link_list_by_user, {params: params}).then(res => {
           if (res.data.data){
-            let label = res.data.data.process_name;
-            let size = res.data.data.link_size;
-            let status = res.data.data.status;
-            this.$axios.get(common.enroll_stat_link_list_by_user, {params: params}).then(resItem => {
-              if (res.data.data){
-                for (let i = 0; i < resItem.data.data.length; i++){
-                  array.push({
-                    label: label,
-                    size: size,
-                    status: status,
-                  });
-
-                  children.push({
-                    linkName: resItem.data.data[i].link_name,
-                    procesNname: resItem.data.data[i].process_name,
-                    status: resItem.data.data[i].status,
-                  });
-                }
-              }
-            });
-            this.tableDetailData = array;
+            this.tableDetailData = res.data.data;
+            for (let i = 0; i < res.data.data.length; i++){
+              children = res.data.data[i].linkList;
+            }
             this.tableColData = children;
           }
         });
