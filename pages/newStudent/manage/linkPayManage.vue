@@ -415,7 +415,7 @@
       <div slot="content" class="color-muted">
         <div>
           <div class="layout-inline">
-            <my-cascader class="layout-item" :placeholder="$t('请选择专业/班级')" ref="SelectorCollege" size="small" width-style="160" :sel-value="searchCollegeData" type="1" sub-type="4" @change="handleCascaderDrawerStudentChange($event)"></my-cascader>
+            <my-cascader class="layout-item" :placeholder="$t('请选择专业/班级')" ref="SelectorCollege" :props="{ checkStrictly: true }" size="small" width-style="160" :clearable="true" :sel-value="searchCollegeData" type="1" sub-type="4" @change="handleCascaderDrawerStudentChange($event)"></my-cascader>
             <my-cascader class="layout-item" :placeholder="$t('请选择宿舍')" :clearable="true" ref="SelectorDrawDormDept" size="small" width-style="160" :sel-value="searchCommDormData" type="2" sub-type="3" @change="handleCascaderDormChange($event)"></my-cascader>
           </div>
           <div>

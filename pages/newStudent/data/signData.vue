@@ -838,6 +838,7 @@ export default {
     this.initProcess();
     this.init();
     this.getYearInfo();
+    this.initCountStatic();
   },
   methods: {
     getYearInfo(){
@@ -856,6 +857,16 @@ export default {
             });
           }
           this.years = years;
+        }
+      });
+    },
+    initCountStatic(){
+      this.$axios.get(common.enroll_checkin_num).then(res => {
+        if (res.data.data) {
+          console.log(res);
+          this.countNum = res.data.data.all;
+          this.signNum = res.data.data.checkin;
+          this.unSignNum = res.data.data.notCheckin;
         }
       });
     },
@@ -963,6 +974,7 @@ export default {
     search(data){
       this.searchKey = data.input;
       this.page = 1;
+      this.initCountStatic();
       this.init();
     },
     expandInfo() {

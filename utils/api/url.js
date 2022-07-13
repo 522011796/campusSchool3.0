@@ -646,6 +646,7 @@ export const common = {
   enroll_stat_process_student_export: '/proxy/school/enroll/stat/process-student-export', //完成状态数据表导出
   enroll_stat_link_list_by_user: '/proxy/school/enroll/stat/link-list-by-user', //完成状态数据表详细表
   enroll_stat_process_general: '/proxy/school/enroll/stat/process-general', //整体完成率
+  enroll_checkin_num: '/proxy/school/enroll/checkin/num', //完成统计
 
   enroll_payment_page: '/proxy/school/enroll/payment/page', //缴费数据分页
   enroll_payment_export: '/proxy/school/enroll/payment/export', //缴费数据导出

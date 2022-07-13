@@ -419,6 +419,7 @@
       handleSearchChange(event, type){
         if (type == 1){
           this.searchName = event;
+          this.processId = event;
           this.initBar();
           this.initLine(this.searchMonth);
           this.initStudent();
@@ -572,6 +573,9 @@
             this.complatedNum = res.data.data.downCount;
             this.unComplateNum = res.data.data.undownCount;
             let rate = parseInt(res.data.data.downCount) / (parseInt(res.data.data.downCount) + parseInt(res.data.data.undownCount)) * 100;
+            if (parseInt(res.data.data.downCount) + parseInt(res.data.data.undownCount) == 0){
+              rate = 0;
+            }
             this.complateRate = parseInt(rate.toFixed(0));
           }
         });

@@ -345,7 +345,7 @@
       <div slot="content" class="color-muted">
         <div>
           <div class="layout-inline">
-            <my-cascader class="layout-item" ref="SelectorCollege" size="small" width-style="160" :sel-value="searchCollegeData" type="1" sub-type="4" @change="handleCascaderStudentChange($event)"></my-cascader>
+            <my-cascader :props="{ checkStrictly: true }" class="layout-item" ref="SelectorCollege" size="small" width-style="160" :clearable="true" :sel-value="searchCollegeData" type="1" sub-type="4" @change="handleCascaderStudentChange($event)"></my-cascader>
             <my-select class="layout-item" size="small" :clearable="true" :options="g_sex" @change="handleSearchChange($event, 2)"></my-select>
           </div>
           <div>
