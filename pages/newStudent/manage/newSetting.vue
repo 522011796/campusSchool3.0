@@ -238,14 +238,23 @@
     methods: {
       initYear(){
         let year = [];
-        for (let i = 0; i < 10; i++){
-          year.push({
-            label: 2020+(i+1),
-            text: 2020+(i+1),
-            value: 2020+(i+1),
-          });
-        }
-        this.yearOptions = year;
+        let params = {
+          page: 1,
+          num: 9999
+        };
+        this.$axios.get(common.enroll_page, {params: params}).then(res => {
+          if (res.data.data){
+            let year = [];
+            for (let i = 0; i < res.data.data.list.length; i++){
+              year.push({
+                label: res.data.data.list[i].year,
+                text: res.data.data.list[i].year,
+                value: res.data.data.list[i].year,
+              });
+            }
+            this.yearOptions = year;
+          }
+        });
       },
       init(){
         let params = {

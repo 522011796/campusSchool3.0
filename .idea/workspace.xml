@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="智慧迎新--选寝规则">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/newStudent/data/flowStatic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/data/flowStatic.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/newStudent/data/signData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/data/signData.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/newSetting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/newSetting.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,14 +151,7 @@
       <workItem from="1655687349465" duration="6000" />
       <workItem from="1655687384595" duration="178422000" />
       <workItem from="1656656697719" duration="83008000" />
-      <workItem from="1657620159541" duration="17589000" />
-    </task>
-    <task id="LOCAL-00063" summary="智慧迎新ui">
-      <created>1655088590153</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1655088590158</updated>
+      <workItem from="1657620159541" duration="18765000" />
     </task>
     <task id="LOCAL-00064" summary="智慧迎新ui">
       <created>1655091546153</created>
@@ -498,7 +489,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657695400077</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="智慧迎新--选寝规则">
+      <created>1657702850416</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1657702850416</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
