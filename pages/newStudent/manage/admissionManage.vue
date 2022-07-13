@@ -586,15 +586,7 @@
         tableAllColData: [{
           "name": this.$t("手机号")
         },{
-          "name": this.$t("身份证")
-        },{
-          "name": this.$t("民族")
-        },{
           "name": this.$t("父亲姓名")
-        },{
-          "name": this.$t("出生日期")
-        },{
-          "name": this.$t("国籍")
         },{
           "name": this.$t("微信号")
         },{
@@ -606,7 +598,7 @@
         },{
           "name": this.$t("母亲电话")
         },{
-          "name": this.$t("科类")
+          "name": this.$t("科目")
         },{
           "name": this.$t("父亲电话")
         },{
@@ -618,15 +610,11 @@
         },{
           "name": this.$t("学历")
         },{
-          "name": this.$t("班主任")
-        },{
           "name": this.$t("毕业学校")
         },{
           "name": this.$t("录取省份")
         },{
           "name": this.$t("学制")
-        },{
-          "name": this.$t("录取城市")
         },{
           "name": this.$t("其他信息")
         },{

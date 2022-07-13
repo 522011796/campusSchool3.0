@@ -522,56 +522,50 @@
               </div>
               <div class="block-item-bg font-size-12">
                 <el-row :gutter="8">
-                  <el-col v-if="item == '手机号'" :span="12">
+                  <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '手机号'">
                     <el-form-item :label="$t('手机号')" prop="phone">
                       <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.phone" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
-                  <el-col v-if="item == 'QQ'" :span="12">
+                  <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == 'QQ'">
                     <el-form-item :label="$t('QQ')" prop="qq">
                       <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.qq" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
-                </el-row>
-                <el-row :gutter="8">
-                  <el-col :span="12">
+                  <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '邮箱'">
                     <el-form-item :label="$t('邮箱')" prop="email">
                       <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.email" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
-                  <el-col :span="12">
+                  <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '微信号'">
                     <el-form-item :label="$t('微信号')" prop="wechat">
                       <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.wechat" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
-                </el-row>
-                <el-row :gutter="8">
-                  <el-col :span="12">
+                  <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '父亲姓名'">
                     <el-form-item :label="$t('父亲姓名')" prop="fatherName">
                       <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.fatherName" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
-                  <el-col :span="12">
+                  <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '父亲电话'">
                     <el-form-item :label="$t('父亲电话')" prop="fatherPhone">
                       <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.fatherPhone" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
-                </el-row>
-                <el-row :gutter="8">
                   <el-col :span="12">
-                    <el-form-item :label="$t('母亲姓名')" prop="motherName">
+                    <el-form-item :label="$t('母亲姓名')" prop="motherName" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '母亲姓名'">
                       <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.motherName" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="12">
-                    <el-form-item :label="$t('母亲电话')" prop="motherPhone">
+                    <el-form-item :label="$t('母亲电话')" prop="motherPhone" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '母亲电话'">
                       <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.motherPhone" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
                 </el-row>
                 <el-row :gutter="8">
                   <el-col :span="24">
-                    <el-form-item :label="$t('详细地址')" prop="address">
+                    <el-form-item :label="$t('详细地址')" prop="address" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '详细地址'">
                       <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.address" size="small"></el-input>
                     </el-form-item>
                   </el-col>
@@ -590,29 +584,22 @@
               </div>
               <div class="block-item-bg font-size-12">
                 <el-row :gutter="8">
-                  <el-col :span="12">
+                  <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '学历'">
                     <el-form-item :label="$t('学历')" prop="education">
                       <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.education" :options="educationInfoText()" width-style="220" @change="handleSelectChange($event, 5)"></my-select>
                     </el-form-item>
                   </el-col>
-                  <el-col :span="12">
+                  <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '学院/专业/班级'">
                     <el-form-item :label="$t('学院/专业/班级')" prop="college">
                       <my-cascader :disabled="form.id != '' && oprType == 'detail'" ref="SelectorCollege" width-style="220" :sel-value="form.college" type="1" sub-type="4" @change="handleCascaderChange($event, 1)"></my-cascader>
                     </el-form-item>
                   </el-col>
-                </el-row>
-                <el-row :gutter="8">
-                  <!--                  <el-col :span="12">-->
-                  <!--                    <el-form-item :label="$t('班级')" prop="class">-->
-                  <!--                      <my-cascader :disabled="form.id != '' && oprType == 'detail'" ref="selectorDept" :sel-value="form.class" type="1" sub-type="4" width-style="220" @change="handleCascaderChange($event, 2)"></my-cascader>-->
-                  <!--                    </el-form-item>-->
-                  <!--                  </el-col>-->
-                  <el-col :span="12">
+                  <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '学制'">
                     <el-form-item :label="$t('学制')" prop="eduSystem">
                       <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.eduSystem" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
-                  <el-col :span="12">
+                  <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '招生老师'">
                     <el-form-item :label="$t('招生老师')" prop="recruitingTeacher">
                       <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.recruitingTeacher" size="small" class="width-220"></el-input>
                     </el-form-item>
@@ -632,33 +619,28 @@
               </div>
               <div class="block-item-bg font-size-12">
                 <el-row :gutter="8">
-                  <el-col :span="12">
+                  <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '录取批次'">
                     <el-form-item :label="$t('录取批次')" prop="adBath">
-                      <!--                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.adBath" :options="bathOptions" width-style="220" @change="handleSelectChange($event, 7)"></my-select>-->
                       <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.adBath" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
-                  <el-col :span="12">
+                  <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '科目'">
                     <el-form-item :label="$t('科目')" prop="type">
-                      <!--                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.subject" :options="subjectOptions" width-style="220" @change="handleSelectChange($event, 8)"></my-select>-->
                       <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.subject" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
-                </el-row>
-                <el-row :gutter="8">
-                  <el-col :span="12">
+                  <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '录取省份'">
                     <el-form-item :label="$t('录取省份')" prop="adProvince">
-                      <!--                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.adProvince" :options="provinceInfoText()" width-style="220" @change="handleSelectChange($event, 9)"></my-select>-->
                       <el-cascader ref="selectorProvince" size="small" :disabled="form.id != '' && oprType == 'detail'" v-model="form.adProvince" :options="provinceInfoText()" @change="handleSelectChange($event, 9)" style="width: 220px"></el-cascader>
                     </el-form-item>
                   </el-col>
-                  <el-col :span="12">
+                  <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '高考成绩'">
                     <el-form-item :label="$t('高考成绩')" prop="examScore">
                       <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.examScore" size="small" class="width-220"></el-input>
                     </el-form-item>
                   </el-col>
                 </el-row>
-                <el-row :gutter="8">
+                <el-row :gutter="8" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '毕业学校'">
                   <el-col :span="12">
                     <el-form-item :label="$t('毕业学校')" prop="graduationSchool">
                       <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.graduationSchool" size="small" class="width-220"></el-input>
@@ -678,8 +660,30 @@
                 </span>
               </div>
               <div class="block-item-bg font-size-12 custom-textarea-inner">
+                <el-row :gutter="8">
+                  <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '毕业类型'">
+                    <el-form-item :label="$t('毕业类型')" prop="graduation">
+                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.graduation" :options="filterGraduationType" width-style="220" @change="handleSelectChange($event, 11)"></my-select>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '政治面貌'">
+                    <el-form-item :label="$t('政治面貌')" prop="politics">
+                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.politics" :options="filterPoliticsType" width-style="220" @change="handleSelectChange($event, 12)"></my-select>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '退役士兵'">
+                    <el-form-item :label="$t('退役士兵')" prop="retire">
+                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.retire" :options="filterRetireType" width-style="220" @change="handleSelectChange($event, 13)"></my-select>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '困难类型'">
+                    <el-form-item :label="$t('困难类型')" prop="hard">
+                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.hard" :options="filterHardType" width-style="220" @change="handleSelectChange($event, 14)"></my-select>
+                    </el-form-item>
+                  </el-col>
+                </el-row>
                 <el-row>
-                  <el-col :span="24">
+                  <el-col :span="24" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '其他信息'">
                     <el-form-item :label="$t('其他信息')" prop="otherMsg">
                       <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.otherMsg" type="textarea" :rows="5" size="small"></el-input>
                     </el-form-item>
@@ -822,7 +826,11 @@ export default {
         checkStatus: '',
         checkinId: '',
         checkin_id: '',
-        facePhotos: []
+        facePhotos: [],
+        graduation: '',
+        politics: '',
+        retire: '',
+        hard: '',
       }
     }
   },
@@ -1068,7 +1076,11 @@ export default {
             checkStatus: res.data.data.check_status,
             checkinId: res.data.data.checkin_id,
             checkin_id: res.data.data.checkin_id,
-            facePhotos: photos
+            facePhotos: photos,
+            graduation: res.data.data.graduation_type,
+            politics: res.data.data.political_type,
+            retire: res.data.data.soldier,
+            hard: res.data.data.difficulty_type,
           };
         }
       });
