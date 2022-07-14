@@ -14,7 +14,7 @@
           <div class="margin-left-5">
             <div class="flow-item-child-block padding-tb-5" @click="selAuditType($event, 1, 'audit', 0)">
               <i class="fa fa-user"></i>
-              <span>{{$t("现场报道")}} ({{$t("系统")}})</span>
+              <span>{{$t("现场报到")}} ({{$t("系统")}})</span>
             </div>
             <div class="flow-item-child-block padding-tb-5" @click="selAuditType($event, 3, 'audit', 0)">
               <i class="fa fa-cog"></i>
@@ -22,7 +22,7 @@
             </div>
             <div class="flow-item-child-block padding-tb-5" @click="selAuditType($event, 5, 'audit', 0)">
               <i class="fa fa-cog"></i>
-              <span>{{$t("打印报道单")}} ({{$t("系统")}})</span>
+              <span>{{$t("打印报到单")}} ({{$t("系统")}})</span>
             </div>
             <div class="flow-item-child-block padding-tb-5" @click="selAuditType($event, 9, 'send', 0)">
               <i class="fa fa-cog"></i>

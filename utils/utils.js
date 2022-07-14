@@ -887,12 +887,12 @@ export function newStudentFlowAuditItemType(str, type){
     str = '00';
   }
   let flowAuditType = {
-    "1": "现场报道(系统)",
+    "1": "现场报到(系统)",
     "3": "现场缴费(系统)",
     "4": "信息采集(系统)",
     "00": "接站登记(系统)",
     "2": "线上选寝(系统)",
-    "5": "打印报道单(系统)",
+    "5": "打印报到单(系统)",
     "9": "自定义环节"
   };
   if (str && type == 'set') {

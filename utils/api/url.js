@@ -625,20 +625,20 @@ export const common = {
   enroll_student_barcode: '/proxy/school/enroll-student/barcode', //条形码
   enroll_student_qrcode: '/proxy/school/enroll-student/qrcode', //二维码
 
-  enroll_checkin_page: '/proxy/school/enroll/checkin/page', //报道数据分页
-  enroll_checkin_revoke: '/proxy/school/enroll/checkin/revoke', //报道数据撤销
-  enroll_checkin_student_detail: '/proxy/school/enroll/checkin/student-detail', //报道数据学生详细
-  enroll_checkin_handle: '/proxy/school/enroll/checkin/handle', //报道数据已报道
-  enroll_checkin_pay_list_by_user: '/proxy/school/enroll/checkin/payment-list-by-user', //报道数据已报道
-  enroll_checkin_export: '/proxy/school/enroll/checkin/export', //报道数据导出
-  enroll_checkin_record_page: '/proxy/school/enroll/checkin/record/page', //报道记录分页
+  enroll_checkin_page: '/proxy/school/enroll/checkin/page', //报到数据分页
+  enroll_checkin_revoke: '/proxy/school/enroll/checkin/revoke', //报到数据撤销
+  enroll_checkin_student_detail: '/proxy/school/enroll/checkin/student-detail', //报到数据学生详细
+  enroll_checkin_handle: '/proxy/school/enroll/checkin/handle', //报到数据已报到
+  enroll_checkin_pay_list_by_user: '/proxy/school/enroll/checkin/payment-list-by-user', //报到数据已报到
+  enroll_checkin_export: '/proxy/school/enroll/checkin/export', //报到数据导出
+  enroll_checkin_record_page: '/proxy/school/enroll/checkin/record/page', //报到记录分页
 
   enroll_arrive_page: '/proxy/school/enroll/arrive/page', //接站数据分页
   enroll_arrive_export: '/proxy/school/enroll/arrive/export', //接站数据导出
 
   enroll_stat_student_general: '/proxy/school/enroll/stat/student-general', //总统计
-  enroll_stat_checkin_by_college: '/proxy/school/enroll/stat/checkin-by-college', //各院系报道统计
-  enroll_stat_checkin_by_time: '/proxy/school/enroll/stat/checkin-by-time', //报道趋势
+  enroll_stat_checkin_by_college: '/proxy/school/enroll/stat/checkin-by-college', //各院系报到统计
+  enroll_stat_checkin_by_time: '/proxy/school/enroll/stat/checkin-by-time', //报到趋势
   enroll_stat_link_general: '/proxy/school/enroll/stat/link-general', //完成情况对比
   enroll_stat_process_by_time: '/proxy/school/enroll/stat/process-by-time', //整体完成率趋势
   enroll_stat_process_by_user_page: '/proxy/school/enroll/stat/process-student-page', //完成状态数据表

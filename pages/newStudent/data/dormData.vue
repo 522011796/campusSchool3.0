@@ -316,7 +316,7 @@
         <div class="header-block padding-lr-10">
           <span class="tab-class font-bold">
             <i class="fa fa-file"></i>
-            {{$t('报道单')}}
+            {{$t('报到单')}}
           </span>
         </div>
       </div>

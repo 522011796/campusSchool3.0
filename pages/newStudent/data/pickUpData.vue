@@ -121,7 +121,7 @@
                   </el-popover>
                 </template>
               </el-table-column>
-              <el-table-column align="center" :label="$t('报道时间')">
+              <el-table-column align="center" :label="$t('报到时间')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                     <div class="text-center">
@@ -135,7 +135,7 @@
                   </el-popover>
                 </template>
               </el-table-column>
-              <el-table-column align="center" :label="$t('准时报道')"
+              <el-table-column align="center" :label="$t('准时报到')"
                                width="120"
                                column-key="signType"
                                :filter-multiple="false"
@@ -172,7 +172,7 @@
                 </template>
               </el-table-column>
               <el-table-column align="center"
-                               :label="$t('登记报道时间')"
+                               :label="$t('登记报到时间')"
                                width="140">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">

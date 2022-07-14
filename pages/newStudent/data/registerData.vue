@@ -5,7 +5,7 @@
         <div slot="left">
           <div class="color-muted font-size-12 padding-tb-5 margin-top-10">
             <!--<span class="layout-left-menu-tag"></span>-->
-            <span class="layout-left-menu-title">报道记录</span>
+            <span class="layout-left-menu-title">报到记录</span>
           </div>
           <my-el-tree type="1" sub-type="4" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
         </div>
@@ -106,7 +106,7 @@
                   </el-popover>
                 </template>
               </el-table-column>
-              <el-table-column align="center" :label="$t('报道类型')">
+              <el-table-column align="center" :label="$t('报到类型')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                     <div class="text-center">
@@ -122,7 +122,7 @@
                   </el-popover>
                 </template>
               </el-table-column>
-              <el-table-column align="center" :label="$t('报道时间')">
+              <el-table-column align="center" :label="$t('报到时间')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                     <div class="text-center">
@@ -174,7 +174,7 @@
         <div class="header-block padding-lr-10">
           <span class="tab-class font-bold">
             <i class="fa fa-file"></i>
-            {{$t('报道单')}}
+            {{$t('报到单')}}
           </span>
         </div>
       </div>

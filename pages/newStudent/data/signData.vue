@@ -5,7 +5,7 @@
         <div slot="left">
           <div class="color-muted font-size-12 padding-tb-5 margin-top-10">
             <!--<span class="layout-left-menu-tag"></span>-->
-            <span class="layout-left-menu-title">报道数据</span>
+            <span class="layout-left-menu-title">报到数据</span>
           </div>
           <my-el-tree type="1" sub-type="4" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
         </div>
@@ -18,18 +18,18 @@
                   <el-button class="layout-item" size="small" type="warning"  icon="el-icon-download" @click="expandInfo($event)">{{$t("导出")}}</el-button>
 <!--                  <tab-group-button size="small" :options='[-->
 <!--                    {label:$t("总人数"), value: "1", extra: countNum},-->
-<!--                    {label:$t("已报道"), value: "3", extra: signNum},-->
-<!--                    {label:$t("未报道"), value: "0", extra: unSignNum}]' @click="changeStatus">-->
+<!--                    {label:$t("已报到"), value: "3", extra: signNum},-->
+<!--                    {label:$t("未报到"), value: "0", extra: unSignNum}]' @click="changeStatus">-->
 <!--                  </tab-group-button>-->
                   <el-button-group class="layout-item" style="position: relative; top: -1px">
                     <el-button size="small" type="text">
                       <span class="color-muted font-size-12">{{$t("总人数")}} {{countNum}} | </span>
                     </el-button>
                     <el-button size="small" type="text">
-                      <span class="color-muted font-size-12">{{$t("已报道")}} {{signNum}} | </span>
+                      <span class="color-muted font-size-12">{{$t("已报到")}} {{signNum}} | </span>
                     </el-button>
                     <el-button size="small" type="text">
-                      <span class="color-muted font-size-12">{{$t("未报道")}} {{unSignNum}}</span>
+                      <span class="color-muted font-size-12">{{$t("未报到")}} {{unSignNum}}</span>
                     </el-button>
                   </el-button-group>
                   <my-select class="layout-item width-100" size="small" :clearable="true" :placeholder="$t('流程名称')" :sel-value="searchProcess" :options="processData" @change="handleChangeSelect($event)"></my-select>
@@ -143,12 +143,12 @@
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                     <div class="text-center">
-                      <label class="color-success" v-if="scope.row.check_status">{{$t("已报道")}}</label>
-                      <label class="color-danger" v-if="!scope.row.check_status">{{$t("未报道")}}</label>
+                      <label class="color-success" v-if="scope.row.check_status">{{$t("已报到")}}</label>
+                      <label class="color-danger" v-if="!scope.row.check_status">{{$t("未报到")}}</label>
                     </div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      <label class="color-success" v-if="scope.row.check_status">{{$t("已报道")}}</label>
-                      <label class="color-danger" v-if="!scope.row.check_status">{{$t("未报道")}}</label>
+                      <label class="color-success" v-if="scope.row.check_status">{{$t("已报到")}}</label>
+                      <label class="color-danger" v-if="!scope.row.check_status">{{$t("未报到")}}</label>
                     </span>
                   </el-popover>
                 </template>
@@ -200,7 +200,7 @@
                   </el-popover>
                 </template>
               </el-table-column>
-              <el-table-column align="center" :label="$t('报道时间')">
+              <el-table-column align="center" :label="$t('报到时间')">
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                     <div class="text-center">
@@ -214,7 +214,7 @@
                   </el-popover>
                 </template>
               </el-table-column>
-              <el-table-column align="center" :label="$t('准时报道')"
+              <el-table-column align="center" :label="$t('准时报到')"
                                width="120"
                                column-key="signType"
                                :filter-multiple="false"
@@ -278,7 +278,7 @@
                 <template slot-scope="scope">
                   <el-button v-if="!scope.row.check_status" size="mini" type="success" @click="statusOkInfo(scope.row, 1)">{{$t("已到")}}</el-button>
                   <el-button v-if="scope.row.check_status != null && scope.row.check_status" size="mini" type="danger" @click="statusCancelInfo(scope.row, -1)">{{$t("撤销")}}</el-button>
-                  <el-button size="mini" type="primary" @click="signInfo($event, scope.row)">{{$t("报道单")}}</el-button>
+                  <el-button size="mini" type="primary" @click="signInfo($event, scope.row)">{{$t("报到单")}}</el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -295,7 +295,7 @@
         <div class="header-block padding-lr-10">
           <span class="tab-class font-bold">
             <i class="fa fa-file"></i>
-            {{$t('报道单')}}
+            {{$t('报到单')}}
           </span>
         </div>
       </div>
@@ -783,8 +783,8 @@ export default {
         {value: false, text: this.$t("否")}
       ],
       filtersStutasType: [
-        {value: true, text: this.$t("已报道")},
-        {value: false, text: this.$t("未报道")}
+        {value: true, text: this.$t("已报到")},
+        {value: false, text: this.$t("未报到")}
       ],
       filtersPayStatusType: [
         {value: 3, text: this.$t("已缴清")},

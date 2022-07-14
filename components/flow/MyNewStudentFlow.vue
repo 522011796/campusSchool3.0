@@ -132,7 +132,7 @@
             <div class="margin-top-10">
               <div>
                 <div>
-                  <span class="font-bold">{{$t("报道核验方式")}}</span>
+                  <span class="font-bold">{{$t("报到核验方式")}}</span>
                 </div>
               </div>
               <div class="margin-top-10">
@@ -172,13 +172,13 @@
             <div class="margin-top-10">
               <div>
                 <div>
-                  <span class="font-bold">{{$t("成功报道设置")}}</span>
+                  <span class="font-bold">{{$t("成功报到设置")}}</span>
                 </div>
               </div>
               <div class="margin-top-10">
                 <el-row>
                   <el-col :span="20">
-                    <span>设为报道成功</span>
+                    <span>设为报到成功</span>
                   </el-col>
                   <el-col :span="4" class="text-center">
                     <el-checkbox v-model="flowDetailData.reportSuccess"></el-checkbox>

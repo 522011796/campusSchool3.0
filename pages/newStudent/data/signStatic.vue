@@ -48,7 +48,7 @@
                   <img src="~static/img/file_edit_icon.png" style="height: 40px;width: 40px">
                 </div>
                 <div>
-                  <span class="font-size-12">{{$t("已报道")}}</span>
+                  <span class="font-size-12">{{$t("已报到")}}</span>
                 </div>
               </div>
               <div style="display: inline-block">
@@ -72,7 +72,7 @@
                   <img src="~static/img/file_disabled_icon.png" style="height: 40px;width: 40px">
                 </div>
                 <div>
-                  <span class="font-size-12">{{$t("未报道")}}</span>
+                  <span class="font-size-12">{{$t("未报到")}}</span>
                 </div>
               </div>
               <div style="display: inline-block">
@@ -95,7 +95,7 @@
       <div class="bar-block margin-top-20">
         <div class="padding-tb-10 padding-lr-10">
           <span class="title-block-tag"></span>
-          <span class="title-block-text">{{$t("各院系报道统计")}}</span>
+          <span class="title-block-text">{{$t("各院系报到统计")}}</span>
         </div>
         <div style="height: 500px">
           <h-bar-chart chart-id="barId" :chart-title='$t("柱状分析")' :data-legned="barDataLegned" :data-key="barDataKey" :data="barData"></h-bar-chart>
@@ -107,7 +107,7 @@
           <el-row>
             <el-col :span="12">
               <span class="title-block-tag"></span>
-              <span class="title-block-text">{{$t("报道趋势")}}</span>
+              <span class="title-block-text">{{$t("报到趋势")}}</span>
             </el-col>
             <el-col :span="12">
               <div class="layout-inline text-right">
@@ -294,14 +294,14 @@
           if (res.data.data){
             let lineData = [];
             let lineKeyData = [];
-            this.lineLegned = [this.$t("已报道")];
+            this.lineLegned = [this.$t("已报到")];
             for (let i = 0; i < res.data.data.length; i++){
               lineKeyData.push(res.data.data[i].day);
               lineData.push(res.data.data[i].num);
             }
             this.lineData = [
               {
-                name: this.$t("已报道"),
+                name: this.$t("已报到"),
                 type: 'line',
                 data: lineData
               }

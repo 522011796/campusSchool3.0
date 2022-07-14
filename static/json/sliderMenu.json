@@ -1125,7 +1125,7 @@
         "keySub": "enrollInfo",
         "list": [
           {
-            "name": "报道统计",
+            "name": "报到统计",
             "key": "signStatic",
             "id": 101100,
             "top": "enrollInfo",
@@ -1139,7 +1139,7 @@
             "path": "/newStudent/data/flowStatic"
           },
           {
-            "name": "报道数据",
+            "name": "报到数据",
             "key": "signData",
             "id": 101300,
             "top": "enrollInfo",
@@ -1167,7 +1167,7 @@
             "path": "/newStudent/data/pickUpData"
           },
           {
-            "name": "报道记录",
+            "name": "报到记录",
             "key": "registerData",
             "id": 101700,
             "top": "enrollInfo",
