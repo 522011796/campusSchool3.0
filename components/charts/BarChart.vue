@@ -76,11 +76,11 @@ export default {
           //y轴内置滑动
           {
             type: 'slider',
-            xAxisIndex: 0,
+            xAxisIndex: [0],
             orient: 'horizontal',  // 竖直。
             filterMode: 'empty', // 当前数据窗口外的数据，被 设置为空。即 不会 影响其他轴的数据范围。
-            startValue: 0,
-            endValue: this.dataKey.length - 4,
+            start: 0,
+            end: this.dataKey.length - 6,
             borderColor: 'transparent',
             handleSize: 0,
             showDetail: false  // 是否显示detail，即拖拽时候显示详细数值信息。
