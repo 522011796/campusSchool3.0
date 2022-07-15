@@ -452,8 +452,8 @@
       },
       initStudent(){
         let params = {
-          page: this.page,
-          num: this.num,
+          page: this.pageStudent,
+          num: this.numStudent,
           sex: this.searchSex,
           collegeId: this.searchStudnetCollege,
           majorId: this.searchStudnetMajor,
