@@ -866,8 +866,8 @@ export default {
     returnMain(){
       this.$emit("returnClick");
     },
-    addUser(){
-      this.getStudent();
+    async addUser(){
+      await this.getStudent();
       this.initStudent();
       this.drawerStudent = true;
     },
@@ -1342,6 +1342,11 @@ export default {
           this.checkboxCount++;
         }else {
           this.tableStudnetData[i]._checked = false;
+          let checked = inArray(this.tableStudnetData[i], this.selStudentData, 'user_id');
+          if (checked > -1){
+            this.selStudentData.splice(this.selStudentData[i], 1);
+            i = i - 1;
+          }
           this.checkboxCount--;
         }
       }

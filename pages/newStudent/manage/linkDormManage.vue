@@ -898,6 +898,11 @@ export default {
           this.checkboxCount++;
         }else {
           this.tableDormData[i]._checked = false;
+          let checked = inArray(this.tableDormData[i], this.selDormData, 'id');
+          if (checked > -1){
+            this.selDormData.splice(this.tableDormData[i], 1);
+            i = i - 1;
+          }
           this.checkboxCount--;
         }
       }
@@ -931,6 +936,11 @@ export default {
           this.checkboxCount++;
         }else {
           this.tableStudnetData[i]._checked = false;
+          let checked = inArray(this.tableStudnetData[i], this.selStudentData, 'user_id');
+          if (checked > -1){
+            this.selStudentData.splice(this.tableStudnetData[i], 1);
+            i = i - 1;
+          }
           this.checkboxCount--;
         }
       }
@@ -1295,17 +1305,17 @@ export default {
     okDrawDialog(event, type){
       let url = "";
       if (type == 1){
-        if (this.selDormData.length == 0){
-          MessageWarning(this.$t("请选择宿舍"));
-          return;
-        }
+        // if (this.selDormData.length == 0){
+        //   MessageWarning(this.$t("请选择宿舍"));
+        //   return;
+        // }
         this.selDormDataOk = JSON.parse(JSON.stringify(this.selDormData));
         this.selDormDataBakOk = JSON.parse(JSON.stringify(this.selDormData));
       }else if (type == 2){
-        if (this.selStudentData.length == 0){
-          MessageWarning(this.$t("请选择学生"));
-          return;
-        }
+        // if (this.selStudentData.length == 0){
+        //   MessageWarning(this.$t("请选择学生"));
+        //   return;
+        // }
         this.selStudentDataOk = JSON.parse(JSON.stringify(this.selStudentData));
         this.selStudentDataBakOk = JSON.parse(JSON.stringify(this.selStudentData));
       }
