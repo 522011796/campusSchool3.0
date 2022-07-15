@@ -456,7 +456,12 @@
               </span>
             </div>
             <div class="block-item-bg font-size-12">
-              <el-image style="width: 60px; height: 60px; margin-right: 10px" v-for="(item, index) in form.facePhotos" :key="index" :src="item">
+<!--              <el-image style="width: 60px; height: 60px; margin-right: 10px" v-for="(item, index) in form.facePhotos" :key="index" :src="item">-->
+<!--                <div slot="error" class="image-slot">-->
+<!--                  <i class="el-icon-picture-outline"></i>-->
+<!--                </div>-->
+<!--              </el-image>-->
+              <el-image v-if="form.photo_simple" style="width: 80px; height: 80px; margin-right: 10px" :src="form.photo_simple">
                 <div slot="error" class="image-slot">
                   <i class="el-icon-picture-outline"></i>
                 </div>
@@ -841,6 +846,7 @@ export default {
         politics: '',
         retire: '',
         hard: '',
+        photo_simple: '',
       }
     }
   },
@@ -1106,6 +1112,7 @@ export default {
             politics: res.data.data.political_type,
             retire: res.data.data.soldier,
             hard: res.data.data.difficulty_type,
+            photo_simple: res.data.data.photo_simple,
           };
         }
         if (!res.data.data.class_id){
@@ -1248,7 +1255,8 @@ export default {
         checkStatus: '',
         checkinId: '',
         checkin_id: '',
-        facePhotos: []
+        facePhotos: [],
+        photo_simple: ''
       };
       this.subTitle = "";
       this.versionStatus = '';

@@ -196,9 +196,14 @@
             :loading="tableStudentLoading"
             @selection-change="handleSelectionChange">
             <el-table-column
-              :reserve-selection="true"
-              type="selection"
               width="55">
+              <template slot="header" slot-scope="scope">
+                <el-checkbox v-model="commAllCheck" @change="_handleSelectionStudentAllSelect"></el-checkbox>
+              </template>
+
+              <template slot-scope="scope">
+                <el-checkbox v-model="scope.row._checked" @change="_handleSelectionStudentSelect($event, scope.row)"></el-checkbox>
+              </template>
             </el-table-column>
             <el-table-column align="center" :label="$t('录取日期')">
               <template slot-scope="scope">
@@ -346,6 +351,9 @@
     mixins: [mixins,flowManageValidater],
     data(){
       return {
+        commAllCheck: false,
+        commAllCheckCount: 0,
+        checkboxCount: 0,
         pageStudent: 1,
         totalStudent: 0,
         numStudent: 20,
@@ -434,6 +442,39 @@
       handleSelectionChange(data){
         this.selData = data;
       },
+      _handleSelectionStudentSelect(event, row){
+        if (event){//选中
+          this.selData.push(row);
+          row._checked = true;
+          this.checkboxCount++;
+        }else {//取消选中
+          let checked = inArray(row, this.selData, 'user_id');
+          this.selData.splice(checked,1);
+          row._checked = false;
+          this.checkboxCount--;
+        }
+        if (this.checkboxCount != 0 && this.checkboxCount == this.tableStudentData.length){
+          this.commAllCheck = true;
+        }else {
+          this.commAllCheck = false;
+        }
+      },
+      _handleSelectionStudentAllSelect(selection){
+        this.commAllCheck = selection;
+        for (let i = 0; i < this.tableStudentData.length; i++){
+          if (selection == true){
+            this.tableStudentData[i]._checked = true;
+            let checked = inArray(this.tableStudentData[i], this.selData, 'user_id');
+            if (checked == -1){
+              this.selData.push(this.tableStudentData[i]);
+            }
+            this.checkboxCount++;
+          }else {
+            this.tableStudentData[i]._checked = false;
+            this.checkboxCount--;
+          }
+        }
+      },
       init(){
         let params = {
           page: this.page,
@@ -469,21 +510,51 @@
         this.tableStudentLoading = true;
         this.$axios.get(common.enroll_student_page, {params: params}).then(res => {
           if (res.data.data){
+            let intersection=[];
+
+            if (this.selData.length == 0){
+              intersection = this.selDataOk;
+              this.selData = this.selDataOk;
+            }else {
+              this.selDataOk.forEach(x=>{
+                this.selData.forEach(y=>{
+                  if(x.user_id == y.user_id){//找到相同的就push进新的数组
+                    intersection.push(x);
+                  }
+                });
+              });
+            }
+
+            for (let i = 0; i < res.data.data.list.length; i++){
+              let sel = inArray(res.data.data.list[i], intersection, 'user_id');
+              if (sel > -1){
+                res.data.data.list[i]['_checked'] = true;
+                this.checkboxCount++;
+              }else {
+                res.data.data.list[i]['_checked'] = false;
+              }
+            }
+            if (this.checkboxCount != 0 && this.checkboxCount == this.tableStudentData.length){
+              this.commAllCheck = true;
+            }else {
+              this.commAllCheck = false;
+            }
+
             this.tableStudentData = res.data.data.list;
             this.totalStudent = res.data.data.totalCount;
             this.numStudent = res.data.data.num;
             this.pageStudent = res.data.data.currentPage;
 
-            let selArr = [];
-            let arr = [].concat(res.data.data.list);
-            let arrTempUser = [].concat(this.selDataOk);
-
-            for (let i = 0; i < arr.length; i++){
-              let sel = inArray(arr[i], arrTempUser, 'user_id');
-              if (sel > -1){
-                this.$refs.tableStudentRef.toggleRowSelection(arr[i], true);
-              }
-            }
+            // let selArr = [];
+            // let arr = [].concat(res.data.data.list);
+            // let arrTempUser = [].concat(this.selDataOk);
+            //
+            // for (let i = 0; i < arr.length; i++){
+            //   let sel = inArray(arr[i], arrTempUser, 'user_id');
+            //   if (sel > -1){
+            //     this.$refs.tableStudentRef.toggleRowSelection(arr[i], true);
+            //   }
+            // }
             this.tableStudentLoading = false;
           }
         });
@@ -588,6 +659,8 @@
         }
         this.selDataOk = this.selDataBakOk;
         this.selData = [];
+        this.pageStudent = 1;
+        this.numStudent = 20;
         this.drawerVisible = false;
       },
       handleCancelChange(data) {
@@ -639,9 +712,9 @@
                 user_id: res.data.data[i]
               });
             }
-            this.selData = array;
-            this.selDataOk = array;
-            this.selDataBakOk = array;
+            this.selData = [].concat(array);
+            this.selDataOk = [].concat(array);
+            this.selDataBakOk = [].concat(array);
           }
         });
 
