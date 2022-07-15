@@ -877,6 +877,7 @@ export default {
       this.searchKey = data.input;
       this.page = 1;
       this.init();
+      this.initStatic();
     },
     expandInfo() {
       let url = common.enroll_room_student_export;
