@@ -710,11 +710,16 @@ export default {
           this.tableTeacherData[i]._checked = true;
           let checked = inArray(this.tableTeacherData[i], this.selTeacherData, 'user_id');
           if (checked == -1){
-            this.selDormData.push(this.tableTeacherData[i]);
+            this.selTeacherData.push(this.tableTeacherData[i]);
           }
           this.checkboxCount++;
         }else {
           this.tableTeacherData[i]._checked = false;
+          let checked = inArray(this.tableTeacherData[i], this.selTeacherData, 'user_id');
+          if (checked > -1){
+            this.selTeacherData.splice(this.tableTeacherData[i], 1);
+            i = i - 1;
+          }
           this.checkboxCount--;
         }
       }
@@ -748,6 +753,11 @@ export default {
           this.checkboxCount++;
         }else {
           this.tableStudnetData[i]._checked = false;
+          let checked = inArray(this.tableStudnetData[i], this.selStudentData, 'user_id');
+          if (checked > -1){
+            this.selStudentData.splice(this.tableStudnetData[i], 1);
+            i = i - 1;
+          }
           this.checkboxCount--;
         }
       }
