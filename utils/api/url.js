@@ -704,6 +704,8 @@ export const common = {
   enroll_link_arrive_trans_type: '/proxy/school/link-setting/arrive/trans-type/list', //接站规则保存
   enroll_link_arrive_receive: '/proxy/school/enroll-app/arrive/receive', //接站确认
 
+  enroll_link_user_get: '/proxy/school/link-setting/item/user/get', //收款人列表
+
   enroll_batch_list: '/proxy/school/enroll-student/enroll-batch/list', //批次列表
 
   enroll_pay_link_get: '/proxy/school/enroll/payment/pay-url/get', //支付二维码查询

@@ -596,12 +596,12 @@
                 <el-row :gutter="8">
                   <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '学历'">
                     <el-form-item :label="$t('学历')" prop="education">
-                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.education" :options="educationInfoText()" width-style="220" @change="handleSelectChange($event, 5)"></my-select>
+                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.education" :options="educationInfoText()" width-style="220"></my-select>
                     </el-form-item>
                   </el-col>
-                  <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '学院/专业/班级'">
+                  <el-col :span="12">
                     <el-form-item :label="$t('学院/专业/班级')" prop="college">
-                      <my-cascader :disabled="form.id != '' && oprType == 'detail'" ref="SelectorCollege" width-style="220" :sel-value="form.college" type="1" sub-type="4" @change="handleCascaderChange($event, 1)"></my-cascader>
+                      <my-cascader :props="{ checkStrictly: true }" :disabled="form.id != '' && oprType == 'detail'" ref="SelectorCollege" width-style="220" :sel-value="form.college" type="1" sub-type="4" @change="handleCascaderChange($event, 1)"></my-cascader>
                     </el-form-item>
                   </el-col>
                   <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '学制'">
@@ -1085,7 +1085,7 @@ export default {
             motherPhone: res.data.data.mather_phone,
             address: res.data.data.native_place,
             education: res.data.data.edu_level,
-            college: [res.data.data.college_id, res.data.data.major_id, res.data.data.grade, res.data.data.class_id],
+            //college: [res.data.data.college_id, res.data.data.major_id, res.data.data.grade, res.data.data.class_id],
             major: '',
             class: [res.data.data.college_id, res.data.data.major_id, res.data.data.grade, res.data.data.class_id],
             eduSystem: res.data.data.edu_year,
@@ -1107,6 +1107,12 @@ export default {
             retire: res.data.data.soldier,
             hard: res.data.data.difficulty_type,
           };
+        }
+        if (!res.data.data.class_id){
+          this.$set(this.form, 'college', [res.data.data.college_id, res.data.data.major_id]);
+        }
+        if (res.data.data.class_id){
+          this.$set(this.form, 'college', [res.data.data.college_id, res.data.data.major_id, res.data.data.grade, res.data.data.class_id]);
         }
       });
 

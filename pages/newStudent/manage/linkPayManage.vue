@@ -421,15 +421,21 @@
           </div>
           <div>
             <el-table class="margin-top-10"
-                      ref="dormTableRef"
+                      ref="tableStudentRef"
                       :row-key="getStudentRowKeys"
                       :data="tableStudnetData"
                       size="mini"
                       v-loading="tableDormLoading"
                       @selection-change="handleSelectionChange">
               <el-table-column
-                type="selection"
                 width="55">
+                <template slot="header" slot-scope="scope">
+                  <el-checkbox v-model="commAllCheck" @change="_handleSelectionStudentAllSelect"></el-checkbox>
+                </template>
+
+                <template slot-scope="scope">
+                  <el-checkbox v-model="scope.row._checked" @change="_handleSelectionStudentSelect($event, scope.row)"></el-checkbox>
+                </template>
               </el-table-column>
               <el-table-column
                 label="录入时间"
@@ -577,6 +583,9 @@ export default {
   },
   data(){
     return {
+      commAllCheck: false,
+      commAllCheckCount: 0,
+      checkboxCount: 0,
       payTips: '',
       pageDorm: 1,
       numDorm: 20,
@@ -634,6 +643,9 @@ export default {
       selStudentData: [],
       selStudentDataOk: [],
       selStudentDataBakOk: [],
+      selData: [],
+      selDataBakOk: [],
+      selDataOk: [],
       selPayData: [],
       form: {
         id: '',
@@ -711,6 +723,22 @@ export default {
         }
       });
     },
+    async getStudent(){
+      let params = {
+        linkId: this.linkId
+      }
+      await this.$axios.get(common.enroll_link_user_get, {params: params}).then(res => {
+        if (res.data.data){
+          let array = [];
+          for (let i = 0; i < res.data.data.length; i++){
+            array.push({user_id: res.data.data[i]})
+          }
+          this.selStudentData = [].concat(array);
+          this.selStudentDataOk = [].concat(array);
+          this.selStudentDataBakOk = [].concat(array);
+        }
+      });
+    },
     initStudent(){
       let params = {
         page: this.pageStudent,
@@ -727,6 +755,36 @@ export default {
       this.tableDormLoading = true;
       this.$axios.get(common.enroll_student_page, {params: params}).then(res => {
         if (res.data.data){
+          let intersection=[];
+
+          if (this.selStudentData.length == 0){
+            intersection = this.selStudentDataOk;
+            this.selStudentData = this.selStudentDataOk;
+          }else {
+            this.selStudentDataOk.forEach(x=>{
+              this.selStudentData.forEach(y=>{
+                if(x.user_id == y.user_id){//找到相同的就push进新的数组
+                  intersection.push(x);
+                }
+              });
+            });
+          }
+
+          for (let i = 0; i < res.data.data.list.length; i++){
+            let sel = inArray(res.data.data.list[i], intersection, 'user_id');
+            if (sel > -1){
+              res.data.data.list[i]['_checked'] = true;
+              this.checkboxCount++;
+            }else {
+              res.data.data.list[i]['_checked'] = false;
+            }
+          }
+          if (this.checkboxCount != 0 && this.checkboxCount == this.tableStudnetData.length){
+            this.commAllCheck = true;
+          }else {
+            this.commAllCheck = false;
+          }
+
           this.tableStudnetData = res.data.data.list;
           this.totalStudent = res.data.data.totalCount;
           this.numStudent = res.data.data.num;
@@ -809,6 +867,7 @@ export default {
       this.$emit("returnClick");
     },
     addUser(){
+      this.getStudent();
       this.initStudent();
       this.drawerStudent = true;
     },
@@ -1071,12 +1130,15 @@ export default {
       this.searchCommDeptBedData = [];
       this.searchCommDormData = [];
       this.tablePayObjData = [];
-      this.selStudentDataOk = [];
-      this.selStudentData = [];
       this.selStudentDataBakOk = [];
+      this.selStudentDataOk = this.selStudentDataBakOk;
+      this.selStudentData = [];
       this.resetCasadeSelector('SelectorDormDept');
       this.resetCasadeSelector('SelectorCollege');
       this.resetCasadeSelector('SelectorDrawDormDept');
+      if (this.$refs.tableStudentRef){
+        this.$refs.tableStudentRef.clearSelection();
+      }
       this.drawerDorm = false;
       this.drawerStudent = false;
       this.drawerPay = false;
@@ -1250,6 +1312,39 @@ export default {
         }
         this.btnLoading = false;
       });
+    },
+    _handleSelectionStudentSelect(event, row){
+      if (event){//选中
+        this.selStudentData.push(row);
+        row._checked = true;
+        this.checkboxCount++;
+      }else {//取消选中
+        let checked = inArray(row, this.selStudentData, 'user_id');
+        this.selStudentData.splice(checked,1);
+        row._checked = false;
+        this.checkboxCount--;
+      }
+      if (this.checkboxCount != 0 && this.checkboxCount == this.tableStudnetData.length){
+        this.commAllCheck = true;
+      }else {
+        this.commAllCheck = false;
+      }
+    },
+    _handleSelectionStudentAllSelect(selection){
+      this.commAllCheck = selection;
+      for (let i = 0; i < this.tableStudnetData.length; i++){
+        if (selection == true){
+          this.tableStudnetData[i]._checked = true;
+          let checked = inArray(this.tableStudnetData[i], this.selStudentData, 'user_id');
+          if (checked == -1){
+            this.selStudentData.push(this.tableStudnetData[i]);
+          }
+          this.checkboxCount++;
+        }else {
+          this.tableStudnetData[i]._checked = false;
+          this.checkboxCount--;
+        }
+      }
     }
   }
 }

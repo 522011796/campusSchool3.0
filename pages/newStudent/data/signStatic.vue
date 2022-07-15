@@ -209,7 +209,7 @@
               });
             }
             this.flowOptions= arr;
-            this.searchName = arr[0].value;
+            this.searchName = '';
             this.initMonth();
             this.initCount();
             this.initStatic();
@@ -275,12 +275,12 @@
                 name:this.$t("未完成"),
                 type:'bar',
                 barWidth:10,
-                data:data1
+                data:data2
               }, {
                 name:this.$t("已完成"),
                 type:'bar',
                 barWidth:10,
-                data:data2
+                data:data1
               }
             ];
           }

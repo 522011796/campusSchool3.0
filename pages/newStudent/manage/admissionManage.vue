@@ -938,6 +938,12 @@
           }
         });
         this.$set(this.form, 'class', [item.college_id, item.major_id, item.grade, item.clasz]);
+        if (!item.clasz){
+          this.$set(this.form, 'college', [item.college_id, item.major_id]);
+        }
+        if (item.clasz){
+          this.$set(this.form, 'college', [item.college_id, item.major_id, item.grade, item.clasz]);
+        }
         this.footerHidden = false;
         this.drawerForm = true;
       },
