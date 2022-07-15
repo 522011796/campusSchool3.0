@@ -143,6 +143,30 @@
   "LazyTableBarChart": {
     "description": "Auto imported from components/charts/TableBarChart.vue"
   },
+  "MyBlockListChildTree": {
+    "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
+  },
+  "LazyMyBlockListChildTree": {
+    "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
+  },
+  "MyBlockListTree": {
+    "description": "Auto imported from components/tree/MyBlockListTree.vue"
+  },
+  "LazyMyBlockListTree": {
+    "description": "Auto imported from components/tree/MyBlockListTree.vue"
+  },
+  "MyElTree": {
+    "description": "Auto imported from components/tree/MyElTree.vue"
+  },
+  "LazyMyElTree": {
+    "description": "Auto imported from components/tree/MyElTree.vue"
+  },
+  "TreeNode": {
+    "description": "Auto imported from components/tree/treeNode.js"
+  },
+  "LazyTreeNode": {
+    "description": "Auto imported from components/tree/treeNode.js"
+  },
   "MyFormAuditType": {
     "description": "Auto imported from components/form/MyFormAuditType.vue"
   },
@@ -173,18 +197,6 @@
   "LazyMyFormSetRole": {
     "description": "Auto imported from components/form/MyFormSetRole.vue"
   },
-  "MyNewStudentFlow": {
-    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
-  },
-  "LazyMyNewStudentFlow": {
-    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
-  },
-  "MyNewStudentFlowType": {
-    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
-  },
-  "LazyMyNewStudentFlowType": {
-    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
-  },
   "MyInputButton": {
     "description": "Auto imported from components/search/MyInputButton.vue"
   },
@@ -209,29 +221,17 @@
   "LazyMyYearTerm": {
     "description": "Auto imported from components/search/MyYearTerm.vue"
   },
-  "MyBlockListChildTree": {
-    "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
+  "MyNewStudentFlow": {
+    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
   },
-  "LazyMyBlockListChildTree": {
-    "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
+  "LazyMyNewStudentFlow": {
+    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
   },
-  "MyBlockListTree": {
-    "description": "Auto imported from components/tree/MyBlockListTree.vue"
+  "MyNewStudentFlowType": {
+    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
   },
-  "LazyMyBlockListTree": {
-    "description": "Auto imported from components/tree/MyBlockListTree.vue"
-  },
-  "MyElTree": {
-    "description": "Auto imported from components/tree/MyElTree.vue"
-  },
-  "LazyMyElTree": {
-    "description": "Auto imported from components/tree/MyElTree.vue"
-  },
-  "TreeNode": {
-    "description": "Auto imported from components/tree/treeNode.js"
-  },
-  "LazyTreeNode": {
-    "description": "Auto imported from components/tree/treeNode.js"
+  "LazyMyNewStudentFlowType": {
+    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
   },
   "MyAuditStatus": {
     "description": "Auto imported from components/utils/MyAuditStatus.vue"

@@ -900,7 +900,7 @@ export default {
           this.tableDormData[i]._checked = false;
           let checked = inArray(this.tableDormData[i], this.selDormData, 'id');
           if (checked > -1){
-            this.selDormData.splice(this.tableDormData[i], 1);
+            this.selDormData.splice(checked, 1);
             i = i - 1;
           }
           this.checkboxCount--;
@@ -938,7 +938,7 @@ export default {
           this.tableStudnetData[i]._checked = false;
           let checked = inArray(this.tableStudnetData[i], this.selStudentData, 'user_id');
           if (checked > -1){
-            this.selStudentData.splice(this.tableStudnetData[i], 1);
+            this.selStudentData.splice(checked, 1);
             i = i - 1;
           }
           this.checkboxCount--;

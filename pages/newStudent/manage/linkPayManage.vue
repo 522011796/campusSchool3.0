@@ -1344,7 +1344,7 @@ export default {
           this.tableStudnetData[i]._checked = false;
           let checked = inArray(this.tableStudnetData[i], this.selStudentData, 'user_id');
           if (checked > -1){
-            this.selStudentData.splice(this.selStudentData[i], 1);
+            this.selStudentData.splice(checked, 1);
             i = i - 1;
           }
           this.checkboxCount--;
