@@ -978,15 +978,15 @@ export default {
     sizeStudentChange(event){
       this.pageStudent = 1;
       this.numStudent = event;
-      this.initDorm();
+      this.initStudent();
     },
     currentStudentPage(event){
       this.pageStudent = event;
-      this.initDorm();
+      this.initStudent();
     },
     jumpStudentPage(data){
       this.pageStudent = data;
-      this.initDorm();
+      this.initStudent();
     },
     returnMain(){
       this.$emit("returnClick");
