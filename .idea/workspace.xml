@@ -3,11 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="智慧迎新--选寝规则">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/newStudent/data/dormData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/data/dormData.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/newStudent/data/payData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/data/payData.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/newStudent/data/signData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/data/signData.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/validater/linkDormValidater.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/linkDormValidater.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/validater/linkStationValidater.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/linkStationValidater.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/linkDormManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/linkDormManage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,14 +155,7 @@
       <workItem from="1655687349465" duration="6000" />
       <workItem from="1655687384595" duration="178422000" />
       <workItem from="1656656697719" duration="83008000" />
-      <workItem from="1657620159541" duration="48297000" />
-    </task>
-    <task id="LOCAL-00075" summary="智慧迎新--报道数据完成">
-      <created>1655449204309</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1655449204309</updated>
+      <workItem from="1657620159541" duration="48956000" />
     </task>
     <task id="LOCAL-00076" summary="智慧迎新--报道数据完成">
       <created>1655450862327</created>
@@ -500,7 +493,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657882829359</updated>
     </task>
-    <option name="localTasksCounter" value="124" />
+    <task id="LOCAL-00124" summary="智慧迎新--选寝规则">
+      <created>1657891396179</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1657891396179</updated>
+    </task>
+    <option name="localTasksCounter" value="125" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
