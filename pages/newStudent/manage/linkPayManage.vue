@@ -554,7 +554,7 @@
       </div>
       <div slot="footer">
         <div class="text-right padding-lr-10">
-          <my-pagination :total="totalStudent" :current-page="pageStudent" :page-size="numStudent" @currentPage="currentStudentPage" @sizeChange="sizeDormChange" @jumpChange="jumpStudentPage" class="layout-pagination"></my-pagination>
+          <my-pagination :total="totalStudent" :current-page="pageStudent" :page-size="numStudent" @currentPage="currentStudentPage" @sizeChange="sizeStudentChange" @jumpChange="jumpStudentPage" class="layout-pagination"></my-pagination>
         </div>
       </div>
     </drawer-layout-right>
