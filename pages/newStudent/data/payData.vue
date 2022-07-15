@@ -581,6 +581,10 @@ export default {
     },
     initPayStatic(){
       let params = {
+        collegeId: this.searchCollege,
+        majorId: this.searchMajor,
+        grade: this.searchGrade,
+        classId: this.searchClass,
         processId: this.processId,
         searchKey: this.searchKey,
       };
@@ -628,6 +632,7 @@ export default {
       }
       this.page = 1;
       this.init();
+      this.initPayStatic();
     },
     changeInputValue(data, index){
       let reg = /^([0-9]+[0-9]*(\.[0-9]{1,2})?|0\.[1-9][0-9]?|0\.0[1-9])$/;

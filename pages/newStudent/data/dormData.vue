@@ -848,6 +848,7 @@ export default {
       }
       this.page = 1;
       this.init();
+      this.initStatic();
     },
     handleSearch(data){
       this.commSearchKey = data;

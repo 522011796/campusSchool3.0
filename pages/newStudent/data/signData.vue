@@ -878,11 +878,14 @@ export default {
     },
     initCountStatic(){
       let params = {
+        collegeId: this.searchCollege,
+        majorId: this.searchMajor,
+        grade: this.searchGrade,
+        classId: this.searchClass,
         processId: this.searchProcess
       };
       this.$axios.get(common.enroll_checkin_num, {params: params}).then(res => {
         if (res.data.data) {
-          console.log(res);
           this.countNum = res.data.data.all;
           this.signNum = res.data.data.checkin;
           this.unSignNum = res.data.data.notCheckin;
@@ -980,6 +983,7 @@ export default {
       }
       this.page = 1;
       this.init();
+      this.initCountStatic();
     },
     handleCascaderChange(data){
       this.searchCascader = data;
