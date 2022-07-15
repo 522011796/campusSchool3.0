@@ -311,6 +311,30 @@
   "LazyTerleaveDetail": {
     "description": "Auto imported from components/utils/auditDetail/TerleaveDetail.vue"
   },
+  "AuditStatusButton": {
+    "description": "Auto imported from components/utils/button/AuditStatusButton.vue"
+  },
+  "LazyAuditStatusButton": {
+    "description": "Auto imported from components/utils/button/AuditStatusButton.vue"
+  },
+  "DormAttendStatusButtonGroup": {
+    "description": "Auto imported from components/utils/button/DormAttendStatusButtonGroup.vue"
+  },
+  "LazyDormAttendStatusButtonGroup": {
+    "description": "Auto imported from components/utils/button/DormAttendStatusButtonGroup.vue"
+  },
+  "TabGroupButton": {
+    "description": "Auto imported from components/utils/button/TabGroupButton.vue"
+  },
+  "LazyTabGroupButton": {
+    "description": "Auto imported from components/utils/button/TabGroupButton.vue"
+  },
+  "TimeoutButton": {
+    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
+  },
+  "LazyTimeoutButton": {
+    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
+  },
   "MyHeadImg": {
     "description": "Auto imported from components/utils/common/MyHeadImg.vue"
   },
@@ -346,30 +370,6 @@
   },
   "LazyMyNormalDialog": {
     "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
-  },
-  "AuditStatusButton": {
-    "description": "Auto imported from components/utils/button/AuditStatusButton.vue"
-  },
-  "LazyAuditStatusButton": {
-    "description": "Auto imported from components/utils/button/AuditStatusButton.vue"
-  },
-  "DormAttendStatusButtonGroup": {
-    "description": "Auto imported from components/utils/button/DormAttendStatusButtonGroup.vue"
-  },
-  "LazyDormAttendStatusButtonGroup": {
-    "description": "Auto imported from components/utils/button/DormAttendStatusButtonGroup.vue"
-  },
-  "TabGroupButton": {
-    "description": "Auto imported from components/utils/button/TabGroupButton.vue"
-  },
-  "LazyTabGroupButton": {
-    "description": "Auto imported from components/utils/button/TabGroupButton.vue"
-  },
-  "TimeoutButton": {
-    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
-  },
-  "LazyTimeoutButton": {
-    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
   },
   "MyCascader": {
     "description": "Auto imported from components/utils/select/MyCascader.vue"

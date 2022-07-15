@@ -245,9 +245,11 @@
             this.famaleCount = res.data.data.sexFemaleCount;
             this.studentCount = res.data.data.totalCount;
             this.signCount = res.data.data.checkedCount;
-            this.signRate = ((parseInt(res.data.data.checkedCount) / res.data.data.totalCount) * 100).toFixed(2);
+            if (res.data.data.totalCount != 0){
+              this.signRate = ((parseInt(res.data.data.checkedCount) / res.data.data.totalCount) * 100).toFixed(2);
+              this.unSignRate = ((parseInt(res.data.data.uncheckCount) / res.data.data.totalCount) * 100).toFixed(2);
+            }
             this.unSignCount = res.data.data.uncheckCount;
-            this.unSignRate = ((parseInt(res.data.data.uncheckCount) / res.data.data.totalCount) * 100).toFixed(2);
           }
         });
       },
