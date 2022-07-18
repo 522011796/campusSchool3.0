@@ -134,9 +134,7 @@
 
       <div slot="footer">
         <el-button size="small" @click="cancelDialog">{{$t("取消")}}</el-button>
-        <el-button size="small" type="primary" @click="dialogLoading == false ? okDialog() : ''">
-          <i class="el-icon-loading" v-if="dialogLoading"></i>
-          {{$t("确定")}}
+        <el-button size="small" type="primary" :loading="btnFlowLoading" @click="okDialog">{{$t("确定")}}
         </el-button>
       </div>
     </dialog-normal>
@@ -368,6 +366,7 @@
         dialogFlowSetting: false,
         tableStudentLoading: false,
         btnLoading: false,
+        btnFlowLoading: false,
         listId: '',
         yearOptions: [],
         searchKey: '',
@@ -656,6 +655,7 @@
         this.flowListData = [];
         this.drawerVisible = false;
         this.dialogFlowSetting = false;
+        this.btnFlowLoading = false;
         this.resetCasadeSelector('selectorDept');
       },
       closeDrawDialog(event){
@@ -975,7 +975,6 @@
         let url = common.enroll_process_add;
         this.$refs['form'].validate((valid) => {
           if (valid) {
-            this.dialogLoading = true;
             let userIds = [];
             for (let i = 0;i < this.selDataOk.length; i++){
               userIds.push(this.selDataOk[i].user_id);
@@ -988,6 +987,7 @@
               params['id'] = this.form.id;
               url = common.enroll_process_edit;
             }
+            this.btnFlowLoading = true;
             params = this.$qs.stringify(params);
             this.$axios.post(url, params, {loading: false}).then(res => {
               if (res.data.code == 200){
@@ -997,7 +997,7 @@
               }else {
                 MessageError(res.data.desc);
               }
-              this.dialogLoading = false;
+              this.btnFlowLoading = false;
             });
           }
         });

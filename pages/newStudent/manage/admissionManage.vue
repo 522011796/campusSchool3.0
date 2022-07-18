@@ -12,19 +12,29 @@
       <div slot="right">
         <div class="layout-top-tab margin-top-5">
           <el-row>
-            <el-col :span="24">
+            <el-col :span="9">
               <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo($event)">{{$t("添加")}}</el-button>
               <el-button size="small" type="info"  icon="el-icon-upload" @click="importInfo($event)">{{$t("导入")}}</el-button>
               <el-button size="small" type="info"  icon="el-icon-download" @click="exportInfo($event)">{{$t("导出")}}</el-button>
               <el-button size="small" type="warning"  icon="el-icon-s-custom" @click="manageInfo($event)">{{$t("管理员")}}</el-button>
             </el-col>
-<!--            <el-col :span="16" class="text-right">-->
-<!--              <div class="layout-inline">-->
-<!--                <my-select class="layout-item width-150" size="small" :placeholder="$t('类型')" :options="filterAppManageType" :clearable="true" @change="handleTypeChange($event, 1)"></my-select>-->
-<!--                <my-select class="layout-item width-150" size="small" :placeholder="$t('状态')" :options="filterAppManageStatus" :clearable="true" @change="handleTypeChange($event, 2)"></my-select>-->
-<!--                <my-input-button ref="teacher width-150" size="small" plain width-class="width: 180px" type="success" :clearable="true" :placeholder="$t('名称/编号')" @click="search"></my-input-button>-->
-<!--              </div>-->
-<!--            </el-col>-->
+            <el-col :span="15" class="text-right">
+              <div class="layout-inline">
+                <el-date-picker
+                  size="small"
+                  unlink-panels
+                  v-model="searchTimeData"
+                  type="daterange"
+                  range-separator="至"
+                  start-placeholder="开始日期"
+                  end-placeholder="结束日期"
+                  @change="handleChangeTime($event,2)"
+                  style="width: 220px">
+                </el-date-picker>
+                <my-select class="layout-item " size="small" :placeholder="$t('选择批次')" :clearable="true" :sel-value="searchStudentPC" :options="fliterPCs" width-style="100" @change="handleSearchChange($event, 1)"></my-select>
+                <my-input-button :show-select="true" :options="searchTeacherType" size="small" plain width-class="width: 200px" type="success" :clearable="true" @click="search"></my-input-button>
+              </div>
+            </el-col>
           </el-row>
         </div>
         <div class="margin-top-10">
@@ -583,6 +593,9 @@
         loopTimer: null,
         resultList: [],
         displayField: [],
+        fliterPCs: [],
+        searchStudentPC: '',
+        searchTimeData: [],
         tableAllColData: [{
           "name": this.$t("手机号")
         },{
@@ -675,6 +688,7 @@
       this.init();
       this.initCollegeAndDorm();
       this.getYearInfo();
+      this.initBatchList();
     },
     methods: {
       getYearInfo(){
@@ -704,9 +718,14 @@
           majorId: this.searchMajor,
           grade: this.searchGrade,
           classId: this.searchClass,
-        };
+          enrollBatch: this.searchStudentPC,
+          startTime: (this.searchTimeData && this.searchTimeData.length > 0) ? this.$moment(this.searchTimeData[0]).format("YYYY-MM-DD") : '',
+          endTime: (this.searchTimeData && this.searchTimeData.length > 0) ? this.$moment(this.searchTimeData[1]).format("YYYY-MM-DD") : '',
+
+      };
         let contentArr = [];
         let contentValArr = [];
+        params[this.searchKey['select']] = this.searchKey['input'];
         this.$axios.get(common.enroll_student_page, {params: params}).then(res => {
           if (res.data.data){
             let valuesArr = [];
@@ -720,6 +739,23 @@
             this.total = res.data.data.totalCount;
             this.num = res.data.data.num;
             this.page = res.data.data.currentPage;
+          }
+        });
+      },
+      initBatchList(){
+        let params = {};
+        this.tableStudentLoading = true;
+        this.$axios.get(common.enroll_batch_list, {params: params, loading: false}).then(res => {
+          if (res.data.data){
+            let arr = [];
+            for (let i = 0; i < res.data.data.length; i++){
+              arr.push({
+                label: res.data.data[i].enroll_batch,
+                value: res.data.data[i].enroll_batch,
+                text: res.data.data[i].enroll_batch
+              });
+            }
+            this.fliterPCs = arr;
           }
         });
       },
@@ -756,9 +792,14 @@
         this.init();
       },
       search(data){
-        this.searchKey = data.input;
+        this.searchKey = data;
         this.page = 1;
         this.init(data);
+      },
+      handleSearchChange(event, type){
+        if (type == 1){
+          this.searchStudentPC = event;
+        }
       },
       initCollegeAndDorm(){
         let arr = [];
@@ -1101,6 +1142,8 @@
       handleChangeTime(event, type){
         if (type == 1){
           this.form.birthday = event;
+        }else if(type == 2){
+          this.searchTimeData = event ? event : [];
         }
       },
       handleCascaderChange(data, type){

@@ -172,7 +172,7 @@
           <el-row :gutter="16">
             <el-col :span="12">
               <el-form-item :label="$t('到校时间')" prop="innerTime">
-                <my-date-picker type="month" format="yyyy-MM" value-format="yyyy-MM" :sel-value="form.innerTime" width-style="220" @change="handleChangeTime($event,2)"></my-date-picker type="month">
+                <my-date-picker type="month" format="yyyy-MM" value-format="yyyy-MM" :sel-value="form.innerTime" width-style="220" @change="handleChangeTime($event,2)"></my-date-picker>
               </el-form-item>
             </el-col>
             <el-col :span="12">

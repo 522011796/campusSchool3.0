@@ -393,7 +393,7 @@
       </div>
     </drawer-layout-right>
 
-    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawDialog" :visible="drawerStudent" size="700px" :title="$t('学生设置')" @right-close="cancelDrawDialog">
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawDialog" :visible="drawerStudent" size="850px" :title="$t('学生设置')" @right-close="cancelDrawDialog">
       <div slot="title">
         <div class="header-block padding-lr-10">
           <el-row>
@@ -416,8 +416,20 @@
         <div>
           <div class="layout-inline">
             <my-cascader class="layout-item" :placeholder="$t('请选择专业/班级')" ref="SelectorCollege" :props="{ checkStrictly: true }" size="small" width-style="160" :clearable="true" :sel-value="searchCollegeData" type="1" sub-type="4" @change="handleCascaderDrawerStudentChange($event)"></my-cascader>
-            <my-cascader class="layout-item" :placeholder="$t('请选择宿舍')" :clearable="true" ref="SelectorDrawDormDept" size="small" width-style="160" :sel-value="searchCommDormData" type="2" sub-type="3" @change="handleCascaderDormChange($event)"></my-cascader>
+            <my-cascader class="layout-item" :placeholder="$t('请选择宿舍')" :clearable="true" ref="SelectorDrawDormDept" size="small" width-style="130" :sel-value="searchCommDormData" type="2" sub-type="3" @change="handleCascaderDormChange($event)"></my-cascader>
             <my-select class="layout-item " size="small" :placeholder="$t('选择批次')" :clearable="true" :sel-value="searchStudentPC" :options="fliterPCs" width-style="100" @change="handleSearchChange($event, 5)"></my-select>
+            <el-date-picker
+              size="small"
+              unlink-panels
+              v-model="searchTimeUserData"
+              type="daterange"
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+              @change="handleChangeTime($event,1)"
+              style="width: 220px">
+            </el-date-picker>
+            <my-input-button ref="userRef" size="small" plain width-class="width: 130px" type="success" :clearable="true" :placeholder="$t('名称')" @click="searchUser"></my-input-button>
           </div>
           <div>
             <el-table class="margin-top-10"
@@ -606,6 +618,7 @@ export default {
       tablePayEditData: [],
       fliterPCs: [],
       searchKey: '',
+      searchUserKey: '',
       commSearchBuild: '',
       commSearchFloor: '',
       commSearchRoom: '',
@@ -647,6 +660,8 @@ export default {
       selDataBakOk: [],
       selDataOk: [],
       selPayData: [],
+      searchTimeData: [],
+      searchTimeUserData: [],
       form: {
         id: '',
         name: '',
@@ -750,7 +765,10 @@ export default {
         buildingId: this.searchDormBuild,
         floor: this.searchDormFloor,
         roomId: this.searchDormRoom,
-        enrollBatch: this.searchStudentPC
+        enrollBatch: this.searchStudentPC,
+        beginTime: (this.searchTimeUserData && this.searchTimeUserData.length > 0) ? this.$moment(this.searchTimeUserData[0]).format("YYYY-MM-DD") : '',
+        endTime: (this.searchTimeUserData && this.searchTimeUserData.length > 0) ? this.$moment(this.searchTimeUserData[1]).format("YYYY-MM-DD") : '',
+        searchKey: this.searchUserKey
       };
       this.tableDormLoading = true;
       this.$axios.get(common.enroll_student_page, {params: params}).then(res => {
@@ -824,6 +842,11 @@ export default {
       this.searchKey = data.input;
       this.init();
     },
+    searchUser(data){
+      this.pageStudent = 1;
+      this.searchUserKey = data.input;
+      this.initStudent();
+    },
     sizeChange(event){
       this.page = 1;
       this.num = event;
@@ -862,6 +885,11 @@ export default {
     jumpStudentPage(data){
       this.pageStudent = data;
       this.initStudent();
+    },
+    handleChangeTime(event, type){
+      if (type == 1){
+        this.searchTimeUserData = event ? event : [];
+      }
     },
     returnMain(){
       this.$emit("returnClick");
@@ -985,7 +1013,7 @@ export default {
     },
     handleSearchChange(event){
       this.searchStudentPC = event;
-      this.initStudent();
+      //this.initStudent();
     },
     handleCancelChange(data) {
       this.visibleConfim = false;
@@ -1020,7 +1048,7 @@ export default {
         this.searchDormRoom = data[2];
       }
       this.pageStudent = 1;
-      this.initStudent();
+      //this.initStudent();
     },
     handleCascaderDrawerStudentChange(data){
       this.searchStudnetDrawerCollege = "";
@@ -1043,7 +1071,7 @@ export default {
         this.searchStudnetDrawerClass = data[3];
       }
       this.pageStudent = 1;
-      this.initStudent();
+      //this.initStudent();
     },
     handleCascaderStudentChange(data){
       this.searchStudnetCollege = "";
@@ -1133,6 +1161,11 @@ export default {
       this.selStudentDataBakOk = [];
       this.selStudentDataOk = this.selStudentDataBakOk;
       this.selStudentData = [];
+      this.searchUserKey = "";
+      if (this.$refs.userRef){
+        this.$refs.userRef.inputValue = "";
+      }
+      this.searchTimeUserData = [];
       this.resetCasadeSelector('SelectorDormDept');
       this.resetCasadeSelector('SelectorCollege');
       this.resetCasadeSelector('SelectorDrawDormDept');

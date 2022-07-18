@@ -323,7 +323,7 @@
       </div>
     </drawer-layout-right>
 
-    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawDialog" :visible="drawerStudent" size="700px" :title="$t('学生设置')" @right-close="cancelDrawDialog">
+    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawDialog" :visible="drawerStudent" size="850px" :title="$t('学生设置')" @right-close="cancelDrawDialog">
       <div slot="title">
         <div class="header-block padding-lr-10">
           <el-row>
@@ -345,9 +345,21 @@
       <div slot="content" class="color-muted">
         <div>
           <div class="layout-inline">
-            <my-cascader :props="{ checkStrictly: true }" class="layout-item" ref="SelectorCollege" size="small" width-style="160" :clearable="true" :sel-value="searchCollegeData" type="1" sub-type="4" @change="handleCascaderStudentChange($event)"></my-cascader>
-            <my-select class="layout-item" size="small" :clearable="true" :sel-value="searchDormSex" :options="g_sex" @change="handleSearchChange($event, 2)"></my-select>
+            <my-cascader :props="{ checkStrictly: true }" class="layout-item" ref="SelectorCollege" size="small" width-style="150" :clearable="true" :sel-value="searchCollegeData" type="1" sub-type="4" @change="handleCascaderStudentChange($event)"></my-cascader>
+            <my-select class="layout-item" width-style="140" size="small" :clearable="true" :sel-value="searchDormSex" :options="g_sex" @change="handleSearchChange($event, 2)"></my-select>
             <my-select class="layout-item " size="small" :placeholder="$t('选择批次')" :clearable="true" :sel-value="searchStudentPC" :options="fliterPCs" width-style="100" @change="handleSearchChange($event, 5)"></my-select>
+            <el-date-picker
+              size="small"
+              unlink-panels
+              v-model="searchTimeUserData"
+              type="daterange"
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+              @change="handleChangeTime($event,1)"
+              style="width: 220px">
+            </el-date-picker>
+            <my-input-button ref="userRef" size="small" plain width-class="width: 130px" type="success" :clearable="true" :placeholder="$t('名称')" @click="searchUser"></my-input-button>
           </div>
           <div>
             <el-table class="margin-top-10"
@@ -653,6 +665,8 @@ export default {
       commRow: '',
       searchStudentPC: '',
       uploadFileUrl: common.upload_file,
+      searchTimeUserData: [],
+      searchUserKey: '',
       filterType: [
         { text: this.$t("按宿舍选"), value: 0 ,label: this.$t("按宿舍选")},
         { text: this.$t("按套餐选"), value: 1 ,label: this.$t("按套餐选")},
@@ -767,9 +781,11 @@ export default {
         majorId: this.searchStudnetMajor,
         grade: this.searchStudnetGrade,
         classId: this.searchStudnetClass,
-        searchKey: this.searchStudnetKey,
         sex: this.searchDormSex,
-        enrollBatch: this.searchStudentPC
+        enrollBatch: this.searchStudentPC,
+        beginTime: (this.searchTimeUserData && this.searchTimeUserData.length > 0) ? this.$moment(this.searchTimeUserData[0]).format("YYYY-MM-DD") : '',
+        endTime: (this.searchTimeUserData && this.searchTimeUserData.length > 0) ? this.$moment(this.searchTimeUserData[1]).format("YYYY-MM-DD") : '',
+        searchKey: this.searchUserKey
       };
       this.checkboxCount = 0;
       this.tableDormLoading = true;
@@ -1092,14 +1108,14 @@ export default {
       }else if (type == 2){
         this.pageStudent = 1;
         this.searchDormSex = event;
-        this.initStudent();
+        //this.initStudent();
       }else if (type == 3){
         this.form.type = event;
       }else if (type == 4){
         this.form.area = event;
       }else if (type == 5){
         this.searchStudentPC = event;
-        this.initStudent();
+        //this.initStudent();
       }
     },
     handleCascaderBedChange(data){
@@ -1135,6 +1151,16 @@ export default {
         this.searchStudnetClass = data[3];
       }
       this.pageStudent = 1;
+      //this.initStudent();
+    },
+    handleChangeTime(event, type){
+      if (type == 1){
+        this.searchTimeUserData = event ? event : [];
+      }
+    },
+    searchUser(data){
+      this.pageStudent = 1;
+      this.searchUserKey = data.input;
       this.initStudent();
     },
     handleOkChange(data) {
@@ -1205,6 +1231,14 @@ export default {
       if (this.$refs.tableDormRef){
         this.$refs.tableDormRef.clearSelection();
       }
+      this.searchUserKey = "";
+      if (this.$refs.teacher){
+        this.$refs.teacher.inputValue = "";
+      }
+      if (this.$refs.userRef){
+        this.$refs.userRef.inputValue = "";
+      }
+      this.searchTimeUserData = [];
       this.commAllCheck = false;
       this.drawerDorm = false;
       this.drawerStudent = false;
