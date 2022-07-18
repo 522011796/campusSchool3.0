@@ -14,8 +14,21 @@
           <el-row>
             <el-col :span="9">
               <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo($event)">{{$t("添加")}}</el-button>
-              <el-button size="small" type="info"  icon="el-icon-upload" @click="importInfo($event)">{{$t("导入")}}</el-button>
-              <el-button size="small" type="info"  icon="el-icon-download" @click="exportInfo($event)">{{$t("导出")}}</el-button>
+              <el-dropdown trigger="click">
+                <el-button type="info" size="small">
+                  {{$t("导入/导出")}}<i class="el-icon-arrow-down el-icon--right"></i>
+                </el-button>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item @click.native="importInfo($event)">
+                    <i class="el-icon-upload"></i>
+                    {{$t("导入")}}
+                  </el-dropdown-item>
+                  <el-dropdown-item @click.native="exportInfo($event)">
+                    <i class="el-icon-download"></i>
+                    {{$t("导出")}}
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
               <el-button size="small" type="warning"  icon="el-icon-s-custom" @click="manageInfo($event)">{{$t("管理员")}}</el-button>
             </el-col>
             <el-col :span="15" class="text-right">
@@ -32,7 +45,7 @@
                   style="width: 220px">
                 </el-date-picker>
                 <my-select class="layout-item " size="small" :placeholder="$t('选择批次')" :clearable="true" :sel-value="searchStudentPC" :options="fliterPCs" width-style="100" @change="handleSearchChange($event, 1)"></my-select>
-                <my-input-button :show-select="true" :options="searchTeacherType" size="small" plain width-class="width: 200px" type="success" :clearable="true" @click="search"></my-input-button>
+                <my-input-button :show-select="true" :options="searchStudentType" size="small" plain width-class="width: 200px" type="success" :clearable="true" @click="search"></my-input-button>
               </div>
             </el-col>
           </el-row>
@@ -719,7 +732,7 @@
           grade: this.searchGrade,
           classId: this.searchClass,
           enrollBatch: this.searchStudentPC,
-          startTime: (this.searchTimeData && this.searchTimeData.length > 0) ? this.$moment(this.searchTimeData[0]).format("YYYY-MM-DD") : '',
+          beginTime: (this.searchTimeData && this.searchTimeData.length > 0) ? this.$moment(this.searchTimeData[0]).format("YYYY-MM-DD") : '',
           endTime: (this.searchTimeData && this.searchTimeData.length > 0) ? this.$moment(this.searchTimeData[1]).format("YYYY-MM-DD") : '',
 
       };
