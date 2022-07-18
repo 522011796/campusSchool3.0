@@ -98,7 +98,7 @@
           <span class="title-block-text">{{$t("各院系报到统计")}}</span>
         </div>
         <div style="height: 500px">
-          <h-bar-chart chart-id="barId" :chart-title='$t("柱状分析")' :data-legned="barDataLegned" :data-key="barDataKey" :data="barData"></h-bar-chart>
+          <bar-chart chart-id="barId" :chart-title='$t("柱状分析")' :data-legned="barDataLegned" :data-key="barDataKey" :data="barData"></bar-chart>
         </div>
       </div>
 
@@ -264,7 +264,8 @@
             let data1 = [];
             let data2 = [];
             for (let item in res.data.data){
-              key.push(res.data.data[item].collegeName);
+              let collegeName = res.data.data[item].collegeName;
+              key.push(collegeName);
               data1.push(res.data.data[item].checkedCount);
               data2.push(res.data.data[item].uncheckCount);
             }

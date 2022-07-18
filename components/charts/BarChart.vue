@@ -64,7 +64,17 @@ export default {
         xAxis : [
           {
             type : 'category',
-            data : this.dataKey
+            data : this.dataKey,
+            axisLabel: {
+              interval: 0,
+              formatter:function(value){
+                let str = value;
+                if (value && value.length >= 5){
+                  str = str.substr(0,4)+"..."
+                }
+                return str;
+              }
+            }
           }
         ],
         yAxis : [
@@ -79,7 +89,7 @@ export default {
             xAxisIndex: [0],
             filterMode: 'empty', // 当前数据窗口外的数据，被 设置为空。即 不会 影响其他轴的数据范围。
             startValue: 0,
-            endValue: 5,
+            endValue: 9,
             borderColor: 'transparent',
             handleSize: 0,
             showDetail: false,  // 是否显示detail，即拖拽时候显示详细数值信息。type: 'slider',

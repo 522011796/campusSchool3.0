@@ -516,13 +516,13 @@
               {
                 name:'已完成',
                 type:'bar',
-                barWidth:15,
+                barWidth:10,
                 data: barDataDown
               },
               {
                 name:'未完成',
                 type:'bar',
-                barWidth:15,
+                barWidth:10,
                 data: barDataUnDown
               }
             ];
