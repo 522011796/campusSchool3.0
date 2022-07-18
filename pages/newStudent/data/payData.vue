@@ -13,7 +13,7 @@
         <div slot="right">
           <div class="layout-top-tab margin-top-5 custom-button-search">
             <el-row>
-              <el-col :span="14">
+              <el-col :span="13">
                 <div class="layout-inline">
                   <el-button class="layout-item" size="small" type="warning"  icon="el-icon-download" @click="expandInfo($event)">{{$t("导出")}}</el-button>
                   <el-button-group class="layout-item" style="position: relative;top: -1px">
@@ -33,7 +33,7 @@
                   <my-select class="layout-item width-100" size="small" :placeholder="$t('流程名称')" :sel-value="processId" :options="flowOptions" :clearable="true" @change="handleSearchChange($event, 2)"></my-select>
                 </div>
               </el-col>
-              <el-col :span="10" class="text-right">
+              <el-col :span="11" class="text-right">
                 <div class="layout-inline">
                   <el-date-picker
                     size="small"
