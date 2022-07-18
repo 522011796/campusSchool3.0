@@ -169,14 +169,14 @@
                     <div class="text-center">
                       <label v-if="scope.row.payment_type == 1" class="color-success">{{$t("线下缴费")}}</label>
                       <label v-else-if="scope.row.payment_type == 2" class="color-success">{{$t("二维码")}}</label>
-                      <label class="color-muted" v-else-if="scope.row.payment_user_real_name">({{scope.row.payment_user_real_name}})</label>
                       <label v-else>--</label>
+                      <label class="color-muted" v-if="scope.row.payment_user_real_name">({{scope.row.payment_user_real_name}})</label>
                     </div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                       <label v-if="scope.row.payment_type == 1" class="color-success">{{$t("线下缴费")}}</label>
                       <label v-else-if="scope.row.payment_type == 2" class="color-success">{{$t("二维码")}}</label>
-                      <label class="color-muted" v-else-if="scope.row.payment_user_real_name">({{scope.row.payment_user_real_name}})</label>
                       <label v-else>--</label>
+                      <label class="color-muted" v-if="scope.row.payment_user_real_name">({{scope.row.payment_user_real_name}})</label>
                     </span>
                   </el-popover>
                 </template>
