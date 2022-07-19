@@ -179,7 +179,7 @@
             </el-date-picker>
           </el-col>
           <el-col :span="6" class="text-right">
-            <my-input-button ref="teacher width-100" size="small" plain width-class="width: 120px" type="success" :clearable="true" :placeholder="$t('名称')" @click="searchStudent"></my-input-button>
+            <my-input-button ref="studentRef" size="small" plain width-class="width: 120px" type="success" :clearable="true" :placeholder="$t('名称')" @click="searchStudent"></my-input-button>
           </el-col>
         </div>
         <div class="moon-clearfix"></div>
@@ -661,6 +661,9 @@
       closeDrawDialog(event){
         if (this.$refs.tableStudentRef){
           this.$refs.tableStudentRef.clearSelection();
+        }
+        if (this.$refs.studentRef){
+          this.$refs.studentRef.inputValue = "";
         }
         this.selDataOk = this.selDataBakOk;
         this.selData = [];

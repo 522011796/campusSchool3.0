@@ -198,7 +198,7 @@
                 :label="$t('操作')">
                 <template slot-scope="scope">
                   <el-button size="mini" type="success" v-if="scope.row.payment_status != 3" @click="statusInfo(scope.row, 3)">{{$t("缴清")}}</el-button>
-                  <el-button size="mini" type="danger" @click="statusInfo(scope.row, 1)">{{$t("撤销")}}</el-button>
+                  <el-button size="mini" type="danger" v-if="scope.row.payment_status == 3" @click="statusInfo(scope.row, 1)">{{$t("撤销")}}</el-button>
                 </template>
               </el-table-column>
             </el-table>

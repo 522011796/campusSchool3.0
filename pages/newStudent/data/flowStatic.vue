@@ -692,7 +692,8 @@
         this.initDetail(item.user_id);
         this.dialogVisible = true;
       },
-      search(){
+      search(data){
+        this.searchKey = data.input;
         this.page = 1;
         this.initStudent();
       },
