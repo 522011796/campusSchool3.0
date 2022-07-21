@@ -758,6 +758,13 @@
                 formObj['qrcode'] = otherObj.qrcode;
                 formObj['custom'] = otherObj.custom;
                 formObj['report'] = true;
+              }else if (res.data.data[i].linkSubType == 3){
+                let otherObj = JSON.parse(res.data.data[i].otherSetting);
+                formObj['face'] = otherObj.face;
+                formObj['qrcode'] = otherObj.qrcode;
+                formObj['custom'] = otherObj.custom;
+                formObj['enrollPayUrl'] = otherObj.enrollPayUrl;
+                formObj['report'] = true;
               }else {
                 let otherObj = JSON.parse(res.data.data[i].otherSetting);
                 if (otherObj){
@@ -932,7 +939,7 @@
             dependLinkId: flowData[i].items,
             linkName: flowData[i].name,
             linkType: flowData[i].type,
-            linkSubType: flowData[i].subType
+            linkSubType: flowData[i].subType,
           }
           if (flowData[i].type == 1){
             obj['otherSetting'] = {
@@ -943,6 +950,9 @@
               face: flowData[i].face,
               qrcode: flowData[i].qrcode,
               custom: flowData[i].custom,
+            }
+            if (flowData[i].subType == 3){
+              obj['otherSetting']['enrollPayUrl'] = flowData[i].enrollPayUrl;
             }
           }
 

@@ -98,6 +98,15 @@
             </div>
           </template>
 
+          <template v-if="flowDetailData.subType == 3">
+            <div class="margin-top-10">
+              <div class="font-bold">{{$t("缴费链接")}}</div>
+              <div class="margin-top-5">
+                <el-input size="mini" style="width: 100%" v-model="flowDetailData.enrollPayUrl"></el-input>
+              </div>
+            </div>
+          </template>
+
           <template v-if="flowDetailData.subType != 5">
             <div class="margin-top-10">
               <div>
@@ -332,7 +341,8 @@
             items: [],
             hType: '',
             hName: '',
-            subType: ''
+            subType: '',
+            enrollPayUrl: ''
           };
         },
         type: Object
@@ -400,7 +410,8 @@
           items: [],
           hType: '',
           hName: '',
-          subType: subType
+          subType: subType,
+          enrollPayUrl: ''
         };
         this.flowData.splice(index, 0, obj);
         this.selFlowItemBlock(null, obj, index);
