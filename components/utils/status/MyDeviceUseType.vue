@@ -5,6 +5,7 @@
     <label v-if="type == 2">{{$t("课堂签到")}}</label>
     <label v-if="type == 3">{{$t("门禁直连用")}}</label>
     <label v-if="type == 4">{{$t("门禁控制器用")}}</label>
+    <label v-if="type == 5">{{$t("智慧迎新用")}}</label>
   </span>
 </template>
 

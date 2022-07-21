@@ -135,7 +135,7 @@ export default {
         num: this.num,
         startTime: this.searchDate && this.searchDate.length > 0 ? (this.searchDate[0] + " 00:00:00") : '',
         endTime: this.searchDate && this.searchDate.length > 0 ? (this.searchDate[1] + " 23:59:59") : '',
-        userName: this.searchKey,
+        searchKey: this.searchKey,
         queryType: 2,
         action: this.action,
         parentId: 16

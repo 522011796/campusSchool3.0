@@ -224,7 +224,8 @@ const filterDeviceUseType = [
   { text: "归寝签到", value: 1 ,label: '归寝签到'},
   { text: '课堂考勤', value: 2 ,label: '课堂考勤'},
   { text: '门禁直连用', value: 3 ,label: '门禁直连用'},
-  { text: '门禁控制器用', value: 4 ,label: '门禁控制器用'}
+  { text: '门禁控制器用', value: 4 ,label: '门禁控制器用'},
+  { text: '智慧迎新用', value: 5 ,label: '智慧迎新用'}
 ];
 
 const filterOnlineStatus = [
