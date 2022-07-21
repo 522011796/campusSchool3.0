@@ -477,7 +477,8 @@ export default {
   components: {MySex, DialogNormal, MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton},
   props: {
     pageTitle: '',
-    linkId: ''
+    linkId: '',
+    processId: ''
   },
   data(){
     return {
@@ -579,7 +580,8 @@ export default {
         enrollBatch: this.searchStudentPC,
         beginTime: (this.searchTimeUserData && this.searchTimeUserData.length > 0) ? this.$moment(this.searchTimeUserData[0]).format("YYYY-MM-DD") : '',
         endTime: (this.searchTimeUserData && this.searchTimeUserData.length > 0) ? this.$moment(this.searchTimeUserData[1]).format("YYYY-MM-DD") : '',
-        searchKey: this.searchUserKey
+        searchKey: this.searchUserKey,
+        processId: this.processId
       };
       this.checkboxCount = 0;
       this.tableDormLoading = true;

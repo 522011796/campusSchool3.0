@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="智慧迎新--选寝规则">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/flow/MyNewStudentFlow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/flow/MyNewStudentFlow.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/flowManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/flowManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/linkDormManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/linkDormManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/linkManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/linkManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/linkPayManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/linkPayManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/linkStationManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/linkStationManage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,14 +154,7 @@
       <workItem from="1655687349465" duration="6000" />
       <workItem from="1655687384595" duration="178422000" />
       <workItem from="1656656697719" duration="83008000" />
-      <workItem from="1657620159541" duration="87633000" />
-    </task>
-    <task id="LOCAL-00090" summary="智慧迎新--选寝规则">
-      <created>1656498491644</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1656498491644</updated>
+      <workItem from="1657620159541" duration="88777000" />
     </task>
     <task id="LOCAL-00091" summary="智慧迎新--选寝规则">
       <created>1656576062751</created>
@@ -498,7 +492,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658371398605</updated>
     </task>
-    <option name="localTasksCounter" value="139" />
+    <task id="LOCAL-00139" summary="智慧迎新--选寝规则">
+      <created>1658383746655</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1658383746658</updated>
+    </task>
+    <option name="localTasksCounter" value="140" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
