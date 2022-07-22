@@ -765,6 +765,11 @@
                 formObj['custom'] = otherObj.custom;
                 formObj['enrollPayUrl'] = otherObj.enrollPayUrl;
                 formObj['report'] = true;
+              }else if (res.data.data[i].linkSubType == 5){
+                if (res.data.data[i].otherSetting && res.data.data[i].otherSetting != ''){
+                  let otherObj = JSON.parse(res.data.data[i].otherSetting);
+                  formObj['checkinSheetName'] = otherObj.checkinSheetName;
+                }
               }else {
                 let otherObj = JSON.parse(res.data.data[i].otherSetting);
                 if (otherObj){
@@ -953,6 +958,9 @@
             }
             if (flowData[i].subType == 3){
               obj['otherSetting']['enrollPayUrl'] = flowData[i].enrollPayUrl;
+            }
+            if (flowData[i].subType == 5){
+              obj['otherSetting']['checkinSheetName'] = flowData[i].checkinSheetName;
             }
           }
 

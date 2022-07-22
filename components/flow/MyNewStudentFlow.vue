@@ -25,6 +25,16 @@
                 <el-input size="mini" style="width: 100%" v-model="flowDetailData.name"></el-input>
               </div>
             </div>
+
+            <template v-if="flowDetailData.subType == 5">
+              <div class="margin-top-10">
+                <div class="font-bold">{{$t("学生端显示名称")}}</div>
+                <div class="margin-top-5">
+                  <el-input size="mini" style="width: 100%" v-model="flowDetailData.checkinSheetName"></el-input>
+                </div>
+              </div>
+            </template>
+
             <div class="margin-top-10" v-if="flowDetailData.subType != 5">
               <template>
                 <div class="font-bold">{{$t("管理员")}}</div>
@@ -342,7 +352,8 @@
             hType: '',
             hName: '',
             subType: '',
-            enrollPayUrl: ''
+            enrollPayUrl: '',
+            checkinSheetName: ''
           };
         },
         type: Object
@@ -411,7 +422,8 @@
           hType: '',
           hName: '',
           subType: subType,
-          enrollPayUrl: ''
+          enrollPayUrl: '',
+          checkinSheetName: ''
         };
         this.flowData.splice(index, 0, obj);
         this.selFlowItemBlock(null, obj, index);
