@@ -203,7 +203,7 @@
                 trigger="click"
                 @show="handleShowTeacher(3)">
                 <div>
-                  <student-tree-and-list-no-page ref="popverStudentRef" :group-id="form.groupId" :sel-arr="form.approverStudentId" set-type="check" @select="handleSelUser($event, 3)"></student-tree-and-list-no-page>
+                  <student-sel-tree-and-list-no-page ref="popverStudentRef" :group-id="form.groupId" :sel-arr="form.approverStudentId" set-type="check" @select="handleSelUser($event, 3)"></student-sel-tree-and-list-no-page>
                 </div>
                 <el-button slot="reference" type="success" plain size="small" @click="loadingShow(3)">
                   <i v-if="refreshStudentStatus == true" class="fa fa-refresh fa-spin"></i>
@@ -461,9 +461,12 @@
   import MyCheck from "../../../components/MyCheck";
   import MyRadio from "../../../components/MyRadio";
   import permissionValidater from "../../../utils/validater/permissionValidater";
+  import StudentSelTreeAndListNoPage from "~/components/utils/treeAndList/StudentSelTreeAndListNoPage";
   export default {
     mixins: [mixins, permissionValidater],
-    components: {MyPagination,LayoutTb,MySelect,MyInputButton,DialogNormal,DrawerLayoutRight,MyDeviceUseType,MyCheck,MyRadio,TeacherTreeAndListNoPage,StudentTreeAndListNoPage},
+    components: {
+      StudentSelTreeAndListNoPage,
+      MyPagination,LayoutTb,MySelect,MyInputButton,DialogNormal,DrawerLayoutRight,MyDeviceUseType,MyCheck,MyRadio,TeacherTreeAndListNoPage,StudentTreeAndListNoPage},
     data(){
       return {
         tableData: [],
