@@ -57,6 +57,7 @@ const _011e81c5 = () => interopDefault(import('../pages/appletInfo/app/appDataBa
 const _9e2a801c = () => interopDefault(import('../pages/appletInfo/app/appManage.vue' /* webpackChunkName: "pages/appletInfo/app/appManage" */))
 const _10929347 = () => interopDefault(import('../pages/appletInfo/app/appTemplate.vue' /* webpackChunkName: "pages/appletInfo/app/appTemplate" */))
 const _b4dc4ef2 = () => interopDefault(import('../pages/appletInfo/app/appType.vue' /* webpackChunkName: "pages/appletInfo/app/appType" */))
+const _7fb03fd5 = () => interopDefault(import('../pages/appletInfo/app/formPrint.vue' /* webpackChunkName: "pages/appletInfo/app/formPrint" */))
 const _5cc30ea4 = () => interopDefault(import('../pages/appletInfo/flow/flowManage.vue' /* webpackChunkName: "pages/appletInfo/flow/flowManage" */))
 const _30b24cb3 = () => interopDefault(import('../pages/appletInfo/noti/business.vue' /* webpackChunkName: "pages/appletInfo/noti/business" */))
 const _1c23e410 = () => interopDefault(import('../pages/appletInfo/noti/feedback.vue' /* webpackChunkName: "pages/appletInfo/noti/feedback" */))
@@ -411,6 +412,10 @@ export const routerOptions = {
     path: "/appletInfo/app/appType",
     component: _b4dc4ef2,
     name: "appletInfo-app-appType"
+  }, {
+    path: "/appletInfo/app/formPrint",
+    component: _7fb03fd5,
+    name: "appletInfo-app-formPrint"
   }, {
     path: "/appletInfo/flow/flowManage",
     component: _5cc30ea4,

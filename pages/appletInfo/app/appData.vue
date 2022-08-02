@@ -209,7 +209,8 @@
               :label="$t('操作')">
               <template slot-scope="scope">
                 <i class="fa fa-file-text margin-right-5 color-grand" @click="detailInfo(scope.row)"></i>
-                <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
+                <i class="fa fa-trash margin-right-5 color-danger" @click="deleteInfo(scope.row)"></i>
+                <i class="fa fa-print color-warning" @click="printManage(scope.row)"></i>
               </template>
             </el-table-column>
           </el-table>
@@ -269,35 +270,80 @@
 <!--                  </span>-->
 <!--              </el-tooltip>-->
 <!--            </div>-->
-            <template v-for="(item, index) in detailApplyContentData">
-              <div v-if="item.type != 'fc-editor' && item.type != 'upload'" class="block-item-row padding-lr-10 font-bold">
-                <span class="color-muted" style="position: relative;top: -13px">{{item.title}}: </span>
-                <el-tooltip class="item" effect="dark" :content="item.value" placement="top">
-                    <span class="moon-content-text-ellipsis-class" style="max-width: 400px;display: inline-block">
-                      {{ item.value }}
+<!--            <template v-for="(item, index) in detailApplyContentData">-->
+<!--              <div v-if="item.type != 'fc-editor' && item.type != 'upload'" class="block-item-row padding-lr-10 font-bold">-->
+<!--                <span class="color-muted" style="position: relative;top: -13px">{{item.title}}: </span>-->
+<!--                <el-tooltip class="item" effect="dark" :content="item.value" placement="top">-->
+<!--                    <span class="moon-content-text-ellipsis-class" style="max-width: 400px;display: inline-block">-->
+<!--                      {{ item.value }}-->
+<!--                    </span>-->
+<!--                </el-tooltip>-->
+<!--              </div>-->
+<!--              <div v-else-if="item.type != 'fc-editor' && item.type == 'upload'" class="padding-lr-10 font-bold">-->
+<!--                <span v-if="!item.value || item.value.length <= 0" class="color-muted" style="position: relative;top: 10px">{{item.title}}: </span>-->
+<!--                <span v-else class="color-muted" style="position: relative;top: -13px">{{item.title}}: </span>-->
+<!--                <span v-if="!item.value || item.value.length <= 0">-->
+<!--                    <div style="height: 20px;line-height: 20px"></div>-->
+<!--                  </span>-->
+<!--                <span v-else class="custom-avatar" style="display: inline-block;margin-right: 5px;" v-for="(itemImg, indexImg) in item.value" :key="indexImg">-->
+<!--&lt;!&ndash;                    <el-avatar shape="square" size="small" :src="itemImg"></el-avatar>&ndash;&gt;-->
+<!--                  <el-image style="width: 30px; height: 30px"-->
+<!--                    :src="itemImg"-->
+<!--                    :preview-src-list="item.value">-->
+<!--                  </el-image>-->
+<!--                </span>-->
+<!--              </div>-->
+<!--              <div v-else class="padding-lr-10">-->
+<!--                <span class="color-muted font-bold" style="position: relative;top: -150px">{{item.title}}: </span>-->
+<!--                <div v-if="item.type == 'fc-editor'"  v-html="item.value" style="max-width: 400px;height: 150px;overflow-y:auto;display: inline-block;border: 1px solid #dddddd;border-radius: 5px;width: 100%;padding: 10px">-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </template>-->
+            <table class="custom-table">
+              <tr v-for="(item, index) in detailApplyContentData" :key="index">
+                <template  v-if="item.type != 'fc-editor' && item.type != 'upload'">
+                  <td style="width: 20%;text-align: right;padding-right: 15px">
+                    <span class="color-muted moon-content-text-ellipsis-class">
+                      <label class="font-size-12">{{item.title}}</label>
                     </span>
-                </el-tooltip>
-              </div>
-              <div v-else-if="item.type != 'fc-editor' && item.type == 'upload'" class="padding-lr-10 font-bold">
-                <span v-if="!item.value || item.value.length <= 0" class="color-muted" style="position: relative;top: 10px">{{item.title}}: </span>
-                <span v-else class="color-muted" style="position: relative;top: -13px">{{item.title}}: </span>
-                <span v-if="!item.value || item.value.length <= 0">
-                    <div style="height: 20px;line-height: 20px"></div>
-                  </span>
-                <span v-else class="custom-avatar" style="display: inline-block;margin-right: 5px;" v-for="(itemImg, indexImg) in item.value" :key="indexImg">
-<!--                    <el-avatar shape="square" size="small" :src="itemImg"></el-avatar>-->
-                  <el-image style="width: 30px; height: 30px"
-                    :src="itemImg"
-                    :preview-src-list="item.value">
-                  </el-image>
-                </span>
-              </div>
-              <div v-else class="padding-lr-10">
-                <span class="color-muted font-bold" style="position: relative;top: -150px">{{item.title}}: </span>
-                <div v-if="item.type == 'fc-editor'"  v-html="item.value" style="max-width: 400px;height: 150px;overflow-y:auto;display: inline-block;border: 1px solid #dddddd;border-radius: 5px;width: 100%;padding: 10px">
-                </div>
-              </div>
-            </template>
+                  </td>
+                  <td style="text-align: left;padding-left: 15px">
+                    <el-tooltip class="item" effect="dark" :content="item.value" placement="top">
+                    <span class="moon-content-text-ellipsis-class">
+                      <label class="font-size-12">{{ item.value }}</label>
+                    </span>
+                    </el-tooltip>
+                  </td>
+                </template>
+
+                <template v-else-if="item.type != 'fc-editor' && item.type == 'upload'">
+                  <td style="width: 20%;text-align: right;padding-right: 15px">
+                    <span v-if="!item.value || item.value.length <= 0" class="color-muted moon-content-text-ellipsis-class">
+                      {{item.title}}
+                    </span>
+                    <span v-else class="color-muted" style="position: relative;">{{item.title}}: </span>
+                  </td>
+                  <td style="text-align: left;padding-left: 15px">
+                    <span v-if="!item.value || item.value.length <= 0">
+                      <div style="height: 20px;line-height: 20px"></div>
+                    </span>
+                    <span v-else class="custom-avatar" style="display: inline-block;margin-right: 5px;position: relative; top: 5px" v-for="(itemImg, indexImg) in item.value" :key="indexImg" @click="readFile(itemImg)">
+                      <el-avatar shape="square" size="small" :src="itemImg" fit="fill"></el-avatar>
+                    </span>
+                  </td>
+                </template>
+
+                <template v-else>
+                  <td style="width: 20%;text-align: right;padding-right: 15px">
+                    <span class="color-muted font-bold moon-content-text-ellipsis-class" style="position: relative;top: -50px;">{{item.title}}: </span>
+                  </td>
+                  <td style="text-align: left;padding-left: 15px">
+                    <div v-if="item.type == 'fc-editor'"  v-html="item.value" style="width: 90%;height: 150px;overflow-y:auto;display: inline-block;border: 1px solid #dddddd;border-radius: 5px;padding: 0px 10px">
+                    </div>
+                  </td>
+                </template>
+              </tr>
+            </table>
           </div>
         </div>
         <div class="margin-top-10" v-if="detailData.formType != 0">
@@ -593,6 +639,9 @@
       deleteInfo(item){
         this.listId = item._id;
         this.visibleConfim = true;
+      },
+      printManage(item){
+        window.open('/appletInfo/app/formPrint?serverId=' + item._id + "&title=" + item.formName + "&time=" + this.$moment().format("YYYY-MM-DD HH:mm:ss"), '_blank');
       },
       closeDialog(event){
         this.listId = "";
