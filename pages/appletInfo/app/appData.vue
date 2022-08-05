@@ -385,7 +385,7 @@
                           <label v-if="itemUser.status === 1" class="color-warning">{{$t("已通过")}}</label>
                           <label v-if="itemUser.status === 2" class="color-warning">
                             {{$t("已驳回")}}
-                            <el-tooltip v-if="itemUser.status === 2" class="item" effect="dark" :content="itemUser.des" placement="top">
+                            <el-tooltip v-if="itemUser.des" class="item" effect="dark" :content="itemUser.des" placement="top">
                               <i class="fa fa-warning color-warning"></i>
                             </el-tooltip>
                           </label>
