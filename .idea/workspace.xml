@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="智慧迎新--选寝规则">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/treeAndList/StudentSelTreeAndListNoPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/treeAndList/StudentSelTreeAndListNoPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/permission.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/permission.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/studentInfo/dorm/dorm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/dorm/dorm.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -158,14 +154,7 @@
       <workItem from="1657620159541" duration="94000000" />
       <workItem from="1659336764483" duration="63000" />
       <workItem from="1659419269119" duration="13714000" />
-      <workItem from="1660203543783" duration="1882000" />
-    </task>
-    <task id="LOCAL-00098" summary="智慧迎新--选寝规则">
-      <created>1657109733292</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1657109733296</updated>
+      <workItem from="1660203543783" duration="2835000" />
     </task>
     <task id="LOCAL-00099" summary="智慧迎新--选寝规则">
       <created>1657177898957</created>
@@ -503,7 +492,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659687266627</updated>
     </task>
-    <option name="localTasksCounter" value="147" />
+    <task id="LOCAL-00147" summary="智慧迎新--选寝规则">
+      <created>1660207621097</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1660207621098</updated>
+    </task>
+    <option name="localTasksCounter" value="148" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

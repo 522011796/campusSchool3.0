@@ -207,7 +207,7 @@
                           <el-avatar v-if="!itemChild.photo_simple" shape="square" :size="50">
                             <i class="el-icon-user-solid" style="font-size: 20px"></i>
                           </el-avatar>
-                          <img v-if="itemChild.photo_simple" src="" style="height:50px;width: 50px"/>
+                          <img v-if="itemChild.photo_simple" :src="itemChild.photo_simple" style="height:50px;width: 50px"/>
                         </div>
                         <div class="margin-top-5">
                           <el-tooltip class="item" effect="dark" :content="searchStatusTypeSet(itemChild.status)" placement="top-start">
