@@ -576,7 +576,7 @@
           params['classId'] = this.searchClass;
           url = common.dorm_user_class_list;
         }else if (this.showType == 2){
-          params['buildingId'] = this.searchBuild;
+          params['buildId'] = this.searchBuild;
           params['floorNum'] = this.searchFloor;
           params['dormId'] = this.searchDorm;
           params['type'] = this.searchDormType;
@@ -662,7 +662,7 @@
           params['grade'] = this.searchGrade;
           params['classId'] = this.searchClass;
         }else if (this.showType == 2){
-          params['buildingId'] = this.searchBuild;
+          params['buildId'] = this.searchBuild;
           params['floorNum'] = this.searchFloor;
           params['dormId'] = this.searchDorm;
           params['type'] = this.searchDormType;

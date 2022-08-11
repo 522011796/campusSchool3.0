@@ -203,7 +203,7 @@
                 trigger="click"
                 @show="handleShowTeacher(3)">
                 <div>
-                  <student-sel-tree-and-list-no-page ref="popverStudentRef" :group-id="form.groupId" :sel-arr="form.approverStudentId" set-type="check" @select="handleSelUser($event, 3)"></student-sel-tree-and-list-no-page>
+                  <student-sel-tree-and-list-no-page ref="popverStudentRef" :props="{ checkStrictly: true }" :group-id="form.groupId" :sel-arr="form.approverStudentId" set-type="check" @select="handleSelUser($event, 3)"></student-sel-tree-and-list-no-page>
                 </div>
                 <el-button slot="reference" type="success" plain size="small" @click="loadingShow(3)">
                   <i v-if="refreshStudentStatus == true" class="fa fa-refresh fa-spin"></i>

@@ -6,7 +6,7 @@
         <el-button size="small" :type="searchTreeType == 2 ? 'success' : ''" @click="_selTreeType($event, 2)">{{$t("宿舍楼")}}</el-button>
       </el-button-group>
       <my-cascader v-show="searchTreeType == 1" class="layout-item" ref="SelectorDept" size="small" width-style="160" :sel-value="searchCommDeptData" type="1" sub-type="4" @change="_handleCascaderChange($event)"></my-cascader>
-      <my-cascader v-show="searchTreeType == 2" class="layout-item" ref="SelectorClassroom" size="small" width-style="160" :sel-value="searchCommClassRoomData" type="2" sub-type="3" @change="_handleCascaderChange($event)"></my-cascader>
+      <my-cascader v-show="searchTreeType == 2" :props="props" class="layout-item" ref="SelectorClassroom" size="small" width-style="160" :sel-value="searchCommClassRoomData" type="2" sub-type="3" @change="_handleCascaderChange($event)"></my-cascader>
       <my-input-button class="layout-item" size="small" :clearable="true" type="success" plain @click="_handleSearch"></my-input-button>
     </div>
     <el-table ref="commTableRef" :data="tableTeacherCommData"
@@ -104,6 +104,12 @@
       maxHeight: {
         default: '300',
         type: [String, Number]
+      },
+      props: {
+        default: function () {
+          return {};
+        },
+        type: Object
       }
     },
     computed: {
