@@ -131,8 +131,8 @@
                   <el-row>
                     <el-col :span="8">
                       <div>
-                        <img v-if="item.photo_simple" :src="item.photo_simple" key="contain" style="width: 50px; height: 50px" />
-                        <el-avatar v-if="!item.photo_simple" shape="square" :size="50" icon="el-icon-user-solid"></el-avatar>
+                        <img v-if="item.photo" :src="item.photo" key="contain" style="width: 50px; height: 50px" />
+                        <el-avatar v-if="!item.photo" shape="square" :size="50" icon="el-icon-user-solid"></el-avatar>
                       </div>
                       <div class="color-success font-size-12 text-left">
                         <!--<span>
