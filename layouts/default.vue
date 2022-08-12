@@ -3,7 +3,8 @@
     <div class="moon-top-menu">
       <div class="pull-left moon-top-logo moon-top-logo-shadow animated fadeInLeftBig" @click="jumpIndex">
         <span class="color-white moon-top-logo-title">
-          <img src="~static/img/system-logo.png" style="height: 50px;width: 220px;position: relative; top: -10px;left: -10px">
+          <img v-if="campusName.indexOf('大连枫叶') > -1" src="~static/img/system-logo-fy.png" style="height: 50px;width: 220px;position: relative; top: -10px;left: -10px">
+          <img v-else src="~static/img/system-logo.png" style="height: 50px;width: 220px;position: relative; top: -10px;left: -10px">
         </span>
         <!--<span v-if="campusName != ''" class="color-white moon-top-logo-title animated fadeInLeft">
           <el-avatar shape="square" :size="30" :src="campusLogo" style="margin-left: 2px"></el-avatar>

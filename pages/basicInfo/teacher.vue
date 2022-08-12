@@ -601,7 +601,9 @@ export default {
     },
     getUploadResult(uuid){
       let _self = this;
+      let num = 0;
       clearTimeout(this.loopTimer);
+      this.loopTimer = null;
       let params = {
         uuid: uuid,
         action: 1
@@ -618,15 +620,33 @@ export default {
               arrResult.push(JSON.parse(res.data.data[i].mess).join());
             }
             if (res.data.data[i].status == 1){
-              //this.loopStatus = true;
-              this.uploadResult = arrResult;
-              clearTimeout(this.loopTimer);
-              break;
-            }else {
-              this.loopTimer = setTimeout(function () {
-                _self.getUploadResult(uuid)
-              }, 10000);
+              num++;
             }
+
+            // if (res.data.data[i].status == 1){
+            //   //this.loopStatus = true;
+            //   console.log(1);
+            //   this.uploadResult = arrResult;
+            //   clearTimeout(this.loopTimer);
+            //   this.loopTimer = null;
+            //   break;
+            // }else {
+            //   this.loopTimer = setTimeout(function () {
+            //     console.log(2);
+            //     _self.getUploadResult(uuid)
+            //   }, 10000);
+            // }
+          }
+
+          if (num > 0){
+            this.uploadResult = arrResult;
+            clearTimeout(this.loopTimer);
+            this.loopTimer = null;
+            this.uploadProcess = this.$t("导入操作已完成，请查看上传结果！");
+          }else {
+            this.loopTimer = setTimeout(function () {
+              _self.getUploadResult(uuid)
+            }, 10000);
           }
         }
       });
