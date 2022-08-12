@@ -177,6 +177,7 @@ export const common = {
   phone_limit_no: '/proxy/user/phone/limit/no',//手机编号自动
   phone_limit_status: '/proxy/user/phone/limit/status',//手机批量操作
   phone_limit_import: '/proxy/user/phone/limit/import',//手机导入
+  phone_limit_export: '/proxy/user/phone/limit/export',//手机导出
   phone_limit_tips_set: '/proxy/user/phone/limit/setting/update',//手机提示信息设置
   phone_limit_tips_get: '/proxy/user/phone/limit/setting/get',//手机提示信息获取
 

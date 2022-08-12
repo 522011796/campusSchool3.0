@@ -14,6 +14,7 @@
           </el-col>
           <el-col :span="12" class="text-right">
             <div class="layout-inline text-right">
+              <el-button size="small" type="default"  icon="el-icon-download" @click="exportInfo($event)">{{$t("导出")}}</el-button>
               <el-button size="small" type="success"  icon="el-icon-upload" @click="importInfo($event)">{{$t("导入")}}</el-button>
               <my-input-button size="small" plain width-class="width: 200px" type="success" :clearable="true" :placeholder="$t('编号/手机/姓名/号段/备注')" @click="search"></my-input-button>
             </div>
@@ -341,6 +342,19 @@
       },
       importInfo(event){
         this.drawerVisible = true;
+      },
+      exportInfo(){
+        let url = "";
+        let params = {
+          page: 1,
+          num: 99999,
+          phoneOwner: this.phoneOwner,
+          status: this.status,
+          searchKey: this.searchKey
+        };
+        params = this.$qs.stringify(params);
+        url = common.phone_limit_export;
+        window.open(url+"?"+params, "_self");
       },
       handleOkChange(data) {
         this.dialogLoading = true;
