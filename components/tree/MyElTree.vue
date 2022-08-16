@@ -14,9 +14,11 @@
       <slot name="middle" ref="slotDefault"></slot>
     </div>
     <div class="tree-container custom-el-tree margin-top-5">
-      <div v-if="showCampus" class="moon-content-text-ellipsis-class" :class="selectCampusAll == true ? 'tree-el-tree-all' : 'tree-el-tree-all-no'" @click="nodeClickCampusAll">
-        {{campusName}}
-      </div>
+      <el-tooltip v-if="showCampus" effect="dark" :content="campusName" placement="top">
+        <div class="moon-content-text-ellipsis-class" :class="selectCampusAll == true ? 'tree-el-tree-all' : 'tree-el-tree-all-no'" @click="nodeClickCampusAll">
+          {{campusName}}
+        </div>
+      </el-tooltip>
 
       <el-tree
         class="filter-tree"
