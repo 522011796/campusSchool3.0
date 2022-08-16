@@ -30,7 +30,13 @@
               <div class="margin-top-10">
                 <div class="font-bold">{{$t("学生端显示名称")}}</div>
                 <div class="margin-top-5">
-                  <el-input size="mini" style="width: 100%" v-model="flowDetailData.checkinSheetName"></el-input>
+                  <el-input size="mini" style="width: 100%" :row="5" v-model="flowDetailData.checkinSheetName"></el-input>
+                </div>
+              </div>
+              <div class="margin-top-10">
+                <div class="font-bold">{{$t("报道须知")}}</div>
+                <div class="margin-top-5 custom-textarea-inner">
+                  <el-input type="textarea" :autosize="{ minRows: 10}" style="width: 100%;" :row="10" maxlength="500" show-word-limit v-model="flowDetailData.checkinSheetTips"></el-input>
                 </div>
               </div>
             </template>
@@ -78,6 +84,28 @@
                         <el-checkbox :label="index" :disabled="index === flowDetailIndex">&nbsp</el-checkbox>
                       </div>
                     </el-checkbox-group>
+                  </el-col>
+                </el-row>
+              </div>
+            </div>
+          </template>
+
+          <template v-if="flowDetailData.subType == 1">
+            <div class="margin-top-10">
+              <div>
+                <div>
+                  <span class="font-bold">{{$t("分班权限")}}</span>
+                </div>
+              </div>
+              <div class="margin-top-10">
+                <el-row>
+                  <el-col :span="20">
+                    <div style="height: 19px;line-height: 19px">
+                      <span>{{ $t("允许老师分班") }}</span>
+                    </div>
+                  </el-col>
+                  <el-col :span="4" class="text-right">
+                    <el-checkbox v-model="flowDetailData.updateClass" @change="changeUpdateClass">&nbsp;</el-checkbox>
                   </el-col>
                 </el-row>
               </div>
@@ -353,7 +381,9 @@
             hName: '',
             subType: '',
             enrollPayUrl: '',
-            checkinSheetName: ''
+            checkinSheetName: '',
+            updateClass: false,
+            checkinSheetTips: ''
           };
         },
         type: Object
@@ -389,7 +419,6 @@
     },
     methods: {
       selType(data, userId){
-        console.log(data);
         for (let i = 0; i < this.flowDetailData.users.length; i++){
           if (userId == this.flowDetailData.users[i].user_id){
             this.flowDetailData.users[i]['right_type'] = data;
@@ -397,7 +426,6 @@
         }
       },
       selRange(data, userId){
-        console.log(data);
         for (let i = 0; i < this.flowDetailData.users.length; i++){
           if (userId == this.flowDetailData.users[i].user_id){
             this.flowDetailData.users[i]['right_range'] = data;
@@ -423,7 +451,9 @@
           hName: '',
           subType: subType,
           enrollPayUrl: '',
-          checkinSheetName: ''
+          checkinSheetName: '',
+          updateClass: false,
+          checkinSheetTips: ''
         };
         this.flowData.splice(index, 0, obj);
         this.selFlowItemBlock(null, obj, index);
@@ -445,7 +475,6 @@
         return newStudentFlowAuditItemType(value, type);
       },
       selFlowItemBlock(event, data, index){
-        console.log(data);
         this.flowDetailData = data;
         this.approverUsers = data.users;
         this.flowDetailIndex = index;
@@ -472,7 +501,6 @@
       },
       handleSelUser(data, type){
         if (type == 1){
-          console.log(data);
           this.flowDetailData.users = data;
           this.flowDetailData.hName = [];
           for (let i = 0; i < data.length; i++){
@@ -489,7 +517,10 @@
       },
       handleChangeBox(data){
         this.flowData[this.flowDetailIndex].items = data;
-        console.log(this.flowData,this.flowDetailIndex);
+      },
+      changeUpdateClass(data){
+        //this.$emit("updateClass", data);
+        this.flowData[this.flowDetailIndex]['updateClass'] = data;
       },
       showPop(){
         this.flowCustonUserStatus = false;

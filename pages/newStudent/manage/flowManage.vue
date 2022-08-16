@@ -367,6 +367,7 @@
         tableStudentLoading: false,
         btnLoading: false,
         btnFlowLoading: false,
+        updateClassBool: false,
         listId: '',
         yearOptions: [],
         searchKey: '',
@@ -757,6 +758,7 @@
                 formObj['face'] = otherObj.face;
                 formObj['qrcode'] = otherObj.qrcode;
                 formObj['custom'] = otherObj.custom;
+                formObj['updateClass'] = otherObj.updateClass;
                 formObj['report'] = true;
               }else if (res.data.data[i].linkSubType == 3){
                 let otherObj = JSON.parse(res.data.data[i].otherSetting);
@@ -769,6 +771,7 @@
                 if (res.data.data[i].otherSetting && res.data.data[i].otherSetting != ''){
                   let otherObj = JSON.parse(res.data.data[i].otherSetting);
                   formObj['checkinSheetName'] = otherObj.checkinSheetName;
+                  formObj['checkinSheetTips'] = otherObj.checkinSheetTips;
                 }
               }else {
                 let otherObj = JSON.parse(res.data.data[i].otherSetting);
@@ -948,7 +951,7 @@
           }
           if (flowData[i].type == 1){
             obj['otherSetting'] = {
-              linkReport: flowData[i].reportSuccess
+              linkReport: flowData[i].reportSuccess,
             }
           }else {
             obj['otherSetting'] = {
@@ -956,11 +959,15 @@
               qrcode: flowData[i].qrcode,
               custom: flowData[i].custom,
             }
+            if (flowData[i].subType == 1){
+              obj['otherSetting']['updateClass'] = flowData[i].updateClass;
+            }
             if (flowData[i].subType == 3){
               obj['otherSetting']['enrollPayUrl'] = flowData[i].enrollPayUrl;
             }
             if (flowData[i].subType == 5){
               obj['otherSetting']['checkinSheetName'] = flowData[i].checkinSheetName;
+              obj['otherSetting']['checkinSheetTips'] = flowData[i].checkinSheetTips;
             }
           }
 

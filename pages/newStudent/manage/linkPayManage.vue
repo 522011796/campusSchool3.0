@@ -696,7 +696,8 @@ export default {
         classId: this.searchStudnetClass,
         buildingId: this.commSearchBuild,
         floor: this.commSearchFloor,
-        roomId: this.commSearchRoom
+        roomId: this.commSearchRoom,
+        searchKey: this.searchKey
       };
       this.payTips = this.$t("暂无数据");
       this.$axios.get(common.enroll_link_pay_item_user_list, {params: params}).then(res => {

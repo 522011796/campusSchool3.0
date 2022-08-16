@@ -625,6 +625,7 @@ export const common = {
   enroll_student_del: '/proxy/school/enroll-student/del', //录取分页删除
   enroll_student_barcode: '/proxy/school/enroll-student/barcode', //条形码
   enroll_student_qrcode: '/proxy/school/enroll-student/qrcode', //二维码
+  enroll_student_update_class: '/proxy/school/enroll-student/update-class', //班级数据修改
 
   enroll_checkin_page: '/proxy/school/enroll/checkin/page', //报到数据分页
   enroll_checkin_revoke: '/proxy/school/enroll/checkin/revoke', //报到数据撤销
@@ -633,6 +634,7 @@ export const common = {
   enroll_checkin_pay_list_by_user: '/proxy/school/enroll/checkin/payment-list-by-user', //报到数据已报到
   enroll_checkin_export: '/proxy/school/enroll/checkin/export', //报到数据导出
   enroll_checkin_record_page: '/proxy/school/enroll/checkin/record/page', //报到记录分页
+  enroll_checkin_student_detail2: '/proxy/school/enroll-student/detail', //报到数据详细new
 
   enroll_arrive_page: '/proxy/school/enroll/arrive/page', //接站数据分页
   enroll_arrive_export: '/proxy/school/enroll/arrive/export', //接站数据导出

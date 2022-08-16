@@ -605,8 +605,8 @@
                     </el-form-item>
                   </el-col>
                   <el-col :span="12">
-                    <el-form-item :label="$t('学院/专业/班级')" prop="college">
-                      <my-cascader :props="{ checkStrictly: true }" :disabled="form.id != '' && oprType == 'detail'" ref="SelectorCollege" width-style="220" :sel-value="form.college" type="1" sub-type="4" @change="handleCascaderChange($event, 1)"></my-cascader>
+                    <el-form-item :label="$t('学院/专业/(班级)')" prop="college">
+                      <my-cascader :disabled="!form.updateClass" ref="SelectorCollege" width-style="220" :sel-value="form.college" type="1" sub-type="4" @change="handleCascaderChange($event, 1)"></my-cascader>
                     </el-form-item>
                   </el-col>
                   <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '学制'">
@@ -715,6 +715,7 @@
 
           <el-button v-if="!form.checkStatus" :loading="btnLoading" size="mini" type="success" @click="statusOkInfo(form, 1)">{{$t("已到")}}</el-button>
           <el-button v-if="form.checkStatus != null && form.checkStatus" :loading="btnLoading" size="mini" type="danger" @click="statusCancelInfo(form, -1)">{{$t("撤销")}}</el-button>
+          <el-button v-if="form.updateClass" :loading="btnUpdateLoading" size="mini" type="warning" @click="updateInfo(form, -2)">{{$t("修改")}}</el-button>
         </div>
       </div>
     </drawer-layout-right>
@@ -728,7 +729,7 @@ import {
   cityInfo,
   educationInfo,
   MessageError,
-  MessageSuccess,
+  MessageSuccess, MessageWarning,
   nationalityInfo,
   nationInfo, provinceArrayInfo,
   provinceInfo
@@ -766,6 +767,7 @@ export default {
       visibleConfim: false,
       footerHidden: false,
       btnLoading: false,
+      btnUpdateLoading: false,
       searchCascader: [],
       yearOptions: [],
       bathOptions: [],
@@ -802,6 +804,7 @@ export default {
       searchInterface: '',
       searchPayStatus: '',
       oprType: '',
+      userId: '',
       form: {
         id: '',
         year: '',
@@ -847,6 +850,7 @@ export default {
         retire: '',
         hard: '',
         photo_simple: '',
+        updateClass: false
       }
     }
   },
@@ -985,8 +989,13 @@ export default {
       this.init();
       this.initCountStatic();
     },
-    handleCascaderChange(data){
+    handleCascaderChange(data, type){
       this.searchCascader = data;
+      switch (type) {
+        case 1:
+          this.form.college = data;
+          break;
+      }
     },
     handleChangeSelect(data){
       this.searchProcess = data;
@@ -1063,10 +1072,35 @@ export default {
         this.btnLoading = false;
       });
     },
+    updateInfo(){
+      if (this.form.college.length < 4){
+        MessageWarning(this.$t("请设置学院/专业(班级)信息！"));
+        return;
+      }
+
+      let params = {
+        userId: this.userId,
+        classId: this.form.college[3],
+      };
+      let url = common.enroll_student_update_class;
+      params = this.$qs.stringify(params);
+      this.btnUpdateLoading = true;
+      this.$axios.post(url, params).then(res => {
+        if (res.data.code == 200){
+          this.init();
+          this.dialogDetail = false;
+          MessageSuccess(res.data.desc);
+        }else {
+          MessageError(res.data.desc);
+        }
+        this.btnUpdateLoading = false;
+      });
+    },
     async detailInfo(item, type){
       let params = {
         userId: item.user_id
       };
+      this.userId = item.user_id;
       this.oprType = 'detail';
       await this.$axios.get(common.enroll_checkin_student_detail, {params: params}).then(res => {
         if (res.data.data){
@@ -1117,6 +1151,7 @@ export default {
             retire: res.data.data.soldier,
             hard: res.data.data.difficulty_type,
             photo_simple: res.data.data.photo_simple,
+            updateClass: res.data.data.otherSetting.updateClass,
           };
         }
         if (!res.data.data.class_id){
