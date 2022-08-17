@@ -619,6 +619,7 @@ export const common = {
   enroll_admin_get: '/proxy/school/enroll-admin/get', //录取管理员获取
   enroll_student_export: '/proxy/school/enroll-student/export', //录取导出
   enroll_student_import: '/proxy/school/enroll-student/import', //录取导入
+  enroll_student_import_result: '/proxy/school/enroll-student/import/result', //录取导入结果
   enroll_student_save: '/proxy/school/enroll-student/save', //录取保存
   enroll_student_template_download: '/proxy/school/enroll-student/template/download', //录取模版下载
   enroll_student_detail: '/proxy/school/enroll-student/detail', //录取分页

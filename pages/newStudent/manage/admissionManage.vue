@@ -1301,20 +1301,55 @@
         });
       },
       uploadSuccess(res, file){
-        this.uploadProcess = res.desc;
+        //this.uploadProcess = res.desc;
 
         if (res.code == 200){
-          this.uploadResult = res.data ? res.data : [res.desc];;
+          this.uploadProcess = res.desc;
+          this.uploadResult = [res.desc];
+          this.loopUploadResult(res.data);
         }else {
-          if (res.data){
-            this.uploadResult = res.data;
-          }else {
-            this.uploadResult = [res.desc];
-          }
+          this.uploadProcess = res.desc;
+          this.resultList = [];
         }
       },
       uploadError(res, file){
         this.uploadProcess = res.data.data;
+      },
+      loopUploadResult(uuid){
+        this.getUploadResult(uuid);
+      },
+      getUploadResult(uuid) {
+        let _self = this;
+        let num = 0;
+        clearTimeout(this.loopTimer);
+        let params = {
+          taskId: uuid
+        };
+        this.$axios.get(common.enroll_student_import_result, {params: params}).then(res => {
+          let result = "";
+          if (res.data.code == 200) {
+            let arrResult = [];
+            if (res.data.data && res.data.data.length > 0) {
+              arrResult = res.data.data;
+              if (arrResult[res.data.data.length - 1] == '导入结束'){
+                num++;
+              }
+              if (num > 0){
+                this.uploadResult = arrResult;
+                clearTimeout(this.loopTimer);
+                this.loopTimer = null;
+                this.uploadProcess = this.$t("导入操作已完成，请查看上传结果！");
+              }else {
+                this.loopTimer = setTimeout(function () {
+                  _self.getUploadResult(uuid)
+                }, 10000);
+              }
+            } else {
+              this.uploadResult = [this.$t("上传停止！")];
+              clearTimeout(this.loopTimer);
+            }
+          }
+        });
       },
       handleCancelChange(data) {
         this.visibleConfim = false;
