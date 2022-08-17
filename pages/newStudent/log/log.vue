@@ -160,7 +160,7 @@ export default {
             arr.push({
               label: res.data.data[i].name,
               id: res.data.data[i].id,
-              value: res.data.data[i].id,
+              value: res.data.data[i].action,
             });
           }
           this.typeList = arr;

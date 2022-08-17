@@ -34,7 +34,7 @@
                 </div>
               </div>
               <div class="margin-top-10">
-                <div class="font-bold">{{$t("报道须知")}}</div>
+                <div class="font-bold">{{$t("报到须知")}}</div>
                 <div class="margin-top-5 custom-textarea-inner">
                   <el-input type="textarea" :autosize="{ minRows: 10}" style="width: 100%;" :row="10" maxlength="500" show-word-limit v-model="flowDetailData.checkinSheetTips"></el-input>
                 </div>
