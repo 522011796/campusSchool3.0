@@ -700,6 +700,11 @@
       expandInfo(){
         let url = "";
         let params = {
+          processId: this.processId,
+          collegeId: this.searchCollege,
+          majorId: this.searchMajor,
+          grade: this.searchGrade,
+          classId: this.searchClass,
           status: this.searchStatus,
           searchKey: this.searchKey
         };
