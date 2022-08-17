@@ -1340,8 +1340,9 @@
                 this.loopTimer = null;
                 this.uploadProcess = this.$t("导入操作已完成，请查看上传结果！");
               }else {
+                this.uploadResult = arrResult;
                 this.loopTimer = setTimeout(function () {
-                  _self.getUploadResult(uuid)
+                  _self.getUploadResult(uuid);
                 }, 10000);
               }
             } else {
