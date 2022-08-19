@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="智慧迎新--选寝规则">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/admissionManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/admissionManage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,14 +154,7 @@
       <workItem from="1659336764483" duration="63000" />
       <workItem from="1659419269119" duration="13714000" />
       <workItem from="1660203543783" duration="4320000" />
-      <workItem from="1660268073733" duration="23506000" />
-    </task>
-    <task id="LOCAL-00109" summary="智慧迎新--选寝规则">
-      <created>1657685916978</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1657685916978</updated>
+      <workItem from="1660268073733" duration="26526000" />
     </task>
     <task id="LOCAL-00110" summary="智慧迎新--选寝规则">
       <created>1657686122582</created>
@@ -500,7 +492,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660727687820</updated>
     </task>
-    <option name="localTasksCounter" value="158" />
+    <task id="LOCAL-00158" summary="智慧迎新--选寝规则">
+      <created>1660728062278</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1660728062279</updated>
+    </task>
+    <option name="localTasksCounter" value="159" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
