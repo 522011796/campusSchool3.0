@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="智慧迎新--选寝规则">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,14 +155,7 @@
       <workItem from="1659336764483" duration="63000" />
       <workItem from="1659419269119" duration="13714000" />
       <workItem from="1660203543783" duration="4320000" />
-      <workItem from="1660268073733" duration="26526000" />
-    </task>
-    <task id="LOCAL-00110" summary="智慧迎新--选寝规则">
-      <created>1657686122582</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1657686122582</updated>
+      <workItem from="1660268073733" duration="26729000" />
     </task>
     <task id="LOCAL-00111" summary="智慧迎新--选寝规则">
       <created>1657695400077</created>
@@ -499,7 +493,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660728062279</updated>
     </task>
-    <option name="localTasksCounter" value="159" />
+    <task id="LOCAL-00159" summary="智慧迎新--选寝规则">
+      <created>1660901897926</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1660901897926</updated>
+    </task>
+    <option name="localTasksCounter" value="160" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
