@@ -99,6 +99,33 @@
                 </div>
               </div>
             </el-col>
+            <el-col :span="8">
+              <el-card :body-style="{padding: '0px'}" style="position: relative">
+                <div slot="header" class="moon-clearfix padding-tb-10 padding-lr-10">
+                  <span class="color-grand" style="font-weight: bold">
+                    <i class="fa fa-television"></i>
+                    {{$t("智慧迎新专用")}}
+                  </span>
+                  <div class="pull-right">
+                    <i class="fa fa-plus-circle color-grand margin-right-5" style="font-size: 16px" @click="addInfo(4)"></i>
+                    <i class="fa fa-eye color-warning" style="font-size: 16px" @click="showView('/img/screen-student-bg.jpeg')"></i>
+                  </div>
+                </div>
+                <div class="padding-tb-5 padding-lr-5">
+                  <div class="screen-item">
+                    <img src="~static/img/screen-student-bg.jpeg" class="img-class">
+                  </div>
+                </div>
+              </el-card>
+              <div class="text-center margin-top-5">
+                <div class="color-danger font-size-12">
+                  <span>{{$t("1920*1080")}}</span>
+                </div>
+                <div class="color-muted">
+                  <span>{{$t("智慧迎新模版")}}</span>
+                </div>
+              </div>
+            </el-col>
           </el-row>
         </div>
       </div>
@@ -110,8 +137,11 @@
           <el-form-item :label="$t('大屏名称')" prop="name">
             <el-input v-model="formModal.name" class="width-260"></el-input>
           </el-form-item>
-          <el-form-item :label="$t('数据集')" prop="dataSet">
-            <my-select :sel-value="formModal.dataSet" :options="dataSetOptions" width-style="260" @change="handleSelect($event, 1)"></my-select>
+          <el-form-item :label="$t('学校名称')" prop="schoolName" v-if="showDialogName == true">
+            <el-input v-model="formModal.schoolName" class="width-260"></el-input>
+          </el-form-item>
+          <el-form-item :label="$t('学年')" prop="year" v-if="showDialogYear == true">
+            <my-select :sel-value="formModal.year" :options="dataYearOptions" width-style="260" @change="handleSelect($event, 3)"></my-select>
           </el-form-item>
           <el-form-item :label="$t('分组')" prop="group">
             <my-select :sel-value="formModal.group" :options="groupOptions" width-style="260" @change="handleSelect($event, 2)"></my-select>
@@ -226,11 +256,14 @@
         dialogLoading: false,
         visibleConfim: false,
         imgVisibleConfim: false,
+        showDialogName: false,
+        showDialogYear: false,
         clearTime: '',
         action: '',
         subTitle: '',
         viewImage: '',
         dataSetOptions: [],
+        dataYearOptions: [],
         groupOptions: [],
         form: {
           id: '',
@@ -244,13 +277,16 @@
           group: '',
           time: '',
           content: '',
-          userUnit: ''
+          userUnit: '',
+          year: '',
+          schoolName: ''
         }
       }
     },
     created() {
       this.init();
       this.initStudent();
+      this.initYear();
     },
     methods: {
       init(){
@@ -315,6 +351,26 @@
           }
         });
       },
+      initYear(){
+        let year = [];
+        let params = {
+          page: 1,
+          num: 9999
+        };
+        this.$axios.get(common.enroll_page, {params: params}).then(res => {
+          if (res.data.data){
+            let year = [];
+            for (let i = 0; i < res.data.data.list.length; i++){
+              year.push({
+                label: res.data.data.list[i].year,
+                text: res.data.data.list[i].year,
+                value: res.data.data.list[i].year,
+              });
+            }
+            this.dataYearOptions = year;
+          }
+        });
+      },
       setInfo(){
         this.drawerVisible = true;
       },
@@ -323,6 +379,8 @@
         this.imgVisibleConfim = true;
       },
       addInfo(type){
+        this.showDialogName = false;
+        this.showDialogYear = false;
         if (type == 1){
           this.formModal.userUnit = 1;
           this.formModal.templateId = 7;
@@ -341,6 +399,11 @@
           this.formModal.userUnit = 6;
           this.formModal.templateId = 6;
           this.initBuild();
+        }else if (type == 4){
+          this.formModal.userUnit = 6;
+          this.formModal.templateId = 8;
+          this.showDialogName = true;
+          this.showDialogYear = true;
         }
         this.numStudent = 999;
         this.initStudent();
@@ -379,6 +442,10 @@
             if (this.formModal.templateId == 6){
               params['buildId'] = this.formModal.dataSet;
               params['data'] = this.formModal.dataSet;
+            }
+            if (this.formModal.templateId == 8){
+              params['titleName'] = this.formModal.schoolName;
+              params['enrollYear'] = this.formModal.year;
             }
             params = this.$qs.stringify(params);
             this.$axios.post(common.screen_add, params, {loading: false}).then(res => {
@@ -460,6 +527,8 @@
           this.formModal.dataSet = data;
         }else if (type == 2){
           this.formModal.group = data;
+        }else if (type == 3){
+          this.formModal.year = data;
         }
       },
       closeDialog(event){

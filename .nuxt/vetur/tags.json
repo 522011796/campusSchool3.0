@@ -143,6 +143,18 @@
   "LazyTableBarChart": {
     "description": "Auto imported from components/charts/TableBarChart.vue"
   },
+  "MyNewStudentFlow": {
+    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
+  },
+  "LazyMyNewStudentFlow": {
+    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
+  },
+  "MyNewStudentFlowType": {
+    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
+  },
+  "LazyMyNewStudentFlowType": {
+    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
+  },
   "MyFormAuditType": {
     "description": "Auto imported from components/form/MyFormAuditType.vue"
   },
@@ -245,42 +257,6 @@
   "LazyMyUserType": {
     "description": "Auto imported from components/utils/MyUserType.vue"
   },
-  "MyNewStudentFlow": {
-    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
-  },
-  "LazyMyNewStudentFlow": {
-    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
-  },
-  "MyNewStudentFlowType": {
-    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
-  },
-  "LazyMyNewStudentFlowType": {
-    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
-  },
-  "AuditStatusButton": {
-    "description": "Auto imported from components/utils/button/AuditStatusButton.vue"
-  },
-  "LazyAuditStatusButton": {
-    "description": "Auto imported from components/utils/button/AuditStatusButton.vue"
-  },
-  "DormAttendStatusButtonGroup": {
-    "description": "Auto imported from components/utils/button/DormAttendStatusButtonGroup.vue"
-  },
-  "LazyDormAttendStatusButtonGroup": {
-    "description": "Auto imported from components/utils/button/DormAttendStatusButtonGroup.vue"
-  },
-  "TabGroupButton": {
-    "description": "Auto imported from components/utils/button/TabGroupButton.vue"
-  },
-  "LazyTabGroupButton": {
-    "description": "Auto imported from components/utils/button/TabGroupButton.vue"
-  },
-  "TimeoutButton": {
-    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
-  },
-  "LazyTimeoutButton": {
-    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
-  },
   "AuditButton": {
     "description": "Auto imported from components/utils/auditDetail/AuditButton.vue"
   },
@@ -334,6 +310,30 @@
   },
   "LazyTerleaveDetail": {
     "description": "Auto imported from components/utils/auditDetail/TerleaveDetail.vue"
+  },
+  "AuditStatusButton": {
+    "description": "Auto imported from components/utils/button/AuditStatusButton.vue"
+  },
+  "LazyAuditStatusButton": {
+    "description": "Auto imported from components/utils/button/AuditStatusButton.vue"
+  },
+  "DormAttendStatusButtonGroup": {
+    "description": "Auto imported from components/utils/button/DormAttendStatusButtonGroup.vue"
+  },
+  "LazyDormAttendStatusButtonGroup": {
+    "description": "Auto imported from components/utils/button/DormAttendStatusButtonGroup.vue"
+  },
+  "TabGroupButton": {
+    "description": "Auto imported from components/utils/button/TabGroupButton.vue"
+  },
+  "LazyTabGroupButton": {
+    "description": "Auto imported from components/utils/button/TabGroupButton.vue"
+  },
+  "TimeoutButton": {
+    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
+  },
+  "LazyTimeoutButton": {
+    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
   },
   "MyHeadImg": {
     "description": "Auto imported from components/utils/common/MyHeadImg.vue"

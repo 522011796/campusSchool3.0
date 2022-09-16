@@ -260,6 +260,26 @@
           }
         });
       },
+      initYear(){
+        let year = [];
+        let params = {
+          page: 1,
+          num: 9999
+        };
+        this.$axios.get(common.enroll_page, {params: params}).then(res => {
+          if (res.data.data){
+            let year = [];
+            for (let i = 0; i < res.data.data.list.length; i++){
+              year.push({
+                label: res.data.data.list[i].year,
+                text: res.data.data.list[i].year,
+                value: res.data.data.list[i].year,
+              });
+            }
+            this.dataSetOptions = year;
+          }
+        });
+      },
       addInfo($event, row, type){
         this.formModal = {
           id: row.id,
@@ -292,6 +312,9 @@
           }];
           this.formModal.dataSet = row.bulid_id;
           this.initBuild();
+        }else if (row.template_id == 8){
+          this.formModal.dataSet = row.enroll_year;
+          this.initYear();
         }
         this.initStudent();
         this.modalVisible = true;
