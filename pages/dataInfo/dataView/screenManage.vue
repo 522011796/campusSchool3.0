@@ -143,6 +143,9 @@
           <el-form-item :label="$t('学年')" prop="year" v-if="showDialogYear == true">
             <my-select :sel-value="formModal.year" :options="dataYearOptions" width-style="260" @change="handleSelect($event, 3)"></my-select>
           </el-form-item>
+          <el-form-item :label="$t('所在省份')" prop="year" v-if="showDialogYear == true">
+            <my-select :sel-value="formModal.province" :options="dataProvinceOptions" width-style="260" @change="handleSelect($event, 4)"></my-select>
+          </el-form-item>
           <el-form-item :label="$t('分组')" prop="group">
             <my-select :sel-value="formModal.group" :options="groupOptions" width-style="260" @change="handleSelect($event, 2)"></my-select>
           </el-form-item>
@@ -264,6 +267,7 @@
         viewImage: '',
         dataSetOptions: [],
         dataYearOptions: [],
+        dataProvinceOptions:[],
         groupOptions: [],
         form: {
           id: '',
@@ -279,7 +283,8 @@
           content: '',
           userUnit: '',
           year: '',
-          schoolName: ''
+          schoolName: '',
+          province: ''
         }
       }
     },
@@ -287,6 +292,7 @@
       this.init();
       this.initStudent();
       this.initYear();
+      this.initProvince();
     },
     methods: {
       init(){
@@ -371,6 +377,20 @@
           }
         });
       },
+      initProvince(){
+        let array = [];
+
+        this.$axios.get('/json/province.json').then(res => {
+          for (let i = 0; i < res.data.length; i++){
+            array.push({
+              label: res.data[i].label,
+              value: res.data[i].label,
+            });
+          }
+
+          this.dataProvinceOptions = array;
+        });
+      },
       setInfo(){
         this.drawerVisible = true;
       },
@@ -446,6 +466,7 @@
             if (this.formModal.templateId == 8){
               params['titleName'] = this.formModal.schoolName;
               params['enrollYear'] = this.formModal.year;
+              params['enrollProvince'] = this.formModal.province;
             }
             params = this.$qs.stringify(params);
             this.$axios.post(common.screen_add, params, {loading: false}).then(res => {
@@ -529,6 +550,8 @@
           this.formModal.group = data;
         }else if (type == 3){
           this.formModal.year = data;
+        }else if (type == 4){
+          this.formModal.province = data;
         }
       },
       closeDialog(event){
