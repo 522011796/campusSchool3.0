@@ -146,6 +146,9 @@
           <el-form-item :label="$t('所在省份')" prop="year" v-if="showDialogYear == true">
             <my-select :sel-value="formModal.province" :options="dataProvinceOptions" width-style="260" @change="handleSelect($event, 4)"></my-select>
           </el-form-item>
+          <el-form-item :label="$t('数据集')" prop="year" v-if="showDialogYear == true">
+            <my-select :sel-value="formModal.dataSet" :options="dataProcessOptions" width-style="260" @change="handleSelect($event, 1)"></my-select>
+          </el-form-item>
           <el-form-item :label="$t('分组')" prop="group">
             <my-select :sel-value="formModal.group" :options="groupOptions" width-style="260" @change="handleSelect($event, 2)"></my-select>
           </el-form-item>
@@ -268,6 +271,7 @@
         dataSetOptions: [],
         dataYearOptions: [],
         dataProvinceOptions:[],
+        dataProcessOptions: [],
         groupOptions: [],
         form: {
           id: '',
@@ -293,6 +297,7 @@
       this.initStudent();
       this.initYear();
       this.initProvince();
+      this.initProcess();
     },
     methods: {
       init(){
@@ -391,6 +396,15 @@
           this.dataProvinceOptions = array;
         });
       },
+      async initProcess(){
+        await this.getLinkProcessInfo();
+        let data = this.dataProcessServer;
+        let array = [];
+        if (data && data.length > 0){
+          array = data;
+        }
+        this.dataProcessOptions = array;
+      },
       setInfo(){
         this.drawerVisible = true;
       },
@@ -467,6 +481,7 @@
               params['titleName'] = this.formModal.schoolName;
               params['enrollYear'] = this.formModal.year;
               params['enrollProvince'] = this.formModal.province;
+              params['enrollProcessId'] = this.formModal.dataSet;
             }
             params = this.$qs.stringify(params);
             this.$axios.post(common.screen_add, params, {loading: false}).then(res => {

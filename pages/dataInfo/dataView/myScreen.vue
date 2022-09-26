@@ -280,6 +280,15 @@
           }
         });
       },
+      async initProcess(){
+        await this.getLinkProcessInfo();
+        let data = this.dataProcessServer;
+        let array = [];
+        if (data && data.length > 0){
+          array = data;
+        }
+        this.dataSetOptions = array;
+      },
       addInfo($event, row, type){
         this.formModal = {
           id: row.id,
@@ -313,8 +322,8 @@
           this.formModal.dataSet = row.bulid_id;
           this.initBuild();
         }else if (row.template_id == 8){
-          this.formModal.dataSet = row.enroll_year;
-          this.initYear();
+          this.formModal.dataSet = row.enroll_process_id;
+          this.initProcess();
         }
         this.initStudent();
         this.modalVisible = true;
@@ -408,6 +417,10 @@
               };
               if (this.formModal.templateId == 6){
                 params['buildId'] = this.formModal.dataSet;
+                params['data'] = this.formModal.dataSet;
+              }
+              if (this.formModal.templateId == 8){
+                params['enrollProcessId'] = this.formModal.dataSet;
                 params['data'] = this.formModal.dataSet;
               }
             }else if (this.formModal. type == 2){
