@@ -202,7 +202,7 @@
       init(){
         let params = {
           page: this.page,
-          num: this.num,
+          num: 1000,
           screenName: this.searchKey,
           expire: this.expire
         };
