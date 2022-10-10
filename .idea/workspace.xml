@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="智慧迎新--大屏相关">
+      <change afterPath="$PROJECT_DIR$/components/utils/common/MyHeadListImg.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/dataInfo/dataView/myScreen.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dataInfo/dataView/myScreen.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/RepuDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/RepuDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/upload/UploadSquare.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/upload/UploadSquare.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/webAuth.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/webAuth.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/rp/rpApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/rp/rpApply.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +38,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/json" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/utils/common" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -44,11 +51,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/components/utils/common" />
       <recent name="$PROJECT_DIR$/static/json" />
       <recent name="$PROJECT_DIR$/static/img" />
       <recent name="$PROJECT_DIR$/components/utils/treeAndList" />
       <recent name="$PROJECT_DIR$/pages/appletInfo/app" />
-      <recent name="$PROJECT_DIR$/utils/validater" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/pages/serviceArea/app" />
@@ -158,14 +165,11 @@
       <workItem from="1660268073733" duration="32509000" />
       <workItem from="1663117928173" duration="3842000" />
       <workItem from="1663204028180" duration="17111000" />
-      <workItem from="1664161021746" duration="4829000" />
-    </task>
-    <task id="LOCAL-00116" summary="智慧迎新--选寝规则">
-      <created>1657778570720</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
-      <option name="project" value="LOCAL" />
-      <updated>1657778570720</updated>
+      <workItem from="1664161021746" duration="6101000" />
+      <workItem from="1665306351900" duration="33000" />
+      <workItem from="1665307027955" duration="20000" />
+      <workItem from="1665308321543" duration="24000" />
+      <workItem from="1665385548617" duration="4642000" />
     </task>
     <task id="LOCAL-00117" summary="智慧迎新--选寝规则">
       <created>1657790452376</created>
@@ -503,7 +507,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664171575586</updated>
     </task>
-    <option name="localTasksCounter" value="165" />
+    <task id="LOCAL-00165" summary="智慧迎新--大屏相关">
+      <created>1664176457774</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1664176457774</updated>
+    </task>
+    <option name="localTasksCounter" value="166" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

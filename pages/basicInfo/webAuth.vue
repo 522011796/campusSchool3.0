@@ -54,8 +54,8 @@
         </el-table>
 
         <div class="layout-right-footer text-right">
-          <!--<my-pagination :total="total" :page-size="num" @currentPage="currentPage" @sizeChange="sizeChange" class="layout-pagination"></my-pagination>-->
-          <span class="margin-right-10">{{$t("共")}} {{tableData.length}} {{$t("条")}}</span>
+          <my-pagination :total="total" :page-size="num" @currentPage="currentPage" @sizeChange="sizeChange" class="layout-pagination"></my-pagination>
+<!--          <span class="margin-right-10">{{$t("共")}} {{tableData.length}} {{$t("条")}}</span>-->
         </div>
       </div>
     </layout-tb>
@@ -592,6 +592,19 @@
       currentStudentPage(event){
         this.pageStudent = event;
         this.initTeacher(this.form.id);
+      },
+      sizeChange(event){
+        this.page = 1;
+        this.num = event;
+        this.init();
+      },
+      currentPage(event){
+        this.page = event;
+        this.init();
+      },
+      jumpPage(data){
+        this.page = data;
+        this.init();
       }
     }
   }

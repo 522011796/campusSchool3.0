@@ -334,14 +334,16 @@
             <div><span class="color-danger font-size-12">{{errorStudent}}</span></div>
           </el-form-item>
           <el-form-item :label="$t('附件')">
-            <div v-if="form.file != ''" class="pull-left" style="position: relative">
-              <i class="fa fa-close" style="position: absolute; right: -5px; top: -5px;" @click="deleteImg"></i>
-              <img :src="form.file" class="rp-img"/>
+            <div v-if="form.files.length > 0" v-for="(item, index) in form.files" :key="index" class="pull-left" style="position: relative;margin-right:10px;top: 10px">
+              <i class="fa fa-close" style="position: absolute; right: -5px; top: -5px;font-size: 12px" @click="deleteImg($event, index)"></i>
+              <i v-if="item.indexOf('.pdf') > -1" class="fa fa-file-pdf-o" style="height: 25px;width: 25px;font-size: 25px;position: relative;top: -2px;"></i>
+              <i v-else-if="item.indexOf('.doc') > -1 || item.indexOf('.docx') > -1" class="fa fa-wordpress" style="height: 25px;width: 25px;font-size: 25px;position: relative;top: -2px;"></i>
+              <img v-else :src="item" class="rp-img"/>
             </div>
-            <upload-square class="pull-left margin-left-10 margin-top-5" :limit="9999" :action="uploadFileAction" max-size="8" :data="{path: 'reFile'}" accept=".png,.jpg,.jpeg" @success="uploadSuccess">
+            <upload-square class="pull-left margin-left-10 margin-top-5" :multiple="true" :limit="9999" :action="uploadFileAction" max-size="20" :data="{path: 'reFile'}" accept=".png,.jpg,.jpeg,.pdf,.doc,.docx" @success="uploadSuccess">
               <el-button size="small" type="primary">{{$t("点击上传")}}</el-button>
             </upload-square>
-            <span class="pull-left color-danger font-size-12 margin-left-10 margin-top-5">{{$t("文件不超过8M")}}</span>
+            <span class="pull-left color-danger font-size-12 margin-left-10 margin-top-5">{{$t("文件不超过20M")}}</span>
             <div class="moon-clearfix"></div>
           </el-form-item>
           <el-form-item :label="$t('说明')">
@@ -442,6 +444,7 @@
           type: '',
           level: '',
           file: '',
+          files: [],
           des: '',
           userId:[]
         }
@@ -716,6 +719,7 @@
           type: '',
           level: '',
           file: '',
+          files: [],
           des: '',
           userId:[]
         };
@@ -747,7 +751,7 @@
             }
             this.dialogLoading = true;
             let params = {
-              applyFile: this.form.file,
+              applyFile: this.form.files.join(),
               applyTypeCode: "PunishmentApply",
               des: this.form.des,
               str1: this.form.type,
@@ -771,8 +775,11 @@
         });
       },
       uploadSuccess(res, file){
+        console.log(res);
         if (res.code == 200){
-          this.form.file = res.data.url;
+          //this.form.file = res.data.url;
+          this.form.files.push(res.data.url);
+          console.log(this.form.files);
         }else {
 
         }
@@ -780,8 +787,9 @@
       uploadError(res, file){
         MessageError(res.data.desc);
       },
-      deleteImg(){
-        this.form.file = "";
+      deleteImg(event, index){
+        //this.form.file = "";
+        this.form.files.splice(index, 1);
       },
       handleOk(data,textarea){
         let params = {
@@ -863,8 +871,8 @@
     font-weight: bold;
   }
   .rp-img{
-    height: 50px;
-    width: 50px;
+    height: 25px;
+    width: 25px;
     border: 1px solid #dddddd;
   }
   .rp-fotter-page{

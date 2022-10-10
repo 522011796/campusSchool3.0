@@ -9,6 +9,7 @@
       :auto-upload="true"
       :show-file-list="false"
       :limit="limit"
+      :multiple = "multiple"
       :on-success="handleAvatarSuccess"
       :on-error="handleAvatarError"
       :before-upload="beforeAvatarUpload">
@@ -35,6 +36,10 @@
       accept: {
         default: '',
         type: String
+      },
+      multiple: {
+        default: false,
+        type: Boolean
       },
       data: {
         default: function () {
@@ -63,11 +68,15 @@
     },
     methods: {
       handleAvatarSuccess(res, file, index){
-        this.$refs.uploadRef.clearFiles();
+        if (this.multiple == false) {
+          this.$refs.uploadRef.clearFiles();
+        }
         this.$emit('success', res, file, index);
       },
       handleAvatarError(res, file){
-        this.$refs.uploadRef.clearFiles();
+        if (this.multiple == false) {
+          this.$refs.uploadRef.clearFiles();
+        }
         this.$emit('error', res, file);
       },
       beforeAvatarUpload(file){

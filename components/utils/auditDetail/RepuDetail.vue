@@ -66,10 +66,16 @@
           <el-col :span="8" class="ellipsis-tag" v-if="value.apply_file && value.apply_file != ''">
             <div>
               <div>
-                <span class="title-class color-disabeld" style="position: relative; top: -15px;">{{$t("附件")}}:</span>
+                <span v-if="value.apply_file.split(',').length > 0" class="title-class color-disabeld" style="position: relative; top: -5px;">{{$t("附件")}}:</span>
+                <span v-else class="title-class color-disabeld" style="position: relative; top: -15px;">{{$t("附件")}}:</span>
                 <span>
                   <!--<el-image style="width: 20px; height: 20px" :src="value.apply_file"></el-image>-->
-                  <my-head-img :head-img="value.apply_file" style="display: inline-block"></my-head-img>
+                  <div style="display: inline-block;margin-right: 2px" v-if="value.apply_file.split(',').length > 0" v-for="(item, index) in value.apply_file.split(',')" :key="index">
+                    <a :href="item" target="_blank" v-if="item.indexOf('.pdf') > -1" class="fa fa-file-pdf-o color-muted" style="height: 20px;width: 20px;font-size: 20px;position: relative;top: -2px;"></a>
+                    <a :href="item" target="_blank" v-else-if="item.indexOf('.doc') > -1 || item.indexOf('.docx') > -1" class="fa fa-wordpress color-muted" style="height: 20px;width: 20px;font-size: 20px;position: relative;top: -2px;"></a>
+                    <my-head-list-img v-else :head-img="item"></my-head-list-img>
+                  </div>
+                  <my-head-img v-else :head-img="value.apply_file" style="display: inline-block;"></my-head-img>
                 </span>
               </div>
             </div>
@@ -97,9 +103,10 @@
 <script>
   import {oneOf} from '../../../utils/utils';
   import MyHeadImg from "../common/MyHeadImg";
+  import MyHeadListImg from "~/components/utils/common/MyHeadListImg";
   export default {
     name: 'rePuDetail',
-    components: {MyHeadImg},
+    components: {MyHeadListImg, MyHeadImg},
     props: {
       selValue: {
         default: function () {
