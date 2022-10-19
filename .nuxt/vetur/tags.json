@@ -377,6 +377,12 @@
   "LazyMyNormalDialog": {
     "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
   },
+  "MyCascader": {
+    "description": "Auto imported from components/utils/select/MyCascader.vue"
+  },
+  "LazyMyCascader": {
+    "description": "Auto imported from components/utils/select/MyCascader.vue"
+  },
   "MyAdminAtten": {
     "description": "Auto imported from components/utils/status/MyAdminAtten.vue"
   },
@@ -454,12 +460,6 @@
   },
   "LazyMyFlowType": {
     "description": "Auto imported from components/utils/status/MyFlowType.vue"
-  },
-  "MyCascader": {
-    "description": "Auto imported from components/utils/select/MyCascader.vue"
-  },
-  "LazyMyCascader": {
-    "description": "Auto imported from components/utils/select/MyCascader.vue"
   },
   "ClassroomTreeAndList": {
     "description": "Auto imported from components/utils/treeAndList/ClassroomTreeAndList.vue"

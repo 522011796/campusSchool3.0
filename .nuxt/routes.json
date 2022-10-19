@@ -70,6 +70,13 @@
     "_name": "_bf8a939a"
   },
   {
+    "name": "basicInfo-deptInfo",
+    "path": "/basicInfo/deptInfo",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/basicInfo/deptInfo.vue",
+    "chunkName": "pages/basicInfo/deptInfo",
+    "_name": "_2bfac8a7"
+  },
+  {
     "name": "basicInfo-deviceArea",
     "path": "/basicInfo/deviceArea",
     "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/basicInfo/deviceArea.vue",

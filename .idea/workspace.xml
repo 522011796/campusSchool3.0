@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="智慧迎新--大屏相关">
-      <change afterPath="$PROJECT_DIR$/components/utils/common/MyHeadListImg.vue" afterDir="false" />
+    <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="奖惩管理---pdf,word 支持">
+      <change afterPath="$PROJECT_DIR$/pages/basicInfo/deptInfo.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/validater/deptInfoValidater.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/RepuDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/RepuDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/upload/UploadSquare.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/upload/UploadSquare.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/common.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/treeAndList/TeacherTreeAndList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/treeAndList/TeacherTreeAndList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/basicInfo/webAuth.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/webAuth.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/rp/rpApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/rp/rpApply.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/json/sliderMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/sliderMenu.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +41,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/utils/common" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/utils/validater" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -51,11 +54,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/utils/validater" />
+      <recent name="$PROJECT_DIR$/pages/basicInfo" />
       <recent name="$PROJECT_DIR$/components/utils/common" />
       <recent name="$PROJECT_DIR$/static/json" />
       <recent name="$PROJECT_DIR$/static/img" />
-      <recent name="$PROJECT_DIR$/components/utils/treeAndList" />
-      <recent name="$PROJECT_DIR$/pages/appletInfo/app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/pages/serviceArea/app" />
@@ -169,14 +172,9 @@
       <workItem from="1665306351900" duration="33000" />
       <workItem from="1665307027955" duration="20000" />
       <workItem from="1665308321543" duration="24000" />
-      <workItem from="1665385548617" duration="4642000" />
-    </task>
-    <task id="LOCAL-00117" summary="智慧迎新--选寝规则">
-      <created>1657790452376</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1657790452376</updated>
+      <workItem from="1665385548617" duration="5008000" />
+      <workItem from="1665972482837" duration="79000" />
+      <workItem from="1666141147591" duration="12934000" />
     </task>
     <task id="LOCAL-00118" summary="智慧迎新--选寝规则">
       <created>1657854111596</created>
@@ -514,7 +512,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664176457774</updated>
     </task>
-    <option name="localTasksCounter" value="166" />
+    <task id="LOCAL-00166" summary="奖惩管理---pdf,word 支持">
+      <created>1665391240328</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1665391240329</updated>
+    </task>
+    <option name="localTasksCounter" value="167" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -549,6 +554,7 @@
     <MESSAGE value="智慧迎新--缴费规则" />
     <MESSAGE value="智慧迎新--选寝规则" />
     <MESSAGE value="智慧迎新--大屏相关" />
-    <option name="LAST_COMMIT_MESSAGE" value="智慧迎新--大屏相关" />
+    <MESSAGE value="奖惩管理---pdf,word 支持" />
+    <option name="LAST_COMMIT_MESSAGE" value="奖惩管理---pdf,word 支持" />
   </component>
 </project>

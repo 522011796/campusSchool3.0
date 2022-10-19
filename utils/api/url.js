@@ -717,4 +717,9 @@ export const common = {
 
   enroll_list_by_parent_id: '/proxy/log/logtype/get/select/list-by-parent-id', //日志类型
 
+  organize_role_page: '/proxy/school/school/organize/role/page', //部门角色信息分页
+  organize_role_save: '/proxy/school/school/organize/role/save', //部门角色信息保存
+  organize_role_del: '/proxy/school/school/organize/role/del', //部门角色信息删除
+  organize_role_list: '/proxy/school/school/organize/role/list', //部门角色信息列表
+
 };

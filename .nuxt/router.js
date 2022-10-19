@@ -13,6 +13,7 @@ const _d7e892d8 = () => interopDefault(import('../pages/basicInfo/class.vue' /* 
 const _79e14fe2 = () => interopDefault(import('../pages/basicInfo/classRoom.vue' /* webpackChunkName: "pages/basicInfo/classRoom" */))
 const _541b33ad = () => interopDefault(import('../pages/basicInfo/classRoomBak.vue' /* webpackChunkName: "pages/basicInfo/classRoomBak" */))
 const _bf8a939a = () => interopDefault(import('../pages/basicInfo/college.vue' /* webpackChunkName: "pages/basicInfo/college" */))
+const _2bfac8a7 = () => interopDefault(import('../pages/basicInfo/deptInfo.vue' /* webpackChunkName: "pages/basicInfo/deptInfo" */))
 const _7188dd17 = () => interopDefault(import('../pages/basicInfo/deviceArea.vue' /* webpackChunkName: "pages/basicInfo/deviceArea" */))
 const _71afd8cc = () => interopDefault(import('../pages/basicInfo/deviceConfig.vue' /* webpackChunkName: "pages/basicInfo/deviceConfig" */))
 const _5234b014 = () => interopDefault(import('../pages/basicInfo/deviceNetwork.vue' /* webpackChunkName: "pages/basicInfo/deviceNetwork" */))
@@ -236,6 +237,10 @@ export const routerOptions = {
     path: "/basicInfo/college",
     component: _bf8a939a,
     name: "basicInfo-college"
+  }, {
+    path: "/basicInfo/deptInfo",
+    component: _2bfac8a7,
+    name: "basicInfo-deptInfo"
   }, {
     path: "/basicInfo/deviceArea",
     component: _7188dd17,

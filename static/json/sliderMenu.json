@@ -27,6 +27,13 @@
             "path": "/basicInfo/yearAndTerm"
           },
           {
+            "name": "部门信息",
+            "key": "deptInfo",
+            "id": 10210,
+            "top": "basicInfo",
+            "path": "/basicInfo/deptInfo"
+          },
+          {
             "name": "学院信息",
             "key": "college",
             "id": 10300,

@@ -221,6 +221,7 @@
             this.checkboxCount--;
           }
         }
+        this.$emit("select", this.commSelUserArr);
       },
       _handleSelectionChange(data){
 
