@@ -586,7 +586,8 @@ export const common = {
   server_form_template_update: '/proxy/school/applet/form/content/update',//设置表单组件
   server_form_template_shop: '/proxy/school/applet/form/content/shop',//设置表单组件发布到模版中心
   server_form_template_permission_save: '/proxy/school/applet/permission/save',//设置表单权限
-  server_form_template_permission_list: '/proxy/school/applet/permission/page',//表单权限列表
+  server_form_template_permission_list: '/proxy/school/applet/permission/page',//表单权限分页
+  server_form_template_permission_list_list: '/proxy/school/applet/permission/list',//表单权限列表
   server_form_template_permission_enable: '/proxy/school/applet/permission/enable',//表单权限启禁用
   server_form_template_permission_del: '/proxy/school/applet/permission/del',//表单权限删除
   server_form_template_basic_set: '/proxy/school/applet/form/setting',//表单基础信息设置
@@ -599,6 +600,7 @@ export const common = {
   server_form_template_form_process_save: '/proxy/school/applet/form/process/save',//表单流程保存
   server_form_template_form_process_set: '/proxy/school/applet/form/process/set',//表单流程设计
   server_form_template_form_process_page: '/proxy/school/applet/form/process/page',//表单流程分页
+  server_form_template_form_process_list: '/proxy/school/applet/form/process/list',//表单流程列表
   server_form_template_form_process_del: '/proxy/school/applet/form/process/del',//表单流程删除
   server_form_template_form_process_current: '/proxy/school/applet/form/process/version',//表单流程当前设置
   server_form_template_form_apply_page: '/proxy/school/applet/form/apply/page',//表单数据分页

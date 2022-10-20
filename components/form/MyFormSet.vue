@@ -11,9 +11,9 @@
 <!--        <div class="form-set-menu-item" :class="activeSetMenu == 3 ? 'form-set-menu-item-active' : ''" @click="selSetMenu(3)">-->
 <!--          <span>{{$t("打印模版")}}</span>-->
 <!--        </div>-->
-        <div class="form-set-menu-item" :class="activeSetMenu == 4 ? 'form-set-menu-item-active' : ''" @click="selSetMenu(4)">
-          <span>{{$t("权限设置")}}</span>
-        </div>
+<!--        <div class="form-set-menu-item" :class="activeSetMenu == 4 ? 'form-set-menu-item-active' : ''" @click="selSetMenu(4)">-->
+<!--          <span>{{$t("权限设置")}}</span>-->
+<!--        </div>-->
 <!--        <div class="form-set-menu-item" :class="activeSetMenu == 5 ? 'form-set-menu-item-active' : ''" @click="selSetMenu(5)">-->
 <!--          <span>{{$t("跨应用取数")}}</span>-->
 <!--        </div>-->
@@ -52,6 +52,12 @@
                 </el-form-item>
                 <el-form-item :label="$t('按钮文字')" prop="subBtnText">
                   <el-input v-model="formBasic.subBtnText" size="small" class="width-300"></el-input>
+                </el-form-item>
+                <el-form-item :label="$t('选择流程')" prop="flow"  v-if="formId.form_type != 0 && formId.form_type != 2">
+                  <my-select size="small" :width-style="300" :sel-value="formBasic.flow" :options="flowList" @change="handleFlowChange"></my-select>
+                </el-form-item>
+                <el-form-item :label="$t('选择权限')" prop="role">
+                  <my-select size="small" :width-style="300" :sel-value="formBasic.role" :options="roleList" @change="handleRoleChange"></my-select>
                 </el-form-item>
 <!--                <el-form-item :label="$t('显隐规则')">-->
 <!--                  <div style="width: 300px;height: 180px;overflow-y: auto;border: 1px solid #dddddd; border-radius: 5px;padding:5px;display: inline-block">-->
@@ -250,6 +256,8 @@
         conditionalItemList3: [],
         resultList: [],
         conditionalChildList: [],
+        flowList: [],
+        roleList: [],
         btnLoading: false,
         btnDialogLoading: false,
         dialogRule: false,
@@ -260,7 +268,9 @@
           subRule: false,
           subBtn: true,
           subBtnText: '提交',
-          rules: []
+          rules: [],
+          flow: '',
+          role: ''
         },
         formRule: {
           id: '',
@@ -276,6 +286,8 @@
     },
     created() {
       this.initBasicInfo();
+      this.initFlow();
+      this.initRole();
     },
     methods: {
       initBasicInfo(){
@@ -285,7 +297,9 @@
           subRule: this.formId.submit_only,
           subBtn: this.formId.submit_button,
           subBtnText: this.formId.button_name,
-          rules: []
+          rules: [],
+          flow: this.formId.form_process_id ? this.formId.form_process_id+'' : '',
+          role: this.formId.form_permission_id ? this.formId.form_permission_id+'' : '',
         };
         this.initRuleList();
       },
@@ -332,6 +346,40 @@
           }
         });
       },
+      initFlow(){
+        let params = {
+
+        };
+        this.$axios.get(common.server_form_template_form_process_list, {params: params}).then(res => {
+          if (res.data.data){
+            let array = [];
+            for (let i = 0; i < res.data.data.length; i++){
+              array.push({
+                label: res.data.data[i].processName,
+                value: res.data.data[i].id+"",
+              });
+            }
+            this.flowList = array;
+          }
+        });
+      },
+      initRole(){
+        let params = {
+
+        };
+        this.$axios.get(common.server_form_template_permission_list_list, {params: params}).then(res => {
+          if (res.data.data){
+            let array = [];
+            for (let i = 0; i < res.data.data.length; i++){
+              array.push({
+                label: res.data.data[i].permissionName,
+                value: res.data.data[i].id+"",
+              });
+            }
+            this.roleList = array;
+          }
+        });
+      },
       selSetMenu(index){
         this.activeSetMenu = index;
         if (index == 1){
@@ -368,6 +416,8 @@
               "submitOnly": this.formBasic.subRule,
               "submitButton": this.formBasic.subBtn,
               "buttonName": this.formBasic.subBtnText,
+              "formPermissionId": this.formBasic.role,
+              "formProcessId": this.formBasic.flow,
               "hideIds": this.formBasic.rules.join()
             };
             params = this.$qs.stringify(params);
@@ -381,6 +431,8 @@
                 this.formId.submit_button = this.formBasic.subBtn;
                 this.formId.button_name = this.formBasic.subBtnText;
                 this.formId.hideIds = this.formBasic.rules.join();
+                this.formId.form_permission_id = this.formBasic.role + '';
+                this.formId.form_process_id = this.formBasic.flow + '';
               } else {
                 MessageError(res.data.desc);
               }
@@ -576,6 +628,12 @@
       },
       handleResultChange(data){
         this.formRule.result = data;
+      },
+      handleFlowChange(data){
+        this.formBasic.flow = data;
+      },
+      handleRoleChange(data){
+        this.formBasic.role = data;
       },
       setRuleChild(rule, ruleList){
         let obj = {};

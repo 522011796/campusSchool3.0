@@ -90,7 +90,7 @@
       </div>
     </layout-tb>
 
-    <drawer-layout-right @changeDrawer="closeDrawerDialog" @opened="openedDialog" :visible="drawerVisible"  size="450px" :title="$t('角色设置')">
+    <drawer-layout-right @changeDrawer="closeDrawerDialog" @opened="openedDialog" @right-close="cancelDrawDialog" :visible="drawerVisible" size="450px" :title="$t('角色设置')">
       <div slot="content">
         <div>
           <div class="color-muted margin-top-5">
@@ -437,7 +437,6 @@ export default {
       this.approverUsers = this.form.roleUsers;
     },
     openedDialog(){
-      console.log(this.$refs.SelectorDept);
       if (this.$refs['SelectorDept']){
         this.$refs.SelectorDept.initInfo();
       }
