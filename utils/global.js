@@ -11,6 +11,7 @@ const gradeId = "";
 const dataCollegeList= [];
 const dataSchoolBuildList = [];
 const dataDormBuildList = [];
+const dataRoleTreeList = [];
 const dataDeptList = [];
 const dataAppletList = [];
 const currentYearList = [];
@@ -488,6 +489,7 @@ export default {
   dataCollegeList: [],
   dataSchoolBuildList: [],
   dataDormBuildList: [],
+  dataRoleTreeList: [],
   dataDeptList: [],
   dataAppletList: [],
   dataAppletServer: [],

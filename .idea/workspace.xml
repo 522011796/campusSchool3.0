@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="新增部门信息">
-      <change afterPath="$PROJECT_DIR$/components/form/MyProcessFlow.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/appletInfo/flow/roleManage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/appletInfo/staticCenter/myFormStatic.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/validater/flowSettingValidater.js" afterDir="false" />
+    <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="新增流程管理">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/select/MyCascader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/select/MyCascader.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/flow/flowManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/flow/flowManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/staticCenter/formStatic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/staticCenter/formStaticManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/sliderMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/sliderMenu.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appCreate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appCreate.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/flow/roleManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/flow/roleManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/deptInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/deptInfo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/global.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,14 +173,7 @@
       <workItem from="1665308321543" duration="24000" />
       <workItem from="1665385548617" duration="5008000" />
       <workItem from="1665972482837" duration="79000" />
-      <workItem from="1666141147591" duration="23674000" />
-    </task>
-    <task id="LOCAL-00119" summary="智慧迎新--选寝规则">
-      <created>1657870428797</created>
-      <option name="number" value="00119" />
-      <option name="presentableId" value="LOCAL-00119" />
-      <option name="project" value="LOCAL" />
-      <updated>1657870428797</updated>
+      <workItem from="1666141147591" duration="35718000" />
     </task>
     <task id="LOCAL-00120" summary="智慧迎新--选寝规则">
       <created>1657873587037</created>
@@ -521,7 +511,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666166205915</updated>
     </task>
-    <option name="localTasksCounter" value="168" />
+    <task id="LOCAL-00168" summary="新增流程管理">
+      <created>1666230897556</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
+      <option name="project" value="LOCAL" />
+      <updated>1666230897557</updated>
+    </task>
+    <option name="localTasksCounter" value="169" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -558,6 +555,7 @@
     <MESSAGE value="智慧迎新--大屏相关" />
     <MESSAGE value="奖惩管理---pdf,word 支持" />
     <MESSAGE value="新增部门信息" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增部门信息" />
+    <MESSAGE value="新增流程管理" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增流程管理" />
   </component>
 </project>

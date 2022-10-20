@@ -6,7 +6,7 @@ import {
   setSchoolBuildChildren,
   setDormBuildChildren,
   setDeptChildren,
-  serverType, serverFormType, setFormServerChildren
+  serverType, serverFormType, setFormServerChildren, setDeptRoleChildren
 } from "~/utils/utils";
 
 export default {
@@ -34,6 +34,7 @@ export default {
       dataCollege: global.dataCollegeList,
       dataSchoolBuild: global.dataSchoolBuildList,
       dataDormBuild: global.dataDormBuildList,
+      dataRoleTreeList: global.dataRoleTreeList,
       dataDept: global.dataDeptList,
       dataApplet: global.dataAppletList,
       dataAppletServer: global.dataAppletServer,
@@ -665,6 +666,29 @@ export default {
             }
           }
           this.dataProcessLinkServer = res.data.data;
+        }
+      });
+    },
+    /**
+     * 获取角色的list信息
+     * 主要用于树形菜单，下来菜单等
+     * @returns {Promise<void>}
+     */
+    async getRoleTreeInfo(type = 1) {
+      let params = {
+        page: 1,
+        num: 9999
+      };
+      await this.$axios.get(common.organize_role_page, {params: params}).then(res => {
+        let arr = [];
+        if (res.data.data){
+          //console.log(res.data.data.list);
+          for (let i = 0; i < res.data.data.list.length; i++){
+            if (res.data.data.list[i].department_path != "" && res.data.data.list[i].userList.length > 0){
+              arr.push(res.data.data.list[i]);
+            }
+          }
+          this.dataRoleTreeList = setDeptRoleChildren(arr);
         }
       });
     },

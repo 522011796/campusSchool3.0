@@ -57,6 +57,33 @@ export function setDeptChildren(tree, obj, param, param2, type){//迭代方法--
   }
 }
 
+export function setDeptRoleChildren(tree){//迭代方法--部门角色列表
+  let arr = [];
+  if (tree && tree.length > 0) {
+    for (let i = 0; i < tree.length; i++) {
+      arr.push({
+        label: tree[i].department_name,
+        value: tree[i].id,
+        id: tree[i].id,
+        unit: 1
+      });
+      if (tree[i].userList && tree[i].userList.length > 0){
+        let childList = tree[i].userList;
+        arr[i]['children'] = [];
+        for (let j = 0; j < childList.length; j++) {
+          arr[i]['children'].push({
+            label: childList[j].role_name,
+            value: childList[j].role_name,
+            id: childList[j].id,
+            unit: 2
+          });
+        }
+      }
+    }
+  }
+  return arr;
+}
+
 export function setFormServerChildren(tree) {//迭代方法--表单服务列表
   let _self = this;
   let arr = [];

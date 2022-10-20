@@ -49,11 +49,13 @@
                   trigger="click">
 
                   <div style="max-height: 300px;overflow-y: auto">
-                    <div v-for="(itemList, indexList) in item.real_name.split(',')" :key="indexList" class="margin-bottom-5">
-                      <el-tag size="mini">
-                        <div class="moon-content-text-ellipsis-class" style="max-width: 100px;">{{itemList}}</div>
-                      </el-tag>
-                    </div>
+                    <template v-if="item.real_name != '' && item.real_name != null">
+                      <div v-for="(itemList, indexList) in item.real_name.split(',')" :key="indexList" class="margin-bottom-5">
+                        <el-tag size="mini">
+                          <div class="moon-content-text-ellipsis-class" style="max-width: 100px;">{{itemList}}</div>
+                        </el-tag>
+                      </div>
+                    </template>
                   </div>
                   <span slot="reference" class="color-muted font-size-12 moon-content-text-ellipsis-class" style="display: inline-block; max-width: 100px; position: relative; top: 7px;cursor: default">({{item.real_name}})</span>
                 </el-popover>
@@ -201,7 +203,13 @@ export default {
       };
       this.$axios.get(common.organize_role_page, {params: params}).then(res => {
         if (res.data.data){
-          this.tableData = res.data.data.list;
+          let array = [];
+          for (let i = 0; i < res.data.data.list.length; i++){
+            if (res.data.data.list[i].department_path != ""){
+              array.push(res.data.data.list[i]);
+            }
+          }
+          this.tableData = array;
           this.total = res.data.data.totalCount;
           this.num = res.data.data.num;
           this.page = res.data.data.currentPage;
@@ -217,7 +225,7 @@ export default {
       this.drawerVisible = true;
     },
     editInfo(event, item, row){
-      let userArr = item.user_id.split(",");
+      let userArr = item.user_id ? item.user_id.split(",") : [];
       let teacherArray = [];
       for (let i = 0; i < userArr.length; i++){
         teacherArray.push({

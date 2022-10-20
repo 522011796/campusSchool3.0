@@ -249,14 +249,14 @@
             <i class="fa fa-file"></i>
             {{$t('表单设计')}}
           </span>
-          <span class="tab-class font-bold margin-left-5" v-if="serverDataItem.form_type != 0 && serverDataItem.form_type != 2" :class="activeName == 'flow' ? 'color-grand' : ''" @click="handleClick('flow')">
-            <i class="fa fa-line-chart"></i>
-            {{$t('流程设计')}}
-          </span>
-          <span class="tab-class font-bold margin-left-5" :class="activeName == 'set' ? 'color-grand' : ''" @click="handleClick('set')">
-            <i class="fa fa-cog"></i>
-            {{$t('表单设置')}}
-          </span>
+<!--          <span class="tab-class font-bold margin-left-5" v-if="serverDataItem.form_type != 0 && serverDataItem.form_type != 2" :class="activeName == 'flow' ? 'color-grand' : ''" @click="handleClick('flow')">-->
+<!--            <i class="fa fa-line-chart"></i>-->
+<!--            {{$t('流程设计')}}-->
+<!--          </span>-->
+<!--          <span class="tab-class font-bold margin-left-5" :class="activeName == 'set' ? 'color-grand' : ''" @click="handleClick('set')">-->
+<!--            <i class="fa fa-cog"></i>-->
+<!--            {{$t('表单设置')}}-->
+<!--          </span>-->
         </div>
       </div>
       <div slot="content" class="color-muted">
