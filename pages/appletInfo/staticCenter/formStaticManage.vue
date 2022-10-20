@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div>formstatic</div>
+    <div>formstaticmanage</div>
   </div>
 </template>
 

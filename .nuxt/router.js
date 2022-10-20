@@ -60,10 +60,12 @@ const _10929347 = () => interopDefault(import('../pages/appletInfo/app/appTempla
 const _b4dc4ef2 = () => interopDefault(import('../pages/appletInfo/app/appType.vue' /* webpackChunkName: "pages/appletInfo/app/appType" */))
 const _7fb03fd5 = () => interopDefault(import('../pages/appletInfo/app/formPrint.vue' /* webpackChunkName: "pages/appletInfo/app/formPrint" */))
 const _5cc30ea4 = () => interopDefault(import('../pages/appletInfo/flow/flowManage.vue' /* webpackChunkName: "pages/appletInfo/flow/flowManage" */))
+const _b7390414 = () => interopDefault(import('../pages/appletInfo/flow/roleManage.vue' /* webpackChunkName: "pages/appletInfo/flow/roleManage" */))
 const _30b24cb3 = () => interopDefault(import('../pages/appletInfo/noti/business.vue' /* webpackChunkName: "pages/appletInfo/noti/business" */))
 const _1c23e410 = () => interopDefault(import('../pages/appletInfo/noti/feedback.vue' /* webpackChunkName: "pages/appletInfo/noti/feedback" */))
 const _2ceee2de = () => interopDefault(import('../pages/appletInfo/noti/notification.vue' /* webpackChunkName: "pages/appletInfo/noti/notification" */))
-const _c0d2d110 = () => interopDefault(import('../pages/appletInfo/staticCenter/formStatic.vue' /* webpackChunkName: "pages/appletInfo/staticCenter/formStatic" */))
+const _25e4ae7d = () => interopDefault(import('../pages/appletInfo/staticCenter/formStaticManage.vue' /* webpackChunkName: "pages/appletInfo/staticCenter/formStaticManage" */))
+const _16742e78 = () => interopDefault(import('../pages/appletInfo/staticCenter/myFormStatic.vue' /* webpackChunkName: "pages/appletInfo/staticCenter/myFormStatic" */))
 const _3becaaa8 = () => interopDefault(import('../pages/attendanceInfo/administration/faceRecord.vue' /* webpackChunkName: "pages/attendanceInfo/administration/faceRecord" */))
 const _0933525b = () => interopDefault(import('../pages/attendanceInfo/administration/leaveStatic.vue' /* webpackChunkName: "pages/attendanceInfo/administration/leaveStatic" */))
 const _15aa4d2a = () => interopDefault(import('../pages/attendanceInfo/administration/record.vue' /* webpackChunkName: "pages/attendanceInfo/administration/record" */))
@@ -426,6 +428,10 @@ export const routerOptions = {
     component: _5cc30ea4,
     name: "appletInfo-flow-flowManage"
   }, {
+    path: "/appletInfo/flow/roleManage",
+    component: _b7390414,
+    name: "appletInfo-flow-roleManage"
+  }, {
     path: "/appletInfo/noti/business",
     component: _30b24cb3,
     name: "appletInfo-noti-business"
@@ -438,9 +444,13 @@ export const routerOptions = {
     component: _2ceee2de,
     name: "appletInfo-noti-notification"
   }, {
-    path: "/appletInfo/staticCenter/formStatic",
-    component: _c0d2d110,
-    name: "appletInfo-staticCenter-formStatic"
+    path: "/appletInfo/staticCenter/formStaticManage",
+    component: _25e4ae7d,
+    name: "appletInfo-staticCenter-formStaticManage"
+  }, {
+    path: "/appletInfo/staticCenter/myFormStatic",
+    component: _16742e78,
+    name: "appletInfo-staticCenter-myFormStatic"
   }, {
     path: "/attendanceInfo/administration/faceRecord",
     component: _3becaaa8,

@@ -597,6 +597,7 @@ export const common = {
   server_form_template_form_rule_search: '/proxy/school/applet/form/setting/hide/get',//表单规则查询
   server_form_template_form_rule_del: '/proxy/school/applet/form/setting/hide/del',//表单规则删除
   server_form_template_form_process_save: '/proxy/school/applet/form/process/save',//表单流程保存
+  server_form_template_form_process_set: '/proxy/school/applet/form/process/set',//表单流程设计
   server_form_template_form_process_page: '/proxy/school/applet/form/process/page',//表单流程分页
   server_form_template_form_process_del: '/proxy/school/applet/form/process/del',//表单流程删除
   server_form_template_form_process_current: '/proxy/school/applet/form/process/version',//表单流程当前设置

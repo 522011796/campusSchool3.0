@@ -143,18 +143,6 @@
   "LazyTableBarChart": {
     "description": "Auto imported from components/charts/TableBarChart.vue"
   },
-  "MyNewStudentFlow": {
-    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
-  },
-  "LazyMyNewStudentFlow": {
-    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
-  },
-  "MyNewStudentFlowType": {
-    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
-  },
-  "LazyMyNewStudentFlowType": {
-    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
-  },
   "MyFormAuditType": {
     "description": "Auto imported from components/form/MyFormAuditType.vue"
   },
@@ -184,6 +172,24 @@
   },
   "LazyMyFormSetRole": {
     "description": "Auto imported from components/form/MyFormSetRole.vue"
+  },
+  "MyProcessFlow": {
+    "description": "Auto imported from components/form/MyProcessFlow.vue"
+  },
+  "LazyMyProcessFlow": {
+    "description": "Auto imported from components/form/MyProcessFlow.vue"
+  },
+  "MyNewStudentFlow": {
+    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
+  },
+  "LazyMyNewStudentFlow": {
+    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
+  },
+  "MyNewStudentFlowType": {
+    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
+  },
+  "LazyMyNewStudentFlowType": {
+    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
   },
   "MyInputButton": {
     "description": "Auto imported from components/search/MyInputButton.vue"
@@ -335,24 +341,6 @@
   "LazyTimeoutButton": {
     "description": "Auto imported from components/utils/button/TimeoutButton.vue"
   },
-  "MyHeadImg": {
-    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
-  },
-  "LazyMyHeadImg": {
-    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
-  },
-  "MyHeadListImg": {
-    "description": "Auto imported from components/utils/common/MyHeadListImg.vue"
-  },
-  "LazyMyHeadListImg": {
-    "description": "Auto imported from components/utils/common/MyHeadListImg.vue"
-  },
-  "MyViewImg": {
-    "description": "Auto imported from components/utils/common/MyViewImg.vue"
-  },
-  "LazyMyViewImg": {
-    "description": "Auto imported from components/utils/common/MyViewImg.vue"
-  },
   "DialogNormal": {
     "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
   },
@@ -376,6 +364,24 @@
   },
   "LazyMyNormalDialog": {
     "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
+  },
+  "MyHeadImg": {
+    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
+  },
+  "LazyMyHeadImg": {
+    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
+  },
+  "MyHeadListImg": {
+    "description": "Auto imported from components/utils/common/MyHeadListImg.vue"
+  },
+  "LazyMyHeadListImg": {
+    "description": "Auto imported from components/utils/common/MyHeadListImg.vue"
+  },
+  "MyViewImg": {
+    "description": "Auto imported from components/utils/common/MyViewImg.vue"
+  },
+  "LazyMyViewImg": {
+    "description": "Auto imported from components/utils/common/MyViewImg.vue"
   },
   "MyCascader": {
     "description": "Auto imported from components/utils/select/MyCascader.vue"
@@ -461,6 +467,18 @@
   "LazyMyFlowType": {
     "description": "Auto imported from components/utils/status/MyFlowType.vue"
   },
+  "QuillBlock": {
+    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
+  },
+  "LazyQuillBlock": {
+    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
+  },
+  "UploadSquare": {
+    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
+  },
+  "LazyUploadSquare": {
+    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
+  },
   "ClassroomTreeAndList": {
     "description": "Auto imported from components/utils/treeAndList/ClassroomTreeAndList.vue"
   },
@@ -526,17 +544,5 @@
   },
   "LazyTeacherTreeAndListRoleNoPage": {
     "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListRoleNoPage.vue"
-  },
-  "QuillBlock": {
-    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
-  },
-  "LazyQuillBlock": {
-    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
-  },
-  "UploadSquare": {
-    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
-  },
-  "LazyUploadSquare": {
-    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
   }
 }

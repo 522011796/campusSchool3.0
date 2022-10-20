@@ -1077,6 +1077,54 @@
             "path": "/appletInfo/app/appType"
           }
         ]
+      },
+      {
+        "name": "流程中心",
+        "icon": "fa fa-sitemap",
+        "toggle": false,
+        "id": 96000,
+        "key": "appCenter",
+        "keySub": "appletInfo",
+        "list": [
+          {
+            "name": "流程管理",
+            "key": "flowManage",
+            "id": 96100,
+            "top": "appletInfo",
+            "path": "/appletInfo/flow/flowManage"
+          },
+          {
+            "name": "权限管理",
+            "key": "roleManage",
+            "id": 96200,
+            "top": "appletInfo",
+            "path": "/appletInfo/flow/roleManage"
+          }
+        ]
+      },
+      {
+        "name": "统计中心",
+        "icon": "fa fa-object-group",
+        "toggle": false,
+        "id": 97000,
+        "key": "appCenter",
+        "keySub": "appletInfo",
+        "list": [
+          {
+            "name": "统计表管理",
+            "key": "formStaticManage",
+            "id": 97100,
+            "top": "appletInfo",
+            "path": "/appletInfo/staticCenter/formStaticManage"
+          },
+          {
+            "name": "我的统计",
+            "key": "myFormStatic",
+            "id": 97200,
+            "top": "appletInfo",
+            "path": "/appletInfo/staticCenter/myFormStatic"
+          }
+        ]
       }
     ]
   },

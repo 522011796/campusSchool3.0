@@ -399,6 +399,13 @@
     "_name": "_5cc30ea4"
   },
   {
+    "name": "appletInfo-flow-roleManage",
+    "path": "/appletInfo/flow/roleManage",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/appletInfo/flow/roleManage.vue",
+    "chunkName": "pages/appletInfo/flow/roleManage",
+    "_name": "_b7390414"
+  },
+  {
     "name": "appletInfo-noti-business",
     "path": "/appletInfo/noti/business",
     "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/appletInfo/noti/business.vue",
@@ -420,11 +427,18 @@
     "_name": "_2ceee2de"
   },
   {
-    "name": "appletInfo-staticCenter-formStatic",
-    "path": "/appletInfo/staticCenter/formStatic",
-    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/appletInfo/staticCenter/formStatic.vue",
-    "chunkName": "pages/appletInfo/staticCenter/formStatic",
-    "_name": "_c0d2d110"
+    "name": "appletInfo-staticCenter-formStaticManage",
+    "path": "/appletInfo/staticCenter/formStaticManage",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/appletInfo/staticCenter/formStaticManage.vue",
+    "chunkName": "pages/appletInfo/staticCenter/formStaticManage",
+    "_name": "_25e4ae7d"
+  },
+  {
+    "name": "appletInfo-staticCenter-myFormStatic",
+    "path": "/appletInfo/staticCenter/myFormStatic",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/appletInfo/staticCenter/myFormStatic.vue",
+    "chunkName": "pages/appletInfo/staticCenter/myFormStatic",
+    "_name": "_16742e78"
   },
   {
     "name": "attendanceInfo-administration-faceRecord",
