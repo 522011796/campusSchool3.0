@@ -326,9 +326,11 @@
         this.serverDataItem = {};
         this.serverDataIndex = '';
 
-        this.$refs.flow.flowDetailData = {};
-        this.$refs.flow.approverUsers = [];
-        this.$refs.flow.formFieldList = [];
+        if (this.$refs['flow']){
+          this.$refs.flow.flowDetailData = {};
+          this.$refs.flow.approverUsers = [];
+          this.$refs.flow.formFieldList = [];
+        }
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
         }

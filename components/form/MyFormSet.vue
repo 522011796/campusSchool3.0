@@ -54,10 +54,18 @@
                   <el-input v-model="formBasic.subBtnText" size="small" class="width-300"></el-input>
                 </el-form-item>
                 <el-form-item :label="$t('选择流程')" prop="flow"  v-if="formId.form_type != 0 && formId.form_type != 2">
-                  <my-select size="small" :width-style="300" :sel-value="formBasic.flow" :options="flowList" @change="handleFlowChange"></my-select>
+                  <my-select size="small" :width-style="300" :clearable="true" :sel-value="formBasic.flow" :options="flowList" @change="handleFlowChange"></my-select>
                 </el-form-item>
                 <el-form-item :label="$t('选择权限')" prop="role">
-                  <my-select size="small" :width-style="300" :sel-value="formBasic.role" :options="roleList" @change="handleRoleChange"></my-select>
+<!--                  <my-select size="small" :width-style="300" :sel-value="formBasic.role" :options="roleList" @change="handleRoleChange"></my-select>-->
+                  <el-select v-model="formBasic.role" multiple @change="handleRoleChange" size="small" class="width-300" placeholder="请选择">
+                    <el-option
+                        v-for="item in roleList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                    </el-option>
+                  </el-select>
                 </el-form-item>
 <!--                <el-form-item :label="$t('显隐规则')">-->
 <!--                  <div style="width: 300px;height: 180px;overflow-y: auto;border: 1px solid #dddddd; border-radius: 5px;padding:5px;display: inline-block">-->
@@ -270,7 +278,7 @@
           subBtnText: '提交',
           rules: [],
           flow: '',
-          role: ''
+          role: []
         },
         formRule: {
           id: '',
@@ -299,7 +307,7 @@
           subBtnText: this.formId.button_name,
           rules: [],
           flow: this.formId.form_process_id ? this.formId.form_process_id+'' : '',
-          role: this.formId.form_permission_id ? this.formId.form_permission_id+'' : '',
+          role: this.formId.form_permission_id != null && this.formId.form_permission_id != '' ? this.formId.form_permission_id.split(",") : [],
         };
         this.initRuleList();
       },
@@ -416,10 +424,14 @@
               "submitOnly": this.formBasic.subRule,
               "submitButton": this.formBasic.subBtn,
               "buttonName": this.formBasic.subBtnText,
-              "formPermissionId": this.formBasic.role,
-              "formProcessId": this.formBasic.flow,
               "hideIds": this.formBasic.rules.join()
             };
+            if (this.formBasic.role.length > 0){
+              params['formPermissionId'] = this.formBasic.role.join();
+            }
+            if (this.formBasic.flow != ""){
+              params['formProcessId'] = this.formBasic.flow;
+            }
             params = this.$qs.stringify(params);
             this.btnLoading = true;
             this.$axios.post(common.server_form_template_basic_set, params, {loading: false}).then(res => {
@@ -431,7 +443,7 @@
                 this.formId.submit_button = this.formBasic.subBtn;
                 this.formId.button_name = this.formBasic.subBtnText;
                 this.formId.hideIds = this.formBasic.rules.join();
-                this.formId.form_permission_id = this.formBasic.role + '';
+                this.formId.form_permission_id = this.formBasic.role.length > 0 ? this.formBasic.role.join() : '';
                 this.formId.form_process_id = this.formBasic.flow + '';
               } else {
                 MessageError(res.data.desc);

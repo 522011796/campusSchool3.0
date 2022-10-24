@@ -241,6 +241,9 @@ export default {
       },
       drawHeight5: {
         'height': ''
+      },
+      drawHeight6: {
+        'height': ''
       }
     }
   },
@@ -409,6 +412,7 @@ export default {
         this.drawHeight3.height = window.innerHeight - 100 + 'px';
         this.drawHeight4.height = window.innerHeight - 90 + 'px';
         this.drawHeight5.height = window.innerHeight - 160 + 'px';
+        this.drawHeight6.height = window.innerHeight - 120 + 'px';
       }
     },
     async initVersionData(){

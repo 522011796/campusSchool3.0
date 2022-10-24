@@ -579,6 +579,7 @@ export const common = {
   server_list_page: '/proxy/school/applet/form/page',//服务列表
   server_list_list1: '/proxy/school/applet/form/list1',//服务列表-通过类型查询的列表
   server_list_list2: '/proxy/school/applet/form/list2',//服务列表-当前人员提交能用的列表
+  server_list_field: '/proxy/school/applet/stat/field/list',//服务列表字段
   server_list_del: '/proxy/school/applet/form/del',//删除服务列表
   server_list_enable: '/proxy/school/applet/form/enable',//启、禁服务列表
   server_list_save: '/proxy/school/applet/form/save',//保存服务列表
@@ -724,5 +725,12 @@ export const common = {
   organize_role_save: '/proxy/school/school/organize/role/save', //部门角色信息保存
   organize_role_del: '/proxy/school/school/organize/role/del', //部门角色信息删除
   organize_role_list: '/proxy/school/school/organize/role/list', //部门角色信息列表
+
+  static_appinfo_form_page: '/proxy/school/applet/stat/page', //统计表列表
+  static_appinfo_form_info: '/proxy/school/applet/stat/info', //统计表信息
+  static_appinfo_form_save: '/proxy/school/applet/stat/save', //统计表保存
+  static_appinfo_form_del: '/proxy/school/applet/stat/del', //统计表删除
+  static_appinfo_form_get: '/proxy/school/applet/stat/get', //统计表查询
+  static_appinfo_form_unit_save: '/proxy/school/applet/stat/unit/save', //统计表设计保存
 
 };

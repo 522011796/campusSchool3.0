@@ -217,7 +217,7 @@
         </div>
       </div>
 
-      <div slot="footer">
+      <div slot="footer" class="padding-lr-10">
         <el-button size="small" @click="cancelDrawDialog">{{$t("取消")}}</el-button>
         <el-button size="small" type="primary" :loading="btnLoading" @click="okDrawDialog()">
           {{$t("确定")}}

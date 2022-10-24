@@ -2,12 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="新增权限管理">
+      <change afterPath="$PROJECT_DIR$/components/form/PCStaticTemplate.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/form/MyFormSet.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/form/MyFormSet.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appCreate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appCreate.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/flow/flowManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/flow/flowManage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/appletInfo/flow/roleManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/flow/roleManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/staticCenter/formStaticManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/staticCenter/formStaticManage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/validater/appCreateBasicValidater.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/appCreateBasicValidater.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,6 +50,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
     <property name="vuejs.nuxt.types-notification-shown" value="true" />
   </component>
@@ -169,14 +176,7 @@
       <workItem from="1665308321543" duration="24000" />
       <workItem from="1665385548617" duration="5008000" />
       <workItem from="1665972482837" duration="79000" />
-      <workItem from="1666141147591" duration="39656000" />
-    </task>
-    <task id="LOCAL-00121" summary="智慧迎新--选寝规则">
-      <created>1657874204908</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
-      <option name="project" value="LOCAL" />
-      <updated>1657874204908</updated>
+      <workItem from="1666141147591" duration="88899000" />
     </task>
     <task id="LOCAL-00122" summary="智慧迎新--选寝规则">
       <created>1657879361793</created>
@@ -514,7 +514,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666248940099</updated>
     </task>
-    <option name="localTasksCounter" value="170" />
+    <task id="LOCAL-00170" summary="新增权限管理">
+      <created>1666252866626</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
+      <option name="project" value="LOCAL" />
+      <updated>1666252866627</updated>
+    </task>
+    <option name="localTasksCounter" value="171" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
