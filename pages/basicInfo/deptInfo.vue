@@ -81,7 +81,7 @@
       </div>
     </layout-tb>
 
-    <drawer-layout-right @changeDrawer="closeDrawerDialog" :visible="drawerVisible"  size="600px" :title="$t('角色设置')">
+    <drawer-layout-right @changeDrawer="closeDrawerDialog" @right-close="closeDrawerDialog" :visible="drawerVisible"  size="600px" :title="$t('角色设置')">
       <div slot="content">
         <div>
           <div class="color-muted margin-top-5">
@@ -234,7 +234,8 @@ export default {
       }
       this.form = {
         id: row.id,
-        no: item.department_no,
+        no: row.department_no,
+        name: row.department_name,
         deptId: row.id,
         oldRoleName: item.role_name,
         roleName: item.role_name,

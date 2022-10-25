@@ -73,7 +73,7 @@ export function setDeptRoleChildren(tree){//迭代方法--部门角色列表
         for (let j = 0; j < childList.length; j++) {
           arr[i]['children'].push({
             label: childList[j].role_name,
-            value: childList[j].role_name,
+            value: childList[j].id,
             id: childList[j].id,
             unit: 2
           });

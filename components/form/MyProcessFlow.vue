@@ -55,7 +55,7 @@
                 </div>
               </template>
               <template v-if="flowDetailData.extra == 'audit'">
-                <div class="font-bold">{{$t("审批人")}}</div>
+                <div class="font-bold">{{$t("审批人(院系角色)")}}</div>
                 <div class="margin-top-5">
                   <el-popover
                     v-if="flowDetailData.type == 1 || flowDetailData.type == 3"
@@ -73,6 +73,13 @@
                     </el-button>
                   </el-popover>
                   <my-select v-if="flowDetailData.type == 2" size="mini" :sel-value="flowDetailData.hType" :options="fiterTeacherRoleType" @change="handleUserType"></my-select>
+                </div>
+              </template>
+
+              <template>
+                <div class="font-bold margin-top-10">{{$t("审批人(部门角色)")}}</div>
+                <div class="margin-top-5">
+                  <my-cascader size="mini" :clearable="true" ref="SelectorDept" :props="{multiple: true}" :sel-value="flowDetailData.hrole" type="5" sub-type="" @change="handleCascaderChange($event)"></my-cascader>
                 </div>
               </template>
             </div>
@@ -475,6 +482,7 @@
           name: this.auditFlowTypeItemInfo(type, 'set'),
           users: [],
           hType: '',
+          hrole: [],
           hName: '',
           andor: 'or',
           waitName: false,
@@ -628,6 +636,9 @@
         }else{
           this.flowDetailData.right2 = [];
         }
+      },
+      handleCascaderChange(data){
+        this.flowDetailData.hrole = data;
       },
       showPop(){
         this.flowCustonUserStatus = false;

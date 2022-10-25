@@ -218,6 +218,7 @@
             extra: ntype,
             name: formProcess[j].nname,
             hType: formProcess[j].htype,
+            hrole: formProcess[j].hrole,
             hName: formProcess[j].hname,
             andor: formProcess[j].andor,
             waitName: formProcess[j].sign,
@@ -401,6 +402,7 @@
         let flowForm = this.$refs.flow.form;
         let ntype = '';
         let htype = '';
+        let hrole= [];
         let hid = [];
         let hname = [];
         let flowDataArray = [];
@@ -444,6 +446,7 @@
             nname: flowData[i].name,
             horder: i + 1,
             htype: htype,
+            hrole: flowData[i].hrole,
             hid: hid,
             hname: hname,
             andor: flowData[i].andor,
