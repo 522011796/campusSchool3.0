@@ -105,6 +105,7 @@ export default {
       filterAppServerConditionnalRadioType: global.filterAppServerConditionnalRadioType,
       filterAppServerConditionnalAllType: global.filterAppServerConditionnalAllType,
       fiterTeacherRoleType: global.fiterTeacherRoleType,
+      fiterTeacherRoleTreeType: global.fiterTeacherRoleTreeType,
       filterProcessLinkParamType: global.filterProcessLinkParamType,
       filterGraduationType: global.filterGraduationType,
       filterPoliticsType: global.filterPoliticsType,

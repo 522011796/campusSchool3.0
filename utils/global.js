@@ -432,6 +432,45 @@ const fiterTeacherRoleType = [
   }
 ];
 
+
+const fiterTeacherRoleTreeType = [
+  {
+    label: '班主任',
+    value: 'MasterTeacher',
+    text: '班主任',
+  },
+  {
+    label: '辅导员',
+    value: 'CoachTeacher',
+    text: '辅导员',
+  },
+  {
+    label: '系主任',
+    value: 'DirectorTeacher',
+    text: '系主任'
+  },
+  {
+    label: '系副主任',
+    value: 'DeputyDirectorTeacher',
+    text: '系副主任',
+  },
+  {
+    label: '学管主任',
+    value: 'StudentManageTeacher',
+    text: '学管主任',
+  },
+  {
+    label: '系部干事',
+    value: 'SecretaryTeacher',
+    text: '系部干事'
+  },
+  {
+    label: '宿管员',
+    value: 'DormitoryTeacher',
+    text: '宿管员'
+  }
+];
+
 const filterFlowParamType = [
   { text: "线上环节", value: '1' ,label: '线上环节'},
   { text: '线下环节', value: '0' ,label: '线下环节'}
@@ -565,6 +604,7 @@ export default {
   filterAppServerConditionnalRadioType,
   filterAppServerConditionnalAllType,
   fiterTeacherRoleType,
+  fiterTeacherRoleTreeType,
   filterFlowParamType,
   filterProcessLinkParamType,
   filterGraduationType,
