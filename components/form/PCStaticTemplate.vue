@@ -83,12 +83,13 @@
                 <span>{{$t("选择该表单字段")}}</span>
               </div>
               <div class="margin-top-5">
-                <el-select v-model="form.joinFormParamsValue" @change="handleJoinFormParamsChange" size="small" class="width-300" placeholder="请选择">
+                <el-select v-model="form.joinFormParamsValue" size="small" class="width-300" placeholder="请选择">
                   <el-option
-                    v-for="item in joinFormParamsOptions"
+                    v-for="(item, index) in joinFormParamsOptions"
                     :key="item.value"
                     :label="item.label"
-                    :value="item.value">
+                    :value="item.value"
+                    @click.native="handleJoinFormParamsChange(item, index)">
                   </el-option>
                 </el-select>
               </div>
@@ -109,18 +110,19 @@
               </div>
             </div>
           </template>
-          <template v-if="settingType == 'bar' && settingType != 'search'">
+          <div v-show="settingType == 'bar' && settingType != 'search'">
             <div class="color-sub-grand font-size-12 margin-top-10">
               <div>
                 <span>{{$t("横轴(单选)")}}</span>
               </div>
               <div class="margin-top-5">
-                <el-select v-model="form.joinFormXValue" @change="handleXChange" size="small" class="width-300" placeholder="请选择">
+                <el-select v-model="form.joinFormXValue" size="small" class="width-300" placeholder="请选择">
                   <el-option
-                    v-for="item in joinFormParamsOptions"
+                    v-for="(item, index) in joinFormParamsOptions"
                     :key="item.value"
                     :label="item.label"
-                    :value="item.value">
+                    :value="item.value"
+                    @click.native="handleXChange(item, index)">
                   </el-option>
                 </el-select>
               </div>
@@ -130,17 +132,18 @@
                 <span>{{$t("纵轴(多选)")}}</span>
               </div>
               <div class="margin-top-5">
-                <el-select ref="mutiSelY" v-model="form.joinFormYValue" multiple @change="handleYChange" size="small" class="width-300" placeholder="请选择">
+                <el-select ref="mutiSelY" v-model="form.joinFormYValue" multiple size="small" class="width-300" placeholder="请选择">
                   <el-option
-                    v-for="item in joinFormParamsOptions"
-                    :key="item.value"
+                    v-for="(item,index) in joinFormParamsOptions"
+                    :key="item.id"
                     :label="item.label"
-                    :value="item.value">
+                    :value="item.value"
+                    @click.native="handleYChange(item, index)">
                   </el-option>
                 </el-select>
               </div>
             </div>
-          </template>
+          </div>
           <template v-if="settingType == 'table' && settingType != 'search'">
             <div class="color-sub-grand font-size-12 margin-top-10">
               <div>
@@ -149,7 +152,16 @@
               <div class="margin-top-5">
                 <el-row :gutter="4" v-for="(item, index) in tableTitleColData" :key="index" class="margin-bottom-5">
                   <el-col :span="12">
-                    <my-select :sel-value="item.label" :options="joinFormParamsOptions" :placeholder="$t('表单字段')" size="small" @change="handleSelectLabel($event, item, index)"></my-select>
+<!--                    <my-select :sel-value="item.label" :options="joinFormParamsOptions" :placeholder="$t('表单字段')" size="small" @change="handleSelectLabel($event, item, index)"></my-select>-->
+                    <el-select ref="mutiSelY" v-model="item.label" size="small" placeholder="表单字段">
+                      <el-option
+                        v-for="(item,indexItem) in joinFormParamsOptions"
+                        :key="item.id"
+                        :label="item.label"
+                        :value="item.value"
+                        @click.native="handleSelectLabel(item, indexItem, index)">
+                      </el-option>
+                    </el-select>
                   </el-col>
                   <el-col :span="8">
                     <my-select :sel-value="item.value" :options="joinFormJoinOptions" :placeholder="$t('请选择')" size="small" @change="handleSelectValue($event, item, index)"></my-select>
@@ -164,7 +176,7 @@
               </div>
             </div>
           </template>
-          <div v-if="settingType != 'search'" class="color-sub-grand font-size-12 margin-top-10">
+          <div v-if="settingType != 'search' && settingType != 'table'" class="color-sub-grand font-size-12 margin-top-10">
             <div>
               <span>{{$t("过滤条件")}}</span>
             </div>
@@ -197,6 +209,24 @@
               <my-cascader v-if="form.joinFormFliterValue == 'dept'" ref="SelectorDept" size="small" width-style="300" :props="{multiple: true}" :sel-value="form.fliterOption" type="4" sub-type="" @change="handleSelectTime($event)"></my-cascader>
             </div>
           </div>
+
+          <template v-if="settingType == 'table'">
+            <div class="color-sub-grand font-size-12 margin-top-10">
+              <div>
+                <span>{{$t("聚合规则")}}</span>
+              </div>
+              <div class="margin-top-5">
+                <el-select v-model="form.tableJoin" @change="handleJoinTableChange" size="small" class="width-300" placeholder="请选择">
+                  <el-option
+                    v-for="item in joinTableJoinOptions"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                  </el-option>
+                </el-select>
+              </div>
+            </div>
+          </template>
         </template>
       </div>
       <div class="form-set-left detail-card font-size-12 padding-lr-10 padding-tb-10" style="overflow-y: auto" :style="drawHeight6">
@@ -297,8 +327,12 @@
                   </div>
                   <div class="color-muted text-center" style="position: relative">
                     <div class="margin-top-20">
-                      <el-progress type="dashboard" :width="160" :percentage="percentage"></el-progress>
-
+                      <div class="text-center">
+                        <el-progress type="dashboard" :show-text="false" :width="160" :percentage="percentage"></el-progress>
+                      </div>
+                      <div class="text-center font-size-12 font-bold" style="position: relative; top: -90px">
+                        <span>显示数据</span>
+                      </div>
                       <div class="text-center color-muted" style="position: relative; top: -10px;">
 <!--                        <div>-->
 <!--                          <span>{{percentageText}}</span>-->
@@ -352,13 +386,15 @@
   import BarChart from "~/components/charts/BarChart";
   import {common} from "~/utils/api/url";
   import MyCascader from "~/components/utils/select/MyCascader";
+  import {inArray} from "~/utils/utils";
 
   export default {
     name: 'pcStaticTemplate',
     components: {MyCascader, BarChart},
     mixins: [mixins],
     props: {
-      staticId: String
+      staticId: String,
+      staticPcFormData: Array
     },
     computed: {
 
@@ -449,6 +485,19 @@
             groupRule: '-1',
             unitType: '0',
             statId: ''
+          },
+          {
+            filterType: '',
+            unitName: '',
+            filterRules: {
+
+            },
+            relaFormId: '',
+            relaFromField1: [],
+            groupRule: '-1',
+            unitType: '0',
+            statId: '',
+            groupType: '0'
           }
         ],
         settingType: '',
@@ -524,6 +573,7 @@
           chartXdataObj: '',
           chartYdata: '',
           chartYdataObj: '',
+          chartYdataArray: [],
           cardTitle: '',
           cardValue: '',
           circleParams: '字段名称',
@@ -552,10 +602,12 @@
           joinFormYValue: [],
           fliterOption: [],
           fliterOptionStartTime: '',
-          fliterOptionEndTime: ''
+          fliterOptionEndTime: '',
+          joinTableJoinValue: []
         },
         joinFormValueOptions: [],
         joinFormParamsOptions: [],
+        joinFormParamsMutiOptions: [],
         joinFormParamsOptionsArray: [],
         joinFormFliterOptions: [],
         joinFormXOptions: [],
@@ -588,9 +640,19 @@
           value: '5',
           label: this.$t("计数(去重复)")
         }],
+        joinTableJoinOptions: [{
+          value: '0',
+          label: this.$t("按人员聚合")
+        },{
+          value: '1',
+          label: this.$t("按部门聚合")
+        },{
+          value: '2',
+          label: this.$t("按院系聚合")
+        }],
         tableData: ["1"],
         tableTitleColData: [
-          {title: '', label: '', value: '', valueText: ''},
+          {title: '', label: '', value: '-1', valueText: '', obj: {d:'',f:'',n:'',g:'-1'}},
         ],
         percentage: 0,
         percentageText: '内容',
@@ -620,15 +682,191 @@
       }
     },
     created() {
-      this.init();
+      this.initAsync();
     },
     methods: {
-      init(){
+      async initAsync(){
+        await this.init();
+        await this.initData();
+      },
+      initData(){
+        if (this.staticPcFormData.length > 0){
+          this.staticPcFormList = this.staticPcFormData;
+          console.log(1,this.staticPcFormData);
+          this.searchStaticTitle = this.staticPcFormData[0].unitName;
+          this.searchSetStaticForm = this.getTitleFliterText(this.staticPcFormData[0].filterType);
+
+          this.form.cardParam1 = this.staticPcFormData[1].unitName;
+          this.form.cardValue1Text = this.staticPcFormData[1].relaFromField1[0]['f'];
+          this.form.cardForm1 = this.staticPcFormData[1].relaFormId;
+          this.form.cardValue1 = this.staticPcFormData[1].relaFromField1[0];
+          this.form.cardFliter1 = this.getTitleFliterText(this.staticPcFormData[1].filterType);
+          this.form.cardJoin1 = this.staticPcFormData[1].groupRule+"";
+
+          if (this.getTitleFliterText(this.staticPcFormData[1].filterType) == 'time'){
+            let time = this.staticPcFormData[1].filterRules != "" ? this.staticPcFormData[1].filterRules : "";
+            let start = time != "" ? time.date1 : "";
+            let end = time != "" > 0 ? time.date2 : "";
+            this.form.cardFliterOption1 = [start, end];
+          }else if (this.getTitleFliterText(this.staticPcFormData[1].filterType) == 'dept'){
+            this.staticPcFormData[1].filterRules = this.staticPcFormData[1].filterRules != "" ? JSON.parse(this.staticPcFormData[1].filterRules) : "";
+            let deptId = this.staticPcFormData[1].filterRules != "" ? this.staticPcFormData[1].filterRules : "";
+            this.form.cardFliterOption1 = deptId.length == 0 ? [] : JSON.parse(deptId.deptId);
+          }if (this.getTitleFliterText(this.staticPcFormData[1].filterType) == 'college'){
+            this.staticPcFormData[1].filterRules = this.staticPcFormData[1].filterRules != "" ? JSON.parse(this.staticPcFormData[1].filterRules) : "";
+            let deptId = this.staticPcFormData[1].filterRules != "" ? this.staticPcFormData[1].filterRules : "";
+            this.form.cardFliterOption1 = deptId.length == 0 ? [] : JSON.parse(deptId.collegeId);
+          }
+
+          this.form.cardParam2 = this.staticPcFormData[1].unitName;
+          this.form.cardValue2Text = this.staticPcFormData[2].relaFromField1[0]['f'];
+          this.form.cardForm2 = this.staticPcFormData[2].relaFormId;
+          this.form.cardValue2 = this.staticPcFormData[2].relaFromField1[0];
+          this.form.cardFliter2 = this.getTitleFliterText(this.staticPcFormData[2].filterType);
+          this.form.cardJoin2 = this.staticPcFormData[2].groupRule+"";
+          if (this.getTitleFliterText(this.staticPcFormData[2].filterType) == 'time'){
+            let time = this.staticPcFormData[2].filterRules != "" ? this.staticPcFormData[2].filterRules : "";
+            let start = time != "" ? time.date1 : "";
+            let end = time != "" > 0 ? time.date2 : "";
+            this.form.cardFliterOption2 = [start, end];
+          }else if (this.getTitleFliterText(this.staticPcFormData[2].filterType) == 'dept'){
+            this.staticPcFormData[2].filterRules = this.staticPcFormData[2].filterRules != "" ? this.staticPcFormData[2].filterRules : "";
+            let deptId = this.staticPcFormData[2].filterRules != "" ? this.staticPcFormData[2].filterRules : "";
+            this.form.cardFliterOption2 = deptId.length == 0 ? [] : JSON.parse(deptId.deptId);
+          }if (this.getTitleFliterText(this.staticPcFormData[2].filterType) == 'college'){
+            this.staticPcFormData[2].filterRules = this.staticPcFormData[1].filterRules != "" ? this.staticPcFormData[2].filterRules : "";
+            let deptId = this.staticPcFormData[2].filterRules != "" ? this.staticPcFormData[2].filterRules : "";
+            this.form.cardFliterOption2 = deptId.length == 0 ? [] : JSON.parse(deptId.collegeId);
+          }
+
+          this.staticPcFormData[3].relaFromField1 = this.staticPcFormData[3].relaFromField1;
+          this.form.cardParam3 = this.staticPcFormData[3].unitName;
+          this.form.cardValue3Text = this.staticPcFormData[3].relaFromField1[0]['f'];
+          this.form.cardForm3 = this.staticPcFormData[3].relaFormId;
+          this.form.cardValue3 = this.staticPcFormData[3].relaFromField1[0];
+          this.form.cardFliter3 = this.getTitleFliterText(this.staticPcFormData[3].filterType);
+          this.form.cardJoin3 = this.staticPcFormData[3].groupRule+"";
+          if (this.getTitleFliterText(this.staticPcFormData[3].filterType) == 'time'){
+            let time = this.staticPcFormData[3].filterRules != "" ? this.staticPcFormData[3].filterRules : "";
+            let start = time != "" ? time.date1 : "";
+            let end = time != "" > 0 ? time.date2 : "";
+            this.form.cardFliterOption3 = [start, end];
+          }else if (this.getTitleFliterText(this.staticPcFormData[3].filterType) == 'dept'){
+            this.staticPcFormData[3].filterRules = this.staticPcFormData[3].filterRules != "" ? this.staticPcFormData[3].filterRules : "";
+            let deptId = this.staticPcFormData[3].filterRules != "" ? this.staticPcFormData[3].filterRules : "";
+            this.form.cardFliterOption3 = deptId.length == 0 ? [] : JSON.parse(deptId.deptId);
+          }if (this.getTitleFliterText(this.staticPcFormData[3].filterType) == 'college'){
+            this.staticPcFormData[3].filterRules = this.staticPcFormData[3].filterRules != "" ? this.staticPcFormData[3].filterRules : "";
+            let deptId = this.staticPcFormData[3].filterRules != "" ? this.staticPcFormData[3].filterRules : "";
+            this.form.cardFliterOption3 = deptId.length == 0 ? [] : JSON.parse(deptId.collegeId);
+          }
+
+          this.staticPcFormData[4].relaFromField1 = this.staticPcFormData[4].relaFromField1;
+          this.form.cardParam4 = this.staticPcFormData[4].unitName;
+          this.form.cardValue4Text = this.staticPcFormData[4].relaFromField1[0]['f'];
+          this.form.cardForm4 = this.staticPcFormData[4].relaFormId;
+          this.form.cardValue4 = this.staticPcFormData[4].relaFromField1[0];
+          this.form.cardFliter4 = this.getTitleFliterText(this.staticPcFormData[4].filterType);
+          this.form.cardJoin4 = this.staticPcFormData[4].groupRule+"";
+          if (this.getTitleFliterText(this.staticPcFormData[4].filterType) == 'time'){
+            let time = this.staticPcFormData[4].filterRules != "" ? this.staticPcFormData[4].filterRules : "";
+            let start = time != "" ? time.date1 : "";
+            let end = time != "" > 0 ? time.date2 : "";
+            this.form.cardFliterOption4 = [start, end];
+          }else if (this.getTitleFliterText(this.staticPcFormData[4].filterType) == 'dept'){
+            this.staticPcFormData[4].filterRules = this.staticPcFormData[4].filterRules != "" ? this.staticPcFormData[4].filterRules : "";
+            let deptId = this.staticPcFormData[4].filterRules != "" ? this.staticPcFormData[4].filterRules : "";
+            this.form.cardFliterOption4 = deptId.length == 0 ? [] : JSON.parse(deptId.deptId);
+          }if (this.getTitleFliterText(this.staticPcFormData[4].filterType) == 'college'){
+            this.staticPcFormData[4].filterRules = this.staticPcFormData[4].filterRules != "" ? this.staticPcFormData[4].filterRules : "";
+            let deptId = this.staticPcFormData[4].filterRules != "" ? this.staticPcFormData[4].filterRules : "";
+            this.form.cardFliterOption4 = deptId.length == 0 ? [] : JSON.parse(deptId.collegeId);
+          }
+
+          this.form.chartParam = this.staticPcFormData[5].unitName;
+          this.form.chartForm = this.staticPcFormData[5].relaFormId;
+          this.form.chartXdata = this.staticPcFormData[5].relaFromField1[0]['f'];
+          this.form.chartXdataObj = this.staticPcFormData[5].relaFromField1[0];
+          this.form.chartFliter = this.getTitleFliterText(this.staticPcFormData[5].filterType);
+          //this.form.chartFliterOption = [];
+          let yData = this.staticPcFormData[5].relaFromField2 != undefined ? this.staticPcFormData[5].relaFromField2 : []
+          let yDataArray = [];
+          for (let i = 0; i < yData.length; i++){
+            yDataArray.push(yData[i].f);
+          }
+          this.form.chartYdata = yDataArray;
+          this.form.chartYdataObj = this.staticPcFormData[5].relaFromField2;
+          this.form.chartYdataArray = this.staticPcFormData[5].relaFromField2 != undefined ? this.staticPcFormData[5].relaFromField2 : [];
+
+          if (this.getTitleFliterText(this.staticPcFormData[5].filterType) == 'time'){
+            let time = this.staticPcFormData[5].filterRules != "" ? this.staticPcFormData[5].filterRules : "";
+            let start = time != "" ? time.date1 : "";
+            let end = time != "" > 0 ? time.date2 : "";
+            this.form.chartFliterOption = [start, end];
+          }else if (this.getTitleFliterText(this.staticPcFormData[5].filterType) == 'dept'){
+            this.staticPcFormData[5].filterRules = this.staticPcFormData[5].filterRules != "" ? this.staticPcFormData[5].filterRules : "";
+            let deptId = this.staticPcFormData[5].filterRules != "" ? this.staticPcFormData[5].filterRules : [];
+            this.form.chartFliterOption = deptId.length == 0 ? [] : JSON.parse(deptId.deptId);
+          }else if (this.getTitleFliterText(this.staticPcFormData[5].filterType) == 'college'){
+            this.staticPcFormData[5].filterRules = this.staticPcFormData[5].filterRules != "" ? this.staticPcFormData[5].filterRules : "";
+            let deptId = this.staticPcFormData[5].filterRules != "" ? this.staticPcFormData[5].filterRules : [];
+            this.form.chartFliterOption = deptId.length == 0 ? [] : JSON.parse(deptId.collegeId);
+          }
+
+          this.staticPcFormData[6].relaFromField1 = this.staticPcFormData[6].relaFromField1;
+          this.form.circleParams = this.staticPcFormData[6].unitName;
+          this.form.circleValueText = this.staticPcFormData[6].relaFromField1[0]['f'];
+          this.form.circleForm = this.staticPcFormData[6].relaFormId;
+          this.form.circleValue = this.staticPcFormData[6].relaFromField1[0];
+          this.form.circleFliter = this.getTitleFliterText(this.staticPcFormData[6].filterType);
+          this.form.circleJoin = this.staticPcFormData[6].groupRule+"";
+          this.percentageValue = this.staticPcFormData[6].relaFromField1[0]['n'];
+          if (this.getTitleFliterText(this.staticPcFormData[6].filterType) == 'time'){
+            let time = this.staticPcFormData[6].filterRules != "" ? this.staticPcFormData[6].filterRules : "";
+            let start = time != "" ? time.date1 : "";
+            let end = time != "" > 0 ? time.date2 : "";
+            this.form.circleFliterOption = [start, end];
+          }else if (this.getTitleFliterText(this.staticPcFormData[6].filterType) == 'dept'){
+            this.staticPcFormData[6].filterRules = this.staticPcFormData[6].filterRules != "" ? this.staticPcFormData[6].filterRules : "";
+            let deptId = this.staticPcFormData[6].filterRules != "" ? this.staticPcFormData[6].filterRules : [];
+            this.form.circleFliterOption = deptId.length == 0 ? [] : JSON.parse(deptId.deptId);
+          }else if (this.getTitleFliterText(this.staticPcFormData[6].filterType) == 'college'){
+            this.staticPcFormData[6].filterRules = this.staticPcFormData[6].filterRules != "" ? this.staticPcFormData[6].filterRules : "";
+            let deptId = this.staticPcFormData[6].filterRules != "" ? this.staticPcFormData[6].filterRules : [];
+            this.form.circleFliterOption = deptId.length == 0 ? [] : JSON.parse(deptId.collegeId);
+          }
+
+          this.form.tableForm = this.staticPcFormData[7].relaFormId;
+          let tabletTitleData = this.staticPcFormData[7].relaFromField1 != "" ? this.staticPcFormData[7].relaFromField1 : [];
+          let tableColArray = [];
+          for (let i = 0; i < tabletTitleData.length; i++){
+            tableColArray.push(
+              {
+                title: tabletTitleData[i].n,
+                label: tabletTitleData[i].n,
+                value: tabletTitleData[i].g+"",
+                valueText: "",
+                obj: {
+                  d:tabletTitleData[i].d,
+                  f:tabletTitleData[i].f,
+                  n:tabletTitleData[i].n,
+                  g:tabletTitleData[i].g+""
+                }
+              },
+            );
+          }
+          console.log(tableColArray);
+          this.tableTitleColData = tableColArray;
+          this.form.tableJoin = this.staticPcFormData[7].groupType+"";
+          this.staticPcFormData[7].relaFromField1 = this.staticPcFormData[7].relaFromField1;
+        }
+      },
+      async init(){
         //server_list_list2
         let params = {
 
         };
-        this.$axios.get(common.server_list_list2,{params: params}).then(res => {
+        await this.$axios.get(common.server_list_list2,{params: params}).then(res => {
           if (res.data.code == 200){
             let array = [];
             for (let i = 0; i < res.data.data.length; i++){
@@ -641,18 +879,20 @@
           }
         });
       },
-      getFiledInfo(formId){
+      async getFiledInfo(formId){
         //server_list_list2
         let params = {
           formId: formId
         };
-        this.$axios.get(common.server_list_field,{params: params}).then(res => {
+        await this.$axios.get(common.server_list_field,{params: params}).then(res => {
           if (res.data.code == 200){
             let array = [];
             for (let i = 0; i < res.data.data.length; i++){
               array.push({
-                value: i,
-                label: res.data.data[i].n
+                id: i,
+                value: res.data.data[i].f,
+                label: res.data.data[i].n,
+                extra: res.data.data[i].d
               });
             }
             this.joinFormParamsOptions = array;
@@ -660,12 +900,14 @@
           }
         });
       },
-      settingCardDataInfo(event, value){
+      async settingCardDataInfo(event, value){
         this.settingType = 'card';
         this.form.fliterOption = [];
         this.resetCasadeSelector('SelectorCollege');
         this.resetCasadeSelector('SelectorDept');
+
         if (value == 1){
+          await this.getFiledInfo(this.form.cardForm1);
           this.form.cardTitle = this.form.cardParam1;
           this.form.joinFormParamsValue = this.form.cardValue1Text == '' ? '' : this.form.cardValue1Text;
           this.form.joinFormValue = this.form.cardForm1;
@@ -678,6 +920,7 @@
           this.staticPcFormList[1]['filterRules'] = this.setFliterOptionValue(this.form.cardFliter1, this.staticPcFormList[1]['filterRules'], this.form.cardFliterOption1);
 
         }else if (value == 2){
+          await this.getFiledInfo(this.form.cardForm2);
           this.form.cardTitle = this.form.cardParam2;
           this.form.joinFormParamsValue = this.form.cardValue2Text == '' ? '' : this.form.cardValue2Text;
           this.form.joinFormValue = this.form.cardForm2;
@@ -689,17 +932,20 @@
           this.staticPcFormList[2]['groupRule'] = this.form.cardJoin2;
           this.staticPcFormList[2]['filterRules'] = this.setFliterOptionValue(this.form.cardFliter2, this.staticPcFormList[2]['filterRules'], this.form.cardFliterOption2);
         }else if (value == 3){
+          await this.getFiledInfo(this.form.cardForm3);
           this.form.cardTitle = this.form.cardParam3;
           this.form.joinFormParamsValue = this.form.cardValue3Text == '' ? '' : this.form.cardValue3Text;
           this.form.joinFormValue = this.form.cardForm3;
           this.form.joinFormJoinValue = this.form.cardJoin3;
           this.form.joinFormFliterValue = this.form.cardFliter3;
           this.form.fliterOption = this.form.cardFliterOption3;
+          console.log(this.form.cardFliterOption3);
 
           this.staticPcFormList[3] = this.setStatucFormListObj(this.form.cardFliter3,this.form.cardParam3,this.form.cardForm3,this.form.cardValue3,this.form.cardJoin3,this.staticId,0);
           this.staticPcFormList[3]['groupRule'] = this.form.cardJoin3;
           this.staticPcFormList[3]['filterRules'] = this.setFliterOptionValue(this.form.cardFliter3, this.staticPcFormList[3]['filterRules'], this.form.cardFliterOption3);
         }else if (value == 4){
+          await this.getFiledInfo(this.form.cardForm4);
           this.form.cardTitle = this.form.cardParam4;
           this.form.joinFormParamsValue = this.form.cardValue4Text == '' ? '' : this.form.cardValue4Text;
           this.form.joinFormValue = this.form.cardForm4;
@@ -713,23 +959,28 @@
         }
         this.settingColValue = value;
       },
-      settingBarDataInfo(event){
+      async settingBarDataInfo(event){
         this.settingType = 'bar';
         this.settingColValue = '';
 
+        await this.getFiledInfo(this.form.chartForm);
         this.form.joinFormXValue = "";
         this.form.joinFormYValue = [];
         this.form.joinFormValue = this.form.chartForm;
         this.form.joinFormFliterValue = this.form.chartFliter;
         this.form.joinFormXValue = this.form.chartXdata;
         this.form.joinFormYValue = this.form.chartYdata;
+        this.form.fliterOption = this.form.chartFliterOption;
 
+        //console.log(this.form.chartFliter,this.form.chartFliterOption);
         this.staticPcFormList[5] = this.setStatucFormListObj2(this.form.chartFliter,this.form.chartParam,this.form.chartForm,this.form.chartXdataObj,this.form.chartYdataObj,this.form.chartJoin,this.staticId,1);
         this.staticPcFormList[5]['filterRules'] = this.setFliterOptionValue(this.form.chartFliter, this.staticPcFormList[5]['filterRules'], this.form.chartFliterOption);
       },
-      settingCircleDataInfo(event){
+      async settingCircleDataInfo(event){
         this.settingType = 'circle';
         this.settingColValue = '';
+
+        await this.getFiledInfo(this.form.circleForm);
         this.form.circleParams = this.form.circleParams;
         this.form.joinFormParamsValue = this.form.circleValueText == '' ? '' : this.form.circleValueText;
         this.form.joinFormValue = this.form.circleForm;
@@ -737,25 +988,49 @@
         this.form.joinFormFliterValue = this.form.circleFliter;
         this.percentage = 0;
         this.percentageValue = this.percentageValue == '表单字段' ? '表单字段' : this.percentageValue;
+        this.form.fliterOption = this.form.circleFliterOption;
 
-        this.staticPcFormList[6] = this.setStatucFormListObj(this.form.circleFliter,this.form.circleParams,this.form.circleForm,this.form.circleValue,this.form.circleJoin,this.staticId,2);
+        this.staticPcFormList[6] = this.setStatucFormListObj(this.form.circleFliter,this.form.circleParams,this.form.circleForm,this.form.circleValue,this.form.circleJoin,this.staticId,5);
         this.staticPcFormList[6]['filterRules'] = this.setFliterOptionValue(this.form.circleFliter, this.staticPcFormList[6]['filterRules'], this.form.circleFliterOption);
       },
-      settingTableDataInfo(event){
+      async settingTableDataInfo(event){
         this.settingType = 'table';
         this.settingColValue = '';
+
+        await this.getFiledInfo(this.form.circleForm);
         this.form.joinFormValue = this.form.tableForm;
         this.form.joinFormFliterValue = this.form.tableFliter;
+
+        let tableCol = this.tableTitleColData;
+        let array = [];
+        for (let i = 0; i < tableCol.length; i++){
+          array.push(tableCol[i].obj);
+        }
+        this.staticPcFormList[7] = this.setStatucTableListObj(this.form.tableJoin,'',this.form.tableForm,array,this.form.tableJoin,this.staticId,3);
+        //this.staticPcFormList[7]['groupType'] = this.setFliterOptionValue(this.form.circleFliter, this.staticPcFormList[6]['filterRules'], this.form.circleFliterOption);
       },
       settingSearchDataInfo(event){
         this.settingType = 'search';
         this.settingColValue = '';
+        console.log(this.searchSetStaticForm, this.form.searchStaticTitle);
         let filterType = this.getTilterType(this.searchSetStaticForm);
         this.staticPcFormList[0] = {
           filterType: filterType,
           unitName: this.form.searchStaticTitle,
-          statId: this.staticId
+          statId: this.staticId,
+          unitType: 4
         };
+      },
+      getTitleFliterText(data){
+        let filterType = "";
+        if (data == 0){
+          filterType = "time";
+        }else if (data == 1){
+          filterType = "dept";
+        }else if (data == 2){
+          filterType = "college";
+        }
+        return filterType;
       },
       getTilterType(type){
         let filterType = "";
@@ -774,9 +1049,9 @@
           staticPcForm['date1'] = data.length > 0 ? data[0] : '';
           staticPcForm['date2'] = data.length > 0 ? data[1] : '';
         }else if (type == 'dept'){
-          staticPcForm['deptId'] = data;
+          staticPcForm['deptId'] = JSON.stringify(data);
         }else if (type == 'college'){
-          staticPcForm['collegeId'] = data;
+          staticPcForm['collegeId'] = JSON.stringify(data);
         }
         return staticPcForm;
       },
@@ -811,11 +1086,31 @@
         }
         return obj;
       },
+      setStatucTableListObj(cardFliter,cardParam,cardForm,relaFromField,cardJoin,staticId,unitType){
+        let obj = {
+          //filterType: cardFliter,
+          unitName: cardParam,
+          filterRules: {},
+          relaFormId: cardForm,
+          relaFromField1: relaFromField,
+          groupRule: cardJoin,
+          unitType: unitType,
+          statId: staticId,
+          groupType: cardFliter
+        }
+        return obj;
+      },
       addTableCol(event, index){
         let obj = {
           title: '',
           label: '',
-          value: ''
+          value: '-1',
+          obj: {
+            d:'',
+            f:'',
+            n:'',
+            g:'-1'
+          }
         };
         this.tableTitleColData.splice(index+1,0, obj);
       },
@@ -880,13 +1175,28 @@
           this.searchSetStaticFormOption = data;
         }
       },
-      handleSelectLabel(event, item, index){
-        item.label = event;
-        this.$set(this.tableTitleColData[index], 'title', this.joinFormParamsOptionsArray[index].n);
+      handleSelectLabel(item, indexItem, index){
+        item.label = item.label;
+        console.log(indexItem);
+        let obj = this.joinFormParamsOptionsArray[indexItem];
+        this.tableTitleColData[index]['obj']['n'] = obj.n;
+        this.tableTitleColData[index]['obj']['f'] = obj.f;
+        this.tableTitleColData[index]['obj']['d'] = obj.d;
+        this.$set(this.tableTitleColData[index], 'title', obj.n);
+
+        let tableCol = this.tableTitleColData;
+        let array = [];
+        for (let i = 0; i < tableCol.length; i++){
+          array.push(tableCol[i].obj);
+        }
+        this.staticPcFormList[7]['relaFromField1'] = array;
       },
-      handleJoinFormParamsChange(data){
-        let obj = this.joinFormParamsOptionsArray[data];
-        this.form.joinFormParamsValue = data;
+      handleJoinFormParamsChange(item, data){
+        let obj = {};
+        obj['d'] = this.joinFormParamsOptionsArray[parseInt(data)]['d'];
+        obj['f'] = this.joinFormParamsOptionsArray[parseInt(data)]['f'];
+        obj['n'] = this.joinFormParamsOptionsArray[parseInt(data)]['n'];
+        this.form.joinFormParamsValue = item.value;
         this.form.joinFormParamsValueObj = obj;
         if (this.settingType == 'card'){
           if (this.settingColValue == 1){
@@ -958,20 +1268,39 @@
         }
         this.getFiledInfo(data);
       },
-      handleXChange(data){
-        let obj = this.joinFormParamsOptionsArray[data];
-        this.form.chartXdata = data;
+      handleXChange(item,data){
+        let obj = {};
+        obj['d'] = this.joinFormParamsOptionsArray[data]['d'];
+        obj['f'] = this.joinFormParamsOptionsArray[data]['f'];
+        obj['n'] = this.joinFormParamsOptionsArray[data]['n'];
+        this.form.chartXdata = item.value;
         this.form.chartXdataObj = obj;
         this.staticPcFormList[5]['relaFromField1'] = [obj];
       },
-      handleYChange(data){
+      handleYChange(item, index){
         let array = [];
         let arrayObj = [];
         let yData = [];
         let yDataNum = [];
+        let tempData = {
+          d: item['extra'],
+          n: item['label'],
+          f: item['value'],
+        }
+        let sel = inArray(tempData, this.form.chartYdataArray, 'f');
+        if (sel > -1){
+          this.form.chartYdataArray.splice(sel,1);
+        }else {
+          this.form.chartYdataArray.push(tempData);
+        }
+        let data = this.form.chartYdataArray;
         for (let i = 0; i < data.length; i++){
-          let obj = this.joinFormParamsOptionsArray[data[i]];
-          array.push(this.joinFormParamsOptionsArray[data[i]].n);
+          //let obj = this.joinFormParamsOptionsArray[data[i]];
+          let obj = {};
+          obj['d'] = data[i].d;
+          obj['f'] = data[i].f;
+          obj['n'] = data[i].n;
+          array.push(data[i].n);
           arrayObj.push(obj);
           yDataNum.push(10);
         }
@@ -991,6 +1320,7 @@
         this.barData = yData;
       },
       handleSelectValue(event, item, index){
+        this.tableTitleColData[index]['obj']['g'] = event;
         item.value = event;
         item.valueText = '';
       },
@@ -1003,24 +1333,26 @@
           if (this.settingColValue == 1){
             this.form.cardFliter1 = data;
             this.staticPcFormList[1]['filterRules'] = {};
-            this.staticPcFormList[1]['filterType'] = data;
+            this.staticPcFormList[1]['filterType'] = this.getTilterType(data);
           }else if (this.settingColValue == 2){
             this.form.cardFliter2 = data;
             this.staticPcFormList[2]['filterRules'] = {};
-            this.staticPcFormList[2]['filterType'] = data;
+            this.staticPcFormList[2]['filterType'] = this.getTilterType(data);
           }else if (this.settingColValue == 3){
             this.form.cardFliter3 = data;
             this.staticPcFormList[3]['filterRules'] = {};
-            this.staticPcFormList[3]['filterType'] = data;
+            this.staticPcFormList[3]['filterType'] = this.getTilterType(data);
           }else if (this.settingColValue == 4){
             this.form.cardFliter4 = data;
             this.staticPcFormList[4]['filterRules'] = {};
-            this.staticPcFormList[4]['filterType'] = data;
+            this.staticPcFormList[4]['filterType'] = this.getTilterType(data);
           }
         }else if (this.settingType == 'circle'){
           this.form.circleFliter = data;
+          this.staticPcFormList[6]['filterType'] = this.getTilterType(data);
         }else if (this.settingType == 'bar'){
           this.form.chartFliter = data;
+          this.staticPcFormList[5]['filterType'] = this.getTilterType(data);
           if (data == 'time'){
             this.barDataKey = ['时间1','时间2','更多'];
           }else if (data == 'dept'){
@@ -1071,6 +1403,10 @@
           this.staticPcFormList[5]['groupRule'] = data;
         }
       },
+      handleJoinTableChange(data){
+        this.form.tableJoin = data;
+        this.staticPcFormList[7]['groupType'] = data;
+      },
       handleSelectTime(data){
         this.form.fliterOption = data;
         if (this.settingType == 'card'){
@@ -1108,7 +1444,131 @@
       closePcDialog(){
         this.settingColValue = '';
         this.settingType = '';
-        this.staticPcFormList = [];
+        this.searchSetStaticForm = "";
+        this.percentage = 0;
+        this.percentageText = '内容';
+        this.percentageValue = '表单字段';
+        this.barDataLegned = ['类型1','类型2','类型3'], this.barDataKey = ['字段1','字段2','字段3'];
+
+        this.barData = [
+          {
+            name: '类型1',
+            type: 'bar',
+            barWidth:15,
+            data:[10,10,10]
+          },
+          {
+            name: '类型2',
+            type: 'bar',
+            barWidth:15,
+            data:[10,10,10]
+          },
+          {
+            name: '类型3',
+            type: 'bar',
+            barWidth:15,
+            data:[10,10,10]
+          }
+        ];
+        this.staticPcFormList = [
+          {
+            filterType: '',
+            unitName: '',
+            statId: '',
+            unitType: '4'
+          },
+          {
+            filterType: '',
+            unitName: '',
+            filterRules: {
+
+            },
+            relaFormId: '',
+            relaFromField1: {
+              collegeId: [],
+              deptId: [],
+              date1: [],
+              date2: []
+            },
+            groupRule: '-1',
+            unitType: '0',
+            statId: ''
+          },
+          {
+            filterType: '',
+            unitName: '',
+            filterRules: {
+
+            },
+            relaFormId: '',
+            relaFromField1: [],
+            groupRule: '-1',
+            unitType: '0',
+            statId: ''
+          },
+          {
+            filterType: '',
+            unitName: '',
+            filterRules: {
+
+            },
+            relaFormId: '',
+            relaFromField1: [],
+            groupRule: '-1',
+            unitType: '0',
+            statId: ''
+          },
+          {
+            filterType: '',
+            unitName: '',
+            filterRules: {
+
+            },
+            relaFormId: '',
+            relaFromField1: [],
+            groupRule: '-1',
+            unitType: '0',
+            statId: ''
+          },
+          {
+            filterType: '',
+            unitName: '',
+            filterRules: {
+
+            },
+            relaFormId: '',
+            relaFromField1: [],
+            relaFromField2: [],
+            groupRule: '-1',
+            unitType: '0',
+            statId: ''
+          },
+          {
+            filterType: '',
+            unitName: '',
+            filterRules: {
+
+            },
+            relaFormId: '',
+            relaFromField1: [],
+            groupRule: '-1',
+            unitType: '0',
+            statId: ''
+          },
+          {
+            filterType: '',
+            unitName: '',
+            filterRules: {
+
+            },
+            relaFormId: '',
+            relaFromField1: [],
+            groupRule: '-1',
+            unitType: '0',
+            statId: '',
+            groupType: '0'
+          }
+        ];
         this.form = {
           searchStaticTitle: '筛选条件',
           cardParam1: '字段名称',
@@ -1127,10 +1587,10 @@
           cardForm2: '',
           cardForm3: '',
           cardForm4: '',
-          cardJoin1: '',
-          cardJoin2: '',
-          cardJoin3: '',
-          cardJoin4: '',
+          cardJoin1: '-1',
+          cardJoin2: '-1',
+          cardJoin3: '-1',
+          cardJoin4: '-1',
           cardFliter1: '',
           cardFliter2: '',
           cardFliter3: '',
@@ -1150,12 +1610,15 @@
           chartParam: '字段名称',
           chartValue: '',
           chartValueText: '',
+          chartJoin: '',
           chartForm: '',
           chartFliter: '',
           chartFliterOption: '',
           chartXdata: '',
+          chartXdataObj: '',
           chartYdata: '',
           chartYdataObj: '',
+          chartYdataArray: [],
           cardTitle: '',
           cardValue: '',
           circleParams: '字段名称',
@@ -1166,7 +1629,7 @@
           circleFliterOption: '',
           circleFliterStartTime: '',
           circleFliterEndTime: '',
-          circleJoin: '',
+          circleJoin: '-1',
           tableForm: '',
           tableValue: '',
           tableValueText: '',
@@ -1174,6 +1637,7 @@
           tableFliterOption: '',
           tableFliterStartTime: '',
           tableFliterEndTime: '',
+          tableJoin: '',
           joinFormValue: '',
           joinFormParamsValue: '',
           joinFormParamsValueObj: {},
@@ -1183,7 +1647,8 @@
           joinFormYValue: [],
           fliterOption: [],
           fliterOptionStartTime: '',
-          fliterOptionEndTime: ''
+          fliterOptionEndTime: '',
+          joinTableJoinValue: []
         }
       }
     }

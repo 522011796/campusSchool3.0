@@ -1116,13 +1116,6 @@
             "id": 97100,
             "top": "appletInfo",
             "path": "/appletInfo/staticCenter/formStaticManage"
-          },
-          {
-            "name": "我的统计",
-            "key": "myFormStatic",
-            "id": 97200,
-            "top": "appletInfo",
-            "path": "/appletInfo/staticCenter/myFormStatic"
           }
         ]
       }

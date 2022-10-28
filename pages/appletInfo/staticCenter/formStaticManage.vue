@@ -206,7 +206,7 @@
       </div>
     </drawer-layout-right>
 
-    <drawer-layout-right @changeDrawer="closeDrawerDialog" @right-close="cancelDrawDialog" :visible="drawerVisible" size="85%" :title="title">
+    <drawer-layout-right @changeDrawer="closeDrawerDialog" @opened="openedForm" @right-close="cancelDrawDialog" :visible="drawerVisible" size="85%" :title="title">
       <div slot="title">
         <div class="header-block padding-lr-10">
           <el-row>
@@ -222,7 +222,7 @@
       </div>
       <div slot="content">
         <template v-if="titleType == true">
-          <pc-static-template ref="pcRef" :static-id="staticId"></pc-static-template>
+          <pc-static-template ref="pcRef" :static-id="staticId" :static-pc-form-data="staticPcFormData"></pc-static-template>
         </template>
       </div>
 
@@ -288,6 +288,7 @@ export default {
       staticFormList: [],
       searchStaticForm: '',
       staticPcFormList: [],
+      staticPcFormData: [],
       formId: '',
       staticId: '',
       typeList: [
@@ -374,10 +375,56 @@ export default {
     addInitData(item, type){
       this.drawerAddInfo = true;
     },
-    settingInfo(data){
+    openedForm(){
+      if(this.$refs['pcRef']){
+        this.$refs['pcRef'].initAsync();
+      }
+    },
+    async settingInfo(data){
       this.titleType = data.web_type;
       this.title = data.web_type ? this.$t("PC端数据配置") : this.$t("H5端数据配置");
       //this.initFormList();
+
+      let params = {
+        id: data.id
+      };
+      await this.$axios.get(common.static_appinfo_form_info, {params: params}).then(res => {
+        if (res.data.code == 200){
+          for (let i = 0; i < res.data.data.unitList.length; i++){
+            if (i == 0){
+              delete res.data.data.unitList[i]['campusId'];
+              delete res.data.data.unitList[i]['filterRules'];
+              delete res.data.data.unitList[i]['groupRule'];
+              delete res.data.data.unitList[i]['groupType'];
+              delete res.data.data.unitList[i]['relaFormId'];
+              delete res.data.data.unitList[i]['relaFromField1'];
+              delete res.data.data.unitList[i]['relaFromField2'];
+            }else if(i == 1 || i == 2 || i == 3 || i == 4 || i == 6){
+              delete res.data.data.unitList[i]['campusId'];
+              delete res.data.data.unitList[i]['relaFromField2'];
+
+              res.data.data.unitList[i]['relaFromField1'] = res.data.data.unitList[i]['relaFromField1'] != undefined ? JSON.parse(res.data.data.unitList[i]['relaFromField1']) : [];
+              res.data.data.unitList[i]['filterRules'] = res.data.data.unitList[i]['filterRules'] != undefined ? JSON.parse(res.data.data.unitList[i]['filterRules']) : [];
+            }else if(i == 7){
+              delete res.data.data.unitList[i]['campusId'];
+              delete res.data.data.unitList[i]['relaFromField2'];
+              delete res.data.data.unitList[i]['filterRules'];
+
+              res.data.data.unitList[i]['relaFromField1'] = res.data.data.unitList[i]['relaFromField1'] != undefined ? JSON.parse(res.data.data.unitList[i]['relaFromField1']) : [];
+            }else if(i == 5){
+              delete res.data.data.unitList[i]['campusId'];
+
+              res.data.data.unitList[i]['relaFromField1'] = res.data.data.unitList[i]['relaFromField1'] != undefined ? JSON.parse(res.data.data.unitList[i]['relaFromField1']) : [];
+              res.data.data.unitList[i]['relaFromField2'] = res.data.data.unitList[i]['relaFromField2'] != undefined ? JSON.parse(res.data.data.unitList[i]['relaFromField2']) : [];
+              res.data.data.unitList[i]['filterRules'] = res.data.data.unitList[i]['filterRules'] != undefined ? JSON.parse(res.data.data.unitList[i]['filterRules']) : [];
+            }else {
+              delete res.data.data.unitList[i]['campusId'];
+            }
+          }
+          this.staticPcFormData = res.data.data.unitList;
+        }
+      });
+
       this.staticId = data.id + "";
       this.drawerVisible = true;
     },
@@ -622,72 +669,54 @@ export default {
       let url = '';
       this.staticPcFormList = [];
       let pcRef = this.$refs.pcRef;
-      // if (pcRef.staticPcFormList.length == 0){
-      //   MessageWarning(this.$t("检测到统计表单信息未设置完全，请设置"));
-      //   return;
-      // }else if (pcRef.staticPcFormList[0].filterType == "" || pcRef.staticPcFormList[0].unitName == ""){
-      //   MessageWarning(this.$t("请设置搜索栏信息"));
-      //   return;
-      // }else if (pcRef.staticPcFormList[1].relaFormId == "" || pcRef.staticPcFormList[1].relaFromField1.length == 0 || pcRef.staticPcFormList[1].unitName == ""){
-      //   MessageWarning(this.$t("请设置顶部卡片信息"));
-      //   return;
-      // }else if (pcRef.staticPcFormList[2].relaFormId == "" || pcRef.staticPcFormList[2].relaFromField1.length == 0 || pcRef.staticPcFormList[2].unitName == ""){
-      //   MessageWarning(this.$t("请设置顶部卡片信息"));
-      //   return;
-      // }else if (pcRef.staticPcFormList[3].relaFormId == "" || pcRef.staticPcFormList[3].relaFromField1.length == 0 || pcRef.staticPcFormList[3].unitName == ""){
-      //   MessageWarning(this.$t("请设置顶部卡片信息"));
-      //   return;
-      // }else if (pcRef.staticPcFormList[4].relaFormId == "" || pcRef.staticPcFormList[4].relaFromField1.length == 0 || pcRef.staticPcFormList[4].unitName == ""){
-      //   MessageWarning(this.$t("请设置顶部卡片信息"));
-      //   return;
-      // }
+      if (pcRef.staticPcFormList.length == 0){
+        MessageWarning(this.$t("检测到统计表单信息未设置完全，请设置"));
+        return;
+      }else if (pcRef.staticPcFormList[0].filterType == "" || pcRef.staticPcFormList[0].unitName == ""){
+        MessageWarning(this.$t("请设置搜索栏信息"));
+        return;
+      }else if (pcRef.staticPcFormList[1].relaFormId == "" || pcRef.staticPcFormList[1].relaFromField1.length == 0 || pcRef.staticPcFormList[1].unitName == ""){
+        MessageWarning(this.$t("请设置顶部卡片信息"));
+        return;
+      }else if (pcRef.staticPcFormList[2].relaFormId == "" || pcRef.staticPcFormList[2].relaFromField1.length == 0 || pcRef.staticPcFormList[2].unitName == ""){
+        MessageWarning(this.$t("请设置顶部卡片信息"));
+        return;
+      }else if (pcRef.staticPcFormList[3].relaFormId == "" || pcRef.staticPcFormList[3].relaFromField1.length == 0 || pcRef.staticPcFormList[3].unitName == ""){
+        MessageWarning(this.$t("请设置顶部卡片信息"));
+        return;
+      }else if (pcRef.staticPcFormList[4].relaFormId == "" || pcRef.staticPcFormList[4].relaFromField1.length == 0 || pcRef.staticPcFormList[4].unitName == ""){
+        MessageWarning(this.$t("请设置顶部卡片信息"));
+        return;
+      }else if (pcRef.staticPcFormList[5].relaFormId == "" || pcRef.staticPcFormList[5].relaFromField1.length == 0 || pcRef.staticPcFormList[5].relaFromField2.length == 0 || pcRef.staticPcFormList[5].unitName == ""){
 
+        MessageWarning(this.$t("请设置柱状图信息"));
+        return;
+      }else if (pcRef.staticPcFormList[6].relaFormId == "" || pcRef.staticPcFormList[6].relaFromField1.length == 0 || pcRef.staticPcFormList[6].unitName == ""){
+        MessageWarning(this.$t("请设置环形图信息"));
+        return;
+      }else if (pcRef.staticPcFormList[7].relaFormId == "" || pcRef.staticPcFormList[7].relaFromField1.length == 0 || pcRef.staticPcFormList[7].groupType === ""){
 
+        MessageWarning(this.$t("请设置表格信息"));
+        return;
+      }
       console.log(pcRef.staticPcFormList);
-      // this.$refs['formStatic'].validate((valid) => {
-      //   if (valid) {
-      //     let roleList = [];
-      //     for (let i = 0; i < this.form.roleList.length; i++){
-      //       if (this.form.roleList[i].length == 2){
-      //         roleList.push(this.form.roleList[i]);
-      //       }
-      //     }
-      //     let params = {
-      //       //formId: this.formId.id,
-      //       permissionType: this.form.roleType,
-      //       permissionCondition1: this.form.roleOprLook,
-      //       permissionCondition2: this.form.roleOprDel,
-      //       permissionCondition3: this.form.roleOprImOrEx,
-      //       permissionStudentSwitch: this.form.roleStudents,
-      //       permissionTeacherSwitch: this.form.roleTeachers,
-      //       permissionName: this.form.name,
-      //       enable: this.form.enable,
-      //       des: this.form.des,
-      //       roleContent: roleList.length > 0 ? JSON.stringify(roleList) : ""
-      //     };
-      //     let contentArray = [];
-      //     for (let i = 0 ; i < this.form.permissionContentArray.length; i++){
-      //       contentArray.push(this.form.permissionContentArray[i].user_id);
-      //     }
-      //     params['permissionContent'] = contentArray.join();
-      //     if (this.form.id != ""){
-      //       params['id'] = this.form.id;
-      //     }
-      //     url = common.server_form_template_permission_save;
-      //     params = this.$qs.stringify(params);
-      //     this.btnLoading = true;
-      //     this.$axios.post(url, params, {loading: false}).then(res => {
-      //       if (res.data.code == 200) {
-      //         this.drawerVisible = false;
-      //         this.init();
-      //         MessageSuccess(res.data.desc);
-      //       } else {
-      //         MessageError(res.data.desc);
-      //       }
-      //       this.btnLoading = false;
-      //     });
-      //   }
-      // });
+      let params = {
+        list: pcRef.staticPcFormList
+      };
+      url = common.static_appinfo_form_unit_save;
+      //params = this.$qs.stringify(params);
+      this.btnLoading = true;
+      this.$axios.post(url, params, {loading: false, dataType: 'stringfy'}).then(res => {
+        if (res.data.code == 200) {
+          this.drawerVisible = false;
+          this.$refs.pcRef.closePcDialog();
+          this.init();
+          MessageSuccess(res.data.desc);
+        } else {
+          MessageError(res.data.desc);
+        }
+        this.btnLoading = false;
+      });
     },
     okFormDrawDialog(){
       this.$refs['formStatic'].validate((valid) => {
