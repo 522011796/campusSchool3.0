@@ -700,7 +700,7 @@ export default {
         MessageWarning(this.$t("请设置表格信息"));
         return;
       }
-      console.log(pcRef.staticPcFormList);
+      //console.log(pcRef.staticPcFormList);
       let params = {
         list: pcRef.staticPcFormList
       };

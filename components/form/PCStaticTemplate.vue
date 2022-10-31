@@ -786,7 +786,6 @@
       initData(){
         if (this.staticPcFormData.length > 0){
           this.staticPcFormList = this.staticPcFormData;
-          console.log(1,this.staticPcFormData);
           this.searchStaticTitle = this.staticPcFormData[0].unitName;
           this.searchSetStaticForm = this.getTitleFliterText(this.staticPcFormData[0].filterType);
 
@@ -949,7 +948,6 @@
               },
             );
           }
-          console.log(tableColArray);
           this.tableTitleColData = tableColArray;
           this.form.tableJoin = this.staticPcFormData[7].groupType+"";
           this.staticPcFormData[7].relaFromField1 = this.staticPcFormData[7].relaFromField1;
@@ -1033,7 +1031,6 @@
           this.form.joinFormJoinValue = this.form.cardJoin3;
           this.form.joinFormFliterValue = this.form.cardFliter3;
           this.form.fliterOption = this.form.cardFliterOption3;
-          console.log(this.form.cardFliterOption3);
 
           this.staticPcFormList[3] = this.setStatucFormListObj(this.form.cardFliter3,this.form.cardParam3,this.form.cardForm3,this.form.cardValue3,this.form.cardJoin3,this.staticId,0);
           this.staticPcFormList[3]['groupRule'] = this.form.cardJoin3;
@@ -1106,7 +1103,7 @@
       settingSearchDataInfo(event){
         this.settingType = 'search';
         this.settingColValue = '';
-        console.log(this.searchSetStaticForm, this.form.searchStaticTitle);
+        //console.log(this.searchSetStaticForm, this.form.searchStaticTitle);
         let filterType = this.getTilterType(this.searchSetStaticForm);
         this.staticPcFormList[0] = {
           filterType: filterType,
@@ -1271,7 +1268,7 @@
       },
       handleSelectLabel(item, indexItem, index){
         item.label = item.label;
-        console.log(indexItem);
+        //console.log(indexItem);
         let obj = this.joinFormParamsOptionsArray[indexItem];
         this.tableTitleColData[index]['obj']['n'] = obj.n;
         this.tableTitleColData[index]['obj']['f'] = obj.f;
