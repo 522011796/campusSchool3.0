@@ -86,7 +86,7 @@
                 <el-select v-model="form.joinFormParamsValue" size="small" class="width-300" placeholder="请选择">
                   <el-option
                     v-for="(item, index) in joinFormParamsOptions"
-                    :key="item.value"
+                    :key="index"
                     :label="item.label"
                     :value="item.value"
                     @click.native="handleJoinFormParamsChange(item, index)">
@@ -119,7 +119,7 @@
                 <el-select v-model="form.joinFormXValue" size="small" class="width-300" placeholder="请选择">
                   <el-option
                     v-for="(item, index) in joinFormParamsOptions"
-                    :key="item.value"
+                    :key="index"
                     :label="item.label"
                     :value="item.value"
                     @click.native="handleXChange(item, index)">
@@ -135,7 +135,7 @@
                 <el-select ref="mutiSelY" v-model="form.joinFormYValue" multiple size="small" class="width-300" placeholder="请选择">
                   <el-option
                     v-for="(item,index) in joinFormParamsOptions"
-                    :key="item.id"
+                    :key="index"
                     :label="item.label"
                     :value="item.value"
                     @click.native="handleYChange(item, index)">
@@ -156,7 +156,7 @@
                     <el-select ref="mutiSelY" v-model="item.label" size="small" placeholder="表单字段">
                       <el-option
                         v-for="(item,indexItem) in joinFormParamsOptions"
-                        :key="item.id"
+                        :key="indexItem"
                         :label="item.label"
                         :value="item.value"
                         @click.native="handleSelectLabel(item, indexItem, index)">
@@ -1373,6 +1373,7 @@
         let arrayObj = [];
         let yData = [];
         let yDataNum = [];
+        let arrayF = [];
         let tempData = {
           d: item['extra'],
           n: item['label'],
@@ -1394,8 +1395,9 @@
           array.push(data[i].n);
           arrayObj.push(obj);
           yDataNum.push(10);
+          arrayF.push(data[i].f);
         }
-        this.form.chartYdata = data;
+        this.form.chartYdata = arrayF;
         this.form.chartYdataObj = arrayObj;
         this.barDataLegned = array;
         this.staticPcFormList[5]['relaFromField2'] = arrayObj;
