@@ -378,6 +378,98 @@
       </div>
       <div class="moon-clearfix"></div>
     </div>
+
+    <dialog-normal top="5vh" :visible="h5Dialog" :show-footer="false" width-style="450px" :title="$t('移动端模版预览(仅展示)')" @close="closeDialog" @right-close="closeDialog">
+      <div>
+        <div>
+          <div style="height: 35px">
+            <el-row>
+              <el-col :span="8">
+                <el-button class="layout-item" style="margin-top: 5px" size="small" type="warning" plain native-type="button">{{$t('选择表单')}}</el-button>
+              </el-col>
+              <el-col :span="16" class="text-right">
+                <el-button class="layout-item" style="margin-top: 5px" size="small" type="warning" plain native-type="button">{{$t('选择部门/院系')}}</el-button>
+                <el-button class="layout-item" style="margin-top: 5px" size="small" type="default" plain native-type="button">{{$t('选择时间')}}</el-button>
+              </el-col>
+            </el-row>
+          </div>
+        </div>
+        <el-card :body-style="{padding: '10px'}" style="height: 150px" class="margin-top-5">
+          <div style="height: 75px;width: 100%">
+            <el-row>
+              <el-col :span="12">
+                <div class="text-left padding-lr-5">
+                  <div>
+                    <span class="font-size-12 font-bold">{{form.cardValue1 == '' ? '字段内容' : form.cardValue1.n}}</span>
+                  </div>
+                  <div class="margin-top-5">
+                    <span class="font-size-12 color-muted">显示内容</span>
+                  </div>
+                </div>
+              </el-col>
+              <el-col :span="12">
+                <div class="text-right padding-lr-5">
+                  <div>
+                    <span class="font-size-12 font-bold">{{form.cardValue2 == '' ? '字段内容' : form.cardValue2.n}}</span>
+                  </div>
+                  <div class="margin-top-5">
+                    <span class="font-size-12 color-muted">显示内容</span>
+                  </div>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+          <div style="height: 75px;width: 100%">
+            <el-row>
+              <el-col :span="12">
+                <div class="text-left padding-lr-5">
+                  <div>
+                    <span class="font-size-12 font-bold">{{form.cardValue3 == '' ? '字段内容' : form.cardValue3.n}}</span>
+                  </div>
+                  <div class="margin-top-5">
+                    <span class="font-size-12 color-muted">显示内容</span>
+                  </div>
+                </div>
+              </el-col>
+              <el-col :span="12">
+                <div class="text-right padding-lr-5">
+                  <div>
+                    <span class="font-size-12 font-bold">{{form.cardValue4 == '' ? '字段内容' : form.cardValue4.n}}</span>
+                  </div>
+                  <div class="margin-top-5">
+                    <span class="font-size-12 color-muted">显示内容</span>
+                  </div>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+        </el-card>
+
+        <el-card :body-style="{padding: '10px'}" class="margin-top-10" style="height: 180px">
+          <div class="color-muted text-center" style="position: relative">
+            <div>
+              <div class="text-center">
+                <el-progress type="dashboard" :show-text="false" :width="160" :percentage="percentage"></el-progress>
+              </div>
+              <div class="text-center font-size-12 font-bold" style="position: relative; top: -90px">
+                <span>显示数据</span>
+              </div>
+              <div class="text-center color-muted font-size-12" style="position: relative; top: -30px;">
+                <div>
+                  <span>{{percentageValue}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </el-card>
+
+        <el-card :body-style="{padding: '10px'}" class="margin-top-10" style="height: 350px">
+          <div style="height: 350px;width: 100%" class="text-center;">
+            <h-bar-chart chart-id="hbarId" :data-legned="barDataLegned" :data-key="barDataKey" :data="barData"></h-bar-chart>
+          </div>
+        </el-card>
+      </div>
+    </dialog-normal>
   </div>
 </template>
 
@@ -387,10 +479,11 @@
   import {common} from "~/utils/api/url";
   import MyCascader from "~/components/utils/select/MyCascader";
   import {inArray} from "~/utils/utils";
+  import DialogNormal from "~/components/utils/dialog/DialogNormal";
 
   export default {
     name: 'pcStaticTemplate',
-    components: {MyCascader, BarChart},
+    components: {DialogNormal, MyCascader, BarChart},
     mixins: [mixins],
     props: {
       staticId: String,
@@ -401,6 +494,7 @@
     },
     data() {
       return {
+        h5Dialog: false,
         staticPcFormList: [
           {
             filterType: '',
@@ -713,7 +807,7 @@
             let deptId = this.staticPcFormData[1].filterRules != "" ? this.staticPcFormData[1].filterRules : "";
             this.form.cardFliterOption1 = deptId.length == 0 ? [] : JSON.parse(deptId.deptId);
           }if (this.getTitleFliterText(this.staticPcFormData[1].filterType) == 'college'){
-            this.staticPcFormData[1].filterRules = this.staticPcFormData[1].filterRules != "" ? JSON.parse(this.staticPcFormData[1].filterRules) : "";
+            this.staticPcFormData[1].filterRules = this.staticPcFormData[1].filterRules != "" ? this.staticPcFormData[1].filterRules : "";
             let deptId = this.staticPcFormData[1].filterRules != "" ? this.staticPcFormData[1].filterRules : "";
             this.form.cardFliterOption1 = deptId.length == 0 ? [] : JSON.parse(deptId.collegeId);
           }
@@ -1440,6 +1534,9 @@
           this.staticPcFormList[7]['filterRules'] = {};
           this.staticPcFormList[7]['filterRules'] = this.setFliterOptionValue(this.form.tableFliter, this.staticPcFormList[7],data);
         }
+      },
+      closeDialog(){
+        this.h5Dialog = false;
       },
       closePcDialog(){
         this.settingColValue = '';

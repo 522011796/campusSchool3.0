@@ -63,7 +63,17 @@ export default {
         },
         yAxis : {
           type : 'category',
-          data : this.dataKey
+          data : this.dataKey,
+          axisLabel: {
+            interval: 0,
+            formatter:function(value){
+              let str = value;
+              if (value && value.length >= 5){
+                str = str.substr(0,4)+"..."
+              }
+              return str;
+            }
+          }
         },
         xAxis : {
           type : 'value',

@@ -215,6 +215,7 @@
                 <span class="tab-class font-bold layout-item">
                   {{title}}
                 </span>
+                <el-button type="warning" size="small" @click="appClick">{{$t("移动端模版预览")}}</el-button>
               </div>
             </el-col>
           </el-row>
@@ -293,7 +294,7 @@ export default {
       staticId: '',
       typeList: [
         {"label": 'PC端模板', value: true},
-        {"label": 'H5端模板', value: false}
+        // {"label": 'H5端模板', value: false}
       ],
       formStatic:{
         id: '',
@@ -754,6 +755,9 @@ export default {
           });
         }
       });
+    },
+    appClick(){
+      this.$refs.pcRef.h5Dialog = true;
     }
   }
 }
