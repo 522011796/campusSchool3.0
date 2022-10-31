@@ -4,7 +4,6 @@
     <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="新增权限管理">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/form/PCStaticTemplate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/form/PCStaticTemplate.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/staticCenter/formStaticManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/staticCenter/formStaticManage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,14 +169,7 @@
       <workItem from="1666747386882" duration="15274000" />
       <workItem from="1666775707322" duration="16308000" />
       <workItem from="1666854250296" duration="53252000" />
-      <workItem from="1666971554934" duration="8821000" />
-    </task>
-    <task id="LOCAL-00129" summary="智慧迎新--选寝规则">
-      <created>1657899747267</created>
-      <option name="number" value="00129" />
-      <option name="presentableId" value="LOCAL-00129" />
-      <option name="project" value="LOCAL" />
-      <updated>1657899747268</updated>
+      <workItem from="1666971554934" duration="10148000" />
     </task>
     <task id="LOCAL-00130" summary="智慧迎新--选寝规则">
       <created>1658116815416</created>
@@ -515,7 +507,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667203361369</updated>
     </task>
-    <option name="localTasksCounter" value="178" />
+    <task id="LOCAL-00178" summary="新增权限管理">
+      <created>1667205708900</created>
+      <option name="number" value="00178" />
+      <option name="presentableId" value="LOCAL-00178" />
+      <option name="project" value="LOCAL" />
+      <updated>1667205708900</updated>
+    </task>
+    <option name="localTasksCounter" value="179" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

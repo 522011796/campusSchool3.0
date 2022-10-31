@@ -379,7 +379,7 @@
       <div class="moon-clearfix"></div>
     </div>
 
-    <dialog-normal top="5vh" :visible="h5Dialog" :show-footer="false" width-style="450px" :title="$t('移动端模版预览(仅展示)')" @close="closeDialog" @right-close="closeDialog">
+    <dialog-normal top="5vh" :visible="h5Dialog" :show-footer="false" :append-to-body="true" width-style="450px" :title="$t('移动端模版预览(仅展示)')" @close="closeDialog" @right-close="closeDialog">
       <div>
         <div>
           <div style="height: 35px">
