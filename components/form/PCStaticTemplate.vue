@@ -1005,7 +1005,7 @@
           this.form.joinFormValue = this.form.cardForm1;
           this.form.joinFormJoinValue = this.form.cardJoin1;
           this.form.joinFormFliterValue = this.form.cardFliter1;
-          this.form.fliterOption = this.form.cardFliterOption1;
+          this.form.fliterOption = this.form.cardFliterOption1 == "" ? [] : this.form.cardFliterOption1;
 
           this.staticPcFormList[1] = this.setStatucFormListObj(this.form.cardFliter1,this.form.cardParam1,this.form.cardForm1,this.form.cardValue1,this.form.cardJoin1,this.staticId,0);
           this.staticPcFormList[1]['groupRule'] = this.form.cardJoin1;
@@ -1018,7 +1018,7 @@
           this.form.joinFormValue = this.form.cardForm2;
           this.form.joinFormJoinValue = this.form.cardJoin2;
           this.form.joinFormFliterValue = this.form.cardFliter2;
-          this.form.fliterOption = this.form.cardFliterOption2;
+          this.form.fliterOption = this.form.cardFliterOption2 == "" ? [] : this.form.cardFliterOption2;
 
           this.staticPcFormList[2] = this.setStatucFormListObj(this.form.cardFliter2,this.form.cardParam2,this.form.cardForm2,this.form.cardValue2,this.form.cardJoin2,this.staticId,0);
           this.staticPcFormList[2]['groupRule'] = this.form.cardJoin2;
@@ -1030,7 +1030,7 @@
           this.form.joinFormValue = this.form.cardForm3;
           this.form.joinFormJoinValue = this.form.cardJoin3;
           this.form.joinFormFliterValue = this.form.cardFliter3;
-          this.form.fliterOption = this.form.cardFliterOption3;
+          this.form.fliterOption = this.form.cardFliterOption3 == "" ? [] : this.form.cardFliterOption3;
 
           this.staticPcFormList[3] = this.setStatucFormListObj(this.form.cardFliter3,this.form.cardParam3,this.form.cardForm3,this.form.cardValue3,this.form.cardJoin3,this.staticId,0);
           this.staticPcFormList[3]['groupRule'] = this.form.cardJoin3;
@@ -1042,7 +1042,7 @@
           this.form.joinFormValue = this.form.cardForm4;
           this.form.joinFormJoinValue = this.form.cardJoin4;
           this.form.joinFormFliterValue = this.form.cardFliter4;
-          this.form.fliterOption = this.form.cardFliterOption4;
+          this.form.fliterOption = this.form.cardFliterOption4 == "" ? [] : this.form.cardFliterOption4;
 
           this.staticPcFormList[4] = this.setStatucFormListObj(this.form.cardFliter4,this.form.cardParam4,this.form.cardForm4,this.form.cardValue4,this.form.cardJoin4,this.staticId,0);
           this.staticPcFormList[4]['groupRule'] = this.form.cardJoin4;
@@ -1292,24 +1292,24 @@
         if (this.settingType == 'card'){
           if (this.settingColValue == 1){
             this.form.cardValue1 = obj;
-            this.form.cardValue1Text = data;
+            this.form.cardValue1Text = item.value;
             this.staticPcFormList[1]['relaFromField1'] = [obj];
           }else if (this.settingColValue == 2){
             this.form.cardValue2 = obj;
-            this.form.cardValue2Text = data;
+            this.form.cardValue2Text = item.value;
             this.staticPcFormList[2]['relaFromField1'] = [obj];
           }else if (this.settingColValue == 3){
             this.form.cardValue3 = obj;
-            this.form.cardValue3Text = data;
+            this.form.cardValue3Text = item.value;
             this.staticPcFormList[3]['relaFromField1'] = [obj];
           }else if (this.settingColValue == 4){
             this.form.cardValue4 = obj;
-            this.form.cardValue4Text = data;
+            this.form.cardValue4Text = item.value;
             this.staticPcFormList[4]['relaFromField1'] = [obj];
           }
         }else if (this.settingType == 'circle'){
           this.form.circleValue = obj;
-          this.form.circleValueText = data;
+          this.form.circleValueText = item.value;
           this.percentage = 0;
           this.percentageValue = obj.n;
           this.staticPcFormList[6]['relaFromField1'] = [obj];
@@ -1543,6 +1543,7 @@
         this.percentageText = '内容';
         this.percentageValue = '表单字段';
         this.barDataLegned = ['类型1','类型2','类型3'], this.barDataKey = ['字段1','字段2','字段3'];
+        this.tableTitleColData = [{title: '', label: '', value: '-1', valueText: '', obj: {d:'',f:'',n:'',g:'-1'}},];
 
         this.barData = [
           {
