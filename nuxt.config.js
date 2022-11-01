@@ -58,7 +58,8 @@ export default {
           process.env.NODE_ENV === 'development'
             ? './logs'
             : './logs',
-        logName: `${process.env.npm_package_name}.log`
+        logName: `${process.env.npm_package_name}.log`,
+        maxsize: 5 * 1024 * 1024
       }
     ]
   ],

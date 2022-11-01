@@ -12,6 +12,7 @@
       :size="size"
       :props="props"
       :placeholder="placeholder"
+      :collapse-tags="collapseTags"
       @change="handleChange"></el-cascader>
   </div>
 </template>
@@ -68,6 +69,10 @@
       widthStyle: {
         default: '',
         type: [String, Number]
+      },
+      collapseTags: {
+        default: false,
+        type: Boolean
       }
     },
     computed: {

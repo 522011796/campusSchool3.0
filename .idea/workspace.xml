@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="新增权限管理">
-      <change afterPath="$PROJECT_DIR$/components/form/PCStaticTemplateShow.vue" afterDir="false" />
+    <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="新增统计管理">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/staticCenter/formStaticManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/staticCenter/formStaticManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/form/PCStaticTemplateShow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/form/PCStaticTemplateShow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/select/MyCascader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/select/MyCascader.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nuxt.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/nuxt.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/appletInfo/staticCenter/myFormStatic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/staticCenter/myFormStatic.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/json/sliderMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/sliderMenu.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,14 +175,7 @@
       <workItem from="1666747386882" duration="15274000" />
       <workItem from="1666775707322" duration="16308000" />
       <workItem from="1666854250296" duration="53252000" />
-      <workItem from="1666971554934" duration="25090000" />
-    </task>
-    <task id="LOCAL-00135" summary="智慧迎新--选寝规则">
-      <created>1658133186013</created>
-      <option name="number" value="00135" />
-      <option name="presentableId" value="LOCAL-00135" />
-      <option name="project" value="LOCAL" />
-      <updated>1658133186014</updated>
+      <workItem from="1666971554934" duration="35229000" />
     </task>
     <task id="LOCAL-00136" summary="智慧迎新--选寝规则">
       <created>1658196085803</created>
@@ -520,7 +513,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667272008554</updated>
     </task>
-    <option name="localTasksCounter" value="184" />
+    <task id="LOCAL-00184" summary="新增统计管理">
+      <created>1667272077056</created>
+      <option name="number" value="00184" />
+      <option name="presentableId" value="LOCAL-00184" />
+      <option name="project" value="LOCAL" />
+      <updated>1667272077056</updated>
+    </task>
+    <option name="localTasksCounter" value="185" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -559,6 +559,7 @@
     <MESSAGE value="新增部门信息" />
     <MESSAGE value="新增流程管理" />
     <MESSAGE value="新增权限管理" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增权限管理" />
+    <MESSAGE value="新增统计管理" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增统计管理" />
   </component>
 </project>

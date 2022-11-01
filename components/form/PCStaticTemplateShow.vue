@@ -1,12 +1,11 @@
 <template>
-  <div>
+  <div v-loading="dialogLoading">
     <div class="form-set-main">
       <div class="detail-card font-size-12 padding-lr-10 padding-tb-10" style="overflow-y: auto" :style="drawHeight6">
         <div class="margin-bottom-5 layout-inline">
           <span class="layout-item">
-<!--            <el-select class="" style="margin-top: 5px" v-model="formValue" size="small" placeholder="请选择表单" @change="dropdownItem">-->
-<!--              <el-option v-for="(item, index) in formList" :key="index" :label="item.label" :value="item.value"></el-option>-->
-<!--            </el-select>-->
+            <my-cascader v-if="this.fliterType == 2" ref="SelectorCollege" :collapse-tags="true" class="layout-item" size="small" width-style="300" :props="{multiple: true}" :sel-value="fliterOption" type="1" sub-type="4" @change="handleSelectTime($event)"></my-cascader>
+            <my-cascader v-if="this.fliterType == 1" ref="SelectorDept" :collapse-tags="true" class="layout-item" size="small" width-style="300" :props="{multiple: true}" :sel-value="fliterOption" type="4" sub-type="" @change="handleSelectTime($event)"></my-cascader>
             <el-date-picker
               v-model="searchData"
               size="small"
@@ -18,7 +17,7 @@
               value-format="yyyy-MM-dd"
               @change="handleTime">
             </el-date-picker>
-            <el-button size="small" @click="search">{{$t("搜索")}}</el-button>
+            <el-button size="small" type="success" @click="search">{{$t("搜索")}}</el-button>
           </span>
         </div>
         <div style="height: 140px">
@@ -127,21 +126,25 @@
             size="medium"
             style="width: 100%">
             <el-table-column
-              v-for="(item, index) in tableTitleColData" :key="index"
+              v-for="(item, index) in tableFData" :key="index"
               align="center"
-              :label="item.title == '' ? '字段' : item.title">
+              :label="item.n">
 
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{item.value == '' ? '内容' : item.value}}</div>
+                  <div class="text-center">{{scope.row[item.f+"DateResult"]}}</div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    <span>{{item.valueText == '' ? '内容' : item.valueText}}</span>
+                    <span>{{scope.row[item.f+"DateResult"]}}</span>
                   </div>
                 </el-popover>
               </template>
             </el-table-column>
 
           </el-table>
+
+          <div class="layout-right-footer text-right">
+            <my-pagination :total="total" :current-page="page" :page-size="num" @currentPage="currentPage" @sizeChange="sizeChange" @jumpChange="jumpPage" class="layout-pagination"></my-pagination>
+          </div>
         </div>
       </div>
       <div class="moon-clearfix"></div>
@@ -170,6 +173,7 @@
     },
     data() {
       return {
+        dialogLoading: false,
         searchDataFliter: [],
         searchTime: [],
         searchData: [],
@@ -189,6 +193,7 @@
         circleValue: 0,
         circleValueText: '',
         chartParam: '',
+        tableParams: '',
         barLabel: '',
         barValue: '',
         barDataLegned: [],
@@ -197,7 +202,9 @@
 
         ],
         tableData: [],
-        tableTitleColData: []
+        tableTitleColData: [],
+        tableFData: [],
+        fliterOption: [],
       }
     },
     created() {
@@ -237,8 +244,8 @@
         let params = {
           id: id
         };
-
-        this.$axios.get(common.static_appinfo_form_detail, {params: params}).then(res => {
+        this.dialogLoading = true;
+        this.$axios.get(common.static_appinfo_form_detail, {params: params, loading: false}).then(res => {
           if (res.data.data){
             let array = [];
             for (let i = 0; i < res.data.data.unitList.length; i++){
@@ -248,6 +255,7 @@
                 relaFromField2: res.data.data.unitList[i].relaFromField2,
                 filterType: res.data.data.unitList[i].filterType,
                 filterRules: res.data.data.unitList[i].filterRules,
+                unitName: res.data.data.unitList[i].unitName,
               });
             }
 
@@ -258,6 +266,8 @@
             this.initData(array[4].id, 4, array);
             this.initData(array[6].id, 5, array);
             this.initData(array[5].id, 6, array);
+            this.initData(array[7].id, 7, array);
+            this.dialogLoading = false;
           }
         });
       },
@@ -265,17 +275,20 @@
         let params = {
           unitId: id
         };
-        console.log(this.searchData);
+        if (type == 7){
+          params['page'] = this.page;
+          params['num'] = this.num;
+        }
         if (this.searchData && this.searchData.length > 0){
-          params['date1'] = this.startTime;
-          params['date2'] = this.endTime;
+          params['date1'] = this.searchData[0];
+          params['date2'] = this.searchData[1];
         }
-        if (this.fliterType == 1 && this.searchDataFliter.length > 0){
-          params['deptId'] = this.searchData;
-        }else if (this.fliterType == 2 && this.searchDataFliter.length > 0){
-          params['collegeId'] = this.searchData;
+        if (this.fliterType == 1 && this.fliterOption.length > 0){
+          params['deptId'] = this.fliterOption.length > 0 ? JSON.stringify(this.fliterOption) : "";
+        }else if (this.fliterType == 2 && this.fliterOption.length > 0){
+          params['collegeId'] = this.fliterOption.length > 0 ? JSON.stringify(this.fliterOption) : "";
         }
-        this.$axios.get(common.static_appinfo_form_get, {params: params}).then(res => {
+        this.$axios.get(common.static_appinfo_form_get, {params: params, loading: false}).then(res => {
           if (res.data.data){
             switch (type){
               case 1:
@@ -318,12 +331,11 @@
                 this.circleLabel = filed.length > 6 ? filed.substr(0,5)+"..." : filed;
                 this.circleValue = rate;
                 this.circleValueText = res.data.data.rate != null ? res.data.data.rate+"%" : "--";
-                this.circleParams = res.data.data.unitName;
+                this.circleParams = array[6].unitName;
                 break;
               }
               case 6:
               {
-                console.log(1,res.data.data);
                 let data = res.data.data;
                 let legned = array[5].relaFromField2 ? JSON.parse(array[5].relaFromField2) : [];
                 let filterType = array[5].filterType;
@@ -371,7 +383,42 @@
                 this.barData = dataValue;
                 this.barDataKey = key;
                 this.barDataLegned = legnedArray;
-                this.chartParam = res.data.data.unitName;
+                this.chartParam = array[5].unitName;
+                break;
+              }
+              case 7:
+              {
+                let data = res.data.data.list;
+                let relaFromField = array[7].relaFromField1 ? JSON.parse(array[7].relaFromField1) : [];
+                let dataF = [];
+                let dataArray = [];
+                for (let i = 0; i < relaFromField.length; i++){
+                  dataF.push({
+                    n: relaFromField[i].n,
+                    f:relaFromField[i].f
+                  });
+                }
+                this.tableFData = dataF;
+
+                for (let j = 0; j < data.length; j++){
+                  for (let item in data[j]){
+                    for (let i = 0; i < dataF.length; i++){
+                      if (dataF[i]['f']+"DateResult" == item){
+                        data[j]['_label'] = dataF[i]['n'];
+                        data[j]['value'] = data[j][item];
+                        break;
+                      }
+                    }
+                  }
+                }
+
+                this.tableParams = array[7].unitName;
+                this.tableData = data;
+                this.tableTitleColData = data;
+
+                this.total = res.data.data.total;
+                this.num = res.data.data.num;
+                this.page = res.data.data.currentPage;
                 break;
               }
               default:
@@ -380,14 +427,60 @@
           }
         });
       },
+      sizeChange(event){
+        this.page = 1;
+        this.num = event;
+        this.initFormDetail(this.staticId);
+      },
+      currentPage(event){
+        this.page = event;
+        this.initFormDetail(this.staticId);
+      },
+      jumpPage(data){
+        this.page = data;
+        this.initFormDetail(this.staticId);
+      },
       dropdownItem(event){
         this.formValue = event;
+      },
+      handleSelectTime(data){
+        this.fliterOption = data;
       },
       handleTime(data){
         this.searchData = data;
       },
       search(){
+        this.page = 1;
         this.initFormDetail(this.staticId);
+      },
+      closeDialog(){
+        this.dialogLoading = false;
+        this.fliterType =  '';
+        this.cardLabel1 =  '';
+        this.cardValue1 =  '';
+        this.cardLabel2 =  '';
+        this.cardValue2 =  '';
+        this.cardLabel3 =  '';
+        this.cardValue3 =  '';
+        this.cardLabel4 =  '';
+        this.cardValue4 =  '';
+        this.circleParams =  '';
+        this.circleLabel =  '';
+        this.circleValue =  0;
+        this.circleValueText =  '';
+        this.chartParam =  '';
+        this.tableParams =  '';
+        this.barLabel =  '';
+        this.barValue =  '';
+        this.barDataLegned =  [];
+        this.barDataKey =  [];
+        this.barData =  [
+
+        ];
+        this.tableData =  [];
+        this.tableTitleColData =  [];
+        this.tableFData =  [];
+        this.fliterOption =  [];
       }
     }
   }
@@ -412,7 +505,9 @@
 }
 .form-card-content {
   position:relative;
-  margin-top: 15%;
+  margin-top: 12%;
+  font-size: 14px;
+  font-weight: bold;
 }
 .sel-card-active{
   box-shadow: 0px 0px 4px #909399;

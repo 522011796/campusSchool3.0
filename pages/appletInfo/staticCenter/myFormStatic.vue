@@ -85,7 +85,7 @@
       </div>
     </layout-tb>
 
-    <drawer-layout-right :show-footer="false" @changeDrawer="closeDrawerDialog" @opened="openedForm" @right-close="closeDrawerDialog" :visible="drawerVisible" size="85%" :title="title">
+    <drawer-layout-right :hide-footer="true" @changeDrawer="closeDrawerDialog" @opened="openedForm" @right-close="closeDrawerDialog" :visible="drawerVisible" size="85%" :title="title">
       <div slot="title">
         <div class="header-block padding-lr-10">
           <el-row>
@@ -237,10 +237,13 @@ export default {
       }
     },
     settingInfo(data){
-      this.staticId = data.id;
+      this.staticId = data.id+"";
       this.drawerVisible = true;
     },
     closeDrawerDialog(){
+      if(this.$refs['pcRef']){
+        this.$refs['pcRef'].closeDialog();
+      }
       this.drawerVisible = false;
     }
   }
