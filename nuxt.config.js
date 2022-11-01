@@ -50,6 +50,17 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    [
+      'nuxt-winston-log',
+      {
+        logPath:
+          process.env.npm_lifecycle_event === 'build' ||
+          process.env.NODE_ENV === 'development'
+            ? './logs'
+            : `/data/weblog/nodejs/${process.env.npm_package_name}`,
+        logName: `${process.env.npm_package_name}.log`
+      }
+    ]
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
