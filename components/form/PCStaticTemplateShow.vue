@@ -1,8 +1,7 @@
 <template>
   <div v-loading="dialogLoading">
     <div class="form-set-main">
-      <div class="detail-card font-size-12 padding-lr-10 padding-tb-10" style="overflow-y: auto" :style="drawHeight6">
-        <div class="margin-bottom-5 layout-inline">
+      <div class="margin-bottom-5 layout-inline padding-lr-10 margin-top-5">
           <span class="layout-item">
             <my-cascader v-if="this.fliterType == 2" ref="SelectorCollege" :collapse-tags="true" class="layout-item" size="small" width-style="300" :props="{multiple: true}" :sel-value="fliterOption" type="1" sub-type="4" @change="handleSelectTime($event)"></my-cascader>
             <my-cascader v-if="this.fliterType == 1" ref="SelectorDept" :collapse-tags="true" class="layout-item" size="small" width-style="300" :props="{multiple: true}" :sel-value="fliterOption" type="4" sub-type="" @change="handleSelectTime($event)"></my-cascader>
@@ -19,7 +18,8 @@
             </el-date-picker>
             <el-button size="small" type="success" @click="search">{{$t("搜索")}}</el-button>
           </span>
-        </div>
+      </div>
+      <div class="detail-card font-size-12 padding-lr-10 padding-tb-10" style="overflow-y: auto" :style="drawHeight6">
         <div style="height: 140px">
           <el-row :gutter="8">
             <el-col :span="6">
