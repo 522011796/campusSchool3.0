@@ -113,7 +113,7 @@
       </div>
     </dialog-normal>
 
-    <drawer-layout-right tabindex="0" :title="$t('流程设计')" :show-close="true" @changeDrawer="closeDialog" :visible="drawerForm" size="85%">
+    <drawer-layout-right tabindex="0" :title="$t('流程设计')" :show-close="true" @opened="openForm" @changeDrawer="closeDialog" :visible="drawerForm" size="85%">
       <div slot="title">
         <div class="header-block padding-lr-10">
           <span class="tab-class font-bold">
@@ -306,6 +306,11 @@
           this.$refs.designer.removeMenuItem('span');
           this.formLoading = false;
         },800);
+      },
+      openForm(){
+        if (this.$refs['flow']){
+          this.$refs['flow'].initAsync();
+        }
       },
       closeDialog(event){
         this.form = {

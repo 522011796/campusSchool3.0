@@ -229,7 +229,7 @@
   import DrawerRight from "../../components/utils/dialog/DrawerRight";
   import {
     MessageError,
-    MessageSuccess,
+    MessageSuccess, MessageWarning,
     nationInfo,
     studentTeachStatus, studyType,
     teacherTypeInfo,
@@ -391,6 +391,11 @@
         let url = "";
         this.$refs['form'].validate((valid) => {
           if (valid) {
+
+            if (this.$refs.selectorDept.$refs.cascaderSelector.getCheckedNodes()[0] == null){
+              MessageWarning("请填写班级信息！");
+              return;
+            }
             this.dialogLoading = true;
             let classData = this.$refs.selectorDept.$refs.cascaderSelector.getCheckedNodes()[0].pathNodes;
             let className = this.$refs.selectorDept.$refs.cascaderSelector.getCheckedNodes()[0].pathLabels;

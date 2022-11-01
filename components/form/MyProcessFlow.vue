@@ -55,7 +55,7 @@
                 </div>
               </template>
               <template v-if="flowDetailData.extra == 'audit'">
-                <div class="font-bold">{{$t("审批人(院系角色)")}}</div>
+                <div class="font-bold">{{$t("审批人")}}</div>
                 <div class="margin-top-5">
                   <el-popover
                     v-if="flowDetailData.type == 1 || flowDetailData.type == 3"
@@ -377,6 +377,22 @@
                       </template>
                     </span>
                   </div>
+                  <div v-if="item.hrole.length > 0">
+                    <span style="position: relative; top: -5px">
+                      <i class="fa fa-users"></i>
+                      <label>{{ $t("部门角色") }}: </label>
+                    </span>
+                    <span>
+                      <template>
+                        <el-tag size="mini" v-for="(itemUser ,indexUser) in item.hrole" :key="indexUser" v-if="indexUser < 4" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
+                          <el-tooltip class="item" effect="dark" placement="top-start">
+                            <span>{{ roleGroup[itemUser[1]] }}</span>
+                          </el-tooltip>
+                        </el-tag>
+                        <label class="flow-user-count-tag margin-left-5" v-if="item.hrole.length >= 4">4+</label>
+                      </template>
+                    </span>
+                  </div>
                   <div class="margin-top-5" v-if="item.extra != 'send'">
                     <span style="position: relative; top: -5px">
                       <i class="fa fa-cog"></i>
@@ -461,6 +477,7 @@
         flowDetailData: {},
         approverUsers: [],
         formFieldList: [],
+        roleGroup: {},
         auditFlowType: [
           {label: this.$t("固定人审批"), text: this.$t("固定人审批"), value: 1},
           {label: this.$t("系统角色审批"), text: this.$t("系统角色审批"), value: 2},
@@ -472,9 +489,28 @@
       }
     },
     created() {
-
+      //this.initAsync();
     },
     methods: {
+      async initAsync(){
+        this.roleGroup = {};
+        await this.getRoleTreeInfo(5);
+        let data = this.dataRoleTreeList;
+        let array = [];
+        let obj = {};
+        for(let i = 0; i < data.length; i++){
+          if (data[i]['children']){
+            for(let j = 0; j < data[i]['children'].length; j++){
+              array.push({
+                id: data[i]['children'][j].id,
+                name: data[i]['children'][j].label
+              });
+              obj[data[i]['children'][j].id] = data[i]['children'][j].label;
+            }
+          }
+        }
+        this.roleGroup = obj;
+      },
       selAuditType(type, extra, index){
         let obj = {
           type: type,
