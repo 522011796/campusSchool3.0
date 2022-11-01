@@ -23,7 +23,6 @@
           :data="tableData"
           header-cell-class-name="custom-table-cell-bg"
           size="medium"
-          row-key="id"
           :max-height="tableHeight.height"
           style="width: 100%">
           <el-table-column
@@ -403,21 +402,20 @@ export default {
             }else if(i == 1 || i == 2 || i == 3 || i == 4 || i == 6){
               delete res.data.data.unitList[i]['campusId'];
               delete res.data.data.unitList[i]['relaFromField2'];
-
-              res.data.data.unitList[i]['relaFromField1'] = res.data.data.unitList[i]['relaFromField1'] != undefined ? JSON.parse(res.data.data.unitList[i]['relaFromField1']) : [];
-              res.data.data.unitList[i]['filterRules'] = res.data.data.unitList[i]['filterRules'] != undefined ? JSON.parse(res.data.data.unitList[i]['filterRules']) : [];
+              res.data.data.unitList[i]['relaFromField1'] = (res.data.data.unitList[i]['relaFromField1'] != undefined && res.data.data.unitList[i]['relaFromField1'] != "") ? JSON.parse(res.data.data.unitList[i]['relaFromField1']) : [];
+              res.data.data.unitList[i]['filterRules'] = (res.data.data.unitList[i]['filterRules'] != undefined && res.data.data.unitList[i]['filterRules'] != "") ? JSON.parse(res.data.data.unitList[i]['filterRules']) : [];
             }else if(i == 7){
               delete res.data.data.unitList[i]['campusId'];
               delete res.data.data.unitList[i]['relaFromField2'];
               delete res.data.data.unitList[i]['filterRules'];
 
-              res.data.data.unitList[i]['relaFromField1'] = res.data.data.unitList[i]['relaFromField1'] != undefined ? JSON.parse(res.data.data.unitList[i]['relaFromField1']) : [];
+              res.data.data.unitList[i]['relaFromField1'] = (res.data.data.unitList[i]['relaFromField1'] != undefined && res.data.data.unitList[i]['relaFromField1'] != "") ? JSON.parse(res.data.data.unitList[i]['relaFromField1']) : [];
             }else if(i == 5){
               delete res.data.data.unitList[i]['campusId'];
 
-              res.data.data.unitList[i]['relaFromField1'] = res.data.data.unitList[i]['relaFromField1'] != undefined ? JSON.parse(res.data.data.unitList[i]['relaFromField1']) : [];
-              res.data.data.unitList[i]['relaFromField2'] = res.data.data.unitList[i]['relaFromField2'] != undefined ? JSON.parse(res.data.data.unitList[i]['relaFromField2']) : [];
-              res.data.data.unitList[i]['filterRules'] = res.data.data.unitList[i]['filterRules'] != undefined ? JSON.parse(res.data.data.unitList[i]['filterRules']) : [];
+              res.data.data.unitList[i]['relaFromField1'] = (res.data.data.unitList[i]['relaFromField1'] != undefined && res.data.data.unitList[i]['relaFromField1'] != "") ? JSON.parse(res.data.data.unitList[i]['relaFromField1']) : [];
+              res.data.data.unitList[i]['relaFromField2'] = (res.data.data.unitList[i]['relaFromField2'] != undefined && res.data.data.unitList[i]['relaFromField2'] != "") ? JSON.parse(res.data.data.unitList[i]['relaFromField2']) : [];
+              res.data.data.unitList[i]['filterRules'] = (res.data.data.unitList[i]['filterRules'] != undefined && res.data.data.unitList[i]['filterRules'] != "") ? JSON.parse(res.data.data.unitList[i]['filterRules']) : [];
             }else {
               delete res.data.data.unitList[i]['campusId'];
             }
