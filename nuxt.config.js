@@ -57,7 +57,7 @@ export default {
           process.env.npm_lifecycle_event === 'build' ||
           process.env.NODE_ENV === 'development'
             ? './logs'
-            : `/data/weblog/nodejs/${process.env.npm_package_name}`,
+            : './logs',
         logName: `${process.env.npm_package_name}.log`
       }
     ]

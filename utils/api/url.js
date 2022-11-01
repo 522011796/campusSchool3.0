@@ -730,7 +730,8 @@ export const common = {
   static_appinfo_form_info: '/proxy/school/applet/stat/info', //统计表信息
   static_appinfo_form_save: '/proxy/school/applet/stat/save', //统计表保存
   static_appinfo_form_del: '/proxy/school/applet/stat/del', //统计表删除
-  static_appinfo_form_get: '/proxy/school/applet/stat/get', //统计表查询
+  static_appinfo_form_get: '/proxy/school/applet/stat/data/get', //统计表查询
   static_appinfo_form_unit_save: '/proxy/school/applet/stat/unit/save', //统计表设计保存
+  static_appinfo_form_detail: '/proxy/school/applet/stat/info', //统计表信息
 
 };
