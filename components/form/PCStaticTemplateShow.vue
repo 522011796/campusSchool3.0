@@ -477,6 +477,9 @@
         this.barData =  [
 
         ];
+        this.page = 1;
+        this.num = 20;
+        this.total = 0;
         this.tableData =  [];
         this.tableTitleColData =  [];
         this.tableFData =  [];

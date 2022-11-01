@@ -1,3 +1,10 @@
+import path from 'path';
+import { format, transports } from 'winston';
+const { combine, timestamp } = format;
+
+// 日志存放路径
+const errorLogPath = path.resolve(process.cwd(), './logs', `error.log`);
+
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -50,19 +57,28 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    [
-      'nuxt-winston-log',
-      {
-        logPath:
-          process.env.npm_lifecycle_event === 'build' ||
-          process.env.NODE_ENV === 'development'
-            ? './logs'
-            : './logs',
-        logName: `${process.env.npm_package_name}.log`,
-        maxsize: 5 * 1024 * 1024
-      }
-    ]
+    'nuxt-winston-log'
   ],
+  winstonLog: {
+    loggerOptions: {
+      transports: [
+        new transports.File({
+          // format: combine(timestamp()),
+          format: format.combine(
+            format.timestamp({
+              format: 'YYYY-MM-DD HH:mm:ss'
+            }),
+            format.errors({ stack: true }),
+            format.splat(),
+            format.json()
+          ),
+          level: 'error',
+          filename: errorLogPath,
+          maxsize: 5 * 1024 * 1024
+        })
+      ]
+    }
+  },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {

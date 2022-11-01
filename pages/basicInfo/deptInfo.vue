@@ -57,7 +57,10 @@
                       </div>
                     </template>
                   </div>
-                  <span slot="reference" class="color-muted font-size-12 moon-content-text-ellipsis-class" style="display: inline-block; max-width: 100px; position: relative; top: 7px;cursor: default">({{item.real_name}})</span>
+                  <span slot="reference" class="color-muted font-size-12 moon-content-text-ellipsis-class" style="display: inline-block; max-width: 100px; position: relative; top: 7px;cursor: default">
+                    <label v-if="item.real_name == null"></label>
+                    <label v-else>({{item.real_name}})</label>
+                  </span>
                 </el-popover>
                 <span @click="editInfo($event,item, scope.row)"><i class="fa fa-edit color-success"></i></span>
                 <span @click="delInfo($event,item, scope.row)"><i class="fa fa-trash color-danger"></i></span>
