@@ -377,7 +377,7 @@
                       </template>
                     </span>
                   </div>
-                  <div v-if="item.hrole.length > 0">
+                  <div v-if="item.hrole && item.hrole.length > 0">
                     <span style="position: relative; top: -5px">
                       <i class="fa fa-users"></i>
                       <label>{{ $t("部门角色") }}: </label>

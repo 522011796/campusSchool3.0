@@ -49,8 +49,15 @@
             align="center"
             :label="$t('部门/院系')">
             <template slot-scope="scope">
-              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.department_names ? scope.row.department_names : '--'}}</div>
+              <el-popover trigger="hover" placement="left">
+                <div class="text-center">
+                  <div v-if="scope.row.department_names != '' && scope.row.department_names != null" style="max-height: 200px;overflow-y: auto">
+                    <div v-for="(item, index) in scope.row.department_names.split(',')" :key="index">
+                      <span class="font-size-12">{{item}}</span>
+                    </div>
+                  </div>
+                  <div v-else>--</div>
+                </div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                   <span>{{scope.row.department_names ? scope.row.department_names : '--'}}</span>
                 </div>
@@ -62,7 +69,7 @@
             :label="$t('模版类型')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.form_name ? scope.row.form_name : '--'}}</div>
+                <div class="text-center">{{scope.row.web_type ? $t("PC模版") : $t("H5模版")}}</div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                   <span>{{scope.row.web_type ? $t("PC模版") : $t("H5模版")}}</span>
                 </div>
@@ -601,7 +608,8 @@ export default {
     },
     handleSelect(event,type){
       if (type == 1){
-        this.formStatic.type = type;
+        let typeStr = type == "1" ? true : false;
+        this.formStatic.type = typeStr;
       }else if (type == 2){
         this.formStatic.collegeAndDept = event;
       }else if (type == 3){
