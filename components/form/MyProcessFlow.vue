@@ -385,7 +385,7 @@
                     <span>
                       <template>
                         <el-tag size="mini" v-for="(itemUser ,indexUser) in item.hrole" :key="indexUser" v-if="indexUser < 4" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
-                          <el-tooltip class="item" effect="dark" placement="top-start">
+                          <el-tooltip class="item" effect="dark" :content="roleGroup[itemUser[1]]" placement="top-start">
                             <span>{{ roleGroup[itemUser[1]] }}</span>
                           </el-tooltip>
                         </el-tag>
