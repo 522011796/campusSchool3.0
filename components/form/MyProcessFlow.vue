@@ -72,7 +72,7 @@
                       {{$t("审批人")}}({{$t("人数")}}:{{approverUsers.length}})
                     </el-button>
                   </el-popover>
-                  <my-select v-if="flowDetailData.type == 2" size="mini" :sel-value="flowDetailData.hType" :options="fiterTeacherRoleType" @change="handleUserType"></my-select>
+                  <my-select v-if="flowDetailData.type == 2" size="mini" :clearable="true" :sel-value="flowDetailData.hType" :options="fiterTeacherRoleType" @change="handleUserType"></my-select>
                 </div>
               </template>
 
@@ -353,19 +353,24 @@
                   <div>
                     <span style="position: relative; top: -5px">
                       <i class="fa fa-users"></i>
-                      <label>{{ $t("人员") }}: </label>
+                      <label>{{ $t("审批人") }}: </label>
                     </span>
                     <span>
                       <template v-if="item.type == 1 || item.type == 3 || item.type == 4 || item.type == 6">
-                        <el-tag size="mini" v-for="(itemUser ,indexUser) in item.hName" :key="indexUser" v-if="indexUser < 4" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
-                          <el-tooltip class="item" effect="dark" :content="itemUser" placement="top-start">
-                            <span>{{ itemUser }}</span>
-                          </el-tooltip>
-                        </el-tag>
-                        <label class="flow-user-count-tag margin-left-5" v-if="item.users.length >= 4">4+</label>
+                        <span v-if="item.hName.length > 0">
+                          <el-tag size="mini" v-for="(itemUser ,indexUser) in item.hName" :key="indexUser" v-if="indexUser < 4" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
+                            <el-tooltip class="item" effect="dark" :content="itemUser" placement="top-start">
+                              <span>{{ itemUser }}</span>
+                            </el-tooltip>
+                          </el-tag>
+                          <label class="flow-user-count-tag margin-left-5" v-if="item.users.length >= 4">4+</label>
+                        </span>
+                        <span v-else class="color-muted" style="position: relative; top:-5px;">
+                          无
+                        </span>
                       </template>
                       <template v-if="item.type == 2 || item.type == 5">
-                        <el-tag size="mini" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
+                        <el-tag v-if="item.hType != ''" size="mini" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
                           <label v-if="item.hType == 'MasterTeacher'">{{$t("班主任")}}</label>
                           <label v-if="item.hType == 'CoachTeacher'">{{$t("辅导员")}}</label>
                           <label v-if="item.hType == 'DirectorTeacher'">{{$t("系主任")}}</label>
@@ -374,6 +379,7 @@
                           <label v-if="item.hType == 'StudentManageTeacher'">{{$t("学管主任")}}</label>
                           <label v-if="item.hType == 'SecretaryTeacher'">{{$t("系部主任")}}</label>
                         </el-tag>
+                        <span v-else class="color-muted" style="position: relative; top:-5px;">无</span>
                       </template>
                     </span>
                   </div>
