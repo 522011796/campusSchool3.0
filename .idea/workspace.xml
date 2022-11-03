@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="新增统计管理">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/form/MyProcessFlow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/form/MyProcessFlow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/staticCenter/myFormStatic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/staticCenter/myFormStatic.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,14 +168,7 @@
       <workItem from="1666747386882" duration="15274000" />
       <workItem from="1666775707322" duration="16308000" />
       <workItem from="1666854250296" duration="53252000" />
-      <workItem from="1666971554934" duration="51125000" />
-    </task>
-    <task id="LOCAL-00142" summary="智慧迎新--选寝规则">
-      <created>1659421892088</created>
-      <option name="number" value="00142" />
-      <option name="presentableId" value="LOCAL-00142" />
-      <option name="project" value="LOCAL" />
-      <updated>1659421892088</updated>
+      <workItem from="1666971554934" duration="51795000" />
     </task>
     <task id="LOCAL-00143" summary="智慧迎新--选寝规则">
       <created>1659426831974</created>
@@ -514,7 +506,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667379830716</updated>
     </task>
-    <option name="localTasksCounter" value="191" />
+    <task id="LOCAL-00191" summary="新增统计管理">
+      <created>1667440352991</created>
+      <option name="number" value="00191" />
+      <option name="presentableId" value="LOCAL-00191" />
+      <option name="project" value="LOCAL" />
+      <updated>1667440352992</updated>
+    </task>
+    <option name="localTasksCounter" value="192" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -48,8 +48,15 @@
             align="center"
             :label="$t('部门/院系')">
             <template slot-scope="scope">
-              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.department_names ? scope.row.department_names : '--'}}</div>
+              <el-popover trigger="hover" placement="left">
+                <div class="text-center">
+                  <div v-if="scope.row.department_names != '' && scope.row.department_names != null" style="max-height: 200px;overflow-y: auto">
+                    <div v-for="(item, index) in scope.row.department_names.split(',')" :key="index">
+                      <span class="font-size-12">{{item}}</span>
+                    </div>
+                  </div>
+                  <div v-else>--</div>
+                </div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                   <span>{{scope.row.department_names ? scope.row.department_names : '--'}}</span>
                 </div>
