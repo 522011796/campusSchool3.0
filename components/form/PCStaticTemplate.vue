@@ -802,7 +802,7 @@
             let end = time != "" > 0 ? time.date2 : "";
             this.form.cardFliterOption1 = [start, end];
           }else if (this.getTitleFliterText(this.staticPcFormData[1].filterType) == 'dept'){
-            this.staticPcFormData[1].filterRules = this.staticPcFormData[1].filterRules != "" ? JSON.parse(this.staticPcFormData[1].filterRules) : "";
+            this.staticPcFormData[1].filterRules = this.staticPcFormData[1].filterRules != "" ? this.staticPcFormData[1].filterRules : "";
             let deptId = this.staticPcFormData[1].filterRules != "" ? this.staticPcFormData[1].filterRules : "";
             this.form.cardFliterOption1 = deptId.length == 0 ? [] : JSON.parse(deptId.deptId);
           }if (this.getTitleFliterText(this.staticPcFormData[1].filterType) == 'college'){

@@ -410,7 +410,12 @@ export default {
               delete res.data.data.unitList[i]['campusId'];
               delete res.data.data.unitList[i]['relaFromField2'];
               res.data.data.unitList[i]['relaFromField1'] = (res.data.data.unitList[i]['relaFromField1'] != undefined && res.data.data.unitList[i]['relaFromField1'] != "") ? JSON.parse(res.data.data.unitList[i]['relaFromField1']) : [];
-              res.data.data.unitList[i]['filterRules'] = (res.data.data.unitList[i]['filterRules'] != undefined && res.data.data.unitList[i]['filterRules'] != "") ? JSON.parse(res.data.data.unitList[i]['filterRules']) : [];
+
+              if (res.data.data.unitList[i]['filterRules'] == "" || res.data.data.unitList[i]['filterRules'] == null){
+                delete res.data.data.unitList[i]['filterRules'];
+              }else {
+                res.data.data.unitList[i]['filterRules'] = (res.data.data.unitList[i]['filterRules'] != undefined && res.data.data.unitList[i]['filterRules'] != "") ? JSON.parse(res.data.data.unitList[i]['filterRules']) : "";
+              }
             }else if(i == 7){
               delete res.data.data.unitList[i]['campusId'];
               delete res.data.data.unitList[i]['relaFromField2'];
@@ -422,11 +427,17 @@ export default {
 
               res.data.data.unitList[i]['relaFromField1'] = (res.data.data.unitList[i]['relaFromField1'] != undefined && res.data.data.unitList[i]['relaFromField1'] != "") ? JSON.parse(res.data.data.unitList[i]['relaFromField1']) : [];
               res.data.data.unitList[i]['relaFromField2'] = (res.data.data.unitList[i]['relaFromField2'] != undefined && res.data.data.unitList[i]['relaFromField2'] != "") ? JSON.parse(res.data.data.unitList[i]['relaFromField2']) : [];
-              res.data.data.unitList[i]['filterRules'] = (res.data.data.unitList[i]['filterRules'] != undefined && res.data.data.unitList[i]['filterRules'] != "") ? JSON.parse(res.data.data.unitList[i]['filterRules']) : [];
+              if (res.data.data.unitList[i]['filterRules'] == "" || res.data.data.unitList[i]['filterRules'] == null){
+
+                delete res.data.data.unitList[i]['filterRules'];
+              }else {
+                res.data.data.unitList[i]['filterRules'] = (res.data.data.unitList[i]['filterRules'] != undefined && res.data.data.unitList[i]['filterRules'] != "") ? JSON.parse(res.data.data.unitList[i]['filterRules']) : "";
+              }
             }else {
               delete res.data.data.unitList[i]['campusId'];
             }
           }
+          console.log(res.data.data.unitList);
           this.staticPcFormData = res.data.data.unitList;
         }
       });
