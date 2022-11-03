@@ -437,7 +437,6 @@ export default {
               delete res.data.data.unitList[i]['campusId'];
             }
           }
-          console.log(res.data.data.unitList);
           this.staticPcFormData = res.data.data.unitList;
         }
       });
