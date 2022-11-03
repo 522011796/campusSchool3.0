@@ -121,9 +121,9 @@
               <el-table-column
                 align="center"
                 width="60"
-                :label="$t('表单')">
+                :label="$t('服务')">
                 <template slot-scope="scope">
-                  <i class="fa fa-cog margin-right-5 color-grand" @click="formInfo(scope.row)"></i>
+                  <i class="fa fa-chevron-circle-right margin-right-5 color-grand" @click="formInfo(scope.row)"></i>
                 </template>
               </el-table-column>
             </el-table>
