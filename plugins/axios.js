@@ -1,5 +1,5 @@
 import {showLoading, hideLoading} from '../utils/loading';
-export default function({ $axios, redirect, $winstonLog }) {
+export default function({ $axios, redirect }) {
   // request interceptor
   let jsonData = {
     code: '',
@@ -32,10 +32,6 @@ export default function({ $axios, redirect, $winstonLog }) {
 
   // 服务器返回异常拦截
   $axios.onError((error) => {
-    if ($winstonLog) {
-      $winstonLog.error(`[${error.status}] | ${error.request.path} | ${error.message}`)
-      $winstonLog.error(error.response && error.response.data)
-    }
     return error
   })
 
