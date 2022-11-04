@@ -262,7 +262,7 @@
             <el-col :span="6">
               <el-card :class="settingType == 'card' && settingColValue == 1 ? 'sel-card-active' : ''" :body-style="{padding: '10px'}" style="height: 140px" @click.native="settingCardDataInfo($event,1)">
                 <div slot="header" class="color-muted">
-                  <span><i class="fa fa-line-chart"></i></span>
+                  <span><i class="fa fa-desktop"></i></span>
                   <span>{{form.cardParam1}}</span>
                 </div>
                 <div class="color-muted text-center" style="position: relative">
@@ -275,7 +275,7 @@
             <el-col :span="6">
               <el-card :class="settingType == 'card' && settingColValue == 2 ? 'sel-card-active' : ''" :body-style="{padding: '10px'}" style="height: 140px" @click.native="settingCardDataInfo($event,2)">
                 <div slot="header" class="color-muted">
-                  <span><i class="fa fa-line-chart"></i></span>
+                  <span><i class="fa fa-desktop"></i></span>
                   <span>{{form.cardParam2}}</span>
                 </div>
                 <div class="color-muted text-center" style="position: relative">
@@ -288,7 +288,7 @@
             <el-col :span="6">
               <el-card :class="settingType == 'card' && settingColValue == 3 ? 'sel-card-active' : ''" :body-style="{padding: '10px'}" style="height: 140px" @click.native="settingCardDataInfo($event,3)">
                 <div slot="header" class="color-muted">
-                  <span><i class="fa fa-line-chart"></i></span>
+                  <span><i class="fa fa-desktop"></i></span>
                   <span>{{form.cardParam3}}</span>
                 </div>
                 <div class="color-muted text-center" style="position: relative">
@@ -301,7 +301,7 @@
             <el-col :span="6">
               <el-card :class="settingType == 'card' && settingColValue == 4 ? 'sel-card-active' : ''" :body-style="{padding: '10px'}" style="height: 140px" @click.native="settingCardDataInfo($event,4)">
                 <div slot="header" class="color-muted">
-                  <span><i class="fa fa-line-chart"></i></span>
+                  <span><i class="fa fa-desktop"></i></span>
                   <span>{{form.cardParam4}}</span>
                 </div>
                 <div class="color-muted text-center" style="position: relative">
@@ -320,7 +320,7 @@
               <el-col :span="18">
                 <el-card :class="settingType == 'bar' ? 'sel-card-active' : ''" :body-style="{padding: '10px'}" style="height: 300px" @click.native="settingBarDataInfo($event)">
                   <div slot="header" class="color-muted">
-                    <span><i class="fa fa-line-chart"></i></span>
+                    <span><i class="fa fa-bar-chart"></i></span>
                     <span>{{form.chartParam}}</span>
                   </div>
                   <div class="color-muted text-center" style="position: relative;height: 260px">
@@ -331,7 +331,7 @@
               <el-col :span="6">
                 <el-card :class="settingType == 'circle' ? 'sel-card-active' : ''" :body-style="{padding: '10px'}" style="height: 300px" @click.native="settingCircleDataInfo($event)">
                   <div slot="header" class="color-muted">
-                    <span><i class="fa fa-line-chart"></i></span>
+                    <span><i class="fa fa-pie-chart"></i></span>
                     <span>{{form.circleParams}}</span>
                   </div>
                   <div class="color-muted text-center" style="position: relative">

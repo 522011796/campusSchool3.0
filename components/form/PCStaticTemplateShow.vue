@@ -25,7 +25,7 @@
             <el-col :span="6">
               <el-card :body-style="{padding: '10px'}" style="height: 140px">
                 <div slot="header" class="color-muted">
-                  <span><i class="fa fa-line-chart"></i></span>
+                  <span><i class="fa fa-desktop"></i></span>
                   <span>{{cardLabel1 != '' ? cardLabel1 : '--'}}</span>
                 </div>
                 <div class="color-muted text-center" style="position: relative">
@@ -38,7 +38,7 @@
             <el-col :span="6">
               <el-card :body-style="{padding: '10px'}" style="height: 140px">
                 <div slot="header" class="color-muted">
-                  <span><i class="fa fa-line-chart"></i></span>
+                  <span><i class="fa fa-desktop"></i></span>
                   <span>{{cardLabel2 != '' ? cardLabel2 : '--'}}</span>
                 </div>
                 <div class="color-muted text-center" style="position: relative">
@@ -51,7 +51,7 @@
             <el-col :span="6">
               <el-card :body-style="{padding: '10px'}" style="height: 140px">
                 <div slot="header" class="color-muted">
-                  <span><i class="fa fa-line-chart"></i></span>
+                  <span><i class="fa fa-desktop"></i></span>
                   <span>{{cardLabel3 != '' ? cardLabel3 : '--'}}</span>
                 </div>
                 <div class="color-muted text-center" style="position: relative">
@@ -64,7 +64,7 @@
             <el-col :span="6">
               <el-card :body-style="{padding: '10px'}" style="height: 140px">
                 <div slot="header" class="color-muted">
-                  <span><i class="fa fa-line-chart"></i></span>
+                  <span><i class="fa fa-desktop"></i></span>
                   <span>{{cardLabel4 != '' ? cardLabel4 : '--'}}</span>
                 </div>
                 <div class="color-muted text-center" style="position: relative">
@@ -83,7 +83,7 @@
               <el-col :span="18">
                 <el-card :body-style="{padding: '10px'}" style="height: 300px">
                   <div slot="header" class="color-muted">
-                    <span><i class="fa fa-line-chart"></i></span>
+                    <span><i class="fa fa-bar-chart"></i></span>
                     <span>{{chartParam}}</span>
                   </div>
                   <div class="color-muted text-center" style="position: relative;height: 260px">
@@ -94,7 +94,7 @@
               <el-col :span="6">
                 <el-card :body-style="{padding: '10px'}" style="height: 300px">
                   <div slot="header" class="color-muted">
-                    <span><i class="fa fa-line-chart"></i></span>
+                    <span><i class="fa fa-pie-chart"></i></span>
                     <span>{{circleParams}}</span>
                   </div>
                   <div class="color-muted text-center" style="position: relative">
