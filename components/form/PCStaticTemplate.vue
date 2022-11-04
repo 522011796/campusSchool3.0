@@ -207,6 +207,15 @@
 
               <my-cascader v-if="form.joinFormFliterValue == 'college'" ref="SelectorCollege" size="small" width-style="300" :props="{multiple: true}" :sel-value="form.fliterOption" type="1" sub-type="4" @change="handleSelectTime($event)"></my-cascader>
               <my-cascader v-if="form.joinFormFliterValue == 'dept'" ref="SelectorDept" size="small" width-style="300" :props="{multiple: true}" :sel-value="form.fliterOption" type="4" sub-type="" @change="handleSelectTime($event)"></my-cascader>
+
+              <el-select v-if="form.joinFormFliterValue == 'status'" v-model="form.fliterOption" @change="handleSelectTime($event)" size="small" class="width-300" filterable placeholder="请选择">
+                <el-option
+                  v-for="item in searchStatusFormOptions"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
             </div>
           </div>
 
@@ -610,7 +619,23 @@
         },{
           label: this.$t("院系"),
           value: 'college'
-        },],
+        },{
+          label: this.$t("表单状态"),
+          value: 'status'
+        }],
+        searchStatusFormOptions: [{
+          label: this.$t("撤销"),
+          value: '-1'
+        },{
+          label: this.$t("待审核"),
+          value: '0'
+        },{
+          label: this.$t("通过"),
+          value: '3'
+        },{
+          label: this.$t("未通过"),
+          value: '4'
+        }],
         searchStaticFormOptions2: [{
           label: this.$t("部门"),
           value: 'dept'
@@ -805,10 +830,14 @@
             this.staticPcFormData[1].filterRules = this.staticPcFormData[1].filterRules != "" ? this.staticPcFormData[1].filterRules : "";
             let deptId = this.staticPcFormData[1].filterRules != "" ? this.staticPcFormData[1].filterRules : "";
             this.form.cardFliterOption1 = deptId.length == 0 ? [] : JSON.parse(deptId.deptId);
-          }if (this.getTitleFliterText(this.staticPcFormData[1].filterType) == 'college'){
+          }else if (this.getTitleFliterText(this.staticPcFormData[1].filterType) == 'college'){
             this.staticPcFormData[1].filterRules = this.staticPcFormData[1].filterRules != "" ? this.staticPcFormData[1].filterRules : "";
             let deptId = this.staticPcFormData[1].filterRules != "" ? this.staticPcFormData[1].filterRules : "";
             this.form.cardFliterOption1 = deptId.length == 0 ? [] : JSON.parse(deptId.collegeId);
+          }else if (this.getTitleFliterText(this.staticPcFormData[1].filterType) == 'status'){
+            this.staticPcFormData[1].filterRules = this.staticPcFormData[1].filterRules != "" ? this.staticPcFormData[1].filterRules : "";
+            let deptId = this.staticPcFormData[1].filterRules != "" ? this.staticPcFormData[1].filterRules : "";
+            this.form.cardFliterOption1 = deptId == "" ? "" : deptId.applyStatus+"";
           }
 
           this.form.cardParam2 = this.staticPcFormData[1].unitName;
@@ -826,10 +855,14 @@
             this.staticPcFormData[2].filterRules = this.staticPcFormData[2].filterRules != "" ? this.staticPcFormData[2].filterRules : "";
             let deptId = this.staticPcFormData[2].filterRules != "" ? this.staticPcFormData[2].filterRules : "";
             this.form.cardFliterOption2 = deptId.length == 0 ? [] : JSON.parse(deptId.deptId);
-          }if (this.getTitleFliterText(this.staticPcFormData[2].filterType) == 'college'){
+          }else if (this.getTitleFliterText(this.staticPcFormData[2].filterType) == 'college'){
             this.staticPcFormData[2].filterRules = this.staticPcFormData[1].filterRules != "" ? this.staticPcFormData[2].filterRules : "";
             let deptId = this.staticPcFormData[2].filterRules != "" ? this.staticPcFormData[2].filterRules : "";
             this.form.cardFliterOption2 = deptId.length == 0 ? [] : JSON.parse(deptId.collegeId);
+          }else if (this.getTitleFliterText(this.staticPcFormData[2].filterType) == 'status'){
+            this.staticPcFormData[2].filterRules = this.staticPcFormData[2].filterRules != "" ? this.staticPcFormData[2].filterRules : "";
+            let deptId = this.staticPcFormData[2].filterRules != "" ? this.staticPcFormData[2].filterRules : "";
+            this.form.cardFliterOption2 = deptId == "" ? "" : deptId.applyStatus+"";
           }
 
           this.staticPcFormData[3].relaFromField1 = this.staticPcFormData[3].relaFromField1;
@@ -848,10 +881,14 @@
             this.staticPcFormData[3].filterRules = this.staticPcFormData[3].filterRules != "" ? this.staticPcFormData[3].filterRules : "";
             let deptId = this.staticPcFormData[3].filterRules != "" ? this.staticPcFormData[3].filterRules : "";
             this.form.cardFliterOption3 = deptId.length == 0 ? [] : JSON.parse(deptId.deptId);
-          }if (this.getTitleFliterText(this.staticPcFormData[3].filterType) == 'college'){
+          }else if (this.getTitleFliterText(this.staticPcFormData[3].filterType) == 'college'){
             this.staticPcFormData[3].filterRules = this.staticPcFormData[3].filterRules != "" ? this.staticPcFormData[3].filterRules : "";
             let deptId = this.staticPcFormData[3].filterRules != "" ? this.staticPcFormData[3].filterRules : "";
             this.form.cardFliterOption3 = deptId.length == 0 ? [] : JSON.parse(deptId.collegeId);
+          }else if (this.getTitleFliterText(this.staticPcFormData[3].filterType) == 'status'){
+            this.staticPcFormData[2].filterRules = this.staticPcFormData[3].filterRules != "" ? this.staticPcFormData[3].filterRules : "";
+            let deptId = this.staticPcFormData[3].filterRules != "" ? this.staticPcFormData[3].filterRules : "";
+            this.form.cardFliterOption3 = deptId == "" ? "" : deptId.applyStatus+"";
           }
 
           this.staticPcFormData[4].relaFromField1 = this.staticPcFormData[4].relaFromField1;
@@ -870,10 +907,14 @@
             this.staticPcFormData[4].filterRules = this.staticPcFormData[4].filterRules != "" ? this.staticPcFormData[4].filterRules : "";
             let deptId = this.staticPcFormData[4].filterRules != "" ? this.staticPcFormData[4].filterRules : "";
             this.form.cardFliterOption4 = deptId.length == 0 ? [] : JSON.parse(deptId.deptId);
-          }if (this.getTitleFliterText(this.staticPcFormData[4].filterType) == 'college'){
+          }else if (this.getTitleFliterText(this.staticPcFormData[4].filterType) == 'college'){
             this.staticPcFormData[4].filterRules = this.staticPcFormData[4].filterRules != "" ? this.staticPcFormData[4].filterRules : "";
             let deptId = this.staticPcFormData[4].filterRules != "" ? this.staticPcFormData[4].filterRules : "";
             this.form.cardFliterOption4 = deptId.length == 0 ? [] : JSON.parse(deptId.collegeId);
+          }else if (this.getTitleFliterText(this.staticPcFormData[4].filterType) == 'status'){
+            this.staticPcFormData[4].filterRules = this.staticPcFormData[4].filterRules != "" ? this.staticPcFormData[4].filterRules : "";
+            let deptId = this.staticPcFormData[4].filterRules != "" ? this.staticPcFormData[4].filterRules : "";
+            this.form.cardFliterOption4 = deptId == "" ? "" : deptId.applyStatus+"";
           }
 
           this.form.chartParam = this.staticPcFormData[5].unitName;
@@ -904,6 +945,10 @@
             this.staticPcFormData[5].filterRules = this.staticPcFormData[5].filterRules != "" ? this.staticPcFormData[5].filterRules : "";
             let deptId = this.staticPcFormData[5].filterRules != "" ? this.staticPcFormData[5].filterRules : [];
             this.form.chartFliterOption = deptId.length == 0 ? [] : JSON.parse(deptId.collegeId);
+          }else if (this.getTitleFliterText(this.staticPcFormData[5].filterType) == 'status'){
+            this.staticPcFormData[5].filterRules = this.staticPcFormData[5].filterRules != "" ? this.staticPcFormData[5].filterRules : "";
+            let deptId = this.staticPcFormData[5].filterRules != "" ? this.staticPcFormData[5].filterRules : "";
+            this.form.chartFliterOption = deptId == "" ? "" : deptId.applyStatus+"";
           }
 
           this.staticPcFormData[6].relaFromField1 = this.staticPcFormData[6].relaFromField1;
@@ -927,6 +972,10 @@
             this.staticPcFormData[6].filterRules = this.staticPcFormData[6].filterRules != "" ? this.staticPcFormData[6].filterRules : "";
             let deptId = this.staticPcFormData[6].filterRules != "" ? this.staticPcFormData[6].filterRules : [];
             this.form.circleFliterOption = deptId.length == 0 ? [] : JSON.parse(deptId.collegeId);
+          }else if (this.getTitleFliterText(this.staticPcFormData[6].filterType) == 'status'){
+            this.staticPcFormData[6].filterRules = this.staticPcFormData[6].filterRules != "" ? this.staticPcFormData[6].filterRules : "";
+            let deptId = this.staticPcFormData[6].filterRules != "" ? this.staticPcFormData[6].filterRules : "";
+            this.form.circleFliterOption = deptId == "" ? "" : deptId.applyStatus+"";
           }
 
           this.form.tableForm = this.staticPcFormData[7].relaFormId;
@@ -1120,6 +1169,8 @@
           filterType = "dept";
         }else if (data == 2){
           filterType = "college";
+        }else if (data == 3){
+          filterType = "status";
         }
         return filterType;
       },
@@ -1131,6 +1182,8 @@
           filterType = 2;
         }else if (type == "dept"){
           filterType = 1;
+        }else if (type == "status"){
+          filterType = 3;
         }
         return filterType;
       },
@@ -1143,6 +1196,8 @@
           staticPcForm['deptId'] = JSON.stringify(data);
         }else if (type == 'college'){
           staticPcForm['collegeId'] = JSON.stringify(data);
+        }else if (type == 'status'){
+          staticPcForm['applyStatus'] = parseInt(data);
         }
         return staticPcForm;
       },
