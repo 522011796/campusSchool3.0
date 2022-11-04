@@ -30,7 +30,6 @@
     "element-ui": "^2.15.10",
     "moment": "^2.24.0",
     "nuxt": "^2.14.6",
-    "nuxt-winston-log": "^1.2.0",
     "qs": "^6.9.1",
     "vue-codemirror": "^4.0.6",
     "vue-i18n": "^8.15.3",
