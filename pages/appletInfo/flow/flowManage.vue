@@ -498,6 +498,9 @@
 </script>
 
 <style scoped>
+.container {
+  padding: 10px 15px;
+}
 .header-block{
   height: 40px;
   line-height: 40px;
