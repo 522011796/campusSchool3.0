@@ -64,8 +64,15 @@
             align="center"
             :label="$t('被引用表单')">
             <template slot-scope="scope">
-              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.form_name ? scope.row.form_name : '--'}}</div>
+              <el-popover trigger="hover" placement="left">
+                <div class="text-center">
+                  <div v-if="scope.row.form_name != '' && scope.row.form_name != null" style="max-height: 200px;overflow-y: auto">
+                    <div v-for="(item, index) in scope.row.form_name.split(',')" :key="index">
+                      <span class="font-size-12">{{item}}</span>
+                    </div>
+                  </div>
+                  <div v-else>--</div>
+                </div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                   <span>{{scope.row.form_name ? scope.row.form_name : '--'}}</span>
                 </div>

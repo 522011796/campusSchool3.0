@@ -1,11 +1,11 @@
 import {showLoading, hideLoading} from '../utils/loading';
-export default function({ $axios, redirect }) {
+export default async function({ $axios, redirect }) {
   // request interceptor
   let jsonData = {
     code: '',
     data: ''
   };
-  $axios.interceptors.request.use(
+  await $axios.interceptors.request.use(
     config => {
       // do something before request is sent
       config.withCredentials = true; // 允许携带token ,这个是解决跨域产生的相关问题
