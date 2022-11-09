@@ -1955,7 +1955,7 @@
         this.$axios(common.userinfo_cookie_auth).then(res => {
           if (res.data.data){
             authCookie = res.data.data.cookie;
-            let url = 'http://campus.9451.com:9999/userDetail?userId='+ this.userData.user_id + "&campusUrl="+ hostEncodeURIComponent + "&campusType="+ "jump" + "&cookie=" + authCookie;
+            let url = 'https://campus.9451.com:9999/userDetail?userId='+ this.userData.user_id + "&campusUrl="+ hostEncodeURIComponent + "&campusType="+ "jump" + "&cookie=" + authCookie;
             this.userInfoRul = url;
             setTimeout(() => {
               this.showIframe = true;

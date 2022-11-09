@@ -1164,7 +1164,7 @@
         let params = {
           campusName: this.campusName
         };
-        this.$axios.get('http://campus.9451.com/campusmanage/appapi/system-menu', {params: params}).then(res => {
+        this.$axios.get('https://campus.9451.com/campusmanage/appapi/system-menu', {params: params}).then(res => {
           let menuArr = [];
           this.topMenuList = [];
           if (res.data.data){
@@ -1269,7 +1269,7 @@
           let params = {
             campusName: this.campusName
           };
-          this.$axios.get('http://campus.9451.com/campusmanage/appapi/system-menu', {params: params, loading: false}).then(resAll => {
+          this.$axios.get('https://campus.9451.com/campusmanage/appapi/system-menu', {params: params, loading: false}).then(resAll => {
               let menuArr = [];
               if (resAll.data.data) {
                 for (let i = 0; i < resAll.data.data.length; i++) {

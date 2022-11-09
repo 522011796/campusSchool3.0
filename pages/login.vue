@@ -252,7 +252,7 @@
         }
       },
       initInfo(){
-        this.$axios.get("http://campus.9451.com/campusmanage/campus/get-copyright-information",{loading: false}).then(res => {
+        this.$axios.get("https://campus.9451.com/campusmanage/campus/get-copyright-information",{loading: false}).then(res => {
           if (res.data.code == 200){
             this.copyright_information = res.data.data.copyright_information;
           }

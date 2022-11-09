@@ -272,7 +272,7 @@
         };
         this.roleGourpMenuList = [];
         let roleGroupArr = [];
-        this.$axios.get('http://campus.9451.com/campusmanage/appapi/system-menu', {params: params}).then(res => {
+        this.$axios.get('https://campus.9451.com/campusmanage/appapi/system-menu', {params: params}).then(res => {
           let menuArr = [];
           if (res.data.data) {
             for (let i = 0; i < res.data.data.length; i++) {
