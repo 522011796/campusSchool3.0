@@ -228,7 +228,7 @@
               <my-cascader ref="SelectorCollege" :placeholder="$t('请选择院系')" class="margin-top-5" size="small" width-style="300" :props="{multiple: true}" :collapse-tags="true" :sel-value="form.fliterCollegeOption" type="1" sub-type="4" @change="handleSelectCollege($event, 'college')"></my-cascader>
               <my-cascader ref="SelectorDept" :placeholder="$t('请选择部门')" class="margin-top-5" size="small" width-style="300" :props="{multiple: true}" :collapse-tags="true" :sel-value="form.fliterDeptOption" type="4" sub-type="" @change="handleSelectDept($event, 'dept')"></my-cascader>
 
-              <el-select v-model="form.fliterStatusOption" @change="handleSelectStatus($event, 'status')" size="small" class="width-300 margin-top-5" filterable :placeholder="$t('请选择审批状态')">
+              <el-select v-model="form.fliterStatusOption" multiple @change="handleSelectStatus($event, 'status')" size="small" class="width-300 margin-top-5" filterable :placeholder="$t('请选择审批状态')">
                 <el-option
                   v-for="item in searchStatusFormOptions"
                   :key="item.value"
@@ -1285,10 +1285,10 @@
 
           this.staticPcFormList[1] = this.setStatucFormListObj(this.form.cardFliter1,this.form.cardParam1,this.form.cardForm1,this.form.cardValue1,this.form.cardJoin1,this.staticId,0);
           //this.staticPcFormList[1]['groupRule'] = this.form.cardJoin1;
-          this.staticPcFormList[1]['filterRules']['collegeId'] = this.setFliterOnlyOptionValue('college', this.staticPcFormList[1]['filterRules'], this.form.cardFliterOption1);
-          this.staticPcFormList[1]['filterRules']['deptId'] = this.setFliterOnlyOptionValue('dept', this.staticPcFormList[1]['filterRules'], this.form.cardFliterOption1);
-          this.staticPcFormList[1]['filterRules']['applyStatus'] = this.setFliterOnlyOptionValue('status', this.staticPcFormList[1]['filterRules'], this.form.cardFliterOption1);
-          let date = this.setFliterOnlyOptionValue('college', this.staticPcFormList[1]['filterRules'], this.form.cardFliterOption1);
+          this.staticPcFormList[1]['filterRules']['collegeId'] = this.setFliterOnlyOptionValue('college', this.staticPcFormList[1]['filterRules'], this.form.cardFliterCollegeOption1);
+          this.staticPcFormList[1]['filterRules']['deptId'] = this.setFliterOnlyOptionValue('dept', this.staticPcFormList[1]['filterRules'], this.form.cardFliterDeptOption1);
+          this.staticPcFormList[1]['filterRules']['applyStatus'] = this.setFliterOnlyOptionValue('status', this.staticPcFormList[1]['filterRules'], this.form.cardFliterStatusOption1);
+          let date = this.setFliterOnlyOptionValue('time', this.staticPcFormList[1]['filterRules'], this.form.cardFliterTimeOption1);
           this.staticPcFormList[1]['filterRules']['date1'] = date['date1'];
           this.staticPcFormList[1]['filterRules']['date2'] = date['date2'];
 
@@ -1311,10 +1311,10 @@
           this.staticPcFormList[2] = this.setStatucFormListObj(this.form.cardFliter2,this.form.cardParam2,this.form.cardForm2,this.form.cardValue2,this.form.cardJoin2,this.staticId,0);
           //this.staticPcFormList[2]['groupRule'] = this.form.cardJoin2;
 
-          this.staticPcFormList[2]['filterRules']['collegeId'] = this.setFliterOnlyOptionValue('college', this.staticPcFormList[2]['filterRules'], this.form.cardFliterOption2);
-          this.staticPcFormList[2]['filterRules']['deptId'] = this.setFliterOnlyOptionValue('dept', this.staticPcFormList[2]['filterRules'], this.form.cardFliterOption2);
-          this.staticPcFormList[2]['filterRules']['applyStatus'] = this.setFliterOnlyOptionValue('status', this.staticPcFormList[2]['filterRules'], this.form.cardFliterOption2);
-          let date = this.setFliterOnlyOptionValue('college', this.staticPcFormList[2]['filterRules'], this.form.cardFliterOption2);
+          this.staticPcFormList[2]['filterRules']['collegeId'] = this.setFliterOnlyOptionValue('college', this.staticPcFormList[2]['filterRules'], this.form.cardFliterCollegeOption2);
+          this.staticPcFormList[2]['filterRules']['deptId'] = this.setFliterOnlyOptionValue('dept', this.staticPcFormList[2]['filterRules'], this.form.cardFliterDeptOption2);
+          this.staticPcFormList[2]['filterRules']['applyStatus'] = this.setFliterOnlyOptionValue('status', this.staticPcFormList[2]['filterRules'], this.form.cardFliterStatusOption2);
+          let date = this.setFliterOnlyOptionValue('time', this.staticPcFormList[2]['filterRules'], this.form.cardFliterTimeOption2);
           this.staticPcFormList[2]['filterRules']['date1'] = date['date1'];
           this.staticPcFormList[2]['filterRules']['date2'] = date['date2'];
         }else if (value == 3){
@@ -1334,10 +1334,10 @@
 
           this.staticPcFormList[3] = this.setStatucFormListObj(this.form.cardFliter3,this.form.cardParam3,this.form.cardForm3,this.form.cardValue3,this.form.cardJoin3,this.staticId,0);
           //this.staticPcFormList[3]['groupRule'] = this.form.cardJoin3;
-          this.staticPcFormList[3]['filterRules']['collegeId'] = this.setFliterOnlyOptionValue('college', this.staticPcFormList[3]['filterRules'], this.form.cardFliterOption3);
-          this.staticPcFormList[3]['filterRules']['deptId'] = this.setFliterOnlyOptionValue('dept', this.staticPcFormList[3]['filterRules'], this.form.cardFliterOption3);
-          this.staticPcFormList[3]['filterRules']['applyStatus'] = this.setFliterOnlyOptionValue('status', this.staticPcFormList[3]['filterRules'], this.form.cardFliterOption3);
-          let date = this.setFliterOnlyOptionValue('college', this.staticPcFormList[3]['filterRules'], this.form.cardFliterOption3);
+          this.staticPcFormList[3]['filterRules']['collegeId'] = this.setFliterOnlyOptionValue('college', this.staticPcFormList[3]['filterRules'], this.form.cardFliterCollegeOption3);
+          this.staticPcFormList[3]['filterRules']['deptId'] = this.setFliterOnlyOptionValue('dept', this.staticPcFormList[3]['filterRules'], this.form.cardFliterDeptOption3);
+          this.staticPcFormList[3]['filterRules']['applyStatus'] = this.setFliterOnlyOptionValue('status', this.staticPcFormList[3]['filterRules'], this.form.cardFliterStatusOption3);
+          let date = this.setFliterOnlyOptionValue('time', this.staticPcFormList[3]['filterRules'], this.form.cardFliterTimeOption3);
           this.staticPcFormList[3]['filterRules']['date1'] = date['date1'];
           this.staticPcFormList[3]['filterRules']['date2'] = date['date2'];
         }else if (value == 4){
@@ -1357,10 +1357,10 @@
 
           this.staticPcFormList[4] = this.setStatucFormListObj(this.form.cardFliter4,this.form.cardParam4,this.form.cardForm4,this.form.cardValue4,this.form.cardJoin4,this.staticId,0);
           //this.staticPcFormList[4]['groupRule'] = this.form.cardJoin4;
-          this.staticPcFormList[4]['filterRules']['collegeId'] = this.setFliterOnlyOptionValue('college', this.staticPcFormList[4]['filterRules'], this.form.cardFliterOption4);
-          this.staticPcFormList[4]['filterRules']['deptId'] = this.setFliterOnlyOptionValue('dept', this.staticPcFormList[4]['filterRules'], this.form.cardFliterOption4);
-          this.staticPcFormList[4]['filterRules']['applyStatus'] = this.setFliterOnlyOptionValue('status', this.staticPcFormList[4]['filterRules'], this.form.cardFliterOption4);
-          let date = this.setFliterOnlyOptionValue('college', this.staticPcFormList[4]['filterRules'], this.form.cardFliterOption4);
+          this.staticPcFormList[4]['filterRules']['collegeId'] = this.setFliterOnlyOptionValue('college', this.staticPcFormList[4]['filterRules'], this.form.cardFliterCollegeOption4);
+          this.staticPcFormList[4]['filterRules']['deptId'] = this.setFliterOnlyOptionValue('dept', this.staticPcFormList[4]['filterRules'], this.form.cardFliterDeptOption4);
+          this.staticPcFormList[4]['filterRules']['applyStatus'] = this.setFliterOnlyOptionValue('status', this.staticPcFormList[4]['filterRules'], this.form.cardFliterStatusOption4);
+          let date = this.setFliterOnlyOptionValue('time', this.staticPcFormList[4]['filterRules'], this.form.cardFliterTimeOption4);
           this.staticPcFormList[4]['filterRules']['date1'] = date['date1'];
           this.staticPcFormList[4]['filterRules']['date2'] = date['date2'];
         }
@@ -1478,7 +1478,7 @@
         }else if (type == 'college'){
           staticPcForm = JSON.stringify(data);
         }else if (type == 'status'){
-          staticPcForm = parseInt(data);
+          staticPcForm = JSON.stringify(data);
         }
         return staticPcForm;
       },
@@ -1961,32 +1961,32 @@
         if (this.settingType == 'card'){
           if (this.settingColValue == 1){
             this.form.cardFliterTimeOption1 = data;
-            this.staticPcFormList[1]['filterRules']['data1'] = "";
-            this.staticPcFormList[1]['filterRules']['data2'] = "";
+            this.staticPcFormList[1]['filterRules']['date1'] = "";
+            this.staticPcFormList[1]['filterRules']['date2'] = "";
             let date = this.setFliterOptionValue(type, this.staticPcFormList[1],data);
-            this.staticPcFormList[1]['filterRules']['data1'] = date['date1'];
-            this.staticPcFormList[1]['filterRules']['data2'] = date['date2'];
+            this.staticPcFormList[1]['filterRules']['date1'] = date['date1'];
+            this.staticPcFormList[1]['filterRules']['date2'] = date['date2'];
           }else if (this.settingColValue == 2){
             this.form.cardFliterTimeOption2 = data;
-            this.staticPcFormList[2]['filterRules']['data1'] = "";
-            this.staticPcFormList[2]['filterRules']['data2'] = "";
+            this.staticPcFormList[2]['filterRules']['date1'] = "";
+            this.staticPcFormList[2]['filterRules']['date2'] = "";
             let date = this.setFliterOptionValue(type, this.staticPcFormList[1],data);
-            this.staticPcFormList[2]['filterRules']['data1'] = date['date1'];
-            this.staticPcFormList[2]['filterRules']['data2'] = date['date2'];
+            this.staticPcFormList[2]['filterRules']['date1'] = date['date1'];
+            this.staticPcFormList[2]['filterRules']['date2'] = date['date2'];
           }else if (this.settingColValue == 3){
             this.form.cardFliterTimeOption3 = data;
-            this.staticPcFormList[3]['filterRules']['data1'] = "";
-            this.staticPcFormList[3]['filterRules']['data2'] = "";
+            this.staticPcFormList[3]['filterRules']['date1'] = "";
+            this.staticPcFormList[3]['filterRules']['date2'] = "";
             let date = this.setFliterOptionValue(type, this.staticPcFormList[1],data);
-            this.staticPcFormList[3]['filterRules']['data1'] = date['date1'];
-            this.staticPcFormList[3]['filterRules']['data2'] = date['date2'];
+            this.staticPcFormList[3]['filterRules']['date1'] = date['date1'];
+            this.staticPcFormList[3]['filterRules']['date2'] = date['date2'];
           }else if (this.settingColValue == 4){
             this.form.cardFliterTimeOption4 = data;
-            this.staticPcFormList[4]['filterRules']['data1'] = "";
-            this.staticPcFormList[4]['filterRules']['data2'] = "";
+            this.staticPcFormList[4]['filterRules']['date1'] = "";
+            this.staticPcFormList[4]['filterRules']['date2'] = "";
             let date = this.setFliterOptionValue(type, this.staticPcFormList[1],data);
-            this.staticPcFormList[4]['filterRules']['data1'] = date['date1'];
-            this.staticPcFormList[4]['filterRules']['data2'] = date['date2'];
+            this.staticPcFormList[4]['filterRules']['date1'] = date['date1'];
+            this.staticPcFormList[4]['filterRules']['date2'] = date['date2'];
           }
         }
       },
