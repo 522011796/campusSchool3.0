@@ -1471,14 +1471,14 @@
       setFliterOnlyOptionValue(type,staticPcForm1,data){
         let staticPcForm = {};
         if (type == 'time'){
-          staticPcForm['date1'] = data.length > 0 ? data[0] : '';
-          staticPcForm['date2'] = data.length > 0 ? data[1] : '';
+          staticPcForm['date1'] = data && data.length > 0 ? data[0] : '';
+          staticPcForm['date2'] = data && data.length > 0 ? data[1] : '';
         }else if (type == 'dept'){
-          staticPcForm = JSON.stringify(data);
+          staticPcForm = data ? JSON.stringify(data) : "";
         }else if (type == 'college'){
-          staticPcForm = JSON.stringify(data);
+          staticPcForm = data ? JSON.stringify(data) : "";
         }else if (type == 'status'){
-          staticPcForm = JSON.stringify(data);
+          staticPcForm = data ? JSON.stringify(data) : "";
         }
         return staticPcForm;
       },
@@ -2068,14 +2068,28 @@
             filterType: '',
             unitName: '',
             filterRules: {
-
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
+            },
+            filterRules2: {
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
             },
             relaFormId: '',
             relaFromField1: {
-              collegeId: [],
-              deptId: [],
-              date1: [],
-              date2: []
+              d: true,
+              f: "",
+              g: 0,
+              n: "",
+              hz: "",
+              jd: 0,
+              zwf: false,
             },
             groupRule: '-1',
             unitType: '0',
@@ -2085,10 +2099,29 @@
             filterType: '',
             unitName: '',
             filterRules: {
-
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
+            },
+            filterRules2: {
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
             },
             relaFormId: '',
-            relaFromField1: [],
+            relaFromField1: {
+              d: true,
+              f: "",
+              g: 0,
+              n: "",
+              hz: "",
+              jd: 0,
+              zwf: false,
+            },
             groupRule: '-1',
             unitType: '0',
             statId: ''
@@ -2097,10 +2130,29 @@
             filterType: '',
             unitName: '',
             filterRules: {
-
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
+            },
+            filterRules2: {
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
             },
             relaFormId: '',
-            relaFromField1: [],
+            relaFromField1: {
+              d: true,
+              f: "",
+              g: 0,
+              n: "",
+              hz: "",
+              jd: 0,
+              zwf: false,
+            },
             groupRule: '-1',
             unitType: '0',
             statId: ''
@@ -2109,10 +2161,29 @@
             filterType: '',
             unitName: '',
             filterRules: {
-
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
+            },
+            filterRules2: {
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
             },
             relaFormId: '',
-            relaFromField1: [],
+            relaFromField1: {
+              d: true,
+              f: "",
+              g: 0,
+              n: "",
+              hz: "",
+              jd: 0,
+              zwf: false,
+            },
             groupRule: '-1',
             unitType: '0',
             statId: ''
@@ -2121,11 +2192,29 @@
             filterType: '',
             unitName: '',
             filterRules: {
-
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
+            },
+            filterRules2: {
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
             },
             relaFormId: '',
-            relaFromField1: [],
-            relaFromField2: [],
+            relaFromField1: {
+              d: true,
+              f: "",
+              g: 0,
+              n: "",
+              hz: "",
+              jd: 0,
+              zwf: false,
+            },
             groupRule: '-1',
             unitType: '0',
             statId: ''
@@ -2134,10 +2223,29 @@
             filterType: '',
             unitName: '',
             filterRules: {
-
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
+            },
+            filterRules2: {
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
             },
             relaFormId: '',
-            relaFromField1: [],
+            relaFromField1: {
+              d: true,
+              f: "",
+              g: 0,
+              n: "",
+              hz: "",
+              jd: 0,
+              zwf: false,
+            },
             groupRule: '-1',
             unitType: '0',
             statId: ''
@@ -2146,14 +2254,32 @@
             filterType: '',
             unitName: '',
             filterRules: {
-
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
+            },
+            filterRules2: {
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
             },
             relaFormId: '',
-            relaFromField1: [],
+            relaFromField1: {
+              d: true,
+              f: "",
+              g: 0,
+              n: "",
+              hz: "",
+              jd: 0,
+              zwf: false,
+            },
             groupRule: '-1',
             unitType: '0',
-            statId: '',
-            groupType: '0'
+            statId: ''
           }
         ];
         this.form = {
@@ -2175,17 +2301,45 @@
           cardForm3: '',
           cardForm4: '',
           cardJoin1: '-1',
+          cardJoinFixed1: '',
+          cardJoinPoint1: '0',
+          cardJoinFormat1: '0',
           cardJoin2: '-1',
+          cardJoinFixed2: '',
+          cardJoinPoint: '0',
+          cardJoinFormat2: '0',
           cardJoin3: '-1',
+          cardJoinFixed3: '',
+          cardJoinPoint3: '0',
+          cardJoinFormat3: '0',
           cardJoin4: '-1',
+          cardJoinFixed4: '',
+          cardJoinPoint4: '0',
+          cardJoinFormat4: '0',
           cardFliter1: '',
           cardFliter2: '',
           cardFliter3: '',
           cardFliter4: '',
           cardFliterOption1: '',
+          cardFliterCollegeOption1: '',
+          cardFliterDeptOption1: '',
+          cardFliterStatusOption1: '',
+          cardFliterTimeOption1: '',
           cardFliterOption2: '',
+          cardFliterCollegeOption2: '',
+          cardFliterDeptOption2: '',
+          cardFliterStatusOption2: '',
+          cardFliterTimeOption2: '',
           cardFliterOption3: '',
+          cardFliterCollegeOption3: '',
+          cardFliterDeptOption3: '',
+          cardFliterStatusOption3: '',
+          cardFliterTimeOption3: '',
           cardFliterOption4: '',
+          cardFliterCollegeOption4: '',
+          cardFliterDeptOption4: '',
+          cardFliterStatusOption4: '',
+          cardFliterTimeOption4: '',
           cardFliterStartTime1: '',
           cardFliterEndTime1: '',
           cardFliterStartTime2: '',
@@ -2230,9 +2384,16 @@
           joinFormParamsValueObj: {},
           joinFormFliterValue: '',
           joinFormJoinValue: '',
+          joinFormJoinFixed: '',
+          joinFormJoinPoint: '0',
+          joinFormJoinFormat: '0',
           joinFormXValue: '',
           joinFormYValue: [],
           fliterOption: [],
+          fliterCollegeOption: [],
+          fliterDeptOption: [],
+          fliterStatusOption: [],
+          fliterTimeOption: [],
           fliterOptionStartTime: '',
           fliterOptionEndTime: '',
           joinTableJoinValue: []
