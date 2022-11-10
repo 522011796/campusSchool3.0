@@ -685,6 +685,11 @@ export default {
       let url = '';
       this.staticPcFormList = [];
       let pcRef = this.$refs.pcRef;
+
+
+      console.log(pcRef.staticPcFormList);
+      return;
+
       if (pcRef.staticPcFormList.length == 0){
         MessageWarning(this.$t("检测到统计表单信息未设置完全，请设置"));
         return;
@@ -715,7 +720,7 @@ export default {
         MessageWarning(this.$t("请设置表格信息"));
         return;
       }
-      //console.log(pcRef.staticPcFormList);
+
       let params = {
         list: pcRef.staticPcFormList
       };

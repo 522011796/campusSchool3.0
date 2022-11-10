@@ -99,14 +99,48 @@
                 <span>{{$t("该字段值的聚合规则")}}</span>
               </div>
               <div class="margin-top-5">
-                <el-select v-model="form.joinFormJoinValue" @change="handleJoinFormChange" size="small" class="width-300" placeholder="请选择">
-                  <el-option
-                    v-for="item in joinFormJoinOptions"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value">
-                  </el-option>
-                </el-select>
+                <div>
+                  <el-row :gutter="8">
+                    <el-col :span="12">
+                      <el-select v-model="form.joinFormJoinValue" @change="handleJoinFormChange($event)" size="small" placeholder="请选择">
+                        <el-option
+                          v-for="item in joinFormJoinOptions"
+                          :key="item.value"
+                          v-if="item.value != -1"
+                          :label="item.label"
+                          :value="item.value">
+                        </el-option>
+                      </el-select>
+                    </el-col>
+                    <el-col :span="12">
+                      <el-input size="small" :placeholder="$t('字符后缀')" v-model="form.joinFormJoinFixed" @input="handleJoinFormFiextChange"></el-input>
+                    </el-col>
+                  </el-row>
+                </div>
+                <div class="margin-top-5">
+                  <el-row :gutter="8">
+                    <el-col :span="12">
+                      <el-select v-model="form.joinFormJoinPoint" @change="handleJoinFormPointChange($event)" size="small" placeholder="小数位数">
+                        <el-option
+                          v-for="item in joinFormJoinPointOptions"
+                          :key="item.value"
+                          :label="item.label"
+                          :value="item.value">
+                        </el-option>
+                      </el-select>
+                    </el-col>
+                    <el-col :span="12">
+                      <el-select v-model="form.joinFormJoinFormat" @change="handleJoinFormFormatChange($event)" size="small" placeholder="千分位">
+                        <el-option
+                          v-for="item in joinFormJoinFormatOptions"
+                          :key="item.value"
+                          :label="item.label"
+                          :value="item.value">
+                        </el-option>
+                      </el-select>
+                    </el-col>
+                  </el-row>
+                </div>
               </div>
             </div>
           </template>
@@ -180,20 +214,32 @@
             <div>
               <span>{{$t("过滤条件")}}</span>
             </div>
-            <div class="margin-top-5">
-              <el-select v-model="form.joinFormFliterValue" @change="handleFliterChange" size="small" class="width-300" filterable placeholder="请选择">
+<!--            <div class="margin-top-5">-->
+<!--              <el-select v-model="form.joinFormFliterValue" @change="handleFliterChange" size="small" class="width-300" filterable placeholder="请选择">-->
+<!--                <el-option-->
+<!--                  v-for="item in searchStaticFormOptions"-->
+<!--                  :key="item.value"-->
+<!--                  :label="item.label"-->
+<!--                  :value="item.value">-->
+<!--                </el-option>-->
+<!--              </el-select>-->
+<!--            </div>-->
+            <div class="margin-top-10">
+              <my-cascader ref="SelectorCollege" :placeholder="$t('请选择院系')" class="margin-top-5" size="small" width-style="300" :props="{multiple: true}" :collapse-tags="true" :sel-value="form.fliterCollegeOption" type="1" sub-type="4" @change="handleSelectCollege($event, 'college')"></my-cascader>
+              <my-cascader ref="SelectorDept" :placeholder="$t('请选择部门')" class="margin-top-5" size="small" width-style="300" :props="{multiple: true}" :collapse-tags="true" :sel-value="form.fliterDeptOption" type="4" sub-type="" @change="handleSelectDept($event, 'dept')"></my-cascader>
+
+              <el-select v-model="form.fliterStatusOption" @change="handleSelectStatus($event, 'status')" size="small" class="width-300 margin-top-5" filterable :placeholder="$t('请选择审批状态')">
                 <el-option
-                  v-for="item in searchStaticFormOptions"
+                  v-for="item in searchStatusFormOptions"
                   :key="item.value"
                   :label="item.label"
                   :value="item.value">
                 </el-option>
               </el-select>
-            </div>
-            <div class="margin-top-10">
+
               <el-date-picker
-                v-if="form.joinFormFliterValue == 'time'"
-                v-model="form.fliterOption"
+                class="margin-top-5"
+                v-model="form.fliterTimeOption"
                 size="small"
                 type="daterange"
                 range-separator="至"
@@ -202,20 +248,8 @@
                 style="width: 300px"
                 format="yyyy-MM-dd"
                 value-format="yyyy-MM-dd"
-                @change="handleSelectTime">
+                @change="handleSelectFliter($event, 'time')">
               </el-date-picker>
-
-              <my-cascader v-if="form.joinFormFliterValue == 'college'" ref="SelectorCollege" size="small" width-style="300" :props="{multiple: true}" :sel-value="form.fliterOption" type="1" sub-type="4" @change="handleSelectTime($event)"></my-cascader>
-              <my-cascader v-if="form.joinFormFliterValue == 'dept'" ref="SelectorDept" size="small" width-style="300" :props="{multiple: true}" :sel-value="form.fliterOption" type="4" sub-type="" @change="handleSelectTime($event)"></my-cascader>
-
-              <el-select v-if="form.joinFormFliterValue == 'status'" v-model="form.fliterOption" @change="handleSelectTime($event)" size="small" class="width-300" filterable placeholder="请选择">
-                <el-option
-                  v-for="item in searchStatusFormOptions"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
-              </el-select>
             </div>
           </div>
 
@@ -515,14 +549,28 @@
             filterType: '',
             unitName: '',
             filterRules: {
-
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
+            },
+            filterRules2: {
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
             },
             relaFormId: '',
             relaFromField1: {
-              collegeId: [],
-              deptId: [],
-              date1: [],
-              date2: []
+              d: true,
+              f: "",
+              g: 0,
+              n: "",
+              hz: "",
+              jd: 0,
+              zwf: false,
             },
             groupRule: '-1',
             unitType: '0',
@@ -532,10 +580,29 @@
             filterType: '',
             unitName: '',
             filterRules: {
-
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
+            },
+            filterRules2: {
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
             },
             relaFormId: '',
-            relaFromField1: [],
+            relaFromField1: {
+              d: true,
+              f: "",
+              g: 0,
+              n: "",
+              hz: "",
+              jd: 0,
+              zwf: false,
+            },
             groupRule: '-1',
             unitType: '0',
             statId: ''
@@ -544,10 +611,29 @@
             filterType: '',
             unitName: '',
             filterRules: {
-
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
+            },
+            filterRules2: {
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
             },
             relaFormId: '',
-            relaFromField1: [],
+            relaFromField1: {
+              d: true,
+              f: "",
+              g: 0,
+              n: "",
+              hz: "",
+              jd: 0,
+              zwf: false,
+            },
             groupRule: '-1',
             unitType: '0',
             statId: ''
@@ -556,10 +642,29 @@
             filterType: '',
             unitName: '',
             filterRules: {
-
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
+            },
+            filterRules2: {
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
             },
             relaFormId: '',
-            relaFromField1: [],
+            relaFromField1: {
+              d: true,
+              f: "",
+              g: 0,
+              n: "",
+              hz: "",
+              jd: 0,
+              zwf: false,
+            },
             groupRule: '-1',
             unitType: '0',
             statId: ''
@@ -568,11 +673,29 @@
             filterType: '',
             unitName: '',
             filterRules: {
-
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
+            },
+            filterRules2: {
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
             },
             relaFormId: '',
-            relaFromField1: [],
-            relaFromField2: [],
+            relaFromField1: {
+              d: true,
+              f: "",
+              g: 0,
+              n: "",
+              hz: "",
+              jd: 0,
+              zwf: false,
+            },
             groupRule: '-1',
             unitType: '0',
             statId: ''
@@ -581,10 +704,29 @@
             filterType: '',
             unitName: '',
             filterRules: {
-
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
+            },
+            filterRules2: {
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
             },
             relaFormId: '',
-            relaFromField1: [],
+            relaFromField1: {
+              d: true,
+              f: "",
+              g: 0,
+              n: "",
+              hz: "",
+              jd: 0,
+              zwf: false,
+            },
             groupRule: '-1',
             unitType: '0',
             statId: ''
@@ -593,14 +735,32 @@
             filterType: '',
             unitName: '',
             filterRules: {
-
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
+            },
+            filterRules2: {
+              applyStatus: "",
+              collegeId: "",
+              date1: "",
+              date2: "",
+              deptId: "",
             },
             relaFormId: '',
-            relaFromField1: [],
+            relaFromField1: {
+              d: true,
+              f: "",
+              g: 0,
+              n: "",
+              hz: "",
+              jd: 0,
+              zwf: false,
+            },
             groupRule: '-1',
             unitType: '0',
-            statId: '',
-            groupType: '0'
+            statId: ''
           }
         ],
         settingType: '',
@@ -662,17 +822,45 @@
           cardForm3: '',
           cardForm4: '',
           cardJoin1: '-1',
+          cardJoinFixed1: '',
+          cardJoinPoint1: '0',
+          cardJoinFormat1: '0',
           cardJoin2: '-1',
+          cardJoinFixed2: '',
+          cardJoinPoint: '0',
+          cardJoinFormat2: '0',
           cardJoin3: '-1',
+          cardJoinFixed3: '',
+          cardJoinPoint3: '0',
+          cardJoinFormat3: '0',
           cardJoin4: '-1',
+          cardJoinFixed4: '',
+          cardJoinPoint4: '0',
+          cardJoinFormat4: '0',
           cardFliter1: '',
           cardFliter2: '',
           cardFliter3: '',
           cardFliter4: '',
           cardFliterOption1: '',
+          cardFliterCollegeOption1: '',
+          cardFliterDeptOption1: '',
+          cardFliterStatusOption1: '',
+          cardFliterTimeOption1: '',
           cardFliterOption2: '',
+          cardFliterCollegeOption2: '',
+          cardFliterDeptOption2: '',
+          cardFliterStatusOption2: '',
+          cardFliterTimeOption2: '',
           cardFliterOption3: '',
+          cardFliterCollegeOption3: '',
+          cardFliterDeptOption3: '',
+          cardFliterStatusOption3: '',
+          cardFliterTimeOption3: '',
           cardFliterOption4: '',
+          cardFliterCollegeOption4: '',
+          cardFliterDeptOption4: '',
+          cardFliterStatusOption4: '',
+          cardFliterTimeOption4: '',
           cardFliterStartTime1: '',
           cardFliterEndTime1: '',
           cardFliterStartTime2: '',
@@ -717,9 +905,16 @@
           joinFormParamsValueObj: {},
           joinFormFliterValue: '',
           joinFormJoinValue: '',
+          joinFormJoinFixed: '',
+          joinFormJoinPoint: '0',
+          joinFormJoinFormat: '0',
           joinFormXValue: '',
           joinFormYValue: [],
           fliterOption: [],
+          fliterCollegeOption: [],
+          fliterDeptOption: [],
+          fliterStatusOption: [],
+          fliterTimeOption: [],
           fliterOptionStartTime: '',
           fliterOptionEndTime: '',
           joinTableJoinValue: []
@@ -737,6 +932,32 @@
           value: '0'
         }],
         formTableParamsOptions: [],
+        joinFormJoinFormatOptions: [{
+          value: '0',
+          label: this.$t("禁用千分位")
+        },{
+          value: '1',
+          label: this.$t("启用千分位")
+        }],
+        joinFormJoinPointOptions: [{
+          value: '0',
+          label: this.$t("无小数位")
+        },{
+          value: '1',
+          label: this.$t("1位小数")
+        },{
+          value: '2',
+          label: this.$t("2位小数")
+        },{
+          value: '3',
+          label: this.$t("3位小数")
+        },{
+          value: '4',
+          label: this.$t("4位小数")
+        },{
+          value: '5',
+          label: this.$t("5位小数")
+        }],
         joinFormJoinOptions: [{
           value: '-1',
           label: this.$t("不聚合")
@@ -1052,50 +1273,96 @@
           this.form.cardTitle = this.form.cardParam1;
           this.form.joinFormParamsValue = this.form.cardValue1Text == '' ? '' : this.form.cardValue1Text;
           this.form.joinFormValue = this.form.cardForm1;
-          this.form.joinFormJoinValue = this.form.cardJoin1;
+          this.form.joinFormJoinValue = this.form.cardJoin1 != "undefined" && this.form.cardJoin1 != '' ? this.form.cardJoin1 : '0';
+          this.form.joinFormJoinFixed = this.form.cardJoinFixed1;
+          this.form.joinFormJoinPoint = this.form.cardJoinPoint1 != undefined && this.form.cardJoinPoint1 != '' ? this.form.cardJoinPoint1 : '0';
+          this.form.joinFormJoinFormat = this.form.cardJoinFormat1;
           this.form.joinFormFliterValue = this.form.cardFliter1;
-          this.form.fliterOption = this.form.cardFliterOption1 == "" ? [] : this.form.cardFliterOption1;
+          this.form.fliterCollegeOption = this.form.cardFliterCollegeOption1 == "" ? [] : this.form.cardFliterCollegeOption1;
+          this.form.fliterDeptOption = this.form.cardFliterDeptOption1 == "" ? [] : this.form.cardFliterDeptOption1;
+          this.form.fliterStatusOption = this.form.cardFliterStatusOption1 == "" ? [] : this.form.cardFliterStatusOption1;
+          this.form.fliterTimeOption = this.form.cardFliterTimeOption1 == "" ? [] : this.form.cardFliterTimeOption1;
 
           this.staticPcFormList[1] = this.setStatucFormListObj(this.form.cardFliter1,this.form.cardParam1,this.form.cardForm1,this.form.cardValue1,this.form.cardJoin1,this.staticId,0);
-          this.staticPcFormList[1]['groupRule'] = this.form.cardJoin1;
-          this.staticPcFormList[1]['filterRules'] = this.setFliterOptionValue(this.form.cardFliter1, this.staticPcFormList[1]['filterRules'], this.form.cardFliterOption1);
+          //this.staticPcFormList[1]['groupRule'] = this.form.cardJoin1;
+          this.staticPcFormList[1]['filterRules']['collegeId'] = this.setFliterOnlyOptionValue('college', this.staticPcFormList[1]['filterRules'], this.form.cardFliterOption1);
+          this.staticPcFormList[1]['filterRules']['deptId'] = this.setFliterOnlyOptionValue('dept', this.staticPcFormList[1]['filterRules'], this.form.cardFliterOption1);
+          this.staticPcFormList[1]['filterRules']['applyStatus'] = this.setFliterOnlyOptionValue('status', this.staticPcFormList[1]['filterRules'], this.form.cardFliterOption1);
+          let date = this.setFliterOnlyOptionValue('college', this.staticPcFormList[1]['filterRules'], this.form.cardFliterOption1);
+          this.staticPcFormList[1]['filterRules']['date1'] = date['date1'];
+          this.staticPcFormList[1]['filterRules']['date2'] = date['date2'];
 
         }else if (value == 2){
           await this.getFiledInfo(this.form.cardForm2);
           this.form.cardTitle = this.form.cardParam2;
           this.form.joinFormParamsValue = this.form.cardValue2Text == '' ? '' : this.form.cardValue2Text;
           this.form.joinFormValue = this.form.cardForm2;
-          this.form.joinFormJoinValue = this.form.cardJoin2;
+
+          this.form.joinFormJoinValue = this.form.cardJoin2 != "undefined" && this.form.cardJoin2 != '' ? this.form.cardJoin2 : '0';
+          this.form.joinFormJoinFixed = this.form.cardJoinFixed2;
+          this.form.joinFormJoinPoint = this.form.cardJoinPoint2 != undefined && this.form.cardJoinPoint2 != '' ?this.form.cardJoinPoint2 : '0';
+          this.form.joinFormJoinFormat = this.form.cardJoinFormat2;
           this.form.joinFormFliterValue = this.form.cardFliter2;
-          this.form.fliterOption = this.form.cardFliterOption2 == "" ? [] : this.form.cardFliterOption2;
+          this.form.fliterCollegeOption = this.form.cardFliterCollegeOption2 == "" ? [] : this.form.cardFliterCollegeOption2;
+          this.form.fliterDeptOption = this.form.cardFliterDeptOption2 == "" ? [] : this.form.cardFliterDeptOption2;
+          this.form.fliterStatusOption = this.form.cardFliterStatusOption2 == "" ? [] : this.form.cardFliterStatusOption2;
+          this.form.fliterTimeOption = this.form.cardFliterTimeOption2 == "" ? [] : this.form.cardFliterTimeOption2;
 
           this.staticPcFormList[2] = this.setStatucFormListObj(this.form.cardFliter2,this.form.cardParam2,this.form.cardForm2,this.form.cardValue2,this.form.cardJoin2,this.staticId,0);
-          this.staticPcFormList[2]['groupRule'] = this.form.cardJoin2;
-          this.staticPcFormList[2]['filterRules'] = this.setFliterOptionValue(this.form.cardFliter2, this.staticPcFormList[2]['filterRules'], this.form.cardFliterOption2);
+          //this.staticPcFormList[2]['groupRule'] = this.form.cardJoin2;
+
+          this.staticPcFormList[2]['filterRules']['collegeId'] = this.setFliterOnlyOptionValue('college', this.staticPcFormList[2]['filterRules'], this.form.cardFliterOption2);
+          this.staticPcFormList[2]['filterRules']['deptId'] = this.setFliterOnlyOptionValue('dept', this.staticPcFormList[2]['filterRules'], this.form.cardFliterOption2);
+          this.staticPcFormList[2]['filterRules']['applyStatus'] = this.setFliterOnlyOptionValue('status', this.staticPcFormList[2]['filterRules'], this.form.cardFliterOption2);
+          let date = this.setFliterOnlyOptionValue('college', this.staticPcFormList[2]['filterRules'], this.form.cardFliterOption2);
+          this.staticPcFormList[2]['filterRules']['date1'] = date['date1'];
+          this.staticPcFormList[2]['filterRules']['date2'] = date['date2'];
         }else if (value == 3){
           await this.getFiledInfo(this.form.cardForm3);
           this.form.cardTitle = this.form.cardParam3;
           this.form.joinFormParamsValue = this.form.cardValue3Text == '' ? '' : this.form.cardValue3Text;
           this.form.joinFormValue = this.form.cardForm3;
-          this.form.joinFormJoinValue = this.form.cardJoin3;
+          this.form.joinFormJoinValue = this.form.cardJoin3 != "undefined" && this.form.cardJoin3 != '' ? this.form.cardJoin3 : '0';
+          this.form.joinFormJoinFixed = this.form.cardJoinFixed3;
+          this.form.joinFormJoinPoint = this.form.cardJoinPoint3 != undefined && this.form.cardJoinPoint3 != '' ? this.form.cardJoinPoint3 : '0';
+          this.form.joinFormJoinFormat = this.form.cardJoinFormat3;
           this.form.joinFormFliterValue = this.form.cardFliter3;
-          this.form.fliterOption = this.form.cardFliterOption3 == "" ? [] : this.form.cardFliterOption3;
+          this.form.fliterCollegeOption = this.form.cardFliterCollegeOption3 == "" ? [] : this.form.cardFliterCollegeOption3;
+          this.form.fliterDeptOption = this.form.cardFliterDeptOption3 == "" ? [] : this.form.cardFliterDeptOption3;
+          this.form.fliterStatusOption = this.form.cardFliterStatusOption3 == "" ? [] : this.form.cardFliterStatusOption3;
+          this.form.fliterTimeOption = this.form.cardFliterTimeOption3 == "" ? [] : this.form.cardFliterTimeOption3;
 
           this.staticPcFormList[3] = this.setStatucFormListObj(this.form.cardFliter3,this.form.cardParam3,this.form.cardForm3,this.form.cardValue3,this.form.cardJoin3,this.staticId,0);
-          this.staticPcFormList[3]['groupRule'] = this.form.cardJoin3;
-          this.staticPcFormList[3]['filterRules'] = this.setFliterOptionValue(this.form.cardFliter3, this.staticPcFormList[3]['filterRules'], this.form.cardFliterOption3);
+          //this.staticPcFormList[3]['groupRule'] = this.form.cardJoin3;
+          this.staticPcFormList[3]['filterRules']['collegeId'] = this.setFliterOnlyOptionValue('college', this.staticPcFormList[3]['filterRules'], this.form.cardFliterOption3);
+          this.staticPcFormList[3]['filterRules']['deptId'] = this.setFliterOnlyOptionValue('dept', this.staticPcFormList[3]['filterRules'], this.form.cardFliterOption3);
+          this.staticPcFormList[3]['filterRules']['applyStatus'] = this.setFliterOnlyOptionValue('status', this.staticPcFormList[3]['filterRules'], this.form.cardFliterOption3);
+          let date = this.setFliterOnlyOptionValue('college', this.staticPcFormList[3]['filterRules'], this.form.cardFliterOption3);
+          this.staticPcFormList[3]['filterRules']['date1'] = date['date1'];
+          this.staticPcFormList[3]['filterRules']['date2'] = date['date2'];
         }else if (value == 4){
           await this.getFiledInfo(this.form.cardForm4);
           this.form.cardTitle = this.form.cardParam4;
           this.form.joinFormParamsValue = this.form.cardValue4Text == '' ? '' : this.form.cardValue4Text;
           this.form.joinFormValue = this.form.cardForm4;
-          this.form.joinFormJoinValue = this.form.cardJoin4;
+          this.form.joinFormJoinValue = this.form.cardJoin4 != "undefined" && this.form.cardJoin4 != '' ? this.form.cardJoin4 : '0';
+          this.form.joinFormJoinFixed = this.form.cardJoinFixed4;
+          this.form.joinFormJoinPoint = this.form.cardJoinPoint4 != undefined && this.form.cardJoinPoint4 != '' ? this.form.cardJoinPoint4 : '0';
+          this.form.joinFormJoinFormat = this.form.cardJoinFormat4;
           this.form.joinFormFliterValue = this.form.cardFliter4;
-          this.form.fliterOption = this.form.cardFliterOption4 == "" ? [] : this.form.cardFliterOption4;
+          this.form.fliterCollegeOption = this.form.cardFliterCollegeOption4 == "" ? [] : this.form.cardFliterCollegeOption4;
+          this.form.fliterDeptOption = this.form.cardFliterDeptOption4 == "" ? [] : this.form.cardFliterDeptOption4;
+          this.form.fliterStatusOption = this.form.cardFliterStatusOption4 == "" ? [] : this.form.cardFliterStatusOption4;
+          this.form.fliterTimeOption = this.form.cardFliterTimeOption4 == "" ? [] : this.form.cardFliterTimeOption4;
 
           this.staticPcFormList[4] = this.setStatucFormListObj(this.form.cardFliter4,this.form.cardParam4,this.form.cardForm4,this.form.cardValue4,this.form.cardJoin4,this.staticId,0);
-          this.staticPcFormList[4]['groupRule'] = this.form.cardJoin4;
-          this.staticPcFormList[4]['filterRules'] = this.setFliterOptionValue(this.form.cardFliter4, this.staticPcFormList[4]['filterRules'], this.form.cardFliterOption4);
+          //this.staticPcFormList[4]['groupRule'] = this.form.cardJoin4;
+          this.staticPcFormList[4]['filterRules']['collegeId'] = this.setFliterOnlyOptionValue('college', this.staticPcFormList[4]['filterRules'], this.form.cardFliterOption4);
+          this.staticPcFormList[4]['filterRules']['deptId'] = this.setFliterOnlyOptionValue('dept', this.staticPcFormList[4]['filterRules'], this.form.cardFliterOption4);
+          this.staticPcFormList[4]['filterRules']['applyStatus'] = this.setFliterOnlyOptionValue('status', this.staticPcFormList[4]['filterRules'], this.form.cardFliterOption4);
+          let date = this.setFliterOnlyOptionValue('college', this.staticPcFormList[4]['filterRules'], this.form.cardFliterOption4);
+          this.staticPcFormList[4]['filterRules']['date1'] = date['date1'];
+          this.staticPcFormList[4]['filterRules']['date2'] = date['date2'];
         }
         this.settingColValue = value;
       },
@@ -1198,6 +1465,20 @@
           staticPcForm['collegeId'] = JSON.stringify(data);
         }else if (type == 'status'){
           staticPcForm['applyStatus'] = parseInt(data);
+        }
+        return staticPcForm;
+      },
+      setFliterOnlyOptionValue(type,staticPcForm1,data){
+        let staticPcForm = {};
+        if (type == 'time'){
+          staticPcForm['date1'] = data.length > 0 ? data[0] : '';
+          staticPcForm['date2'] = data.length > 0 ? data[1] : '';
+        }else if (type == 'dept'){
+          staticPcForm = JSON.stringify(data);
+        }else if (type == 'college'){
+          staticPcForm = JSON.stringify(data);
+        }else if (type == 'status'){
+          staticPcForm = parseInt(data);
         }
         return staticPcForm;
       },
@@ -1529,16 +1810,16 @@
         if (this.settingType == 'card'){
           if (this.settingColValue == 1){
             this.form.cardJoin1 = data;
-            this.staticPcFormList[1]['groupRule'] = data;
+            this.staticPcFormList[1]['relaFromField1'][0]['g'] = data;
           }else if (this.settingColValue == 2){
             this.form.cardJoin2 = data;
-            this.staticPcFormList[2]['groupRule'] = data;
+            this.staticPcFormList[2]['relaFromField1'][0]['g'] = data;
           }else if (this.settingColValue == 3){
             this.form.cardJoin3 = data;
-            this.staticPcFormList[3]['groupRule'] = data;
+            this.staticPcFormList[3]['relaFromField1'][0]['g'] = data;
           }else if (this.settingColValue == 4){
             this.form.cardJoin4 = data;
-            this.staticPcFormList[4]['groupRule'] = data;
+            this.staticPcFormList[4]['relaFromField1'][0]['g'] = data;
           }
         }else if (this.settingType == 'circle'){
           this.form.circleJoin = data;
@@ -1551,9 +1832,163 @@
           this.staticPcFormList[5]['groupRule'] = data;
         }
       },
+      handleJoinFormFiextChange(data){
+        this.form.joinFormJoinFixed = data;
+        if (this.settingType == 'card'){
+          if (this.settingColValue == 1){
+            this.form.cardJoinFixed1 = data;
+            this.staticPcFormList[1]['relaFromField1'][0]['hz'] = data;
+          }else if (this.settingColValue == 2){
+            this.form.cardJoinFixed2 = data;
+            this.staticPcFormList[2]['relaFromField1'][0]['hz'] = data;
+          }else if (this.settingColValue == 3){
+            this.form.cardJoinFixed3 = data;
+            this.staticPcFormList[3]['relaFromField1'][0]['hz'] = data;
+          }else if (this.settingColValue == 4){
+            this.form.cardJoinFixed4 = data;
+            this.staticPcFormList[4]['relaFromField1'][0]['hz'] = data;
+          }
+        }
+      },
+      handleJoinFormPointChange(data){
+        this.form.joinFormJoinPoint = data;
+        if (this.settingType == 'card'){
+          if (this.settingColValue == 1){
+            this.form.cardJoinPoint1 = data;
+            this.staticPcFormList[1]['relaFromField1'][0]['jd'] = data;
+          }else if (this.settingColValue == 2){
+            this.form.cardJoinPoint2 = data;
+            this.staticPcFormList[2]['relaFromField1'][0]['jd'] = data;
+          }else if (this.settingColValue == 3){
+            this.form.cardJoinPoint3 = data;
+            this.staticPcFormList[3]['relaFromField1'][0]['jd'] = data;
+          }else if (this.settingColValue == 4){
+            this.form.cardJoinPoint4 = data;
+            this.staticPcFormList[4]['relaFromField1'][0]['jd'] = data;
+          }
+        }
+      },
+      handleJoinFormFormatChange(data){
+        this.form.joinFormJoinFormat = data;
+        if (this.settingType == 'card'){
+          if (this.settingColValue == 1){
+            this.form.cardJoinFormat1 = data;
+            this.staticPcFormList[1]['relaFromField1'][0]['zwf'] = data == 1 ? true : false;
+          }else if (this.settingColValue == 2){
+            this.form.cardJoinFormat2 = data;
+            this.staticPcFormList[2]['relaFromField1'][0]['zwf'] = data ? true : false;
+          }else if (this.settingColValue == 3){
+            this.form.cardJoinFormat3 = data;
+            this.staticPcFormList[3]['relaFromField1'][0]['zwf'] = data ? true : false;
+          }else if (this.settingColValue == 4){
+            this.form.cardJoinFormat4 = data;
+            this.staticPcFormList[4]['relaFromField1'][0]['zwf'] = data ? true : false;
+          }
+        }
+      },
       handleJoinTableChange(data){
         this.form.tableJoin = data;
         this.staticPcFormList[7]['groupType'] = data;
+      },
+      handleSelectCollege(data, type){
+        this.form.fliterCollegeOption = data;
+        if (this.settingType == 'card'){
+          if (this.settingColValue == 1){
+            this.form.cardFliterCollegeOption1 = data;
+            this.staticPcFormList[1]['filterRules']['collegeId'] = "";
+            this.staticPcFormList[1]['filterRules']['collegeId'] = this.setFliterOnlyOptionValue(type, this.staticPcFormList[1],data);
+          }else if (this.settingColValue == 2){
+            this.form.cardFliterCollegeOption2 = data;
+            this.staticPcFormList[2]['filterRules']['collegeId'] = "";
+            this.staticPcFormList[2]['filterRules']['collegeId'] = this.setFliterOnlyOptionValue(type, this.staticPcFormList[2],data);
+          }else if (this.settingColValue == 3){
+            this.form.cardFliterCollegeOption3 = data;
+            this.staticPcFormList[3]['filterRules']['collegeId'] = "";
+            this.staticPcFormList[3]['filterRules']['collegeId'] = this.setFliterOnlyOptionValue(type, this.staticPcFormList[3],data);
+          }else if (this.settingColValue == 4){
+            this.form.cardFliterCollegeOption4 = data;
+            this.staticPcFormList[4]['filterRules']['collegeId'] = "";
+            this.staticPcFormList[4]['filterRules']['collegeId'] = this.setFliterOnlyOptionValue(type, this.staticPcFormList[4],data);
+          }
+        }
+      },
+      handleSelectDept(data, type){
+        this.form.fliterDeptOption = data;
+        if (this.settingType == 'card'){
+          if (this.settingColValue == 1){
+            this.form.cardFliterDeptOption1 = data;
+            this.staticPcFormList[1]['filterRules']['deptId'] = "";
+            this.staticPcFormList[1]['filterRules']['deptId'] = this.setFliterOnlyOptionValue(type, this.staticPcFormList[1],data);
+          }else if (this.settingColValue == 2){
+            this.form.cardFliterDeptOption2 = data;
+            this.staticPcFormList[2]['filterRules']['deptId'] = "";
+            this.staticPcFormList[2]['filterRules']['deptId'] = this.setFliterOnlyOptionValue(type, this.staticPcFormList[2],data);
+          }else if (this.settingColValue == 3){
+            this.form.cardFliterDeptOption3 = data;
+            this.staticPcFormList[3]['filterRules']['deptId'] = "";
+            this.staticPcFormList[3]['filterRules']['deptId'] = this.setFliterOnlyOptionValue(type, this.staticPcFormList[3],data);
+          }else if (this.settingColValue == 4){
+            this.form.cardFliterDeptOption4 = data;
+            this.staticPcFormList[4]['filterRules']['deptId'] = "";
+            this.staticPcFormList[4]['filterRules']['deptId'] = this.setFliterOnlyOptionValue(type, this.staticPcFormList[4],data);
+          }
+        }
+      },
+      handleSelectStatus(data, type){
+        this.form.fliterStatusOption = data;
+        if (this.settingType == 'card'){
+          if (this.settingColValue == 1){
+            this.form.cardFliterStatusOption1 = data;
+            this.staticPcFormList[1]['filterRules']['applyStatus'] = "";
+            this.staticPcFormList[1]['filterRules']['applyStatus'] = this.setFliterOnlyOptionValue(type, this.staticPcFormList[1],data);
+          }else if (this.settingColValue == 2){
+            this.form.cardFliterStatusOption2 = data;
+            this.staticPcFormList[2]['filterRules']['applyStatus'] = "";
+            this.staticPcFormList[2]['filterRules']['applyStatus'] = this.setFliterOnlyOptionValue(type, this.staticPcFormList[2],data);
+          }else if (this.settingColValue == 3){
+            this.form.cardFliterStatusOption3 = data;
+            this.staticPcFormList[3]['filterRules']['applyStatus'] = "";
+            this.staticPcFormList[3]['filterRules']['applyStatus'] = this.setFliterOnlyOptionValue(type, this.staticPcFormList[3],data);
+          }else if (this.settingColValue == 4){
+            this.form.cardFliterStatusOption4 = data;
+            this.staticPcFormList[4]['filterRules']['applyStatus'] = "";
+            this.staticPcFormList[4]['filterRules']['applyStatus'] = this.setFliterOnlyOptionValue(type, this.staticPcFormList[4],data);
+          }
+        }
+      },
+      handleSelectFliter(data, type){
+        this.form.fliterTimeOption = data;
+        if (this.settingType == 'card'){
+          if (this.settingColValue == 1){
+            this.form.cardFliterTimeOption1 = data;
+            this.staticPcFormList[1]['filterRules']['data1'] = "";
+            this.staticPcFormList[1]['filterRules']['data2'] = "";
+            let date = this.setFliterOptionValue(type, this.staticPcFormList[1],data);
+            this.staticPcFormList[1]['filterRules']['data1'] = date['date1'];
+            this.staticPcFormList[1]['filterRules']['data2'] = date['date2'];
+          }else if (this.settingColValue == 2){
+            this.form.cardFliterTimeOption2 = data;
+            this.staticPcFormList[2]['filterRules']['data1'] = "";
+            this.staticPcFormList[2]['filterRules']['data2'] = "";
+            let date = this.setFliterOptionValue(type, this.staticPcFormList[1],data);
+            this.staticPcFormList[2]['filterRules']['data1'] = date['date1'];
+            this.staticPcFormList[2]['filterRules']['data2'] = date['date2'];
+          }else if (this.settingColValue == 3){
+            this.form.cardFliterTimeOption3 = data;
+            this.staticPcFormList[3]['filterRules']['data1'] = "";
+            this.staticPcFormList[3]['filterRules']['data2'] = "";
+            let date = this.setFliterOptionValue(type, this.staticPcFormList[1],data);
+            this.staticPcFormList[3]['filterRules']['data1'] = date['date1'];
+            this.staticPcFormList[3]['filterRules']['data2'] = date['date2'];
+          }else if (this.settingColValue == 4){
+            this.form.cardFliterTimeOption4 = data;
+            this.staticPcFormList[4]['filterRules']['data1'] = "";
+            this.staticPcFormList[4]['filterRules']['data2'] = "";
+            let date = this.setFliterOptionValue(type, this.staticPcFormList[1],data);
+            this.staticPcFormList[4]['filterRules']['data1'] = date['date1'];
+            this.staticPcFormList[4]['filterRules']['data2'] = date['date2'];
+          }
+        }
       },
       handleSelectTime(data){
         this.form.fliterOption = data;
