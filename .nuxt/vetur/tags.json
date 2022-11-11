@@ -143,18 +143,6 @@
   "LazyTableBarChart": {
     "description": "Auto imported from components/charts/TableBarChart.vue"
   },
-  "MyNewStudentFlow": {
-    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
-  },
-  "LazyMyNewStudentFlow": {
-    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
-  },
-  "MyNewStudentFlowType": {
-    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
-  },
-  "LazyMyNewStudentFlowType": {
-    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
-  },
   "MyFormAuditType": {
     "description": "Auto imported from components/form/MyFormAuditType.vue"
   },
@@ -329,6 +317,24 @@
   "LazyTerleaveDetail": {
     "description": "Auto imported from components/utils/auditDetail/TerleaveDetail.vue"
   },
+  "MyHeadImg": {
+    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
+  },
+  "LazyMyHeadImg": {
+    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
+  },
+  "MyHeadListImg": {
+    "description": "Auto imported from components/utils/common/MyHeadListImg.vue"
+  },
+  "LazyMyHeadListImg": {
+    "description": "Auto imported from components/utils/common/MyHeadListImg.vue"
+  },
+  "MyViewImg": {
+    "description": "Auto imported from components/utils/common/MyViewImg.vue"
+  },
+  "LazyMyViewImg": {
+    "description": "Auto imported from components/utils/common/MyViewImg.vue"
+  },
   "AuditStatusButton": {
     "description": "Auto imported from components/utils/button/AuditStatusButton.vue"
   },
@@ -352,24 +358,6 @@
   },
   "LazyTimeoutButton": {
     "description": "Auto imported from components/utils/button/TimeoutButton.vue"
-  },
-  "MyHeadImg": {
-    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
-  },
-  "LazyMyHeadImg": {
-    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
-  },
-  "MyHeadListImg": {
-    "description": "Auto imported from components/utils/common/MyHeadListImg.vue"
-  },
-  "LazyMyHeadListImg": {
-    "description": "Auto imported from components/utils/common/MyHeadListImg.vue"
-  },
-  "MyViewImg": {
-    "description": "Auto imported from components/utils/common/MyViewImg.vue"
-  },
-  "LazyMyViewImg": {
-    "description": "Auto imported from components/utils/common/MyViewImg.vue"
   },
   "DialogNormal": {
     "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
@@ -556,5 +544,17 @@
   },
   "LazyUploadSquare": {
     "description": "Auto imported from components/utils/upload/UploadSquare.vue"
+  },
+  "MyNewStudentFlow": {
+    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
+  },
+  "LazyMyNewStudentFlow": {
+    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
+  },
+  "MyNewStudentFlowType": {
+    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
+  },
+  "LazyMyNewStudentFlowType": {
+    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
   }
 }

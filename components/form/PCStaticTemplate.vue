@@ -77,7 +77,135 @@
               </el-select>
             </div>
           </div>
-          <template v-if="settingType != 'bar' && settingType != 'table' && settingType != 'search'">
+          <template v-if="settingType == 'circle' && settingType != 'search'">
+            <div class="color-sub-grand font-size-12 margin-top-10">
+              <div>
+                <span>{{$t("分子字段")}}</span>
+              </div>
+              <div class="margin-top-5">
+                <div>
+                  <el-row :gutter="8">
+                    <el-col :span="12">
+                      <el-select v-model="form.joinFormMoleculeParamsValue" size="small" placeholder="请选择字段">
+                        <el-option
+                          v-for="(item, index) in joinFormParamsOptions"
+                          :key="index"
+                          :label="item.label"
+                          :value="item.value"
+                          @click.native="handleJoinFormParamsChange(item, index, 'Molecule')">
+                        </el-option>
+                      </el-select>
+                    </el-col>
+                    <el-col :span="12">
+                      <el-select v-model="form.circleMoleculeJoinOption" @change="handleJoinFormChange($event, 'Molecule')" size="small" placeholder="聚合规则">
+                        <el-option
+                          v-for="item in joinFormJoinOptions"
+                          :key="item.value"
+                          v-if="item.value != -1"
+                          :label="item.label"
+                          :value="item.value">
+                        </el-option>
+                      </el-select>
+                    </el-col>
+                  </el-row>
+                </div>
+
+                <div class="margin-top-5">
+                  <el-input size="small" v-model="form.circleRealName" :placeholder="$t('请输入别名')" @input="handleCircleInput"></el-input>
+                </div>
+
+                <div>
+                  <my-cascader ref="SelectorCollege" :placeholder="$t('请选择院系')" class="margin-top-5" size="small" width-style="300" :props="{multiple: true}" :collapse-tags="true" :sel-value="form.fliterMoleculeCollegeOption" type="1" sub-type="4" @change="handleSelectCollege($event, 'college', 'Molecule')"></my-cascader>
+                  <my-cascader ref="SelectorDept" :placeholder="$t('请选择部门')" class="margin-top-5" size="small" width-style="300" :props="{multiple: true}" :collapse-tags="true" :sel-value="form.fliterMoleculeDeptOption" type="4" sub-type="" @change="handleSelectDept($event, 'dept', 'Molecule')"></my-cascader>
+
+                  <el-select v-model="form.fliterMoleculeStatusOption" multiple @change="handleSelectStatus($event, 'status', 'Molecule')" size="small" class="width-300 margin-top-5" filterable :placeholder="$t('请选择审批状态')">
+                    <el-option
+                      v-for="item in searchStatusFormOptions"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                    </el-option>
+                  </el-select>
+
+                  <el-date-picker
+                    class="margin-top-5"
+                    v-model="form.fliterMoleculeTimeOption"
+                    size="small"
+                    type="daterange"
+                    range-separator="至"
+                    start-placeholder="开始日期"
+                    end-placeholder="结束日期"
+                    style="width: 300px"
+                    format="yyyy-MM-dd"
+                    value-format="yyyy-MM-dd"
+                    @change="handleSelectFliter($event, 'time', 'Molecule')">
+                  </el-date-picker>
+                </div>
+              </div>
+            </div>
+            <div class="color-sub-grand font-size-12 margin-top-10">
+              <div>
+                <span>{{$t("分母字段")}}</span>
+              </div>
+              <div class="margin-top-5">
+                <div>
+                  <el-row :gutter="8">
+                    <el-col :span="12">
+                      <el-select v-model="form.joinFormDenominatorParamsValue" size="small" placeholder="请选择字段">
+                        <el-option
+                          v-for="(item, index) in joinFormParamsOptions"
+                          :key="index"
+                          :label="item.label"
+                          :value="item.value"
+                          @click.native="handleJoinFormParamsChange(item, index, 'Denominator')">
+                        </el-option>
+                      </el-select>
+                    </el-col>
+                    <el-col :span="12">
+                      <el-select v-model="form.circleDenominatorJoinOption" @change="handleJoinFormChange($event, 'Denominator')" size="small" placeholder="聚合规则">
+                        <el-option
+                          v-for="item in joinFormJoinOptions"
+                          :key="item.value"
+                          v-if="item.value != -1"
+                          :label="item.label"
+                          :value="item.value">
+                        </el-option>
+                      </el-select>
+                    </el-col>
+                  </el-row>
+                </div>
+
+                <div>
+                  <my-cascader ref="SelectorCollege" :placeholder="$t('请选择院系')" class="margin-top-5" size="small" width-style="300" :props="{multiple: true}" :collapse-tags="true" :sel-value="form.fliterDenominatorCollegeOption" type="1" sub-type="4" @change="handleSelectCollege($event, 'college', 'Denominator')"></my-cascader>
+                  <my-cascader ref="SelectorDept" :placeholder="$t('请选择部门')" class="margin-top-5" size="small" width-style="300" :props="{multiple: true}" :collapse-tags="true" :sel-value="form.fliterDenominatorDeptOption" type="4" sub-type="" @change="handleSelectDept($event, 'dept', 'Denominator')"></my-cascader>
+
+                  <el-select v-model="form.fliterDenominatorStatusOption" multiple @change="handleSelectStatus($event, 'status', 'Denominator')" size="small" class="width-300 margin-top-5" filterable :placeholder="$t('请选择审批状态')">
+                    <el-option
+                      v-for="item in searchStatusFormOptions"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                    </el-option>
+                  </el-select>
+
+                  <el-date-picker
+                    class="margin-top-5"
+                    v-model="form.fliterDenominatorTimeOption"
+                    size="small"
+                    type="daterange"
+                    range-separator="至"
+                    start-placeholder="开始日期"
+                    end-placeholder="结束日期"
+                    style="width: 300px"
+                    format="yyyy-MM-dd"
+                    value-format="yyyy-MM-dd"
+                    @change="handleSelectFliter($event, 'time', 'Denominator')">
+                  </el-date-picker>
+                </div>
+              </div>
+            </div>
+          </template>
+          <template v-if="settingType != 'bar' && settingType != 'table' && settingType != 'search' && settingType != 'circle'">
             <div class="color-sub-grand font-size-12 margin-top-10">
               <div>
                 <span>{{$t("选择该表单字段")}}</span>
@@ -210,7 +338,7 @@
               </div>
             </div>
           </template>
-          <div v-if="settingType != 'search' && settingType != 'table'" class="color-sub-grand font-size-12 margin-top-10">
+          <div v-if="settingType != 'search' && settingType != 'table' && settingType != 'circle'" class="color-sub-grand font-size-12 margin-top-10">
             <div>
               <span>{{$t("过滤条件")}}</span>
             </div>
@@ -886,12 +1014,33 @@
           circleParams: '字段名称',
           circleValue: 0,
           circleValueText: '',
+          circleMoleculeValue: '',
+          circleMoleculeValueText: '',
+          circleDenominatorValue: '',
+          circleDenominatorValueText: '',
           circleForm: '',
           circleFliter: '',
           circleFliterOption: '',
+          circleFliterMoleculeCollegeOption: [],
+          circleFliterMoleculeDeptOption: [],
+          circleFliterMoleculeStatusOption: [],
+          circleFliterMoleculeTimeOption: [],
+          circleFliterMoleculeStartTime: '',
+          circleFliterMoleculeEndTime: '',
+          circleFliterDenominatorCollegeOption: [],
+          circleFliterDenominatorDeptOption: [],
+          circleFliterDenominatorStatusOption: [],
+          circleFliterDenominatorTimeOption: [],
+          circleFliterDenominatorStartTime: '',
+          circleFliterDenominatorEndTime: '',
           circleFliterStartTime: '',
           circleFliterEndTime: '',
           circleJoin: '-1',
+          circleRealName: '',
+          circleMoleculeJoin: '0',
+          circleDenominatorJoin: '0',
+          circleDenominatorJoinOption: '',
+          circleMoleculeJoinOption: '',
           tableForm: '',
           tableValue: '',
           tableValueText: '',
@@ -917,7 +1066,19 @@
           fliterTimeOption: [],
           fliterOptionStartTime: '',
           fliterOptionEndTime: '',
-          joinTableJoinValue: []
+          joinTableJoinValue: [],
+          joinFormMoleculeParamsValue: '',
+          joinFormMoleculeParamsValueObj: {},
+          joinFormDenominatorParamsValue: '',
+          joinFormDenominatorParamsValueObj: {},
+          fliterMoleculeCollegeOption: [],
+          fliterMoleculeDeptOption: [],
+          fliterMoleculeStatusOption: [],
+          fliterMoleculeTimeOption: [],
+          fliterDenominatorCollegeOption: [],
+          fliterDenominatorDeptOption: [],
+          fliterDenominatorStatusOption: [],
+          fliterDenominatorTimeOption: [],
         },
         joinFormValueOptions: [],
         joinFormParamsOptions: [],
@@ -1393,11 +1554,29 @@
         this.form.joinFormValue = this.form.circleForm;
         this.form.joinFormJoinValue = this.form.circleJoin;
         this.form.joinFormFliterValue = this.form.circleFliter;
+
+        this.form.joinFormMoleculeParamsValue = this.form.circleMoleculeValueText;
+        this.circleRealName = this.circleRealName;
+        this.form.circleMoleculeJoinOption = this.form.circleMoleculeJoin;
+        this.form.fliterMoleculeCollegeOption = this.form.circleFliterMoleculeCollegeOption;
+        this.form.fliterMoleculeDeptOption = this.form.circleFliterMoleculeDeptOption;
+        this.form.fliterMoleculeStatusOption = this.form.circleFliterMoleculeStatusOption;
+        this.form.fliterMoleculeTimeOption = this.form.circleFliterMoleculeTimeOption;
+
+        this.form.joinFormDenominatorParamsValue = this.form.circleDenominatorValueText;
+        this.form.circleDenominatorJoinOption = this.form.circleDenominatorJoin;
+        this.form.fliterDenominatorCollegeOption = this.form.circleFliterDenominatorCollegeOption;
+        this.form.fliterDenominatorDeptOption = this.form.circleFliterDenominatorDeptOption;
+        this.form.fliterDenominatorStatusOption = this.form.circleFliterDenominatorStatusOption;
+        this.form.fliterDenominatorTimeOption = this.form.circleFliterDenominatorTimeOption;
+        console.log(this.form.circleFliterDenominatorDeptOption);
+        console.log(this.form.circleFliterDenominatorStatusOption);
+
         this.percentage = 0;
         this.percentageValue = this.percentageValue == '表单字段' ? '表单字段' : this.percentageValue;
-        this.form.fliterOption = this.form.circleFliterOption;
+        this.form.fliterMoleculeOption = this.form.circleFliterOption;
 
-        this.staticPcFormList[6] = this.setStatucFormListObj(this.form.circleFliter,this.form.circleParams,this.form.circleForm,this.form.circleValue,this.form.circleJoin,this.staticId,5);
+        this.staticPcFormList[6] = this.setStatucFormListObj3(this.form.circleParams,this.form.circleForm,this.form.circleMoleculeValue,this.form.circleDenominatorValue,this.staticId,5);
         this.staticPcFormList[6]['filterRules'] = this.setFliterOptionValue(this.form.circleFliter, this.staticPcFormList[6]['filterRules'], this.form.circleFliterOption);
       },
       async settingTableDataInfo(event){
@@ -1491,6 +1670,9 @@
           relaFromField1: [
             relaFromField
           ],
+          relaFromField2: [
+
+          ],
           groupRule: cardJoin,
           unitType: unitType,
           statId: staticId
@@ -1508,6 +1690,25 @@
           ],
           relaFromField2: relaFromField2,
           groupRule: cardJoin,
+          unitType: unitType,
+          statId: staticId
+        }
+        return obj;
+      },
+      setStatucFormListObj3(unitName,cardForm,relaFromField1,relaFromField2,staticId,unitType){
+        let obj = {
+          filterType: '',
+          unitName: unitName,
+          filterRules: {},
+          filterRules2: {},
+          relaFormId: cardForm,
+          relaFromField1: [
+            relaFromField1
+          ],
+          relaFromField2: [
+            relaFromField2
+          ],
+          groupRule: '',
           unitType: unitType,
           statId: staticId
         }
@@ -1618,7 +1819,7 @@
         }
         this.staticPcFormList[7]['relaFromField1'] = array;
       },
-      handleJoinFormParamsChange(item, data){
+      handleJoinFormParamsChange(item, data, type){
         let obj = {};
         obj['d'] = this.joinFormParamsOptionsArray[parseInt(data)]['d'];
         obj['f'] = this.joinFormParamsOptionsArray[parseInt(data)]['f'];
@@ -1644,11 +1845,21 @@
             this.staticPcFormList[4]['relaFromField1'] = [obj];
           }
         }else if (this.settingType == 'circle'){
-          this.form.circleValue = obj;
-          this.form.circleValueText = item.value;
+          if (type == 'Molecule'){
+            this.form.joinFormMoleculeParamsValue = item.value;
+            this.form.joinFormMoleculeParamsValueObj = obj;
+            this.form.circleMoleculeValue = obj;
+            this.form.circleMoleculeValueText = item.value;
+            this.staticPcFormList[6]['relaFromField1'] = [obj];
+            this.percentageValue = this.form.circleRealName != "" ? this.form.circleRealName : obj.n;
+          }else if (type == 'Denominator'){
+            this.form.joinFormDenominatorParamsValue = item.value;
+            this.form.joinFormDenominatorParamsValueObj = obj;
+            this.form.circleDenominatorValue = obj;
+            this.form.circleDenominatorValueText = item.value;
+            this.staticPcFormList[6]['relaFromField2'] = [obj];
+          }
           this.percentage = 0;
-          this.percentageValue = obj.n;
-          this.staticPcFormList[6]['relaFromField1'] = [obj];
         }
       },
       handleJoinFormValue(data){
@@ -1805,7 +2016,7 @@
           this.form.tableFliter = data;
         }
       },
-      handleJoinFormChange(data){
+      handleJoinFormChange(data, type){
         this.form.joinFormJoinValue = data;
         if (this.settingType == 'card'){
           if (this.settingColValue == 1){
@@ -1822,8 +2033,15 @@
             this.staticPcFormList[4]['relaFromField1'][0]['g'] = data;
           }
         }else if (this.settingType == 'circle'){
-          this.form.circleJoin = data;
-          this.staticPcFormList[6]['groupRule'] = data;
+          if (type == 'Molecule'){
+            this.form.circleMoleculeJoin = data;
+            this.form.circleMoleculeJoinOption = data;
+            this.staticPcFormList[6]['relaFromField1'][0]['g'] = data;
+          }else if (type == 'Denominator'){
+            this.form.circleDenominatorJoin = data;
+            this.form.circleDenominatorJoinOption = data;
+            this.staticPcFormList[6]['relaFromField2'][0]['g'] = data;
+          }
         }else if (this.settingType == 'table'){
           this.form.tableJoin = data;
           this.staticPcFormList[7]['groupRule'] = data;
@@ -1890,7 +2108,12 @@
         this.form.tableJoin = data;
         this.staticPcFormList[7]['groupType'] = data;
       },
-      handleSelectCollege(data, type){
+      handleCircleInput(data){
+        this.form.circleRealName = data;
+        this.percentageValue = data;
+        this.staticPcFormList[6]['relaFromField1'][0]['n'] = data;
+      },
+      handleSelectCollege(data, type, type2){
         this.form.fliterCollegeOption = data;
         if (this.settingType == 'card'){
           if (this.settingColValue == 1){
@@ -1910,9 +2133,21 @@
             this.staticPcFormList[4]['filterRules']['collegeId'] = "";
             this.staticPcFormList[4]['filterRules']['collegeId'] = this.setFliterOnlyOptionValue(type, this.staticPcFormList[4],data);
           }
+        }else if (this.settingType == 'circle'){
+          if (type2 == 'Molecule'){
+            this.form.circleFliterMoleculeCollegeOption = data;
+            this.form.fliterMoleculeCollegeOption = data;
+            this.staticPcFormList[6]['filterRules']['collegeId'] = "";
+            this.staticPcFormList[6]['filterRules']['collegeId'] = this.setFliterOnlyOptionValue(type, this.staticPcFormList[6],data);
+          }else if (type2 == 'Denominator'){
+            this.form.circleFliterDenominatorCollegeOption = data;
+            this.form.fliterDenominatorCollegeOption = data;
+            this.staticPcFormList[6]['filterRules2']['collegeId'] = "";
+            this.staticPcFormList[6]['filterRules2']['collegeId'] = this.setFliterOnlyOptionValue(type, this.staticPcFormList[6],data);
+          }
         }
       },
-      handleSelectDept(data, type){
+      handleSelectDept(data, type, type2){
         this.form.fliterDeptOption = data;
         if (this.settingType == 'card'){
           if (this.settingColValue == 1){
@@ -1932,9 +2167,21 @@
             this.staticPcFormList[4]['filterRules']['deptId'] = "";
             this.staticPcFormList[4]['filterRules']['deptId'] = this.setFliterOnlyOptionValue(type, this.staticPcFormList[4],data);
           }
+        }else if (this.settingType == 'circle'){
+          if (type2 == 'Molecule'){
+            this.form.circleFliterMoleculeDeptOption = data;
+            this.form.fliterMoleculeDeptOption = data;
+            this.staticPcFormList[6]['filterRules']['deptId'] = "";
+            this.staticPcFormList[6]['filterRules']['deptId'] = this.setFliterOnlyOptionValue(type, this.staticPcFormList[6],data);
+          }else if (type2 == 'Denominator'){
+            this.form.circleFliterDenominatorDeptOption = data;
+            this.form.fliterDenominatorDeptOption = data;
+            this.staticPcFormList[6]['filterRules2']['deptId'] = "";
+            this.staticPcFormList[6]['filterRules2']['deptId'] = this.setFliterOnlyOptionValue(type, this.staticPcFormList[6],data);
+          }
         }
       },
-      handleSelectStatus(data, type){
+      handleSelectStatus(data, type, type2){
         this.form.fliterStatusOption = data;
         if (this.settingType == 'card'){
           if (this.settingColValue == 1){
@@ -1954,9 +2201,21 @@
             this.staticPcFormList[4]['filterRules']['applyStatus'] = "";
             this.staticPcFormList[4]['filterRules']['applyStatus'] = this.setFliterOnlyOptionValue(type, this.staticPcFormList[4],data);
           }
+        }else if (this.settingType == 'circle'){
+          if (type2 == 'Molecule'){
+            this.form.circleFliterMoleculeStatusOption = data;
+            this.form.fliterMoleculeStatusOption = data;
+            this.staticPcFormList[6]['filterRules']['applyStatus'] = "";
+            this.staticPcFormList[6]['filterRules']['applyStatus'] = this.setFliterOnlyOptionValue(type, this.staticPcFormList[6],data);
+          }else if (type2 == 'Denominator'){
+            this.form.circleFliterDenominatorStatusOption = data;
+            this.form.fliterDenominatorStatusOption = data;
+            this.staticPcFormList[6]['filterRules2']['applyStatus'] = "";
+            this.staticPcFormList[6]['filterRules2']['applyStatus'] = this.setFliterOnlyOptionValue(type, this.staticPcFormList[6],data);
+          }
         }
       },
-      handleSelectFliter(data, type){
+      handleSelectFliter(data, type, type2){
         this.form.fliterTimeOption = data;
         if (this.settingType == 'card'){
           if (this.settingColValue == 1){
@@ -1987,6 +2246,20 @@
             let date = this.setFliterOptionValue(type, this.staticPcFormList[1],data);
             this.staticPcFormList[4]['filterRules']['date1'] = date['date1'];
             this.staticPcFormList[4]['filterRules']['date2'] = date['date2'];
+          }
+        }else if (this.settingType == 'circle'){
+          if (type2 == 'Molecule'){
+            this.form.circleFliterMoleculeTimeOption = data;
+            this.form.fliterMoleculeTimeOption = data;
+            let date = this.setFliterOptionValue(type, this.staticPcFormList[6],data);
+            this.staticPcFormList[6]['filterRules']['date1'] = date['date1'];
+            this.staticPcFormList[6]['filterRules']['date2'] = date['date2'];
+          }else if (type2 == 'Denominator'){
+            this.form.circleFliterDenominatorTimeOption = data;
+            this.form.fliterDenominatorTimeOption = data;
+            let date = this.setFliterOptionValue(type, this.staticPcFormList[6],data);
+            this.staticPcFormList[6]['filterRules2']['date1'] = date['date1'];
+            this.staticPcFormList[6]['filterRules2']['date2'] = date['date2'];
           }
         }
       },
