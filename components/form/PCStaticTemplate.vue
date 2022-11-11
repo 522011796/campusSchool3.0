@@ -694,7 +694,7 @@
             relaFromField1: {
               d: true,
               f: "",
-              g: 0,
+              g: 5,
               n: "",
               hz: "",
               jd: 0,
@@ -725,7 +725,7 @@
             relaFromField1: {
               d: true,
               f: "",
-              g: 0,
+              g: 5,
               n: "",
               hz: "",
               jd: 0,
@@ -756,7 +756,7 @@
             relaFromField1: {
               d: true,
               f: "",
-              g: 0,
+              g: 5,
               n: "",
               hz: "",
               jd: 0,
@@ -787,7 +787,7 @@
             relaFromField1: {
               d: true,
               f: "",
-              g: 0,
+              g: 5,
               n: "",
               hz: "",
               jd: 0,
@@ -818,7 +818,7 @@
             relaFromField1: {
               d: true,
               f: "",
-              g: 0,
+              g: 5,
               n: "",
               hz: "",
               jd: 0,
@@ -849,7 +849,7 @@
             relaFromField1: {
               d: true,
               f: "",
-              g: 0,
+              g: 5,
               n: "",
               hz: "",
               jd: 0,
@@ -880,7 +880,7 @@
             relaFromField1: {
               d: true,
               f: "",
-              g: 0,
+              g: 5,
               n: "",
               hz: "",
               jd: 0,
@@ -1037,10 +1037,10 @@
           circleFliterEndTime: '',
           circleJoin: '-1',
           circleRealName: '',
-          circleMoleculeJoin: '0',
-          circleDenominatorJoin: '0',
-          circleDenominatorJoinOption: '',
-          circleMoleculeJoinOption: '',
+          circleMoleculeJoin: '5',
+          circleDenominatorJoin: '5',
+          circleDenominatorJoinOption: '5',
+          circleMoleculeJoinOption: '5',
           tableForm: '',
           tableValue: '',
           tableValueText: '',
@@ -1434,7 +1434,7 @@
           this.form.cardTitle = this.form.cardParam1;
           this.form.joinFormParamsValue = this.form.cardValue1Text == '' ? '' : this.form.cardValue1Text;
           this.form.joinFormValue = this.form.cardForm1;
-          this.form.joinFormJoinValue = this.form.cardJoin1 != "undefined" && this.form.cardJoin1 != '' ? this.form.cardJoin1 : '0';
+          this.form.joinFormJoinValue = this.form.cardJoin1 != "undefined" && this.form.cardJoin1 != '' ? this.form.cardJoin1 : '5';
           this.form.joinFormJoinFixed = this.form.cardJoinFixed1;
           this.form.joinFormJoinPoint = this.form.cardJoinPoint1 != undefined && this.form.cardJoinPoint1 != '' ? this.form.cardJoinPoint1 : '0';
           this.form.joinFormJoinFormat = this.form.cardJoinFormat1;
@@ -1459,7 +1459,7 @@
           this.form.joinFormParamsValue = this.form.cardValue2Text == '' ? '' : this.form.cardValue2Text;
           this.form.joinFormValue = this.form.cardForm2;
 
-          this.form.joinFormJoinValue = this.form.cardJoin2 != "undefined" && this.form.cardJoin2 != '' ? this.form.cardJoin2 : '0';
+          this.form.joinFormJoinValue = this.form.cardJoin2 != "undefined" && this.form.cardJoin2 != '' ? this.form.cardJoin2 : '5';
           this.form.joinFormJoinFixed = this.form.cardJoinFixed2;
           this.form.joinFormJoinPoint = this.form.cardJoinPoint2 != undefined && this.form.cardJoinPoint2 != '' ?this.form.cardJoinPoint2 : '0';
           this.form.joinFormJoinFormat = this.form.cardJoinFormat2;
@@ -1483,7 +1483,7 @@
           this.form.cardTitle = this.form.cardParam3;
           this.form.joinFormParamsValue = this.form.cardValue3Text == '' ? '' : this.form.cardValue3Text;
           this.form.joinFormValue = this.form.cardForm3;
-          this.form.joinFormJoinValue = this.form.cardJoin3 != "undefined" && this.form.cardJoin3 != '' ? this.form.cardJoin3 : '0';
+          this.form.joinFormJoinValue = this.form.cardJoin3 != "undefined" && this.form.cardJoin3 != '' ? this.form.cardJoin3 : '5';
           this.form.joinFormJoinFixed = this.form.cardJoinFixed3;
           this.form.joinFormJoinPoint = this.form.cardJoinPoint3 != undefined && this.form.cardJoinPoint3 != '' ? this.form.cardJoinPoint3 : '0';
           this.form.joinFormJoinFormat = this.form.cardJoinFormat3;
@@ -1506,7 +1506,7 @@
           this.form.cardTitle = this.form.cardParam4;
           this.form.joinFormParamsValue = this.form.cardValue4Text == '' ? '' : this.form.cardValue4Text;
           this.form.joinFormValue = this.form.cardForm4;
-          this.form.joinFormJoinValue = this.form.cardJoin4 != "undefined" && this.form.cardJoin4 != '' ? this.form.cardJoin4 : '0';
+          this.form.joinFormJoinValue = this.form.cardJoin4 != "undefined" && this.form.cardJoin4 != '' ? this.form.cardJoin4 : '5';
           this.form.joinFormJoinFixed = this.form.cardJoinFixed4;
           this.form.joinFormJoinPoint = this.form.cardJoinPoint4 != undefined && this.form.cardJoinPoint4 != '' ? this.form.cardJoinPoint4 : '0';
           this.form.joinFormJoinFormat = this.form.cardJoinFormat4;
@@ -1557,20 +1557,18 @@
 
         this.form.joinFormMoleculeParamsValue = this.form.circleMoleculeValueText;
         this.circleRealName = this.circleRealName;
-        this.form.circleMoleculeJoinOption = this.form.circleMoleculeJoin;
+        this.form.circleMoleculeJoinOption = this.form.circleMoleculeJoin ? this.form.circleMoleculeJoin : '5';
         this.form.fliterMoleculeCollegeOption = this.form.circleFliterMoleculeCollegeOption;
         this.form.fliterMoleculeDeptOption = this.form.circleFliterMoleculeDeptOption;
         this.form.fliterMoleculeStatusOption = this.form.circleFliterMoleculeStatusOption;
         this.form.fliterMoleculeTimeOption = this.form.circleFliterMoleculeTimeOption;
 
         this.form.joinFormDenominatorParamsValue = this.form.circleDenominatorValueText;
-        this.form.circleDenominatorJoinOption = this.form.circleDenominatorJoin;
+        this.form.circleDenominatorJoinOption = this.form.circleDenominatorJoin ? this.form.circleDenominatorJoin : '5';
         this.form.fliterDenominatorCollegeOption = this.form.circleFliterDenominatorCollegeOption;
         this.form.fliterDenominatorDeptOption = this.form.circleFliterDenominatorDeptOption;
         this.form.fliterDenominatorStatusOption = this.form.circleFliterDenominatorStatusOption;
         this.form.fliterDenominatorTimeOption = this.form.circleFliterDenominatorTimeOption;
-        console.log(this.form.circleFliterDenominatorDeptOption);
-        console.log(this.form.circleFliterDenominatorStatusOption);
 
         this.percentage = 0;
         this.percentageValue = this.percentageValue == '表单字段' ? '表单字段' : this.percentageValue;
@@ -1686,7 +1684,15 @@
           filterRules: {},
           relaFormId: cardForm,
           relaFromField1: [
-            relaFromField1
+            relaFromField1 != '' ? relaFromField1 : {
+              d: true,
+              f: "",
+              g: 5,
+              n: "",
+              hz: "",
+              jd: 0,
+              zwf: false,
+            }
           ],
           relaFromField2: relaFromField2,
           groupRule: cardJoin,
@@ -1703,10 +1709,26 @@
           filterRules2: {},
           relaFormId: cardForm,
           relaFromField1: [
-            relaFromField1
+            relaFromField1 != '' ? relaFromField1 : {
+              d: true,
+              f: "",
+              g: 5,
+              n: "",
+              hz: "",
+              jd: 0,
+              zwf: false,
+            }
           ],
           relaFromField2: [
-            relaFromField2
+            relaFromField2 != '' ? relaFromField2 : {
+              d: true,
+              f: "",
+              g: 5,
+              n: "",
+              hz: "",
+              jd: 0,
+              zwf: false,
+            }
           ],
           groupRule: '',
           unitType: unitType,
@@ -1828,18 +1850,34 @@
         this.form.joinFormParamsValueObj = obj;
         if (this.settingType == 'card'){
           if (this.settingColValue == 1){
+            obj['g'] = parseInt(this.form.cardJoin1);
+            obj['zwf'] = this.form.cardJoinFormat1;
+            obj['jd'] = parseInt(this.form.cardJoinPoint1);
+            obj['hz'] = this.form.cardJoinFixed1;
             this.form.cardValue1 = obj;
             this.form.cardValue1Text = item.value;
             this.staticPcFormList[1]['relaFromField1'] = [obj];
           }else if (this.settingColValue == 2){
+            obj['g'] = parseInt(this.form.cardJoin2);
+            obj['zwf'] = this.form.cardJoinFormat2;
+            obj['jd'] = parseInt(this.form.cardJoinPoint2);
+            obj['hz'] = this.form.cardJoinFixed2;
             this.form.cardValue2 = obj;
             this.form.cardValue2Text = item.value;
             this.staticPcFormList[2]['relaFromField1'] = [obj];
           }else if (this.settingColValue == 3){
+            obj['g'] = parseInt(this.form.cardJoin3);
+            obj['zwf'] = this.form.cardJoinFormat3;
+            obj['jd'] = parseInt(this.form.cardJoinPoint3);
+            obj['hz'] = this.form.cardJoinFixed3;
             this.form.cardValue3 = obj;
             this.form.cardValue3Text = item.value;
             this.staticPcFormList[3]['relaFromField1'] = [obj];
           }else if (this.settingColValue == 4){
+            obj['g'] = parseInt(this.form.cardJoin4);
+            obj['zwf'] = this.form.cardJoinFormat4;
+            obj['jd'] = parseInt(this.form.cardJoinPoint4);
+            obj['hz'] = this.form.cardJoinFixed4;
             this.form.cardValue4 = obj;
             this.form.cardValue4Text = item.value;
             this.staticPcFormList[4]['relaFromField1'] = [obj];
@@ -1850,6 +1888,7 @@
             this.form.joinFormMoleculeParamsValueObj = obj;
             this.form.circleMoleculeValue = obj;
             this.form.circleMoleculeValueText = item.value;
+            obj['g'] = parseInt(this.form.circleMoleculeJoinOption);
             this.staticPcFormList[6]['relaFromField1'] = [obj];
             this.percentageValue = this.form.circleRealName != "" ? this.form.circleRealName : obj.n;
           }else if (type == 'Denominator'){
@@ -1857,6 +1896,7 @@
             this.form.joinFormDenominatorParamsValueObj = obj;
             this.form.circleDenominatorValue = obj;
             this.form.circleDenominatorValueText = item.value;
+            obj['g'] = parseInt(this.form.circleMoleculeJoinOption);
             this.staticPcFormList[6]['relaFromField2'] = [obj];
           }
           this.percentage = 0;
@@ -2021,26 +2061,26 @@
         if (this.settingType == 'card'){
           if (this.settingColValue == 1){
             this.form.cardJoin1 = data;
-            this.staticPcFormList[1]['relaFromField1'][0]['g'] = data;
+            this.staticPcFormList[1]['relaFromField1'][0]['g'] = parseInt(data);
           }else if (this.settingColValue == 2){
             this.form.cardJoin2 = data;
-            this.staticPcFormList[2]['relaFromField1'][0]['g'] = data;
+            this.staticPcFormList[2]['relaFromField1'][0]['g'] = parseInt(data);
           }else if (this.settingColValue == 3){
             this.form.cardJoin3 = data;
-            this.staticPcFormList[3]['relaFromField1'][0]['g'] = data;
+            this.staticPcFormList[3]['relaFromField1'][0]['g'] = parseInt(data);
           }else if (this.settingColValue == 4){
             this.form.cardJoin4 = data;
-            this.staticPcFormList[4]['relaFromField1'][0]['g'] = data;
+            this.staticPcFormList[4]['relaFromField1'][0]['g'] = parseInt(data);
           }
         }else if (this.settingType == 'circle'){
           if (type == 'Molecule'){
             this.form.circleMoleculeJoin = data;
             this.form.circleMoleculeJoinOption = data;
-            this.staticPcFormList[6]['relaFromField1'][0]['g'] = data;
+            this.staticPcFormList[6]['relaFromField1'][0]['g'] = parseInt(data);
           }else if (type == 'Denominator'){
             this.form.circleDenominatorJoin = data;
             this.form.circleDenominatorJoinOption = data;
-            this.staticPcFormList[6]['relaFromField2'][0]['g'] = data;
+            this.staticPcFormList[6]['relaFromField2'][0]['g'] = parseInt(data);
           }
         }else if (this.settingType == 'table'){
           this.form.tableJoin = data;
