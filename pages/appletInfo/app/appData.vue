@@ -26,15 +26,35 @@
         </div>
         <div class="layout-top-tab margin-top-5" v-else>
           <el-row>
-            <el-col :span="8">
-              <el-button size="small" type="text" @click="returnMain($event)">
-                <i class="fa fa-arrow-left"></i>
-                {{$t("返回")}}
-              </el-button>
-              <el-button size="small" type="warning"  icon="el-icon-download" @click="expandInfo($event)">{{$t("导出")}}</el-button>
+            <el-col :span="4">
+              <div class="layout-inline">
+                <el-button size="small" type="text" @click="returnMain($event)">
+                  <i class="fa fa-arrow-left"></i>
+                  {{$t("返回")}}
+                </el-button>
+                <el-button size="small" type="warning"  icon="el-icon-download" @click="expandInfo($event)">{{$t("导出")}}</el-button>
+              </div>
             </el-col>
-            <el-col :span="16" class="text-right">
-
+            <el-col :span="20" class="text-right">
+              <div class="layout-inline">
+                <my-cascader v-if="searchDetailType == 1" :props="{ checkStrictly: true }" class="layout-item" ref="SelectorDeptSearch" size="small" width-style="160" :clearable="true" :sel-value="searchDetailData" type="4" sub-type="" @change="handleCascaderChange($event, 1)"></my-cascader>
+                <my-cascader v-if="searchDetailType == 0" :props="{ checkStrictly: true }" class="layout-item" ref="SelectorDeptSearch" size="small" width-style="160" :clearable="true" :sel-value="searchDetailData" type="1" sub-type="4" @change="handleCascaderChange($event, 0)"></my-cascader>
+                <el-date-picker
+                  size="small"
+                  unlink-panels
+                  v-model="searchTimeData"
+                  type="daterange"
+                  range-separator="至"
+                  start-placeholder="开始日期"
+                  end-placeholder="结束日期"
+                  @change="handleChangeTime($event)"
+                  format="yyyy-MM-dd"
+                  value-format="yyyy-MM-dd"
+                  style="width: 220px">
+                </el-date-picker>
+                <my-select class="layout-item width-100" size="small" :placeholder="$t('状态')" :sel-value="searchStatus" :options="filterDetailStatus" :clearable="true" @change="handleTypeChange($event, 3)"></my-select>
+                <my-input-button ref="teacher width-150" size="small" plain width-class="width: 180px" type="success" :clearable="true" :placeholder="$t('编号/关键字')" class="layout-item" @click="searchDetail"></my-input-button>
+              </div>
             </el-col>
           </el-row>
         </div>
@@ -119,6 +139,18 @@
                   <div class="text-center">{{ $moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss") }}</div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                     {{ $moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss") }}
+                  </span>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('编号')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{ scope.row.formApplyNo ? scope.row.formApplyNo : '--' }}</div>
+                  <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{ scope.row.formApplyNo ? scope.row.formApplyNo : '--' }}
                   </span>
                 </el-popover>
               </template>
@@ -473,10 +505,19 @@
         subTitle: '',
         collegeData: '',
         searchKey: '',
+        searchDetailKey: '',
         searchType: '',
         searchStatus: '',
         searchAuditStatus: '',
+        beginTime: '',
+        endTime: '',
+        departmentPath: '',
+        college: '',
         queryApplyListType: 0,
+        searchDetailType: '',
+        searchDetailCollege: '',
+        searchDetailDept: '',
+        searchTimeData: [],
         formId: '',
         listId: '',
         appletId: '',
@@ -496,7 +537,8 @@
         dialogServerDetail: false,
         mainMenuType: 1,
         subMenuType: 4,
-        mainMenu: 1
+        mainMenu: 1,
+        searchDetailData: []
       }
     },
     created() {
@@ -510,8 +552,19 @@
           queryApplyListType: this.queryApplyListType,
           formId: this.formId,
           appletId: this.appletId,
-          status: this.searchAuditStatus
+          status: this.searchAuditStatus,
+          searchKey: this.searchDetailKey,
+          beginTime: this.beginTime,
+          endTime: this.endTime,
         };
+        if (this.searchDetailType == 1){
+          params['departmentPath'] = this.departmentPath;
+        }else if (this.searchDetailType == 0){
+          params['collegeId'] = this.collegeData[0];
+          params['majorId'] = this.collegeData[1];
+          //params['grade'] = this.collegeData[2];
+          params['classId'] = this.collegeData[3];
+        }
         let applyContentArr = [];
         let applyContent = [];
         this.$axios.get(common.server_form_template_form_apply_page, {params: params}).then(res => {
@@ -605,6 +658,14 @@
         this.searchStatus = "";
         this.page = 1;
         this.mainMenu = 1;
+        this.searchAuditStatus = '';
+        this.beginTime = '';
+        this.endTime = '';
+        this.searchTimeData = [];
+        this.searchDetailData = [];
+        this.college = '';
+        this.departmentPath = '';
+        this.collegeData = [];
         this.initApp();
       },
       expandInfo(){
@@ -625,7 +686,7 @@
         this.appName = ''+item.id;
         this.appletId = item.id;
         this.formId = '';
-
+        this.searchDetailType = item.applet_type;
         await this.getAppletServerInfo(this.appName);
         let data = this.dataAppletServer;
         if (data && data[0]['children']){
@@ -748,12 +809,34 @@
           this.searchType = event;
         }else if (type == 2){
           this.searchStatus = event;
+        }else if (type == 3){
+          this.searchAuditStatus = event;
         }
+      },
+      handleChangeTime(event){
+        this.searchTimeData = event ? event : [];
+        this.beginTime = event ? event[0] : '';
+        this.endTime = event ? event[1] : '';
+      },
+      handleCascaderChange(data, type){
+        if (type == 1){
+          this.departmentPath = data[data.length-1];
+        }else if (type == 0){
+          this.collegeData = data;
+        }
+        this.searchDetailData = data;
+        this.pageDetail = 1;
+        this.init();
       },
       search(data){
         this.searchKey = data.input;
         this.page = 1;
         this.initApp(data);
+      },
+      searchDetail(data){
+        this.searchDetailKey = data.input;
+        this.pageDetail = 1;
+        this.init();
       },
       setRuleChild(rule, ruleList){
         let obj = {};

@@ -122,6 +122,7 @@
                 style="width: 300px"
                 format="yyyy-MM-dd"
                 value-format="yyyy-MM-dd"
+                :clearable="true"
                 @change="handleSelectFliter($event, 'time')">
               </el-date-picker>
             </div>
@@ -187,6 +188,7 @@
                     style="width: 300px"
                     format="yyyy-MM-dd"
                     value-format="yyyy-MM-dd"
+                    :clearable="true"
                     @change="handleSelectFliter($event, 'time', 'Molecule')">
                   </el-date-picker>
                 </div>
@@ -248,6 +250,7 @@
                     style="width: 300px"
                     format="yyyy-MM-dd"
                     value-format="yyyy-MM-dd"
+                    :clearable="true"
                     @change="handleSelectFliter($event, 'time', 'Denominator')">
                   </el-date-picker>
                 </div>
@@ -362,6 +365,7 @@
                     style="width: 300px"
                     format="yyyy-MM-dd"
                     value-format="yyyy-MM-dd"
+                    :clearable="true"
                     @change="handleSelectFliter($event, 'time')">
                   </el-date-picker>
                 </div>
@@ -541,6 +545,7 @@
                 style="width: 300px"
                 format="yyyy-MM-dd"
                 value-format="yyyy-MM-dd"
+                :clearable="true"
                 @change="handleSelectFliter($event, 'time')">
               </el-date-picker>
             </div>
@@ -1373,7 +1378,6 @@
       },
       initData(){
         if (this.staticPcFormData.length > 0){
-          console.log(this.staticPcFormData);
           this.staticPcFormList = this.staticPcFormData;
           this.searchStaticTitle = this.staticPcFormData[0].unitName;
           this.searchSetStaticForm = this.getTitleFliterText(this.staticPcFormData[0].filterType);
@@ -1840,8 +1844,8 @@
       setFliterOptionValue(type,staticPcForm1,data){
         let staticPcForm = {};
         if (type == 'time'){
-          staticPcForm['date1'] = data.length > 0 ? data[0] : '';
-          staticPcForm['date2'] = data.length > 0 ? data[1] : '';
+          staticPcForm['date1'] = data && data.length > 0 ? data[0] : '';
+          staticPcForm['date2'] = data && data.length > 0 ? data[1] : '';
         }else if (type == 'dept'){
           staticPcForm['deptId'] = JSON.stringify(data);
         }else if (type == 'college'){
@@ -2590,31 +2594,31 @@
         }
       },
       handleSelectFliter(data, type, type2){
-        this.form.fliterTimeOption = data;
+        this.form.fliterTimeOption = data ? data : [];
         if (this.settingType == 'card'){
           if (this.settingColValue == 1){
-            this.form.cardFliterTimeOption1 = data;
+            this.form.cardFliterTimeOption1 = data ? data : [];
             this.staticPcFormList[1]['filterRules']['date1'] = "";
             this.staticPcFormList[1]['filterRules']['date2'] = "";
             let date = this.setFliterOptionValue(type, this.staticPcFormList[1],data);
             this.staticPcFormList[1]['filterRules']['date1'] = date['date1'];
             this.staticPcFormList[1]['filterRules']['date2'] = date['date2'];
           }else if (this.settingColValue == 2){
-            this.form.cardFliterTimeOption2 = data;
+            this.form.cardFliterTimeOption2 = data ? data : [];
             this.staticPcFormList[2]['filterRules']['date1'] = "";
             this.staticPcFormList[2]['filterRules']['date2'] = "";
             let date = this.setFliterOptionValue(type, this.staticPcFormList[1],data);
             this.staticPcFormList[2]['filterRules']['date1'] = date['date1'];
             this.staticPcFormList[2]['filterRules']['date2'] = date['date2'];
           }else if (this.settingColValue == 3){
-            this.form.cardFliterTimeOption3 = data;
+            this.form.cardFliterTimeOption3 = data ? data : [];
             this.staticPcFormList[3]['filterRules']['date1'] = "";
             this.staticPcFormList[3]['filterRules']['date2'] = "";
             let date = this.setFliterOptionValue(type, this.staticPcFormList[1],data);
             this.staticPcFormList[3]['filterRules']['date1'] = date['date1'];
             this.staticPcFormList[3]['filterRules']['date2'] = date['date2'];
           }else if (this.settingColValue == 4){
-            this.form.cardFliterTimeOption4 = data;
+            this.form.cardFliterTimeOption4 = data ? data : [];
             this.staticPcFormList[4]['filterRules']['date1'] = "";
             this.staticPcFormList[4]['filterRules']['date2'] = "";
             let date = this.setFliterOptionValue(type, this.staticPcFormList[1],data);
@@ -2623,27 +2627,27 @@
           }
         }else if (this.settingType == 'circle'){
           if (type2 == 'Molecule'){
-            this.form.circleFliterMoleculeTimeOption = data;
-            this.form.fliterMoleculeTimeOption = data;
+            this.form.circleFliterMoleculeTimeOption = data ? data : [];
+            this.form.fliterMoleculeTimeOption = data ? data : [];
             let date = this.setFliterOptionValue(type, this.staticPcFormList[6],data);
             this.staticPcFormList[6]['filterRules']['date1'] = date['date1'];
             this.staticPcFormList[6]['filterRules']['date2'] = date['date2'];
           }else if (type2 == 'Denominator'){
-            this.form.circleFliterDenominatorTimeOption = data;
-            this.form.fliterDenominatorTimeOption = data;
+            this.form.circleFliterDenominatorTimeOption = data ? data : [];
+            this.form.fliterDenominatorTimeOption = data ? data : [];
             let date = this.setFliterOptionValue(type, this.staticPcFormList[6],data);
             this.staticPcFormList[6]['filterRules2']['date1'] = date['date1'];
             this.staticPcFormList[6]['filterRules2']['date2'] = date['date2'];
           }
         }else if (this.settingType == 'bar'){
-          this.form.fliterChartTimeOption = data;
-          this.form.chartXFliterTime = data;
+          this.form.fliterChartTimeOption = data ? data : [];
+          this.form.chartXFliterTime = data ? data : [];
           let date = this.setFliterOptionValue(type, this.staticPcFormList[5],data);
           this.staticPcFormList[5]['filterRules']['date1'] = date['date1'];
           this.staticPcFormList[5]['filterRules']['date2'] = date['date2'];
         }else if (this.settingType == 'table'){
-          this.form.fliterTableTimeOption = data;
-          this.form.joinTableTime = data;
+          this.form.fliterTableTimeOption = data ? data : [];
+          this.form.joinTableTime = data ? data : [];
           let date = this.setFliterOptionValue(type, this.staticPcFormList[7],data);
           this.staticPcFormList[7]['filterRules']['date1'] = date['date1'];
           this.staticPcFormList[7]['filterRules']['date2'] = date['date2'];

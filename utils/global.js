@@ -157,6 +157,12 @@ const filterStatus = [
   { text: '已驳回', value: '4' ,label: '已驳回'}
 ];
 
+const filterDetailStatus = [
+  { text: "已撤回", value: '-1' ,label: '已撤回'},
+  { text: '已通过', value: '3' ,label: '已通过'},
+  { text: '已驳回', value: '4' ,label: '已驳回'}
+];
+
 const filterScoreTypes = [
   { text: "加分", value: 'true' ,label: '加分'},
   { text: '减分', value: 'false' ,label: '减分'}
@@ -560,6 +566,7 @@ export default {
   g_sex,
   searchStudentType,
   filterStatus,
+  filterDetailStatus,
   filterTypes,
   filterScoreTypes,
   filterScoreLevels,

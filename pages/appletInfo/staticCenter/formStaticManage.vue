@@ -741,9 +741,6 @@ export default {
         return;
       }
 
-      console.log(pcRef.staticPcFormList);
-      //return;
-
       let params = {
         list: pcRef.staticPcFormList
       };
