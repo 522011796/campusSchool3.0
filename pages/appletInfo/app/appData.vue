@@ -412,9 +412,29 @@
                         <span class="margin-left-10">
                           <label v-if="itemUser.status === -1" class="color-warning">{{$t("撤销")}}</label>
                           <label v-if="itemUser.status === 0" class="color-warning">{{$t("待审核")}}</label>
-                          <label v-if="itemUser.status === 3" class="color-success">{{$t("通过")}}</label>
+                          <label v-if="itemUser.status === 3" class="color-success">
+                            {{$t("已通过")}}
+                            <el-tooltip v-if="itemUser.des" class="item" effect="dark" :content="itemUser.des" placement="top">
+                              <i class="fa fa-warning color-warning"></i>
+                            </el-tooltip>
+                            <span v-if="itemUser.url && itemUser.url.length > 0">
+                              <el-image v-for="(itemImg, indexImg) in itemUser.url" :key="indexImg" :src="itemImg" style="width: 20px; height: 20px;position: relative; top: 5px;margin-left: 5px"
+                                        :preview-src-list="[itemImg]">
+                              </el-image>
+                            </span>
+                          </label>
                           <label v-if="itemUser.status === 4" class="color-danger">{{$t("未通过")}}</label>
-                          <label v-if="itemUser.status === 1" class="color-warning">{{$t("已通过")}}</label>
+                          <label v-if="itemUser.status === 1" class="color-success">
+                            {{$t("已通过")}}
+                            <el-tooltip v-if="itemUser.des" class="item" effect="dark" :content="itemUser.des" placement="top">
+                              <i class="fa fa-warning color-warning"></i>
+                            </el-tooltip>
+                            <span v-if="itemUser.url && itemUser.url.length > 0">
+                              <el-image v-for="(itemImg, indexImg) in itemUser.url" :key="indexImg" :src="itemImg" style="width: 20px; height: 20px;position: relative; top: 5px;margin-left: 5px"
+                                        :preview-src-list="[itemImg]">
+                              </el-image>
+                            </span>
+                          </label>
                           <label v-if="itemUser.status === 2" class="color-warning">
                             {{$t("已驳回")}}
                             <el-tooltip v-if="itemUser.des" class="item" effect="dark" :content="itemUser.des" placement="top">
