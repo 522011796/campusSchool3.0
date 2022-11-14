@@ -420,6 +420,11 @@
                             <el-tooltip v-if="itemUser.des" class="item" effect="dark" :content="itemUser.des" placement="top">
                               <i class="fa fa-warning color-warning"></i>
                             </el-tooltip>
+                            <span v-if="itemUser.url && itemUser.url.length > 0">
+                              <el-image v-for="(itemImg, indexImg) in itemUser.url" :key="indexImg" :src="itemImg" style="width: 20px; height: 20px;position: relative; top: 5px"
+                                        :preview-src-list="[itemImg]">
+                              </el-image>
+                            </span>
                           </label>
                           <label v-if="itemUser.status === 5" class="color-warning">{{$t("无需审批")}}</label>
                           <label v-if="itemUser.status === 8" class="color-warning">{{$t("审批中")}}</label>
