@@ -405,7 +405,7 @@ export default {
               delete res.data.data.unitList[i]['relaFormId'];
               delete res.data.data.unitList[i]['relaFromField1'];
               delete res.data.data.unitList[i]['relaFromField2'];
-            }else if(i == 1 || i == 2 || i == 3 || i == 4 || i == 6){
+            }else if(i == 1 || i == 2 || i == 3 || i == 4){
               delete res.data.data.unitList[i]['campusId'];
               delete res.data.data.unitList[i]['relaFromField2'];
               res.data.data.unitList[i]['relaFromField1'] = (res.data.data.unitList[i]['relaFromField1'] != undefined && res.data.data.unitList[i]['relaFromField1'] != "") ? JSON.parse(res.data.data.unitList[i]['relaFromField1']) : [];
@@ -418,9 +418,15 @@ export default {
             }else if(i == 7){
               delete res.data.data.unitList[i]['campusId'];
               delete res.data.data.unitList[i]['relaFromField2'];
-              delete res.data.data.unitList[i]['filterRules'];
+              //delete res.data.data.unitList[i]['filterRules'];
 
               res.data.data.unitList[i]['relaFromField1'] = (res.data.data.unitList[i]['relaFromField1'] != undefined && res.data.data.unitList[i]['relaFromField1'] != "") ? JSON.parse(res.data.data.unitList[i]['relaFromField1']) : [];
+              if (res.data.data.unitList[i]['filterRules'] == "" || res.data.data.unitList[i]['filterRules'] == null){
+
+                delete res.data.data.unitList[i]['filterRules'];
+              }else {
+                res.data.data.unitList[i]['filterRules'] = (res.data.data.unitList[i]['filterRules'] != undefined && res.data.data.unitList[i]['filterRules'] != "") ? JSON.parse(res.data.data.unitList[i]['filterRules']) : "";
+              }
             }else if(i == 5){
               delete res.data.data.unitList[i]['campusId'];
 
@@ -431,6 +437,24 @@ export default {
                 delete res.data.data.unitList[i]['filterRules'];
               }else {
                 res.data.data.unitList[i]['filterRules'] = (res.data.data.unitList[i]['filterRules'] != undefined && res.data.data.unitList[i]['filterRules'] != "") ? JSON.parse(res.data.data.unitList[i]['filterRules']) : "";
+              }
+            }else if(i == 6){
+              delete res.data.data.unitList[i]['campusId'];
+
+              res.data.data.unitList[i]['relaFromField1'] = (res.data.data.unitList[i]['relaFromField1'] != undefined && res.data.data.unitList[i]['relaFromField1'] != "") ? JSON.parse(res.data.data.unitList[i]['relaFromField1']) : [];
+              res.data.data.unitList[i]['relaFromField2'] = (res.data.data.unitList[i]['relaFromField2'] != undefined && res.data.data.unitList[i]['relaFromField2'] != "") ? JSON.parse(res.data.data.unitList[i]['relaFromField2']) : [];
+              if (res.data.data.unitList[i]['filterRules'] == "" || res.data.data.unitList[i]['filterRules'] == null){
+
+                delete res.data.data.unitList[i]['filterRules'];
+              }else {
+                res.data.data.unitList[i]['filterRules'] = (res.data.data.unitList[i]['filterRules'] != undefined && res.data.data.unitList[i]['filterRules'] != "") ? JSON.parse(res.data.data.unitList[i]['filterRules']) : "";
+              }
+
+              if (res.data.data.unitList[i]['filterRules2'] == "" || res.data.data.unitList[i]['filterRules2'] == null){
+
+                delete res.data.data.unitList[i]['filterRules2'];
+              }else {
+                res.data.data.unitList[i]['filterRules2'] = (res.data.data.unitList[i]['filterRules2'] != undefined && res.data.data.unitList[i]['filterRules2'] != "") ? JSON.parse(res.data.data.unitList[i]['filterRules2']) : "";
               }
             }else {
               delete res.data.data.unitList[i]['campusId'];
@@ -601,7 +625,7 @@ export default {
       }
       url = common.static_appinfo_form_del;
       params = this.$qs.stringify(params);
-      this.$axios.post(url, params).then(res => {
+      this.$axios.post(url, params, {loading: false}).then(res => {
         if (res.data.code == 200){
           this.init();
           MessageSuccess(res.data.desc);
@@ -686,10 +710,6 @@ export default {
       this.staticPcFormList = [];
       let pcRef = this.$refs.pcRef;
 
-
-      console.log(pcRef.staticPcFormList);
-      return;
-
       if (pcRef.staticPcFormList.length == 0){
         MessageWarning(this.$t("检测到统计表单信息未设置完全，请设置"));
         return;
@@ -720,6 +740,9 @@ export default {
         MessageWarning(this.$t("请设置表格信息"));
         return;
       }
+
+      console.log(pcRef.staticPcFormList);
+      //return;
 
       let params = {
         list: pcRef.staticPcFormList

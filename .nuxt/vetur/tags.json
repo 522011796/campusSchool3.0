@@ -71,6 +71,54 @@
   "LazyLayoutTb": {
     "description": "Auto imported from components/Layout/LayoutTb.vue"
   },
+  "MyFormAuditType": {
+    "description": "Auto imported from components/form/MyFormAuditType.vue"
+  },
+  "LazyMyFormAuditType": {
+    "description": "Auto imported from components/form/MyFormAuditType.vue"
+  },
+  "MyFormFlow": {
+    "description": "Auto imported from components/form/MyFormFlow.vue"
+  },
+  "LazyMyFormFlow": {
+    "description": "Auto imported from components/form/MyFormFlow.vue"
+  },
+  "MyFormSet": {
+    "description": "Auto imported from components/form/MyFormSet.vue"
+  },
+  "LazyMyFormSet": {
+    "description": "Auto imported from components/form/MyFormSet.vue"
+  },
+  "MyFormSetNotice": {
+    "description": "Auto imported from components/form/MyFormSetNotice.vue"
+  },
+  "LazyMyFormSetNotice": {
+    "description": "Auto imported from components/form/MyFormSetNotice.vue"
+  },
+  "MyFormSetRole": {
+    "description": "Auto imported from components/form/MyFormSetRole.vue"
+  },
+  "LazyMyFormSetRole": {
+    "description": "Auto imported from components/form/MyFormSetRole.vue"
+  },
+  "MyProcessFlow": {
+    "description": "Auto imported from components/form/MyProcessFlow.vue"
+  },
+  "LazyMyProcessFlow": {
+    "description": "Auto imported from components/form/MyProcessFlow.vue"
+  },
+  "PcStaticTemplate": {
+    "description": "Auto imported from components/form/PCStaticTemplate.vue"
+  },
+  "LazyPcStaticTemplate": {
+    "description": "Auto imported from components/form/PCStaticTemplate.vue"
+  },
+  "PcStaticTemplateShow": {
+    "description": "Auto imported from components/form/PCStaticTemplateShow.vue"
+  },
+  "LazyPcStaticTemplateShow": {
+    "description": "Auto imported from components/form/PCStaticTemplateShow.vue"
+  },
   "BarChart": {
     "description": "Auto imported from components/charts/BarChart.vue"
   },
@@ -143,53 +191,17 @@
   "LazyTableBarChart": {
     "description": "Auto imported from components/charts/TableBarChart.vue"
   },
-  "MyFormAuditType": {
-    "description": "Auto imported from components/form/MyFormAuditType.vue"
+  "MyNewStudentFlow": {
+    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
   },
-  "LazyMyFormAuditType": {
-    "description": "Auto imported from components/form/MyFormAuditType.vue"
+  "LazyMyNewStudentFlow": {
+    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
   },
-  "MyFormFlow": {
-    "description": "Auto imported from components/form/MyFormFlow.vue"
+  "MyNewStudentFlowType": {
+    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
   },
-  "LazyMyFormFlow": {
-    "description": "Auto imported from components/form/MyFormFlow.vue"
-  },
-  "MyFormSet": {
-    "description": "Auto imported from components/form/MyFormSet.vue"
-  },
-  "LazyMyFormSet": {
-    "description": "Auto imported from components/form/MyFormSet.vue"
-  },
-  "MyFormSetNotice": {
-    "description": "Auto imported from components/form/MyFormSetNotice.vue"
-  },
-  "LazyMyFormSetNotice": {
-    "description": "Auto imported from components/form/MyFormSetNotice.vue"
-  },
-  "MyFormSetRole": {
-    "description": "Auto imported from components/form/MyFormSetRole.vue"
-  },
-  "LazyMyFormSetRole": {
-    "description": "Auto imported from components/form/MyFormSetRole.vue"
-  },
-  "MyProcessFlow": {
-    "description": "Auto imported from components/form/MyProcessFlow.vue"
-  },
-  "LazyMyProcessFlow": {
-    "description": "Auto imported from components/form/MyProcessFlow.vue"
-  },
-  "PcStaticTemplate": {
-    "description": "Auto imported from components/form/PCStaticTemplate.vue"
-  },
-  "LazyPcStaticTemplate": {
-    "description": "Auto imported from components/form/PCStaticTemplate.vue"
-  },
-  "PcStaticTemplateShow": {
-    "description": "Auto imported from components/form/PCStaticTemplateShow.vue"
-  },
-  "LazyPcStaticTemplateShow": {
-    "description": "Auto imported from components/form/PCStaticTemplateShow.vue"
+  "LazyMyNewStudentFlowType": {
+    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
   },
   "MyInputButton": {
     "description": "Auto imported from components/search/MyInputButton.vue"
@@ -317,6 +329,30 @@
   "LazyTerleaveDetail": {
     "description": "Auto imported from components/utils/auditDetail/TerleaveDetail.vue"
   },
+  "DialogNormal": {
+    "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
+  },
+  "LazyDialogNormal": {
+    "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
+  },
+  "DrawerLayoutRight": {
+    "description": "Auto imported from components/utils/dialog/DrawerLayoutRight.vue"
+  },
+  "LazyDrawerLayoutRight": {
+    "description": "Auto imported from components/utils/dialog/DrawerLayoutRight.vue"
+  },
+  "DrawerRight": {
+    "description": "Auto imported from components/utils/dialog/DrawerRight.vue"
+  },
+  "LazyDrawerRight": {
+    "description": "Auto imported from components/utils/dialog/DrawerRight.vue"
+  },
+  "MyNormalDialog": {
+    "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
+  },
+  "LazyMyNormalDialog": {
+    "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
+  },
   "MyHeadImg": {
     "description": "Auto imported from components/utils/common/MyHeadImg.vue"
   },
@@ -358,30 +394,6 @@
   },
   "LazyTimeoutButton": {
     "description": "Auto imported from components/utils/button/TimeoutButton.vue"
-  },
-  "DialogNormal": {
-    "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
-  },
-  "LazyDialogNormal": {
-    "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
-  },
-  "DrawerLayoutRight": {
-    "description": "Auto imported from components/utils/dialog/DrawerLayoutRight.vue"
-  },
-  "LazyDrawerLayoutRight": {
-    "description": "Auto imported from components/utils/dialog/DrawerLayoutRight.vue"
-  },
-  "DrawerRight": {
-    "description": "Auto imported from components/utils/dialog/DrawerRight.vue"
-  },
-  "LazyDrawerRight": {
-    "description": "Auto imported from components/utils/dialog/DrawerRight.vue"
-  },
-  "MyNormalDialog": {
-    "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
-  },
-  "LazyMyNormalDialog": {
-    "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
   },
   "MyCascader": {
     "description": "Auto imported from components/utils/select/MyCascader.vue"
@@ -544,17 +556,5 @@
   },
   "LazyUploadSquare": {
     "description": "Auto imported from components/utils/upload/UploadSquare.vue"
-  },
-  "MyNewStudentFlow": {
-    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
-  },
-  "LazyMyNewStudentFlow": {
-    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
-  },
-  "MyNewStudentFlowType": {
-    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
-  },
-  "LazyMyNewStudentFlowType": {
-    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
   }
 }
