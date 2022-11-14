@@ -421,7 +421,7 @@
                               <i class="fa fa-warning color-warning"></i>
                             </el-tooltip>
                             <span v-if="itemUser.url && itemUser.url.length > 0">
-                              <el-image v-for="(itemImg, indexImg) in itemUser.url" :key="indexImg" :src="itemImg" style="width: 20px; height: 20px;position: relative; top: 5px"
+                              <el-image v-for="(itemImg, indexImg) in itemUser.url" :key="indexImg" :src="itemImg" style="width: 20px; height: 20px;position: relative; top: 5px;margin-left: 5px"
                                         :preview-src-list="[itemImg]">
                               </el-image>
                             </span>
