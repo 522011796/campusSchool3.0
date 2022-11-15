@@ -340,11 +340,14 @@
                     </span>
                   </td>
                   <td style="text-align: left;padding-left: 15px">
-                    <el-tooltip class="item" effect="dark" :content="item.value" placement="top">
+<!--                    <el-tooltip class="item" effect="dark" :content="item.value" placement="top">-->
+<!--                    <span class="moon-content-text-ellipsis-class">-->
+<!--                      <label class="font-size-12">{{ item.value }}</label>-->
+<!--                    </span>-->
+<!--                    </el-tooltip>-->
                     <span class="moon-content-text-ellipsis-class">
                       <label class="font-size-12">{{ item.value }}</label>
                     </span>
-                    </el-tooltip>
                   </td>
                 </template>
 
