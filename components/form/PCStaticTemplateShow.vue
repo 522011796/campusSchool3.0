@@ -537,8 +537,8 @@
 }
 .form-card-content {
   position:relative;
-  margin-top: 12%;
-  font-size: 14px;
+  margin-top: 8%;
+  font-size: 17px;
   font-weight: bold;
 }
 .sel-card-active{
