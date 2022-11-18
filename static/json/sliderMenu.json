@@ -227,6 +227,13 @@
             "path": "/basicInfo/stuRepu"
           },
           {
+            "name": "解除奖惩申请",
+            "key": "stuRelieveRepu",
+            "id": 16250,
+            "top": "basicInfo",
+            "path": "/basicInfo/stuRelieveRepu"
+          },
+          {
             "name": "学生素质学分申请",
             "key": "stuCredit",
             "id": 16300,
@@ -833,6 +840,13 @@
             "id": 50300,
             "top": "auditInfo",
             "path": "/auditInfo/stuApply/repuApply"
+          },
+          {
+            "name": "解除奖惩审批",
+            "key": "relieveRepuApply",
+            "id": 50350,
+            "top": "auditInfo",
+            "path": "/auditInfo/stuApply/relieveRepuApply"
           },
           {
             "name": "门禁审批",

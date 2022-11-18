@@ -2,11 +2,21 @@
   <div>
     <el-card :body-style="{'padding': '10px'}" :selectModel="selectModel">
       <div slot="header" style="padding: 5px !important;">
-        <div class="color-success">
-          <span>{{$t("申请老师")}}:</span>
-          <span>{{value.apply_user_name}}</span>
-          <span class="font-size-12 color-muted">({{$moment(value.apply_time).format("YYYY-MM-DD HH:mm:ss")}})</span>
-        </div>
+        <el-row>
+          <el-col :span="12">
+            <div class="color-success">
+              <span>{{$t("申请老师")}}:</span>
+              <span>{{value.apply_user_name}}</span>
+              <span class="font-size-12 color-muted">({{$moment(value.apply_time).format("YYYY-MM-DD HH:mm:ss")}})</span>
+            </div>
+          </el-col>
+          <el-col :span="12" class="text-right">
+            <div class="color-warning">
+              <span>{{$t("编号")}}:</span>
+              <span>{{value.id}}</span>
+            </div>
+          </el-col>
+        </el-row>
       </div>
       <div class="color-muted">
         <el-row>

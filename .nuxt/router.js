@@ -35,6 +35,7 @@ const _8fce3652 = () => interopDefault(import('../pages/basicInfo/student.vue' /
 const _50b98622 = () => interopDefault(import('../pages/basicInfo/stuDoorAccess.vue' /* webpackChunkName: "pages/basicInfo/stuDoorAccess" */))
 const _b6f7f366 = () => interopDefault(import('../pages/basicInfo/stuFace.vue' /* webpackChunkName: "pages/basicInfo/stuFace" */))
 const _898f5612 = () => interopDefault(import('../pages/basicInfo/stuLeave.vue' /* webpackChunkName: "pages/basicInfo/stuLeave" */))
+const _6b86643c = () => interopDefault(import('../pages/basicInfo/stuRelieveRepu.vue' /* webpackChunkName: "pages/basicInfo/stuRelieveRepu" */))
 const _6dbb85e8 = () => interopDefault(import('../pages/basicInfo/stuRepu.vue' /* webpackChunkName: "pages/basicInfo/stuRepu" */))
 const _e29dfa04 = () => interopDefault(import('../pages/basicInfo/teacher.vue' /* webpackChunkName: "pages/basicInfo/teacher" */))
 const _208cb2f8 = () => interopDefault(import('../pages/basicInfo/terAddCard.vue' /* webpackChunkName: "pages/basicInfo/terAddCard" */))
@@ -92,6 +93,7 @@ const _0c1b5a4c = () => interopDefault(import('../pages/attendanceInfo/meetAtten
 const _3526f11c = () => interopDefault(import('../pages/auditInfo/stuApply/doorApply.vue' /* webpackChunkName: "pages/auditInfo/stuApply/doorApply" */))
 const _176f2cba = () => interopDefault(import('../pages/auditInfo/stuApply/faceApply.vue' /* webpackChunkName: "pages/auditInfo/stuApply/faceApply" */))
 const _50fdd4d5 = () => interopDefault(import('../pages/auditInfo/stuApply/leaveApply.vue' /* webpackChunkName: "pages/auditInfo/stuApply/leaveApply" */))
+const _40a0c3a0 = () => interopDefault(import('../pages/auditInfo/stuApply/relieveRepuApply.vue' /* webpackChunkName: "pages/auditInfo/stuApply/relieveRepuApply" */))
 const _156772e8 = () => interopDefault(import('../pages/auditInfo/stuApply/repuApply.vue' /* webpackChunkName: "pages/auditInfo/stuApply/repuApply" */))
 const _25bb8d3a = () => interopDefault(import('../pages/auditInfo/stuApply/resultApply.vue' /* webpackChunkName: "pages/auditInfo/stuApply/resultApply" */))
 const _8da6e94c = () => interopDefault(import('../pages/auditInfo/stuApply/scoreApply.vue' /* webpackChunkName: "pages/auditInfo/stuApply/scoreApply" */))
@@ -329,6 +331,10 @@ export const routerOptions = {
     component: _898f5612,
     name: "basicInfo-stuLeave"
   }, {
+    path: "/basicInfo/stuRelieveRepu",
+    component: _6b86643c,
+    name: "basicInfo-stuRelieveRepu"
+  }, {
     path: "/basicInfo/stuRepu",
     component: _6dbb85e8,
     name: "basicInfo-stuRepu"
@@ -556,6 +562,10 @@ export const routerOptions = {
     path: "/auditInfo/stuApply/leaveApply",
     component: _50fdd4d5,
     name: "auditInfo-stuApply-leaveApply"
+  }, {
+    path: "/auditInfo/stuApply/relieveRepuApply",
+    component: _40a0c3a0,
+    name: "auditInfo-stuApply-relieveRepuApply"
   }, {
     path: "/auditInfo/stuApply/repuApply",
     component: _156772e8,

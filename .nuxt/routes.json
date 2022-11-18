@@ -192,6 +192,12 @@
     "chunkName": "pages/basicInfo/stuLeave"
   },
   {
+    "name": "basicInfo-stuRelieveRepu",
+    "path": "/basicInfo/stuRelieveRepu",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/basicInfo/stuRelieveRepu.vue",
+    "chunkName": "pages/basicInfo/stuRelieveRepu"
+  },
+  {
     "name": "basicInfo-stuRepu",
     "path": "/basicInfo/stuRepu",
     "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/basicInfo/stuRepu.vue",
@@ -532,6 +538,12 @@
     "path": "/auditInfo/stuApply/leaveApply",
     "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/auditInfo/stuApply/leaveApply.vue",
     "chunkName": "pages/auditInfo/stuApply/leaveApply"
+  },
+  {
+    "name": "auditInfo-stuApply-relieveRepuApply",
+    "path": "/auditInfo/stuApply/relieveRepuApply",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/auditInfo/stuApply/relieveRepuApply.vue",
+    "chunkName": "pages/auditInfo/stuApply/relieveRepuApply"
   },
   {
     "name": "auditInfo-stuApply-repuApply",
