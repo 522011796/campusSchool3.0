@@ -63,6 +63,7 @@ export default {
       g_sex: global.g_sex,
       filterStatus: global.filterStatus,
       filterRpStatus: global.filterRpStatus,
+      filterJCRpStatus: global.filterJCRpStatus,
       filterDetailStatus: global.filterDetailStatus,
       filterTypes: global.filterTypes,
       filterScoreTypes: global.filterScoreTypes,

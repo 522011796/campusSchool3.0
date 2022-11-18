@@ -162,6 +162,15 @@ const filterRpStatus = [
   { text: '奖励中', value: '1' ,label: '奖励中'}
 ];
 
+const filterJCRpStatus = [
+  { text: "待审批", value: '0' ,label: '待审批'},
+  { text: '已通过', value: '3' ,label: '已通过'},
+  { text: '已驳回', value: '4' ,label: '已驳回'},
+  { text: '处分中', value: '1' ,label: '处分中'},
+  { text: '已解除', value: '2' ,label: '已解除'},
+  { text: '逾期', value: '-1' ,label: '逾期'}
+];
+
 const filterDetailStatus = [
   { text: "已撤回", value: '-1' ,label: '已撤回'},
   { text: '已通过', value: '3' ,label: '已通过'},
@@ -623,5 +632,6 @@ export default {
   filterPoliticsType,
   filterRetireType,
   filterHardType,
-  filterRpStatus
+  filterRpStatus,
+  filterJCRpStatus
 }

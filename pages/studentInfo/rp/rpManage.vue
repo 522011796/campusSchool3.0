@@ -119,7 +119,7 @@
       </layout-lr>
     </div>
 
-    <drawer-layout-right @changeDrawer="closeDrawerDetailDialog" :hide-footer="false" :visible="drawerDetailVisible" size="900px" :title="$t('学生信息')" @right-close="cancelDrawDetailDialog">
+    <drawer-layout-right @changeDrawer="closeDrawerDetailDialog" :hide-footer="false" :visible="drawerDetailVisible" size="800px" :title="$t('学生信息')" @right-close="cancelDrawDetailDialog">
       <div slot="content">
         <div>
           <el-row>
@@ -141,6 +141,7 @@
         <div class="margin-top-20">
           <el-table
             :data="tableDetailData"
+            :loading="tableDetailLoading"
             header-cell-class-name="custom-table-cell-bg"
             size="medium"
             :max-height="drawHeight5.height"
@@ -200,12 +201,7 @@
             </el-table-column>
             <el-table-column
               align="center"
-              :filter-multiple="false"
-              column-key="type">
-              <template slot="header">
-                <span>{{$t('类型')}}</span>
-<!--                <span v-if="filterTypesText != ''" class="font-size-12 color-disabeld">{{filterTypesText}}</span>-->
-              </template>
+              :label="$t('类型')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                   <div class="text-center">{{scope.row.str1}}</div>
@@ -217,12 +213,19 @@
             </el-table-column>
             <el-table-column
               align="center"
-              :filter-multiple="false"
-              column-key="type">
-              <template slot="header">
-                <span>{{$t('状态')}}</span>
-<!--                <span v-if="filterTypesText != ''" class="font-size-12 color-disabeld">{{filterTypesText}}</span>-->
+              :label="$t('状态')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.str1}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.str1}}
+                  </div>
+                </el-popover>
               </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('解除申请')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                   <div class="text-center">{{scope.row.str1}}</div>
@@ -296,6 +299,7 @@
         dialogLoading: false,
         visibleConfim: false,
         studentLoading: false,
+        tableDetailLoading: false,
         detailStatusInfo: '',
         pageDetail: 1,
         numDetail: 20,
@@ -472,6 +476,7 @@
           applyTimeEnd: this.searchDate ? this.searchDate[1] : '',
           //searchKey: this.searchDetailKey
         };
+        this.tableDetailLoading = true;
         this.$axios.get(common.audit_page, {params: params}).then(res => {
           if (res.data.data){
             this.tableDetailData = res.data.data.list;
@@ -479,6 +484,7 @@
             this.numDetail = res.data.data.num;
             this.pageDetail = res.data.data.currentPage;
           }
+          this.tableDetailLoading = false;
         });
       },
       nodeClick(data){

@@ -234,17 +234,35 @@
               </el-table-column>
               <el-table-column
                 align="center"
-                :label="$t('说明')">
-
+                :filter-multiple="false"
+                column-key="rpStatus"
+                :filters="filterJCRpStatus">
+                <template slot="header">
+                  <span>{{$t('处分状态')}}</span>
+                  <span v-if="filterRpStatusText != ''" class="font-size-12 color-disabeld moon-content-text-ellipsis-class">{{filterRpStatusText}}</span>
+                </template>
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.des}}</div>
+                    <div class="text-center">{{scope.row.str2}}</div>
                     <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      {{scope.row.des}}
+                      {{scope.row.str2}}
                     </div>
                   </el-popover>
                 </template>
               </el-table-column>
+<!--              <el-table-column-->
+<!--                align="center"-->
+<!--                :label="$t('说明')">-->
+
+<!--                <template slot-scope="scope">-->
+<!--                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">-->
+<!--                    <div class="text-center">{{scope.row.des}}</div>-->
+<!--                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">-->
+<!--                      {{scope.row.des}}-->
+<!--                    </div>-->
+<!--                  </el-popover>-->
+<!--                </template>-->
+<!--              </el-table-column>-->
               <el-table-column
                 align="center"
                 :filter-multiple="false"
@@ -424,6 +442,7 @@
         type: '',
         level: '',
         status: '',
+        rpStatus: '',
         searchKey: '',
         searchDate: [],
         //filterTypes: [{ text: this.$t("处分"), value: '处分' }, { text: '奖励', value: '奖励' }],
@@ -444,6 +463,7 @@
         filterLevelsText: '',
         filterTypesText: '',
         filterStatusText: '',
+        filterRpStatusText: '',
         form: {
           id: '',
           type: '',
@@ -475,7 +495,8 @@
           str1: this.type,
           str2: this.level,
           status: this.status,
-          searchKey: this.searchKey
+          searchKey: this.searchKey,
+          rpStatus: this.rpStatus,
         };
         this.$axios.get(common.audit_page, {params: params}).then(res => {
           if (res.data.data){
@@ -689,6 +710,14 @@
             for (let i = 0; i < this.filterStatus.length; i++){
               if (this.status == this.filterStatus[i].value){
                 this.filterStatusText = this.filterStatus[i].text;
+              }
+            }
+          }else if (item == 'rpStatus'){
+            this.filterRpStatusText = "";
+            this.rpStatus = value[item][0];
+            for (let i = 0; i < this.filterJCRpStatus.length; i++){
+              if (this.rpStatus == this.filterJCRpStatus[i].value){
+                this.filterRpStatusText = this.filterJCRpStatus[i].text;
               }
             }
           }
