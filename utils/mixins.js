@@ -62,6 +62,7 @@ export default {
       searchStudentType2: global.searchStudentType2,
       g_sex: global.g_sex,
       filterStatus: global.filterStatus,
+      filterRpStatus: global.filterRpStatus,
       filterDetailStatus: global.filterDetailStatus,
       filterTypes: global.filterTypes,
       filterScoreTypes: global.filterScoreTypes,

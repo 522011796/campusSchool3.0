@@ -155,6 +155,7 @@ const _e5fc0ab8 = () => interopDefault(import('../pages/studentInfo/leave/manage
 const _0d3ad8a1 = () => interopDefault(import('../pages/studentInfo/leave/setting.vue' /* webpackChunkName: "pages/studentInfo/leave/setting" */))
 const _223433da = () => interopDefault(import('../pages/studentInfo/rp/level.vue' /* webpackChunkName: "pages/studentInfo/rp/level" */))
 const _646c56a6 = () => interopDefault(import('../pages/studentInfo/rp/rpApply.vue' /* webpackChunkName: "pages/studentInfo/rp/rpApply" */))
+const _89d4fc46 = () => interopDefault(import('../pages/studentInfo/rp/rpManage.vue' /* webpackChunkName: "pages/studentInfo/rp/rpManage" */))
 const _1fd70666 = () => interopDefault(import('../pages/studentInfo/rp/rpStatic.vue' /* webpackChunkName: "pages/studentInfo/rp/rpStatic" */))
 const _1dbcab42 = () => interopDefault(import('../pages/studentInfo/student/account.vue' /* webpackChunkName: "pages/studentInfo/student/account" */))
 const _4cfd6f66 = () => interopDefault(import('../pages/studentInfo/student/class.vue' /* webpackChunkName: "pages/studentInfo/student/class" */))
@@ -807,6 +808,10 @@ export const routerOptions = {
     path: "/studentInfo/rp/rpApply",
     component: _646c56a6,
     name: "studentInfo-rp-rpApply"
+  }, {
+    path: "/studentInfo/rp/rpManage",
+    component: _89d4fc46,
+    name: "studentInfo-rp-rpManage"
   }, {
     path: "/studentInfo/rp/rpStatic",
     component: _1fd70666,

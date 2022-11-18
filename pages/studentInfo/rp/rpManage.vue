@@ -5,143 +5,29 @@
         <div slot="left">
           <div class="color-muted font-size-12 padding-tb-5 margin-top-10">
             <!--<span class="layout-left-menu-tag"></span>-->
-            <span class="layout-left-menu-title">奖惩申请</span>
+            <span class="layout-left-menu-title">奖惩管理</span>
           </div>
           <my-el-tree type="1" sub-type="4" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
         </div>
 
         <div slot="right">
-          <div>
-            <div v-if="toggleTopShow == false" style="position: relative;">
-              <el-card shadow="never" :body-style="{padding: '5px 10px',height: '60px'}">
-                <div>
-                  <el-row>
-                    <el-col :span="8">
-                      <div class="rpStatic-top-item-mini color-muted">
-                        <i class="fa fa-user"></i>
-                        {{$t("学生人数")}}:
-                        <el-tooltip class="item" effect="dark" :content="$t('同一人奖励多次算一次，处罚多次算1次，既有奖励和处罚，分别各算一次')" placement="top-start">
-                          <i class="fa fa-info-circle"></i>
-                        </el-tooltip>
-                      </div>
-                      <div class="color-grand margin-top-5 font-size-12 margin-left-15" style="font-weight: bold">
-                        <span class="person-item text-right">{{$t("总人数")}}</span>
-                        <span>{{personTotal}}</span>
-                      </div>
-                    </el-col>
-                    <el-col :span="8">
-                      <div class="rpStatic-top-item-mini color-muted">
-                        <i class="fa fa-cubes"></i>
-                        <label>{{$t("类型占比率")}}:</label>
-                      </div>
-                      <div v-if="typeData.length <= 0" class="font-size-12 color-disabeld margin-left-20" style="position: relative; top: 20%;">{{$t("暂无数据")}}</div>
-                      <div v-else class="font-size-12 color-muted margin-left-20" v-for="(item, index) in typeData" :key="index">
-                        <label>{{item.name}}:</label>
-                        <label>{{item.rate}}%</label>
-                      </div>
-                    </el-col>
-                    <el-col :span="8">
-                      <div class="rpStatic-top-item-mini color-muted">
-                        <i class="fa fa-cube"></i>
-                        <label>{{$t("类型人数")}}:</label>
-                      </div>
-                      <div class="font-size-12 color-muted margin-left-18">
-                        <div>
-                          <span class="person-item">{{$t("奖励")}}</span>
-                          <span>{{reTotal}}</span>
-                        </div>
-                        <div>
-                          <span class="person-item">{{$t("处分")}}</span>
-                          <span>{{puTotal}}</span>
-                        </div>
-                      </div>
-                    </el-col>
-                  </el-row>
-                </div>
-              </el-card>
-              <div class="text-center toggle-show-icon" @click="toggleTopShow = !toggleTopShow">
-                <div class="font-size-12 toggle-show-icon-block">
-                  <i class="fa fa-angle-double-down"></i>
-                  <label>{{$t("展开")}}</label>
-                </div>
-              </div>
-            </div>
-            <div v-if="toggleTopShow == true" style="position: relative;">
-              <el-card shadow="never" :body-style="{padding: '5px 10px',height: '120px'}">
-                <el-row :gutter="8">
-                  <el-col :span="8">
-                    <div class="rpStatic-top-item color-muted">
-                      <div class="title">
-                        {{$t("学生人数")}}:
-                        <el-tooltip class="item" effect="dark" :content="$t('同一人奖励多次算一次，处罚多次算1次，既有奖励和处罚，分别各算一次')" placement="top-start">
-                          <i class="fa fa-info-circle"></i>
-                        </el-tooltip>
-                      </div>
-                      <div>
-                        <div class="margin-top-5 color-grand">
-                          <span class="person-item text-right">{{$t("总人数")}}</span>
-                          <span>{{personTotal}}</span>
-                        </div>
-                        <div class="margin-top-5 color-success">
-                          <span class="person-item text-right">{{$t("奖励")}}</span>
-                          <span>{{reTotal}}</span>
-                        </div>
-                        <div class="margin-top-5 color-warning">
-                          <span class="person-item text-right">{{$t("处分")}}</span>
-                          <span>{{puTotal}}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </el-col>
-                  <el-col :span="8">
-                    <div class="rpStatic-top-item color-muted">
-                      <div class="title">{{$t("类型占比")}}: </div>
-                      <div style="height: 100px">
-                        <div v-if="typeData.length <= 0" class="color-disabeld text-center" style="position: relative; top: 20%;">{{$t("暂无数据")}}</div>
-                        <circle-chart v-else chart-id="typeId" :chart-title='$t("类型占比")' :data-key="typeDataKey" :data="typeData"></circle-chart>
-                      </div>
-                    </div>
-                  </el-col>
-                  <el-col :span="8">
-                    <div class="rpStatic-top-item color-muted">
-                      <div class="title">{{$t("级别占比")}}: </div>
-                      <div>
-                        <div style="height: 100px">
-                          <div v-if="levelData.length <= 0" class="color-disabeld text-center" style="position: relative; top: 20%;">{{$t("暂无数据")}}</div>
-                          <circle-chart v-else chart-id="levelId" :chart-title='$t("级别占比")' :data-key="levelDataKey" :data="levelData"></circle-chart>
-                        </div>
-                      </div>
-                    </div>
-                  </el-col>
-                </el-row>
-              </el-card>
-              <div class="text-center toggle-show-icon" @click="toggleTopShow = !toggleTopShow">
-                <div class="font-size-12 toggle-show-icon-block">
-                  <i class="fa fa-angle-double-up"></i>
-                  <label>{{$t("收起")}}</label>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="layout-right-tab margin-top-10">
+          <div class="layout-top-tab margin-top-5">
             <el-row class="layout-inline">
               <el-col :span="8">
-                <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo()">{{$t("奖惩申请")}}</el-button>
-                <el-button size="small" type="warning"  icon="el-icon-download" @click="expandInfo()">{{$t("导出")}}</el-button>
+                <el-button size="small" type="primary" icon="el-icon-download" @click="exportInfo($event)">{{$t("导出")}}</el-button>
               </el-col>
               <el-col :span="16" class="text-right">
-                <my-date-picker :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChange" style="position: relative; top: 1px;"></my-date-picker>
+<!--                <my-date-picker :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChange" style="position: relative; top: 1px;"></my-date-picker>-->
                 <my-input-button size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('姓名/学号')" @click="search"></my-input-button>
               </el-col>
             </el-row>
           </div>
-          <div>
+          <div class="margin-top-10">
             <el-table
               :data="tableData"
               header-cell-class-name="custom-table-cell-bg"
               size="medium"
-              :max-height="toggleTopShow == false ? tableHeight9.height : tableMiddleHeight.height"
+              :max-height="tableHeight2.height"
               style="width: 100%"
               @filter-change="fliterTable">
               <el-table-column
@@ -216,57 +102,6 @@
               </el-table-column>
               <el-table-column
                 align="center"
-                :filter-multiple="false"
-                column-key="level"
-                :filters="filterLevels">
-                <template slot="header">
-                  <span>{{$t('级别')}}</span>
-                  <span v-if="filterLevelsText != ''" class="font-size-12 color-disabeld">{{filterLevelsText}}</span>
-                </template>
-                <template slot-scope="scope">
-                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.str2}}</div>
-                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      {{scope.row.str2}}
-                    </div>
-                  </el-popover>
-                </template>
-              </el-table-column>
-              <el-table-column
-                align="center"
-                :label="$t('说明')">
-
-                <template slot-scope="scope">
-                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.des}}</div>
-                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      {{scope.row.des}}
-                    </div>
-                  </el-popover>
-                </template>
-              </el-table-column>
-              <el-table-column
-                align="center"
-                :filter-multiple="false"
-                column-key="status"
-                :filters="filterStatus">
-                <template slot="header">
-                  <span>{{$t('状态/审核人')}}</span>
-                  <span v-if="filterStatusText != ''" class="font-size-12 color-disabeld moon-content-text-ellipsis-class">{{filterStatusText}}</span>
-                </template>
-                <template slot-scope="scope">
-                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">
-                      <my-audit-status :status="scope.row.status" :handler="scope.row.handler_name"></my-audit-status>
-                    </div>
-                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      <my-audit-status :status="scope.row.status" :handler="scope.row.handler_name"></my-audit-status>
-                    </div>
-                  </el-popover>
-                </template>
-              </el-table-column>
-              <el-table-column
-                align="center"
                 fixed="right"
                 :label="$t('操作')"
                 width="60">
@@ -284,87 +119,135 @@
       </layout-lr>
     </div>
 
-    <dialog-normal width-style="600px" top="10vh" :visible="modalVisible" :title="$t('奖惩申请')" @close="closeDialog" @right-close="cancelDialog">
-      <div class="margin-top-10">
-        <el-form :model="form" :rules="rules" ref="form" label-width="140px">
-          <el-form-item :label="$t('类型')" prop="type">
-            <my-select :sel-value="form.type" :options="filterTypes" width-style="350" @change="handleSelect($event, 1)"></my-select>
-          </el-form-item>
-          <el-form-item :label="$t('级别')" prop="level">
-            <my-select :sel-value="form.level" :options="filterAddLevels" width-style="350" @change="handleSelect($event, 2)"></my-select>
-          </el-form-item>
-          <el-form-item :label="$t('学生')">
-            <!--<div class="margin-bottom-10">
-              <my-input-button ref="studentRef" size="small" type="success" :clearable="true" :placeholder="$t('学生名称')" @click="searchStudent"></my-input-button>
-            </div>
-            <el-table v-loading="studentLoading" height="200" :header-cell-style="{'line-height': '20px'}" size="mini" :data="studentData" border style="width: 350px">
-              <el-table-column align="center" :show-overflow-tooltip="true">
-                <template slot-scope="scope">
-                  <my-radio :sel-value="form.userId" :label="scope.row.user_id" @change="handleRadioChange"><span></span></my-radio>
-                </template>
-              </el-table-column>
-              <el-table-column property="real_name" align="center" label="姓名" :show-overflow-tooltip="true">
+    <drawer-layout-right @changeDrawer="closeDrawerDetailDialog" :hide-footer="false" :visible="drawerDetailVisible" size="900px" :title="$t('学生信息')" @right-close="cancelDrawDetailDialog">
+      <div slot="content">
+        <div>
+          <el-row>
+            <el-col :span="12">
+              <div style="position: relative;top:5px;">
+                <span class="font-bold">{{$t("当前状态")}}</span>
+                :
+                <span class="font-bold">{{ detailStatusInfo }}</span>
+              </div>
+            </el-col>
+            <el-col :span="12" class="text-right">
+              <my-date-picker :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChange" style="position: relative; top: 1px;"></my-date-picker>
+              <el-button type="success" size="small" @click="searchDetail">{{$t("搜索")}}</el-button>
+<!--              <my-input-button size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('姓名/学号')" @click="searchDetail"></my-input-button>-->
+            </el-col>
+          </el-row>
+        </div>
 
-              </el-table-column>
-              <el-table-column property="class_name" align="center" label="班级" :show-overflow-tooltip="true">
+        <div class="margin-top-20">
+          <el-table
+            :data="tableDetailData"
+            header-cell-class-name="custom-table-cell-bg"
+            size="medium"
+            :max-height="drawHeight5.height"
+            style="width: 100%"
+            @filter-change="fliterTable">
+            <el-table-column
+              align="center"
+              :label="$t('日期')">
 
-              </el-table-column>
-            </el-table>
-            <div class="rp-fotter-page text-right">
-              <el-pagination style="padding: 5px 0px;" small layout="prev, pager, next" :total="totalStudent" :page-size="numStudent" @current-change="currentStudentPage" @size-change="sizeStudentChange"></el-pagination>
-            </div>-->
-            <div>
-              <el-popover
-                popper-class="custom-popper-class-form"
-                placement="right"
-                width="700"
-                trigger="click"
-                @show="handleShowTeacher(3)"
-                @hide="handleHideeacher">
-                <div>
-                  <student-tree-and-list ref="popverPartRef" :sel-arr="form.userId" set-type="check" @select="handleSelUser"></student-tree-and-list>
-                </div>
-                <el-button slot="reference" type="success" plain size="small">{{$t("添加")}}</el-button>
-              </el-popover>
-              <span class="color-warning margin-left-10">
-                <i class="fa fa-user"></i>
-                {{$t("已选择")}}{{form.userId.length}}{{$t("个学生")}}
-              </span>
-            </div>
-            <div><span class="color-danger font-size-12">{{errorStudent}}</span></div>
-          </el-form-item>
-          <el-form-item :label="$t('附件')">
-            <div v-if="form.files.length > 0" v-for="(item, index) in form.files" :key="index" class="pull-left" style="position: relative;margin-right:10px;top: 10px">
-              <i class="fa fa-close" style="position: absolute; right: -5px; top: -5px;font-size: 12px" @click="deleteImg($event, index)"></i>
-              <i v-if="item.indexOf('.pdf') > -1" class="fa fa-file-pdf-o" style="height: 25px;width: 25px;font-size: 25px;position: relative;top: -2px;"></i>
-              <i v-else-if="item.indexOf('.doc') > -1 || item.indexOf('.docx') > -1" class="fa fa-wordpress" style="height: 25px;width: 25px;font-size: 25px;position: relative;top: -2px;"></i>
-              <img v-else :src="item" class="rp-img"/>
-            </div>
-            <upload-square class="pull-left margin-left-10 margin-top-5" :multiple="true" :limit="9999" :action="uploadFileAction" max-size="20" :data="{path: 'reFile'}" accept=".png,.jpg,.jpeg,.pdf,.doc,.docx" @success="uploadSuccess">
-              <el-button size="small" type="primary">{{$t("点击上传")}}</el-button>
-            </upload-square>
-            <span class="pull-left color-danger font-size-12 margin-left-10 margin-top-5">{{$t("文件不超过20M")}}</span>
-            <div class="moon-clearfix"></div>
-          </el-form-item>
-          <el-form-item :label="$t('解除时限')" prop="time">
-            <el-input v-model="form.time" class="width-350">
-              <template slot="append"><label>{{$t("天")}}</label></template>
-            </el-input>
-          </el-form-item>
-          <el-form-item :label="$t('说明')">
-            <el-input type="textarea" :rows="2" v-model="form.des" class="width-350"></el-input>
-          </el-form-item>
-        </el-form>
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{$moment(scope.row.apply_time).format("YYYY-MM-DD")}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{$moment(scope.row.apply_time).format("YYYY-MM-DD")}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('编号')">
+
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.real_name}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.real_name}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('姓名')">
+
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.real_name}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.real_name}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('学号')">
+
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.student_id}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.student_id}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :filter-multiple="false"
+              column-key="type">
+              <template slot="header">
+                <span>{{$t('类型')}}</span>
+<!--                <span v-if="filterTypesText != ''" class="font-size-12 color-disabeld">{{filterTypesText}}</span>-->
+              </template>
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.str1}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.str1}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :filter-multiple="false"
+              column-key="type">
+              <template slot="header">
+                <span>{{$t('状态')}}</span>
+<!--                <span v-if="filterTypesText != ''" class="font-size-12 color-disabeld">{{filterTypesText}}</span>-->
+              </template>
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.str1}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{scope.row.str1}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              fixed="right"
+              :label="$t('操作')"
+              width="60">
+              <template slot-scope="scope">
+                <i class="fa fa-list-alt margin-right-5 color-grand" @click="handleDetailInfo(scope.row)"></i>
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
       </div>
-
-      <div slot="footer">
-        <el-button size="small" @click="cancelDialog">{{$t("取消")}}</el-button>
-        <el-button size="small" type="primary" @click="dialogLoading == false ? okDialog() : ''">
-          <i class="el-icon-loading" v-if="dialogLoading"></i>
-          {{$t("确定")}}
-        </el-button>
+      <div slot="footer" class="text-right">
+        <my-pagination :total="totalDetail" :current-page="pageDetail" :page-size="numDetail" @currentPage="currentDetailPage" @sizeChange="sizeDetailChange" @jumpChange="jumpDetailPage" class="layout-pagination"></my-pagination>
       </div>
-    </dialog-normal>
+    </drawer-layout-right>
 
     <!--审批详细-->
     <drawer-layout-right @changeDrawer="closeDrawerDialog" :hide-footer="false" :visible="drawerVisible" size="550px" :title="$t('申请单')" @right-close="cancelDrawDialog">
@@ -407,13 +290,19 @@
         numStudent: 20,
         totalStudent: 0,
         dataAudit: {},
+        drawerDetailVisible: false,
         drawerVisible: false,
         modalVisible: false,
         dialogLoading: false,
         visibleConfim: false,
         studentLoading: false,
+        detailStatusInfo: '',
+        pageDetail: 1,
+        numDetail: 20,
+        totalDetail: 0,
         subTitle: '',
         tableData: [],
+        tableDetailData: [],
         studentData: [],
         searchCollege: '',
         searchMajor: '',
@@ -425,6 +314,7 @@
         level: '',
         status: '',
         searchKey: '',
+        searchDetailKey: '',
         searchDate: [],
         //filterTypes: [{ text: this.$t("处分"), value: '处分' }, { text: '奖励', value: '奖励' }],
         filterLevels: [],
@@ -470,11 +360,8 @@
           majorId: this.searchMajor,
           grade: this.searchGrade,
           classId: this.searchClass,
-          applyTimeBegin: this.searchDate ? this.searchDate[0] : '',
-          applyTimeEnd: this.searchDate ? this.searchDate[1] : '',
-          str1: this.type,
-          str2: this.level,
           status: this.status,
+          type: this.type,
           searchKey: this.searchKey
         };
         this.$axios.get(common.audit_page, {params: params}).then(res => {
@@ -576,6 +463,24 @@
           this.studentLoading = false;
         });
       },
+      initDetail(){
+        let params = {
+          page: this.pageDetail,
+          num: this.numDetail,
+          applyTypeCode: 'PunishmentApply',
+          applyTimeBegin: this.searchDate ? this.searchDate[0] : '',
+          applyTimeEnd: this.searchDate ? this.searchDate[1] : '',
+          //searchKey: this.searchDetailKey
+        };
+        this.$axios.get(common.audit_page, {params: params}).then(res => {
+          if (res.data.data){
+            this.tableDetailData = res.data.data.list;
+            this.totalDetail = res.data.data.totalCount;
+            this.numDetail = res.data.data.num;
+            this.pageDetail = res.data.data.currentPage;
+          }
+        });
+      },
       nodeClick(data){
         this.searchCollege = "";
         this.searchMajor = "";
@@ -599,11 +504,37 @@
         this.initStudent();
         this.modalVisible = true;
       },
+      exportInfo(){
+        let url = "";
+        let params = {
+          page: 1,
+          num: 99999,
+          applyTypeCode: 'PunishmentApply',
+          collegeId: this.searchCollege,
+          majorId: this.searchMajor,
+          grade: this.searchGrade,
+          classId: this.searchClass,
+          applyTimeBegin: this.searchDate ? this.searchDate[0] : '',
+          applyTimeEnd: this.searchDate ? this.searchDate[1] : '',
+          str1: this.type,
+          str2: this.level,
+          status: this.status,
+          searchKey: this.searchKey
+        };
+        params = this.$qs.stringify(params);
+        url = common.phone_limit_export;
+        window.open(url+"?"+params, "_self");
+      },
       searchStudent(data){
         this.searchStudentKey = data;
         this.initStudent();
       },
       handleDetail(row){
+        this.detailStatusInfo = "";
+        this.initDetail();
+        this.drawerDetailVisible = true;
+      },
+      handleDetailInfo(row){
         let params = {
           id:row.object_id ? row.object_id : row.id
         };
@@ -621,8 +552,14 @@
         this.auditObjectItem = {};
         this.drawerVisible = event;
       },
+      closeDrawerDetailDialog(event){
+        this.drawerDetailVisible = event;
+      },
       cancelDrawDialog(){
         this.drawerVisible = false;
+      },
+      cancelDrawDetailDialog(){
+        this.drawerDetailVisible = false;
       },
       sizeChange(event){
         this.page = 1;
@@ -636,6 +573,19 @@
       jumpPage(data){
         this.page = data;
         this.init();
+      },
+      sizeDetailChange(event){
+        this.pageDetail = 1;
+        this.numDetail = event;
+        this.initDetail();
+      },
+      currentDetailPage(event){
+        this.pageDetail = event;
+        this.initDetail();
+      },
+      jumpDetailPage(data){
+        this.pageDetail = data;
+        this.initDetail();
       },
       sizeStudentChange(event){
         this.pageStudent = 1;
@@ -663,7 +613,13 @@
       },
       search(data){
         this.searchKey = data.input;
+        this.page = 1;
         this.init();
+      },
+      searchDetail(data){
+        this.searchDetailKey = data.input;
+        this.pageDetail = 1;
+        this.initDetail();
       },
       fliterTable(value, row, column){
         for (let item in value){
@@ -675,20 +631,12 @@
                 this.filterTypesText = this.filterTypes[i].text;
               }
             }
-          }else if (item == 'level'){
-            this.filterLevelsText = "";
-            this.level = value[item][0];
-            for (let i = 0; i < this.filterLevels.length; i++){
-              if (this.level == this.filterLevels[i].value){
-                this.filterLevelsText = this.filterLevels[i].text;
-              }
-            }
           }else if (item == 'status'){
             this.filterStatusText = "";
             this.status = value[item][0];
-            for (let i = 0; i < this.filterStatus.length; i++){
-              if (this.status == this.filterStatus[i].value){
-                this.filterStatusText = this.filterStatus[i].text;
+            for (let i = 0; i < this.filterRpStatus.length; i++){
+              if (this.status == this.filterRpStatus[i].value){
+                this.filterStatusText = this.filterRpStatus[i].text;
               }
             }
           }

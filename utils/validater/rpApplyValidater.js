@@ -11,6 +11,10 @@ export default {
         ],
         userId: [
           { required: true, message: this.$t("请选择学生"), trigger: 'change' },
+        ],
+        time: [
+          { required: true, message: this.$t("请输入时间限制"), trigger: 'blur' },
+          { validator: rules.FormValidate.Form().validate_numberZeroReg, trigger: 'blur' }
         ]
       }
     }

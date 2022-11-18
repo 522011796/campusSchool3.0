@@ -157,6 +157,11 @@ const filterStatus = [
   { text: '已驳回', value: '4' ,label: '已驳回'}
 ];
 
+const filterRpStatus = [
+  { text: "处分中", value: '0' ,label: '处分中'},
+  { text: '奖励中', value: '1' ,label: '奖励中'}
+];
+
 const filterDetailStatus = [
   { text: "已撤回", value: '-1' ,label: '已撤回'},
   { text: '已通过', value: '3' ,label: '已通过'},
@@ -617,5 +622,6 @@ export default {
   filterGraduationType,
   filterPoliticsType,
   filterRetireType,
-  filterHardType
+  filterHardType,
+  filterRpStatus
 }
