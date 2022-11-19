@@ -232,7 +232,7 @@
         let params = {
           page: this.page,
           num: this.num,
-          applyTypeCode: 'PunishmentApply',
+          applyTypeCode: 'PunishmentCancelApply',
           name: this.searchKey
         };
         this.$axios.get(common.flow_center_page, {params: params}).then(res => {
@@ -375,7 +375,7 @@
         this.$refs['form'].validate((valid) => {
           if (valid) {
             let params = {
-              applyTypeCode: 'PunishmentApply',
+              applyTypeCode: 'PunishmentCancelApply',
               des: this.form.content,
               enable: this.form.status,
               name: this.form.name,
