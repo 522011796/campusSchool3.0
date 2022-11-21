@@ -218,7 +218,7 @@
         let params = {
           page: this.page,
           num: this.num,
-          applyTypeCode: 'PunishmentApply',
+          applyTypeCode: 'PunishmentCancelApply',
           applyTimeBegin: this.searchDate ? this.searchDate[0] : '',
           applyTimeEnd: this.searchDate ? this.searchDate[1] : '',
           status: this.status,
