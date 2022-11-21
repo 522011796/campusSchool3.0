@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="新增奖惩管理">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/button/AuditStatusButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/button/AuditStatusButton.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/auditInfo/stuApply/relieveRepuApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/auditInfo/stuApply/relieveRepuApply.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/MyAuditDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/MyAuditDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/rp/rpManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/rp/rpManage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,14 +179,7 @@
       <workItem from="1667955541899" duration="82944000" />
       <workItem from="1668648481599" duration="1330000" />
       <workItem from="1668681711690" duration="397000" />
-      <workItem from="1668733054718" duration="30422000" />
-    </task>
-    <task id="LOCAL-00179" summary="新增权限管理">
-      <created>1667207658235</created>
-      <option name="number" value="00179" />
-      <option name="presentableId" value="LOCAL-00179" />
-      <option name="project" value="LOCAL" />
-      <updated>1667207658235</updated>
+      <workItem from="1668733054718" duration="31543000" />
     </task>
     <task id="LOCAL-00180" summary="新增权限管理">
       <created>1667210540379</created>
@@ -524,7 +517,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669001266688</updated>
     </task>
-    <option name="localTasksCounter" value="228" />
+    <task id="LOCAL-00228" summary="新增奖惩管理">
+      <created>1669002007089</created>
+      <option name="number" value="00228" />
+      <option name="presentableId" value="LOCAL-00228" />
+      <option name="project" value="LOCAL" />
+      <updated>1669002007089</updated>
+    </task>
+    <option name="localTasksCounter" value="229" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

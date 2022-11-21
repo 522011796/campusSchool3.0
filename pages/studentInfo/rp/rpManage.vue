@@ -814,6 +814,7 @@
             this.$axios.post(url, params, {dataType: 'stringfy', loading: false}).then(res => {
               if (res.data.code == 200){
                 this.dialogRemove = false;
+                this.drawerVisible = false;
                 this.initDetail();
                 MessageSuccess(res.data.desc);
               }else {
