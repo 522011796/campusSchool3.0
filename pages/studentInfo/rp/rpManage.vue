@@ -267,12 +267,6 @@
       <div class="margin-top-10">
         <el-form :model="formRemove" :rules="rulesRemove" ref="formRemove" label-width="140px">
           <el-form-item :label="$t('附件')">
-<!--            <div class="pull-left" v-if="images.length > 0"  style="margin-right: 10px">-->
-<!--              <div class="pull-left margin-left-5" style="position: relative;top: 5px" v-for="(item, index) in images" :key="index">-->
-<!--                <i class="fa fa-close" style="position: absolute; right: -5px; top: -5px;" @click="deleteImg(index)"></i>-->
-<!--                <img :src="item" class="rp-img"/>-->
-<!--              </div>-->
-<!--            </div>-->
             <div v-if="images.length > 0" v-for="(item, index) in images" :key="index" class="pull-left" style="position: relative;margin-right:10px;top: 10px">
               <i class="fa fa-close" style="position: absolute; right: -5px; top: -5px;font-size: 12px" @click="deleteImg(index)"></i>
               <i v-if="item.indexOf('.pdf') > -1" class="fa fa-file-pdf-o" style="height: 25px;width: 25px;font-size: 25px;position: relative;top: -2px;"></i>
@@ -752,6 +746,7 @@
         this.numStudent = 20;
         this.searchStudentKey = "";
         this.images = [];
+        this.errorStudent = "";
         if (this.$refs.studentRef){
           this.$refs.studentRef.inputValue = "";
         }
@@ -812,14 +807,13 @@
               parentApplyId: this.auditObjectItem.id,
               applyFile: this.images.join(),
               applyTypeCode: "PunishmentCancelApply",
-              des: this.form.des,
+              des: this.formRemove.des,
             };
             url = common.audit_re_add;
             params = JSON.stringify(params);
             this.$axios.post(url, params, {dataType: 'stringfy', loading: false}).then(res => {
               if (res.data.code == 200){
                 this.dialogRemove = false;
-                this.drawerVisible = false;
                 this.initDetail();
                 MessageSuccess(res.data.desc);
               }else {

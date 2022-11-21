@@ -392,9 +392,41 @@
         <my-audit-detail type="PunishmentApply" :sel-value="dataAudit"></my-audit-detail>
       </div>
       <div slot="footer">
-        <audit-button :sel-value="dataAudit" @ok="handleOk" @no="handleNo" @cancel="handleCancel"></audit-button>
+        <audit-button :sel-value="dataAudit" @ok="handleOk" @no="handleNo" @cancel="handleCancel" @remove="removeAudit"></audit-button>
       </div>
     </drawer-layout-right>
+
+    <dialog-normal :visible="dialogRemove" :title="$t('解除申请')" @close="closeDialog" @right-close="cancelDialog">
+      <div class="margin-top-10">
+        <el-form :model="formRemove" :rules="rulesRemove" ref="formRemove" label-width="140px">
+          <el-form-item :label="$t('附件')">
+            <div v-if="images.length > 0" v-for="(item, index) in images" :key="index" class="pull-left" style="position: relative;margin-right:10px;top: 10px">
+              <i class="fa fa-close" style="position: absolute; right: -5px; top: -5px;font-size: 12px" @click="deleteRemoveImg(index)"></i>
+              <i v-if="item.indexOf('.pdf') > -1" class="fa fa-file-pdf-o" style="height: 25px;width: 25px;font-size: 25px;position: relative;top: -2px;"></i>
+              <i v-else-if="item.indexOf('.doc') > -1 || item.indexOf('.docx') > -1" class="fa fa-wordpress" style="height: 25px;width: 25px;font-size: 25px;position: relative;top: -2px;"></i>
+              <img v-else :src="item" class="rp-img"/>
+            </div>
+            <upload-square :action="uploadFileUrl" max-size="20" :data="{path: 'PunishmentCancelApply'}" accept=".png,.jpg,.jpeg,.pdf,.doc,.docx" @success="uploadFileSuccess">
+              <div class="upload-block-class">
+                <el-button type="warning" size="small"><span>{{$t("上传文件")}}</span></el-button>
+              </div>
+            </upload-square>
+            <div><span class="color-danger font-size-12">{{errorStudent}}</span></div>
+          </el-form-item>
+          <el-form-item :label="$t('说明')" prop="des">
+            <el-input v-model="formRemove.des" type="textarea" class="width-260"></el-input>
+          </el-form-item>
+        </el-form>
+      </div>
+
+      <div slot="footer">
+        <el-button size="small" @click="cancelRemoveDialog">{{$t("取消")}}</el-button>
+        <el-button size="small" type="primary" @click="dialogLoading == false ? okRemoveDialog() : ''">
+          <i class="el-icon-loading" v-if="dialogLoading"></i>
+          {{$t("确定")}}
+        </el-button>
+      </div>
+    </dialog-normal>
   </div>
 </template>
 
@@ -435,6 +467,7 @@
         dialogLoading: false,
         visibleConfim: false,
         studentLoading: false,
+        dialogRemove: false,
         subTitle: '',
         tableData: [],
         studentData: [],
@@ -458,6 +491,7 @@
         reTotal: 0,
         puTotal: 0,
         uploadFileAction: common.upload_file,
+        uploadFileUrl: common.upload_file,
         typeData: [],
         typeDataKey: [],
         levelData: [],
@@ -469,6 +503,7 @@
         filterTypesText: '',
         filterStatusText: '',
         filterRpStatusText: '',
+        images: [],
         form: {
           id: '',
           type: '',
@@ -478,6 +513,10 @@
           des: '',
           userId:[],
           time: ''
+        },
+        formRemove: {
+          file: '',
+          des: '',
         }
       }
     },
@@ -650,6 +689,9 @@
       cancelDrawDialog(){
         this.drawerVisible = false;
       },
+      cancelRemoveDialog(){
+        this.dialogRemove = false;
+      },
       sizeChange(event){
         this.page = 1;
         this.num = event;
@@ -763,11 +805,18 @@
           des: '',
           userId:[]
         };
+        this.formRemove = {
+          file: '',
+          des: '',
+        };
+        this.images = [];
+        this.errorStudent = "";
         this.filterAddLevels = [];
         this.subTitle = "";
         this.pageStudent = 1;
         this.numStudent = 20;
         this.searchStudentKey = "";
+        this.dialogLoading = false;
         if (this.$refs.studentRef){
           this.$refs.studentRef.inputValue = "";
         }
@@ -815,12 +864,50 @@
           }
         });
       },
+      okRemoveDialog(event) {
+        let url = "";
+        let arr = [];
+        this.$refs['formRemove'].validate((valid) => {
+          if (valid) {
+            if (this.images.length <= 0){
+              this.errorStudent = this.$t("请上传文件");
+              return;
+            }
+            this.dialogLoading = true;
+            let params = {
+              parentApplyId: this.auditObjectItem.id,
+              applyFile: this.images.join(),
+              applyTypeCode: "PunishmentCancelApply",
+              des: this.formRemove.des,
+            };
+            url = common.audit_re_add;
+            params = JSON.stringify(params);
+            this.$axios.post(url, params, {dataType: 'stringfy', loading: false}).then(res => {
+              if (res.data.code == 200){
+                this.dialogRemove = false;
+                this.drawerVisible = false;
+                this.initDetail();
+                MessageSuccess(res.data.desc);
+              }else {
+                MessageError(res.data.desc);
+              }
+              this.dialogLoading = false;
+            });
+          }
+        });
+      },
       uploadSuccess(res, file){
-        console.log(res);
         if (res.code == 200){
           //this.form.file = res.data.url;
           this.form.files.push(res.data.url);
           console.log(this.form.files);
+        }else {
+
+        }
+      },
+      uploadFileSuccess(res, file){
+        if (res.code == 200){
+          this.images.push(res.data.url);
         }else {
 
         }
@@ -831,6 +918,10 @@
       deleteImg(event, index){
         //this.form.file = "";
         this.form.files.splice(index, 1);
+      },
+      deleteRemoveImg(event, index){
+        //this.form.file = "";
+        this.images.splice(index, 1);
       },
       handleOk(data,textarea){
         let params = {
@@ -849,6 +940,9 @@
             MessageWarning(res.data.desc);
           }
         });
+      },
+      removeAudit(data){
+        this.dialogRemove = true;
       },
       handleNo(data,textarea){
         let params = {
