@@ -121,6 +121,10 @@ export const common = {
   audit_re_static_add: '/proxy/user/unionapply/punishment/level/add',//奖惩级别添加
   audit_re_static_del: '/proxy/user/unionapply/punishment/level/del',//奖惩级别删除
 
+  audit_re_manage_level_list: '/proxy/user/unionapply/punishment/level/list',//奖惩管理列表
+  audit_re_manage_level_page: '/proxy/user/unionapply/punishment/student/page',//奖惩管理分页
+  audit_re_manage_level_export: '/proxy/user/unionapply/punishment/student/export',//奖惩管理导出
+
   audit_credit_type_page: '/proxy/user/quality/type/page',//学分项目列表
   audit_credit_type_fliter: '/proxy/user/quality/type/name',//学分项目筛选
   audit_credit_type_fliter_add: '/proxy/user/quality/type/save',//学分项目添加

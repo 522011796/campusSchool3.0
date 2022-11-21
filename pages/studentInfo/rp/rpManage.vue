@@ -86,16 +86,24 @@
                 align="center"
                 :filter-multiple="false"
                 column-key="type"
-                :filters="filterTypes">
+                :filters="filterRuTypes">
                 <template slot="header">
                   <span>{{$t('类型')}}</span>
                   <span v-if="filterTypesText != ''" class="font-size-12 color-disabeld">{{filterTypesText}}</span>
                 </template>
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.str1}}</div>
+                    <div class="text-center">
+                      <label v-if="scope.row.punish == true && scope.row.reward == false" class="color-danger">{{$t("处分")}}</label>
+                      <label v-else-if="scope.row.punish == false && scope.row.reward == true" class="color-success">{{$t("奖励")}}</label>
+                      <label v-else-if="scope.row.punish == true && scope.row.reward == true" class="color-warning">{{$t("奖励/处分")}}</label>
+                      <label v-else>--</label>
+                    </div>
                     <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      {{scope.row.str1}}
+                      <label v-if="scope.row.punish == true && scope.row.reward == false" class="color-danger">{{$t("处分")}}</label>
+                      <label v-else-if="scope.row.punish == false && scope.row.reward == true" class="color-success">{{$t("奖励")}}</label>
+                      <label v-else-if="scope.row.punish == true && scope.row.reward == true" class="color-warning">{{$t("奖励/处分")}}</label>
+                      <label v-else>--</label>
                     </div>
                   </el-popover>
                 </template>
@@ -127,7 +135,12 @@
               <div style="position: relative;top:5px;">
                 <span class="font-bold">{{$t("当前状态")}}</span>
                 :
-                <span class="font-bold">{{ detailStatusInfo }}</span>
+                <span class="font-bold">
+                  <label v-if="punish == true && reward == false" class="color-danger">{{$t("处分")}}</label>
+                  <label v-else-if="punish == false && reward == true" class="color-success">{{$t("奖励")}}</label>
+                  <label v-else-if="punish == true && reward == true" class="color-warning">{{$t("奖励/处分")}}</label>
+                  <label v-else>--</label>
+                </span>
               </div>
             </el-col>
             <el-col :span="12" class="text-right">
@@ -216,21 +229,9 @@
               :label="$t('状态')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.str1}}</div>
+                  <div class="text-center"><my-audit-status :status="scope.row.status" :handler="scope.row.handler_name"></my-audit-status></div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.str1}}
-                  </div>
-                </el-popover>
-              </template>
-            </el-table-column>
-            <el-table-column
-              align="center"
-              :label="$t('解除申请')">
-              <template slot-scope="scope">
-                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.str1}}</div>
-                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.str1}}
+                    <my-audit-status :status="scope.row.status" :handler="scope.row.handler_name"></my-audit-status>
                   </div>
                 </el-popover>
               </template>
@@ -258,9 +259,47 @@
         <my-audit-detail type="PunishmentApply" :sel-value="dataAudit"></my-audit-detail>
       </div>
       <div slot="footer">
-        <audit-button :sel-value="dataAudit" @ok="handleOk" @no="handleNo" @cancel="handleCancel"></audit-button>
+        <audit-button ref="auditButton" :sel-value="dataAudit" @ok="handleOk" @no="handleNo" @cancel="handleCancel" @remove="removeAudit"></audit-button>
       </div>
     </drawer-layout-right>
+
+    <dialog-normal :visible="dialogRemove" :title="$t('解除申请')" @close="closeDialog" @right-close="cancelDialog">
+      <div class="margin-top-10">
+        <el-form :model="formRemove" :rules="rulesRemove" ref="formRemove" label-width="140px">
+          <el-form-item :label="$t('附件')">
+<!--            <div class="pull-left" v-if="images.length > 0"  style="margin-right: 10px">-->
+<!--              <div class="pull-left margin-left-5" style="position: relative;top: 5px" v-for="(item, index) in images" :key="index">-->
+<!--                <i class="fa fa-close" style="position: absolute; right: -5px; top: -5px;" @click="deleteImg(index)"></i>-->
+<!--                <img :src="item" class="rp-img"/>-->
+<!--              </div>-->
+<!--            </div>-->
+            <div v-if="images.length > 0" v-for="(item, index) in images" :key="index" class="pull-left" style="position: relative;margin-right:10px;top: 10px">
+              <i class="fa fa-close" style="position: absolute; right: -5px; top: -5px;font-size: 12px" @click="deleteImg(index)"></i>
+              <i v-if="item.indexOf('.pdf') > -1" class="fa fa-file-pdf-o" style="height: 25px;width: 25px;font-size: 25px;position: relative;top: -2px;"></i>
+              <i v-else-if="item.indexOf('.doc') > -1 || item.indexOf('.docx') > -1" class="fa fa-wordpress" style="height: 25px;width: 25px;font-size: 25px;position: relative;top: -2px;"></i>
+              <img v-else :src="item" class="rp-img"/>
+            </div>
+            <upload-square :action="uploadFileUrl" max-size="20" :data="{path: 'PunishmentCancelApply'}" accept=".png,.jpg,.jpeg,.pdf,.doc,.docx" @success="uploadFileSuccess">
+              <div class="upload-block-class">
+                <el-button type="warning" size="small"><span>{{$t("上传文件")}}</span></el-button>
+              </div>
+            </upload-square>
+            <div><span class="color-danger font-size-12">{{errorStudent}}</span></div>
+          </el-form-item>
+          <el-form-item :label="$t('说明')" prop="des">
+            <el-input v-model="formRemove.des" type="textarea" class="width-260"></el-input>
+          </el-form-item>
+        </el-form>
+      </div>
+
+      <div slot="footer">
+        <el-button size="small" @click="cancelRemoveDialog">{{$t("取消")}}</el-button>
+        <el-button size="small" type="primary" @click="dialogLoading == false ? okRemoveDialog() : ''">
+          <i class="el-icon-loading" v-if="dialogLoading"></i>
+          {{$t("确定")}}
+        </el-button>
+      </div>
+    </dialog-normal>
   </div>
 </template>
 
@@ -298,6 +337,7 @@
         modalVisible: false,
         dialogLoading: false,
         visibleConfim: false,
+        dialogRemove: false,
         studentLoading: false,
         tableDetailLoading: false,
         detailStatusInfo: '',
@@ -338,6 +378,11 @@
         filterLevelsText: '',
         filterTypesText: '',
         filterStatusText: '',
+        userId: '',
+        images: [],
+        uploadFileUrl: common.upload_file,
+        punish: '',
+        reward: '',
         form: {
           id: '',
           type: '',
@@ -347,6 +392,10 @@
           des: '',
           userId:[],
           time: ''
+        },
+        formRemove: {
+          file: '',
+          des: ''
         }
       }
     },
@@ -359,16 +408,14 @@
         let params = {
           page: this.page,
           num: this.num,
-          applyTypeCode: 'PunishmentApply',
+          stype: this.type,
           collegeId: this.searchCollege,
           majorId: this.searchMajor,
           grade: this.searchGrade,
           classId: this.searchClass,
-          status: this.status,
-          type: this.type,
           searchKey: this.searchKey
         };
-        this.$axios.get(common.audit_page, {params: params}).then(res => {
+        this.$axios.get(common.audit_re_manage_level_page, {params: params}).then(res => {
           if (res.data.data){
             this.tableData = res.data.data.list;
             this.total = res.data.data.totalCount;
@@ -467,10 +514,11 @@
           this.studentLoading = false;
         });
       },
-      initDetail(){
+      initDetail(userId){
         let params = {
           page: this.pageDetail,
           num: this.numDetail,
+          userId: this.userId,
           applyTypeCode: 'PunishmentApply',
           applyTimeBegin: this.searchDate ? this.searchDate[0] : '',
           applyTimeEnd: this.searchDate ? this.searchDate[1] : '',
@@ -515,20 +563,17 @@
         let params = {
           page: 1,
           num: 99999,
-          applyTypeCode: 'PunishmentApply',
+          stype: 3,
           collegeId: this.searchCollege,
           majorId: this.searchMajor,
           grade: this.searchGrade,
           classId: this.searchClass,
-          applyTimeBegin: this.searchDate ? this.searchDate[0] : '',
-          applyTimeEnd: this.searchDate ? this.searchDate[1] : '',
-          str1: this.type,
-          str2: this.level,
           status: this.status,
+          type: this.type,
           searchKey: this.searchKey
         };
         params = this.$qs.stringify(params);
-        url = common.phone_limit_export;
+        url = common.audit_re_manage_level_export;
         window.open(url+"?"+params, "_self");
       },
       searchStudent(data){
@@ -537,6 +582,12 @@
       },
       handleDetail(row){
         this.detailStatusInfo = "";
+        this.punish = "";
+        this.reward = "";
+        this.userId = "";
+        this.reward = row.reward;
+        this.punish = row.punish;
+        this.userId = row.user_id;
         this.initDetail();
         this.drawerDetailVisible = true;
       },
@@ -559,6 +610,11 @@
         this.drawerVisible = event;
       },
       closeDrawerDetailDialog(event){
+        this.tableDetailData = [];
+        this.pageDetail = 1;
+        this.totalDetail = 0;
+        this.numDetail = 20;
+        this.detailStatusInfo = '';
         this.drawerDetailVisible = event;
       },
       cancelDrawDialog(){
@@ -673,6 +729,9 @@
       cancelDialog(){
         this.modalVisible = false;
       },
+      cancelRemoveDialog(){
+        this.dialogRemove = false;
+      },
       closeDialog(event){
         this.form = {
           id: '',
@@ -683,11 +742,16 @@
           des: '',
           userId:[]
         };
+        this.formRemove = {
+          file: '',
+          des: '',
+        };
         this.filterAddLevels = [];
         this.subTitle = "";
         this.pageStudent = 1;
         this.numStudent = 20;
         this.searchStudentKey = "";
+        this.images = [];
         if (this.$refs.studentRef){
           this.$refs.studentRef.inputValue = "";
         }
@@ -700,7 +764,6 @@
         let arr = [];
         this.$refs['form'].validate((valid) => {
           if (valid) {
-            this.errorStudent = "";
             this.errorStudent = "";
             if (this.form.userId.length <= 0){
               this.errorStudent = this.$t("请选择学生");
@@ -735,12 +798,42 @@
           }
         });
       },
+      okRemoveDialog(event) {
+        let url = "";
+        let arr = [];
+        this.$refs['formRemove'].validate((valid) => {
+          if (valid) {
+            if (this.images.length <= 0){
+              this.errorStudent = this.$t("请上传文件");
+              return;
+            }
+            this.dialogLoading = true;
+            let params = {
+              parentApplyId: this.auditObjectItem.id,
+              applyFile: this.images.join(),
+              applyTypeCode: "PunishmentCancelApply",
+              des: this.form.des,
+            };
+            url = common.audit_re_add;
+            params = JSON.stringify(params);
+            this.$axios.post(url, params, {dataType: 'stringfy', loading: false}).then(res => {
+              if (res.data.code == 200){
+                this.dialogRemove = false;
+                this.drawerVisible = false;
+                this.initDetail();
+                MessageSuccess(res.data.desc);
+              }else {
+                MessageError(res.data.desc);
+              }
+              this.dialogLoading = false;
+            });
+          }
+        });
+      },
       uploadSuccess(res, file){
-        console.log(res);
         if (res.code == 200){
           //this.form.file = res.data.url;
           this.form.files.push(res.data.url);
-          console.log(this.form.files);
         }else {
 
         }
@@ -750,7 +843,7 @@
       },
       deleteImg(event, index){
         //this.form.file = "";
-        this.form.files.splice(index, 1);
+        this.images.splice(index, 1);
       },
       handleOk(data,textarea){
         let params = {
@@ -803,6 +896,9 @@
           }
         });
       },
+      removeAudit(data){
+        this.dialogRemove = true;
+      },
       handleShowTeacher(type){
         if (type == 3){
           this.$refs.popverPartRef._handleOpen();
@@ -815,6 +911,13 @@
       },
       handleSelUser(data, type){
         this.$set(this.form, 'userId', data);
+      },
+      uploadFileSuccess(res, file){
+        if (res.code == 200){
+          this.images.push(res.data.url);
+        }else {
+
+        }
       }
     }
   }
@@ -842,5 +945,10 @@
     height: 30px;
     line-height: 30px;
     width: 348px;
+  }
+  .rp-img{
+    height: 30px;
+    width: 30px;
+    border: 1px solid #dddddd;
   }
 </style>

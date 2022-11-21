@@ -243,9 +243,11 @@
                 </template>
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{scope.row.str2}}</div>
+                    <div class="text-center">
+                      <my-audit-pu-status :status="scope.row.punishStatus"></my-audit-pu-status>
+                    </div>
                     <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      {{scope.row.str2}}
+                      <my-audit-pu-status :status="scope.row.punishStatus"></my-audit-pu-status>
                     </div>
                   </el-popover>
                 </template>
@@ -415,9 +417,12 @@
   import {MessageError, MessageSuccess, MessageWarning} from "../../../utils/utils";
   import rpApplyValidater from "../../../utils/validater/rpApplyValidater";
   import StudentTreeAndList from "../../../components/utils/treeAndList/StudentTreeAndList";
+  import MyAuditPuStatus from "~/components/utils/MyAuditPuStatus";
   export default {
     mixins: [mixins, rpApplyValidater],
-    components: {LayoutLr,MyElTree,MySelect,DrawerLayoutRight,MyAuditDetail,MyPagination,MyAuditStatus,CircleChart,MyRadio,DialogNormal,MyInputButton,UploadSquare,AuditButton,StudentTreeAndList},
+    components: {
+      MyAuditPuStatus,
+      LayoutLr,MyElTree,MySelect,DrawerLayoutRight,MyAuditDetail,MyPagination,MyAuditStatus,CircleChart,MyRadio,DialogNormal,MyInputButton,UploadSquare,AuditButton,StudentTreeAndList},
     data(){
       return {
         toggleTopShow: false,
@@ -496,7 +501,7 @@
           str2: this.level,
           status: this.status,
           searchKey: this.searchKey,
-          rpStatus: this.rpStatus,
+          punishStatus: this.rpStatus,
         };
         this.$axios.get(common.audit_page, {params: params}).then(res => {
           if (res.data.data){
@@ -792,7 +797,7 @@
               str1: this.form.type,
               str2: this.form.level,
               userId: arr.join(),
-              time: this.form.time,
+              num1: this.form.time,
               userType: "5"
             };
             url = common.audit_re_add;

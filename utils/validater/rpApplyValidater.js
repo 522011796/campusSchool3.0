@@ -16,6 +16,11 @@ export default {
           { required: true, message: this.$t("请输入时间限制"), trigger: 'blur' },
           { validator: rules.FormValidate.Form().validate_numberZeroReg, trigger: 'blur' }
         ]
+      },
+      rulesRemove: {
+        des: [
+          { required: true, message: this.$t("请输入信息"), trigger: 'blur' },
+        ]
       }
     }
   }

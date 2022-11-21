@@ -2,9 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="新增奖惩管理">
+      <change afterPath="$PROJECT_DIR$/components/utils/MyAuditPuStatus.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/utils/auditDetail/RepuRemoveDetail.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/MyAuditStatus.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/MyAuditStatus.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/AuditButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/AuditButton.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/MyAuditDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/MyAuditDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/status/MyFlowType.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/status/MyFlowType.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/basicInfo/stuRelieveRepu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/stuRelieveRepu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/rp/rpApply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/rp/rpApply.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/rp/rpManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/rp/rpManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/student/manage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/student/manage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/global.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/validater/rpApplyValidater.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/rpApplyValidater.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +48,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pages/basicInfo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/utils/auditDetail" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -46,11 +62,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/components/utils/auditDetail" />
+      <recent name="$PROJECT_DIR$/components/utils" />
       <recent name="$PROJECT_DIR$/pages/basicInfo" />
       <recent name="$PROJECT_DIR$/pages/auditInfo/stuApply" />
       <recent name="$PROJECT_DIR$/pages/studentInfo/rp" />
-      <recent name="$PROJECT_DIR$/components/form" />
-      <recent name="$PROJECT_DIR$/utils/validater" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/pages/serviceArea/app" />
@@ -179,14 +195,7 @@
       <workItem from="1667955541899" duration="82944000" />
       <workItem from="1668648481599" duration="1330000" />
       <workItem from="1668681711690" duration="397000" />
-      <workItem from="1668733054718" duration="15585000" />
-    </task>
-    <task id="LOCAL-00176" summary="新增权限管理">
-      <created>1666971722046</created>
-      <option name="number" value="00176" />
-      <option name="presentableId" value="LOCAL-00176" />
-      <option name="project" value="LOCAL" />
-      <updated>1666971722046</updated>
+      <workItem from="1668733054718" duration="28740000" />
     </task>
     <task id="LOCAL-00177" summary="新增权限管理">
       <created>1667203361368</created>
@@ -524,7 +533,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668757733064</updated>
     </task>
-    <option name="localTasksCounter" value="225" />
+    <task id="LOCAL-00225" summary="新增奖惩管理">
+      <created>1668821246649</created>
+      <option name="number" value="00225" />
+      <option name="presentableId" value="LOCAL-00225" />
+      <option name="project" value="LOCAL" />
+      <updated>1668821246649</updated>
+    </task>
+    <option name="localTasksCounter" value="226" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

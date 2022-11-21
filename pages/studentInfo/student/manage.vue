@@ -1638,7 +1638,6 @@
           imgList: [],
           buildId: '',
           floorNum: '',
-          dormId: '',
           bedId: '',
           studentInfo: {
             attendType: "",
@@ -1777,6 +1776,7 @@
             }
             params['urlList']  = imgUrl;
             params['studentInfo'] = this.form.studentInfo;
+            params['sn'] = this.photoDeviceSn;
 
             url = common.student_info_setting;
             //params = this.$qs.stringify(params);

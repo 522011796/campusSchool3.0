@@ -52,6 +52,56 @@
         </el-timeline-item>
       </div>
     </el-timeline>
+
+    <div v-if="value.sonApplyList && value.sonApplyList != null && value.sonApplyList.length > 0">
+      <el-timeline>
+        <el-timeline-item v-for="(item, index) in value.sonApplyList" :key="item.id" placement="top">
+          <div slot="dot" class="text-center" style="position: relative; left: -5px;font-size: 12px;height: 18px;width: 18px;border-radius: 18px;background: #E6A23C;vertical-align: center">
+            <i class="el-icon-s-promotion color-white" style="position: relative; top: 2px"></i>
+          </div>
+          <div>
+            <re-pu-remove-detail :sel-value="item"></re-pu-remove-detail>
+          </div>
+        </el-timeline-item>
+
+        <div class="detail-group-card">
+          <el-timeline-item v-for="(itemList, indexList) in value.handleList" :key="itemList.id" placement="top">
+          <span slot="dot" style="position: relative; left: -5px;font-size: 12px">
+            <el-badge :value="itemList.orderIndex" class="item" type="warning"></el-badge>
+          </span>
+            <div class="text-center" style="position: absolute; left: 8px; top: 25px;">
+              <div class="tag-min-div color-muted" v-if="itemList.andor == 'or'">{{$t("或签")}}</div>
+              <div class="tag-min-div color-muted" size="mini" v-if="itemList.andor == 'and'">{{$t("会签")}}</div>
+              <i class="el-icon-bottom color-disabeld"></i>
+            </div>
+            <el-card :body-style="{'padding': '12px'}" v-for="(itemChild, indexChild) in itemList.handleUsers" :key="itemChild.id">
+              <div :class="auditColor(itemChild.status)">
+                <span>{{itemList.handleTypeName}}</span>
+                <el-divider direction="vertical"></el-divider>
+                <span>{{itemChild.handleName}}</span>
+                <el-divider direction="vertical" v-if="itemChild.status != 5"></el-divider>
+                <span v-if="itemChild.status != 5">{{auditStatus(itemChild.status)}}</span>
+                <el-divider direction="vertical" v-if="itemChild.status != 5"></el-divider>
+                <span v-if="itemChild.time && itemChild.status != 5">{{$moment(itemChild.time).format("YYYY-MM-DD HH:mm:ss")}}</span>
+                <span v-else></span>
+              </div>
+              <div v-if="itemChild.des3 && itemChild.des3 != ''" class="color-warning margin-top-10">
+                <el-row class="margin-top-10">
+                  <el-col :span="4">
+                    <span>{{$t("审批意见")}}:</span>
+                  </el-col>
+                  <el-col :span="20">
+                    <el-tooltip class="item" effect="dark" :content="itemChild.des3" placement="top-start" :tabindex="9999">
+                      <span>{{itemChild.des3}}</span>
+                    </el-tooltip>
+                  </el-col>
+                </el-row>
+              </div>
+            </el-card>
+          </el-timeline-item>
+        </div>
+      </el-timeline>
+    </div>
   </div>
 </template>
 
@@ -64,9 +114,12 @@
   import TerdoorDetail from "./TerdoorDetail";
   import StudoorDetail from "./StudoorDetail";
   import {oneOf, auditStatusText, auditStatusColor} from '../../../utils/utils';
+  import RePuRemoveDetail from "~/components/utils/auditDetail/RepuRemoveDetail";
   export default {
     name: 'MyAuditDetail',
-    components: {CreditDetail, RepuDetail, StuleaveDetail, TerleaveDetail,FaceDetail,TerdoorDetail,StudoorDetail},
+    components: {
+      RePuRemoveDetail,
+      CreditDetail, RepuDetail, StuleaveDetail, TerleaveDetail,FaceDetail,TerdoorDetail,StudoorDetail},
     props: {
       selValue: {
         default: function () {

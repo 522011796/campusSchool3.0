@@ -2,6 +2,7 @@
   <span>
     <template>
       <span v-if="status == 'PunishmentApply'">{{$t("奖惩流程")}}</span>
+      <span v-if="status == 'PunishmentCancelApply'">{{$t("解除奖惩流程")}}</span>
       <span v-if="status == 'ScoreApply'">{{$t("素质学分流程")}}</span>
       <span v-if="status == 'LeaveApply'">{{$t("学生请假流程")}}</span>
       <span v-if="status == 'TeacherLeaveApply'">{{$t("教师请假流程")}}</span>

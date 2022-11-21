@@ -143,6 +143,18 @@
   "LazyTableBarChart": {
     "description": "Auto imported from components/charts/TableBarChart.vue"
   },
+  "MyNewStudentFlow": {
+    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
+  },
+  "LazyMyNewStudentFlow": {
+    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
+  },
+  "MyNewStudentFlowType": {
+    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
+  },
+  "LazyMyNewStudentFlowType": {
+    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
+  },
   "MyFormAuditType": {
     "description": "Auto imported from components/form/MyFormAuditType.vue"
   },
@@ -190,18 +202,6 @@
   },
   "LazyPcStaticTemplateShow": {
     "description": "Auto imported from components/form/PCStaticTemplateShow.vue"
-  },
-  "MyNewStudentFlow": {
-    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
-  },
-  "LazyMyNewStudentFlow": {
-    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
-  },
-  "MyNewStudentFlowType": {
-    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
-  },
-  "LazyMyNewStudentFlowType": {
-    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
   },
   "MyInputButton": {
     "description": "Auto imported from components/search/MyInputButton.vue"
@@ -251,6 +251,12 @@
   "LazyTreeNode": {
     "description": "Auto imported from components/tree/treeNode.js"
   },
+  "MyAuditPuStatus": {
+    "description": "Auto imported from components/utils/MyAuditPuStatus.vue"
+  },
+  "LazyMyAuditPuStatus": {
+    "description": "Auto imported from components/utils/MyAuditPuStatus.vue"
+  },
   "MyAuditStatus": {
     "description": "Auto imported from components/utils/MyAuditStatus.vue"
   },
@@ -274,6 +280,30 @@
   },
   "LazyMyUserType": {
     "description": "Auto imported from components/utils/MyUserType.vue"
+  },
+  "AuditStatusButton": {
+    "description": "Auto imported from components/utils/button/AuditStatusButton.vue"
+  },
+  "LazyAuditStatusButton": {
+    "description": "Auto imported from components/utils/button/AuditStatusButton.vue"
+  },
+  "DormAttendStatusButtonGroup": {
+    "description": "Auto imported from components/utils/button/DormAttendStatusButtonGroup.vue"
+  },
+  "LazyDormAttendStatusButtonGroup": {
+    "description": "Auto imported from components/utils/button/DormAttendStatusButtonGroup.vue"
+  },
+  "TabGroupButton": {
+    "description": "Auto imported from components/utils/button/TabGroupButton.vue"
+  },
+  "LazyTabGroupButton": {
+    "description": "Auto imported from components/utils/button/TabGroupButton.vue"
+  },
+  "TimeoutButton": {
+    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
+  },
+  "LazyTimeoutButton": {
+    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
   },
   "AuditButton": {
     "description": "Auto imported from components/utils/auditDetail/AuditButton.vue"
@@ -305,6 +335,12 @@
   "LazyRepuDetail": {
     "description": "Auto imported from components/utils/auditDetail/RepuDetail.vue"
   },
+  "RepuRemoveDetail": {
+    "description": "Auto imported from components/utils/auditDetail/RepuRemoveDetail.vue"
+  },
+  "LazyRepuRemoveDetail": {
+    "description": "Auto imported from components/utils/auditDetail/RepuRemoveDetail.vue"
+  },
   "StudoorDetail": {
     "description": "Auto imported from components/utils/auditDetail/StudoorDetail.vue"
   },
@@ -328,30 +364,6 @@
   },
   "LazyTerleaveDetail": {
     "description": "Auto imported from components/utils/auditDetail/TerleaveDetail.vue"
-  },
-  "AuditStatusButton": {
-    "description": "Auto imported from components/utils/button/AuditStatusButton.vue"
-  },
-  "LazyAuditStatusButton": {
-    "description": "Auto imported from components/utils/button/AuditStatusButton.vue"
-  },
-  "DormAttendStatusButtonGroup": {
-    "description": "Auto imported from components/utils/button/DormAttendStatusButtonGroup.vue"
-  },
-  "LazyDormAttendStatusButtonGroup": {
-    "description": "Auto imported from components/utils/button/DormAttendStatusButtonGroup.vue"
-  },
-  "TabGroupButton": {
-    "description": "Auto imported from components/utils/button/TabGroupButton.vue"
-  },
-  "LazyTabGroupButton": {
-    "description": "Auto imported from components/utils/button/TabGroupButton.vue"
-  },
-  "TimeoutButton": {
-    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
-  },
-  "LazyTimeoutButton": {
-    "description": "Auto imported from components/utils/button/TimeoutButton.vue"
   },
   "MyHeadImg": {
     "description": "Auto imported from components/utils/common/MyHeadImg.vue"
@@ -400,84 +412,6 @@
   },
   "LazyMyCascader": {
     "description": "Auto imported from components/utils/select/MyCascader.vue"
-  },
-  "MyAdminAtten": {
-    "description": "Auto imported from components/utils/status/MyAdminAtten.vue"
-  },
-  "LazyMyAdminAtten": {
-    "description": "Auto imported from components/utils/status/MyAdminAtten.vue"
-  },
-  "MyAuthOptions": {
-    "description": "Auto imported from components/utils/status/MyAuthOptions.vue"
-  },
-  "LazyMyAuthOptions": {
-    "description": "Auto imported from components/utils/status/MyAuthOptions.vue"
-  },
-  "MyClassAtten": {
-    "description": "Auto imported from components/utils/status/MyClassAtten.vue"
-  },
-  "LazyMyClassAtten": {
-    "description": "Auto imported from components/utils/status/MyClassAtten.vue"
-  },
-  "MyClassAttendOptions": {
-    "description": "Auto imported from components/utils/status/MyClassAttendOptions.vue"
-  },
-  "LazyMyClassAttendOptions": {
-    "description": "Auto imported from components/utils/status/MyClassAttendOptions.vue"
-  },
-  "MyDeviceOnlineStatus": {
-    "description": "Auto imported from components/utils/status/MyDeviceOnlineStatus.vue"
-  },
-  "LazyMyDeviceOnlineStatus": {
-    "description": "Auto imported from components/utils/status/MyDeviceOnlineStatus.vue"
-  },
-  "MyDeviceUseType": {
-    "description": "Auto imported from components/utils/status/MyDeviceUseType.vue"
-  },
-  "LazyMyDeviceUseType": {
-    "description": "Auto imported from components/utils/status/MyDeviceUseType.vue"
-  },
-  "MyDoorExceptionStatus": {
-    "description": "Auto imported from components/utils/status/MyDoorExceptionStatus.vue"
-  },
-  "LazyMyDoorExceptionStatus": {
-    "description": "Auto imported from components/utils/status/MyDoorExceptionStatus.vue"
-  },
-  "MyDormAttenStatus": {
-    "description": "Auto imported from components/utils/status/MyDormAttenStatus.vue"
-  },
-  "LazyMyDormAttenStatus": {
-    "description": "Auto imported from components/utils/status/MyDormAttenStatus.vue"
-  },
-  "MyEnable": {
-    "description": "Auto imported from components/utils/status/MyEnable.vue"
-  },
-  "LazyMyEnable": {
-    "description": "Auto imported from components/utils/status/MyEnable.vue"
-  },
-  "MyFlowCondition": {
-    "description": "Auto imported from components/utils/status/MyFlowCondition.vue"
-  },
-  "LazyMyFlowCondition": {
-    "description": "Auto imported from components/utils/status/MyFlowCondition.vue"
-  },
-  "MyFlowProcess": {
-    "description": "Auto imported from components/utils/status/MyFlowProcess.vue"
-  },
-  "LazyMyFlowProcess": {
-    "description": "Auto imported from components/utils/status/MyFlowProcess.vue"
-  },
-  "MyFlowProcessList": {
-    "description": "Auto imported from components/utils/status/MyFlowProcessList.vue"
-  },
-  "LazyMyFlowProcessList": {
-    "description": "Auto imported from components/utils/status/MyFlowProcessList.vue"
-  },
-  "MyFlowType": {
-    "description": "Auto imported from components/utils/status/MyFlowType.vue"
-  },
-  "LazyMyFlowType": {
-    "description": "Auto imported from components/utils/status/MyFlowType.vue"
   },
   "ClassroomTreeAndList": {
     "description": "Auto imported from components/utils/treeAndList/ClassroomTreeAndList.vue"
@@ -556,5 +490,83 @@
   },
   "LazyUploadSquare": {
     "description": "Auto imported from components/utils/upload/UploadSquare.vue"
+  },
+  "MyAdminAtten": {
+    "description": "Auto imported from components/utils/status/MyAdminAtten.vue"
+  },
+  "LazyMyAdminAtten": {
+    "description": "Auto imported from components/utils/status/MyAdminAtten.vue"
+  },
+  "MyAuthOptions": {
+    "description": "Auto imported from components/utils/status/MyAuthOptions.vue"
+  },
+  "LazyMyAuthOptions": {
+    "description": "Auto imported from components/utils/status/MyAuthOptions.vue"
+  },
+  "MyClassAtten": {
+    "description": "Auto imported from components/utils/status/MyClassAtten.vue"
+  },
+  "LazyMyClassAtten": {
+    "description": "Auto imported from components/utils/status/MyClassAtten.vue"
+  },
+  "MyClassAttendOptions": {
+    "description": "Auto imported from components/utils/status/MyClassAttendOptions.vue"
+  },
+  "LazyMyClassAttendOptions": {
+    "description": "Auto imported from components/utils/status/MyClassAttendOptions.vue"
+  },
+  "MyDeviceOnlineStatus": {
+    "description": "Auto imported from components/utils/status/MyDeviceOnlineStatus.vue"
+  },
+  "LazyMyDeviceOnlineStatus": {
+    "description": "Auto imported from components/utils/status/MyDeviceOnlineStatus.vue"
+  },
+  "MyDeviceUseType": {
+    "description": "Auto imported from components/utils/status/MyDeviceUseType.vue"
+  },
+  "LazyMyDeviceUseType": {
+    "description": "Auto imported from components/utils/status/MyDeviceUseType.vue"
+  },
+  "MyDoorExceptionStatus": {
+    "description": "Auto imported from components/utils/status/MyDoorExceptionStatus.vue"
+  },
+  "LazyMyDoorExceptionStatus": {
+    "description": "Auto imported from components/utils/status/MyDoorExceptionStatus.vue"
+  },
+  "MyDormAttenStatus": {
+    "description": "Auto imported from components/utils/status/MyDormAttenStatus.vue"
+  },
+  "LazyMyDormAttenStatus": {
+    "description": "Auto imported from components/utils/status/MyDormAttenStatus.vue"
+  },
+  "MyEnable": {
+    "description": "Auto imported from components/utils/status/MyEnable.vue"
+  },
+  "LazyMyEnable": {
+    "description": "Auto imported from components/utils/status/MyEnable.vue"
+  },
+  "MyFlowCondition": {
+    "description": "Auto imported from components/utils/status/MyFlowCondition.vue"
+  },
+  "LazyMyFlowCondition": {
+    "description": "Auto imported from components/utils/status/MyFlowCondition.vue"
+  },
+  "MyFlowProcess": {
+    "description": "Auto imported from components/utils/status/MyFlowProcess.vue"
+  },
+  "LazyMyFlowProcess": {
+    "description": "Auto imported from components/utils/status/MyFlowProcess.vue"
+  },
+  "MyFlowProcessList": {
+    "description": "Auto imported from components/utils/status/MyFlowProcessList.vue"
+  },
+  "LazyMyFlowProcessList": {
+    "description": "Auto imported from components/utils/status/MyFlowProcessList.vue"
+  },
+  "MyFlowType": {
+    "description": "Auto imported from components/utils/status/MyFlowType.vue"
+  },
+  "LazyMyFlowType": {
+    "description": "Auto imported from components/utils/status/MyFlowType.vue"
   }
 }

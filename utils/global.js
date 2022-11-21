@@ -151,6 +151,12 @@ const filterTypes = [
   { text: '奖励', value: '奖励' ,label: '奖励'}
 ];
 
+const filterRuTypes = [
+  { text: "处分", value: '2' ,label: '处分'},
+  { text: '奖励', value: '1' ,label: '奖励'},
+  { text: '奖励/处分', value: '3' ,label: '奖励/处分'}
+];
+
 const filterStatus = [
   { text: "待审批", value: '0' ,label: '待审批'},
   { text: '已通过', value: '3' ,label: '已通过'},
@@ -163,12 +169,11 @@ const filterRpStatus = [
 ];
 
 const filterJCRpStatus = [
-  { text: "待审批", value: '0' ,label: '待审批'},
-  { text: '已通过', value: '3' ,label: '已通过'},
+  { text: "审批中", value: '0' ,label: '审批中'},
+  { text: '处分中', value: '3' ,label: '处分中'},
   { text: '已驳回', value: '4' ,label: '已驳回'},
-  { text: '处分中', value: '1' ,label: '处分中'},
-  { text: '已解除', value: '2' ,label: '已解除'},
-  { text: '逾期', value: '-1' ,label: '逾期'}
+  { text: '已逾期', value: '5' ,label: '已逾期'},
+  { text: '已解除', value: '8' ,label: '已解除'}
 ];
 
 const filterDetailStatus = [
@@ -633,5 +638,6 @@ export default {
   filterRetireType,
   filterHardType,
   filterRpStatus,
-  filterJCRpStatus
+  filterJCRpStatus,
+  filterRuTypes
 }

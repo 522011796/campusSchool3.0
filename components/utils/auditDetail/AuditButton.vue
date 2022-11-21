@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="position: relative">
     <div :selectModel="selectModel">
       <span v-if="value.handle == true">
         <el-popover
@@ -57,6 +57,13 @@
       <div v-if="value.status == -1" class="bg-muted color-white text-center">
         <span>{{$t("已撤销")}}</span>
       </div>
+      <div v-if="value.status == 8" class="bg-muted color-white text-center">
+        <span>{{$t("已解除")}}</span>
+      </div>
+    </div>
+
+    <div v-if="value.undo == true" style="position: absolute; right: 10px;top:0px;">
+      <el-button type="danger" size="small" @click="remove">{{$t("解除申请")}}</el-button>
     </div>
   </div>
 </template>
@@ -85,7 +92,8 @@
         widthDesStyle: null,
         textarea: '',
         visibleOk: false,
-        visibleNo: false
+        visibleNo: false,
+        visibleUn: false,
       }
     },
     created() {
@@ -100,6 +108,9 @@
       },
       handleCancel(data){
         this.$emit('cancel', data);
+      },
+      remove(data){
+        this.$emit('remove', data);
       },
       cancelPop(){
         this.textarea = '';
