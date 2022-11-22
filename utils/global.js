@@ -151,6 +151,12 @@ const filterTypes = [
   { text: '奖励', value: '奖励' ,label: '奖励'}
 ];
 
+const filterNewTypes = [
+  { text: "处分", value: '处分' ,label: '处分'},
+  { text: '奖励', value: '奖励' ,label: '奖励'},
+  { text: '解除申请', value: '解除申请' ,label: '解除申请'}
+];
+
 const filterRuTypes = [
   { text: "处分", value: '2' ,label: '处分'},
   { text: '奖励', value: '1' ,label: '奖励'},
@@ -587,6 +593,7 @@ export default {
   filterStatus,
   filterDetailStatus,
   filterTypes,
+  filterNewTypes,
   filterScoreTypes,
   filterScoreLevels,
   weekNoSelect,

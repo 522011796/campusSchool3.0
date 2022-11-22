@@ -3,8 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="3cadd0d6-713d-4fc2-91e7-25a98dd49b2b" name="Default Changelist" comment="新增奖惩管理">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/MyAuditDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/MyAuditDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/rp/rpManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/rp/rpManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/stuRelieveRepu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/stuRelieveRepu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/stuRepu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/stuRepu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/rp/level.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/rp/level.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/global.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,14 +184,7 @@
       <workItem from="1667955541899" duration="82944000" />
       <workItem from="1668648481599" duration="1330000" />
       <workItem from="1668681711690" duration="397000" />
-      <workItem from="1668733054718" duration="31543000" />
-    </task>
-    <task id="LOCAL-00180" summary="新增权限管理">
-      <created>1667210540379</created>
-      <option name="number" value="00180" />
-      <option name="presentableId" value="LOCAL-00180" />
-      <option name="project" value="LOCAL" />
-      <updated>1667210540379</updated>
+      <workItem from="1668733054718" duration="35415000" />
     </task>
     <task id="LOCAL-00181" summary="新增权限管理">
       <created>1667211981612</created>
@@ -524,7 +522,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669002007089</updated>
     </task>
-    <option name="localTasksCounter" value="229" />
+    <task id="LOCAL-00229" summary="新增奖惩管理">
+      <created>1669003056030</created>
+      <option name="number" value="00229" />
+      <option name="presentableId" value="LOCAL-00229" />
+      <option name="project" value="LOCAL" />
+      <updated>1669003056030</updated>
+    </task>
+    <option name="localTasksCounter" value="230" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -66,6 +66,7 @@ export default {
       filterJCRpStatus: global.filterJCRpStatus,
       filterDetailStatus: global.filterDetailStatus,
       filterTypes: global.filterTypes,
+      filterNewTypes: global.filterNewTypes,
       filterRuTypes: global.filterRuTypes,
       filterScoreTypes: global.filterScoreTypes,
       filterScoreLevels: global.filterScoreLevels,

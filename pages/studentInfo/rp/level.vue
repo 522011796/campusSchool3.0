@@ -59,7 +59,7 @@
         <el-form :model="form" :rules="rules" ref="form" label-width="140px">
           <el-form-item :label="$t('类型')" prop="type">
             <!--<el-input v-model="form.type" class="width-260"></el-input>-->
-            <my-select :sel-value="form.type" :options="filterTypes" width-style="260" @change="handleSelect"></my-select>
+            <my-select :sel-value="form.type" :options="filterNewTypes" width-style="260" @change="handleSelect"></my-select>
           </el-form-item>
           <el-form-item :label="$t('级别')" prop="name">
             <el-input v-model="form.name" class="width-260"></el-input>
