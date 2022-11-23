@@ -252,16 +252,11 @@
         params = this.$qs.stringify(params);
         this.$axios.post(common.audit_re_level, params).then(res => {
           if (res.data.data){
-            let array = [];
             for (let i = 0; i < res.data.data.list.length; i++){
-              if(res.data.data.list[i].level_type == "奖励" || res.data.data.list[i].level_type == "处分"){
-                array.push({
-                  label: res.data.data.list[i].level_name,
-                  value: res.data.data.list[i].level_name
-                });
-              }
+              res.data.data.list[i]['label'] = res.data.data.list[i].level_name;
+              res.data.data.list[i]['value'] = res.data.data.list[i].level_name;
             }
-            this.listData = array;
+            this.listData = res.data.data.list;
           }
         });
       },
