@@ -6,7 +6,7 @@
       <div slot="tab">
         <el-row>
           <el-col :span="12">
-            <audit-status-button size="small" @click="handleClick"></audit-status-button>
+            <audit-status-relieve-button size="small" @click="handleClick"></audit-status-relieve-button>
           </el-col>
           <el-col :span="12" class="text-right">
             <my-date-picker :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChange" style="position: relative; top: 1px;"></my-date-picker>
@@ -23,7 +23,8 @@
           size="medium"
           row-key="id"
           :max-height="tableHeight.height"
-          style="width: 100%">
+          style="width: 100%"
+          @filter-change="fliterTable">
           <el-table-column
             align="center"
             :label="$t('日期')">
@@ -122,12 +123,20 @@
           </el-table-column>
           <el-table-column
             align="center"
-            :label="$t('说明')">
+            :filter-multiple="false"
+            column-key="rpStatus"
+            :filters="filterJCRpStatus">
+            <template slot="header">
+              <span>{{$t('奖惩状态')}}</span>
+              <span v-if="filterRpStatusText != ''" class="font-size-12 color-disabeld moon-content-text-ellipsis-class">{{filterRpStatusText}}</span>
+            </template>
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.des}}</div>
+                <div class="text-center">
+                  <my-audit-pu-status :status="scope.row.punishStatus"></my-audit-pu-status>
+                </div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  {{scope.row.des}}
+                  <my-audit-pu-status :status="scope.row.punishStatus"></my-audit-pu-status>
                 </div>
               </el-popover>
             </template>
@@ -170,9 +179,41 @@
         <my-audit-detail type="PunishmentApply" :sel-value="dataAudit"></my-audit-detail>
       </div>
       <div slot="footer">
-        <audit-button :sel-value="dataAudit" @ok="handleOk" @no="handleNo" @cancel="handleCancel"></audit-button>
+        <audit-button :sel-value="dataAudit" @ok="handleOk" @no="handleNo" @cancel="handleCancel" @remove="removeAudit"></audit-button>
       </div>
     </drawer-layout-right>
+
+    <dialog-normal :visible="dialogRemove" :title="$t('解除申请')" @close="closeDialog" @right-close="cancelDialog">
+      <div class="margin-top-10">
+        <el-form :model="formRemove" :rules="rulesRemove" ref="formRemove" label-width="140px">
+          <el-form-item :label="$t('附件')">
+            <div v-if="images.length > 0" v-for="(item, index) in images" :key="index" class="pull-left" style="position: relative;margin-right:10px;top: 10px">
+              <i class="fa fa-close" style="position: absolute; right: -5px; top: -5px;font-size: 12px" @click="deleteRemoveImg(index)"></i>
+              <i v-if="item.indexOf('.pdf') > -1" class="fa fa-file-pdf-o" style="height: 25px;width: 25px;font-size: 25px;position: relative;top: -2px;"></i>
+              <i v-else-if="item.indexOf('.doc') > -1 || item.indexOf('.docx') > -1" class="fa fa-wordpress" style="height: 25px;width: 25px;font-size: 25px;position: relative;top: -2px;"></i>
+              <img v-else :src="item" class="rp-img"/>
+            </div>
+            <upload-square :action="uploadFileUrl" max-size="20" :data="{path: 'PunishmentCancelApply'}" accept=".png,.jpg,.jpeg,.pdf,.doc,.docx" @success="uploadFileSuccess">
+              <div class="upload-block-class">
+                <el-button type="warning" size="small"><span>{{$t("上传文件")}}</span></el-button>
+              </div>
+            </upload-square>
+            <div><span class="color-danger font-size-12">{{errorStudent}}</span></div>
+          </el-form-item>
+          <el-form-item :label="$t('说明')" prop="des">
+            <el-input v-model="formRemove.des" type="textarea" class="width-260"></el-input>
+          </el-form-item>
+        </el-form>
+      </div>
+
+      <div slot="footer">
+        <el-button size="small" @click="cancelRemoveDialog">{{$t("取消")}}</el-button>
+        <el-button size="small" type="primary" @click="dialogLoading == false ? okRemoveDialog() : ''">
+          <i class="el-icon-loading" v-if="dialogLoading"></i>
+          {{$t("确定")}}
+        </el-button>
+      </div>
+    </dialog-normal>
   </div>
 </template>
 
@@ -191,9 +232,12 @@
   import DrawerLayoutRight from "../../../components/utils/dialog/DrawerLayoutRight";
   import AuditStatusButton from "../../../components/utils/button/AuditStatusButton";
   import AuditButton from "../../../components/utils/auditDetail/AuditButton";
+  import AuditStatusRelieveButton from "~/components/utils/button/AuditStatusRelieveButton";
   export default {
     mixins: [mixins, levelValidater],
-    components: {MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal,DrawerLayoutRight,AuditStatusButton,AuditButton},
+    components: {
+      AuditStatusRelieveButton,
+      MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal,DrawerLayoutRight,AuditStatusButton,AuditButton},
     data(){
       return {
         tableData: [],
@@ -205,6 +249,7 @@
         dialogLoading: false,
         visibleConfim: false,
         drawerVisible: false,
+        dialogRemove: false,
         clearTime: '',
         action: '',
         subTitle: '',
@@ -212,10 +257,18 @@
         status: '',
         auditObjectItem: {},
         msgType: '',
+        filterRpStatusText: '',
+        errorStudent: '',
+        uploadFileUrl: common.upload_file,
+        images: [],
         form: {
           id: '',
           name: '',
           type: ''
+        },
+        formRemove: {
+          file: '',
+          des: '',
         }
       }
     },
@@ -231,7 +284,8 @@
           applyTimeBegin: this.searchDate ? this.searchDate[0] : '',
           applyTimeEnd: this.searchDate ? this.searchDate[1] : '',
           status: this.status,
-          searchKey: this.searchKey
+          searchKey: this.searchKey,
+          punishStatus: this.rpStatus,
         };
         this.$axios.get(common.audit_page, {params: params}).then(res => {
           if (res.data.data){
@@ -283,6 +337,32 @@
       },
       cancelDrawDialog(){
         this.drawerVisible = false;
+      },
+      deleteRemoveImg(event, index){
+        //this.form.file = "";
+        this.images.splice(index, 1);
+      },
+      fliterTable(value, row, column){
+        for (let item in value){
+          if (item == 'rpStatus'){
+            this.filterRpStatusText = "";
+            this.rpStatus = value[item][0];
+            for (let i = 0; i < this.filterJCRpStatus.length; i++){
+              if (this.rpStatus == this.filterJCRpStatus[i].value){
+                this.filterRpStatusText = this.filterJCRpStatus[i].text;
+              }
+            }
+          }
+        }
+        this.page = 1;
+        this.init();
+      },
+      uploadFileSuccess(res, file){
+        if (res.code == 200){
+          this.images.push(res.data.url);
+        }else {
+
+        }
       },
       handleClick(data){
         this.page = 1;
@@ -341,6 +421,76 @@
             MessageWarning(res.data.desc);
           }
         });
+      },
+      removeAudit(data){
+        this.dialogRemove = true;
+      },
+      cancelDialog(){
+        this.modalVisible = false;
+      },
+      cancelRemoveDialog(){
+        this.dialogRemove = false;
+      },
+      okRemoveDialog(event) {
+        let url = "";
+        let arr = [];
+        this.$refs['formRemove'].validate((valid) => {
+          if (valid) {
+            if (this.images.length <= 0){
+              this.errorStudent = this.$t("请上传文件");
+              return;
+            }
+            this.dialogLoading = true;
+            let params = {
+              parentApplyId: this.auditObjectItem.id,
+              applyFile: this.images.join(),
+              applyTypeCode: "PunishmentCancelApply",
+              des: this.formRemove.des,
+            };
+            url = common.audit_re_add;
+            params = JSON.stringify(params);
+            this.$axios.post(url, params, {dataType: 'stringfy', loading: false}).then(res => {
+              if (res.data.code == 200){
+                this.dialogRemove = false;
+                this.drawerVisible = false;
+                this.initDetail();
+                MessageSuccess(res.data.desc);
+              }else {
+                MessageError(res.data.desc);
+              }
+              this.dialogLoading = false;
+            });
+          }
+        });
+      },
+      closeDialog(event){
+        this.form = {
+          id: '',
+          type: '',
+          level: '',
+          file: '',
+          files: [],
+          des: '',
+          userId:[]
+        };
+        this.formRemove = {
+          file: '',
+          des: '',
+        };
+        this.images = [];
+        this.errorStudent = "";
+        this.filterAddLevels = [];
+        this.subTitle = "";
+        this.pageStudent = 1;
+        this.numStudent = 20;
+        this.searchStudentKey = "";
+        this.dialogLoading = false;
+        if (this.$refs.studentRef){
+          this.$refs.studentRef.inputValue = "";
+        }
+        if (this.$refs['form']){
+          this.$refs['form'].resetFields();
+        }
       }
     }
   }

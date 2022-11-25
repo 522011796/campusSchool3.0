@@ -6,7 +6,7 @@
       <div slot="tab">
         <el-row>
           <el-col :span="12">
-            <audit-status-button size="small" @click="handleClick"></audit-status-button>
+            <audit-status-relieve-button size="small" @click="handleClick"></audit-status-relieve-button>
           </el-col>
           <el-col :span="12" class="text-right">
             <my-date-picker :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChange" style="position: relative; top: 1px;"></my-date-picker>
@@ -123,6 +123,26 @@
           </el-table-column>
           <el-table-column
             align="center"
+            :filter-multiple="false"
+            column-key="rpStatus"
+            :filters="filterJCRpStatus">
+            <template slot="header">
+              <span>{{$t('奖惩状态')}}</span>
+              <span v-if="filterRpStatusText != ''" class="font-size-12 color-disabeld moon-content-text-ellipsis-class">{{filterRpStatusText}}</span>
+            </template>
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">
+                  <my-audit-pu-status :status="scope.row.punishStatus"></my-audit-pu-status>
+                </div>
+                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  <my-audit-pu-status :status="scope.row.punishStatus"></my-audit-pu-status>
+                </div>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
             prop="level_name"
             :label="$t('状态/审核人')">
             <template slot-scope="scope">
@@ -180,9 +200,12 @@
   import DrawerLayoutRight from "../../../components/utils/dialog/DrawerLayoutRight";
   import AuditStatusButton from "../../../components/utils/button/AuditStatusButton";
   import AuditButton from "../../../components/utils/auditDetail/AuditButton";
+  import AuditStatusRelieveButton from "~/components/utils/button/AuditStatusRelieveButton";
   export default {
     mixins: [mixins, levelValidater],
-    components: {MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal,DrawerLayoutRight,AuditStatusButton,AuditButton},
+    components: {
+      AuditStatusRelieveButton,
+      MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal,DrawerLayoutRight,AuditStatusButton,AuditButton},
     data(){
       return {
         tableData: [],
@@ -222,7 +245,8 @@
           applyTimeBegin: this.searchDate ? this.searchDate[0] : '',
           applyTimeEnd: this.searchDate ? this.searchDate[1] : '',
           status: this.status,
-          searchKey: this.searchKey
+          searchKey: this.searchKey,
+          punishStatus: this.rpStatus,
         };
         this.$axios.get(common.audit_page, {params: params}).then(res => {
           if (res.data.data){

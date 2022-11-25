@@ -15,7 +15,7 @@
   import mixins from "../../../utils/mixins";
   import TabGroupButton from "./TabGroupButton";
   export default {
-    name: 'auditStatusButton',
+    name: 'auditStatusRelieveButton',
     mixins: [mixins],
     components: {TabGroupButton},
     props: {
@@ -48,6 +48,10 @@
           {
             label: '已驳回',
             value: '4'
+          },
+          {
+            label: '已解除',
+            value: '8'
           }
         ]
       }

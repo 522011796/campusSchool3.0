@@ -30,19 +30,7 @@
               :max-height="tableHeight2.height"
               style="width: 100%"
               @filter-change="fliterTable">
-              <el-table-column
-                align="center"
-                :label="$t('日期')">
 
-                <template slot-scope="scope">
-                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{$moment(scope.row.apply_time).format("YYYY-MM-DD")}}</div>
-                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      {{$moment(scope.row.apply_time).format("YYYY-MM-DD")}}
-                    </div>
-                  </el-popover>
-                </template>
-              </el-table-column>
               <el-table-column
                 align="center"
                 :label="$t('姓名')">
@@ -84,11 +72,24 @@
               </el-table-column>
               <el-table-column
                 align="center"
+                :label="$t('院系')">
+
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">{{scope.row.college_name}}</div>
+                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      {{scope.row.college_name}}
+                    </div>
+                  </el-popover>
+                </template>
+              </el-table-column>
+              <el-table-column
+                align="center"
                 :filter-multiple="false"
                 column-key="type"
                 :filters="filterRuTypes">
                 <template slot="header">
-                  <span>{{$t('类型')}}</span>
+                  <span>{{$t('奖惩状态')}}</span>
                   <span v-if="filterTypesText != ''" class="font-size-12 color-disabeld">{{filterTypesText}}</span>
                 </template>
                 <template slot-scope="scope">
@@ -159,7 +160,8 @@
             size="medium"
             :max-height="drawHeight5.height"
             style="width: 100%"
-            @filter-change="fliterTable">
+            @filter-change="fliterDetailTable"
+            ref="tableDetail">
             <el-table-column
               align="center"
               :label="$t('日期')">
@@ -179,9 +181,9 @@
 
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.real_name}}</div>
+                  <div class="text-center">{{scope.row.id}}</div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.real_name}}
+                    {{scope.row.id}}
                   </div>
                 </el-popover>
               </template>
@@ -226,12 +228,20 @@
             </el-table-column>
             <el-table-column
               align="center"
-              :label="$t('状态')">
+              :filter-multiple="false"
+              column-key="rpStatus"
+              :filters="filterJCRpStatus">
+              <template slot="header">
+                <span>{{$t('奖惩状态')}}</span>
+                <span v-if="filterRpStatusText != ''" class="font-size-12 color-disabeld moon-content-text-ellipsis-class">{{filterRpStatusText}}</span>
+              </template>
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center"><my-audit-status :status="scope.row.status" :handler="scope.row.handler_name"></my-audit-status></div>
+                  <div class="text-center">
+                    <my-audit-pu-status :status="scope.row.punishStatus"></my-audit-pu-status>
+                  </div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    <my-audit-status :status="scope.row.status" :handler="scope.row.handler_name"></my-audit-status>
+                    <my-audit-pu-status :status="scope.row.punishStatus"></my-audit-pu-status>
                   </div>
                 </el-popover>
               </template>
@@ -377,6 +387,8 @@
         uploadFileUrl: common.upload_file,
         punish: '',
         reward: '',
+        filterRpStatusText: '',
+        rpStatus: '',
         form: {
           id: '',
           type: '',
@@ -516,6 +528,7 @@
           applyTypeCode: 'PunishmentApply',
           applyTimeBegin: this.searchDate ? this.searchDate[0] : '',
           applyTimeEnd: this.searchDate ? this.searchDate[1] : '',
+          punishStatus: this.rpStatus,
           //searchKey: this.searchDetailKey
         };
         this.tableDetailLoading = true;
@@ -609,12 +622,17 @@
         this.totalDetail = 0;
         this.numDetail = 20;
         this.detailStatusInfo = '';
+        this.filterRpStatusText = "";
+        this.rpStatus = "";
+        this.searchDate = [];
+        this.$refs.tableDetail.clearFilter();
         this.drawerDetailVisible = event;
       },
       cancelDrawDialog(){
         this.drawerVisible = false;
       },
       cancelDrawDetailDialog(){
+        this.closeDrawerDetailDialog();
         this.drawerDetailVisible = false;
       },
       sizeChange(event){
@@ -695,10 +713,33 @@
                 this.filterStatusText = this.filterRpStatus[i].text;
               }
             }
+          }else if (item == 'rpStatus'){
+            this.filterRpStatusText = "";
+            this.rpStatus = value[item][0];
+            for (let i = 0; i < this.filterJCRpStatus.length; i++){
+              if (this.rpStatus == this.filterJCRpStatus[i].value){
+                this.filterRpStatusText = this.filterJCRpStatus[i].text;
+              }
+            }
           }
         }
         this.page = 1;
         this.init();
+      },
+      fliterDetailTable(value, row, column){
+        for (let item in value){
+          if (item == 'rpStatus'){
+            this.filterRpStatusText = "";
+            this.rpStatus = value[item][0];
+            for (let i = 0; i < this.filterJCRpStatus.length; i++){
+              if (this.rpStatus == this.filterJCRpStatus[i].value){
+                this.filterRpStatusText = this.filterJCRpStatus[i].text;
+              }
+            }
+          }
+        }
+        this.pageDetail = 1;
+        this.initDetail();
       },
       expandInfo(){
         let url = common.audit_download;

@@ -132,7 +132,7 @@
               </el-col>
               <el-col :span="16" class="text-right">
                 <my-date-picker :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChange" style="position: relative; top: 1px;"></my-date-picker>
-                <my-input-button size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('姓名/学号')" @click="search"></my-input-button>
+                <my-input-button size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('姓名/学号/编号')" @click="search"></my-input-button>
               </el-col>
             </el-row>
           </div>
@@ -153,6 +153,19 @@
                     <div class="text-center">{{$moment(scope.row.apply_time).format("YYYY-MM-DD")}}</div>
                     <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                       {{$moment(scope.row.apply_time).format("YYYY-MM-DD")}}
+                    </div>
+                  </el-popover>
+                </template>
+              </el-table-column>
+              <el-table-column
+                align="center"
+                :label="$t('编号')">
+
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">{{scope.row.id}}</div>
+                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      {{scope.row.id}}
                     </div>
                   </el-popover>
                 </template>
@@ -238,7 +251,7 @@
                 column-key="rpStatus"
                 :filters="filterJCRpStatus">
                 <template slot="header">
-                  <span>{{$t('处分状态')}}</span>
+                  <span>{{$t('奖惩状态')}}</span>
                   <span v-if="filterRpStatusText != ''" class="font-size-12 color-disabeld moon-content-text-ellipsis-class">{{filterRpStatusText}}</span>
                 </template>
                 <template slot-scope="scope">
@@ -366,7 +379,7 @@
             <span class="pull-left color-danger font-size-12 margin-left-10 margin-top-5">{{$t("文件不超过20M")}}</span>
             <div class="moon-clearfix"></div>
           </el-form-item>
-          <el-form-item :label="$t('解除时限')" prop="time">
+          <el-form-item v-if="form.type == '处分'" :label="$t('解除时限')" prop="time">
             <el-input v-model="form.time" class="width-350">
               <template slot="append"><label>{{$t("天")}}</label></template>
             </el-input>

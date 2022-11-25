@@ -10,6 +10,11 @@ export default {
         type: [
           { required: true, message: this.$t("请选择类型"), trigger: 'change' },
         ]
+      },
+      rulesRemove: {
+        des: [
+          { required: true, message: this.$t("请输入信息"), trigger: 'blur' },
+        ]
       }
     }
   }
