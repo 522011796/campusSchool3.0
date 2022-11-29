@@ -254,6 +254,19 @@
     </layout-lr>
 
     <drawer-layout-right tabindex="0" :hide-footer="(detailData.status == -1 || detailData.status == 3) ? false : true" @changeDrawer="closeDrawerDialog" :visible="dialogServerDetail" size="600px" :title="$t('详情')" @right-close="cancelDrawDialog">
+      <div slot="title">
+        <div class="header-block padding-lr-10">
+          <el-row>
+            <el-col :span="24">
+              <span class="tab-class font-bold">
+                <i class="fa fa-user"></i>
+                <label>{{$t('当前审批详细')}}</label>
+                <label v-if="detailData.currentNodeName" class="color-warning">【{{detailData.currentNodeName}}】</label>
+              </span>
+            </el-col>
+          </el-row>
+        </div>
+      </div>
       <div slot="content" class="color-muted">
         <div class="detail-block-title padding-lr-10 padding-tb-10 font-size-12">
           <el-row>
@@ -401,11 +414,15 @@
                 </div>
                 <div slot="title" class="font-size-12">
                   <span v-if="item.nodeType == 'handle'" class="color-success">
-                    {{ $t("审批") }}
+                    <label v-if="item.nodeName">【{{item.nodeName}}】</label>
+                    <label>{{ $t("审批") }}</label>
                     <label v-if="item.andor == 'and'"> ({{ $t("与签") }}) </label>
                     <label v-if="item.andor == 'or'"> ({{ $t("或签") }}) </label>
                   </span>
-                  <span v-if="item.nodeType == 'cc'" class="color-warning">{{ $t("抄送") }}</span>
+                  <span v-if="item.nodeType == 'cc'" class="color-warning">
+                    <label v-if="item.nodeName">【{{item.nodeName}}】</label>
+                    <label>{{ $t("抄送") }}</label>
+                  </span>
                 </div>
                 <div slot="description" class="font-size-12 color-sub-title">
                   <div>
@@ -642,6 +659,7 @@
         this.$axios.get(common.server_form_audit_query, {params: params}).then(res=>{
           if (res.data.code == 200){
             if (res.data.data){
+              this.detailData = res.data.data;
               this.detailApplyAuditList = res.data.data.handleList;
             }
           }
@@ -894,5 +912,9 @@
 .block-item-row{
   height: 35px;
   line-height: 35px;
+}
+.header-block{
+  height: 40px;
+  line-height: 40px;
 }
 </style>
