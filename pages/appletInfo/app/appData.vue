@@ -253,20 +253,7 @@
       </div>
     </layout-lr>
 
-    <drawer-layout-right tabindex="0" :hide-footer="(detailData.status == -1 || detailData.status == 3) ? false : true" @changeDrawer="closeDrawerDialog" :visible="dialogServerDetail" size="600px" :title="$t('详情')" @right-close="cancelDrawDialog">
-      <div slot="title">
-        <div class="header-block padding-lr-10">
-          <el-row>
-            <el-col :span="24">
-              <span class="tab-class font-bold">
-                <i class="fa fa-user"></i>
-                <label>{{$t('当前审批详细')}}</label>
-                <label v-if="detailData.currentNodeName" class="color-warning">【{{detailData.currentNodeName}}】</label>
-              </span>
-            </el-col>
-          </el-row>
-        </div>
-      </div>
+    <drawer-layout-right tabindex="0" :hide-footer="(detailData.status == -1 || detailData.status == 3 || detailData.currentNodeName) ? false : true" @changeDrawer="closeDrawerDialog" :visible="dialogServerDetail" size="600px" :title="$t('详情')" @right-close="cancelDrawDialog">
       <div slot="content" class="color-muted">
         <div class="detail-block-title padding-lr-10 padding-tb-10 font-size-12">
           <el-row>
@@ -511,8 +498,14 @@
         </div>
       </div>
       <div slot="footer">
-        <div v-if="detailData.status === -1" class="color-white text-center bg-warning">{{$t("撤销")}}</div>
-        <div v-if="detailData.status === 3" class="color-white text-center bg-success">{{$t("已通过")}}</div>
+        <div style="position: relative">
+          <div v-if="detailData.currentNodeName" style="position: absolute; left: 10px; top: 0px">
+            <label class="color-success font-bold">{{$t('当前审批环节')}}</label>
+            <label class="color-warning">【{{detailData.currentNodeName}}】</label>
+          </div>
+          <div v-if="detailData.status === -1" class="color-white text-center bg-warning">{{$t("撤销")}}</div>
+          <div v-if="detailData.status === 3" class="color-white text-center bg-success">{{$t("已通过")}}</div>
+        </div>
       </div>
     </drawer-layout-right>
 
