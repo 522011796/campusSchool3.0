@@ -6,7 +6,7 @@
       <div slot="tab">
         <el-row>
           <el-col :span="12">
-            <audit-status-relieve-button size="small" @click="handleClick"></audit-status-relieve-button>
+            <audit-status-button size="small" @click="handleClick"></audit-status-button>
           </el-col>
           <el-col :span="12" class="text-right">
             <my-date-picker :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChange" style="position: relative; top: 1px;"></my-date-picker>
@@ -499,5 +499,10 @@
 <style scoped>
   .container {
     padding: 10px 15px;
+  }
+  .rp-img{
+    height: 25px;
+    width: 25px;
+    border: 1px solid #dddddd;
   }
 </style>
