@@ -13,7 +13,7 @@
           <el-col :span="8" class="text-right">
             <div class="color-warning">
               <span>{{$t("编号")}}:</span>
-              <span>{{value.apply_no}}</span>
+              <span>{{value.apply_no ? value.apply_no : '--'}}</span>
             </div>
           </el-col>
         </el-row>

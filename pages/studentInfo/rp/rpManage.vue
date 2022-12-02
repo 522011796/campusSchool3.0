@@ -181,9 +181,9 @@
 
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{scope.row.id}}</div>
+                  <div class="text-center">{{scope.row.apply_no ? scope.row.apply_no : '--'}}</div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    {{scope.row.id}}
+                    {{scope.row.apply_no ? scope.row.apply_no : '--'}}
                   </div>
                 </el-popover>
               </template>

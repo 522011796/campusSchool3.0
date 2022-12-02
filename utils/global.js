@@ -176,6 +176,7 @@ const filterRpStatus = [
 
 const filterJCRpStatus = [
   { text: "审批中", value: '0' ,label: '审批中'},
+  { text: '奖励中', value: '2' ,label: '奖励中'},
   { text: '处分中', value: '3' ,label: '处分中'},
   { text: '已驳回', value: '4' ,label: '已驳回'},
   { text: '已逾期', value: '5' ,label: '已逾期'},
