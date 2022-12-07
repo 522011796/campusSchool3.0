@@ -174,6 +174,22 @@
                       </el-row>
                     </el-col>
                   </el-row>
+                  <el-row class="margin-top-5">
+                    <el-col :span="16">
+                      <span>{{$t("催办")}}</span>
+                    </el-col>
+                    <el-col :span="8" class="text-center">
+                      <el-row>
+                        <el-col :span="12" class="text-center">
+                          <!--                          <el-checkbox v-model="flowDetailData.rejectMuti"></el-checkbox>-->
+                          &nbsp;
+                        </el-col>
+                        <el-col :span="12" class="text-center">
+                          <el-checkbox v-model="flowDetailData.urge"></el-checkbox>
+                        </el-col>
+                      </el-row>
+                    </el-col>
+                  </el-row>
 <!--                  <el-row class="margin-top-5">-->
 <!--                    <el-col :span="16">-->
 <!--                      <span>{{$t("转交")}}</span>-->
@@ -406,10 +422,13 @@
                     </span>
                     <span>
                       <el-tag size="mini" type="success" v-if="item.allowShow || item.allowMuti" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
-                        {{ $t("提交") }}
+                        {{ $t("同意") }}
                       </el-tag>
                       <el-tag size="mini" type="success" v-if="item.rejectShow || item.rejectMuti" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
                         {{ $t("驳回") }}
+                      </el-tag>
+                      <el-tag size="mini" type="success" v-if="item.urge" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
+                        {{ $t("催办") }}
                       </el-tag>
 <!--                      <el-tag size="mini" type="success" v-if="item.transferShow || item.transferMuti" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">-->
 <!--                        {{ $t("转交") }}-->
@@ -460,7 +479,6 @@
             auditType: '',
             name: '',
             allowBack: false,
-            urge: false,
             autoAudit: false,
             merge: false
           };
@@ -540,6 +558,7 @@
           applicantEdit: false,
           right1: [],
           right2: [],
+          urge: false
         };
         this.flowData.splice(index, 0, obj);
         this.selFlowItemBlock(null, obj, index);

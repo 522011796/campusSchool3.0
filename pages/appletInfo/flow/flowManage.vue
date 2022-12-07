@@ -229,6 +229,7 @@
             transferMuti: formProcess[j].trans2,
             right1: formProcess[j].right1 ? formProcess[j].right1 : [],
             right2: formProcess[j].right2 ? formProcess[j].right2 : [],
+            urge: formProcess[j].urge,
           };
 
           for (let k = 0; k < formProcess[j].hid.length; k++){
@@ -463,6 +464,7 @@
             trans2: flowData[i].transferMuti,
             right1: flowData[i].right1,
             right2: flowData[i].right2,
+            urge: flowData[i].urge,
           }
           flowDataArray.push(obj);
         }
