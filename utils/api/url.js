@@ -584,6 +584,7 @@ export const common = {
   server_list_list1: '/proxy/school/applet/form/list1',//服务列表-通过类型查询的列表
   server_list_list2: '/proxy/school/applet/form/list2',//服务列表-当前人员提交能用的列表
   server_list_field: '/proxy/school/applet/stat/field/list',//服务列表字段
+  server_list_field2: '/proxy/school/applet/form/field/num',//服务列表字段
   server_list_del: '/proxy/school/applet/form/del',//删除服务列表
   server_list_enable: '/proxy/school/applet/form/enable',//启、禁服务列表
   server_list_save: '/proxy/school/applet/form/save',//保存服务列表

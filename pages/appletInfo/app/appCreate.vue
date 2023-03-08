@@ -120,6 +120,27 @@
               </el-table-column>
               <el-table-column
                 align="center"
+                prop="appName"
+                :label="$t('数据核查规则')">
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">
+
+                    </div>
+                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      <label class="color-success">
+                        {{scope.row.checkValue ? scope.row.checkValue : '--'}}
+                      </label>
+                      /
+                      <label class="color-danger">
+                        {{scope.row.checkValueAll ? scope.row.checkValueAll : '--'}}
+                      </label>
+                    </span>
+                  </el-popover>
+                </template>
+              </el-table-column>
+              <el-table-column
+                align="center"
                 width="120"
                 :label="$t('操作')">
                 <template slot-scope="scope">

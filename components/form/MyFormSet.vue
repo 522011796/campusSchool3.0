@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="form-set-main" :style="drawHeight3">
-      <div class="pull-left form-set-left">
+    <div class="form-set-main">
+      <div class="pull-left form-set-left" :style="drawHeight7" style="overflow-y: auto">
         <div class="form-set-menu-item" :class="activeSetMenu == 1 ? 'form-set-menu-item-active' : ''" @click="selSetMenu(1)">
           <span>{{$t("基础设置")}}</span>
         </div>
@@ -18,7 +18,7 @@
 <!--          <span>{{$t("跨应用取数")}}</span>-->
 <!--        </div>-->
       </div>
-      <div class="form-set-right">
+      <div class="form-set-right" :style="drawHeight7" style="overflow-y: auto">
         <div v-if="activeSetMenu == 1">
           <div class="padding-lr-10 padding-tb-10">
             <div class="color-muted">
@@ -39,16 +39,102 @@
                     <span class="color-muted font-size-12">[{{$t('表单名称')}}]</span>
                   </el-checkbox>
                 </el-form-item>
-                <el-form-item :label="$t('提交规则')" prop="subRule">
-                  <el-checkbox v-model="formBasic.subRule">
-                    <span class="color-muted font-size-12">[{{$t('同账号只允许提交一次')}}]</span>
-                  </el-checkbox>
-                </el-form-item>
                 <el-form-item :label="$t('提交按钮')" prop="subBtn">
                   <el-radio-group v-model="formBasic.subBtn">
-                    <el-radio :label="true">{{$t('开启')}}</el-radio>
-                    <el-radio :label="false">{{$t('关闭')}}</el-radio>
+                    <el-radio :label="true">{{$t('显示')}}</el-radio>
+                    <el-radio :label="false">{{$t('隐藏')}}</el-radio>
                   </el-radio-group>
+                </el-form-item>
+                <el-form-item :label="$t('提交规则')" prop="subRule">
+                  <div>
+                    <el-checkbox v-model="formBasic.subRule">
+                      <span class="color-muted font-size-12">[{{$t('同账号只允许提交一次')}}]</span>
+                    </el-checkbox>
+                  </div>
+                  <div>
+                    <el-checkbox v-model="formBasic.checkForm">
+                      <span class="color-muted font-size-12">{{$t('表单数据核查')}}</span>
+                    </el-checkbox>
+                  </div>
+                  <div>
+                    <span>
+                      <label class="font-size-12">{{$t('选择表单字段')}}</label>
+                      <el-select :disabled="!formBasic.checkForm" v-model="formBasic.checkFormParams" multiple @change="handleFormChange($event,'params')" size="small" class="width-200" :placeholder="$t('请选择本表单字段')">
+                        <el-option
+                          v-for="item in formParamsList"
+                          :key="item.value"
+                          :label="item.label"
+                          :value="item.value">
+                        </el-option>
+                      </el-select>
+                    </span>
+                  </div>
+                  <div>
+                    <span>
+                      <label class="font-size-12">{{$t('选择核查条件')}}</label>
+                      <el-select :disabled="!formBasic.checkForm" v-model="formBasic.checkFormCondition" @change="handleFormChange($event,'condition')" size="small" class="width-130" :placeholder="$t('选择核查条件')">
+                        <el-option
+                          v-for="item in formCheckConditionList"
+                          :key="item.value"
+                          :label="item.label"
+                          :value="item.value">
+                        </el-option>
+                      </el-select>
+                      <el-input :disabled="!formBasic.checkForm" v-model="formBasic.checkFormConditionNum" :placeholder="$t('请填写条件数')" size="small" class="width-120"></el-input>
+                      <el-select :disabled="!formBasic.checkForm" v-model="formBasic.checkFormConditionOnly" @change="handleFormChange($event,'formOnly')" size="small" class="width-100" :placeholder="$t('请选择')">
+                        <el-option
+                          v-for="item in formCheckConditionOnlyList"
+                          :key="item.value"
+                          :label="item.label"
+                          :value="item.value">
+                        </el-option>
+                      </el-select>
+                    </span>
+                  </div>
+                  <div>
+                    <span>
+                      <label class="font-size-12">{{$t('选择执行策略')}}</label>
+                      <el-select :disabled="!formBasic.checkForm" v-model="formBasic.checkFormOpr" @change="handleFormChange($event,'formOpr')" size="small" class="width-200" :placeholder="$t('请选择执行策略')">
+                        <el-option
+                          v-for="item in formCheckOprList"
+                          :key="item.value"
+                          :label="item.label"
+                          :value="item.value">
+                        </el-option>
+                      </el-select>
+                    </span>
+                  </div>
+                  <div>
+                    <el-checkbox v-model="formBasic.checkFormStatus">
+                      <span class="color-muted font-size-12">{{$t('审核状态核查')}}</span>
+                    </el-checkbox>
+                  </div>
+                  <div>
+                    <el-select :disabled="!formBasic.checkFormStatus" v-model="formBasic.checkFormStatusJoinForm" multiple @change="handleFormChange($event,'formJoin')" size="small" class="width-200" :placeholder="$t('请选择需要关联的表单')">
+                      <el-option
+                        v-for="item in formCheckStatusJoinFormList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                      </el-option>
+                    </el-select>
+                    <el-select :disabled="!formBasic.checkFormStatus" v-model="formBasic.checkFormStatusLimitCondition" @change="handleFormChange($event,'formLimit')" size="small" class="width-150" :placeholder="$t('请选择限制条件')">
+                      <el-option
+                        v-for="item in formCheckStatuslimitConditionList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                      </el-option>
+                    </el-select>
+                    <el-select :disabled="!formBasic.checkFormStatus" v-model="formBasic.checkFormStatusLimitOpr" @change="handleFormChange($event,'formStatusOpr')" size="small" class="width-150" :placeholder="$t('请选择执行策略')">
+                      <el-option
+                        v-for="item in formCheckStatusOprList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                      </el-option>
+                    </el-select>
+                  </div>
                 </el-form-item>
                 <el-form-item :label="$t('按钮文字')" prop="subBtnText">
                   <el-input v-model="formBasic.subBtnText" size="small" class="width-300"></el-input>
@@ -270,6 +356,34 @@
         btnDialogLoading: false,
         dialogRule: false,
         formContent: "",
+        formParamsList: [],
+        formCheckConditionList: [
+          {label: this.$t("大于"), value: '>'},
+          {label: this.$t("小于"), value: '<'},
+          {label: this.$t("等于"), value: '='},
+          {label: this.$t("大于等于"), value: '>='},
+          {label: this.$t("小于等于"), value: '<='}
+        ],
+        formCheckConditionNumList: [],
+        formCheckConditionOnlyList: [
+          {label: this.$t("年"), value: '年'},
+          {label: this.$t("月"), value: '月'},
+          {label: this.$t("日"), value: '日'},
+          {label: this.$t("无"), value: '无'}
+        ],
+        formCheckOprList: [
+          {label: this.$t("满足条件禁止提交"), value: '0'},
+          {label: this.$t("满足条件允许提交"), value: '1'},
+        ],
+        formCheckStatusJoinFormList: [],
+        formCheckStatuslimitConditionList: [
+          {label: this.$t("审批状态未通过"), value: '0'},
+          {label: this.$t("审批状态通过"), value: '1'},
+        ],
+        formCheckStatusOprList: [
+          {label: this.$t("满足条件禁止提交"), value: '0'},
+          {label: this.$t("满足条件允许提交"), value: '1'},
+        ],
         formBasic: {
           name: '',
           title: true,
@@ -278,7 +392,17 @@
           subBtnText: '提交',
           rules: [],
           flow: '',
-          role: []
+          role: [],
+          checkForm: false,
+          checkFormParams: false,
+          checkFormCondition: '',
+          checkFormConditionNum: '',
+          checkFormConditionOnly: '',
+          checkFormOpr: '',
+          checkFormStatus: false,
+          checkFormStatusJoinForm: '',
+          checkFormStatusLimitCondition: '',
+          checkFormStatusLimitOpr: '',
         },
         formRule: {
           id: '',
@@ -296,6 +420,8 @@
       this.initBasicInfo();
       this.initFlow();
       this.initRole();
+      this.initForm();
+      this.initFormParams();
     },
     methods: {
       initBasicInfo(){
@@ -351,6 +477,44 @@
         this.$axios.post(common.server_form_template_form_rule_search, params).then(res => {
           if (res.data.data){
             this.ruleList = res.data.data;
+          }
+        });
+      },
+      initForm(){
+        //server_list_list2
+        let params = {
+
+        };
+        this.$axios.get(common.server_list_list2,{params: params}).then(res => {
+          if (res.data.code == 200){
+            let array = [];
+            for (let i = 0; i < res.data.data.length; i++){
+              array.push({
+                value: res.data.data[i].id,
+                label: res.data.data[i].form_name
+              });
+            }
+            this.formCheckStatusJoinFormList = array;
+          }
+        });
+      },
+      initFormParams(){
+        //server_list_list2
+        let params = {
+          formId: this.formId.id
+        };
+        this.$axios.get(common.server_list_field2,{params: params}).then(res => {
+          if (res.data.code == 200){
+            let array = [];
+            for (let i = 0; i < res.data.data.length; i++){
+              array.push({
+                id: i,
+                value: res.data.data[i].f,
+                label: res.data.data[i].n,
+                extra: res.data.data[i].d
+              });
+            }
+            this.formParamsList = array;
           }
         });
       },
@@ -418,13 +582,62 @@
       onSubmitBasic(){
         this.$refs['formBasic'].validate((valid) => {
           if (valid) {
+            let numberZeroReg = /^[0-9][0-9]*$/;
+            if (this.formBasic.checkForm == true){
+              if (this.formBasic.checkFormParams == undefined || this.formBasic.checkFormParams == ""){
+                MessageWarning(this.$t("请选择表单字段"));
+                return;
+              }else if ((this.formBasic.checkFormCondition == undefined || this.formBasic.checkFormCondition == "")
+                || (this.formBasic.checkFormConditionNum == undefined || this.formBasic.checkFormConditionNum == "")
+                || (this.formBasic.checkFormConditionOnly == undefined || this.formBasic.checkFormConditionOnly == "")){
+                MessageWarning(this.$t("请设置核查条件相关"));
+                return;
+              }else if (!numberZeroReg.test(this.formBasic.checkFormConditionNum)){
+                MessageWarning(this.$t("条件数必须为正整数"));
+                return;
+              }else if (this.formBasic.checkFormOpr == undefined || this.formBasic.checkFormOpr == ""){
+                MessageWarning(this.$t("请选择执行策略"));
+                return;
+              }
+            }
+            if (this.formBasic.checkFormStatus == true) {
+              if (this.formBasic.checkFormStatusJoinForm == undefined || this.formBasic.checkFormStatusJoinForm == "") {
+                MessageWarning(this.$t("请选择需要关联的表单"));
+                return;
+              } else if (this.formBasic.checkFormStatusLimitCondition == undefined || this.formBasic.checkFormStatusLimitCondition == "") {
+                MessageWarning(this.$t("请选择限制条件"));
+                return;
+              } else if (this.formBasic.checkFormStatusLimitOpr == undefined || this.formBasic.checkFormStatusLimitOpr == "") {
+                MessageWarning(this.$t("请选择执行策略"));
+                return;
+              }
+            }
+
+            let checkFieldValue = {
+              "ckfield": this.formBasic.checkFormParams.join(),
+              "ckcon": this.formBasic.checkFormCondition,
+              "ckvalue": this.formBasic.checkFormConditionNum,
+              "ckrange": this.formBasic.checkFormConditionOnly,
+              "ckresult": this.formBasic.checkFormOpr
+            };
+
+            let checkApplyValue = {
+              "ckid": this.formBasic.checkFormStatusJoinForm.join(),
+              "ckcon": this.formBasic.checkFormStatusLimitCondition,
+              "ckresult": this.formBasic.checkFormStatusLimitOpr
+            };
+
             let params = {
               "formId": this.formId.id,
               "formName": this.formBasic.name,
               "submitOnly": this.formBasic.subRule,
               "submitButton": this.formBasic.subBtn,
               "buttonName": this.formBasic.subBtnText,
-              "hideIds": this.formBasic.rules.join()
+              "hideIds": this.formBasic.rules.join(),
+              "checkField": this.formBasic.checkForm,
+              "checkApply": this.formBasic.checkFormStatus,
+              "checkFieldValue": checkFieldValue,
+              "checkApplyValue": checkApplyValue
             };
             if (this.formBasic.role.length > 0){
               params['formPermissionId'] = this.formBasic.role.join();
@@ -646,6 +859,23 @@
       },
       handleRoleChange(data){
         this.formBasic.role = data;
+      },
+      handleFormChange(event, type){
+        if (type == "params"){
+          this.formBasic.checkFormParams = event;
+        }else if (type == "condtion"){
+          this.formBasic.checkFormCondition = event;
+        }else if (type == "formOnly"){
+          this.formBasic.checkFormConditionOnly = event;
+        }else if (type == "formOpr"){
+          this.formBasic.checkFormOpr = event;
+        }else if (type == "formJoin"){
+          this.formBasic.checkFormStatusJoinForm = event;
+        }else if (type == "formLimit"){
+          this.formBasic.checkFormStatusLimitCondition = event;
+        }else if (type == "formStatusOpr"){
+          this.formBasic.checkFormStatusLimitOpr = event;
+        }
       },
       setRuleChild(rule, ruleList){
         let obj = {};

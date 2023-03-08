@@ -250,6 +250,9 @@ export default {
       },
       drawHeight6: {
         'height': ''
+      },
+      drawHeight7: {
+        'height': ''
       }
     }
   },
@@ -414,11 +417,12 @@ export default {
         this.divHeight13.height = window.innerHeight + 'px';
         this.divHeight8["max-height"] = window.innerHeight - 190 + 'px';
         this.drawHeight.height = window.innerHeight - 80 + 'px';
-        this.drawHeight2.height = window.innerHeight - 15 + 'px';
+        this.drawHeight2.height = window.innerHeight - 55 + 'px';
         this.drawHeight3.height = window.innerHeight - 100 + 'px';
         this.drawHeight4.height = window.innerHeight - 90 + 'px';
         this.drawHeight5.height = window.innerHeight - 160 + 'px';
         this.drawHeight6.height = window.innerHeight - 120 + 'px';
+        this.drawHeight7.height = window.innerHeight - 80 + 'px';
       }
     },
     async initVersionData(){
