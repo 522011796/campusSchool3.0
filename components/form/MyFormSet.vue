@@ -115,7 +115,7 @@
                         v-for="item in formCheckStatusJoinFormList"
                         :key="item.value"
                         :label="item.label"
-                        :value="item.value">
+                        :value="item.value+''">
                       </el-option>
                     </el-select>
                     <el-select :disabled="!formBasic.checkFormStatus" v-model="formBasic.checkFormStatusLimitCondition" @change="handleFormChange($event,'formLimit')" size="small" class="width-150" :placeholder="$t('请选择限制条件')">
@@ -425,6 +425,45 @@
     },
     methods: {
       initBasicInfo(){
+        let checkFieldValue = "";
+        let ckfield = [];
+        let ckcon = "";
+        let ckvalue = "";
+        let ckrange = "";
+        let ckresult = "";
+
+        let checkApplyValue = "";
+        let applyCkcon = "";
+        let applyCkid = [];
+        let applyCkresult = "";
+
+
+        if (this.formId.check_field_value != undefined && this.formId.check_field_value != ""){
+          checkFieldValue = JSON.parse(this.formId.check_field_value);
+          let ckfields =  (checkFieldValue.ckfield != undefined && checkFieldValue.ckfield != "") ? checkFieldValue.ckfield.split(",") : [];
+          let array = [];
+          for (let i = 0; i < ckfields.length; i++){
+            array.push(ckfields[i]+"");
+          }
+          ckcon = checkFieldValue.ckcon;
+          ckvalue = checkFieldValue.ckvalue;
+          ckrange = checkFieldValue.ckrange;
+          ckresult = checkFieldValue.ckresult;
+          ckfield = array
+        }
+
+        if (this.formId.check_apply_value != undefined && this.formId.check_apply_value != ""){
+          checkApplyValue = JSON.parse(this.formId.check_apply_value);
+          let ckids = (checkApplyValue.ckid != undefined && checkApplyValue.ckid != "") ? checkApplyValue.ckid.split(",") : [];
+          let arrayF = [];
+          for (let i = 0; i < ckids.length; i++){
+            arrayF.push(ckids[i]+"");
+          }
+          applyCkid = arrayF;
+          applyCkresult = checkApplyValue.ckresult;
+          applyCkcon = checkApplyValue.ckcon;
+        }
+
         this.formBasic = {
           name: this.formId.form_name,
           title: true,
@@ -434,6 +473,16 @@
           rules: [],
           flow: this.formId.form_process_id ? this.formId.form_process_id+'' : '',
           role: this.formId.form_permission_id != null && this.formId.form_permission_id != '' ? this.formId.form_permission_id.split(",") : [],
+          checkForm: this.formId.check_field,
+          checkFormStatus: this.formId.check_apply,
+          checkFormParams: ckfield,
+          checkFormCondition: ckcon,
+          checkFormConditionNum: ckvalue,
+          checkFormConditionOnly: ckrange,
+          checkFormOpr: ckresult+"",
+          checkFormStatusLimitCondition: applyCkcon,
+          checkFormStatusJoinForm: applyCkid,
+          checkFormStatusLimitOpr: applyCkresult,
         };
         this.initRuleList();
       },
@@ -636,8 +685,8 @@
               "hideIds": this.formBasic.rules.join(),
               "checkField": this.formBasic.checkForm,
               "checkApply": this.formBasic.checkFormStatus,
-              "checkFieldValue": checkFieldValue,
-              "checkApplyValue": checkApplyValue
+              "checkFieldValue": JSON.stringify(checkFieldValue),
+              "checkApplyValue": JSON.stringify(checkApplyValue)
             };
             if (this.formBasic.role.length > 0){
               params['formPermissionId'] = this.formBasic.role.join();
@@ -658,6 +707,10 @@
                 this.formId.hideIds = this.formBasic.rules.join();
                 this.formId.form_permission_id = this.formBasic.role.length > 0 ? this.formBasic.role.join() : '';
                 this.formId.form_process_id = this.formBasic.flow + '';
+                this.formId.check_field = this.formBasic.checkForm;
+                this.formId.check_field_value = JSON.stringify(checkFieldValue);
+                this.formId.check_apply = this.formBasic.checkFormStatus;
+                this.formId.check_apply_value = JSON.stringify(checkApplyValue);
               } else {
                 MessageError(res.data.desc);
               }
