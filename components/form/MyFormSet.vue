@@ -135,6 +135,35 @@
                       </el-option>
                     </el-select>
                   </div>
+                  <div>
+                    <el-checkbox v-model="formBasic.checkTime">
+                      <span class="color-muted font-size-12">{{$t('提交时限')}}</span>
+                    </el-checkbox>
+                  </div>
+                  <div>
+                    <el-select :disabled="!formBasic.checkTime" v-model="formBasic.checkTimeCondition" @change="handleFormChange($event,'checkTime')" size="small" class="width-100" :placeholder="$t('请选择时限条件')">
+                      <el-option
+                        v-for="item in formCheckTimeConditionList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                      </el-option>
+                    </el-select>
+                    <my-date-picker :disabled="!formBasic.checkTime" v-if="formBasic.checkTimeCondition == 1" :sel-value="formBasic.checkTimeValue" :clearable="true" type="daterange" size="small" width-style="240" @change="handleFormChange($event,'checkTimeValue')" style="position: relative; top: 1px;"></my-date-picker>
+                    <el-time-picker :disabled="!formBasic.checkTime" v-if="formBasic.checkTimeCondition == 0" size="small"
+                      v-model="formBasic.checkTimeValue2"
+                                    is-range
+                                    range-separator="至"
+                                    start-placeholder="开始时间"
+                                    end-placeholder="结束时间"
+                                    value-format="HH:mm:ss"
+                                    :picker-options="{
+                                      format:'HH:mm:ss'
+                                    }"
+                      style="width: 240px"
+                      placeholder="请选择时间范围">
+                    </el-time-picker>
+                  </div>
                 </el-form-item>
                 <el-form-item :label="$t('按钮文字')" prop="subBtnText">
                   <el-input v-model="formBasic.subBtnText" size="small" class="width-300"></el-input>
@@ -384,6 +413,10 @@
           {label: this.$t("满足条件禁止提交"), value: '0'},
           {label: this.$t("满足条件允许提交"), value: '1'},
         ],
+        formCheckTimeConditionList: [
+          {label: this.$t("每月"), value: '0'},
+          {label: this.$t("固定时间"), value: '1'},
+        ],
         formBasic: {
           name: '',
           title: true,
@@ -403,6 +436,10 @@
           checkFormStatusJoinForm: '',
           checkFormStatusLimitCondition: '',
           checkFormStatusLimitOpr: '',
+          checkTime: false,
+          checkTimeCondition: '',
+          checkTimeValue: [],
+          checkTimeValue2: ''
         },
         formRule: {
           id: '',
@@ -437,6 +474,11 @@
         let applyCkid = [];
         let applyCkresult = "";
 
+        let checkTimeValue = "";
+        let cktime1 = "";
+        let cktime2 = "";
+        let cktype = "";
+
 
         if (this.formId.check_field_value != undefined && this.formId.check_field_value != ""){
           checkFieldValue = JSON.parse(this.formId.check_field_value);
@@ -464,6 +506,13 @@
           applyCkcon = checkApplyValue.ckcon;
         }
 
+        if (this.formId.check_time_value != undefined && this.formId.check_time_value != ""){
+          checkTimeValue = JSON.parse(this.formId.check_time_value);
+          cktime1 = checkTimeValue.cktime1;
+          cktime2 = checkTimeValue.cktime2;
+          cktype = checkTimeValue.cktype;
+        }
+
         this.formBasic = {
           name: this.formId.form_name,
           title: true,
@@ -483,6 +532,10 @@
           checkFormStatusLimitCondition: applyCkcon,
           checkFormStatusJoinForm: applyCkid,
           checkFormStatusLimitOpr: applyCkresult,
+          checkTime: this.formId.check_time,
+          checkTimeCondition: cktype,
+          checkTimeValue: cktype == 1 ? [cktime1,cktime2] : [],
+          checkTimeValue2: cktype == 0 ? [cktime1,cktime2] : '',
         };
         this.initRuleList();
       },
@@ -662,6 +715,21 @@
               }
             }
 
+            if (this.formBasic.checkTime == true) {
+              if (this.formBasic.checkTimeCondition == undefined || this.formBasic.checkTimeCondition == "") {
+                MessageWarning(this.$t("请选择时限条件"));
+                return;
+              } else if (this.formBasic.checkTimeCondition == 1 && (this.formBasic.checkTimeValue == undefined || this.formBasic.checkTimeValue == "")) {
+                MessageWarning(this.$t("请选择时间范围"));
+                return;
+              } else if (this.formBasic.checkTimeCondition == 0 && (this.formBasic.checkTimeValue2 == undefined || this.formBasic.checkTimeValue2 == "")) {
+                MessageWarning(this.$t("请选择时间范围"));
+                return;
+              } else if (this.formBasic.checkTimeCondition == 0 && (this.formBasic.checkTimeValue2.length > 0 && this.formBasic.checkTimeValue2[0] == "")) {
+                MessageWarning(this.$t("请选择时间范围"));
+                return;
+              }
+            }
             let checkFieldValue = {
               "ckfield": this.formBasic.checkFormParams.join(),
               "ckcon": this.formBasic.checkFormCondition,
@@ -676,6 +744,21 @@
               "ckresult": this.formBasic.checkFormStatusLimitOpr
             };
 
+            let checkTimeValue = {};
+            if (this.formBasic.checkTimeCondition == 0){
+              checkTimeValue = {
+                "cktype": this.formBasic.checkTimeCondition,
+                "cktime1": this.formBasic.checkTimeValue2 && this.formBasic.checkTimeValue2 != '' ? this.formBasic.checkTimeValue2[0] : '',
+                "cktime2": this.formBasic.checkTimeValue2 && this.formBasic.checkTimeValue2 != '' ? this.formBasic.checkTimeValue2[1] : '',
+              };
+            }else {
+              checkTimeValue = {
+                "cktype": this.formBasic.checkTimeCondition,
+                "cktime1": this.formBasic.checkTimeValue && this.formBasic.checkTimeValue.length > 0 ? this.formBasic.checkTimeValue[0] : '',
+                "cktime2": this.formBasic.checkTimeValue && this.formBasic.checkTimeValue.length > 0 ? this.formBasic.checkTimeValue[1] : '',
+              };
+            }
+
             let params = {
               "formId": this.formId.id,
               "formName": this.formBasic.name,
@@ -686,7 +769,9 @@
               "checkField": this.formBasic.checkForm,
               "checkApply": this.formBasic.checkFormStatus,
               "checkFieldValue": JSON.stringify(checkFieldValue),
-              "checkApplyValue": JSON.stringify(checkApplyValue)
+              "checkApplyValue": JSON.stringify(checkApplyValue),
+              "checkTime": this.formBasic.checkTime,
+              "checkTimeValue": JSON.stringify(checkTimeValue),
             };
             if (this.formBasic.role.length > 0){
               params['formPermissionId'] = this.formBasic.role.join();
@@ -711,6 +796,8 @@
                 this.formId.check_field_value = JSON.stringify(checkFieldValue);
                 this.formId.check_apply = this.formBasic.checkFormStatus;
                 this.formId.check_apply_value = JSON.stringify(checkApplyValue);
+                this.formId.check_time = this.formBasic.checkTime;
+                this.formId.check_time_value = JSON.stringify(checkTimeValue);
               } else {
                 MessageError(res.data.desc);
               }
@@ -928,6 +1015,10 @@
           this.formBasic.checkFormStatusLimitCondition = event;
         }else if (type == "formStatusOpr"){
           this.formBasic.checkFormStatusLimitOpr = event;
+        }else if (type == "checkTime"){
+          this.formBasic.checkTimeCondition = event;
+        }else if (type == "checkTimeValue"){
+          this.formBasic.checkTimeValue = event;
         }
       },
       setRuleChild(rule, ruleList){

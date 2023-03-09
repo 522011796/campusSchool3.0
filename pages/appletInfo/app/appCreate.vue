@@ -129,11 +129,11 @@
                     </div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                       <label class="color-success">
-                        {{scope.row.checkValue ? scope.row.checkValue : '--'}}
+                        {{scope.row.check_value ? scope.row.check_value : '--'}}
                       </label>
                       /
                       <label class="color-danger">
-                        {{scope.row.checkValueAll ? scope.row.checkValueAll : '--'}}
+                        {{scope.row.check_value_all ? scope.row.check_value_all : '--'}}
                       </label>
                     </span>
                   </el-popover>

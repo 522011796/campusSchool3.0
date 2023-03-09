@@ -85,6 +85,32 @@
               </el-table-column>
               <el-table-column
                 align="center"
+                :label="$t('奖励次数')">
+
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">{{scope.row.reward ? scope.row.reward : '--'}}</div>
+                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      {{scope.row.reward ? scope.row.reward : '--'}}
+                    </div>
+                  </el-popover>
+                </template>
+              </el-table-column>
+              <el-table-column
+                align="center"
+                :label="$t('处分次数')">
+
+                <template slot-scope="scope">
+                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                    <div class="text-center">{{scope.row.punish ? scope.row.punish : '--'}}</div>
+                    <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                      {{scope.row.punish ? scope.row.punish : '--'}}
+                    </div>
+                  </el-popover>
+                </template>
+              </el-table-column>
+              <el-table-column
+                align="center"
                 :filter-multiple="false"
                 column-key="type"
                 :filters="filterRuTypes">
@@ -95,15 +121,15 @@
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                     <div class="text-center">
-                      <label v-if="scope.row.punish == true && scope.row.reward == false" class="color-danger">{{$t("处分")}}</label>
-                      <label v-else-if="scope.row.punish == false && scope.row.reward == true" class="color-success">{{$t("奖励")}}</label>
-                      <label v-else-if="scope.row.punish == true && scope.row.reward == true" class="color-warning">{{$t("奖励/处分")}}</label>
+                      <label v-if="scope.row.punish > 0 && scope.row.reward == 0" class="color-danger">{{$t("处分")}}</label>
+                      <label v-else-if="scope.row.punish == 0 && scope.row.reward > 0" class="color-success">{{$t("奖励")}}</label>
+                      <label v-else-if="scope.row.punish > 0 && scope.row.reward > 0" class="color-warning">{{$t("奖励/处分")}}</label>
                       <label v-else>--</label>
                     </div>
                     <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                      <label v-if="scope.row.punish == true && scope.row.reward == false" class="color-danger">{{$t("处分")}}</label>
-                      <label v-else-if="scope.row.punish == false && scope.row.reward == true" class="color-success">{{$t("奖励")}}</label>
-                      <label v-else-if="scope.row.punish == true && scope.row.reward == true" class="color-warning">{{$t("奖励/处分")}}</label>
+                      <label v-if="scope.row.punish > 0 && scope.row.reward == 0" class="color-danger">{{$t("处分")}}</label>
+                      <label v-else-if="scope.row.punish == 0 && scope.row.reward > 0" class="color-success">{{$t("奖励")}}</label>
+                      <label v-else-if="scope.row.punish > 0 && scope.row.reward > 0" class="color-warning">{{$t("奖励/处分")}}</label>
                       <label v-else>--</label>
                     </div>
                   </el-popover>
@@ -222,6 +248,18 @@
                   <div class="text-center">{{scope.row.str1}}</div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                     {{scope.row.str1}}
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              :label="$t('级别')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.str2}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    <span class="color-danger">{{scope.row.str2}}</span>
                   </div>
                 </el-popover>
               </template>

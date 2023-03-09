@@ -284,6 +284,15 @@
               <span>{{$t("申请日期")}}:</span>
               <span>{{ $moment(detailData.applyTime).format("YYYY-MM-DD HH:mm") }}</span>
             </el-col>
+            <el-col :span="12">
+              <span>{{$t("宿舍")}}:</span>
+              <span v-if="detailData.buildName">
+                {{detailData.buildName}}{{detailData.floorNum}}{{$t("层")}}-{{detailData.roomNo}}
+              </span>
+              <span v-else>
+                --
+              </span>
+            </el-col>
           </el-row>
         </div>
         <div class="margin-top-10">
