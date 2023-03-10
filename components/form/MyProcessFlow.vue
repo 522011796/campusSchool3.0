@@ -394,6 +394,8 @@
                           <label v-if="item.hType == 'DeputyDirectorTeacher'">{{$t("系副主任")}}</label>
                           <label v-if="item.hType == 'StudentManageTeacher'">{{$t("学管主任")}}</label>
                           <label v-if="item.hType == 'SecretaryTeacher'">{{$t("系部主任")}}</label>
+                          <label v-if="item.hType == 'DormitoryTeacher'">{{$t("宿管员")}}</label>
+                          <label v-if="item.hType == 'DeptRoleAdmin'">{{$t("部门负责人")}}</label>
                         </el-tag>
                         <span v-else class="color-muted" style="position: relative; top:-5px;">无</span>
                       </template>

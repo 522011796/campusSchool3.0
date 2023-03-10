@@ -461,6 +461,11 @@ const fiterTeacherRoleType = [
     label: '宿管员审批',
     value: 'DormitoryTeacher',
     text: '宿管员审批'
+  },
+  {
+    label: '部门负责人审批',
+    value: 'DeptRoleAdmin',
+    text: '部门负责人审批'
   }
 ];
 
