@@ -3,14 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="新增规则条件">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/form/MyFormSet.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/form/MyFormSet.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appCreate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appCreate.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appData.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/formPrint.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/formPrint.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/rp/rpManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/rp/rpManage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +55,7 @@
       <workItem from="1672898763385" duration="504000" />
       <workItem from="1673944535458" duration="121000" />
       <workItem from="1677464143474" duration="13647000" />
-      <workItem from="1678247760720" duration="24461000" />
+      <workItem from="1678247760720" duration="28398000" />
     </task>
     <task id="LOCAL-00001" summary="解除申请">
       <created>1669282932965</created>
@@ -153,7 +148,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678327550629</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="新增规则条件">
+      <created>1678355488347</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1678355488349</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

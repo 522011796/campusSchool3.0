@@ -125,7 +125,13 @@
                 <template slot-scope="scope">
                   <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                     <div class="text-center">
-
+                      <label class="color-success">
+                        {{scope.row.check_value ? scope.row.check_value : '--'}}
+                      </label>
+                      /
+                      <label class="color-danger">
+                        {{scope.row.check_value_all ? scope.row.check_value_all : '--'}}
+                      </label>
                     </div>
                     <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                       <label class="color-success">
