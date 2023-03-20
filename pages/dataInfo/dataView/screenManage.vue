@@ -126,6 +126,33 @@
                 </div>
               </div>
             </el-col>
+            <el-col :span="8">
+              <el-card :body-style="{padding: '0px'}" style="position: relative">
+                <div slot="header" class="moon-clearfix padding-tb-10 padding-lr-10">
+                  <span class="color-grand" style="font-weight: bold">
+                    <i class="fa fa-television"></i>
+                    {{$t("一站式服务大厅专用")}}
+                  </span>
+                  <div class="pull-right">
+                    <i class="fa fa-plus-circle color-grand margin-right-5" style="font-size: 16px" @click="addInfo(5)"></i>
+                    <i class="fa fa-eye color-warning" style="font-size: 16px" @click="showView('/img/screen_server_bg.png')"></i>
+                  </div>
+                </div>
+                <div class="padding-tb-5 padding-lr-5">
+                  <div class="screen-item">
+                    <img src="~static/img/screen_server_bg.png" class="img-class">
+                  </div>
+                </div>
+              </el-card>
+              <div class="text-center margin-top-5">
+                <div class="color-danger font-size-12">
+                  <span>{{$t("1920*1080")}}</span>
+                </div>
+                <div class="color-muted">
+                  <span>{{$t("服务大厅模版")}}</span>
+                </div>
+              </div>
+            </el-col>
           </el-row>
         </div>
       </div>
@@ -438,6 +465,11 @@
           this.formModal.templateId = 8;
           this.showDialogName = true;
           this.showDialogYear = true;
+        }else if (type == 5){
+          this.formModal.userUnit = 6;
+          this.formModal.templateId = 9;
+          this.showDialogName = true;
+          this.showDialogYear = false;
         }
         this.numStudent = 999;
         this.initStudent();

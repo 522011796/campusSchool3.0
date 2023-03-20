@@ -684,7 +684,7 @@
       onSubmitBasic(){
         this.$refs['formBasic'].validate((valid) => {
           if (valid) {
-            let numberZeroReg = /^[0-9][0-9]*$/;
+            let numberZeroReg = /^([\+ \-]?(([1-9]\d*)|(0)))([.]\d{0,2})?$/;
             if (this.formBasic.checkForm == true){
               if (this.formBasic.checkFormParams == undefined || this.formBasic.checkFormParams == ""){
                 MessageWarning(this.$t("请选择表单字段"));
@@ -695,7 +695,7 @@
                 MessageWarning(this.$t("请设置核查条件相关"));
                 return;
               }else if (!numberZeroReg.test(this.formBasic.checkFormConditionNum)){
-                MessageWarning(this.$t("条件数必须为正整数"));
+                MessageWarning(this.$t("条件数必须为整数或者两位小数"));
                 return;
               }else if (this.formBasic.checkFormOpr == undefined || this.formBasic.checkFormOpr == ""){
                 MessageWarning(this.$t("请选择执行策略"));

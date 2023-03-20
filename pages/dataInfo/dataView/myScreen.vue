@@ -324,6 +324,11 @@
         }else if (row.template_id == 8){
           this.formModal.dataSet = row.enroll_process_id;
           this.initProcess();
+        }else if (row.template_id == 9){
+          this.dataSetOptions = [{
+            label: this.$t("一站式服务大厅数据"),
+            value: ''
+          }];
         }
         this.initStudent();
         this.modalVisible = true;
