@@ -55,7 +55,11 @@
                   </div>
                   <div class="padding-tb-5 padding-lr-5">
                     <div class="screen-item">
-                      <img src="~static/img/screen-all-class.png" class="img-class">
+                      <img v-if="itemChild.template_id == 5" src="~static/img/screen-all-dorm.png" class="img-class">
+                      <img v-if="itemChild.template_id == 6" src="~static/img/screen-build-bg.png" class="img-class">
+                      <img v-if="itemChild.template_id == 7" src="~static/img/screen-all-class.png" class="img-class">
+                      <img v-if="itemChild.template_id == 8" src="~static/img/screen-student-bg.jpeg" class="img-class">
+                      <img v-if="itemChild.template_id == 9" src="~static/img/screen_server_bg.png" class="img-class">
                     </div>
                   </div>
                   <div class="padding-tb-10 padding-lr-10 color-muted" style="border-top: 1px solid #EBEEF5">
