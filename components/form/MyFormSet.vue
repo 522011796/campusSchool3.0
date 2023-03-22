@@ -150,7 +150,13 @@
                       </el-option>
                     </el-select>
                     <my-date-picker :disabled="!formBasic.checkTime" v-if="formBasic.checkTimeCondition == 1" :sel-value="formBasic.checkTimeValue" :clearable="true" type="daterange" size="small" width-style="240" @change="handleFormChange($event,'checkTimeValue')" style="position: relative; top: 1px;"></my-date-picker>
-                    <el-time-picker :disabled="!formBasic.checkTime" v-if="formBasic.checkTimeCondition == 0" size="small"
+                    <span v-if="formBasic.checkTimeCondition == 0">
+                      <el-input size="small" style="width: 100px" v-model="formBasic.checkTimeDayValue1" :disabled="!formBasic.checkTime" placeholder="开始时间"></el-input>
+                      至
+                      <el-input size="small" style="width: 100px" v-model="formBasic.checkTimeDayValue2" :disabled="!formBasic.checkTime" placeholder="结束时间"></el-input>
+                      日
+                    </span>
+                    <el-time-picker :disabled="!formBasic.checkTime" v-if="formBasic.checkTimeCondition == 2" size="small"
                       v-model="formBasic.checkTimeValue2"
                                     is-range
                                     range-separator="至"
@@ -415,6 +421,7 @@
         ],
         formCheckTimeConditionList: [
           {label: this.$t("每月"), value: '0'},
+          {label: this.$t("每日"), value: '2'},
           {label: this.$t("固定时间"), value: '1'},
         ],
         formBasic: {
@@ -439,7 +446,9 @@
           checkTime: false,
           checkTimeCondition: '',
           checkTimeValue: [],
-          checkTimeValue2: ''
+          checkTimeValue2: '',
+          checkTimeDayValue1: '',
+          checkTimeDayValue2: '',
         },
         formRule: {
           id: '',
@@ -535,7 +544,9 @@
           checkTime: this.formId.check_time,
           checkTimeCondition: cktype,
           checkTimeValue: cktype == 1 ? [cktime1,cktime2] : [],
-          checkTimeValue2: cktype == 0 ? [cktime1,cktime2] : '',
+          checkTimeValue2: cktype == 2 ? [cktime1,cktime2] : '',
+          checkTimeDayValue1: cktype == 0 ? cktime1 : '',
+          checkTimeDayValue2: cktype == 0 ? cktime2 : '',
         };
         this.initRuleList();
       },
@@ -685,6 +696,7 @@
         this.$refs['formBasic'].validate((valid) => {
           if (valid) {
             let numberZeroReg = /^([\+ \-]?(([1-9]\d*)|(0)))([.]\d{0,2})?$/;
+            let numberReg = /^[0-9][0-9]*$/;
             if (this.formBasic.checkForm == true){
               if (this.formBasic.checkFormParams == undefined || this.formBasic.checkFormParams == ""){
                 MessageWarning(this.$t("请选择表单字段"));
@@ -722,12 +734,36 @@
               } else if (this.formBasic.checkTimeCondition == 1 && (this.formBasic.checkTimeValue == undefined || this.formBasic.checkTimeValue == "")) {
                 MessageWarning(this.$t("请选择时间范围"));
                 return;
-              } else if (this.formBasic.checkTimeCondition == 0 && (this.formBasic.checkTimeValue2 == undefined || this.formBasic.checkTimeValue2 == "")) {
+              } else if (this.formBasic.checkTimeCondition == 0 && (this.formBasic.checkTimeDayValue1 == undefined || this.formBasic.checkTimeDayValue1 == "")) {
+                MessageWarning(this.$t("请设置时间范围"));
+                return;
+              } else if (this.formBasic.checkTimeCondition == 0 && (this.formBasic.checkTimeDayValue2 == undefined || this.formBasic.checkTimeDayValue2 == "")) {
+                MessageWarning(this.$t("请设置时间范围"));
+                return;
+              } else if (this.formBasic.checkTimeCondition == 2 && (this.formBasic.checkTimeValue2 == undefined || this.formBasic.checkTimeValue2 == "")) {
                 MessageWarning(this.$t("请选择时间范围"));
                 return;
-              } else if (this.formBasic.checkTimeCondition == 0 && (this.formBasic.checkTimeValue2.length > 0 && this.formBasic.checkTimeValue2[0] == "")) {
+              } else if (this.formBasic.checkTimeCondition == 2 && (this.formBasic.checkTimeValue2.length > 0 && this.formBasic.checkTimeValue2[0] == "")) {
                 MessageWarning(this.$t("请选择时间范围"));
                 return;
+              }
+
+              if (this.formBasic.checkTimeCondition == 0){
+                if (!numberReg.test(this.formBasic.checkTimeDayValue1)){
+                  MessageWarning(this.$t("请输入整数"));
+                  return;
+                }
+                if (this.formBasic.checkTimeDayValue1 <=0 || this.formBasic.checkTimeDayValue1 > 31){
+                  MessageWarning(this.$t("范围:1-31"));
+                  return;
+                }
+                if (this.formBasic.checkTimeDayValue2 <=0 || this.formBasic.checkTimeDayValue2 > 31){
+                  MessageWarning(this.$t("范围:1-31"));
+                  return;
+                }else if (parseInt(this.formBasic.checkTimeDayValue2) < parseInt(this.formBasic.checkTimeDayValue1)){
+                  MessageWarning(this.$t("结束时间必须大于或等于起始时间"));
+                  return;
+                }
               }
             }
             let checkFieldValue = {
@@ -748,6 +784,12 @@
             if (this.formBasic.checkTimeCondition == 0){
               checkTimeValue = {
                 "cktype": this.formBasic.checkTimeCondition,
+                "cktime1": this.formBasic.checkTimeDayValue1 && this.formBasic.checkTimeDayValue1 != '' ? this.formBasic.checkTimeDayValue1 : '',
+                "cktime2": this.formBasic.checkTimeDayValue2 && this.formBasic.checkTimeDayValue2 != '' ? this.formBasic.checkTimeDayValue2 : '',
+              };
+            }else if (this.formBasic.checkTimeCondition == 2){
+              checkTimeValue = {
+                "cktype": this.formBasic.checkTimeCondition,
                 "cktime1": this.formBasic.checkTimeValue2 && this.formBasic.checkTimeValue2 != '' ? this.formBasic.checkTimeValue2[0] : '',
                 "cktime2": this.formBasic.checkTimeValue2 && this.formBasic.checkTimeValue2 != '' ? this.formBasic.checkTimeValue2[1] : '',
               };
@@ -758,7 +800,7 @@
                 "cktime2": this.formBasic.checkTimeValue && this.formBasic.checkTimeValue.length > 0 ? this.formBasic.checkTimeValue[1] : '',
               };
             }
-
+            console.log(this.formBasic.checkTimeCondition, checkTimeValue);
             let params = {
               "formId": this.formId.id,
               "formName": this.formBasic.name,
