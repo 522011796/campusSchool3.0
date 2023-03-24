@@ -515,6 +515,9 @@
               params['enrollProvince'] = this.formModal.province;
               params['enrollProcessId'] = this.formModal.dataSet;
             }
+            if (this.formModal.templateId == 9){
+              params['titleName'] = this.formModal.schoolName;
+            }
             params = this.$qs.stringify(params);
             this.$axios.post(common.screen_add, params, {loading: false}).then(res => {
               if (res.data.code == 200){
