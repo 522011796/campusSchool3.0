@@ -223,6 +223,89 @@
     </drawer-right>
 
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="确认需要删除该信息？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
+
+    <dialog-normal top="10vh" width-style="600px" :visible="dialogDelVisible" :title="$t('提示')" @close="closeDelDialog" @right-close="cancelDelDialog">
+      <div>
+        <div>
+          <span>
+            <el-row>
+              <el-col :span="3">
+                <span>
+                  <i class="fa fa-warning color-danger"></i>
+                  <span>
+                    <label>
+                      {{$t("警告:")}}
+                    </label>
+                  </span>
+                </span>
+              </el-col>
+              <el-col :span="21">
+                <label>
+                  {{$t("该老师在系统中存在关联角色，请参照下表确认是否已完成更换，否则删除此人将会影响到关联业务权限，请谨慎操作！")}}
+                </label>
+              </el-col>
+            </el-row>
+          </span>
+        </div>
+        <div class="margin-top-20">
+          <el-table
+            ref="refTable"
+            :data="tableDelData"
+            header-cell-class-name="custom-table-cell-bg"
+            size="small"
+            max-height="400"
+            style="width: 100%"
+            border>
+            <el-table-column
+              align="center"
+              prop="real_name"
+              :label="$t('任职范围')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.rangeName ? scope.row.rangeName : '--'}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    <label>{{scope.row.rangeName ? scope.row.rangeName : '--'}}</label>
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="real_name"
+              :label="$t('角色')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.roleName ? scope.row.roleName : '--'}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    <label>{{scope.row.roleName ? scope.row.roleName : '--'}}</label>
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="real_name"
+              :label="$t('姓名')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.realName ? scope.row.realName : '--'}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    <label>{{scope.row.realName ? scope.row.realName : '--'}}</label>
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
+      </div>
+      <div slot="footer">
+        <el-button size="small" @click="cancelDelDialog">{{$t("取消")}}</el-button>
+        <el-button size="small" type="danger" @click="dialogLoading == false ? handleOkChange() : ''">
+          <i class="el-icon-loading" v-if="dialogLoading"></i>
+          {{$t("确定删除")}}
+        </el-button>
+      </div>
+    </dialog-normal>
   </div>
 </template>
 
@@ -248,11 +331,13 @@ export default {
   data(){
     return {
       tableData: [],
+      tableDelData: [],
       modalVisible: false,
       dialogLoading: false,
       visibleConfim: false,
       drawerVisible: false,
       drawerLoading: false,
+      dialogDelVisible: false,
       searchKey: '',
       searchDept: '',
       subTitle: '',
@@ -345,7 +430,19 @@ export default {
     deleteInfo(row){
       this.form.id = row.user_id;
       this.subTitle = row.real_name;
-      this.visibleConfim = true;
+      let params = {
+        userId: row.user_id
+      };
+      this.$axios.get(common.employee_role_list, {params: params}).then(res => {
+        if (res.data.data){
+          if (res.data.data.length > 0){
+            this.tableDelData = res.data.data;
+            this.dialogDelVisible = true;
+          }else {
+            this.visibleConfim = true;
+          }
+        }
+      });
     },
     nodeClick(data){
       this.searchDept = data.department_path;
@@ -457,8 +554,16 @@ export default {
         this.$refs['form'].resetFields();
       }
     },
+    closeDelDialog(event){
+      this.tableDelData = [];
+      this.dialogDelVisible = false;
+    },
     cancelDialog(){
       this.modalVisible = false;
+    },
+    cancelDelDialog(){
+      this.tableDelData = [];
+      this.dialogDelVisible = false;
     },
     handleChangeTime(data, type){
       switch (type) {
