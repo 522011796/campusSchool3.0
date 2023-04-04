@@ -443,7 +443,7 @@
 
                     </div>
                     <div v-show="showIframe == true">
-                      <iframe :src="userInfoRul" frameborder="0" scrolling="no" style="width: 100%; height: 600px"></iframe>
+                      <iframe :src="userInfoRul" frameborder="0" scrolling="auto" style="width: 100%; height: 600px"></iframe>
                     </div>
                     <el-button slot="reference" type="success" size="mini">
                       <i class="fa fa-id-badge"></i>
