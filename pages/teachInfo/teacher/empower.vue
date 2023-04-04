@@ -118,7 +118,7 @@
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                   <div class="text-center">
                     <span v-if="scope.row.sso_user_id == null" class="color-danger">{{$t("未激活")}}</span>
-                    <span v-if="scope.row.sso_user_id != null" class="color-success">{{$t("已激活")}}</span>
+                    <span v-if="scope.row.sso_user_id != null" class="color-success">{{scope.row.account1}}</span>
                   </div>
                   <span slot="reference" class="name-wrapper">
                     <span v-if="scope.row.sso_user_id == null" class="color-danger">{{$t("未激活")}}</span>

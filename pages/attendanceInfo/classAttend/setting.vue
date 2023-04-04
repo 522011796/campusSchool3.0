@@ -98,9 +98,9 @@
                         {{$t("连堂签到")}}
                       </my-check>
                     </span>
-                    <span class="layout-item">
-                      <my-select size="small" width-style="120" :sel-value="form.continueSection" :options="sectionList" @change="handleChange($event, 3)"></my-select>
-                    </span>
+<!--                    <span class="layout-item">-->
+<!--                      <my-select size="small" width-style="120" :sel-value="form.continueSection" :options="sectionList" @change="handleChange($event, 3)"></my-select>-->
+<!--                    </span>-->
                   </div>
                 </el-col>
               </el-row>
@@ -419,7 +419,7 @@
               leaveClassMinute: this.form.downBefore,
               lateClassMinute: this.form.late,
               switchOverClass: this.form.earlyEnable,
-              continueSection: this.form.continueSection,
+              continueSection: 0,
               switchContinue: this.form.switchContinue,
             };
             if (this.form.classList.length > 0){

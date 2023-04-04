@@ -22,7 +22,7 @@
                 <my-select v-if="showTableAndList == true" width-style="99" :clearable="true" :sel-value="searchAccountStatusType" :options="filterUserAccountActiveStatusOptions" :placeholder="$t('激活状态')" class="layout-item" size="small" @change="handleSelect($event, 3)"></my-select>
                 <my-select width-style="99" :clearable="true" :sel-value="searchStatus" :options="studentTeachStatusInfo(null, 'get')" :placeholder="$t('学籍状态')" class="layout-item" size="small" @change="handleSelect($event, 1)"></my-select>
                 <my-select width-style="99" :clearable="true" :sel-value="searchTeach" :options="studyTypeInfo(null, 'get')" :placeholder="$t('就读形式')" class="layout-item" size="small" @change="handleSelect($event, 2)"></my-select>
-                <my-input-button class="layout-item" :placeholder="$t('姓名/学号')" :show-select="false" :options="searchStudentType" size="small" plain width-class="width: 105px" type="success" :clearable="true" @click="search"></my-input-button>
+                <my-input-button class="layout-item" :placeholder="$t('姓名/学号/账号')" :show-select="false" :options="searchStudentType" size="small" plain width-class="width: 105px" type="success" :clearable="true" @click="search"></my-input-button>
               </div>
             </el-col>
           </el-row>
@@ -293,7 +293,7 @@
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                   <div class="text-center">
                     <span v-if="scope.row.sso_user_id == null" class="color-danger">{{$t("未激活")}}</span>
-                    <span v-if="scope.row.sso_user_id != null" class="color-success">{{$t("已激活")}}</span>
+                    <span v-if="scope.row.sso_user_id != null" class="color-success">{{$t("账号")}}:{{scope.row.account1}}</span>
                   </div>
                   <span slot="reference" class="name-wrapper">
                     <span v-if="scope.row.sso_user_id == null" class="color-danger">{{$t("未激活")}}</span>
@@ -424,6 +424,11 @@
                 <i class="fa fa-phone-square"></i>
                 <span>{{$t("手机号")}}: </span>
                 <span>{{userData.phone}}</span>
+              </div>
+              <div class="margin-top-10">
+                <i class="fa fa-credit-card"></i>
+                <span>{{$t("账号")}}: </span>
+                <span>{{userData.account1}}</span>
               </div>
             </el-col>
             <el-col :span="6" style="position: relative">
