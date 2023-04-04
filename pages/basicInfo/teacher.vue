@@ -659,6 +659,7 @@ export default {
         }
         this.visibleConfim = false;
         this.dialogLoading = false;
+        this.dialogDelVisible = false;
       });
     },
     handleCancelChange(data) {
