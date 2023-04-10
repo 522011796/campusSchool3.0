@@ -63,10 +63,22 @@
               </div>
             </div>
           </el-col>
-          <el-col :span="8" class="ellipsis-tag" v-if="value.apply_file && value.apply_file != ''">
+          <el-col :span="8" class="ellipsis-tag">
             <div>
               <div>
-                <span class="title-class color-disabeld" style="position: relative; top: -15px;">{{$t("附件")}}:</span>
+                <span class="title-class color-disabeld" style="position: relative; top: 0px;">{{$t("分值")}}:</span>
+                <span>
+                  <span class="moon-content-text-ellipsis-class">{{value.double1}}</span>
+                </span>
+              </div>
+            </div>
+          </el-col>
+        </el-row>
+        <el-row class="margin-top-10" v-if="value.apply_file && value.apply_file != ''">
+          <el-col :span="24" class="ellipsis-long-tag">
+            <div>
+              <div>
+                <span class="title-class color-disabeld">{{$t("附件")}}:</span>
                 <span>
                   <!--<el-image style="width: 20px; height: 20px" :src="value.apply_file"></el-image>-->
                   <my-head-img :head-img="value.apply_file" style="display: inline-block"></my-head-img>
