@@ -149,7 +149,7 @@
               align="center"
               :label="$t('照片抓拍')">
               <template slot-scope="scope">
-                <my-head-img :head-img="scope.row"></my-head-img>
+                <photo-head-img :head-img="scope.row" @click="refreshPhoto"></photo-head-img>
                 <!--<div v-if="scope.row.photo_status == 0">
                   <i class="fa fa-refresh color-grand" style="font-size: 15px"></i>
                 </div>
