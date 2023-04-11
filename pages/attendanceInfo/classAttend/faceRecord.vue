@@ -237,6 +237,9 @@
       }
     },
     created() {
+      let startTime = this.$moment().subtract(6, 'days').format("YYYY-MM-DD");
+      let endTime = this.$moment(new Date()).format("YYYY-MM-DD");
+      this.searchDate = [startTime, endTime];
       this.init();
       this.deviceTypeGetInfo();
     },
