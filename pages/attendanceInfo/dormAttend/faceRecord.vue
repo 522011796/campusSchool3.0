@@ -154,7 +154,7 @@
               align="center"
               :label="$t('照片抓拍')">
               <template slot-scope="scope">
-                <my-head-img :head-img="scope.row"></my-head-img>
+                <photo-head-img :head-img="scope.row" @click="refreshPhoto"></photo-head-img>
                 <!--<div v-if="scope.row.photo_status == 0">
                   <i class="fa fa-refresh color-grand" style="font-size: 15px"></i>
                 </div>
@@ -201,9 +201,12 @@
     clearData, deviceType,
     dormStatus
   } from "../../../utils/utils";
+  import PhotoHeadImg from "~/components/utils/common/PhotoHeadImg";
   export default {
     mixins: [mixins],
-    components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,MySearchOfDate,DrawerLayoutRight},
+    components: {
+      PhotoHeadImg,
+      LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,MySearchOfDate,DrawerLayoutRight},
     data(){
       return {
         searchTimeData: {},
@@ -242,6 +245,9 @@
       }
     },
     created() {
+      let startTime = this.$moment().subtract(6, 'days').format("YYYY-MM-DD");
+      let endTime = this.$moment(new Date()).format("YYYY-MM-DD");
+      this.searchDate = [startTime, endTime];
       this.init();
       this.deviceTypeGetInfo();
     },

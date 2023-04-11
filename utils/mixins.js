@@ -815,6 +815,16 @@ export default {
           this.g_BarCode = res.data.data.barcodeImageBase64;
         }
       });
+    },
+    refreshPhoto(id){
+      let params = {
+        id: id
+      };
+      this.$axios.get(common.attend_dorm_static_refresh_face_class_record_page, {params: params}).then(res => {
+        if (res.data.data){
+          this.init();
+        }
+      });
     }
   }
 }
