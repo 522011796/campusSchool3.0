@@ -64,6 +64,10 @@
         default: false,
         type: Boolean
       },
+      selVal: {
+        default: "",
+        type: String
+      },
       options: {
         default: function () {
           return [];
@@ -76,6 +80,7 @@
     },
     mounted() {
       this.showIcon = this.iconStyle !== '';
+      this.selectValue = this.selVal;
     },
     data() {
       return {

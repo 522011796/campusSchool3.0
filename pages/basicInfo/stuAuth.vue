@@ -16,7 +16,7 @@
             <div class="layout-inline text-right">
               <el-button size="small" type="default"  icon="el-icon-download" @click="exportInfo($event)">{{$t("导出")}}</el-button>
               <el-button size="small" type="success"  icon="el-icon-upload" @click="importInfo($event)">{{$t("导入")}}</el-button>
-              <my-input-button size="small" plain width-class="width: 200px" type="success" :clearable="true" :placeholder="$t('编号/手机/姓名/号段/备注')" @click="search"></my-input-button>
+              <my-input-button :show-select="true" sel-val="searchKey" :options="searchType" size="small" plain width-class="width: 200px" type="success" :clearable="false" :placeholder="$t('请输入信息')" @click="search"></my-input-button>
             </div>
           </el-col>
         </el-row>
@@ -250,6 +250,16 @@
         uploadAction: common.phone_limit_import,
         uploadResult: {},
         uploadProcess: '',
+        searchType: [
+          {
+            label: "手机号",
+            value: 'phone'
+          },
+          {
+            label: "全部",
+            value: 'searchKey'
+          }
+        ],
         form: {
           id: '',
           phone: '',
@@ -274,9 +284,9 @@
           num: this.num,
           phoneOwner: this.phoneOwner,
           status: this.status,
-          searchKey: this.searchKey
+          //searchKey: this.searchKey
         };
-
+        params[this.searchKey['select']] = this.searchKey['input'];
         this.$axios.get(common.phone_limit_page, {params: params}).then(res => {
           if (res.data.data){
             this.tableData = res.data.data.list;
@@ -304,7 +314,7 @@
         this.modalAuthVisible = true;
       },
       search(data){
-        this.searchKey = data.input;
+        this.searchKey = data;
         this.page = 1;
         this.init();
       },
