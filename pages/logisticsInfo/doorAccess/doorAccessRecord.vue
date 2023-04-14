@@ -19,8 +19,9 @@
           <el-row>
             <el-col :span="8">
               <div class="layout-inline">
-                <my-select width-style="120" class="layout-item" size="small" :sel-value="searchUserType" :options="filterUserTypes" @change="handleChangeUserType"></my-select>
-                <my-cascader class="layout-item" ref="SelectorDoorAccess" size="small" width-style="160" :clearable="true" :sel-value="searchCommDeptData" :type="selType" :sub-type="selSubType" @change="_handleCascaderChange($event)"></my-cascader>
+                <my-select width-style="100" class="layout-item" size="small" :sel-value="searchUserType" :options="filterUserTypes" @change="handleChangeUserType"></my-select>
+                <my-cascader v-if="searchUserType != 3" class="layout-item" ref="SelectorDoorAccess" size="small" width-style="140" :clearable="true" :sel-value="searchCommDeptData" :type="selType" :sub-type="selSubType" @change="_handleCascaderChange($event)"></my-cascader>
+                <el-button class="layout-item" style="padding: 9px 5px !important;" size="small" type="warning"  icon="el-icon-download" @click="expandInfo($event)">{{$t("导出")}}</el-button>
               </div>
             </el-col>
             <el-col :span="16">
@@ -35,7 +36,7 @@
 
         <div class="margin-top-10">
           <el-table
-            v-if="searchUserType != 3"
+            v-show="searchUserType != 3"
             ref="refTable"
             :data="tableData"
             header-cell-class-name="custom-table-cell-bg"
@@ -190,6 +191,23 @@
             </el-table-column>
             <el-table-column
               align="center"
+              prop="group_name"
+              :label="$t('进/出')"
+              :filter-multiple="false"
+              column-key="inout"
+              :filters="inoutTypes">
+              <template slot="header">
+                <span v-if="filterInoutText == ''">{{$t('进/出')}}</span>
+                <span v-if="filterInoutText != ''">{{filterInoutText}}</span>
+              </template>
+              <template slot-scope="scope">
+                <span class="color-success" v-if="scope.row.in_door == 1">{{$t("进入")}}</span>
+                <span class="color-warning" v-if="scope.row.out_door == 1">{{$t("外出")}}</span>
+                <span class="color-warning" v-if="!scope.row.in_door && !scope.row.out_door">--</span>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
               :label="$t('人脸/卡号')">
               <template slot-scope="scope">
                 <div v-if="scope.row.rec_mode == 1">
@@ -218,8 +236,8 @@
           </el-table>
 
           <el-table
-            v-if="searchUserType == 3"
-            ref="refTable"
+            v-show="searchUserType == 3"
+            ref="refStaTable"
             :data="tableData"
             header-cell-class-name="custom-table-cell-bg"
             size="medium"
@@ -373,6 +391,22 @@
             </el-table-column>
             <el-table-column
               align="center"
+              :label="$t('进/出')"
+              :filter-multiple="false"
+              column-key="inout"
+              :filters="inoutTypes">
+              <template slot="header">
+                <span v-if="filterInoutText == ''">{{$t('进/出')}}</span>
+                <span v-if="filterInoutText != ''">{{filterInoutText}}</span>
+              </template>
+              <template slot-scope="scope">
+                <span class="color-success" v-if="scope.row.in_door == 1">{{$t("进入")}}</span>
+                <span class="color-warning" v-if="scope.row.out_door == 1">{{$t("外出")}}</span>
+                <span class="color-warning" v-if="!scope.row.in_door && !scope.row.out_door">--</span>
+              </template>
+            </el-table-column>
+            <el-table-column
+              align="center"
               :label="$t('照片抓怕')">
               <template slot-scope="scope">
                 <my-head-img :head-img="scope.row"></my-head-img>
@@ -435,6 +469,8 @@
         searchRoom: '',
         searchKey: '',
         searchDeviceType: '',
+        searchInoutType: '',
+        filterInoutText: '',
         searchDept: '',
         subTitle: '',
         uploadProcess: '',
@@ -452,7 +488,8 @@
         searchTopTime: this.$moment(new Date).format("YYYY-MM-DD"),
         selType: '1',
         selSubType: "4",
-        searchUserSignType: ''
+        searchUserSignType: '',
+        inoutTypes: [{ text: this.$t("进入"), value: '1' }, { text: '外出', value: '2' }]
       }
     },
     created() {
@@ -473,12 +510,16 @@
           endTime: this.searchDate && this.searchDate.length > 0 ? this.searchDate[1] : '',
           type: this.searchDeviceType,
           sceneType: "3,4",
-          aliveType: "",
           searchTopType: this.searchUserType,
           deviceLocationType: this.showType == 1 ? 0 : 1,
           departmentPath: '',
           aliveType: this.searchUserSignType
         };
+        if (this.searchInoutType == 1){
+          params['in_door'] = 1;
+        }else if (this.searchInoutType == 2){
+          params['out_door'] = 1;
+        }
 
         if (this.searchUserType == 1){
           params['deviceBuildId'] = this.searchBuild;
@@ -591,6 +632,14 @@
         for (let item in value){
           if (item == 'deviceType'){
             this.searchDeviceType = value[item][0];
+          }else if (item == 'inout'){
+            this.filterInoutText = "";
+            this.searchInoutType = value[item][0];
+            for (let i = 0; i < this.inoutTypes.length; i++){
+              if (this.searchInoutType == this.inoutTypes[i].value){
+                this.filterInoutText = this.inoutTypes[i].text;
+              }
+            }
           }
         }
         this.init();
@@ -600,6 +649,10 @@
       },
       handleChangeUserType(data){
         this.searchUserType = data;
+        this.filterInoutText = "";
+        this.searchInoutType = "";
+        this.$refs.refTable.clearFilter();
+        this.$refs.refStaTable.clearFilter();
         this.resetCasadeSelector('SelectorDoorAccess');
         if (data == 1){
           this.selType = "1";
@@ -676,6 +729,45 @@
           this.searchDept = data[data.length - 1] ;
         }
         this.init(this.searchDept);
+      },
+      expandInfo(){
+        let url = "";
+        let params = {
+          page: this.page,
+          num: this.num,
+          searchKey: this.searchKey,
+          beginTime: this.searchDate && this.searchDate.length > 0 ? this.searchDate[0] : '',
+          endTime: this.searchDate && this.searchDate.length > 0 ? this.searchDate[1] : '',
+          type: this.searchDeviceType,
+          sceneType: "3,4",
+          searchTopType: this.searchUserType,
+          deviceLocationType: this.showType == 1 ? 0 : 1,
+          departmentPath: '',
+          aliveType: this.searchUserSignType
+        };
+
+        if (this.searchUserType == 1){
+          params['deviceBuildId'] = this.searchBuild;
+          params['deviceFloorNum'] = this.searchFloor;
+          params['deviceRoomId'] = this.searchRoom;
+          params['collegeId'] = this.searchCollege;
+          params['majorId'] = this.searchMajor;
+          params['grade'] = this.searchGrade;
+          params['classId'] = this.searchClass;
+        }else if (this.searchUserType == 2){
+          params['departmentPath'] = this.searchDept;
+        }
+
+        if (this.searchUserType == 1){
+          url = common.dormaccess_record_stu_export;
+        }else if (this.searchUserType == 2){
+          url = common.dormaccess_record_ter_export;
+        }else if (this.searchUserType == 3){
+          url = common.dormaccess_record_sta_export;
+        }
+        params = this.clearDataInfo(params);
+        params = this.$qs.stringify(params);
+        window.open(url+"?"+params, "_self");
       }
     }
   }

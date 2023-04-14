@@ -361,6 +361,9 @@ export const common = {
   dormaccess_record_stu: '/proxy/school/person/student/recognition/page',//门禁识别记录--学生
   dormaccess_record_ter: '/proxy/school/person/teacher/recognition/page',//门禁识别记录--教师
   dormaccess_record_sta: '/proxy/school/person/stranger/recognition/page',//门禁识别记录--陌生人
+  dormaccess_record_stu_export: '/proxy/school/person/student/recognition/export',//门禁识别记录--导出学生
+  dormaccess_record_ter_export: '/proxy/school/person/teacher/recognition/export',//门禁识别记录--导出教师
+  dormaccess_record_sta_export: '/proxy/school/person/stranger/recognition/export',//门禁识别记录--导出陌生人
   dormaccess_remote: '/proxy/school/device/door/page',//门禁远程控制
   dormaccess_remote_open: '/proxy/school/device/door/set-always-open',//门禁远程控制--常开门
   dormaccess_remote_close: '/proxy/school/device/door/set-always-close',//门禁远程控制--常关门
