@@ -516,9 +516,9 @@
           aliveType: this.searchUserSignType
         };
         if (this.searchInoutType == 1){
-          params['in_door'] = 1;
+          params['inDoor'] = 1;
         }else if (this.searchInoutType == 2){
-          params['out_door'] = 1;
+          params['outDoor'] = 1;
         }
 
         if (this.searchUserType == 1){
@@ -642,6 +642,7 @@
             }
           }
         }
+        this.page = 1;
         this.init();
       },
       handleChange(data){
@@ -745,6 +746,11 @@
           departmentPath: '',
           aliveType: this.searchUserSignType
         };
+        if (this.searchInoutType == 1){
+          params['inDoor'] = 1;
+        }else if (this.searchInoutType == 2){
+          params['outDoor'] = 1;
+        }
 
         if (this.searchUserType == 1){
           params['deviceBuildId'] = this.searchBuild;
