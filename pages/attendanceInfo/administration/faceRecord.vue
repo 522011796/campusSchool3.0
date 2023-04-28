@@ -237,7 +237,7 @@
           beginTime: this.searchDate && this.searchDate.length > 0 ? this.searchDate[0] : '',
           endTime: this.searchDate && this.searchDate.length > 0 ? this.searchDate[1] : '',
           type: this.searchDeviceType,
-          signStatus: 6
+          sceneType: 6
         };
         params['departmentPath'] = this.searchDept.value;
         params = this.clearDataInfo(params);
