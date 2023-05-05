@@ -70,9 +70,9 @@
               :label="$t('工号')">
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                  <div class="text-center">{{ scope.row.job_name ?  scope.row.job_name : '--'}}</div>
+                  <div class="text-center">{{ scope.row.job_num ?  scope.row.job_num : '--'}}</div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  {{ scope.row.job_name ?  scope.row.job_name : '--'}}
+                  {{ scope.row.job_num ?  scope.row.job_num : '--'}}
                 </span>
                 </el-popover>
               </template>
