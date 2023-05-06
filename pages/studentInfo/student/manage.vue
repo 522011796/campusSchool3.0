@@ -429,6 +429,7 @@
                 <i class="fa fa-credit-card"></i>
                 <span>{{$t("账号")}}: </span>
                 <span>{{userData.account1}}</span>
+                <span v-if="userData.account2">/ {{userData.account2}}</span>
               </div>
             </el-col>
             <el-col :span="6" style="position: relative">
