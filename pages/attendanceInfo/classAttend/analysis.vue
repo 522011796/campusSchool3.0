@@ -232,7 +232,7 @@
               <div>
                 <span>{{$t("课程分析")}}</span>
                 <span>
-                  <my-course-select size="small" :clearable="true" :sel-value="searchCourseId" @change="handleCourseChange"></my-course-select>
+                  <my-course-select ref="courseSelect" size="small" :clearable="true" :sel-value="searchCourseId" @change="handleCourseChange"></my-course-select>
                 </span>
               </div>
               <div class="margin-top-5">
@@ -649,14 +649,21 @@
         if (this.mainType == 1){
           if (data.unit == 1){
             this.searchCollege = data.id;
+            this.$refs.courseSelect.initSelect(this.searchCollege, this.searchMajor, this.searchClass);
           }else if (data.unit == 2){
             this.searchCollege = data.college_id;
             this.searchMajor = data.id;
+            this.$refs.courseSelect.initSelect(this.searchCollege, this.searchMajor, this.searchClass);
           }else if (data.unit == 3){
             this.searchMajor = data.major_id;
             this.searchGrade = data.grade;
           }else if (data.unit == 4){
             this.searchClass = data.id;
+            this.$refs.courseSelect.initSelect(this.searchCollege, this.searchMajor, this.searchClass);
+          }
+
+          if (!data.unit){
+            this.$refs.courseSelect.initSelect();
           }
         }else if (this.mainType == 2){
           if (data.unit == 6){

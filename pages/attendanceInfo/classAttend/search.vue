@@ -18,7 +18,7 @@
             <el-col :span="20" class="text-right">
               <i class="fa fa-file color-warning" @click="detailInfo"></i>
               <my-date-picker :sel-value="searchDate" :clearable="false" type="daterange" size="small" width-style="240" @change="handleChange" style="position: relative; top: 1px;"></my-date-picker>
-              <my-course-select :filterable="true" size="small" :clearable="true" :sel-value="searchCourseId" @change="handleCourseChange"></my-course-select>
+              <my-course-select ref="courseSelect" :filterable="true" size="small" :clearable="true" :sel-value="searchCourseId" @change="handleCourseChange"></my-course-select>
               <my-input-button size="small" :clearable="true" type="success" plain @click="search"></my-input-button>
             </el-col>
           </el-row>
@@ -414,15 +414,23 @@
         this.searchClass = "";
         if (data.unit == 1){
           this.searchCollege = data.id;
+          this.$refs.courseSelect.initSelect(this.searchCollege, this.searchMajor, this.searchClass);
         }else if (data.unit == 2){
           this.searchCollege = data.college_id;
           this.searchMajor = data.id;
+          this.$refs.courseSelect.initSelect(this.searchCollege, this.searchMajor, this.searchClass);
         }else if (data.unit == 3){
           this.searchMajor = data.major_id;
           this.searchGrade = data.grade;
         }else if (data.unit == 4){
           this.searchClass = data.id;
+          this.$refs.courseSelect.initSelect(this.searchCollege, this.searchMajor, this.searchClass);
         }
+
+        if (!data.unit){
+          this.$refs.courseSelect.initSelect();
+        }
+
         this.page = 1;
         this.init();
       },

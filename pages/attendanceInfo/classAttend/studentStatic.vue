@@ -12,11 +12,12 @@
       <div slot="right">
         <div class="layout-top-tab margin-top-5">
           <el-row>
-            <el-col :span="18">
+            <el-col :span="14">
               <my-year-term ref="yearRef" size="small" :show-default-week="true" :clearable-week="true" @changeYear="hangdleChange($event,1)" @changeTerm="hangdleChange($event,2)" @changeWeek="hangdleChange($event,3)"></my-year-term>
               <el-button size="small" type="warning"  icon="el-icon-download" @click="expandInfo($event)">{{$t("导出")}}</el-button>
             </el-col>
-            <el-col :span="6" class="text-right">
+            <el-col :span="10" class="text-right">
+              <my-course-select ref="courseSelect" :filterable="true" size="small" :clearable="true" :sel-value="searchCourseId" @change="handleCourseChange"></my-course-select>
               <my-input-button ref="teacher" size="small" plain width-class="width: 120px" type="success" :clearable="true" @click="search"></my-input-button>
             </el-col>
           </el-row>
@@ -231,6 +232,7 @@
         searchBuild: '',
         searchFloor: '',
         searchKey: '',
+        searchCourseId: '',
         searchDeviceType: '',
         searchDept: '',
         subTitle: '',
@@ -269,7 +271,8 @@
           num: this.num,
           yearSelect: this.selYear,
           termId: this.selTerm,
-          weekNum: this.selWeek
+          weekNum: this.selWeek,
+          courseId: this.searchCourseId,
         };
         params['studentName'] = this.searchKey.input;
         params['collegeId'] = this.searchCollege;
@@ -308,14 +311,21 @@
         if (this.mainType == 1){
           if (data.unit == 1){
             this.searchCollege = data.id;
+            this.$refs.courseSelect.initSelect(this.searchCollege, this.searchMajor, this.searchClass);
           }else if (data.unit == 2){
             this.searchCollege = data.college_id;
             this.searchMajor = data.id;
+            this.$refs.courseSelect.initSelect(this.searchCollege, this.searchMajor, this.searchClass);
           }else if (data.unit == 3){
             this.searchMajor = data.major_id;
             this.searchGrade = data.grade;
           }else if (data.unit == 4){
             this.searchClass = data.id;
+            this.$refs.courseSelect.initSelect(this.searchCollege, this.searchMajor, this.searchClass);
+          }
+
+          if (!data.unit){
+            this.$refs.courseSelect.initSelect();
           }
         }else if (this.mainType == 2){
           if (data.unit == 6){
@@ -427,6 +437,9 @@
         this.subType = ''+subType;
         this.showType = type;
         this.init();
+      },
+      handleCourseChange(data){
+        this.searchCourseId = data;
       },
       hangdleChange(data, type){
         switch (type) {

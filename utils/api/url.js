@@ -298,6 +298,7 @@ export const common = {
   attend_class_static_face_class_record_page: 'proxy/school/person/student/recognition/page',//课堂查询人脸识别记录
 
   course_list: '/proxy/course/course/list',//课程列表
+  course_list_find: '/proxy/course/course/list/find',//课程列表--过滤
 
   attend_class_static_stu_page: '/proxy/course/rollcallsta/stu/sum/page',//课堂考勤--学生统计
   attend_class_static_stu_detail: '/proxy/course/rollcallsta/stu/rollCall/course',//课堂考勤--查询详细
