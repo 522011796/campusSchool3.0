@@ -319,7 +319,7 @@
             width="150">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="bottom" @show="initDeviceExtra(scope.row.deviceListArr)">
-                <div class="text-left">
+                <div class="text-left" style="height: 300px;overflow-y: auto">
                   <ul class="door-ul">
                     <el-checkbox-group v-model="scope.row.deviceListArr" @change="handleChangeDeviceBox($event, scope.row, scope.$index)">
                       <li v-for="(item, index) in deviceExtraList" :key="index">
