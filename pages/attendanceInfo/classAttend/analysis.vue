@@ -232,7 +232,7 @@
               <div>
                 <span>{{$t("课程分析")}}</span>
                 <span>
-                  <my-course-select ref="courseSelect" size="small" :clearable="true" :sel-value="searchCourseId" @change="handleCourseChange"></my-course-select>
+                  <my-course-select ref="courseSelect" :filterable="true" size="small" :clearable="true" :sel-value="searchCourseId" @change="handleCourseChange"></my-course-select>
                 </span>
               </div>
               <div class="margin-top-5">

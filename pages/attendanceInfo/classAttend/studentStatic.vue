@@ -100,7 +100,7 @@
                   <div class="text-left pop-height">
                     <div v-for="(item,index) in detailData" :key="index" class="pop-block">
                       <span class="pop-item">{{item.courseName}}:</span>
-                      <span class="pop-item">{{scope.row.shouldNum - scope.row.actualNum - scope.row.leaveNum - scope.row.lateNum - scope.row.leaveEarlyNum}}</span>
+                      <span class="pop-item">{{item.unSignNum}}</span>
                     </div>
                   </div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
@@ -292,7 +292,8 @@
       showDetail(userId){
         let params = {
           studentId: userId,
-          termId: this.selTerm
+          termId: this.selTerm,
+          courseId: this.searchCourseId
         };
         this.$axios.get(common.attend_class_static_stu_detail, {params: params, loading: false}).then(res => {
           if (res.data.data){
@@ -440,6 +441,7 @@
       },
       handleCourseChange(data){
         this.searchCourseId = data;
+        this.init();
       },
       hangdleChange(data, type){
         switch (type) {
@@ -470,7 +472,8 @@
           num: this.num,
           yearSelect: this.selYear,
           termId: this.selTerm,
-          weekNum: this.selWeek
+          weekNum: this.selWeek,
+          courseId: this.searchCourseId
         };
         params['studentName'] = this.searchKey.input;
         params['collegeId'] = this.searchCollege;
