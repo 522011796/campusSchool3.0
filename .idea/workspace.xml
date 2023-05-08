@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="修改后勤记录细节">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/doorManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/doorManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/common.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +80,7 @@
       <workItem from="1682647640262" duration="661000" />
       <workItem from="1682661230487" duration="5305000" />
       <workItem from="1683168602119" duration="608000" />
-      <workItem from="1683251524230" duration="6293000" />
+      <workItem from="1683251524230" duration="9296000" />
     </task>
     <task id="LOCAL-00001" summary="解除申请">
       <created>1669282932965</created>
@@ -355,7 +355,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683364571044</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="修改后勤记录细节">
+      <created>1683510936007</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1683510936007</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
