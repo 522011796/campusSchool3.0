@@ -143,18 +143,6 @@
   "LazyTableBarChart": {
     "description": "Auto imported from components/charts/TableBarChart.vue"
   },
-  "MyNewStudentFlow": {
-    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
-  },
-  "LazyMyNewStudentFlow": {
-    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
-  },
-  "MyNewStudentFlowType": {
-    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
-  },
-  "LazyMyNewStudentFlowType": {
-    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
-  },
   "MyFormAuditType": {
     "description": "Auto imported from components/form/MyFormAuditType.vue"
   },
@@ -586,5 +574,17 @@
   },
   "LazyUploadSquare": {
     "description": "Auto imported from components/utils/upload/UploadSquare.vue"
+  },
+  "MyNewStudentFlow": {
+    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
+  },
+  "LazyMyNewStudentFlow": {
+    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
+  },
+  "MyNewStudentFlowType": {
+    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
+  },
+  "LazyMyNewStudentFlowType": {
+    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
   }
 }

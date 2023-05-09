@@ -45,6 +45,43 @@
                     <el-radio :label="false">{{$t('隐藏')}}</el-radio>
                   </el-radio-group>
                 </el-form-item>
+                <el-form-item :label="$t('显示规则')" prop="subBtn">
+                  <div>
+                    <span>
+                      <el-select v-model="formBasic.checkFormShowParams" multiple @change="handleFormChange($event,'showParams')" size="small" class="width-150" :placeholder="$t('请选择本表单字段')">
+                        <el-option
+                          v-for="item in formParamsList"
+                          :key="item.value"
+                          :label="item.label"
+                          :value="item.value">
+                        </el-option>
+                      </el-select>
+                    </span>
+                    <span>
+                      <label class="font-size-12">{{$t('显示前缀')}}</label>
+                      <span>
+                        <el-input v-model="formBasic.pre" :placeholder="$t('前缀')" size="small" style="width: 100px"></el-input>
+                      </span>
+                    </span>
+                    <span>
+                      <label class="font-size-12">{{$t('显示后缀')}}</label>
+                      <span>
+                        <el-input v-model="formBasic.fixed" :placeholder="$t('后缀')" size="small" style="width: 100px"></el-input>
+                      </span>
+                    </span>
+                    <span>
+                      <label class="font-size-12">{{$t('显示小数位')}}</label>
+                      <span>
+<!--                        <el-input v-model="formBasic.floatOnly" :placeholder="$t('小数位数')" size="small" style="width: 100px"></el-input>-->
+                        <el-select v-model="formBasic.floatOnly" @change="handleFormChange($event,'float')" size="small" class="width-100" :placeholder="$t('小数位数')">
+                          <el-option label="1" value="1"></el-option>
+                          <el-option label="2" value="2"></el-option>
+                          <el-option label="3" value="3"></el-option>
+                        </el-select>
+                      </span>
+                    </span>
+                  </div>
+                </el-form-item>
                 <el-form-item :label="$t('提交规则')" prop="subRule">
                   <div>
                     <el-checkbox v-model="formBasic.subRule">
@@ -449,6 +486,10 @@
           checkTimeValue2: '',
           checkTimeDayValue1: '',
           checkTimeDayValue2: '',
+          checkFormShowParams: [],
+          pre: '',
+          fixed: '',
+          floatOnly: '',
         },
         formRule: {
           id: '',
@@ -488,7 +529,6 @@
         let cktime2 = "";
         let cktype = "";
 
-
         if (this.formId.check_field_value != undefined && this.formId.check_field_value != ""){
           checkFieldValue = JSON.parse(this.formId.check_field_value);
           let ckfields =  (checkFieldValue.ckfield != undefined && checkFieldValue.ckfield != "") ? checkFieldValue.ckfield.split(",") : [];
@@ -522,6 +562,12 @@
           cktype = checkTimeValue.cktype;
         }
 
+        let displayFieldValue = '';
+        if (this.formId.display_field_value != undefined && this.formId.display_field_value != ""){
+          displayFieldValue = JSON.parse(this.formId.display_field_value);
+          console.log(displayFieldValue);
+        }
+
         this.formBasic = {
           name: this.formId.form_name,
           title: true,
@@ -547,6 +593,10 @@
           checkTimeValue2: cktype == 2 ? [cktime1,cktime2] : '',
           checkTimeDayValue1: cktype == 0 ? cktime1 : '',
           checkTimeDayValue2: cktype == 0 ? cktime2 : '',
+          checkFormShowParams: displayFieldValue['field'] ? displayFieldValue.field.split(",") : [],
+          pre: displayFieldValue.front,
+          fixed: displayFieldValue.after,
+          floatOnly: displayFieldValue.acc,
         };
         this.initRuleList();
       },
@@ -780,6 +830,13 @@
               "ckresult": this.formBasic.checkFormStatusLimitOpr
             };
 
+            let displayFieldValue= {
+              "field": this.formBasic.checkFormShowParams.join(),
+              "front": this.formBasic.pre,
+              "after": this.formBasic.fixed,
+              "acc": this.formBasic.floatOnly
+            };
+
             let checkTimeValue = {};
             if (this.formBasic.checkTimeCondition == 0){
               checkTimeValue = {
@@ -800,7 +857,7 @@
                 "cktime2": this.formBasic.checkTimeValue && this.formBasic.checkTimeValue.length > 0 ? this.formBasic.checkTimeValue[1] : '',
               };
             }
-            console.log(this.formBasic.checkTimeCondition, checkTimeValue);
+            //console.log(this.formBasic.checkTimeCondition, checkTimeValue);
             let params = {
               "formId": this.formId.id,
               "formName": this.formBasic.name,
@@ -814,6 +871,8 @@
               "checkApplyValue": JSON.stringify(checkApplyValue),
               "checkTime": this.formBasic.checkTime,
               "checkTimeValue": JSON.stringify(checkTimeValue),
+              //"showParams": this.formBasic.checkFormShowParams,
+              "displayFieldValue": JSON.stringify(displayFieldValue),
             };
             if (this.formBasic.role.length > 0){
               params['formPermissionId'] = this.formBasic.role.join();
@@ -840,6 +899,11 @@
                 this.formId.check_apply_value = JSON.stringify(checkApplyValue);
                 this.formId.check_time = this.formBasic.checkTime;
                 this.formId.check_time_value = JSON.stringify(checkTimeValue);
+                this.formId.pre = this.formBasic.pre;
+                this.formId.fixed = this.formBasic.fixed;
+                this.formId.floatOnly = this.formBasic.floatOnly;
+                //this.formId.checkFormShowParams = this.formBasic.checkFormShowParams.length > 0 ? this.checkFormShowParams.join() : '';
+                this.formId.display_field_value = JSON.stringify(displayFieldValue);
               } else {
                 MessageError(res.data.desc);
               }
@@ -1061,6 +1125,10 @@
           this.formBasic.checkTimeCondition = event;
         }else if (type == "checkTimeValue"){
           this.formBasic.checkTimeValue = event;
+        }else if (type == 'showParams'){
+          this.formBasic.checkFormShowParams = event;
+        }else if (type == 'float'){
+          this.formBasic.floatOnly = event;
         }
       },
       setRuleChild(rule, ruleList){
