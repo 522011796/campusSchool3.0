@@ -87,7 +87,7 @@
                     </div>
                     <div class="margin-top-10">
                       <div class="color-muted">
-                        <span>{{$t("旷课")}} {{topData.unSignNum}}</span>
+                        <span>{{$t("旷课")}} {{topData.notSignNum}}</span>
                       </div>
                       <div>
                         <el-progress :text-inside="true" :stroke-width="10" :percentage="topData.unSignRate" :show-text="false"></el-progress>
@@ -98,7 +98,7 @@
                     <el-row>
                       <el-col :span="12">
                         <span>{{$t("日均旷课")}}</span>
-                        <span class="margin-left-5">{{topData.unSignAver}}</span>
+                        <span class="margin-left-5">{{topData.notSignAver}}</span>
                       </el-col>
                       <el-col :span="12" class="text-right">
                         <span>{{$t("日均请假")}}</span>
@@ -157,7 +157,7 @@
                   <el-button size="small" :type="searchStatus == 'actualNum' ? 'primary' : 'default'" @click="changeStatus('actualNum')">{{$t("出勤")}}</el-button>
                   <el-button size="small" :type="searchStatus == 'lateNum' ? 'primary' : 'default'" @click="changeStatus('lateNum')">{{$t("迟到")}}</el-button>
                   <el-button size="small" :type="searchStatus == 'leaveEarlyNum' ? 'primary' : 'default'" @click="changeStatus('leaveEarlyNum')">{{$t("早退")}}</el-button>
-                  <el-button size="small" :type="searchStatus == 'unSignNum' ? 'primary' : 'default'" @click="changeStatus('unSignNum')">{{$t("旷课")}}</el-button>
+                  <el-button size="small" :type="searchStatus == 'unSignNum' ? 'primary' : 'default'" @click="changeStatus('notSignNum')">{{$t("旷课")}}</el-button>
                   <el-button size="small" :type="searchStatus == 'leaveNum' ? 'primary' : 'default'" @click="changeStatus('leaveNum')">{{$t("请假")}}</el-button>
                 </el-button-group>
               </span>
@@ -339,9 +339,9 @@
 
                     <template slot-scope="scope">
                       <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                        <div class="text-center">{{scope.row.unSignNum}}</div>
+                        <div class="text-center">{{scope.row.notSignNum}}</div>
                         <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                          {{scope.row.unSignNum}}
+                          {{scope.row.notSignNum}}
                         </div>
                       </el-popover>
                     </template>
@@ -540,7 +540,7 @@
               },{
                 name: '旷课',
                 type: 'line',
-                data: res.data.data.value.unSignNum
+                data: res.data.data.value.notSignNum
               },{
                 name: '请假',
                 type: 'line',
@@ -576,7 +576,7 @@
               },{
                 name: '旷课',
                 type: 'line',
-                data: res.data.data.value.unSignNum
+                data: res.data.data.value.notSignNum
               },{
                 name: '请假',
                 type: 'line',

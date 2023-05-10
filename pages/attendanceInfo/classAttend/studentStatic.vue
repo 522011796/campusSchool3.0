@@ -100,11 +100,11 @@
                   <div class="text-left pop-height">
                     <div v-for="(item,index) in detailData" :key="index" class="pop-block">
                       <span class="pop-item">{{item.courseName}}:</span>
-                      <span class="pop-item">{{item.unSignNum}}</span>
+                      <span class="pop-item">{{item.notSignNum}}</span>
                     </div>
                   </div>
                   <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    <span class="color-grand">{{scope.row.shouldNum - scope.row.actualNum - scope.row.leaveNum - scope.row.lateNum - scope.row.leaveEarlyNum}}</span>
+                    <span class="color-grand">{{scope.row.notSignNum}}</span>
                   </div>
                 </el-popover>
               </template>
