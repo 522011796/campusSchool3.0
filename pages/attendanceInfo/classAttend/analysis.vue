@@ -90,7 +90,7 @@
                         <span>{{$t("旷课")}} {{topData.notSignNum}}</span>
                       </div>
                       <div>
-                        <el-progress :text-inside="true" :stroke-width="10" :percentage="topData.unSignRate" :show-text="false"></el-progress>
+                        <el-progress :text-inside="true" :stroke-width="10" :percentage="topData.notSignNum" :show-text="false"></el-progress>
                       </div>
                     </div>
                   </div>
