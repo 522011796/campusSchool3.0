@@ -183,7 +183,11 @@
           </el-table-column>
           <el-table-column
             align="center"
-            :label="$t('毕业状态')">
+            :filter-multiple="false">
+            <template slot="header">
+              <span>{{$t('毕业状态')}}</span>
+              <span v-if="filterTypesText != ''" class="font-size-12 color-disabeld">{{filterTypesText}}</span>
+            </template>
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                 <div class="text-center">{{studentTeachStatusInfo(scope.row.status, 'set')}}</div>
@@ -266,6 +270,8 @@ export default {
       classValue: '',
       searchInnerDate: [],
       searchOutDate: [],
+      filterTypesText: '',
+      type: '',
       form: {
         id: '',
         name: '',
@@ -292,6 +298,9 @@ export default {
       };
       if (this.searchKey){
         params['searchKey'] = this.searchKey;
+      }
+      if (this.type){
+        params['studentStatus'] = this.type;
       }
       params = this.$qs.stringify(params);
       this.$axios.post(common.student_graduate_page, params).then(res => {
@@ -453,6 +462,21 @@ export default {
       params = this.$qs.stringify(params);
 
       window.open(url+"?"+params, "_self");
+    },
+    fliterTable(value, row, column){
+      for (let item in value){
+        if (item == 'type'){
+          this.filterTypesText = "";
+          this.type = value[item][0];
+          for (let i = 0; i < this.filterUserTeachTypes.length; i++){
+            if (this.type == this.filterUserTeachTypes[i].value){
+              this.filterTypesText = this.filterUserTeachTypes[i].text;
+            }
+          }
+        }
+      }
+      this.page = 1;
+      this.init();
     }
   }
 }

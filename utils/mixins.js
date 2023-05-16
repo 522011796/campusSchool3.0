@@ -105,6 +105,7 @@ export default {
       filterAppManageType: global.filterAppManageType,
       filterAppServerType: global.filterAppServerType,
       filterFlowParamType: global.filterFlowParamType,
+      filterUserTeachTypes: global.filterUserTeachTypes,
       filterAppServerConditionnalNumType: global.filterAppServerConditionnalNumType,
       filterAppServerConditionnalTextType: global.filterAppServerConditionnalTextType,
       filterAppServerConditionnalRadioType: global.filterAppServerConditionnalRadioType,

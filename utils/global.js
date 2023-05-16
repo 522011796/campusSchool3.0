@@ -551,6 +551,22 @@ const filterHardType = [
   { text: '其他', value: '其他' ,label: '其他'}
 ];
 
+const filterUserTeachTypes = [
+  { text: "休学", value: '02' ,label: '休学'},
+  { text: '退学', value: '03' ,label: '退学'},
+  { text: '停学', value: '04' ,label: '停学'},
+  { text: '复学', value: '05' ,label: '复学'},
+  { text: '流失', value: '06' ,label: '流失'},
+  { text: '结业', value: '08' ,label: '结业'},
+  { text: '肆业', value: '09' ,label: '肆业'},
+  { text: '转学', value: '10' ,label: '转学'},
+  { text: '死亡', value: '11' ,label: '死亡'},
+  { text: '保留入学', value: '12' ,label: '保留入学'},
+  { text: '公派出国', value: '13' ,label: '公派出国'},
+  { text: '开除', value: '14' ,label: '开除'},
+  { text: '下落不明', value: '15' ,label: '下落不明'}
+];
+
 export default {
   total,
   page,
@@ -652,5 +668,6 @@ export default {
   filterHardType,
   filterRpStatus,
   filterJCRpStatus,
-  filterRuTypes
+  filterRuTypes,
+  filterUserTeachTypes
 }

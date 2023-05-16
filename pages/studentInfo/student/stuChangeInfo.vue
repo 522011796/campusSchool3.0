@@ -54,7 +54,8 @@
           size="medium"
           row-key="id"
           :max-height="tableHeight.height"
-          style="width: 100%">
+          style="width: 100%"
+          @filter-change="fliterTable">
           <el-table-column
             align="center"
             prop="level_type"
@@ -183,7 +184,14 @@
           </el-table-column>
           <el-table-column
             align="center"
-            :label="$t('异动状态')">
+            :label="$t('异动状态')"
+            :filter-multiple="false"
+            column-key="type"
+            :filters="filterUserTeachTypes">
+            <template slot="header">
+              <span>{{$t('状态')}}</span>
+              <span v-if="filterTypesText != ''" class="font-size-12 color-disabeld moon-content-text-ellipsis-class">{{filterTypesText}}</span>
+            </template>
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                 <div class="text-center">{{studentTeachStatusInfo(scope.row.status, 'set')}}</div>
@@ -266,6 +274,8 @@
         classValue: '',
         searchInnerDate: [],
         searchOutDate: [],
+        filterTypesText: '',
+        type: '',
         form: {
           id: '',
           name: '',
@@ -292,6 +302,9 @@
         };
         if (this.searchKey){
           params['searchKey'] = this.searchKey;
+        }
+        if (this.type){
+          params['studentStatus'] = this.type;
         }
         params = this.$qs.stringify(params);
         this.$axios.post(common.student_change_page, params).then(res => {
@@ -453,6 +466,21 @@
         params = this.$qs.stringify(params);
 
         window.open(url+"?"+params, "_self");
+      },
+      fliterTable(value, row, column){
+        for (let item in value){
+          if (item == 'type'){
+            this.filterTypesText = "";
+            this.type = value[item][0];
+            for (let i = 0; i < this.filterUserTeachTypes.length; i++){
+              if (this.type == this.filterUserTeachTypes[i].value){
+                this.filterTypesText = this.filterUserTeachTypes[i].text;
+              }
+            }
+          }
+        }
+        this.page = 1;
+        this.init();
       }
     }
   }
