@@ -332,7 +332,7 @@
         toggleTopShow: false,
         filterStatusTypes: [],
         searchTimeData: {},
-        searchTopTime: this.$moment(new Date()).format("YYYY-MM-DD"),
+        searchTopTime: this.$moment().subtract(1, 'days').format("YYYY-MM-DD"),
         centerTop: ['40%', '50%'],
         pageStudent: 1,
         numStudent: 20,

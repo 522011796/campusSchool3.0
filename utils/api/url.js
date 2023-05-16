@@ -479,6 +479,13 @@ export const common = {
   tearcher_info_setting: '/proxy/school/person/teacher/photo/add',//教工管理--设置
   tearcher_info_setting_page: '/proxy/school/person/teacher/page',//教工管理--设置
 
+  student_graduate_page: '/proxy/user/student-leave/page',//毕业/退学分页
+  student_change_page: '/proxy/user/student-dropout/page',//学籍异动分页
+  student_restore_info: '/proxy/user/student/restore',//恢复学生信息
+  student_delete_info: '/proxy/user/student/del',//删除学生信息
+  student_export_change: '/proxy/user/student-dropout/export',//导出学生异动
+  student_export_graduate: '/proxy/user/student-leave/export',//导出学生毕业
+
   student_info_warning: '/proxy/user/alarm/list',//学生报警
   student_info_warning_detail_list: '/proxy/user/masterTeacher/userinfo/get',//学生报警
   student_info_warning_detail_map_list: '/proxy/user/alarm/track',//学生报警
@@ -744,5 +751,9 @@ export const common = {
   static_appinfo_form_get: '/proxy/school/applet/stat/data/get', //统计表查询
   static_appinfo_form_unit_save: '/proxy/school/applet/stat/unit/save', //统计表设计保存
   static_appinfo_form_detail: '/proxy/school/applet/stat/info', //统计表信息
+
+  college_only_list: '/proxy/school/edu/college/list',//学院列表-联动
+  major_only_list: '/proxy/school/edu/major/list',//专业列表-联动
+  class_only_list: '/proxy/school/edu/class/list',//班级列表-联动
 
 };

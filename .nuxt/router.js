@@ -168,6 +168,8 @@ const _017e9640 = () => interopDefault(import('../pages/studentInfo/student/mana
 const _449825a2 = () => interopDefault(import('../pages/studentInfo/student/report.vue' /* webpackChunkName: "pages/studentInfo/student/report" */))
 const _795dd8ed = () => interopDefault(import('../pages/studentInfo/student/status.vue' /* webpackChunkName: "pages/studentInfo/student/status" */))
 const _cac110de = () => interopDefault(import('../pages/studentInfo/student/stuAuth.vue' /* webpackChunkName: "pages/studentInfo/student/stuAuth" */))
+const _91f15ab2 = () => interopDefault(import('../pages/studentInfo/student/stuChangeInfo.vue' /* webpackChunkName: "pages/studentInfo/student/stuChangeInfo" */))
+const _3bf05d34 = () => interopDefault(import('../pages/studentInfo/student/stuGraduate.vue' /* webpackChunkName: "pages/studentInfo/student/stuGraduate" */))
 const _3facdc12 = () => interopDefault(import('../pages/studentInfo/student/stuStarngerRecord.vue' /* webpackChunkName: "pages/studentInfo/student/stuStarngerRecord" */))
 const _651efd9e = () => interopDefault(import('../pages/studentInfo/student/warning.vue' /* webpackChunkName: "pages/studentInfo/student/warning" */))
 const _417507b7 = () => interopDefault(import('../pages/teachInfo/exam/examManage.vue' /* webpackChunkName: "pages/teachInfo/exam/examManage" */))
@@ -862,6 +864,14 @@ export const routerOptions = {
     path: "/studentInfo/student/stuAuth",
     component: _cac110de,
     name: "studentInfo-student-stuAuth"
+  }, {
+    path: "/studentInfo/student/stuChangeInfo",
+    component: _91f15ab2,
+    name: "studentInfo-student-stuChangeInfo"
+  }, {
+    path: "/studentInfo/student/stuGraduate",
+    component: _3bf05d34,
+    name: "studentInfo-student-stuGraduate"
   }, {
     path: "/studentInfo/student/stuStarngerRecord",
     component: _3facdc12,

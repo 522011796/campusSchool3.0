@@ -375,6 +375,10 @@
       }
     },
     created() {
+      let startTime = this.$moment().subtract(1, 'days').format("YYYY-MM-DD");
+      let endTime = this.$moment().subtract(1, 'days').format("YYYY-MM-DD");
+      this.searchDate = [startTime+"", endTime+""];
+      console.log(this.searchDate);
       this.init();
     },
     methods: {

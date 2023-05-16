@@ -596,7 +596,7 @@
         uploadAction: common.student_upload,
         loopTimer: null,
         resultList: [],
-        searchTopTime: this.$moment(new Date).format("YYYY-MM-DD"),
+        searchTopTime: this.$moment().subtract(1, 'days').format("YYYY-MM-DD"),
         attendType: 'attend',
         searchAttendType: 'attend',
         userType: 1,
