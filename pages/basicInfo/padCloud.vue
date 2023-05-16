@@ -530,7 +530,7 @@
           wopadCallbackUrl: this.formConf.faceCallBack
         };
         params = this.$qs.stringify(params);
-        this.$axios.post(common.device_pad_local_check_down, params).then(res => {
+        this.$axios.post(common.device_set, params).then(res => {
           if (res.data.code == 200){
 
           }else {
@@ -713,7 +713,7 @@
             };
 
             params = this.$qs.stringify(params);
-            this.$axios.post(common.device_set, params).then(res => {
+            this.$axios.post(common.device_pad_wo_check_down, params).then(res => {
               if (res.data.code == 200){
                 this.modalConfVisible = false;
                 this.init();
