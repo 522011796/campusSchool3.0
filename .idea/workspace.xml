@@ -2,19 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="修改后勤记录细节">
-      <change afterPath="$PROJECT_DIR$/pages/studentInfo/student/stuChangeInfo.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/studentInfo/student/stuGraduate.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/administration/record.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/administration/record.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/administration/search.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/administration/search.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/administration/static.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/administration/static.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/sliderMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/sliderMenu.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/student/stuChangeInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/student/stuChangeInfo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/student/stuGraduate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/student/stuGraduate.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +82,7 @@
       <workItem from="1682647640262" duration="661000" />
       <workItem from="1682661230487" duration="5305000" />
       <workItem from="1683168602119" duration="608000" />
-      <workItem from="1683251524230" duration="47735000" />
+      <workItem from="1683251524230" duration="48019000" />
     </task>
     <task id="LOCAL-00001" summary="解除申请">
       <created>1669282932965</created>
@@ -416,7 +406,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683767123504</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="修改后勤记录细节">
+      <created>1684201949621</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1684201949621</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

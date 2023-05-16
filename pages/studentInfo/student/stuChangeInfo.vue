@@ -308,7 +308,6 @@
         // params = this.$qs.stringify(params);
         this.$axios.get(common.college_only_list).then(res => {
           if (res.data.data){
-            console.log(res.data.data);
             this.collegeOptions = res.data.data;
           }
         });
@@ -320,7 +319,6 @@
         // params = this.$qs.stringify(params);
         this.$axios.get(common.major_only_list, {params: params}).then(res => {
           if (res.data.data){
-            console.log(res.data.data);
             this.majorOptions = res.data.data;
           }
         });
@@ -332,7 +330,6 @@
         // params = this.$qs.stringify(params);
         this.$axios.get(common.class_only_list, {params: params}).then(res => {
           if (res.data.data){
-            console.log(res.data.data);
             this.classOptions = res.data.data;
           }
         });
