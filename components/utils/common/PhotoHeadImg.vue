@@ -4,7 +4,7 @@
       <div v-if="headImg.photo_status != 1">
         <i class="fa fa-refresh color-grand" style="font-size: 15px" @click="refreshPhoto(headImg.id)"></i>
       </div>
-      <div v-else>
+      <div v-if="headImg.photo_status == 1">
         <el-image
           :z-index="9999999"
           class="custom-el-image-pop head-img-radius-class"

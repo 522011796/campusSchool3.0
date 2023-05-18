@@ -1,10 +1,10 @@
 <template>
   <div>
     <div v-if="headImg.photo_status">
-      <div v-if="headImg.photo_status == 0">
-        <i class="fa fa-refresh color-grand" style="font-size: 15px"></i>
+      <div v-if="headImg.photo_status != 1">
+        <i class="fa fa-refresh color-grand" style="font-size: 15px" @click="refreshPhoto(headImg.id)"></i>
       </div>
-      <div v-if="headImg.photo_status != 0">
+      <div v-if="headImg.photo_status == 1">
         <el-image
           :z-index="9999999"
           class="custom-el-image-pop head-img-radius-class"
@@ -112,6 +112,9 @@
         }
         let deg = 90 * this.degNum;
         this.headImgStatus.transform = "rotate("+deg+"deg)";
+      },
+      refreshPhoto(id){
+        this.$emit("click", id);
       }
     }
   }
