@@ -303,7 +303,7 @@
             value: ''
           };
         }
-        obj['termId'] = this.nowDataObj.termId;
+        obj['termId'] = this.nowDataObj.currentTermId;
         this.$emit('click', obj);
       },
       selectChange(data) {

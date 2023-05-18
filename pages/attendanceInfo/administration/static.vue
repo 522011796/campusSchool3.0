@@ -443,7 +443,7 @@
           params['timeUnit'] = 6;
         }else {
           let day = this.$moment(new Date()).format("YYYY-MM-DD");
-          params['busiTime'] = this.$moment(new Date()).format("YYYY-MM-DD");
+          params['busiTime'] = this.$moment().subtract(1, 'days').format("YYYY-MM-DD");
           params['timeUnit'] = 3;
         }
         params['termId'] = this.currentTermId;
