@@ -75,14 +75,15 @@
             align="center"
             :label="$t('用途')">
             <template slot-scope="scope">
-              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">
-                  <my-device-use-type :type="scope.row.scene_type"></my-device-use-type>
-                </div>
-                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class color-warning">
-                  <my-device-use-type :type="scope.row.scene_type"></my-device-use-type>
-                </div>
-              </el-popover>
+<!--              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">-->
+<!--                <div class="text-center">-->
+<!--                  <my-device-use-type-array :type="scope.row.scene_type"></my-device-use-type-array>-->
+<!--                </div>-->
+<!--                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class color-warning">-->
+<!--                  <my-device-use-type-array :type="scope.row.scene_type"></my-device-use-type-array>-->
+<!--                </div>-->
+<!--              </el-popover>-->
+              <my-device-use-type-array :type="scope.row.scene_type"></my-device-use-type-array>
             </template>
           </el-table-column>
           <el-table-column
@@ -193,13 +194,13 @@
             <el-input v-model="form.comment" class="width-260"></el-input>
           </el-form-item>
           <el-form-item :label="$t('设备用途')" prop="uses">
-            <my-select :sel-value="form.use" :options="filterDeviceUseType" width-style="260" @change="handleSelect($event,3)"></my-select>
-            <div v-if="form.use == 3 || form.use == 4">
-              <el-radio-group size="small" v-model="form.sceneSubType">
-                <el-radio-button label="1">{{$t('进入')}}</el-radio-button>
-                <el-radio-button label="2">{{$t('外出')}}</el-radio-button>
-              </el-radio-group>
-            </div>
+            <my-select :sel-value="form.use" :multiple="true" :options="filterDeviceUseOnlyType" width-style="260" @change="handleSelect($event,3)"></my-select>
+          </el-form-item>
+          <el-form-item :label="$t('设备方向')" prop="uses" v-if="form.use.join().indexOf('3') > -1 || form.use.join().indexOf('4') > -1">
+            <el-radio-group size="small" v-model="form.sceneSubType">
+              <el-radio-button label="1">{{$t('进入')}}</el-radio-button>
+              <el-radio-button label="2">{{$t('外出')}}</el-radio-button>
+            </el-radio-group>
           </el-form-item>
         </el-form>
       </div>
@@ -242,6 +243,15 @@
               </el-form-item>
               <el-form-item :label="$t('备注')" prop="comment">
                 <el-input v-model="formSet.comment" class="width-300"></el-input>
+              </el-form-item>
+              <el-form-item :label="$t('通途')" prop="uses">
+                <my-select :sel-value="formSet.use" :multiple="true" :options="filterDeviceUseOnlyType" width-style="300" @change="handleSelect($event,4)"></my-select>
+              </el-form-item>
+              <el-form-item :label="$t('方向')" v-if="formSet.use.join().indexOf('3') > -1 || formSet.use.join().indexOf('4') > -1">
+                <el-radio-group size="small" v-model="formSet.sceneSubType">
+                  <el-radio-button label="1">{{$t('进入')}}</el-radio-button>
+                  <el-radio-button label="2">{{$t('外出')}}</el-radio-button>
+                </el-radio-group>
               </el-form-item>
             </template>
 
@@ -376,7 +386,7 @@
   import MyPagination from "../../components/MyPagination";
   import mixins from "../../utils/mixins";
   import {common} from "../../utils/api/url";
-  import {levelText, MessageError, MessageSuccess, MessageWarning} from "../../utils/utils";
+  import {inArray, levelText, MessageError, MessageSuccess, MessageWarning} from "../../utils/utils";
   import LayoutTb from "../../components/Layout/LayoutTb";
   import MySelect from "../../components/MySelect";
   import MyInputButton from "../../components/search/MyInputButton";
@@ -384,9 +394,12 @@
   import DrawerLayoutRight from "../../components/utils/dialog/DrawerLayoutRight";
   import MyDeviceUseType from "../../components/utils/status/MyDeviceUseType";
   import padWoValidater from "../../utils/validater/padWoValidater";
+  import MyDeviceUseTypeArray from "~/components/utils/status/MyDeviceUseTypeArray";
   export default {
     mixins: [mixins, padWoValidater],
-    components: {MyPagination,LayoutTb,MySelect,MyInputButton,DialogNormal,DrawerLayoutRight,MyDeviceUseType},
+    components: {
+      MyDeviceUseTypeArray,
+      MyPagination,LayoutTb,MySelect,MyInputButton,DialogNormal,DrawerLayoutRight,MyDeviceUseType},
     data(){
       return {
         tableData: [],
@@ -420,8 +433,10 @@
           comment: '',
           name: '',
           pwd: '',
-          use: 2,
-          sceneSubType: 1
+          use: [],
+          sceneSubType: 1,
+          sceneConnectType: 1,
+          sceneControlType: 1,
         },
         formSet: {
           setType: '',
@@ -430,6 +445,11 @@
           name: '',
           ip: '',
           comment: '',
+          use: [],
+          sceneType: [],
+          sceneSubType: 1,
+          sceneConnectType: 1,
+          sceneControlType: 1,
           recSucTtsModeType: 2,//语音播报模式,
           recSucTtsModeContent: '',
           recSucDisplayText1Type: 2,
@@ -488,6 +508,8 @@
             this.formSet = {
               name: res.data.data.name,
               comment: res.data.data.comment,
+              sceneType: res.data.data.sceneType && res.data.data.sceneType != "" ? res.data.data.sceneType.split(",") : [],
+              sceneSubType: res.data.data.sceneSubType ? res.data.data.sceneSubType : 1,
               recSucTtsModeType: res.data.data.recSucTtsModeType,
               recSucTtsModeContent: res.data.data.recSucTtsModeContent,
               recSucDisplayText1Type: res.data.data.recSucDisplayText1Type,
@@ -682,10 +704,10 @@
               sn: this.form.sn,
               name: this.form.name,
               comment: this.form.comment,
-              deviceUse: this.form.use,
-              sceneType: this.form.use
+              sceneType: this.form.use.length > 0 ? this.form.use.join() : ""
             };
-            if (this.form.use == 3 || this.form.use == 4){
+
+            if (this.form.use.join().indexOf('3') > -1 || this.form.use.join().indexOf('4') > -1){
               params['sceneSubType'] = this.form.sceneSubType;
             }
 
@@ -735,8 +757,11 @@
           comment: '',
           name: '',
           pwd: '',
-          use: 2,
-          sceneSubType: 1
+          use: [],
+          sceneType: [],
+          sceneSubType: 1,
+          sceneConnectType: 1,
+          sceneControlType: 1,
         };
         this.formConf = {
           pwd: '',
@@ -763,6 +788,11 @@
           name: '',
           ip: '',
           comment: '',
+          use: [],
+          sceneType: [],
+          sceneSubType: 1,
+          sceneConnectType: 1,
+          sceneControlType: 1,
           recSucTtsModeType: 2,//语音播报模式,
           recSucTtsModeContent: '',
           recSucDisplayText1Type: 2,
@@ -793,6 +823,7 @@
         this.drawerLoading = true;
         let params = {};
         params = this.formSet;
+        params["sceneType"] = this.formSet.use.length > 0 ? this.formSet.use.join() : "";
         params = this.$qs.stringify(params);
         this.$axios.post(common.wo_pad_config_set, params).then(res => {
           if (res.data.code == 200){
@@ -814,7 +845,58 @@
             this.formSet.mutiplayerDetetion = data;
             break;
           case 3:
-            this.form.use = data;
+            {
+              let array = data;
+              let indexSel = "";
+              let proNum = data.findIndex((item, index) =>{
+                let indexSel3 = "";
+                let indexSel4 = "";
+                indexSel3 = inArray(3, array);
+                indexSel4 = inArray(4, array);
+
+                if (array.length > 0 && (array.join().indexOf("3") > -1 && array.join().indexOf("4") > -1)){
+                  if (indexSel3 > indexSel4){
+                    indexSel = parseInt(indexSel4);
+                    array.splice(indexSel, 1);
+                  }
+                }
+
+                if (array.length > 0 && (array.join().indexOf("3") > -1 && array.join().indexOf("4") > -1)){
+                  if (indexSel3 < indexSel4){
+                    indexSel = parseInt(indexSel3);
+                    array.splice(indexSel, 1);
+                  }
+                }
+              });
+              this.form.use = array;
+            }
+            break
+          case 4:
+            {
+              let array = data;
+              let indexSel = "";
+              let proNum = data.findIndex((item, index) =>{
+                let indexSel3 = "";
+                let indexSel4 = "";
+                indexSel3 = inArray(3, array);
+                indexSel4 = inArray(4, array);
+
+                if (array.length > 0 && (array.join().indexOf("3") > -1 && array.join().indexOf("4") > -1)){
+                  if (indexSel3 > indexSel4){
+                    indexSel = parseInt(indexSel4);
+                    array.splice(indexSel, 1);
+                  }
+                }
+
+                if (array.length > 0 && (array.join().indexOf("3") > -1 && array.join().indexOf("4") > -1)){
+                  if (indexSel3 < indexSel4){
+                    indexSel = parseInt(indexSel3);
+                    array.splice(indexSel, 1);
+                  }
+                }
+              });
+              this.formSet.use = array;
+            }
             break
         }
       },

@@ -1080,9 +1080,9 @@
           }
         }
         if (this.menuTabListObj[this.loginUserId]){
-          this.$set(this.rightItemAllWidth,'width', this.menuTabListObj[this.loginUserId].length * 120 +'px');
+          this.$set(this.rightItemAllWidth,'width', this.menuTabListObj[this.loginUserId].length * 135 +'px');
         }else {
-          this.$set(this.rightItemAllWidth,'width', 0 * 120 +'px');
+          this.$set(this.rightItemAllWidth,'width', 0 * 135 +'px');
         }
       },
       getMenuTabWdith(){
@@ -1102,11 +1102,11 @@
       },
       moveTabRight(){
         let scrollWith =  document.querySelector("#menuTagDiv").scrollWidth;
-        document.getElementById("menuTagDiv").scrollLeft += 120;
+        document.getElementById("menuTagDiv").scrollLeft += 135;
       },
       moveTabLeft(){
         let scrollWith =  document.querySelector("#menuTagDiv").scrollWidth;
-        document.getElementById("menuTagDiv").scrollLeft -= 120;
+        document.getElementById("menuTagDiv").scrollLeft -= 135;
       },
       clearTabLeft(){
         if (process.client){
@@ -1449,7 +1449,7 @@
               }
             );
           }
-          let width = parseInt(this.rightItemAllWidth.width.substr(0,this.rightItemAllWidth.width.length-2)) + 120;
+          let width = parseInt(this.rightItemAllWidth.width.substr(0,this.rightItemAllWidth.width.length-2)) + 135;
           this.$set(this.rightItemAllWidth,'width', width +'px');
           if (document.getElementById("menuTagDiv")){
             document.getElementById("menuTagDiv").scrollLeft = width;
@@ -1541,7 +1541,7 @@
       },
       handleTabClose(index){
         this.menuTabListObj[this.loginUserId].splice(index, 1);
-        let width = parseInt(this.rightItemAllWidth.width.substr(0,this.rightItemAllWidth.width.length-2)) - 120;
+        let width = parseInt(this.rightItemAllWidth.width.substr(0,this.rightItemAllWidth.width.length-2)) - 135;
         this.$set(this.rightItemAllWidth,'width', width +'px');
         localStorage.setItem("menuTabList", JSON.stringify(this.menuTabListObj));
       },

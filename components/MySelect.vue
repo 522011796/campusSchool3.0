@@ -12,6 +12,7 @@
       :loading="loading"
       :remote="remote"
       :remote-method="remoteMethod"
+      :multiple="multiple"
       @change="handleChange"
       :setWidth="setWidth"
       :style="width">
@@ -54,7 +55,7 @@
       },
       selValue: {
         default: '',
-        type: [String, Number,Boolean]
+        type: [String, Number,Boolean,Array]
       },
       options: {
         default: function () {
@@ -101,6 +102,10 @@
       widthStyle: {
         default: '',
         type: [String, Number]
+      },
+      multiple: {
+        default: false,
+        type: Boolean
       }
     },
     computed: {

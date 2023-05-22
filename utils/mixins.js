@@ -80,6 +80,7 @@ export default {
       filterPhoneOwner: global.filterPhoneOwner,
       filterBillStatus: global.filterBillStatus,
       filterDeviceUseType: global.filterDeviceUseType,
+      filterDeviceUseOnlyType: global.filterDeviceUseOnlyType,
       filterOnlineStatus: global.filterOnlineStatus,
       filterDormBackStatus: global.filterDormBackStatus,
       filterClassAttendStatus: global.filterClassAttendStatus,

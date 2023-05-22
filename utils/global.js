@@ -261,6 +261,14 @@ const filterDeviceUseType = [
   { text: '智慧迎新用', value: 5 ,label: '智慧迎新用'}
 ];
 
+const filterDeviceUseOnlyType = [
+  { text: "归寝签到", value: 1 ,label: '归寝签到'},
+  { text: '课堂考勤', value: 2 ,label: '课堂考勤'},
+  { text: '门禁直连用(单选)', value: 3 ,label: '门禁直连用(单选)'},
+  { text: '门禁控制器用(单选)', value: 4 ,label: '门禁控制器用(单选)'},
+  { text: '智慧迎新用', value: 5 ,label: '智慧迎新用'}
+];
+
 const filterOnlineStatus = [
   { text: "在线", value: true, label: '在线'},
   { text: '离线', value: false, label: '离线'}
@@ -628,6 +636,7 @@ export default {
   filterPhoneOwner,
   filterBillStatus,
   filterDeviceUseType,
+  filterDeviceUseOnlyType,
   filterOnlineStatus,
   filterDormBackStatus,
   filterClassAttendStatus,
