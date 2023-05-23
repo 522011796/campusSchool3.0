@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="增加毕业和异动管理">
-      <change afterPath="$PROJECT_DIR$/components/utils/status/MyDeviceUseTypeArray.vue" afterDir="false" />
+    <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="修改设备管理">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MySelect.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/MySelect.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layouts/default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/default.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/basicInfo/padCloud.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/padCloud.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/basicInfo/padLocal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/padLocal.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/global.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,14 +83,7 @@
       <workItem from="1682661230487" duration="5305000" />
       <workItem from="1683168602119" duration="608000" />
       <workItem from="1683251524230" duration="66369000" />
-      <workItem from="1684463291875" duration="17178000" />
-    </task>
-    <task id="LOCAL-00007" summary="解除申请">
-      <created>1669773360454</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1669773360454</updated>
+      <workItem from="1684463291875" duration="19408000" />
     </task>
     <task id="LOCAL-00008" summary="解除申请">
       <created>1669884511472</created>
@@ -436,7 +421,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684573293770</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="修改设备管理">
+      <created>1684751225732</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1684751225732</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -461,6 +453,7 @@
     <MESSAGE value="修改登录细节" />
     <MESSAGE value="修改后勤记录细节" />
     <MESSAGE value="增加毕业和异动管理" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加毕业和异动管理" />
+    <MESSAGE value="修改设备管理" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改设备管理" />
   </component>
 </project>

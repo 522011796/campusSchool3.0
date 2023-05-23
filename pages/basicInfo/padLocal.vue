@@ -696,7 +696,7 @@
           callbackUrl: this.formConf.hurtCallBack
         };
         params = this.$qs.stringify(params);
-        this.$axios.post(common.device_pad_local_down, params).then(res => {
+        this.$axios.post(common.device_pad_local_hurt_down, params).then(res => {
           if (res.data.code == 200){
 
           }else {
