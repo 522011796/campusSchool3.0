@@ -163,6 +163,24 @@
               this.$refs.tree.setCurrentKey(this.currentNodeKey); //一定要加这个选中了否则样式没有出来
             }
           });
+        }else if(this.type == 130){//系统服务应用选择用，不显示学校和默认选中第一个
+          await this.getAppletSystemServerInfo(this.extraType);
+          this.data = this.dataAppletSystemServer;
+          this.selectCampusAll = false;
+          this.$nextTick(() => {
+            if (this.$refs.tree){
+              this.$refs.tree.setCurrentKey(this.currentNodeKey); //一定要加这个选中了否则样式没有出来
+            }
+          });
+        }else if(this.type == 140){//管理财务应用选择用，不显示学校和默认选中第一个
+          await this.getAppletFDServerInfo(this.extraType);
+          this.data = this.dataAppletFDServer;
+          this.selectCampusAll = false;
+          this.$nextTick(() => {
+            if (this.$refs.tree){
+              this.$refs.tree.setCurrentKey(this.currentNodeKey); //一定要加这个选中了否则样式没有出来
+            }
+          });
         }else if(this.type == 111){
           await this.getAppletServerInfo(this.extraType);
           this.data = this.dataAppletServer;

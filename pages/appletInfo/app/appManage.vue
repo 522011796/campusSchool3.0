@@ -7,21 +7,28 @@
             <!--<span class="layout-left-menu-tag"></span>-->
             <span class="layout-left-menu-title">应用管理</span>
           </div>
-          <my-el-tree type="4" sub-type="" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
+          <my-el-tree v-if="mainMenu == '1'" type="4" sub-type="" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
+          <my-el-tree ref="appRef" v-if="mainMenu == '2'" type="140" :extra-type="appName" :currentNodeKey="currentNodeKey" :default-expanded-keys="defaultExpandedKeys" :show-campus="false" @node-click="nodeFDClick" @all-click="nodeFDClick"></my-el-tree>
         </div>
 
         <div slot="right">
           <div class="layout-top-tab margin-top-5">
             <el-row>
               <el-col :span="8">
-                <el-button size="small" type="primary"  icon="el-icon-plus" @click="addInfo($event)">{{$t("创建应用")}}</el-button>
-<!--                <el-button size="small" type="warning"  icon="el-icon-notebook-2" @click="myInfo($event)">{{$t("我的应用")}}</el-button>-->
+                <el-button v-if="mainMenu == '1'" size="small" type="primary"  icon="el-icon-plus" @click="addInfo($event)">{{$t("创建应用")}}</el-button>
+                <el-button v-else size="small" type="text" @click="returnMain($event)">
+                  <i class="fa fa-arrow-left"></i>
+                  {{$t("返回")}}
+                </el-button>
               </el-col>
               <el-col :span="16" class="text-right">
-                <div class="layout-inline">
+                <div v-if="mainMenu == '1'" class="layout-inline">
                   <my-select class="layout-item width-150" size="small" :placeholder="$t('类型')" :options="filterAppManageType" :clearable="true" @change="handleTypeChange($event, 1)"></my-select>
                   <my-select class="layout-item width-150" size="small" :placeholder="$t('状态')" :options="filterAppManageStatus" :clearable="true" @change="handleTypeChange($event, 2)"></my-select>
                   <my-input-button ref="teacher width-150" size="small" plain width-class="width: 180px" type="success" :clearable="true" :placeholder="$t('名称/编号')" @click="search"></my-input-button>
+                </div>
+                <div v-else>
+                  <my-input-button ref="teacher width-150" size="small" plain width-class="width: 180px" type="success" :clearable="true" :placeholder="$t('请输入信息')" @click="searchMoneyDetail"></my-input-button>
                 </div>
               </el-col>
             </el-row>
@@ -29,6 +36,7 @@
 
           <div class="margin-top-10">
             <el-table
+              v-if="mainMenu == 1"
               ref="refTable"
               :data="tableData"
               header-cell-class-name="custom-table-cell-bg"
@@ -77,19 +85,19 @@
                   </el-popover>
                 </template>
               </el-table-column>
-              <el-table-column
-                align="center"
-                prop="appName"
-                :label="$t('类别')">
-                <template slot-scope="scope">
-                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                    <div class="text-center">{{ scope.row.category_name }}</div>
-                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                        {{ scope.row.category_name }}
-                      </span>
-                  </el-popover>
-                </template>
-              </el-table-column>
+<!--              <el-table-column-->
+<!--                align="center"-->
+<!--                prop="appName"-->
+<!--                :label="$t('类别')">-->
+<!--                <template slot-scope="scope">-->
+<!--                  <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">-->
+<!--                    <div class="text-center">{{ scope.row.category_name }}</div>-->
+<!--                    <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">-->
+<!--                        {{ scope.row.category_name }}-->
+<!--                      </span>-->
+<!--                  </el-popover>-->
+<!--                </template>-->
+<!--              </el-table-column>-->
               <el-table-column
                 align="center"
                 prop="appName"
@@ -112,10 +120,11 @@
                 width="120"
                 :label="$t('操作')">
                 <template slot-scope="scope">
-                  <i v-if="scope.row.enable" class="fa fa-stop-circle color-warning margin-right-5" @click="statusInfo(scope.row, false)"></i>
-                  <i v-if="!scope.row.enable" class="fa fa-play-circle color-success margin-right-5" @click="statusInfo(scope.row, true)"></i>
+                  <i v-if="scope.row.enable" title="启用" class="fa fa-stop-circle color-warning margin-right-5" @click="statusInfo(scope.row, false)"></i>
+                  <i v-if="!scope.row.enable" title="禁用" class="fa fa-play-circle color-success margin-right-5" @click="statusInfo(scope.row, true)"></i>
                   <i class="fa fa-edit margin-right-5 color-grand" @click="editInfo(scope.row)"></i>
-                  <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
+                  <i v-if="scope.row.is_default == false" class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
+<!--                  <i v-if="scope.row.is_default == true" class="fa fa-cog color-success" @click="settingInfo(scope.row)"></i>-->
                 </template>
               </el-table-column>
               <el-table-column
@@ -127,6 +136,10 @@
                 </template>
               </el-table-column>
             </el-table>
+
+            <template v-else>
+              1
+            </template>
           </div>
           <div class="layout-right-footer text-right">
             <my-pagination :total="total" :current-page="page" :page-size="num" @currentPage="currentPage" @sizeChange="sizeChange" @jumpChange="jumpPage" class="layout-pagination"></my-pagination>
@@ -144,12 +157,12 @@
           <el-form-item :label="$t('应用类型')" prop="type">
             <my-select :sel-value="form.type" :options="filterAppManageType" width-style="260" @change="handleFormChange($event, 1)"></my-select>
           </el-form-item>
-          <el-form-item :label="$t('应用类别')" prop="category">
-<!--            <my-select :sel-value="form.category" :options="categorys" width-style="260" @change="handleFormChange($event, 2)"></my-select>-->
-            <el-select v-model="form.category" :placeholder="$t('请选择')" @change="handleFormChange($event, 2)" style="width: 260px">
-              <el-option v-for="item in categorys" :key="item.value" :label="item.label" :value="item.value" :disabled="item.enable == false"></el-option>
-            </el-select>
-          </el-form-item>
+<!--          <el-form-item :label="$t('应用类别')" prop="category">-->
+<!--&lt;!&ndash;            <my-select :sel-value="form.category" :options="categorys" width-style="260" @change="handleFormChange($event, 2)"></my-select>&ndash;&gt;-->
+<!--            <el-select v-model="form.category" :placeholder="$t('请选择')" @change="handleFormChange($event, 2)" style="width: 260px">-->
+<!--              <el-option v-for="item in categorys" :key="item.value" :label="item.label" :value="item.value" :disabled="item.enable == false"></el-option>-->
+<!--            </el-select>-->
+<!--          </el-form-item>-->
           <el-form-item>
             <span slot="label" class="custon-form-start-tag">{{$t('归属部门')}}</span>
             <my-cascader ref="SelectorCollege" :sel-value="form.dept" :props="{multiple: true}" type="4" sub-type="id" width-style="260" @change="handleCascaderChange($event)"></my-cascader>
@@ -179,11 +192,18 @@
   import {MessageError, MessageSuccess, MessageWarning} from "~/utils/utils";
   import appManageValidater from "~/utils/validater/appManageValidater";
   import MyCascader from "~/components/utils/select/MyCascader";
+  import MyElTree from "~/components/tree/MyElTree";
   export default {
     mixins: [mixins,appManageValidater],
-    components: {MyCascader, MySelect, MyInputButton},
+    components: {MyElTree, MyCascader, MySelect, MyInputButton},
     data(){
       return {
+        pageDetail: 1,
+        numDetail: 20,
+        totalDetail: 0,
+        mainMenuType: 1,
+        subMenuType: 4,
+        mainMenu: 1,
         tableData: [],
         collegeList: [],
         categorys: [],
@@ -191,8 +211,14 @@
         subTitle: '',
         collegeData: '',
         searchKey: '',
+        searchMoneyKey: '',
         searchType: '',
         searchStatus: '',
+        appName: '',
+        currentNodeKey: '',
+        defaultExpandedKeys: [],
+        formId: '',
+        formName: '',
         dialogLoading: false,
         dialogApp: false,
         visibleConfim: false,
@@ -207,7 +233,7 @@
     },
     created() {
       this.init();
-      this.initCategory();
+      //this.initCategory();
     },
     methods: {
       init(){
@@ -266,10 +292,25 @@
         this.page = 1;
         this.init();
       },
+      nodeFDClick(data){
+        this.formId = "";
+        this.page = 1;
+
+        if (data.unit == 2){
+          this.formId = data.id;
+          this.formName = data.label;
+          //this.init();
+        }
+      },
       search(data){
         this.searchKey = data.input;
         this.page = 1;
         this.init(data);
+      },
+      searchMoneyDetail(data){
+        this.searchMoneyKey = data.input;
+        //this.page = 1;
+        //this.init(data);
       },
       addInfo(){
         this.dialogApp = true;
@@ -308,6 +349,25 @@
         this.form.id = item.id;
         this.visibleConfim = true;
       },
+      async settingInfo(item){
+        this.mainMenu = 2;
+        this.pageDetail = 1;
+        this.appName = ''+item.id;
+        this.appletId = item.id;
+        this.formId = item.id;
+        this.formName = item.formName;
+        this.searchDetailType = item.applet_type;
+        await this.getAppletFDServerInfo();
+        let data = this.dataAppletFDServer;
+        if (data && data.length > 0 && data[0]['children']){
+          this.formId = data[0]['children'][0].id;
+          this.formName = data[0]['children'][0].label;
+          this.defaultExpandedKeys = [data[0].id, data[0]['children'][0].id];
+          this.currentNodeKey = data[0]['children'][0].id;
+        }
+
+        //this.init();
+      },
       statusInfo(item, type){
         let params = {
           id: item.id,
@@ -334,6 +394,15 @@
             sub: 'appCenter'
           }
         });
+      },
+      returnMain(){
+        this.mainMenu = 1;
+        this.page = 1;
+        this.departmentPath = '';
+        this.appletType = '';
+        this.enable = '';
+        this.searchKey = '';
+        this.init();
       },
       handleCascaderChange(data){
         console.log(data);
@@ -375,7 +444,7 @@
             let params = {
               appletName: this.form.appName,
               appletType: this.form.type,
-              categoryId: this.form.category,
+              //categoryId: this.form.category,
               departmentIds: deptArrStr,
             };
             if (this.form.id != ''){

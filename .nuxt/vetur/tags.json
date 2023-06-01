@@ -71,6 +71,78 @@
   "LazyLayoutTb": {
     "description": "Auto imported from components/Layout/LayoutTb.vue"
   },
+  "BarChart": {
+    "description": "Auto imported from components/charts/BarChart.vue"
+  },
+  "LazyBarChart": {
+    "description": "Auto imported from components/charts/BarChart.vue"
+  },
+  "CircleChart": {
+    "description": "Auto imported from components/charts/CircleChart.vue"
+  },
+  "LazyCircleChart": {
+    "description": "Auto imported from components/charts/CircleChart.vue"
+  },
+  "HBarChart": {
+    "description": "Auto imported from components/charts/HBarChart.vue"
+  },
+  "LazyHBarChart": {
+    "description": "Auto imported from components/charts/HBarChart.vue"
+  },
+  "LineChart": {
+    "description": "Auto imported from components/charts/LineChart.vue"
+  },
+  "LazyLineChart": {
+    "description": "Auto imported from components/charts/LineChart.vue"
+  },
+  "LineClassPopChart": {
+    "description": "Auto imported from components/charts/LineClassPopChart.vue"
+  },
+  "LazyLineClassPopChart": {
+    "description": "Auto imported from components/charts/LineClassPopChart.vue"
+  },
+  "LinePopChart": {
+    "description": "Auto imported from components/charts/LinePopChart.vue"
+  },
+  "LazyLinePopChart": {
+    "description": "Auto imported from components/charts/LinePopChart.vue"
+  },
+  "PopChart": {
+    "description": "Auto imported from components/charts/PopChart.vue"
+  },
+  "LazyPopChart": {
+    "description": "Auto imported from components/charts/PopChart.vue"
+  },
+  "RadarChart": {
+    "description": "Auto imported from components/charts/RadarChart.vue"
+  },
+  "LazyRadarChart": {
+    "description": "Auto imported from components/charts/RadarChart.vue"
+  },
+  "RadarDormChart": {
+    "description": "Auto imported from components/charts/RadarDormChart.vue"
+  },
+  "LazyRadarDormChart": {
+    "description": "Auto imported from components/charts/RadarDormChart.vue"
+  },
+  "SexPieChart": {
+    "description": "Auto imported from components/charts/SexPieChart.vue"
+  },
+  "LazySexPieChart": {
+    "description": "Auto imported from components/charts/SexPieChart.vue"
+  },
+  "SexPieMoreChart": {
+    "description": "Auto imported from components/charts/SexPieMoreChart.vue"
+  },
+  "LazySexPieMoreChart": {
+    "description": "Auto imported from components/charts/SexPieMoreChart.vue"
+  },
+  "TableBarChart": {
+    "description": "Auto imported from components/charts/TableBarChart.vue"
+  },
+  "LazyTableBarChart": {
+    "description": "Auto imported from components/charts/TableBarChart.vue"
+  },
   "MyFormAuditType": {
     "description": "Auto imported from components/form/MyFormAuditType.vue"
   },
@@ -118,6 +190,18 @@
   },
   "LazyPcStaticTemplateShow": {
     "description": "Auto imported from components/form/PCStaticTemplateShow.vue"
+  },
+  "MyNewStudentFlow": {
+    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
+  },
+  "LazyMyNewStudentFlow": {
+    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
+  },
+  "MyNewStudentFlowType": {
+    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
+  },
+  "LazyMyNewStudentFlowType": {
+    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
   },
   "MyInputButton": {
     "description": "Auto imported from components/search/MyInputButton.vue"
@@ -263,30 +347,6 @@
   "LazyTerleaveDetail": {
     "description": "Auto imported from components/utils/auditDetail/TerleaveDetail.vue"
   },
-  "MyHeadImg": {
-    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
-  },
-  "LazyMyHeadImg": {
-    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
-  },
-  "MyHeadListImg": {
-    "description": "Auto imported from components/utils/common/MyHeadListImg.vue"
-  },
-  "LazyMyHeadListImg": {
-    "description": "Auto imported from components/utils/common/MyHeadListImg.vue"
-  },
-  "MyViewImg": {
-    "description": "Auto imported from components/utils/common/MyViewImg.vue"
-  },
-  "LazyMyViewImg": {
-    "description": "Auto imported from components/utils/common/MyViewImg.vue"
-  },
-  "PhotoHeadImg": {
-    "description": "Auto imported from components/utils/common/PhotoHeadImg.vue"
-  },
-  "LazyPhotoHeadImg": {
-    "description": "Auto imported from components/utils/common/PhotoHeadImg.vue"
-  },
   "AuditStatusButton": {
     "description": "Auto imported from components/utils/button/AuditStatusButton.vue"
   },
@@ -317,77 +377,35 @@
   "LazyTimeoutButton": {
     "description": "Auto imported from components/utils/button/TimeoutButton.vue"
   },
-  "BarChart": {
-    "description": "Auto imported from components/charts/BarChart.vue"
+  "MyHeadImg": {
+    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
   },
-  "LazyBarChart": {
-    "description": "Auto imported from components/charts/BarChart.vue"
+  "LazyMyHeadImg": {
+    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
   },
-  "CircleChart": {
-    "description": "Auto imported from components/charts/CircleChart.vue"
+  "MyHeadListImg": {
+    "description": "Auto imported from components/utils/common/MyHeadListImg.vue"
   },
-  "LazyCircleChart": {
-    "description": "Auto imported from components/charts/CircleChart.vue"
+  "LazyMyHeadListImg": {
+    "description": "Auto imported from components/utils/common/MyHeadListImg.vue"
   },
-  "HBarChart": {
-    "description": "Auto imported from components/charts/HBarChart.vue"
+  "MyViewImg": {
+    "description": "Auto imported from components/utils/common/MyViewImg.vue"
   },
-  "LazyHBarChart": {
-    "description": "Auto imported from components/charts/HBarChart.vue"
+  "LazyMyViewImg": {
+    "description": "Auto imported from components/utils/common/MyViewImg.vue"
   },
-  "LineChart": {
-    "description": "Auto imported from components/charts/LineChart.vue"
+  "PhotoHeadImg": {
+    "description": "Auto imported from components/utils/common/PhotoHeadImg.vue"
   },
-  "LazyLineChart": {
-    "description": "Auto imported from components/charts/LineChart.vue"
+  "LazyPhotoHeadImg": {
+    "description": "Auto imported from components/utils/common/PhotoHeadImg.vue"
   },
-  "LineClassPopChart": {
-    "description": "Auto imported from components/charts/LineClassPopChart.vue"
+  "SystemDataTopBar": {
+    "description": "Auto imported from components/utils/barBlock/SystemDataTopBar.vue"
   },
-  "LazyLineClassPopChart": {
-    "description": "Auto imported from components/charts/LineClassPopChart.vue"
-  },
-  "LinePopChart": {
-    "description": "Auto imported from components/charts/LinePopChart.vue"
-  },
-  "LazyLinePopChart": {
-    "description": "Auto imported from components/charts/LinePopChart.vue"
-  },
-  "PopChart": {
-    "description": "Auto imported from components/charts/PopChart.vue"
-  },
-  "LazyPopChart": {
-    "description": "Auto imported from components/charts/PopChart.vue"
-  },
-  "RadarChart": {
-    "description": "Auto imported from components/charts/RadarChart.vue"
-  },
-  "LazyRadarChart": {
-    "description": "Auto imported from components/charts/RadarChart.vue"
-  },
-  "RadarDormChart": {
-    "description": "Auto imported from components/charts/RadarDormChart.vue"
-  },
-  "LazyRadarDormChart": {
-    "description": "Auto imported from components/charts/RadarDormChart.vue"
-  },
-  "SexPieChart": {
-    "description": "Auto imported from components/charts/SexPieChart.vue"
-  },
-  "LazySexPieChart": {
-    "description": "Auto imported from components/charts/SexPieChart.vue"
-  },
-  "SexPieMoreChart": {
-    "description": "Auto imported from components/charts/SexPieMoreChart.vue"
-  },
-  "LazySexPieMoreChart": {
-    "description": "Auto imported from components/charts/SexPieMoreChart.vue"
-  },
-  "TableBarChart": {
-    "description": "Auto imported from components/charts/TableBarChart.vue"
-  },
-  "LazyTableBarChart": {
-    "description": "Auto imported from components/charts/TableBarChart.vue"
+  "LazySystemDataTopBar": {
+    "description": "Auto imported from components/utils/barBlock/SystemDataTopBar.vue"
   },
   "DialogNormal": {
     "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
@@ -581,16 +599,64 @@
   "LazyUploadSquare": {
     "description": "Auto imported from components/utils/upload/UploadSquare.vue"
   },
-  "MyNewStudentFlow": {
-    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
+  "SystemDataTable1": {
+    "description": "Auto imported from components/utils/table/SystemDataTable1.vue"
   },
-  "LazyMyNewStudentFlow": {
-    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
+  "LazySystemDataTable1": {
+    "description": "Auto imported from components/utils/table/SystemDataTable1.vue"
   },
-  "MyNewStudentFlowType": {
-    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
+  "SystemDataTable10": {
+    "description": "Auto imported from components/utils/table/SystemDataTable10.vue"
   },
-  "LazyMyNewStudentFlowType": {
-    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
+  "LazySystemDataTable10": {
+    "description": "Auto imported from components/utils/table/SystemDataTable10.vue"
+  },
+  "SystemDataTable2": {
+    "description": "Auto imported from components/utils/table/SystemDataTable2.vue"
+  },
+  "LazySystemDataTable2": {
+    "description": "Auto imported from components/utils/table/SystemDataTable2.vue"
+  },
+  "SystemDataTable3": {
+    "description": "Auto imported from components/utils/table/SystemDataTable3.vue"
+  },
+  "LazySystemDataTable3": {
+    "description": "Auto imported from components/utils/table/SystemDataTable3.vue"
+  },
+  "SystemDataTable4": {
+    "description": "Auto imported from components/utils/table/SystemDataTable4.vue"
+  },
+  "LazySystemDataTable4": {
+    "description": "Auto imported from components/utils/table/SystemDataTable4.vue"
+  },
+  "SystemDataTable5": {
+    "description": "Auto imported from components/utils/table/SystemDataTable5.vue"
+  },
+  "LazySystemDataTable5": {
+    "description": "Auto imported from components/utils/table/SystemDataTable5.vue"
+  },
+  "SystemDataTable6": {
+    "description": "Auto imported from components/utils/table/SystemDataTable6.vue"
+  },
+  "LazySystemDataTable6": {
+    "description": "Auto imported from components/utils/table/SystemDataTable6.vue"
+  },
+  "SystemDataTable7": {
+    "description": "Auto imported from components/utils/table/SystemDataTable7.vue"
+  },
+  "LazySystemDataTable7": {
+    "description": "Auto imported from components/utils/table/SystemDataTable7.vue"
+  },
+  "SystemDataTable8": {
+    "description": "Auto imported from components/utils/table/SystemDataTable8.vue"
+  },
+  "LazySystemDataTable8": {
+    "description": "Auto imported from components/utils/table/SystemDataTable8.vue"
+  },
+  "SystemDataTable9": {
+    "description": "Auto imported from components/utils/table/SystemDataTable9.vue"
+  },
+  "LazySystemDataTable9": {
+    "description": "Auto imported from components/utils/table/SystemDataTable9.vue"
   }
 }

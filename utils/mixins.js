@@ -6,7 +6,7 @@ import {
   setSchoolBuildChildren,
   setDormBuildChildren,
   setDeptChildren,
-  serverType, serverFormType, setFormServerChildren, setDeptRoleChildren
+  serverType, serverFormType, setFormServerChildren, setDeptRoleChildren, inArray
 } from "~/utils/utils";
 
 export default {
@@ -38,6 +38,8 @@ export default {
       dataDept: global.dataDeptList,
       dataApplet: global.dataAppletList,
       dataAppletServer: global.dataAppletServer,
+      dataAppletSystemServer: global.dataAppletSystemServer,
+      dataAppletFDServer: global.dataAppletFDServer,
       dataProcessServer: global.dataProcessServer,
       dataProcessLinkServer: global.dataProcessLinkServer,
       currentSeciton: global.currentSeciton,
@@ -84,6 +86,7 @@ export default {
       filterOnlineStatus: global.filterOnlineStatus,
       filterDormBackStatus: global.filterDormBackStatus,
       filterClassAttendStatus: global.filterClassAttendStatus,
+      filterSystemAppletTypes: global.filterSystemAppletTypes,
       currentYearList: global.currentYearList,
       currentTermList: global.currentTermList,
       currentWeekList: global.currentWeekList,
@@ -176,6 +179,9 @@ export default {
       tableHeight16: {
         'height': ''
       },
+      tableHeight17: {
+        'height': ''
+      },
       tableMiddleHeight: {
         'height': ''
       },
@@ -254,6 +260,9 @@ export default {
         'height': ''
       },
       drawHeight7: {
+        'height': ''
+      },
+      drawHeight8: {
         'height': ''
       }
     }
@@ -406,6 +415,7 @@ export default {
         this.tableHeight14.height = window.innerHeight - 205 + 'px';
         this.tableHeight15.height = window.innerHeight - 148 + 'px';
         this.tableHeight16.height = window.innerHeight - 130 + 'px';
+        this.tableHeight17.height = window.innerHeight - 258 + 'px';
         this.tableMiddleHeight.height = window.innerHeight - 335 + 'px';
         this.divHeight["max-height"] = window.innerHeight - 205 + 'px';
         this.divHeight2["max-height"] = window.innerHeight - 235 + 'px';
@@ -425,6 +435,7 @@ export default {
         this.drawHeight5.height = window.innerHeight - 160 + 'px';
         this.drawHeight6.height = window.innerHeight - 120 + 'px';
         this.drawHeight7.height = window.innerHeight - 80 + 'px';
+        this.drawHeight8.height = window.innerHeight - 180 + 'px';
       }
     },
     async initVersionData(){
@@ -623,8 +634,84 @@ export default {
       };
       await this.$axios.get(common.server_form_template_form_list, {params: params}).then(res => {
         let arr = [];
+        console.log(res.data);
         if (res.data.data){
           this.dataAppletServer = setFormServerChildren(res.data.data);
+        }
+      });
+    },
+    /**
+     * 获取系统服务的list信息
+     * 主要用于树形菜单，下来菜单等
+     * @returns {Promise<void>}
+     */
+    async getAppletSystemServerInfo(searchName) {
+      let params = {
+        page: 1,
+        num: 9999,
+        appletId: searchName
+      };
+
+      let arrServer = [];
+      let arrServerItem = [];
+      let arrLocal = [];
+
+      await this.$axios.get('/json/systemServer.json', {params: params}).then(res => {
+        let arr = [];
+        if (res.data){
+          arrLocal = res.data;
+        }
+      });
+
+      await this.$axios.get(common.server_form_template_form_list, {params: params}).then(res => {
+        if (res.data.data){
+          arrServerItem = [];
+          let num = 0;
+          for (let i = 0; i < res.data.data.length; i++){
+            if (res.data.data[i].isDefault == true){
+              let dataList = res.data.data[i]['formList'] ? res.data.data[i].formList : [];
+              arrServer.push({
+                appletName: res.data.data[i].appletName,
+                appletId: res.data.data[i].appletId,
+                appletType: res.data.data[i].appletType,
+                formList: []
+              });
+              for (let j = 0; j < dataList.length; j++){
+                let sel = inArray(dataList[j], arrLocal[0].formList, 'formName');
+                if (sel != -1){
+                  dataList[j]['unit'] = '2';
+                  arrServerItem.push(dataList[j]);
+                }
+              }
+              arrServer[num]['formList'] = arrServerItem;
+              num++;
+            }
+          }
+        }
+      });
+      this.dataAppletSystemServer = setFormServerChildren(arrServer);
+    },
+    /**
+     * 获取财务服务的list信息
+     * 主要用于树形菜单，下来菜单等
+     * @returns {Promise<void>}
+     */
+    async getAppletFDServerInfo(searchName) {
+      let params = {
+        page: 1,
+        num: 9999,
+        appletId: searchName
+      };
+
+      let arrServer = [];
+      let arrServerItem = [];
+      let arrLocal = [];
+
+      await this.$axios.get('/json/appFDServer.json', {params: params}).then(res => {
+        let arr = [];
+        if (res.data){
+          arrLocal = res.data;
+          this.dataAppletFDServer = setFormServerChildren(arrLocal);
         }
       });
     },

@@ -97,6 +97,9 @@
           <el-form-item :label="$t('流程名称')" prop="name">
             <el-input v-model="form.name" class="width-260"></el-input>
           </el-form-item>
+          <el-form-item :label="$t('流程类型')" prop="processType">
+            <my-select :placeholder="$t('请选择')" :sel-value="form.processType" :options="processTypeOptins" width-style="260" :clearable="true" @change="handleChange($event)"></my-select>
+          </el-form-item>
           <el-form-item :label="$t('描述')">
             <el-input v-model="form.desc" class="width-260"></el-input>
           </el-form-item>
@@ -164,10 +167,20 @@
         formFieldList: [],
         flowFormData: {},
         serverDataItem: '',
+        processTypeOptins: [{
+          label: '学生',
+          text: '学生',
+          value: '5',
+        },{
+          label: '教师',
+          text: '教师',
+          value: '4',
+        }],
         form: {
           id: '',
           name: '',
-          desc: ''
+          desc: '',
+          processType: ''
         },
         formOption: {
           "form": {
@@ -260,7 +273,8 @@
         this.form = {
           id: item.id,
           name: item.process_name,
-          desc: item.des
+          desc: item.des,
+          processType: item.process_type+''
         }
         this.dialogVisible = true;
       },
@@ -292,6 +306,9 @@
         this.page = data;
         this.init();
       },
+      handleChange(event){
+        this.form.processType = event;
+      },
       openedForm(){
         this.formLoading = true;
         setTimeout(()=>{
@@ -316,7 +333,8 @@
         this.form = {
           id: '',
           name: '',
-          desc: ''
+          desc: '',
+          processType: ''
         };
         this.flowListData = [];
         this.flowFormData = {
@@ -352,6 +370,7 @@
           if (valid) {
             let params = {
               processName: this.form.name,
+              processType: this.form.processType,
               des: this.form.desc,
             };
             if (this.form.id != ''){

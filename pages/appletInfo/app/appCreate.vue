@@ -150,10 +150,10 @@
                 width="120"
                 :label="$t('操作')">
                 <template slot-scope="scope">
-                  <i v-if="scope.row.enable == true" class="fa fa-stop-circle margin-right-5 color-warning" @click="statusInfo(scope.row, false)"></i>
-                  <i v-if="scope.row.enable == false" class="fa fa-play-circle margin-right-5 color-success" @click="statusInfo(scope.row, true)"></i>
-                  <i class="fa fa-edit margin-right-5 color-grand" @click="setInfo(scope.row)"></i>
-                  <i class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
+                  <i v-if="scope.row.enable == true" title="启用" class="fa fa-stop-circle margin-right-5 color-warning" @click="statusInfo(scope.row, false)"></i>
+                  <i v-if="scope.row.enable == false" title="禁用" class="fa fa-play-circle margin-right-5 color-success" @click="statusInfo(scope.row, true)"></i>
+                  <i v-if="!scope.row.is_default" class="fa fa-edit margin-right-5 color-grand" @click="setInfo(scope.row)"></i>
+                  <i v-if="!scope.row.is_default" class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
                 </template>
               </el-table-column>
               <el-table-column
@@ -272,7 +272,7 @@
     <drawer-layout-right tabindex="0" :show-close="true" :hide-footer="!showFooter" @changeDrawer="closeDialog" @opened="openedForm" :visible="drawerForm" size="85%">
       <div slot="title">
         <div class="header-block padding-lr-10">
-          <span class="tab-class font-bold" :class="activeName == 'form' ? 'color-grand' : ''" @click="handleClick('form')">
+          <span v-if="serverDataItem.is_default == false" class="tab-class font-bold" :class="activeName == 'form' ? 'color-grand' : ''" @click="handleClick('form')">
             <i class="fa fa-file"></i>
             {{$t('表单设计')}}
           </span>
@@ -648,6 +648,10 @@
       formInfo(item, index){
         this.serverDataItem = item;
         this.serverDataIndex = index;
+        if (item.is_default == true){
+          this.activeName = 'set';
+          this.showFooter = false;
+        }
         this.initVersion('current');
         this.drawerForm = true;
       },

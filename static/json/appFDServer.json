@@ -1,0 +1,28 @@
+[
+  {
+    "appletName": "财务报销管理",
+    "appletId": "1",
+    "appletType": "2",
+    "formList": [{
+      "formName": "标签管理",
+      "appletId": "1",
+      "id": "1",
+      "unit": "2"
+    },{
+      "formName": "费用管理",
+      "appletId": "1",
+      "id": "2",
+      "unit": "2"
+    },{
+      "formName": "收款账户",
+      "appletId": "1",
+      "id": "3",
+      "unit": "2"
+    },{
+      "formName": "公司账户",
+      "appletId": "1",
+      "id": "4",
+      "unit": "2"
+    }]
+  }
+]

@@ -575,6 +575,10 @@ const filterUserTeachTypes = [
   { text: '下落不明', value: '15' ,label: '下落不明'}
 ];
 
+const filterSystemAppletTypes = [
+  { text: "财务报销报销管理", value: '1', type: '2', id: '1' ,label: '财务报销报销管理', icon: ''}
+];
+
 export default {
   total,
   page,
@@ -593,6 +597,8 @@ export default {
   dataDeptList: [],
   dataAppletList: [],
   dataAppletServer: [],
+  dataAppletSystemServer: [],
+  dataAppletFDServer: [],
   dataProcessServer: [],
   dataProcessLinkServer: [],
   currentDay,
@@ -678,5 +684,6 @@ export default {
   filterRpStatus,
   filterJCRpStatus,
   filterRuTypes,
-  filterUserTeachTypes
+  filterUserTeachTypes,
+  filterSystemAppletTypes
 }

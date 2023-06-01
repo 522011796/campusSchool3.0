@@ -2,9 +2,48 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="修改设备管理">
+      <change afterPath="$PROJECT_DIR$/components/utils/barBlock/SystemDataTopBar.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable1.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable10.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable2.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable3.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable4.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable5.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable6.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable7.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable8.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable9.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/appletInfo/app/appSystemData.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/appletInfo/system/budgetManage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/appletInfo/system/fileManage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/appletInfo/system/moneyManage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/json/appFDServer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/json/systemServer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/validater/appObjectValidater.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/validater/budgetValidater.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/validater/moneyManageValidater.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/validater/orderValidater.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/common.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/form/MyFormSet.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/form/MyFormSet.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/tree/MyElTree.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/tree/MyElTree.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/dialog/DrawerLayoutRight.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/dialog/DrawerLayoutRight.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/basicInfo/padLocal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/padLocal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appCreate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appCreate.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appData.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/flow/flowManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/flowManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/flow/roleManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/roleManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/axios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/json/sliderMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/sliderMenu.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/global.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/validater/flowSettingValidater.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/flowSettingValidater.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +70,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/utils/status" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/json" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -42,11 +81,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/components/utils/status" />
-      <recent name="$PROJECT_DIR$/pages/studentInfo/student" />
-      <recent name="$PROJECT_DIR$/components/utils/common" />
-      <recent name="$PROJECT_DIR$/static/img" />
-      <recent name="$PROJECT_DIR$/components/utils" />
+      <recent name="$PROJECT_DIR$/static/json" />
+      <recent name="$PROJECT_DIR$/utils/validater" />
+      <recent name="$PROJECT_DIR$/components/utils/table" />
+      <recent name="$PROJECT_DIR$/components/utils/barBlock" />
+      <recent name="$PROJECT_DIR$/pages/appletInfo/app" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pages/appletInfo/system" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -83,14 +125,7 @@
       <workItem from="1682661230487" duration="5305000" />
       <workItem from="1683168602119" duration="608000" />
       <workItem from="1683251524230" duration="66369000" />
-      <workItem from="1684463291875" duration="19408000" />
-    </task>
-    <task id="LOCAL-00008" summary="解除申请">
-      <created>1669884511472</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1669884511472</updated>
+      <workItem from="1684463291875" duration="86778000" />
     </task>
     <task id="LOCAL-00009" summary="解除申请">
       <created>1669950255834</created>
@@ -428,7 +463,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684751225732</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="修改设备管理">
+      <created>1684812913417</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1684812913419</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

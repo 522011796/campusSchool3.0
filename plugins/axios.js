@@ -48,23 +48,28 @@ export default async function({ $axios, redirect }) {
         hideLoading();
         return res
       }else{
-        if (res.data.code === 200) {
-          hideLoading();
-          return res;
-        } else if (res.data.code === 3022) {
-          return res;
-        } else if (res.data.code === 401) {
-          hideLoading();
-          redirect('/login');
-          return res;
-        } else if (res.data.code === 403) {
-          hideLoading();
-          redirect('/noPermission');
-          return res;
-        } else if (res.data.code === 404) {
-          hideLoading();
-          redirect('/404');
-          return res;
+        if (res.data){
+          if (res.data.code === 200) {
+            hideLoading();
+            return res;
+          } else if (res.data.code === 3022) {
+            return res;
+          } else if (res.data.code === 401) {
+            hideLoading();
+            redirect('/login');
+            return res;
+          } else if (res.data.code === 403) {
+            hideLoading();
+            redirect('/noPermission');
+            return res;
+          } else if (res.data.code === 404) {
+            hideLoading();
+            redirect('/404');
+            return res;
+          }else {
+            hideLoading();
+            return res;
+          }
         }else {
           hideLoading();
           return res;

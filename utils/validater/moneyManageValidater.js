@@ -4,10 +4,9 @@ export default {
     return {
       rules: {
         name: [
-          { required: true, message: this.$t("请输入名称"), trigger: 'blur' },
-          { validator: rules.FormValidate.Form().validatenallOther1_20Reg, trigger: 'blur' }
+          { required: true, message: this.$t("请输入名称"), trigger: 'blur' }
         ],
-        processType: [
+        order: [
           { required: true, message: this.$t("请选择信息"), trigger: 'change' }
         ]
       }

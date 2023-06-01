@@ -1,0 +1,58 @@
+[
+  {
+    "appletName": "财务报销管理",
+    "appletId": "1",
+    "appletType": "2",
+    "formList": [{
+      "formName": "项目管理",
+      "appletId": "1",
+      "id": "1",
+      "unit": "2"
+    },{
+      "formName": "合同管理",
+      "appletId": "1",
+      "id": "2",
+      "unit": "2"
+    },{
+      "formName": "应收应付",
+      "appletId": "1",
+      "id": "3",
+      "unit": "2"
+    },{
+      "formName": "发票管理",
+      "appletId": "1",
+      "id": "4",
+      "unit": "2"
+    },{
+      "formName": "交易流水",
+      "appletId": "1",
+      "id": "5",
+      "unit": "2"
+    },{
+      "formName": "报账/报销",
+      "appletId": "1",
+      "id": "6",
+      "unit": "2"
+    },{
+      "formName": "对公打款",
+      "appletId": "1",
+      "id": "7",
+      "unit": "2"
+    },{
+      "formName": "普通申请",
+      "appletId": "1",
+      "id": "8",
+      "unit": "2"
+    },{
+      "formName": "借款管理",
+      "appletId": "1",
+      "id": "9",
+      "unit": "2"
+    },{
+      "formName": "收款管理",
+      "appletId": "1",
+      "id": "10",
+      "unit": "2"
+    }]
+  }
+]

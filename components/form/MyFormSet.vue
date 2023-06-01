@@ -683,7 +683,7 @@
       },
       initFlow(){
         let params = {
-
+          formId: this.formId.id
         };
         this.$axios.get(common.server_form_template_form_process_list, {params: params}).then(res => {
           if (res.data.data){

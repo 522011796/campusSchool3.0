@@ -57,16 +57,20 @@ const _6ddc2009 = () => interopDefault(import('../pages/appletInfo/app/appCreate
 const _388480f7 = () => interopDefault(import('../pages/appletInfo/app/appData.vue' /* webpackChunkName: "pages/appletInfo/app/appData" */))
 const _011e81c5 = () => interopDefault(import('../pages/appletInfo/app/appDataBak.vue' /* webpackChunkName: "pages/appletInfo/app/appDataBak" */))
 const _9e2a801c = () => interopDefault(import('../pages/appletInfo/app/appManage.vue' /* webpackChunkName: "pages/appletInfo/app/appManage" */))
+const _343946f4 = () => interopDefault(import('../pages/appletInfo/app/appSystemData.vue' /* webpackChunkName: "pages/appletInfo/app/appSystemData" */))
 const _10929347 = () => interopDefault(import('../pages/appletInfo/app/appTemplate.vue' /* webpackChunkName: "pages/appletInfo/app/appTemplate" */))
 const _b4dc4ef2 = () => interopDefault(import('../pages/appletInfo/app/appType.vue' /* webpackChunkName: "pages/appletInfo/app/appType" */))
 const _7fb03fd5 = () => interopDefault(import('../pages/appletInfo/app/formPrint.vue' /* webpackChunkName: "pages/appletInfo/app/formPrint" */))
-const _5cc30ea4 = () => interopDefault(import('../pages/appletInfo/flow/flowManage.vue' /* webpackChunkName: "pages/appletInfo/flow/flowManage" */))
-const _b7390414 = () => interopDefault(import('../pages/appletInfo/flow/roleManage.vue' /* webpackChunkName: "pages/appletInfo/flow/roleManage" */))
 const _30b24cb3 = () => interopDefault(import('../pages/appletInfo/noti/business.vue' /* webpackChunkName: "pages/appletInfo/noti/business" */))
 const _1c23e410 = () => interopDefault(import('../pages/appletInfo/noti/feedback.vue' /* webpackChunkName: "pages/appletInfo/noti/feedback" */))
 const _2ceee2de = () => interopDefault(import('../pages/appletInfo/noti/notification.vue' /* webpackChunkName: "pages/appletInfo/noti/notification" */))
 const _25e4ae7d = () => interopDefault(import('../pages/appletInfo/staticCenter/formStaticManage.vue' /* webpackChunkName: "pages/appletInfo/staticCenter/formStaticManage" */))
 const _16742e78 = () => interopDefault(import('../pages/appletInfo/staticCenter/myFormStatic.vue' /* webpackChunkName: "pages/appletInfo/staticCenter/myFormStatic" */))
+const _002689e4 = () => interopDefault(import('../pages/appletInfo/system/budgetManage.vue' /* webpackChunkName: "pages/appletInfo/system/budgetManage" */))
+const _25c89fdb = () => interopDefault(import('../pages/appletInfo/system/fileManage.vue' /* webpackChunkName: "pages/appletInfo/system/fileManage" */))
+const _ff0995e6 = () => interopDefault(import('../pages/appletInfo/system/flowManage.vue' /* webpackChunkName: "pages/appletInfo/system/flowManage" */))
+const _39f636db = () => interopDefault(import('../pages/appletInfo/system/moneyManage.vue' /* webpackChunkName: "pages/appletInfo/system/moneyManage" */))
+const _53403a55 = () => interopDefault(import('../pages/appletInfo/system/roleManage.vue' /* webpackChunkName: "pages/appletInfo/system/roleManage" */))
 const _3becaaa8 = () => interopDefault(import('../pages/attendanceInfo/administration/faceRecord.vue' /* webpackChunkName: "pages/attendanceInfo/administration/faceRecord" */))
 const _0933525b = () => interopDefault(import('../pages/attendanceInfo/administration/leaveStatic.vue' /* webpackChunkName: "pages/attendanceInfo/administration/leaveStatic" */))
 const _15aa4d2a = () => interopDefault(import('../pages/attendanceInfo/administration/record.vue' /* webpackChunkName: "pages/attendanceInfo/administration/record" */))
@@ -421,6 +425,10 @@ export const routerOptions = {
     component: _9e2a801c,
     name: "appletInfo-app-appManage"
   }, {
+    path: "/appletInfo/app/appSystemData",
+    component: _343946f4,
+    name: "appletInfo-app-appSystemData"
+  }, {
     path: "/appletInfo/app/appTemplate",
     component: _10929347,
     name: "appletInfo-app-appTemplate"
@@ -432,14 +440,6 @@ export const routerOptions = {
     path: "/appletInfo/app/formPrint",
     component: _7fb03fd5,
     name: "appletInfo-app-formPrint"
-  }, {
-    path: "/appletInfo/flow/flowManage",
-    component: _5cc30ea4,
-    name: "appletInfo-flow-flowManage"
-  }, {
-    path: "/appletInfo/flow/roleManage",
-    component: _b7390414,
-    name: "appletInfo-flow-roleManage"
   }, {
     path: "/appletInfo/noti/business",
     component: _30b24cb3,
@@ -460,6 +460,26 @@ export const routerOptions = {
     path: "/appletInfo/staticCenter/myFormStatic",
     component: _16742e78,
     name: "appletInfo-staticCenter-myFormStatic"
+  }, {
+    path: "/appletInfo/system/budgetManage",
+    component: _002689e4,
+    name: "appletInfo-system-budgetManage"
+  }, {
+    path: "/appletInfo/system/fileManage",
+    component: _25c89fdb,
+    name: "appletInfo-system-fileManage"
+  }, {
+    path: "/appletInfo/system/flowManage",
+    component: _ff0995e6,
+    name: "appletInfo-system-flowManage"
+  }, {
+    path: "/appletInfo/system/moneyManage",
+    component: _39f636db,
+    name: "appletInfo-system-moneyManage"
+  }, {
+    path: "/appletInfo/system/roleManage",
+    component: _53403a55,
+    name: "appletInfo-system-roleManage"
   }, {
     path: "/attendanceInfo/administration/faceRecord",
     component: _3becaaa8,

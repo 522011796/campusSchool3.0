@@ -4,7 +4,7 @@
       <div slot="left">
         <div class="color-muted font-size-12 padding-tb-5 margin-top-10">
           <!--<span class="layout-left-menu-tag"></span>-->
-          <span class="layout-left-menu-title">数据中心</span>
+          <span class="layout-left-menu-title">自定义应用</span>
         </div>
         <my-el-tree v-if="mainMenu == '1'" type="4" @node-click="nodeAppClick" @all-click="nodeAppClick"></my-el-tree>
         <my-el-tree ref="appRef" v-if="mainMenu == '2'" type="110" :extra-type="appName" :currentNodeKey="currentNodeKey" :default-expanded-keys="defaultExpandedKeys" :show-campus="false" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree>
@@ -1011,7 +1011,8 @@
           departmentPath: this.collegeData,
           appletType: this.searchType,
           enable: this.searchStatus,
-          searchKey: this.searchKey
+          searchKey: this.searchKey,
+          isDefault: false
         };
         this.$axios.get(common.server_applet_list, {params: params}).then(res => {
           if (res.data.data){

@@ -5,7 +5,7 @@
       custom-class="drawer-normal-drawer"
       :visible.sync="drawer_"
       :direction="direction"
-      :wrapperClosable="true"
+      :wrapperClosable="wrapperClosable"
       :show-close="showClose"
       :modal-append-to-body="false"
       :append-to-body="appendToBody"
@@ -80,6 +80,10 @@ export default {
     },
     showClose: {
       default: false,
+      type: Boolean
+    },
+    wrapperClosable: {
+      default: true,
       type: Boolean
     }
   },
