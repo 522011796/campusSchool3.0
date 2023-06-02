@@ -20,6 +20,11 @@
                   <i class="fa fa-arrow-left"></i>
                   {{$t("返回")}}
                 </el-button>
+                <template v-if="mainMenu == '2'">
+<!--                  <el-button v-if="formId == '1'" size="small" type="primary"  icon="el-icon-plus" @click="addAccountInfo($event, 1)">{{$t("添加账户")}}</el-button>-->
+                  <el-button v-if="formId == '2'" size="small" type="primary"  icon="el-icon-plus" @click="addAccountInfo($event, 2)">{{$t("添加账户")}}</el-button>
+                  <el-button v-if="formId == '3'" size="small" type="primary"  icon="el-icon-plus" @click="addMerchatInfo($event, 3)">{{$t("新增")}}</el-button>
+                </template>
               </el-col>
               <el-col :span="16" class="text-right">
                 <div v-if="mainMenu == '1'" class="layout-inline">
@@ -28,7 +33,10 @@
                   <my-input-button ref="teacher width-150" size="small" plain width-class="width: 180px" type="success" :clearable="true" :placeholder="$t('名称/编号')" @click="search"></my-input-button>
                 </div>
                 <div v-else>
-                  <my-input-button ref="teacher width-150" size="small" plain width-class="width: 180px" type="success" :clearable="true" :placeholder="$t('请输入信息')" @click="searchMoneyDetail"></my-input-button>
+                  <div class="layout-inline">
+                    <my-cascader class="layout-item" ref="SelectorDept" :placeholder="$t('请选择部门')" size="small" width-style="180" :collapse-tags="true" :sel-value="searchDetailDept" type="4" sub-type="" @change="handleSelectDept($event, 'dept')"></my-cascader>
+                    <my-input-button ref="teacher width-150" size="small" plain width-class="width: 180px" type="success" :clearable="true" :placeholder="$t('请输入信息')" @click="searchMoneyDetail" class="layout-item"></my-input-button>
+                  </div>
                 </div>
               </el-col>
             </el-row>
@@ -124,7 +132,7 @@
                   <i v-if="!scope.row.enable" title="禁用" class="fa fa-play-circle color-success margin-right-5" @click="statusInfo(scope.row, true)"></i>
                   <i class="fa fa-edit margin-right-5 color-grand" @click="editInfo(scope.row)"></i>
                   <i v-if="scope.row.is_default == false" class="fa fa-trash color-danger" @click="deleteInfo(scope.row)"></i>
-<!--                  <i v-if="scope.row.is_default == true" class="fa fa-cog color-success" @click="settingInfo(scope.row)"></i>-->
+                  <i v-if="scope.row.is_default == true" class="fa fa-cog color-success" @click="settingInfo(scope.row)"></i>
                 </template>
               </el-table-column>
               <el-table-column
@@ -137,12 +145,15 @@
               </el-table-column>
             </el-table>
 
-            <template v-else>
-              1
+            <template v-else-if="mainMenu == 2">
+              <user-bank-account-table v-if="formId == 1" :table-data="tableDetailData" :table-height="tableHeight2.height" @editInfo="editDetailInfo($event, formId)"  @deleteInfo="deleteDetailInfo($event, formId)"></user-bank-account-table>
+              <comp-bank-account-table v-if="formId == 2" :table-data="tableDetailData" :table-height="tableHeight2.height" @editInfo="editDetailInfo($event, formId)"  @deleteInfo="deleteDetailInfo($event, formId)"></comp-bank-account-table>
+              <merchat-client-table v-if="formId == 3" :table-data="tableDetailData" :table-height="tableHeight2.height" @editInfo="editDetailInfo($event, formId)"  @deleteInfo="deleteDetailInfo($event, formId)"></merchat-client-table>
             </template>
           </div>
           <div class="layout-right-footer text-right">
-            <my-pagination :total="total" :current-page="page" :page-size="num" @currentPage="currentPage" @sizeChange="sizeChange" @jumpChange="jumpPage" class="layout-pagination"></my-pagination>
+            <my-pagination v-if="mainMenu == 1" :total="total" :current-page="page" :page-size="num" @currentPage="currentPage" @sizeChange="sizeChange" @jumpChange="jumpPage" class="layout-pagination"></my-pagination>
+            <my-pagination v-if="mainMenu == 2" :total="totalDetail" :current-page="pageDetail" :page-size="numDetail" @currentPage="currentDetailPage" @sizeChange="sizeDetailChange" @jumpChange="jumpDetailPage" class="layout-pagination"></my-pagination>
           </div>
         </div>
       </layout-lr>
@@ -193,9 +204,14 @@
   import appManageValidater from "~/utils/validater/appManageValidater";
   import MyCascader from "~/components/utils/select/MyCascader";
   import MyElTree from "~/components/tree/MyElTree";
+  import UserBankAccountTable from "~/components/utils/table/UserBankAccountTable";
+  import CompBankAccountTable from "~/components/utils/table/CompBankAccountTable";
+  import MerchatClientTable from "~/components/utils/table/MerchatClientTable";
   export default {
     mixins: [mixins,appManageValidater],
-    components: {MyElTree, MyCascader, MySelect, MyInputButton},
+    components: {
+      MerchatClientTable,
+      CompBankAccountTable, UserBankAccountTable, MyElTree, MyCascader, MySelect, MyInputButton},
     data(){
       return {
         pageDetail: 1,
@@ -205,6 +221,7 @@
         subMenuType: 4,
         mainMenu: 1,
         tableData: [],
+        tableDetailData: [],
         collegeList: [],
         categorys: [],
         types: [],
@@ -213,15 +230,19 @@
         searchKey: '',
         searchMoneyKey: '',
         searchType: '',
+        searchDetailKey: '',
+        searchDetailDept: [],
         searchStatus: '',
         appName: '',
         currentNodeKey: '',
         defaultExpandedKeys: [],
         formId: '',
         formName: '',
+        detailId: '',
         dialogLoading: false,
         dialogApp: false,
         visibleConfim: false,
+        dialogDetail: false,
         form: {
           id: '',
           appName: '',
@@ -251,6 +272,23 @@
             this.total = res.data.data.totalCount;
             this.num = res.data.data.num;
             this.page = res.data.data.currentPage;
+          }
+        });
+      },
+      initFD(){
+        let params = {
+          page: this.pageDetail,
+          num: this.numDetail,
+          formId: this.formId,
+          searchKey: this.searchDetailKey,
+          searchDetailDept: this.searchDetailDept
+        };
+        this.$axios.get(common.server_applet_list, {params: params}).then(res => {
+          if (res.data.data){
+            this.tableDetailData = res.data.data.list;
+            this.totalDetail = res.data.data.totalCount;
+            this.numDetail = res.data.data.num;
+            this.pageDetail = res.data.data.currentPage;
           }
         });
       },
@@ -287,6 +325,19 @@
         this.page = data;
         this.init();
       },
+      sizeDetailChange(event){
+        this.pageDetail = 1;
+        this.numDetail = event;
+        this.initFD();
+      },
+      currentDetailPage(event){
+        this.pageDetail = event;
+        this.initFD();
+      },
+      jumpDetailPage(data){
+        this.pageDetail = data;
+        this.initFD();
+      },
       nodeClick(data){
         this.collegeData = data.department_path;
         this.page = 1;
@@ -294,12 +345,12 @@
       },
       nodeFDClick(data){
         this.formId = "";
-        this.page = 1;
+        this.pageDetail = 1;
 
         if (data.unit == 2){
           this.formId = data.id;
           this.formName = data.label;
-          //this.init();
+          this.initFD();
         }
       },
       search(data){
@@ -314,6 +365,15 @@
       },
       addInfo(){
         this.dialogApp = true;
+      },
+      addAccountInfo(){
+        this.dialogDetail = true;
+      },
+      addMerchatInfo(){
+        this.dialogDetail = true;
+      },
+      editDetailInfo(){
+        this.dialogDetail = true;
       },
       myInfo(){
 
@@ -349,6 +409,10 @@
         this.form.id = item.id;
         this.visibleConfim = true;
       },
+      deleteDetailInfo(item, type){
+        this.detailId = item.id;
+        this.visibleConfim = true;
+      },
       async settingInfo(item){
         this.mainMenu = 2;
         this.pageDetail = 1;
@@ -365,8 +429,7 @@
           this.defaultExpandedKeys = [data[0].id, data[0]['children'][0].id];
           this.currentNodeKey = data[0]['children'][0].id;
         }
-
-        //this.init();
+        this.initFD();
       },
       statusInfo(item, type){
         let params = {
@@ -402,10 +465,16 @@
         this.appletType = '';
         this.enable = '';
         this.searchKey = '';
+        this.formId = '';
+        this.searchDetailKey = '';
+        this.searchDetailDept = [];
+        this.resetCasadeSelector('SelectorDept');
         this.init();
       },
+      handleSelectDept(data, type, type2){
+        this.searchDetailDept = data;
+      },
       handleCascaderChange(data){
-        console.log(data);
         this.form.dept = data;
       },
       handleTypeChange(event, type){

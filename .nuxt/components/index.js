@@ -10,18 +10,6 @@ export { default as MyTree } from '../../components/MyTree.vue'
 export { default as LayoutLr } from '../../components/Layout/LayoutLr.vue'
 export { default as LayoutLrBefore } from '../../components/Layout/LayoutLrBefore.vue'
 export { default as LayoutTb } from '../../components/Layout/LayoutTb.vue'
-export { default as BarChart } from '../../components/charts/BarChart.vue'
-export { default as CircleChart } from '../../components/charts/CircleChart.vue'
-export { default as HBarChart } from '../../components/charts/HBarChart.vue'
-export { default as LineChart } from '../../components/charts/LineChart.vue'
-export { default as LineClassPopChart } from '../../components/charts/LineClassPopChart.vue'
-export { default as LinePopChart } from '../../components/charts/LinePopChart.vue'
-export { default as PopChart } from '../../components/charts/PopChart.vue'
-export { default as RadarChart } from '../../components/charts/RadarChart.vue'
-export { default as RadarDormChart } from '../../components/charts/RadarDormChart.vue'
-export { default as SexPieChart } from '../../components/charts/SexPieChart.vue'
-export { default as SexPieMoreChart } from '../../components/charts/SexPieMoreChart.vue'
-export { default as TableBarChart } from '../../components/charts/TableBarChart.vue'
 export { default as MyFormAuditType } from '../../components/form/MyFormAuditType.vue'
 export { default as MyFormFlow } from '../../components/form/MyFormFlow.vue'
 export { default as MyFormSet } from '../../components/form/MyFormSet.vue'
@@ -56,6 +44,7 @@ export { default as StudoorDetail } from '../../components/utils/auditDetail/Stu
 export { default as StuleaveDetail } from '../../components/utils/auditDetail/StuleaveDetail.vue'
 export { default as TerdoorDetail } from '../../components/utils/auditDetail/TerdoorDetail.vue'
 export { default as TerleaveDetail } from '../../components/utils/auditDetail/TerleaveDetail.vue'
+export { default as SystemDataTopBar } from '../../components/utils/barBlock/SystemDataTopBar.vue'
 export { default as AuditStatusButton } from '../../components/utils/button/AuditStatusButton.vue'
 export { default as AuditStatusRelieveButton } from '../../components/utils/button/AuditStatusRelieveButton.vue'
 export { default as DormAttendStatusButtonGroup } from '../../components/utils/button/DormAttendStatusButtonGroup.vue'
@@ -65,7 +54,6 @@ export { default as MyHeadImg } from '../../components/utils/common/MyHeadImg.vu
 export { default as MyHeadListImg } from '../../components/utils/common/MyHeadListImg.vue'
 export { default as MyViewImg } from '../../components/utils/common/MyViewImg.vue'
 export { default as PhotoHeadImg } from '../../components/utils/common/PhotoHeadImg.vue'
-export { default as SystemDataTopBar } from '../../components/utils/barBlock/SystemDataTopBar.vue'
 export { default as DialogNormal } from '../../components/utils/dialog/DialogNormal.vue'
 export { default as DrawerLayoutRight } from '../../components/utils/dialog/DrawerLayoutRight.vue'
 export { default as DrawerRight } from '../../components/utils/dialog/DrawerRight.vue'
@@ -85,6 +73,19 @@ export { default as MyFlowCondition } from '../../components/utils/status/MyFlow
 export { default as MyFlowProcess } from '../../components/utils/status/MyFlowProcess.vue'
 export { default as MyFlowProcessList } from '../../components/utils/status/MyFlowProcessList.vue'
 export { default as MyFlowType } from '../../components/utils/status/MyFlowType.vue'
+export { default as CompBankAccountTable } from '../../components/utils/table/CompBankAccountTable.vue'
+export { default as MerchatClientTable } from '../../components/utils/table/MerchatClientTable.vue'
+export { default as SystemDataTable1 } from '../../components/utils/table/SystemDataTable1.vue'
+export { default as SystemDataTable10 } from '../../components/utils/table/SystemDataTable10.vue'
+export { default as SystemDataTable2 } from '../../components/utils/table/SystemDataTable2.vue'
+export { default as SystemDataTable3 } from '../../components/utils/table/SystemDataTable3.vue'
+export { default as SystemDataTable4 } from '../../components/utils/table/SystemDataTable4.vue'
+export { default as SystemDataTable5 } from '../../components/utils/table/SystemDataTable5.vue'
+export { default as SystemDataTable6 } from '../../components/utils/table/SystemDataTable6.vue'
+export { default as SystemDataTable7 } from '../../components/utils/table/SystemDataTable7.vue'
+export { default as SystemDataTable8 } from '../../components/utils/table/SystemDataTable8.vue'
+export { default as SystemDataTable9 } from '../../components/utils/table/SystemDataTable9.vue'
+export { default as UserBankAccountTable } from '../../components/utils/table/UserBankAccountTable.vue'
 export { default as ClassroomTreeAndList } from '../../components/utils/treeAndList/ClassroomTreeAndList.vue'
 export { default as DormBuildTreeAndList } from '../../components/utils/treeAndList/DormBuildTreeAndList.vue'
 export { default as MyRoleList } from '../../components/utils/treeAndList/MyRoleList.vue'
@@ -98,16 +99,18 @@ export { default as TeacherTreeAndListNoPage } from '../../components/utils/tree
 export { default as TeacherTreeAndListRoleNoPage } from '../../components/utils/treeAndList/TeacherTreeAndListRoleNoPage.vue'
 export { default as QuillBlock } from '../../components/utils/upload/QuillBlock.vue'
 export { default as UploadSquare } from '../../components/utils/upload/UploadSquare.vue'
-export { default as SystemDataTable1 } from '../../components/utils/table/SystemDataTable1.vue'
-export { default as SystemDataTable10 } from '../../components/utils/table/SystemDataTable10.vue'
-export { default as SystemDataTable2 } from '../../components/utils/table/SystemDataTable2.vue'
-export { default as SystemDataTable3 } from '../../components/utils/table/SystemDataTable3.vue'
-export { default as SystemDataTable4 } from '../../components/utils/table/SystemDataTable4.vue'
-export { default as SystemDataTable5 } from '../../components/utils/table/SystemDataTable5.vue'
-export { default as SystemDataTable6 } from '../../components/utils/table/SystemDataTable6.vue'
-export { default as SystemDataTable7 } from '../../components/utils/table/SystemDataTable7.vue'
-export { default as SystemDataTable8 } from '../../components/utils/table/SystemDataTable8.vue'
-export { default as SystemDataTable9 } from '../../components/utils/table/SystemDataTable9.vue'
+export { default as BarChart } from '../../components/charts/BarChart.vue'
+export { default as CircleChart } from '../../components/charts/CircleChart.vue'
+export { default as HBarChart } from '../../components/charts/HBarChart.vue'
+export { default as LineChart } from '../../components/charts/LineChart.vue'
+export { default as LineClassPopChart } from '../../components/charts/LineClassPopChart.vue'
+export { default as LinePopChart } from '../../components/charts/LinePopChart.vue'
+export { default as PopChart } from '../../components/charts/PopChart.vue'
+export { default as RadarChart } from '../../components/charts/RadarChart.vue'
+export { default as RadarDormChart } from '../../components/charts/RadarDormChart.vue'
+export { default as SexPieChart } from '../../components/charts/SexPieChart.vue'
+export { default as SexPieMoreChart } from '../../components/charts/SexPieMoreChart.vue'
+export { default as TableBarChart } from '../../components/charts/TableBarChart.vue'
 
 export const LazyLogo = import('../../components/Logo.vue' /* webpackChunkName: "components/Logo" */).then(c => c.default || c)
 export const LazyMyBlockTree = import('../../components/MyBlockTree.vue' /* webpackChunkName: "components/MyBlockTree" */).then(c => c.default || c)
@@ -121,18 +124,6 @@ export const LazyMyTree = import('../../components/MyTree.vue' /* webpackChunkNa
 export const LazyLayoutLr = import('../../components/Layout/LayoutLr.vue' /* webpackChunkName: "components/Layout/LayoutLr" */).then(c => c.default || c)
 export const LazyLayoutLrBefore = import('../../components/Layout/LayoutLrBefore.vue' /* webpackChunkName: "components/Layout/LayoutLrBefore" */).then(c => c.default || c)
 export const LazyLayoutTb = import('../../components/Layout/LayoutTb.vue' /* webpackChunkName: "components/Layout/LayoutTb" */).then(c => c.default || c)
-export const LazyBarChart = import('../../components/charts/BarChart.vue' /* webpackChunkName: "components/charts/BarChart" */).then(c => c.default || c)
-export const LazyCircleChart = import('../../components/charts/CircleChart.vue' /* webpackChunkName: "components/charts/CircleChart" */).then(c => c.default || c)
-export const LazyHBarChart = import('../../components/charts/HBarChart.vue' /* webpackChunkName: "components/charts/HBarChart" */).then(c => c.default || c)
-export const LazyLineChart = import('../../components/charts/LineChart.vue' /* webpackChunkName: "components/charts/LineChart" */).then(c => c.default || c)
-export const LazyLineClassPopChart = import('../../components/charts/LineClassPopChart.vue' /* webpackChunkName: "components/charts/LineClassPopChart" */).then(c => c.default || c)
-export const LazyLinePopChart = import('../../components/charts/LinePopChart.vue' /* webpackChunkName: "components/charts/LinePopChart" */).then(c => c.default || c)
-export const LazyPopChart = import('../../components/charts/PopChart.vue' /* webpackChunkName: "components/charts/PopChart" */).then(c => c.default || c)
-export const LazyRadarChart = import('../../components/charts/RadarChart.vue' /* webpackChunkName: "components/charts/RadarChart" */).then(c => c.default || c)
-export const LazyRadarDormChart = import('../../components/charts/RadarDormChart.vue' /* webpackChunkName: "components/charts/RadarDormChart" */).then(c => c.default || c)
-export const LazySexPieChart = import('../../components/charts/SexPieChart.vue' /* webpackChunkName: "components/charts/SexPieChart" */).then(c => c.default || c)
-export const LazySexPieMoreChart = import('../../components/charts/SexPieMoreChart.vue' /* webpackChunkName: "components/charts/SexPieMoreChart" */).then(c => c.default || c)
-export const LazyTableBarChart = import('../../components/charts/TableBarChart.vue' /* webpackChunkName: "components/charts/TableBarChart" */).then(c => c.default || c)
 export const LazyMyFormAuditType = import('../../components/form/MyFormAuditType.vue' /* webpackChunkName: "components/form/MyFormAuditType" */).then(c => c.default || c)
 export const LazyMyFormFlow = import('../../components/form/MyFormFlow.vue' /* webpackChunkName: "components/form/MyFormFlow" */).then(c => c.default || c)
 export const LazyMyFormSet = import('../../components/form/MyFormSet.vue' /* webpackChunkName: "components/form/MyFormSet" */).then(c => c.default || c)
@@ -167,6 +158,7 @@ export const LazyStudoorDetail = import('../../components/utils/auditDetail/Stud
 export const LazyStuleaveDetail = import('../../components/utils/auditDetail/StuleaveDetail.vue' /* webpackChunkName: "components/utils/auditDetail/StuleaveDetail" */).then(c => c.default || c)
 export const LazyTerdoorDetail = import('../../components/utils/auditDetail/TerdoorDetail.vue' /* webpackChunkName: "components/utils/auditDetail/TerdoorDetail" */).then(c => c.default || c)
 export const LazyTerleaveDetail = import('../../components/utils/auditDetail/TerleaveDetail.vue' /* webpackChunkName: "components/utils/auditDetail/TerleaveDetail" */).then(c => c.default || c)
+export const LazySystemDataTopBar = import('../../components/utils/barBlock/SystemDataTopBar.vue' /* webpackChunkName: "components/utils/barBlock/SystemDataTopBar" */).then(c => c.default || c)
 export const LazyAuditStatusButton = import('../../components/utils/button/AuditStatusButton.vue' /* webpackChunkName: "components/utils/button/AuditStatusButton" */).then(c => c.default || c)
 export const LazyAuditStatusRelieveButton = import('../../components/utils/button/AuditStatusRelieveButton.vue' /* webpackChunkName: "components/utils/button/AuditStatusRelieveButton" */).then(c => c.default || c)
 export const LazyDormAttendStatusButtonGroup = import('../../components/utils/button/DormAttendStatusButtonGroup.vue' /* webpackChunkName: "components/utils/button/DormAttendStatusButtonGroup" */).then(c => c.default || c)
@@ -176,7 +168,6 @@ export const LazyMyHeadImg = import('../../components/utils/common/MyHeadImg.vue
 export const LazyMyHeadListImg = import('../../components/utils/common/MyHeadListImg.vue' /* webpackChunkName: "components/utils/common/MyHeadListImg" */).then(c => c.default || c)
 export const LazyMyViewImg = import('../../components/utils/common/MyViewImg.vue' /* webpackChunkName: "components/utils/common/MyViewImg" */).then(c => c.default || c)
 export const LazyPhotoHeadImg = import('../../components/utils/common/PhotoHeadImg.vue' /* webpackChunkName: "components/utils/common/PhotoHeadImg" */).then(c => c.default || c)
-export const LazySystemDataTopBar = import('../../components/utils/barBlock/SystemDataTopBar.vue' /* webpackChunkName: "components/utils/barBlock/SystemDataTopBar" */).then(c => c.default || c)
 export const LazyDialogNormal = import('../../components/utils/dialog/DialogNormal.vue' /* webpackChunkName: "components/utils/dialog/DialogNormal" */).then(c => c.default || c)
 export const LazyDrawerLayoutRight = import('../../components/utils/dialog/DrawerLayoutRight.vue' /* webpackChunkName: "components/utils/dialog/DrawerLayoutRight" */).then(c => c.default || c)
 export const LazyDrawerRight = import('../../components/utils/dialog/DrawerRight.vue' /* webpackChunkName: "components/utils/dialog/DrawerRight" */).then(c => c.default || c)
@@ -196,6 +187,19 @@ export const LazyMyFlowCondition = import('../../components/utils/status/MyFlowC
 export const LazyMyFlowProcess = import('../../components/utils/status/MyFlowProcess.vue' /* webpackChunkName: "components/utils/status/MyFlowProcess" */).then(c => c.default || c)
 export const LazyMyFlowProcessList = import('../../components/utils/status/MyFlowProcessList.vue' /* webpackChunkName: "components/utils/status/MyFlowProcessList" */).then(c => c.default || c)
 export const LazyMyFlowType = import('../../components/utils/status/MyFlowType.vue' /* webpackChunkName: "components/utils/status/MyFlowType" */).then(c => c.default || c)
+export const LazyCompBankAccountTable = import('../../components/utils/table/CompBankAccountTable.vue' /* webpackChunkName: "components/utils/table/CompBankAccountTable" */).then(c => c.default || c)
+export const LazyMerchatClientTable = import('../../components/utils/table/MerchatClientTable.vue' /* webpackChunkName: "components/utils/table/MerchatClientTable" */).then(c => c.default || c)
+export const LazySystemDataTable1 = import('../../components/utils/table/SystemDataTable1.vue' /* webpackChunkName: "components/utils/table/SystemDataTable1" */).then(c => c.default || c)
+export const LazySystemDataTable10 = import('../../components/utils/table/SystemDataTable10.vue' /* webpackChunkName: "components/utils/table/SystemDataTable10" */).then(c => c.default || c)
+export const LazySystemDataTable2 = import('../../components/utils/table/SystemDataTable2.vue' /* webpackChunkName: "components/utils/table/SystemDataTable2" */).then(c => c.default || c)
+export const LazySystemDataTable3 = import('../../components/utils/table/SystemDataTable3.vue' /* webpackChunkName: "components/utils/table/SystemDataTable3" */).then(c => c.default || c)
+export const LazySystemDataTable4 = import('../../components/utils/table/SystemDataTable4.vue' /* webpackChunkName: "components/utils/table/SystemDataTable4" */).then(c => c.default || c)
+export const LazySystemDataTable5 = import('../../components/utils/table/SystemDataTable5.vue' /* webpackChunkName: "components/utils/table/SystemDataTable5" */).then(c => c.default || c)
+export const LazySystemDataTable6 = import('../../components/utils/table/SystemDataTable6.vue' /* webpackChunkName: "components/utils/table/SystemDataTable6" */).then(c => c.default || c)
+export const LazySystemDataTable7 = import('../../components/utils/table/SystemDataTable7.vue' /* webpackChunkName: "components/utils/table/SystemDataTable7" */).then(c => c.default || c)
+export const LazySystemDataTable8 = import('../../components/utils/table/SystemDataTable8.vue' /* webpackChunkName: "components/utils/table/SystemDataTable8" */).then(c => c.default || c)
+export const LazySystemDataTable9 = import('../../components/utils/table/SystemDataTable9.vue' /* webpackChunkName: "components/utils/table/SystemDataTable9" */).then(c => c.default || c)
+export const LazyUserBankAccountTable = import('../../components/utils/table/UserBankAccountTable.vue' /* webpackChunkName: "components/utils/table/UserBankAccountTable" */).then(c => c.default || c)
 export const LazyClassroomTreeAndList = import('../../components/utils/treeAndList/ClassroomTreeAndList.vue' /* webpackChunkName: "components/utils/treeAndList/ClassroomTreeAndList" */).then(c => c.default || c)
 export const LazyDormBuildTreeAndList = import('../../components/utils/treeAndList/DormBuildTreeAndList.vue' /* webpackChunkName: "components/utils/treeAndList/DormBuildTreeAndList" */).then(c => c.default || c)
 export const LazyMyRoleList = import('../../components/utils/treeAndList/MyRoleList.vue' /* webpackChunkName: "components/utils/treeAndList/MyRoleList" */).then(c => c.default || c)
@@ -209,13 +213,15 @@ export const LazyTeacherTreeAndListNoPage = import('../../components/utils/treeA
 export const LazyTeacherTreeAndListRoleNoPage = import('../../components/utils/treeAndList/TeacherTreeAndListRoleNoPage.vue' /* webpackChunkName: "components/utils/treeAndList/TeacherTreeAndListRoleNoPage" */).then(c => c.default || c)
 export const LazyQuillBlock = import('../../components/utils/upload/QuillBlock.vue' /* webpackChunkName: "components/utils/upload/QuillBlock" */).then(c => c.default || c)
 export const LazyUploadSquare = import('../../components/utils/upload/UploadSquare.vue' /* webpackChunkName: "components/utils/upload/UploadSquare" */).then(c => c.default || c)
-export const LazySystemDataTable1 = import('../../components/utils/table/SystemDataTable1.vue' /* webpackChunkName: "components/utils/table/SystemDataTable1" */).then(c => c.default || c)
-export const LazySystemDataTable10 = import('../../components/utils/table/SystemDataTable10.vue' /* webpackChunkName: "components/utils/table/SystemDataTable10" */).then(c => c.default || c)
-export const LazySystemDataTable2 = import('../../components/utils/table/SystemDataTable2.vue' /* webpackChunkName: "components/utils/table/SystemDataTable2" */).then(c => c.default || c)
-export const LazySystemDataTable3 = import('../../components/utils/table/SystemDataTable3.vue' /* webpackChunkName: "components/utils/table/SystemDataTable3" */).then(c => c.default || c)
-export const LazySystemDataTable4 = import('../../components/utils/table/SystemDataTable4.vue' /* webpackChunkName: "components/utils/table/SystemDataTable4" */).then(c => c.default || c)
-export const LazySystemDataTable5 = import('../../components/utils/table/SystemDataTable5.vue' /* webpackChunkName: "components/utils/table/SystemDataTable5" */).then(c => c.default || c)
-export const LazySystemDataTable6 = import('../../components/utils/table/SystemDataTable6.vue' /* webpackChunkName: "components/utils/table/SystemDataTable6" */).then(c => c.default || c)
-export const LazySystemDataTable7 = import('../../components/utils/table/SystemDataTable7.vue' /* webpackChunkName: "components/utils/table/SystemDataTable7" */).then(c => c.default || c)
-export const LazySystemDataTable8 = import('../../components/utils/table/SystemDataTable8.vue' /* webpackChunkName: "components/utils/table/SystemDataTable8" */).then(c => c.default || c)
-export const LazySystemDataTable9 = import('../../components/utils/table/SystemDataTable9.vue' /* webpackChunkName: "components/utils/table/SystemDataTable9" */).then(c => c.default || c)
+export const LazyBarChart = import('../../components/charts/BarChart.vue' /* webpackChunkName: "components/charts/BarChart" */).then(c => c.default || c)
+export const LazyCircleChart = import('../../components/charts/CircleChart.vue' /* webpackChunkName: "components/charts/CircleChart" */).then(c => c.default || c)
+export const LazyHBarChart = import('../../components/charts/HBarChart.vue' /* webpackChunkName: "components/charts/HBarChart" */).then(c => c.default || c)
+export const LazyLineChart = import('../../components/charts/LineChart.vue' /* webpackChunkName: "components/charts/LineChart" */).then(c => c.default || c)
+export const LazyLineClassPopChart = import('../../components/charts/LineClassPopChart.vue' /* webpackChunkName: "components/charts/LineClassPopChart" */).then(c => c.default || c)
+export const LazyLinePopChart = import('../../components/charts/LinePopChart.vue' /* webpackChunkName: "components/charts/LinePopChart" */).then(c => c.default || c)
+export const LazyPopChart = import('../../components/charts/PopChart.vue' /* webpackChunkName: "components/charts/PopChart" */).then(c => c.default || c)
+export const LazyRadarChart = import('../../components/charts/RadarChart.vue' /* webpackChunkName: "components/charts/RadarChart" */).then(c => c.default || c)
+export const LazyRadarDormChart = import('../../components/charts/RadarDormChart.vue' /* webpackChunkName: "components/charts/RadarDormChart" */).then(c => c.default || c)
+export const LazySexPieChart = import('../../components/charts/SexPieChart.vue' /* webpackChunkName: "components/charts/SexPieChart" */).then(c => c.default || c)
+export const LazySexPieMoreChart = import('../../components/charts/SexPieMoreChart.vue' /* webpackChunkName: "components/charts/SexPieMoreChart" */).then(c => c.default || c)
+export const LazyTableBarChart = import('../../components/charts/TableBarChart.vue' /* webpackChunkName: "components/charts/TableBarChart" */).then(c => c.default || c)

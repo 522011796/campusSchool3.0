@@ -4,24 +4,19 @@
     "appletId": "1",
     "appletType": "2",
     "formList": [{
-      "formName": "标签管理",
+      "formName": "教师账户",
       "appletId": "1",
       "id": "1",
       "unit": "2"
     },{
-      "formName": "费用管理",
+      "formName": "学校账户",
       "appletId": "1",
       "id": "2",
       "unit": "2"
     },{
-      "formName": "收款账户",
+      "formName": "供应商/客户",
       "appletId": "1",
       "id": "3",
-      "unit": "2"
-    },{
-      "formName": "公司账户",
-      "appletId": "1",
-      "id": "4",
       "unit": "2"
     }]
   }

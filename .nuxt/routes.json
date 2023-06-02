@@ -448,6 +448,13 @@
     "_name": "_002689e4"
   },
   {
+    "name": "appletInfo-system-costManage",
+    "path": "/appletInfo/system/costManage",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/appletInfo/system/costManage.vue",
+    "chunkName": "pages/appletInfo/system/costManage",
+    "_name": "_068368ec"
+  },
+  {
     "name": "appletInfo-system-fileManage",
     "path": "/appletInfo/system/fileManage",
     "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/appletInfo/system/fileManage.vue",
@@ -474,6 +481,13 @@
     "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/appletInfo/system/roleManage.vue",
     "chunkName": "pages/appletInfo/system/roleManage",
     "_name": "_53403a55"
+  },
+  {
+    "name": "appletInfo-system-tagManage",
+    "path": "/appletInfo/system/tagManage",
+    "component": "/Users/likai/工作/object/vuejs/campusSchool3.0/pages/appletInfo/system/tagManage.vue",
+    "chunkName": "pages/appletInfo/system/tagManage",
+    "_name": "_7fed94b5"
   },
   {
     "name": "attendanceInfo-administration-faceRecord",

@@ -67,10 +67,12 @@ const _2ceee2de = () => interopDefault(import('../pages/appletInfo/noti/notifica
 const _25e4ae7d = () => interopDefault(import('../pages/appletInfo/staticCenter/formStaticManage.vue' /* webpackChunkName: "pages/appletInfo/staticCenter/formStaticManage" */))
 const _16742e78 = () => interopDefault(import('../pages/appletInfo/staticCenter/myFormStatic.vue' /* webpackChunkName: "pages/appletInfo/staticCenter/myFormStatic" */))
 const _002689e4 = () => interopDefault(import('../pages/appletInfo/system/budgetManage.vue' /* webpackChunkName: "pages/appletInfo/system/budgetManage" */))
+const _068368ec = () => interopDefault(import('../pages/appletInfo/system/costManage.vue' /* webpackChunkName: "pages/appletInfo/system/costManage" */))
 const _25c89fdb = () => interopDefault(import('../pages/appletInfo/system/fileManage.vue' /* webpackChunkName: "pages/appletInfo/system/fileManage" */))
 const _ff0995e6 = () => interopDefault(import('../pages/appletInfo/system/flowManage.vue' /* webpackChunkName: "pages/appletInfo/system/flowManage" */))
 const _39f636db = () => interopDefault(import('../pages/appletInfo/system/moneyManage.vue' /* webpackChunkName: "pages/appletInfo/system/moneyManage" */))
 const _53403a55 = () => interopDefault(import('../pages/appletInfo/system/roleManage.vue' /* webpackChunkName: "pages/appletInfo/system/roleManage" */))
+const _7fed94b5 = () => interopDefault(import('../pages/appletInfo/system/tagManage.vue' /* webpackChunkName: "pages/appletInfo/system/tagManage" */))
 const _3becaaa8 = () => interopDefault(import('../pages/attendanceInfo/administration/faceRecord.vue' /* webpackChunkName: "pages/attendanceInfo/administration/faceRecord" */))
 const _0933525b = () => interopDefault(import('../pages/attendanceInfo/administration/leaveStatic.vue' /* webpackChunkName: "pages/attendanceInfo/administration/leaveStatic" */))
 const _15aa4d2a = () => interopDefault(import('../pages/attendanceInfo/administration/record.vue' /* webpackChunkName: "pages/attendanceInfo/administration/record" */))
@@ -465,6 +467,10 @@ export const routerOptions = {
     component: _002689e4,
     name: "appletInfo-system-budgetManage"
   }, {
+    path: "/appletInfo/system/costManage",
+    component: _068368ec,
+    name: "appletInfo-system-costManage"
+  }, {
     path: "/appletInfo/system/fileManage",
     component: _25c89fdb,
     name: "appletInfo-system-fileManage"
@@ -480,6 +486,10 @@ export const routerOptions = {
     path: "/appletInfo/system/roleManage",
     component: _53403a55,
     name: "appletInfo-system-roleManage"
+  }, {
+    path: "/appletInfo/system/tagManage",
+    component: _7fed94b5,
+    name: "appletInfo-system-tagManage"
   }, {
     path: "/attendanceInfo/administration/faceRecord",
     component: _3becaaa8,
