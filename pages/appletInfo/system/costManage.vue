@@ -554,12 +554,12 @@ export default {
           this.$axios.post(url, params, {loading: false}).then(res=>{
             if (res.data.code == 200){
               this.init();
+              this.modalVisible = false;
               MessageSuccess(res.data.desc);
             }else {
               MessageError(res.data.desc);
             }
             this.dialogLoading = false;
-            this.modalVisible = false;
           });
         }
       });

@@ -760,7 +760,8 @@ export const common = {
   tag_list: '/proxy/school/applet/label/list',//标签管理列表
   tag_del: '/proxy/school/applet/label/del',//标签管理删除
   tag_save: '/proxy/school/applet/label/save',//标签管理添加
-  tag_tree: '/proxy/school/applet/cost/tree',//标签管理tree
+  tag_tree: '/proxy/school/applet/label/tree',//标签管理tree
+  tag_info: '/proxy/school/applet/label/info',//费用管理信息
 
   cost_page: '/proxy/school/applet/cost/page',//费用管理分页
   cost_list: '/proxy/school/applet/cost/list',//费用管理列表
@@ -769,5 +770,15 @@ export const common = {
   cost_tree: '/proxy/school/applet/cost/tree',//费用管理tree
   cost_sublist: '/proxy/school/applet/cost/sublist',//费用管理下级
   cost_info: '/proxy/school/applet/cost/info',//费用管理信息
+
+  teacher_account_page: '/proxy/school/applet/employee/account/page',//教师财务账号分页
+  teacher_account_list: '/proxy/school/applet/employee/account/list',//教师财务账号列表
+  teacher_account_del: '/proxy/school/applet/employee/account/del',//教师财务账号删除
+  teacher_account_save: '/proxy/school/applet/employee/account/save',//教师财务账号保存
+
+  supplier_account_page: '/proxy/school/applet/supplier/account/page',//供应商财务账号分页
+  supplier_account_list: '/proxy/school/applet/supplier/account/list',//供应商财务账号列表
+  supplier_account_del: '/proxy/school/applet/supplier/account/del',//供应商财务账号删除
+  supplier_account_save: '/proxy/school/applet/supplier/account/save',//供应商财务账号保存
 
 };

@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="财务管理">
-      <change afterPath="$PROJECT_DIR$/components/tree/MyElTreeBlock.vue" afterDir="false" />
+    <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="费用管理">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/common.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/tree/MyElTree.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/tree/MyElTree.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/table/UserBankAccountTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/UserBankAccountTable.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appSystemData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appSystemData.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/budgetManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/budgetManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appManage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/costManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/costManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/moneyManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/moneyManage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/tagManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/tagManage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/validater/coastValidater.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/coastValidater.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/validater/appManageValidater.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/appManageValidater.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/validater/tagValidater.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/tagValidater.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,14 +94,7 @@
       <workItem from="1682661230487" duration="5305000" />
       <workItem from="1683168602119" duration="608000" />
       <workItem from="1683251524230" duration="66369000" />
-      <workItem from="1684463291875" duration="130451000" />
-    </task>
-    <task id="LOCAL-00011" summary="解除申请">
-      <created>1670980974506</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1670980974506</updated>
+      <workItem from="1684463291875" duration="139853000" />
     </task>
     <task id="LOCAL-00012" summary="新增规则条件">
       <created>1678270008440</created>
@@ -443,7 +432,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685695168474</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="费用管理">
+      <created>1686033894819</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1686033894820</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -470,6 +466,7 @@
     <MESSAGE value="增加毕业和异动管理" />
     <MESSAGE value="修改设备管理" />
     <MESSAGE value="财务管理" />
-    <option name="LAST_COMMIT_MESSAGE" value="财务管理" />
+    <MESSAGE value="费用管理" />
+    <option name="LAST_COMMIT_MESSAGE" value="费用管理" />
   </component>
 </project>

@@ -22,6 +22,7 @@
                 </el-button>
                 <template v-if="mainMenu == '2'">
 <!--                  <el-button v-if="formId == '1'" size="small" type="primary"  icon="el-icon-plus" @click="addAccountInfo($event, 1)">{{$t("添加账户")}}</el-button>-->
+                  <el-button v-if="formId == '1'" size="small" type="primary"  icon="el-icon-plus" @click="addAccountInfo($event, 1)">{{$t("添加账户")}}</el-button>
                   <el-button v-if="formId == '2'" size="small" type="primary"  icon="el-icon-plus" @click="addAccountInfo($event, 2)">{{$t("添加账户")}}</el-button>
                   <el-button v-if="formId == '3'" size="small" type="primary"  icon="el-icon-plus" @click="addMerchatInfo($event, 3)">{{$t("新增")}}</el-button>
                 </template>
@@ -34,7 +35,7 @@
                 </div>
                 <div v-else>
                   <div class="layout-inline">
-                    <my-cascader class="layout-item" ref="SelectorDept" :placeholder="$t('请选择部门')" size="small" width-style="180" :collapse-tags="true" :sel-value="searchDetailDept" type="4" sub-type="" @change="handleSelectDept($event, 'dept')"></my-cascader>
+                    <my-cascader class="layout-item" ref="SelectorDept" :clearable="true" :placeholder="$t('请选择部门')" size="small" width-style="180" :collapse-tags="true" :sel-value="searchDetailDept" type="4" sub-type="" @change="handleSelectDept($event, 'dept')"></my-cascader>
                     <my-input-button ref="teacher width-150" size="small" plain width-class="width: 180px" type="success" :clearable="true" :placeholder="$t('请输入信息')" @click="searchMoneyDetail" class="layout-item"></my-input-button>
                   </div>
                 </div>
@@ -190,6 +191,49 @@
       </div>
     </dialog-normal>
 
+    <dialog-normal top="10vh" :visible="dialogDetail" :title="$t('账号设置')" @close="closeDialog" @right-close="cancelDialog">
+      <div class="margin-top-10">
+        <template v-if="formId == 1">
+          <el-form :model="formTeacherAccount" :rules="rulesTeacher" ref="formTeacherAccount" label-width="140px">
+            <el-form-item :label="$t('姓名')">
+              <el-popover
+                popper-class="custom-popper-class-form"
+                placement="top"
+                width="700"
+                trigger="click"
+                @show="handleShowTeacher(1)">
+                <div>
+                  <teacher-tree-and-list ref="popverCreateRef" :sel-value="formTeacherAccount.userId" @change="handleSelCreateUser($event, 1)"></teacher-tree-and-list>
+                </div>
+                <el-button slot="reference" type="success" plain size="small">{{$t("添加")}}</el-button>
+              </el-popover>
+              <span v-if="formTeacherAccount.name != ''" class="color-warning margin-left-10">
+              <i class="fa fa-user"></i>
+              {{formTeacherAccount.name}}
+            </span>
+            </el-form-item>
+            <el-form-item :label="$t('开户行')" prop="bankName">
+              <el-input v-model="formTeacherAccount.bankName" class="width-260"></el-input>
+            </el-form-item>
+            <el-form-item :label="$t('户名')" prop="bankAccountName">
+              <el-input v-model="formTeacherAccount.bankAccountName" class="width-260"></el-input>
+            </el-form-item>
+            <el-form-item :label="$t('账号')" prop="bankAccount">
+              <el-input v-model="formTeacherAccount.bankAccount" class="width-260"></el-input>
+            </el-form-item>
+          </el-form>
+        </template>
+      </div>
+
+      <div slot="footer">
+        <el-button size="small" @click="cancelDialog">{{$t("取消")}}</el-button>
+        <el-button size="small" type="primary" @click="dialogLoading == false ? okAccountDialog() : ''">
+          <i class="el-icon-loading" v-if="dialogLoading"></i>
+          {{$t("确定")}}
+        </el-button>
+      </div>
+    </dialog-normal>
+
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="确认需要删除该信息？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
 
   </div>
@@ -243,12 +287,23 @@
         dialogApp: false,
         visibleConfim: false,
         dialogDetail: false,
+        dialogAccount: false,
+        dialogType: '',
         form: {
           id: '',
           appName: '',
           type: '',
           category: '',
           dept: []
+        },
+        formTeacherAccount: {
+          id: '',
+          name: '',
+          dept: '',
+          bankName: '',
+          bankAccountName: '',
+          bankAccount: '',
+          userId: ''
         }
       }
     },
@@ -276,14 +331,19 @@
         });
       },
       initFD(){
+        let url = "";
         let params = {
           page: this.pageDetail,
           num: this.numDetail,
           formId: this.formId,
           searchKey: this.searchDetailKey,
-          searchDetailDept: this.searchDetailDept
+          departmentPath: this.searchDetailDept.length > 0 ? this.searchDetailDept[this.searchDetailDept.length-1] : ''
         };
-        this.$axios.get(common.server_applet_list, {params: params}).then(res => {
+        if (this.formId == 1){
+          url = common.teacher_account_page;
+        }
+        console.log(params);
+        this.$axios.get(url, {params: params}).then(res => {
           if (res.data.data){
             this.tableDetailData = res.data.data.list;
             this.totalDetail = res.data.data.totalCount;
@@ -359,20 +419,46 @@
         this.init(data);
       },
       searchMoneyDetail(data){
-        this.searchMoneyKey = data.input;
-        //this.page = 1;
-        //this.init(data);
+        this.searchDetailKey = data.input;
+        this.pageDetail = 1;
+        this.initFD();
+      },
+      setTeacherName(){
+        this.dialogAccount = true;
+      },
+      handleShowTeacher(type){
+        if (type == 1){
+          this.$refs.popverCreateRef._handleOpen();
+        }
+      },
+      handleSelCreateUser(data, type){
+        if (type == 1){
+          this.formTeacherAccount.name = data.real_name;
+          this.formTeacherAccount.userId = data.user_id;
+        }
       },
       addInfo(){
         this.dialogApp = true;
       },
-      addAccountInfo(){
+      addAccountInfo(event, type){
+        this.dialogType = type;
         this.dialogDetail = true;
       },
       addMerchatInfo(){
         this.dialogDetail = true;
       },
-      editDetailInfo(){
+      editDetailInfo(item, type){
+        if (type == 1){
+          this.formTeacherAccount = {
+            id: item.id,
+            name: item.real_name,
+            dept: '',
+            bankName: item.bank_name,
+            bankAccountName: item.account_name,
+            bankAccount: item.account_num,
+            userId: item.user_id
+          }
+        }
         this.dialogDetail = true;
       },
       myInfo(){
@@ -472,7 +558,11 @@
         this.init();
       },
       handleSelectDept(data, type, type2){
-        this.searchDetailDept = data;
+        if (type == 'dept'){
+          this.searchDetailDept = data;
+        }else if (type == 'dept2'){
+          this.form.dept = data[data.length - 1];
+        }
       },
       handleCascaderChange(data){
         this.form.dept = data;
@@ -493,6 +583,7 @@
       },
       cancelDialog(){
         this.dialogApp = false;
+        this.dialogDetail = false;
       },
       okDialog(){
         let url = '';
@@ -535,6 +626,40 @@
           }
         });
       },
+      okAccountDialog(){
+        let url = '';
+        this.$refs['formTeacherAccount'].validate((valid) => {
+          if (valid) {
+            if (this.formTeacherAccount.userId == ""){
+              MessageWarning(this.$t("请设置姓名！"));
+              return;
+            }
+
+            let params = {
+              bankName: this.formTeacherAccount.bankName,
+              accountName: this.formTeacherAccount.bankAccountName,
+              accountNum: this.formTeacherAccount.bankAccount,
+              userId: this.formTeacherAccount.userId
+            };
+            if (this.formTeacherAccount.id != ''){
+              params['id'] = this.formTeacherAccount.id;
+            }
+            url = common.teacher_account_save;
+            params = this.$qs.stringify(params);
+            this.dialogLoading = true;
+            this.$axios.post(url, params).then(res => {
+              if (res.data.code == 200){
+                this.dialogDetail = false;
+                this.initFD();
+                MessageSuccess(res.data.desc);
+              }else {
+                MessageError(res.data.desc);
+              }
+              this.dialogLoading = false;
+            });
+          }
+        });
+      },
       closeDialog(event){
         this.form = {
           id: '',
@@ -543,9 +668,21 @@
           category: '',
           dept: []
         };
+        this.formTeacherAccount = {
+          id: '',
+          name: '',
+          dept: '',
+          bankName: '',
+          bankAccountName: '',
+          bankAccount: '',
+          userId: ''
+        };
         this.subTitle = "";
+        this.detailId = "";
         this.$set(this.form,'dept', []);
         this.resetCasadeSelector('SelectorCollege');
+        //this.resetCasadeSelector('SelectorDept2');
+        this.dialogDetail = false;
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
         }
@@ -560,10 +697,25 @@
           id: this.form.id
         }
         url = common.server_applet_delete;
+        if (this.mainMenu == 2){
+          params = {
+            id: this.detailId
+          }
+          console.log(this.detailId);
+          if (this.formId == 1){
+            url = common.teacher_account_del;
+          }
+        }
         params = this.$qs.stringify(params);
         this.$axios.post(url, params).then(res => {
           if (res.data.code == 200){
-            this.init();
+            if (this.mainMenu == 2){
+              if (this.formId == 1){
+                this.initFD();
+              }
+            }else {
+              this.init();
+            }
             MessageSuccess(res.data.desc);
           }else {
             MessageError(res.data.desc);
