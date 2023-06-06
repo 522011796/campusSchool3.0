@@ -216,7 +216,7 @@
                   <my-select size="mini" :placeholder="$t('请选择')" :sel-value="item.type" :options="typeOptions" :width-style="90" @change="handleTableChange($event, index)"></my-select>
                 </td>
                 <td>
-                  <a href="javascript:;" class="font-size-12 color-grand">{{$t("编辑")}}</a>
+                  <a href="javascript:;" class="font-size-12 color-grand" @click="handleEdit($event, index)">{{$t("编辑")}}</a>
                 </td>
                 <td>
                   <el-input size="mini" style="width: 80px" v-model="item.budgetMoney"></el-input>
@@ -245,6 +245,24 @@
       </div>
     </drawer-layout-right>
 
+    <drawer-layout-right tabindex="0" :wrapper-closable="false" @close="closeEditDialog" @changeDrawer="closeEditDialog" :visible="dialogEdit" size="650px" :title="$t('范围设置')" @right-close="cancelEditDialog">
+      <div slot="content">
+        <div class="margin-top-10">
+
+        </div>
+        <div>
+
+        </div>
+      </div>
+      <div slot="footer">
+        <el-button size="small" @click="cancelEditDialog">{{$t("取消")}}</el-button>
+        <el-button size="small" type="primary" @click="dialogLoading == false ? okEditDialog() : ''">
+          <i class="el-icon-loading" v-if="dialogLoading"></i>
+          {{$t("确定")}}
+        </el-button>
+      </div>
+    </drawer-layout-right>
+
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="确认需要删除该信息？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
   </div>
 </template>
@@ -267,12 +285,21 @@
         dialogType: false,
         visibleConfim: false,
         dialogLoading: false,
+        dialogEdit: false,
+        dialogIndex: '',
         searchKey: '',
         timeExtra: '',
         orderOptions: [],
         moneyOptions: [],
         processOptions: [],
-        typeOptions: [],
+        typeOptions: [
+          {label: this.$t("按部门"), text: this.$t("按部门"), value: 1},
+          {label: this.$t("按项目"), text: this.$t("按项目"), value: 2},
+          {label: this.$t("按提交人"), text: this.$t("按提交人"), value: 3},
+          {label: this.$t("按标签"), text: this.$t("按标签"), value: 4},
+          {label: this.$t("按合同"), text: this.$t("按合同"), value: 5}
+        ],
+        errorTime: '',
         time1Options: [
           {label: this.$t("月"), text: this.$t("月"), value: 1},
           {label: this.$t("季度"), text: this.$t("季度"), value: 2},
@@ -294,7 +321,6 @@
           warningLimit: '0',
           warningLimitExtra: '',
           changeSwitch: '1',
-          errorTime: '',
           rule: [
             {
               type: '',
@@ -309,6 +335,7 @@
     },
     created() {
       this.init();
+      this.initFlow();
     },
     methods: {
       init(){
@@ -323,6 +350,24 @@
             this.total = res.data.data.totalCount;
             this.num = res.data.data.num;
             this.page = res.data.data.currentPage;
+          }
+        });
+      },
+      initFlow(formId){
+        let params = {
+          page: 1,
+          num: 9999
+        };
+        this.$axios.get(common.server_form_template_form_process_page, {params: params}).then(res => {
+          if (res.data.data){
+            let array = [];
+            for (let i = 0; i < res.data.data.list.length; i++){
+              array.push({
+                label: res.data.data.list[i].process_name,
+                value: res.data.data.list[i].id+"",
+              });
+            }
+            this.processOptions = array;
           }
         });
       },
@@ -380,9 +425,9 @@
         }else if (type == 2){
           this.form.money = event;
         }else if (type == 3){
-          this.form.maxLimitExtra = event;
-        }else if (type == 4){
           this.form.warningLimitExtra = event;
+        }else if (type == 4){
+          this.form.maxLimitExtra = event;
         }
       },
       handleTimeChange(event, type){
@@ -432,6 +477,10 @@
       handleTableChange(event, index){
 
       },
+      handleEdit(event, index){
+        this.dialogIndex = index;
+        this.dialogEdit = true;
+      },
       addTableItem(index){
         let obj = {
           type: '',
@@ -478,10 +527,40 @@
       cancelDialog(){
         this.dialogType = false;
       },
+      closeEditDialog(event){
+        this.dialogIndex = '';
+        this.dialogEdit = false;
+      },
+      cancelEditDialog(){
+        this.dialogIndex = '';
+        this.dialogEdit = false;
+      },
+      okEditDialog(){
+
+      },
       okDialog(){
         let url = '';
+        let error = 0;
+        let req = /^([\+]?(([1-9]\d*)|(0)))([.]\d{0,2})?$/;
         this.$refs['form'].validate((valid) => {
           if (valid) {
+            for (let i = 0; i < this.form.rule.length; i++){
+              if (this.form.rule[i]['type'] == ''){
+                error++;
+              }else if (this.form.rule[i]['range'].length == 0){
+                error++;
+              }else if (!req.test(this.form.rule[i]['budgetMoney'])){
+                error++;
+              }else if (!req.test(this.form.rule[i]['warningMoney'])){
+                error++;
+              }
+            }
+
+            if (error > 0){
+              MessageWarning(this.$t("规则数据存在未设置或者异常，请检查！"));
+              return;
+            }
+
             this.dialogLoading = true;
             let params = {
               categoryName: this.form.name,

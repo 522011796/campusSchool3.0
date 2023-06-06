@@ -159,8 +159,8 @@
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item :label="$t('项目预算')" prop="budget">
-                  <my-select :width-style="182" :sel-value="form.budget" :options="budgetOptions" style="width: 100%" @change="handleChange($event, 12)"></my-select>
+                <el-form-item :label="$t('负责人')" prop="user">
+                  <my-select :width-style="182" :sel-value="form.user" :options="userOptions" @change="handleChange($event, 16)"></my-select>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -184,11 +184,6 @@
               <el-col :span="12">
                 <el-form-item :label="$t('父级项目')" prop="parentObj">
                   <my-select :width-style="182" :sel-value="form.parentObj" :options="parendObjOptions" @change="handleChange($event, 15)"></my-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item :label="$t('负责人')" prop="user">
-                  <my-select :width-style="182" :sel-value="form.user" :options="userOptions" @change="handleChange($event, 16)"></my-select>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -243,8 +238,8 @@
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item :label="$t('占预算')" prop="budget">
-                  <my-select :width-style="182" :sel-value="formOrder.budget" :options="budgetOptions" style="width: 100%" @change="handleChange($event, 4)"></my-select>
+                <el-form-item :label="$t('责任人')" prop="havePerson">
+                  <my-select :width-style="182" :sel-value="formOrder.havePerson" :options="havePersionOptions" @change="handleChange($event, 8)"></my-select>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -282,11 +277,6 @@
               <el-col :span="12">
                 <el-form-item :label="$t('关联项目')" prop="object">
                   <my-select :width-style="182" :sel-value="formOrder.object" :options="objectOptions" @change="handleChange($event, 7)"></my-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item :label="$t('责任人')" prop="havePerson">
-                  <my-select :width-style="182" :sel-value="formOrder.havePerson" :options="havePersionOptions" @change="handleChange($event, 8)"></my-select>
                 </el-form-item>
               </el-col>
             </el-row>

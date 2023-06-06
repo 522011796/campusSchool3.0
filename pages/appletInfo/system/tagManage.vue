@@ -36,11 +36,6 @@
           </el-table-column>
           <el-table-column
             align="center"
-            prop="department_no"
-            :label="$t('编号')">
-          </el-table-column>
-          <el-table-column
-            align="center"
             fixed="right"
             label="操作"
             width="120">

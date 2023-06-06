@@ -26,18 +26,45 @@
           @cell-click="cellClick">
           <el-table-column
             align="left"
-            prop="department_name"
-            :label="$t('名称')">
+            prop="cost_name"
+            :label="$t('费用名称')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.cost_name}}</div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{scope.row.cost_name}}
+                </span>
+              </el-popover>
+            </template>
           </el-table-column>
           <el-table-column
             align="center"
             prop="dept_short_name"
-            :label="$t('简称')">
+            :label="$t('可见范围')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">
+
+                </div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  <label v-if="scope.row.range_type == 0">{{$t("全部可见")}}</label>
+                  <label v-if="scope.row.range_type == 1">{{$t("部分可见")}}</label>
+                </span>
+              </el-popover>
+            </template>
           </el-table-column>
           <el-table-column
             align="center"
             prop="department_no"
-            :label="$t('编号')">
+            :label="$t('引用流程')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.process_name ? scope.row.process_name : '--'}}</div>
+                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  {{scope.row.process_name ? scope.row.process_name : '--'}}
+                </span>
+              </el-popover>
+            </template>
           </el-table-column>
           <el-table-column
             align="center"
@@ -59,20 +86,120 @@
       </div>
     </layout-tb>
 
-    <dialog-normal :visible="modalVisible" :title="$t('组织设置')" @close="closeDialog" @right-close="cancelDialog">
+    <dialog-normal :visible="modalVisible" width-style="850px" :title="$t('费用设置')" @close="closeDialog" @right-close="cancelDialog">
       <div class="margin-top-10">
         <el-form :model="form" :rules="rules" ref="form" label-width="140px">
-          <el-form-item :label="$t('上级部门')" v-if="form.oprType != 'main'">
+          <el-form-item :label="$t('上级名称')" v-if="form.oprType != 'main' && form.deptSuperId != undefined && form.deptSuperId != ''">
             <span>{{form.superName}}</span>
           </el-form-item>
-          <el-form-item :label="$t('组织名称')" prop="name">
-            <el-input v-model="form.name" class="width-260"></el-input>
+          <el-form-item :label="$t('费用名称')" prop="name">
+            <el-input v-model="form.name" class="width-300"></el-input>
           </el-form-item>
-          <el-form-item :label="$t('组织编号')" prop="no">
-            <el-input v-model="form.no" class="width-260"></el-input>
+          <el-form-item :label="$t('可见范围')">
+            <div>
+              <el-radio-group v-model="form.rangeType">
+                <el-radio label="0">{{ $t('全部可见') }}</el-radio>
+                <el-radio label="1">{{ $t('部分可见') }}</el-radio>
+              </el-radio-group>
+            </div>
+            <div class="margin-top-5" v-if="form.rangeType == 1">
+              <div>
+                <el-button :type="selRangeType == 1 ? 'success' : ''" size="mini" @click="handleSelRangeType($event,1)">{{ $t('组织架构') }}</el-button>
+                <el-button :type="selRangeType == 2 ? 'success' : ''" size="mini" @click="handleSelRangeType($event,2)">{{ $t('部门') }}</el-button>
+                <el-button :type="selRangeType == 3 ? 'success' : ''" size="mini" @click="handleSelRangeType($event,3)">{{ $t('角色') }}</el-button>
+              </div>
+              <div class="margint-top-5 block-div-class">
+                <div v-show="selRangeType == 1">
+                  <div class="range-left">
+                    <my-el-tree-block type="4" sub-type="" :show-filter="false" @node-click="nodeClick" @all-click="nodeClick"></my-el-tree-block>
+                  </div>
+                  <div class="range-right padding-lr-5">
+                    <div>
+                      <el-row>
+                        <el-col :span="24" class="text-right">
+                          <my-input-button ref="teacher" size="mini" plain width-class="width: 120px" type="success" :clearable="true" :placeholder="$t('请输入信息')" @click="searchSel"></my-input-button>
+                        </el-col>
+                      </el-row>
+                    </div>
+                    <div class="custom-table-el">
+                      <el-table
+                        ref="tableRefSel"
+                        v-loading="teacherLoading"
+                        :data="tableSelData"
+                        header-cell-class-name="custom-table-cell-bg"
+                        size="small"
+                        :row-key="getRowKeys"
+                        max-height="370px"
+                        style="width: 100%"
+                        @selection-change="handleSelectionChange">
+                        <el-table-column
+                          :reserve-selection="true"
+                          type="selection"
+                          align="center"
+                          width="55">
+                        </el-table-column>
+                        <el-table-column
+                          align="center"
+                          :label="$t('名称')">
+                          <template slot-scope="scope">
+                            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                              <div class="text-center">{{scope.row.real_name}}</div>
+                              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                                {{scope.row.real_name}}
+                              </span>
+                            </el-popover>
+                          </template>
+                        </el-table-column>
+                        <el-table-column
+                          align="center"
+                          :label="$t('部门')">
+                          <template slot-scope="scope">
+                            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                              <div class="text-center">{{scope.row.department_name}}</div>
+                              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                                {{scope.row.department_name}}
+                              </span>
+                            </el-popover>
+                          </template>
+                        </el-table-column>
+                        <el-table-column align="center" label="性别" :show-overflow-tooltip="true">
+                          <template slot-scope="scope">
+                            <my-sex :sex="scope.row.sex" tag="text"></my-sex>
+                          </template>
+                        </el-table-column>
+                      </el-table>
+                      <div class="text-right" style="height: 35px;line-height: 35px">
+                        <el-pagination
+                          background
+                          :pager-count="pageCount"
+                          :page-sizes="[10, 20, 50, 100]"
+                          layout="sizes, prev, pager, next"
+                          :total="totalTeacher"
+                          :current-page="pageTeacher"
+                          :page-size="numTeacher"
+                          @size-change="sizeTeacherChange"
+                          @current-change="currentTeacherPage">
+                        </el-pagination>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="moon-clearfix"></div>
+                </div>
+                <div v-show="selRangeType == 2">
+                  <div class="rang-block">
+                    <my-el-tree-block ref="deptRefSel" type="4" sub-type="" node-key="department_path" :show-filter="false" :show-campus="false" :show-checkbox="true" :defaultCheckedKeys="defaultCheckedKeys"></my-el-tree-block>
+                  </div>
+                </div>
+                <div v-show="selRangeType == 3">
+                  <div class="rang-block">
+                    <my-el-tree ref="roleRefSel" type="150" sub-type="" :show-filter="false" :show-campus="false" :show-checkbox="true" :defaultCheckedKeys="defaultCheckedRoleKeys"></my-el-tree>
+                  </div>
+                </div>
+              </div>
+            </div>
           </el-form-item>
-          <el-form-item :label="$t('组织简称')" prop="realName">
-            <el-input v-model="form.realName" class="width-260"></el-input>
+          <el-form-item :label="$t('引用流程')" prop="process">
+            <my-select :placeholder="$t('请选择')" :sel-value="form.process" :options="processOptions" :width-style="300" @change="handleChange($event)"></my-select>
           </el-form-item>
         </el-form>
       </div>
@@ -104,34 +231,53 @@ import DialogNormal from "~/components/utils/dialog/DialogNormal";
 import {common} from "~/utils/api/url";
 import mixins from "~/utils/mixins";
 import coastValidater from "~/utils/validater/coastValidater";
-import {setChildren} from "~/utils/utils";
+import {inArray, MessageError, MessageSuccess, MessageWarning, setChildren} from "~/utils/utils";
+import MyElTreeBlock from "~/components/tree/MyElTreeBlock";
 
 export default {
   mixins: [mixins,coastValidater],
-  components: {DialogNormal, DrawerRight, MyNormalDialog, LayoutTb},
+  components: {MyElTreeBlock, DialogNormal, DrawerRight, MyNormalDialog, LayoutTb},
   data(){
     return {
+      pageCount: 5,
+      pageTeacher: 1,
+      numTeacher: 20,
+      totalTeacher: 0,
       modalVisible: false,
       drawerVisible: false,
       visibleConfim: false,
       dialogLoading: false,
       loading: false,
       drawerLoading: false,
+      teacherLoading: false,
       subDetail: '',
+      selTreeId: '',
       uploadFile: common.organization_file,
       uploadAction: common.organization_upload,
       uploadResult: {},
       uploadProcess: '',
       g_superId: '',
       tableData: [],
+      tableSelData: [],
+      processOptions: [],
+      defaultCheckedKeys: [],
+      defaultCheckedRoleKeys: [],
+      selRangeType: 1,
+      searchKey: '',
+      rowSelectFlag: false,
       form: {
         oprType: '',
+        rangeType: '0',
         id: '',
         deptSuperId: '',
         superName: '',
         name: '',
         no: '',
-        realName: ''
+        process: '',
+        userRange: [],
+        deptRange: [],
+        roleRange: [],
+        userEditRange: []
       },
     }
   },
@@ -142,38 +288,178 @@ export default {
     init(){
       let groupArr = [];
       let params = {
-        superDeptId: 0
+        superCostId: 0,
+        searchKey: this.searchKey
       };
-      this.$axios.get(common.organization_url, {params: params}).then(res => {
+      this.$axios.get(common.cost_tree, {params: params}).then(res => {
         if (res.data.data){
           this.g_superId = res.data.data[0].id;;
           this.form.deptSuperId = res.data.data[0].id;
-          this.tableData = setChildren(res.data.data[0].child_list, groupArr, 'child_list', 'children');
+          this.tableData = setChildren(res.data.data, groupArr, 'child_list', 'children');
         }
       });
+    },
+    initFlow(formId){
+      let params = {
+        page: 1,
+        num: 9999
+      };
+      this.$axios.get(common.server_form_template_form_process_page, {params: params}).then(res => {
+        if (res.data.data){
+          let array = [];
+          for (let i = 0; i < res.data.data.list.length; i++){
+            array.push({
+              label: res.data.data.list[i].process_name,
+              value: res.data.data.list[i].id+"",
+            });
+          }
+          this.processOptions = array;
+        }
+      });
+    },
+    initTeacher(){
+      let params = {
+        page: this.pageTeacher,
+        num: this.numTeacher,
+        deleted: 0,
+        departPath: this.selTreeId,
+      };
+      params['realName'] = this.searchKey['input'];
+      this.$axios.get(common.teacher_list, {params: params}).then(res => {
+        if (res.data.data){
+          this.tableSelData = res.data.data.page.list;
+          this.totalTeacher = res.data.data.page.totalCount;
+          this.numTeacher = res.data.data.page.num;
+          this.pageTeacher = res.data.data.page.currentPage;
+
+          setTimeout(() => {
+            this.rowSelectFlag = true;
+            let arr = this.form.userRange.length > 0 ? JSON.parse(JSON.stringify(this.form.userRange)) : [];
+            for (let i = 0; i < this.tableSelData.length; i++){
+              let sel = inArray(this.tableSelData[i], arr, 'user_id');
+              if (sel > -1){
+                if (this.$refs['tableRefSel']){
+                  this.$refs.tableRefSel.toggleRowSelection(this.tableSelData[i], true);
+                }
+              }
+            }
+            this.rowSelectFlag = false;
+          },0);
+
+          this.teacherLoading = false;
+        }
+      });
+    },
+    sizeTeacherChange(event){
+      this.pageTeacher = 1;
+      this.numTeacher = event;
+      this.initTeacher();
+    },
+    currentTeacherPage(event){
+      this.pageTeacher = event;
+      this.initTeacher();
+    },
+    searchSel(event){
+      this.searchKey = event;
+      this.initTeacher();
     },
     addInitData(event, type){
       this.form.oprType = '';
       if (type && type == "main"){
-        this.form.deptSuperId = this.g_superId;
+        this.form.deptSuperId = 0;
         this.form.oprType = 'main';
       }else if(type && type == "sub"){
-        this.form = {
-          deptSuperId: event.id,
-          superName: event.department_name
-        };
+        this.form.deptSuperId = event.cost_id;
+        this.form.superName = event.cost_name;
+        this.form.rangeType = event.range_type+"";
+        this.form.process = event.form_process_id+"";
+        this.form.oprType = 'sub';
+
+        this.initSelTeacher(event.id);
       }else {
         this.form = {
           oprType: '',
           id: event.id,
-          deptSuperId: event.id,
-          superName: event.department_name,
-          name: event.department_name,
-          no: event.department_no,
-          realName: event.dept_short_name,
+          deptSuperId: event.super_cost_id,
+          superName: event.super_cost_name,
+          name: event.cost_name,
+          rangeType: event.range_type+"",
+          process: event.form_process_id+"",
+          deptRange: [],
+          userRange: [],
+          roleRange: []
         };
+
+        this.initSelTeacher(event.id);
       }
+      this.initFlow();
+
+      this.pageTeacher = 1;
+      this.teacherLoading = true;
+      setTimeout(() => {
+        this.initTeacher();
+      },800);
       this.modalVisible = true;
+    },
+    initSelTeacher(id){
+      let params = {
+        id: id
+      };
+      this.$axios.get(common.cost_info, {params: params}).then(res => {
+        if (res.data.data){
+          console.log(res.data.data);
+          let roleRange = res.data.data.roleRange;
+          let userRange = res.data.data.userRange;
+          let deptRange = res.data.data.deptRange;
+          let roleArr = [];
+          let userArr = [];
+          let deptArr = [];
+          for (let i = 0; i < roleRange.length; i++){
+            roleArr.push(roleRange[i].ranges);
+          }
+          for (let i = 0; i < deptRange.length; i++){
+            deptArr.push(deptRange[i].ranges);
+          }
+          for (let i = 0; i < userRange.length; i++){
+            userArr.push({
+              user_id: userRange[i].ranges
+            });
+          }
+
+          console.log(deptArr);
+          this.form.userRange = userArr;
+          this.defaultCheckedRoleKeys = roleArr;
+          this.defaultCheckedKeys = deptArr;
+        }
+      });
+    },
+    nodeClick(data){
+      this.selTreeId = data.id ? data.id : '';
+      this.initTeacher();
+    },
+    nodeChange(data, checked, indeterminate){
+      console.log(data, checked, indeterminate);
+    },
+    getRowKeys(row) {
+      return row.user_id;
+    },
+    handleSelectionChange(data){
+      if (this.rowSelectFlag) return;
+      this.form.userRange = data;
+      console.log(this.form.userRange);
+    },
+    handleChange(event){
+      this.form.process = event;
+    },
+    handleSelRangeType(event, type){
+      if (type == 1){
+        this.pageTeacher = 1;
+        this.teacherLoading = true;
+        setTimeout(() => {
+          this.initTeacher();
+        },800);
+      }
+      this.selRangeType = type;
     },
     uploadOrganization(event){
       this.drawerVisible = true;
@@ -187,15 +473,26 @@ export default {
       this.drawerVisible = false;
     },
     closeDialog(event){
+      let _self = this;
       this.form = {
         oprType: '',
+        rangeType: '0',
         id: '',
         deptSuperId: '',
+        superName: '',
         name: '',
-        departmentName: '',
         no: '',
-        realName: '',
+        process: '',
+        userRange: [],
+        deptRange: [],
+        roleRange: [],
+        userEditRange: []
       };
+      this.processOptions = [];
+      this.selRangeType = 1;
+      this.selTreeId = '';
+      this.searchKey = '';
+      this.rowSelectFlag = false;
       if (this.$refs['form']){
         this.$refs['form'].resetFields();
       }
@@ -206,24 +503,54 @@ export default {
       this.drawerVisible = event;
     },
     okDialog(event){
-      let url = "";
-      let params = {
-        departmentNo: this.form.no,
-        departmentName: this.form.name,
-        deptShortName: this.form.realName,
-        superDeptId: this.form.deptSuperId
-      };
-      if (this.form.id && this.form.id != ""){
-        url = common.organization_update;
-        params['organizeId'] = this.form.id;
-      }else {
-        url = common.organization_add;
-      }
-      params = this.$qs.stringify(params);
-
       this.$refs['form'].validate((valid) => {
         if (valid) {
+          let deptArr  = [];
+          let roleArr  = [];
+          let userArray  = [];
+
           this.dialogLoading = true;
+          let url = "";
+          let params = {
+            costName: this.form.name,
+            rangeType: this.form.rangeType,
+            formProcessId: this.form.process
+          };
+          url = common.cost_save;
+          if (this.form.id && this.form.id != ""){
+            params['id'] = this.form.id;
+          }
+
+          if (this.form.rangeType == 1){
+            deptArr  = this.setAreaChildren(this.$refs.deptRefSel.$refs.tree.getCheckedNodes(), 'dept');
+            roleArr  = this.setAreaChildren(this.$refs.roleRefSel.$refs.tree.getCheckedNodes());
+            if (deptArr.length > 0){
+              params['deptRange'] = deptArr.join();
+            }
+            if (roleArr.length > 0){
+              params['roleRange'] = roleArr.join();
+            }
+            if (this.form.userRange.length > 0){
+              for (let i = 0; i < this.form.userRange.length; i++){
+                userArray.push(this.form.userRange[i].user_id);
+              }
+              params['userRange'] = userArray.join();
+            }
+
+            if (deptArr.length == 0 && roleArr.length == 0 && this.form.userRange.length == 0){
+              MessageWarning(this.$t("请选择范围"));
+              this.dialogLoading = false;
+              return;
+            }
+          }
+          if (this.form.deptSuperId != undefined && this.form.deptSuperId != ''){
+            params['superCostId'] = this.form.deptSuperId;
+          }else {
+            params['superCostId'] = 0;
+          }
+          console.log(3,params);
+          params = this.$qs.stringify(params);
+
           this.$axios.post(url, params, {loading: false}).then(res=>{
             if (res.data.code == 200){
               this.init();
@@ -255,17 +582,18 @@ export default {
       this.modalVisible = true;
     },
     handleDelete(row){
-      this.subDetail = row.department_name;
+      this.subDetail = row.cost_name;
       this.form.id = row.id;
       this.visibleConfim = true;
     },
     handleOkChange(data) {
       this.dialogLoading = true;
       let params = {
-        organizeId: this.form.id
+        id: this.form.id
       };
+      console.log(params);
       params = this.$qs.stringify(params);
-      this.$axios.post(common.organization_delete, params).then(res => {
+      this.$axios.post(common.cost_del, params).then(res => {
         if (res.data.code == 200){
           this.init();
           MessageSuccess(res.data.desc);
@@ -288,7 +616,7 @@ export default {
       });
     },
     cellClick(row, column, cell, event){
-      if (column.property == 'department_name'){
+      if (column.property == 'cost_name'){
         this.$refs.refTable.toggleRowExpansion(row);
       }
     },
@@ -307,6 +635,24 @@ export default {
     },
     uploadError(res, file){
       this.uploadProcess = res.data.data;
+    },
+    setAreaChildren(tree, type){//迭代方法
+      let _self = this;
+      let obj = [];
+      if (tree && tree.length > 0){
+        tree.map(function (item,index) {
+          if (type == 'dept'){
+            obj.push(item.department_path);
+          }else {
+            obj.push(item.id);
+          }
+
+          if(item['children'] != undefined && item['children'].length > 0){
+            _self.setAreaChildren(item['children']);
+          }
+        });
+      }
+      return obj;
     }
   }
 }
@@ -315,5 +661,27 @@ export default {
 <style scoped>
 .container {
   padding: 10px 15px;
+}
+.block-div-class{
+  width: 690px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  height: 450px;
+}
+.range-left{
+  float: left;
+  height: 450px;
+  width: 200px;
+  border-right: 1px solid #dddddd;
+  overflow-y: auto;
+}
+.range-right{
+  margin-left: 201px;
+  height: 450px;
+  overflow-y: auto;
+}
+.rang-block{
+  height: 350px;
+  overflow-y: auto;
 }
 </style>

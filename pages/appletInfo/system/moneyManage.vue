@@ -179,12 +179,10 @@
                   <my-select size="mini" :placeholder="$t('请选择')" :sel-value="item.type" :options="typeOptions" :width-style="90" @change="handleTableChange($event, index, 1)"></my-select>
                 </td>
                 <td>
-                  <my-select size="mini" :placeholder="$t('部门')" :sel-value="item.range" :options="rangeOptions" :width-style="90" @change="handleTableChange($event, index, 2)"></my-select>
+                  <my-select size="mini" :placeholder="$t('请选择')" :sel-value="item.range" :options="rangeOptions" :width-style="90" @change="handleTableChange($event, index, 2)"></my-select>
                 </td>
                 <td>
-                  <a href="javascript:;" class="font-size-12 color-success">{{$t("查看")}}</a>
-                  |
-                  <a href="javascript:;" class="font-size-12 color-grand">{{$t("编辑")}}</a>
+                  <a href="javascript:;" class="font-size-12 color-grand" @click="handleEdit($event, index)">{{$t("编辑")}}</a>
                 </td>
                 <td>
                   <el-input size="mini" style="width: 80px" v-model="item.budgetMoney"></el-input>
@@ -203,6 +201,24 @@
       <div slot="footer">
         <el-button size="small" @click="cancelDialog">{{$t("取消")}}</el-button>
         <el-button size="small" type="primary" @click="dialogLoading == false ? okDialog() : ''">
+          <i class="el-icon-loading" v-if="dialogLoading"></i>
+          {{$t("确定")}}
+        </el-button>
+      </div>
+    </drawer-layout-right>
+
+    <drawer-layout-right tabindex="0" :wrapper-closable="false" @close="closeEditDialog" @changeDrawer="closeEditDialog" :visible="dialogEdit" size="650px" :title="$t('范围设置')" @right-close="cancelEditDialog">
+      <div slot="content">
+        <div class="margin-top-10">
+
+        </div>
+        <div>
+
+        </div>
+      </div>
+      <div slot="footer">
+        <el-button size="small" @click="cancelEditDialog">{{$t("取消")}}</el-button>
+        <el-button size="small" type="primary" @click="dialogLoading == false ? okEditDialog() : ''">
           <i class="el-icon-loading" v-if="dialogLoading"></i>
           {{$t("确定")}}
         </el-button>
@@ -229,9 +245,19 @@
         dialogType: false,
         visibleConfim: false,
         dialogLoading: false,
+        dialogEdit: false,
+        dialogIndex: '',
         searchKey: '',
-        typeOptions: [],
-        rangeOptions: [],
+        typeOptions: [
+          {label: this.$t("年"), text: this.$t("年"), value: 1},
+          {label: this.$t("季度"), text: this.$t("季度"), value: 2},
+          {label: this.$t("月"), text: this.$t("月"), value: 3},
+          {label: this.$t("天"), text: this.$t("天"), value: 4}
+        ],
+        rangeOptions: [
+          {label: this.$t("提交人"), text: this.$t("提交人"), value: 1},
+          {label: this.$t("部门"), text: this.$t("部门"), value: 2}
+        ],
         orderOptions: [],
         form: {
           id: '',
@@ -327,6 +353,10 @@
       handleTableChange(event, index, type){
 
       },
+      handleEdit(event, index){
+        this.dialogIndex = index;
+        this.dialogEdit = true;
+      },
       addTableItem(index){
         let obj = {
           type: '',
@@ -363,10 +393,40 @@
       cancelDialog(){
         this.dialogType = false;
       },
+      closeEditDialog(event){
+        this.dialogIndex = '';
+        this.dialogEdit = false;
+      },
+      cancelEditDialog(){
+        this.dialogIndex = '';
+        this.dialogEdit = false;
+      },
+      okEditDialog(){
+
+      },
       okDialog(){
         let url = '';
+        let error = 0;
+        let req = /^([\+]?(([1-9]\d*)|(0)))([.]\d{0,2})?$/;
         this.$refs['form'].validate((valid) => {
           if (valid) {
+            for (let i = 0; i < this.form.rule.length; i++){
+              if (this.form.rule[i]['type'] == ''){
+                error++;
+              }else if (this.form.rule[i]['range'] == ''){
+                error++;
+              }else if (this.form.rule[i]['range2'].length == 0){
+                error++;
+              }else if (!req.test(this.form.rule[i]['budgetMoney'])){
+                error++;
+              }
+            }
+
+            if (error > 0){
+              MessageWarning(this.$t("规则数据存在未设置或者异常，请检查！"));
+              return;
+            }
+
             this.dialogLoading = true;
             let params = {
               categoryName: this.form.name,

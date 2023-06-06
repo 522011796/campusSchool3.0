@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div ref="treeBlockRef">
     <div v-if="slotTop" class="padding-tb-5 padding-lr-10">
       <slot name="top" ref="slotTop"></slot>
     </div>
@@ -13,7 +13,7 @@
     <div v-if="slotDefault" class="padding-tb-5 padding-lr-10">
       <slot name="middle" ref="slotDefault"></slot>
     </div>
-    <div class="tree-container custom-el-tree margin-top-5">
+    <div class="tree-container-block custom-el-tree">
       <el-tooltip v-if="showCampus" effect="dark" :content="campusName" placement="top">
         <div class="moon-content-text-ellipsis-class" :class="selectCampusAll == true ? 'tree-el-tree-all' : 'tree-el-tree-all-no'" @click="nodeClickCampusAll">
           {{campusName}}
@@ -29,7 +29,7 @@
         :default-expanded-keys="defaultExpandedKeys"
         :currentNodeKey="currentNodeKey"
         ref="tree"
-        node-key="id"
+        :node-key="nodeKey"
         :highlight-current="selectCampusAll == true ? false : true"
         @node-click="handleNodeClick"
         @check-change="handleCheckChange">
@@ -42,7 +42,7 @@
   import {oneOf} from "../../utils/utils";
   import mixins from "../../utils/mixins";
   export default {
-    name: 'myElTree',
+    name: 'myElTreeBlock',
     mixins: [mixins],
     components: {},
     props: {
@@ -75,6 +75,10 @@
       currentNodeKey: {
         default: '',
         type: [String, Number]
+      },
+      nodeKey: {
+        default: 'id',
+        type: String
       },
       width: {
         default: '',
@@ -185,9 +189,6 @@
               this.$refs.tree.setCurrentKey(this.currentNodeKey); //一定要加这个选中了否则样式没有出来
             }
           });
-        }else if(this.type == 150){//角色选择用，不显示学校和默认选中第一个
-          await this.getRoleTreeInfo(this.extraType);
-          this.data = this.dataRoleTreeList;
         }else if(this.type == 111){
           await this.getAppletServerInfo(this.extraType);
           this.data = this.dataAppletServer;

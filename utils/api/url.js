@@ -756,4 +756,18 @@ export const common = {
   major_only_list: '/proxy/school/edu/major/list',//专业列表-联动
   class_only_list: '/proxy/school/edu/class/list',//班级列表-联动
 
+  tag_page: '/proxy/school/applet/label/page',//标签管理分页
+  tag_list: '/proxy/school/applet/label/list',//标签管理列表
+  tag_del: '/proxy/school/applet/label/del',//标签管理删除
+  tag_save: '/proxy/school/applet/label/save',//标签管理添加
+  tag_tree: '/proxy/school/applet/cost/tree',//标签管理tree
+
+  cost_page: '/proxy/school/applet/cost/page',//费用管理分页
+  cost_list: '/proxy/school/applet/cost/list',//费用管理列表
+  cost_del: '/proxy/school/applet/cost/del',//费用管理删除
+  cost_save: '/proxy/school/applet/cost/save',//费用管理添加
+  cost_tree: '/proxy/school/applet/cost/tree',//费用管理tree
+  cost_sublist: '/proxy/school/applet/cost/sublist',//费用管理下级
+  cost_info: '/proxy/school/applet/cost/info',//费用管理信息
+
 };

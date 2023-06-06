@@ -579,6 +579,9 @@ ul{
   border-top-right-radius: 5px;
   color: #FFFFFF;
 }
+.custom-table-el .el-table__header th{
+  padding: 0;
+}
 .custom-table-cell-bg{
   background: #F2F6FC !important;
 }
@@ -641,6 +644,14 @@ ul{
   user-select: none;
   color: #595959;
   padding: 4px 0px;
+}
+.tree-container-block{
+  background: #ffffff;
+  height: 35px;
+  user-select: none;
+  color: #595959;
+  padding: 0px 0px;
+  margin-top: 0px;
 }
 .tree-container_item{
   display: flex;
