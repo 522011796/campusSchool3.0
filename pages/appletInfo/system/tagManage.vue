@@ -46,7 +46,8 @@
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                 <div class="text-center">
-
+                  <label v-if="scope.row.range_type == 0">{{$t("全部可见")}}</label>
+                  <label v-if="scope.row.range_type == 1">{{$t("部分可见")}}</label>
                 </div>
                 <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                   <label v-if="scope.row.range_type == 0">{{$t("全部可见")}}</label>
@@ -327,7 +328,7 @@ export default {
       this.searchKey = event;
       this.initTeacher();
     },
-    addInitData(event, type){
+    async addInitData(event, type){
       this.form.oprType = '';
       if (type && type == "main"){
         this.form.deptSuperId = 0;
@@ -339,7 +340,7 @@ export default {
         this.form.process = "";
         this.form.oprType = 'sub';
 
-        this.initSelTeacher(event.id);
+        await this.initSelTeacher(event.id);
       }else {
         console.log(event);
         this.form = {
@@ -354,7 +355,7 @@ export default {
           userRange: [],
           roleRange: []
         };
-        this.initSelTeacher(event.id);
+        await this.initSelTeacher(event.id);
       }
       this.pageTeacher = 1;
       this.teacherLoading = true;
@@ -363,11 +364,11 @@ export default {
       },800);
       this.modalVisible = true;
     },
-    initSelTeacher(id){
+    async initSelTeacher(id){
       let params = {
         id: id
       };
-      this.$axios.get(common.tag_info, {params: params}).then(res => {
+      await this.$axios.get(common.tag_info, {params: params}).then(res => {
         if (res.data.data){
           console.log(res.data.data);
           let roleRange = res.data.data.roleRange;

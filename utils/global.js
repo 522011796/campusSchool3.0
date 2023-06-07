@@ -434,6 +434,14 @@ const filterAppServerConditionnalAllType = [
   { text: '不为空', value: 'nnull' ,label: '不为空'}
 ];
 
+const filterAccountType = [
+  { text: "默认账户", value: '0' ,label: '默认账户'},
+  { text: "现金账户", value: '1' ,label: '现金账户'},
+  { text: "支付宝账户", value: '2' ,label: '支付宝账户'},
+  { text: "微信账户", value: '3' ,label: '微信账户'},
+  { text: "其他账户", value: '99' ,label: '其他账户'},
+];
+
 const fiterTeacherRoleType = [
   {
     label: '班主任审批',
@@ -685,5 +693,6 @@ export default {
   filterJCRpStatus,
   filterRuTypes,
   filterUserTeachTypes,
-  filterSystemAppletTypes
+  filterSystemAppletTypes,
+  filterAccountType
 }

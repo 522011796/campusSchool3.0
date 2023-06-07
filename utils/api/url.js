@@ -781,4 +781,10 @@ export const common = {
   supplier_account_del: '/proxy/school/applet/supplier/account/del',//供应商财务账号删除
   supplier_account_save: '/proxy/school/applet/supplier/account/save',//供应商财务账号保存
 
+  school_account_page: '/proxy/school/applet/school/account/page',//学校财务账号分页
+  school_account_list: '/proxy/school/applet/school/account/list',//学校财务账号列表
+  school_account_del: '/proxy/school/applet/school/account/del',//学校财务账号删除
+  school_account_save: '/proxy/school/applet/school/account/save',//学校财务账号保存
+  school_account_info: '/proxy/school/applet/school/account/info',//学校财务账号信息
+
 };

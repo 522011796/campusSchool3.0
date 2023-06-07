@@ -14,22 +14,10 @@
           :label="$t('账户类型')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">{{ scope.row.formName }}</div>
+              <div class="text-center">{{ accountTypeInfo(scope.row.account_type, 'set') }}</div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                {{ scope.row.formName }}
+                {{ accountTypeInfo(scope.row.account_type, 'set') }}
               </span>
-            </el-popover>
-          </template>
-        </el-table-column>
-        <el-table-column
-          align="center"
-          :label="$t('开户行')">
-          <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">{{ scope.row.formApplyNo ? scope.row.formApplyNo : '--' }}</div>
-              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              {{ scope.row.formApplyNo ? scope.row.formApplyNo : '--' }}
-            </span>
             </el-popover>
           </template>
         </el-table-column>
@@ -38,9 +26,33 @@
           :label="$t('户名')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">{{ scope.row.applyUserName }}</div>
+              <div class="text-center">{{ scope.row.account_name }}</div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              {{ scope.row.applyUserName }}
+              {{ scope.row.account_name }}
+            </span>
+            </el-popover>
+          </template>
+        </el-table-column>
+        <el-table-column
+          align="center"
+          :label="$t('开户行')">
+          <template slot-scope="scope">
+            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+              <div class="text-center">{{ scope.row.bank_name ? scope.row.bank_name : '--' }}</div>
+              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+              {{ scope.row.bank_name ? scope.row.bank_name : '--' }}
+            </span>
+            </el-popover>
+          </template>
+        </el-table-column>
+        <el-table-column
+          align="center"
+          :label="$t('账号')">
+          <template slot-scope="scope">
+            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+              <div class="text-center">{{ scope.row.account_num ? scope.row.account_num : '--' }}</div>
+              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+              {{ scope.row.account_num ? scope.row.account_num : '--' }}
             </span>
             </el-popover>
           </template>
@@ -50,10 +62,14 @@
           :label="$t('可见范围')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">{{ scope.row.userNo }}</div>
+              <div class="text-center">
+                <label v-if="scope.row.range_type == 0">{{$t("全部可见")}}</label>
+                <label v-if="scope.row.range_type == 1">{{$t("部分可见")}}</label>
+              </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              {{ scope.row.userNo }}
-            </span>
+                  <label v-if="scope.row.range_type == 0">{{$t("全部可见")}}</label>
+                  <label v-if="scope.row.range_type == 1">{{$t("部分可见")}}</label>
+                </span>
             </el-popover>
           </template>
         </el-table-column>
@@ -61,9 +77,9 @@
           align="center"
           :label="$t('操作')">
           <template slot-scope="scope">
-            <a href="javascript:;" class="color-success" @click="editInfo">{{$t("编辑")}}</a>
+            <a href="javascript:;" class="color-success" @click="editInfo(scope.row)">{{$t("编辑")}}</a>
             ｜
-            <a href="javascript:;" class="color-danger margin-left-5" @click="deleteInfo">{{$t("删除")}}</a>
+            <a href="javascript:;" class="color-danger margin-left-5" @click="deleteInfo(scope.row)">{{$t("删除")}}</a>
           </template>
         </el-table-column>
       </template>
@@ -72,6 +88,8 @@
 </template>
 
 <script>
+  import {accountType} from "~/utils/utils";
+
   export default {
     name: 'CompBankAccountTable',
     props: {
@@ -101,6 +119,9 @@
 
     },
     methods: {
+      accountTypeInfo(str, type){
+        return accountType(str, type);
+      },
       detailInfo(row){
         this.$emit('detailInfo', row);
       },

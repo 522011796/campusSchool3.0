@@ -35,7 +35,7 @@
                 </div>
                 <div v-else>
                   <div class="layout-inline">
-                    <my-cascader class="layout-item" ref="SelectorDept" :clearable="true" :placeholder="$t('请选择部门')" size="small" width-style="180" :collapse-tags="true" :sel-value="searchDetailDept" type="4" sub-type="" @change="handleSelectDept($event, 'dept')"></my-cascader>
+                    <my-cascader v-if="formId == '1'" class="layout-item" ref="SelectorDept" :clearable="true" :placeholder="$t('请选择部门')" size="small" width-style="180" :collapse-tags="true" :sel-value="searchDetailDept" type="4" sub-type="" @change="handleSelectDept($event, 'dept')"></my-cascader>
                     <my-input-button ref="teacher width-150" size="small" plain width-class="width: 180px" type="success" :clearable="true" :placeholder="$t('请输入信息')" @click="searchMoneyDetail" class="layout-item"></my-input-button>
                   </div>
                 </div>
@@ -191,7 +191,7 @@
       </div>
     </dialog-normal>
 
-    <dialog-normal top="10vh" :visible="dialogDetail" :title="$t('账号设置')" @close="closeDialog" @right-close="cancelDialog">
+    <dialog-normal top="10vh" :visible="dialogDetail"  :width-style="formId == 2 ? '850px' : '550px'" :title="$t('账号设置')" @close="closeDialog" @right-close="cancelDialog">
       <div class="margin-top-10">
         <template v-if="formId == 1">
           <el-form :model="formTeacherAccount" :rules="rulesTeacher" ref="formTeacherAccount" label-width="140px">
@@ -212,14 +212,163 @@
               {{formTeacherAccount.name}}
             </span>
             </el-form-item>
-            <el-form-item :label="$t('开户行')" prop="bankName">
+            <el-form-item :label="$t('开户行')" key="bankName" prop="bankName">
               <el-input v-model="formTeacherAccount.bankName" class="width-260"></el-input>
             </el-form-item>
-            <el-form-item :label="$t('户名')" prop="bankAccountName">
+            <el-form-item :label="$t('户名')" key="bankAccountName" prop="bankAccountName">
               <el-input v-model="formTeacherAccount.bankAccountName" class="width-260"></el-input>
             </el-form-item>
-            <el-form-item :label="$t('账号')" prop="bankAccount">
+            <el-form-item :label="$t('账号')" key="bankAccount" prop="bankAccount">
               <el-input v-model="formTeacherAccount.bankAccount" class="width-260"></el-input>
+            </el-form-item>
+          </el-form>
+        </template>
+
+        <template v-if="formId == 3">
+          <el-form :model="formMerchatAccount" :rules="rulesMerchat" ref="formMerchatAccount" label-width="140px">
+            <el-form-item :label="$t('类型')" key="accountType" prop="accountType">
+              <my-select :sel-value="formMerchatAccount.accountType" :options="filterAccountType" width-style="260" @change="handleFormChange($event, 3)"></my-select>
+            </el-form-item>
+            <el-form-item :label="$t('公司名称')" key="company" prop="company">
+              <el-input v-model="formMerchatAccount.company" class="width-260"></el-input>
+            </el-form-item>
+            <el-form-item :label="$t('税号')" key="taxNo" prop="taxNo">
+              <el-input v-model="formMerchatAccount.taxNo" class="width-260"></el-input>
+            </el-form-item>
+            <el-form-item :label="$t('单位地址')" key="address" prop="address">
+              <el-input v-model="formMerchatAccount.address" class="width-260"></el-input>
+            </el-form-item>
+            <el-form-item :label="$t('联系人')" key="contact" prop="contact">
+              <el-input v-model="formMerchatAccount.contact" class="width-260"></el-input>
+            </el-form-item>
+            <el-form-item :label="$t('电话')" key="phone" prop="phone">
+              <el-input v-model="formMerchatAccount.phone" class="width-260"></el-input>
+            </el-form-item>
+            <el-form-item :label="$t('开户行')" key="bankMerName" prop="bankMerName">
+              <el-input v-model="formMerchatAccount.bankMerName" class="width-260"></el-input>
+            </el-form-item>
+            <el-form-item :label="$t('银行账户')" key="bankMerAccount" prop="bankMerAccount">
+              <el-input v-model="formMerchatAccount.bankMerAccount" class="width-260"></el-input>
+            </el-form-item>
+          </el-form>
+        </template>
+
+        <template v-if="formId == 2">
+          <el-form :model="formSchoolAccount" :rules="rulesSchool" ref="formSchoolAccount" label-width="140px">
+            <el-form-item :label="$t('账户类型')" key="accountSchoolType" prop="accountSchoolType">
+              <my-select :sel-value="formSchoolAccount.accountSchoolType" :options="filterAccountType" width-style="300" @change="handleFormChange($event, 4)"></my-select>
+            </el-form-item>
+            <el-form-item :label="$t('开户行')" key="bankSchoolName" prop="bankSchoolName">
+              <el-input v-model="formSchoolAccount.bankSchoolName" class="width-300"></el-input>
+            </el-form-item>
+            <el-form-item :label="$t('户名')" key="accountName" prop="accountName">
+              <el-input v-model="formSchoolAccount.accountName" class="width-300"></el-input>
+            </el-form-item>
+            <el-form-item :label="$t('银行账户')" key="bankSchoolAccount" prop="bankSchoolAccount">
+              <el-input v-model="formSchoolAccount.bankSchoolAccount" class="width-300"></el-input>
+            </el-form-item>
+            <el-form-item :label="$t('可见范围')">
+              <div>
+                <el-radio-group v-model="formSchoolAccount.rangeType">
+                  <el-radio label="0">{{ $t('全部可见') }}</el-radio>
+                  <el-radio label="1">{{ $t('部分可见') }}</el-radio>
+                </el-radio-group>
+              </div>
+              <div class="margin-top-5" v-if="formSchoolAccount.rangeType == 1">
+                <div>
+                  <el-button :type="selRangeType == 1 ? 'success' : ''" size="mini" @click="handleSelRangeType($event,1)">{{ $t('组织架构') }}</el-button>
+                  <el-button :type="selRangeType == 2 ? 'success' : ''" size="mini" @click="handleSelRangeType($event,2)">{{ $t('部门') }}</el-button>
+                  <el-button :type="selRangeType == 3 ? 'success' : ''" size="mini" @click="handleSelRangeType($event,3)">{{ $t('角色') }}</el-button>
+                </div>
+                <div class="margint-top-5 block-div-class">
+                  <div v-show="selRangeType == 1">
+                    <div class="range-left">
+                      <my-el-tree-block type="4" sub-type="" :show-filter="false" @node-click="nodeTeacherClick" @all-click="nodeTeacherClick"></my-el-tree-block>
+                    </div>
+                    <div class="range-right padding-lr-5">
+                      <div>
+                        <el-row>
+                          <el-col :span="24" class="text-right">
+                            <my-input-button ref="teacher" size="mini" plain width-class="width: 120px" type="success" :clearable="true" :placeholder="$t('请输入信息')" @click="searchSel"></my-input-button>
+                          </el-col>
+                        </el-row>
+                      </div>
+                      <div class="custom-table-el">
+                        <el-table
+                          ref="tableRefSel"
+                          v-loading="teacherLoading"
+                          :data="tableSelData"
+                          header-cell-class-name="custom-table-cell-bg"
+                          size="small"
+                          :row-key="getRowKeys"
+                          max-height="370px"
+                          style="width: 100%"
+                          @selection-change="handleSelectionChange">
+                          <el-table-column
+                            :reserve-selection="true"
+                            type="selection"
+                            align="center"
+                            width="55">
+                          </el-table-column>
+                          <el-table-column
+                            align="center"
+                            :label="$t('名称')">
+                            <template slot-scope="scope">
+                              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                                <div class="text-center">{{scope.row.real_name}}</div>
+                                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                                {{scope.row.real_name}}
+                              </span>
+                              </el-popover>
+                            </template>
+                          </el-table-column>
+                          <el-table-column
+                            align="center"
+                            :label="$t('部门')">
+                            <template slot-scope="scope">
+                              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                                <div class="text-center">{{scope.row.department_name}}</div>
+                                <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                                {{scope.row.department_name}}
+                              </span>
+                              </el-popover>
+                            </template>
+                          </el-table-column>
+                          <el-table-column align="center" label="性别" :show-overflow-tooltip="true">
+                            <template slot-scope="scope">
+                              <my-sex :sex="scope.row.sex" tag="text"></my-sex>
+                            </template>
+                          </el-table-column>
+                        </el-table>
+                        <div class="text-right" style="height: 35px;line-height: 35px">
+                          <el-pagination
+                            background
+                            :pager-count="pageCount"
+                            :page-sizes="[10, 20, 50, 100]"
+                            layout="sizes, prev, pager, next"
+                            :total="totalTeacher"
+                            :current-page="pageTeacher"
+                            :page-size="numTeacher"
+                            @size-change="sizeTeacherChange"
+                            @current-change="currentTeacherPage">
+                          </el-pagination>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="moon-clearfix"></div>
+                  </div>
+                  <div v-show="selRangeType == 2">
+                    <div class="rang-block">
+                      <my-el-tree-block ref="deptRefSel" type="4" sub-type="" node-key="department_path" :show-filter="false" :show-campus="false" :show-checkbox="true" :defaultCheckedKeys="defaultCheckedKeys"></my-el-tree-block>
+                    </div>
+                  </div>
+                  <div v-show="selRangeType == 3">
+                    <div class="rang-block">
+                      <my-el-tree ref="roleRefSel" type="150" sub-type="" :show-filter="false" :show-campus="false" :show-checkbox="true" :defaultCheckedKeys="defaultCheckedRoleKeys"></my-el-tree>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </el-form-item>
           </el-form>
         </template>
@@ -244,20 +393,29 @@
   import MySelect from "~/components/MySelect";
   import mixins from "~/utils/mixins";
   import {common} from "~/utils/api/url";
-  import {MessageError, MessageSuccess, MessageWarning} from "~/utils/utils";
+  import {inArray, MessageError, MessageSuccess, MessageWarning} from "~/utils/utils";
   import appManageValidater from "~/utils/validater/appManageValidater";
   import MyCascader from "~/components/utils/select/MyCascader";
   import MyElTree from "~/components/tree/MyElTree";
   import UserBankAccountTable from "~/components/utils/table/UserBankAccountTable";
   import CompBankAccountTable from "~/components/utils/table/CompBankAccountTable";
   import MerchatClientTable from "~/components/utils/table/MerchatClientTable";
+  import DialogNormal from "~/components/utils/dialog/DialogNormal";
+  import appMerchatManageValidater from "~/utils/validater/appMerchatManageValidater";
+  import appTeacherManageValidater from "~/utils/validater/appTeacherManageValidater";
+  import appSchoolManageValidater from "~/utils/validater/appSchoolManageValidater";
   export default {
-    mixins: [mixins,appManageValidater],
+    mixins: [mixins,appManageValidater,appMerchatManageValidater,appTeacherManageValidater,appSchoolManageValidater],
     components: {
+      DialogNormal,
       MerchatClientTable,
       CompBankAccountTable, UserBankAccountTable, MyElTree, MyCascader, MySelect, MyInputButton},
     data(){
       return {
+        pageCount: 5,
+        pageTeacher: 1,
+        numTeacher: 20,
+        totalTeacher: 0,
         pageDetail: 1,
         numDetail: 20,
         totalDetail: 0,
@@ -266,6 +424,7 @@
         mainMenu: 1,
         tableData: [],
         tableDetailData: [],
+        tableSelData: [],
         collegeList: [],
         categorys: [],
         types: [],
@@ -273,6 +432,7 @@
         collegeData: '',
         searchKey: '',
         searchMoneyKey: '',
+        searchTreeKey: '',
         searchType: '',
         searchDetailKey: '',
         searchDetailDept: [],
@@ -288,7 +448,12 @@
         visibleConfim: false,
         dialogDetail: false,
         dialogAccount: false,
+        teacherLoading: false,
         dialogType: '',
+        rowSelectFlag: false,
+        defaultCheckedKeys: [],
+        defaultCheckedRoleKeys: [],
+        selRangeType: 1,
         form: {
           id: '',
           appName: '',
@@ -304,6 +469,32 @@
           bankAccountName: '',
           bankAccount: '',
           userId: ''
+        },
+        formMerchatAccount: {
+          id: '',
+          accountType: '',
+          company: '',
+          taxNo: '',
+          address: '',
+          contact: '',
+          bankMerName: '',
+          bankMerAccountName: '',
+          bankMerAccount: '',
+          phone: ''
+        },
+        formSchoolAccount: {
+          id: '',
+          accountSchoolType: '',
+          accountName: '',
+          bankSchoolName: '',
+          bankSchoolAccountName: '',
+          bankSchoolAccount: '',
+          oprType: '',
+          rangeType: '0',
+          userRange: [],
+          deptRange: [],
+          roleRange: [],
+          userEditRange: []
         }
       }
     },
@@ -341,6 +532,10 @@
         };
         if (this.formId == 1){
           url = common.teacher_account_page;
+        }else if (this.formId == 3){
+          url = common.supplier_account_page;
+        }else if (this.formId == 2){
+          url = common.school_account_page;
         }
         console.log(params);
         this.$axios.get(url, {params: params}).then(res => {
@@ -372,6 +567,71 @@
           }
         });
       },
+      initTeacher(){
+        let params = {
+          page: this.pageTeacher,
+          num: this.numTeacher,
+          deleted: 0,
+          departPath: this.selTreeId,
+        };
+        params['realName'] = this.searchTreeKey['input'];
+        this.$axios.get(common.teacher_list, {params: params}).then(res => {
+          if (res.data.data){
+            this.tableSelData = res.data.data.page.list;
+            this.totalTeacher = res.data.data.page.totalCount;
+            this.numTeacher = res.data.data.page.num;
+            this.pageTeacher = res.data.data.page.currentPage;
+
+            setTimeout(() => {
+              this.rowSelectFlag = true;
+              let arr = this.formSchoolAccount.userRange.length > 0 ? JSON.parse(JSON.stringify(this.formSchoolAccount.userRange)) : [];
+              for (let i = 0; i < this.tableSelData.length; i++){
+                let sel = inArray(this.tableSelData[i], arr, 'user_id');
+                if (sel > -1){
+                  if (this.$refs['tableRefSel']){
+                    this.$refs.tableRefSel.toggleRowSelection(this.tableSelData[i], true);
+                  }
+                }
+              }
+              this.rowSelectFlag = false;
+            },0);
+
+            this.teacherLoading = false;
+          }
+        });
+      },
+      async initSelTeacher(id){
+        let params = {
+          id: id
+        };
+        await this.$axios.get(common.school_account_info, {params: params}).then(res => {
+          if (res.data.data){
+            console.log(res.data.data);
+            let roleRange = res.data.data.roleRange;
+            let userRange = res.data.data.userRange;
+            let deptRange = res.data.data.deptRange;
+            let roleArr = [];
+            let userArr = [];
+            let deptArr = [];
+            for (let i = 0; i < roleRange.length; i++){
+              roleArr.push(roleRange[i].ranges);
+            }
+            for (let i = 0; i < deptRange.length; i++){
+              deptArr.push(deptRange[i].ranges);
+            }
+            for (let i = 0; i < userRange.length; i++){
+              userArr.push({
+                user_id: userRange[i].ranges
+              });
+            }
+
+            console.log(deptArr);
+            this.formSchoolAccount.userRange = userArr;
+            this.defaultCheckedRoleKeys = roleArr;
+            this.defaultCheckedKeys = deptArr;
+          }
+        });
+      },
       sizeChange(event){
         this.page = 1;
         this.num = event;
@@ -398,10 +658,23 @@
         this.pageDetail = data;
         this.initFD();
       },
+      sizeTeacherChange(event){
+        this.pageTeacher = 1;
+        this.numTeacher = event;
+        this.initTeacher();
+      },
+      currentTeacherPage(event){
+        this.pageTeacher = event;
+        this.initTeacher();
+      },
       nodeClick(data){
         this.collegeData = data.department_path;
         this.page = 1;
         this.init();
+      },
+      nodeTeacherClick(data){
+        this.selTreeId = data.id ? data.id : '';
+        this.initTeacher();
       },
       nodeFDClick(data){
         this.formId = "";
@@ -418,6 +691,10 @@
         this.page = 1;
         this.init(data);
       },
+      searchSel(event){
+        this.searchTreeKey = event;
+        this.initTeacher();
+      },
       searchMoneyDetail(data){
         this.searchDetailKey = data.input;
         this.pageDetail = 1;
@@ -425,6 +702,16 @@
       },
       setTeacherName(){
         this.dialogAccount = true;
+      },
+      handleSelRangeType(event, type){
+        if (type == 1){
+          this.pageTeacher = 1;
+          this.teacherLoading = true;
+          setTimeout(() => {
+            this.initTeacher();
+          },800);
+        }
+        this.selRangeType = type;
       },
       handleShowTeacher(type){
         if (type == 1){
@@ -437,17 +724,29 @@
           this.formTeacherAccount.userId = data.user_id;
         }
       },
+      handleSelectionChange(data){
+        if (this.rowSelectFlag) return;
+        this.formSchoolAccount.userRange = data;
+      },
+      getRowKeys(row) {
+        return row.user_id;
+      },
       addInfo(){
         this.dialogApp = true;
       },
       addAccountInfo(event, type){
         this.dialogType = type;
+        if (this.formId == 2){
+          setTimeout(() => {
+            this.initTeacher();
+          },800);
+        }
         this.dialogDetail = true;
       },
       addMerchatInfo(){
         this.dialogDetail = true;
       },
-      editDetailInfo(item, type){
+      async editDetailInfo(item, type){
         if (type == 1){
           this.formTeacherAccount = {
             id: item.id,
@@ -458,6 +757,42 @@
             bankAccount: item.account_num,
             userId: item.user_id
           }
+        }else if (type == 3){
+          this.formMerchatAccount = {
+            id: item.id,
+            accountType: item.account_type+'',
+            company: item.company,
+            taxNo: item.tax_no,
+            address: item.address,
+            contact: item.contact,
+            bankMerName: item.bank_name,
+            bankMerAccountName: '',
+            bankMerAccount: item.account_num,
+            phone: item.phone
+          }
+        }else if (type == 2){
+          console.log(item);
+          this.formSchoolAccount = {
+            id: item.id,
+            accountSchoolType: item.account_type+'',
+            accountName: item.account_name,
+            bankSchoolName: item.bank_name,
+            bankSchoolAccountName: '',
+            bankSchoolAccount: item.account_num,
+            oprType: '',
+            rangeType: item.range_type+'',
+            userRange: [],
+            deptRange: [],
+            roleRange: [],
+            userEditRange: []
+          }
+          await this.initSelTeacher(item.id);
+
+          this.pageTeacher = 1;
+          this.teacherLoading = true;
+          setTimeout(() => {
+            this.initTeacher();
+          },800);
         }
         this.dialogDetail = true;
       },
@@ -579,7 +914,29 @@
           this.form.type = event;
         }else if (type == 2){
           this.form.category = event;
+        }else if (type == 3){
+          this.formMerchatAccount.accountType = event;
+        }else if (type == 4){
+          this.formSchoolAccount.accountSchoolType = event;
         }
+      },
+      setAreaChildren(tree, type){//迭代方法
+        let _self = this;
+        let obj = [];
+        if (tree && tree.length > 0){
+          tree.map(function (item,index) {
+            if (type == 'dept'){
+              obj.push(item.department_path);
+            }else {
+              obj.push(item.id);
+            }
+
+            if(item['children'] != undefined && item['children'].length > 0){
+              _self.setAreaChildren(item['children']);
+            }
+          });
+        }
+        return obj;
       },
       cancelDialog(){
         this.dialogApp = false;
@@ -628,37 +985,129 @@
       },
       okAccountDialog(){
         let url = '';
-        this.$refs['formTeacherAccount'].validate((valid) => {
-          if (valid) {
-            if (this.formTeacherAccount.userId == ""){
-              MessageWarning(this.$t("请设置姓名！"));
-              return;
-            }
-
-            let params = {
-              bankName: this.formTeacherAccount.bankName,
-              accountName: this.formTeacherAccount.bankAccountName,
-              accountNum: this.formTeacherAccount.bankAccount,
-              userId: this.formTeacherAccount.userId
-            };
-            if (this.formTeacherAccount.id != ''){
-              params['id'] = this.formTeacherAccount.id;
-            }
-            url = common.teacher_account_save;
-            params = this.$qs.stringify(params);
-            this.dialogLoading = true;
-            this.$axios.post(url, params).then(res => {
-              if (res.data.code == 200){
-                this.dialogDetail = false;
-                this.initFD();
-                MessageSuccess(res.data.desc);
-              }else {
-                MessageError(res.data.desc);
+        if (this.formId == 1){
+          this.$refs['formTeacherAccount'].validate((valid) => {
+            if (valid) {
+              if (this.formTeacherAccount.userId == ""){
+                MessageWarning(this.$t("请设置姓名！"));
+                return;
               }
-              this.dialogLoading = false;
-            });
-          }
-        });
+
+              let params = {
+                bankName: this.formTeacherAccount.bankName,
+                accountName: this.formTeacherAccount.bankAccountName,
+                accountNum: this.formTeacherAccount.bankAccount,
+                userId: this.formTeacherAccount.userId
+              };
+              if (this.formTeacherAccount.id != ''){
+                params['id'] = this.formTeacherAccount.id;
+              }
+              url = common.teacher_account_save;
+              params = this.$qs.stringify(params);
+              this.dialogLoading = true;
+              this.$axios.post(url, params).then(res => {
+                if (res.data.code == 200){
+                  this.dialogDetail = false;
+                  this.initFD();
+                  MessageSuccess(res.data.desc);
+                }else {
+                  MessageError(res.data.desc);
+                }
+                this.dialogLoading = false;
+              });
+            }
+          });
+        }else if (this.formId == 3){
+          this.$refs['formMerchatAccount'].validate((valid) => {
+            if (valid) {
+              let params = {
+                accountType: this.formMerchatAccount.accountType,
+                company: this.formMerchatAccount.company,
+                taxNo: this.formMerchatAccount.taxNo,
+                address: this.formMerchatAccount.address,
+                contact: this.formMerchatAccount.contact,
+                phone: this.formMerchatAccount.phone,
+                bankName: this.formMerchatAccount.bankMerName,
+                accountName: this.formMerchatAccount.bankMerAccountName,
+                accountNum: this.formMerchatAccount.bankMerAccount
+              };
+              if (this.formMerchatAccount.id != ''){
+                params['id'] = this.formMerchatAccount.id;
+              }
+              url = common.supplier_account_save;
+              params = this.$qs.stringify(params);
+              this.dialogLoading = true;
+              this.$axios.post(url, params).then(res => {
+                if (res.data.code == 200){
+                  this.dialogDetail = false;
+                  this.initFD();
+                  MessageSuccess(res.data.desc);
+                }else {
+                  MessageError(res.data.desc);
+                }
+                this.dialogLoading = false;
+              });
+            }
+          });
+        }if (this.formId == 2){
+          this.$refs['formSchoolAccount'].validate((valid) => {
+            if (valid) {
+              let deptArr  = [];
+              let roleArr  = [];
+              let userArray  = [];
+
+              this.dialogLoading = true;
+              let url = "";
+              let params = {
+                accountName: this.formSchoolAccount.accountName,
+                rangeType: this.formSchoolAccount.rangeType,
+                bankName: this.formSchoolAccount.bankSchoolName,
+                accountNum: this.formSchoolAccount.bankSchoolAccount,
+                accountType: this.formSchoolAccount.accountSchoolType
+              };
+              url = common.school_account_save;
+              if (this.formSchoolAccount.id && this.formSchoolAccount.id != ""){
+                params['id'] = this.formSchoolAccount.id;
+              }
+
+              if (this.formSchoolAccount.rangeType == 1){
+                deptArr  = this.setAreaChildren(this.$refs.deptRefSel.$refs.tree.getCheckedNodes(), 'dept');
+                roleArr  = this.setAreaChildren(this.$refs.roleRefSel.$refs.tree.getCheckedNodes());
+                if (deptArr.length > 0){
+                  params['deptRange'] = deptArr.join();
+                }
+                if (roleArr.length > 0){
+                  params['roleRange'] = roleArr.join();
+                }
+                if (this.formSchoolAccount.userRange.length > 0){
+                  for (let i = 0; i < this.formSchoolAccount.userRange.length; i++){
+                    userArray.push(this.formSchoolAccount.userRange[i].user_id);
+                  }
+                  params['userRange'] = userArray.join();
+                }
+
+                if (deptArr.length == 0 && roleArr.length == 0 && this.formSchoolAccount.userRange.length == 0){
+                  MessageWarning(this.$t("请选择范围"));
+                  this.dialogLoading = false;
+                  return;
+                }
+              }
+              console.log(3,params);
+              params = this.$qs.stringify(params);
+
+              this.$axios.post(url, params, {loading: false}).then(res=>{
+                if (res.data.code == 200){
+                  this.initFD();
+                  this.dialogDetail = false;
+                  MessageSuccess(res.data.desc);
+                }else {
+                  MessageError(res.data.desc);
+                }
+                this.dialogLoading = false;
+              });
+            }
+          });
+        }
       },
       closeDialog(event){
         this.form = {
@@ -677,14 +1126,52 @@
           bankAccount: '',
           userId: ''
         };
+        this.formMerchatAccount = {
+          id: '',
+          accountType: '',
+          company: '',
+          taxNo: '',
+          address: '',
+          contact: '',
+          bankMerName: '',
+          bankMerAccountName: '',
+          bankMerAccount: '',
+          phone: ''
+        };
+        this.formSchoolAccount = {
+          id: '',
+          accountSchoolType: '',
+          accountName: '',
+          bankSchoolName: '',
+          bankSchoolAccountName: '',
+          bankSchoolAccount: '',
+          oprType: '',
+          rangeType: '0',
+          userRange: [],
+          deptRange: [],
+          roleRange: [],
+          userEditRange: []
+        };
         this.subTitle = "";
         this.detailId = "";
+        this.searchTreeKey = '';
+        this.selRangeType = 1;
+        this.selTreeId = '';
         this.$set(this.form,'dept', []);
         this.resetCasadeSelector('SelectorCollege');
         //this.resetCasadeSelector('SelectorDept2');
         this.dialogDetail = false;
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
+        }
+        if (this.$refs['formTeacherAccount']){
+          this.$refs['formTeacherAccount'].resetFields();
+        }
+        if (this.$refs['formMerchatAccount']){
+          this.$refs['formMerchatAccount'].resetFields();
+        }
+        if (this.$refs['formSchoolAccount']){
+          this.$refs['formSchoolAccount'].resetFields();
         }
       },
       handleCancelChange(data) {
@@ -701,16 +1188,19 @@
           params = {
             id: this.detailId
           }
-          console.log(this.detailId);
           if (this.formId == 1){
             url = common.teacher_account_del;
+          }else if (this.formId == 3){
+            url = common.supplier_account_del;
+          }else if (this.formId == 2){
+            url = common.school_account_del;
           }
         }
         params = this.$qs.stringify(params);
         this.$axios.post(url, params).then(res => {
           if (res.data.code == 200){
             if (this.mainMenu == 2){
-              if (this.formId == 1){
+              if (this.formId == 1 || this.formId == 3 || this.formId == 2){
                 this.initFD();
               }
             }else {
@@ -733,5 +1223,27 @@
   content: '*';
   color: #F56C6C;
   margin-right: 4px;
+}
+.block-div-class{
+  width: 690px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  height: 450px;
+}
+.range-left{
+  float: left;
+  height: 450px;
+  width: 200px;
+  border-right: 1px solid #dddddd;
+  overflow-y: auto;
+}
+.range-right{
+  margin-left: 201px;
+  height: 450px;
+  overflow-y: auto;
+}
+.rang-block{
+  height: 350px;
+  overflow-y: auto;
 }
 </style>

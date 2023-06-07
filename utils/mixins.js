@@ -121,6 +121,7 @@ export default {
       filterPoliticsType: global.filterPoliticsType,
       filterRetireType: global.filterRetireType,
       filterHardType: global.filterHardType,
+      filterAccountType: global.filterAccountType,
       g_currentDate: {},
       currentYearData: '',
       currentTermData: '',

@@ -951,6 +951,22 @@ export function trainsType(str, type){
   }
 }
 
+export function accountType(str, type){
+  let accountType = {
+    "0": "默认账户",
+    "1": "现金账户",
+    "2": "支付宝账户",
+    "3": "微信账户啊",
+    "99": "其他账户"
+  };
+  if (str != null && type == 'set') {
+    return accountType[str];
+  }
+  if (!str && type == 'get'){
+    return accountType;
+  }
+}
+
 export function getWeekTotalSelect(){
   let arr = [];
   for (let i = 0; i < 52; i++){
