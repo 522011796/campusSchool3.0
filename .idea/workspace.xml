@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="教师财务帐号">
-      <change afterPath="$PROJECT_DIR$/utils/validater/appMerchatManageValidater.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/validater/appSchoolManageValidater.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/validater/appTeacherManageValidater.js" afterDir="false" />
+    <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="学校财务帐号">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/table/CompBankAccountTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/CompBankAccountTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/table/MerchatClientTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/MerchatClientTable.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/costManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/costManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/tagManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/tagManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/budgetManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/budgetManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/moneyManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/moneyManage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/global.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/validater/appManageValidater.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/appManageValidater.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/validater/moneyManageValidater.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/moneyManageValidater.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +43,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
     <property name="vuejs.nuxt.types-notification-shown" value="true" />
   </component>
@@ -100,14 +93,7 @@
       <workItem from="1682661230487" duration="5305000" />
       <workItem from="1683168602119" duration="608000" />
       <workItem from="1683251524230" duration="66369000" />
-      <workItem from="1684463291875" duration="151498000" />
-    </task>
-    <task id="LOCAL-00013" summary="新增规则条件">
-      <created>1678327550629</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1678327550629</updated>
+      <workItem from="1684463291875" duration="165324000" />
     </task>
     <task id="LOCAL-00014" summary="新增规则条件">
       <created>1678355488347</created>
@@ -445,7 +431,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686044035804</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="学校财务帐号">
+      <created>1686117644359</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1686117644359</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -474,6 +467,7 @@
     <MESSAGE value="财务管理" />
     <MESSAGE value="费用管理" />
     <MESSAGE value="教师财务帐号" />
-    <option name="LAST_COMMIT_MESSAGE" value="教师财务帐号" />
+    <MESSAGE value="学校财务帐号" />
+    <option name="LAST_COMMIT_MESSAGE" value="学校财务帐号" />
   </component>
 </project>

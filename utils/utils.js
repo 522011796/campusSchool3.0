@@ -967,6 +967,21 @@ export function accountType(str, type){
   }
 }
 
+
+export function excessLimitType(str, type){
+  let excessLimitType = {
+    "1": "仅提醒",
+    "2": "禁止提交",
+    "3": "审批加签"
+  };
+  if (str != null && type == 'set') {
+    return excessLimitType[str];
+  }
+  if (!str && type == 'get'){
+    return excessLimitType;
+  }
+}
+
 export function getWeekTotalSelect(){
   let arr = [];
   for (let i = 0; i < 52; i++){

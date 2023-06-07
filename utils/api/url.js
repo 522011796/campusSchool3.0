@@ -787,4 +787,16 @@ export const common = {
   school_account_save: '/proxy/school/applet/school/account/save',//学校财务账号保存
   school_account_info: '/proxy/school/applet/school/account/info',//学校财务账号信息
 
+  budget_page: '/proxy/school/applet/budget/page',//预算分页
+  budget_enable: '/proxy/school/applet/budget/set-enable',//预算列表
+  budget_del: '/proxy/school/applet/budget/del',//预算删除
+  budget_save: '/proxy/school/applet/sbudget/save',//预算保存
+  budget_info: '/proxy/school/applet/budget/one',//预算信息
+
+  monery_controller_page: '/proxy/school/applet/control/page',//费控分页
+  monery_controller_enable: '/proxy/school/applet/control/set-enable',//费控列表
+  monery_controller_del: '/proxy/school/applet/control/del',//费控删除
+  monery_controller_save: '/proxy/school/applet/scontrol/save',//费控保存
+  monery_controller_info: '/proxy/school/applet/control/one',//费控信息
+
 };

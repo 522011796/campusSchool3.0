@@ -213,7 +213,7 @@
               <tbody>
               <tr v-for="(item, index) in form.rule" :key="item.id">
                 <td>
-                  <my-select size="mini" :placeholder="$t('请选择')" :sel-value="item.type" :options="typeOptions" :width-style="90" @change="handleTableChange($event, index)"></my-select>
+                  <my-select size="mini" :placeholder="$t('请选择')" :sel-value="item.type" :options="typeOptions" :width-style="100" @change="handleTableChange($event, index)"></my-select>
                 </td>
                 <td>
                   <a href="javascript:;" class="font-size-12 color-grand" @click="handleEdit($event, index)">{{$t("编辑")}}</a>
@@ -344,7 +344,7 @@
           num: this.num,
           searchKey: this.searchKey
         };
-        this.$axios.get(common.server_type_list, {params: params}).then(res => {
+        this.$axios.get(common.budget_page, {params: params}).then(res => {
           if (res.data.data){
             this.tableData = res.data.data.list;
             this.total = res.data.data.totalCount;
@@ -562,9 +562,6 @@
             }
 
             this.dialogLoading = true;
-            let params = {
-              categoryName: this.form.name,
-            };
             if (this.form.id != ''){
               params['id'] = this.form.id;
             }
