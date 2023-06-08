@@ -2,7 +2,7 @@
   <div class="container">
     <el-drawer
       tabindex="0"
-      custom-class="drawer-normal-drawer"
+      :custom-class="theme == 'dark' ? 'drawer-normal-drawer' : 'drawer-normal-drawer-white'"
       :visible.sync="drawer_"
       :direction="direction"
       :wrapperClosable="wrapperClosable"
@@ -85,6 +85,10 @@ export default {
     wrapperClosable: {
       default: true,
       type: Boolean
+    },
+    theme: {
+      default: 'dark',
+      type: String
     }
   },
   computed: {

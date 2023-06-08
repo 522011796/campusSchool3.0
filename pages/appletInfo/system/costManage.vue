@@ -98,7 +98,7 @@
           </el-form-item>
           <el-form-item :label="$t('可见范围')">
             <div>
-              <el-radio-group v-model="form.rangeType">
+              <el-radio-group v-model="form.rangeType" @change="handleSeeChange">
                 <el-radio label="0">{{ $t('全部可见') }}</el-radio>
                 <el-radio label="1">{{ $t('部分可见') }}</el-radio>
               </el-radio-group>
@@ -443,6 +443,15 @@ export default {
     },
     getRowKeys(row) {
       return row.user_id;
+    },
+    handleSeeChange(event){
+      if (event == 1){
+        this.pageTeacher = 1;
+        this.teacherLoading = true;
+        setTimeout(() => {
+          this.initTeacher();
+        },800);
+      }
     },
     handleSelectionChange(data){
       if (this.rowSelectFlag) return;

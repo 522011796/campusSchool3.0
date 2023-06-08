@@ -653,6 +653,14 @@ ul{
   padding: 0px 0px;
   margin-top: 0px;
 }
+.tree-container-block2{
+  background: #ffffff;
+  height: 25px;
+  user-select: none;
+  color: #595959;
+  padding: 0px 0px;
+  margin-top: 0px;
+}
 .tree-container_item{
   display: flex;
   align-items: center;
@@ -796,7 +804,12 @@ ul{
   box-shadow: -1px 0px 2px 0px rgba(0,0,0, 0.5);
   z-index: 1;
 }
-.drawer-normal-drawer::after {
+.drawer-normal-drawer-white{
+  background: rgba(255,255,255, 1);
+  box-shadow: -1px 0px 2px 0px rgba(0,0,0, 0.5);
+  z-index: 1;
+}
+.drawer-normal-drawer::after, .drawer-normal-drawer-white:after{
   content: '';
   background: rgba(255,255,255, 0.8);
   -webkit-filter: blur(10px);
@@ -811,16 +824,16 @@ ul{
   bottom: 0;
   z-index: -1;
 }
-.drawer-normal-drawer .drawer-normal-header{
+.drawer-normal-drawer .drawer-normal-header, .drawer-normal-drawer-white .drawer-normal-header{
   height: 40px;
   line-height: 40px;
   padding: 0px 10px;
 }
-.drawer-normal-drawer .title{
+.drawer-normal-drawer .title, .drawer-normal-drawer-white .title{
   font-size: 15px;
   font-weight: bold;
 }
-.drawer-normal-drawer .el-drawer__header {
+.drawer-normal-drawer .el-drawer__header, .drawer-normal-drawer-white .el-drawer__header {
   align-items: center;
   color: #72767b;
   display: flex;
@@ -828,24 +841,24 @@ ul{
   padding: 0px 0px;
   border-bottom: 1px solid #E4E7ED;
 }
-.drawer-normal-drawer .drawer-normal-close{
+.drawer-normal-drawer .drawer-normal-close, .drawer-normal-drawer-white .drawer-normal-close{
   height: 40px;
   line-height: 40px;
   padding: 0px 10px;
 }
-.drawer-normal-drawer .drawer-normal-body{
+.drawer-normal-drawer .drawer-normal-body, .drawer-normal-drawer-white .drawer-normal-body{
   padding: 10px 10px;
   overflow-y: auto;
 }
-.drawer-normal-drawer .drawer-normal-body .el-calendar-table .el-calendar-day {
+.drawer-normal-drawer .drawer-normal-body .el-calendar-table .el-calendar-day, .drawer-normal-drawer-white .drawer-normal-body .el-calendar-table .el-calendar-day {
   box-sizing: border-box;
   padding: 8px;
   height: 50px;
 }
-.drawer-normal-drawer .content{
+.drawer-normal-drawer .content, .drawer-normal-drawer-white .content{
 
 }
-.drawer-normal-drawer .drawer-normal-footer{
+.drawer-normal-drawer .drawer-normal-footer, .drawer-normal-drawer-white .drawer-normal-footer{
   height: 40px;
   line-height: 40px;
   text-align: right;
@@ -855,7 +868,7 @@ ul{
   width: 100%;
   border-top: 1px solid #E4E7ED;
 }
-.drawer-normal-drawer .drawer-normal-full-footer{
+.drawer-normal-drawer .drawer-normal-full-footer, .drawer-normal-drawer-white .drawer-normal-full-footer{
   height: 40px;
   line-height: 40px;
   text-align: right;

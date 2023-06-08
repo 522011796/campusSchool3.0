@@ -494,15 +494,18 @@
             for (let i = 0; i < this.form.rule.length; i++){
               if (this.form.rule[i]['type'] == ''){
                 error++;
-              }else if (this.form.rule[i]['range'] == ''){
+              }
+              if (this.form.rule[i]['range'] == ''){
                 error++;
-              }else if (this.form.rule[i]['range'] != ''){
+              }
+              if (this.form.rule[i]['range'] != ''){
                 if (this.form.rule[i]['range'] == 1){
                   if (this.form.rule[i]['range2'].length == 0){
                     error++;
                   }
                 }
-              }else if (!req.test(this.form.rule[i]['budgetMoney'])){
+              }
+              if (!req.test(this.form.rule[i]['budgetMoney'])){
                 error++;
               }
             }

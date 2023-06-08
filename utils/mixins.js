@@ -6,7 +6,14 @@ import {
   setSchoolBuildChildren,
   setDormBuildChildren,
   setDeptChildren,
-  serverType, serverFormType, setFormServerChildren, setDeptRoleChildren, inArray
+  serverType,
+  serverFormType,
+  setFormServerChildren,
+  setDeptRoleChildren,
+  inArray,
+  setObjectChildren,
+  setHTChildren,
+  setTagChildren
 } from "~/utils/utils";
 
 export default {
@@ -42,6 +49,9 @@ export default {
       dataAppletFDServer: global.dataAppletFDServer,
       dataProcessServer: global.dataProcessServer,
       dataProcessLinkServer: global.dataProcessLinkServer,
+      dataObject: global.dataObject,
+      dataHt: global.dataHt,
+      dataTag: global.dataTag,
       currentSeciton: global.currentSeciton,
       currentYear: global.currentYear,
       currentMonth: global.currentMonth,
@@ -122,6 +132,7 @@ export default {
       filterRetireType: global.filterRetireType,
       filterHardType: global.filterHardType,
       filterAccountType: global.filterAccountType,
+      filterBillTypes: global.filterBillTypes,
       g_currentDate: {},
       currentYearData: '',
       currentTermData: '',
@@ -797,6 +808,56 @@ export default {
             }
           }
           this.dataRoleTreeList = setDeptRoleChildren(arr);
+        }
+      });
+    },
+    /**
+     * 获取项目的list信息
+     * 主要用于树形菜单，下来菜单等
+     * @returns {Promise<void>}
+     */
+    async getObjectInfo(type) {
+      let params = {
+        //superDeptId: 0
+      };
+      await this.$axios.get(common.object_list, {params: params}).then(res => {
+        let arr = [];
+        if (res.data.data){
+          this.dataObject = setObjectChildren(res.data.data);
+        }
+      });
+    },
+    /**
+     * 获取合同的list信息
+     * 主要用于树形菜单，下来菜单等
+     * @returns {Promise<void>}
+     */
+    async getHtInfo(type) {
+      let params = {
+        //superDeptId: 0
+      };
+      await this.$axios.get(common.ht_list, {params: params}).then(res => {
+        let arr = [];
+        if (res.data.data){
+          console.log(res.data.data);
+          this.dataHt = setHTChildren(res.data.data);
+        }
+      });
+    },
+    /**
+     * 获取标签的list信息
+     * 主要用于树形菜单，下来菜单等
+     * @returns {Promise<void>}
+     */
+    async getTagInfo(type) {
+      let params = {
+        //superDeptId: 0
+      };
+      await this.$axios.get(common.tag_list, {params: params}).then(res => {
+        let arr = [];
+        if (res.data.data){
+          console.log(res.data.data);
+          this.dataTag = setTagChildren(res.data.data);
         }
       });
     },

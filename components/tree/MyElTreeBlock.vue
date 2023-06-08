@@ -13,7 +13,7 @@
     <div v-if="slotDefault" class="padding-tb-5 padding-lr-10">
       <slot name="middle" ref="slotDefault"></slot>
     </div>
-    <div class="tree-container-block custom-el-tree">
+    <div class="tree-container-block2 custom-el-tree">
       <el-tooltip v-if="showCampus" effect="dark" :content="campusName" placement="top">
         <div class="moon-content-text-ellipsis-class" :class="selectCampusAll == true ? 'tree-el-tree-all' : 'tree-el-tree-all-no'" @click="nodeClickCampusAll">
           {{campusName}}
@@ -210,6 +210,15 @@
               this.$refs.tree.setCurrentKey(this.currentNodeKey); //一定要加这个选中了否则样式没有出来
             }
           });
+        }else if(this.type == 122){//项目列表
+          await this.getObjectInfo(this.subType);
+          this.data = this.dataObject;
+        }else if(this.type == 123){//合同列表
+          await this.getHtInfo(this.subType);
+          this.data = this.dataHt;
+        }else if(this.type == 124){//标签列表
+          await this.getTagInfo(this.subType);
+          this.data = this.dataTag;
         }
       },
       filterNode(value, data) {

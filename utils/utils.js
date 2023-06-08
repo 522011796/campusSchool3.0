@@ -350,6 +350,87 @@ export function setCollegeChildren(tree, type){//迭代方法-学院
   }*/
 }
 
+export function setObjectChildren(tree){//迭代方法--项目列表
+  let arr = [];
+  if (tree && tree.length > 0) {
+    for (let i = 0; i < tree.length; i++) {
+      arr.push({
+        label: tree[i].formName,
+        value: tree[i]._id,
+        id: tree[i]._id,
+        unit: 1
+      });
+      if (tree[i].userList && tree[i].userList.length > 0){
+        let childList = tree[i].userList;
+        arr[i]['children'] = [];
+        for (let j = 0; j < childList.length; j++) {
+          arr[i]['children'].push({
+            label: childList[j].formName,
+            value: childList[j]._id,
+            id: childList[j]._id,
+            unit: 2
+          });
+        }
+      }
+    }
+  }
+  return arr;
+}
+
+export function setHTChildren(tree){//迭代方法--合同列表
+  let arr = [];
+  if (tree && tree.length > 0) {
+    for (let i = 0; i < tree.length; i++) {
+      arr.push({
+        label: tree[i].formName,
+        value: tree[i]._id,
+        id: tree[i]._id,
+        unit: 1
+      });
+      if (tree[i].userList && tree[i].userList.length > 0){
+        let childList = tree[i].userList;
+        arr[i]['children'] = [];
+        for (let j = 0; j < childList.length; j++) {
+          arr[i]['children'].push({
+            label: childList[j].formName,
+            value: childList[j]._id,
+            id: childList[j]._id,
+            unit: 2
+          });
+        }
+      }
+    }
+  }
+  return arr;
+}
+
+export function setTagChildren(tree){//迭代方法--标签列表
+  let arr = [];
+  if (tree && tree.length > 0) {
+    for (let i = 0; i < tree.length; i++) {
+      arr.push({
+        label: tree[i].label_name,
+        value: tree[i].label_id,
+        id: tree[i].label_id,
+        unit: 1
+      });
+      if (tree[i].userList && tree[i].userList.length > 0){
+        let childList = tree[i].userList;
+        arr[i]['children'] = [];
+        for (let j = 0; j < childList.length; j++) {
+          arr[i]['children'].push({
+            label: childList[j].label_name,
+            value: childList[j].label_id,
+            id: childList[j].label_id,
+            unit: 2
+          });
+        }
+      }
+    }
+  }
+  return arr;
+}
+
 export function MessageError(text = '失败',) {
   Message({
     message: text,

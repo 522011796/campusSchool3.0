@@ -799,4 +799,9 @@ export const common = {
   monery_controller_save: '/proxy/school/applet/scontrol/save',//费控保存
   monery_controller_info: '/proxy/school/applet/control/one',//费控信息
 
+  object_list: '/proxy/school/applet/form/apply/xm/list',//项目列表
+
+  ht_list: '/proxy/school/applet/form/apply/ht/list',//合同列表
+
+
 };
