@@ -7,51 +7,79 @@
       "formName": "项目管理",
       "appletId": "1",
       "id": "1",
+      "code": "XIGL",
       "unit": "2"
     },{
-      "formName": "合同管理",
+      "formName": "采购合同单",
       "appletId": "1",
       "id": "2",
+      "code": "CGHT",
+      "unit": "2"
+    },{
+      "formName": "销售合同单",
+      "appletId": "1",
+      "id": "3",
+      "code": "XSHT",
+      "unit": "2"
+    },{
+      "formName": "通用合同单",
+      "appletId": "1",
+      "id": "4",
+      "code": "TYHT",
+      "unit": "2"
+    },{
+      "formName": "报账/报销单",
+      "appletId": "1",
+      "id": "5",
+      "code": "BZBX",
+      "unit": "2"
+    },{
+      "formName": "对公打款单",
+      "appletId": "1",
+      "id": "6",
+      "code": "DGDK",
+      "unit": "2"
+    },{
+      "formName": "普通申请单",
+      "appletId": "1",
+      "id": "7",
+      "code": "PTGL",
+      "unit": "2"
+    },{
+      "formName": "借款单",
+      "appletId": "1",
+      "id": "8",
+      "code": "JKGL",
+      "unit": "2"
+    },{
+      "formName": "收款单",
+      "appletId": "1",
+      "id": "9",
+      "code": "SKD",
+      "unit": "2"
+    },{
+      "formName": "还款单",
+      "appletId": "1",
+      "id": "10",
+      "code": "HKD",
       "unit": "2"
     },{
       "formName": "应收应付",
       "appletId": "1",
-      "id": "3",
+      "id": "11",
+      "code": "YSYF",
       "unit": "2"
     },{
       "formName": "发票管理",
       "appletId": "1",
-      "id": "4",
+      "id": "12",
+      "code": "FPGL",
       "unit": "2"
     },{
       "formName": "交易流水",
       "appletId": "1",
-      "id": "5",
-      "unit": "2"
-    },{
-      "formName": "报账/报销",
-      "appletId": "1",
-      "id": "6",
-      "unit": "2"
-    },{
-      "formName": "对公打款",
-      "appletId": "1",
-      "id": "7",
-      "unit": "2"
-    },{
-      "formName": "普通申请",
-      "appletId": "1",
-      "id": "8",
-      "unit": "2"
-    },{
-      "formName": "借款管理",
-      "appletId": "1",
-      "id": "9",
-      "unit": "2"
-    },{
-      "formName": "收款管理",
-      "appletId": "1",
-      "id": "10",
+      "id": "13",
+      "code": "JYLS",
       "unit": "2"
     }]
   }

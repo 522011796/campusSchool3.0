@@ -50,9 +50,9 @@
           :label="$t('申请人')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">{{ scope.row.applyUserName }}</div>
+              <div class="text-center">{{ scope.row.realName }}</div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              {{ scope.row.applyUserName }}
+              {{ scope.row.realName }}
             </span>
             </el-popover>
           </template>
@@ -62,9 +62,9 @@
           :label="$t('部门')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">{{ scope.row.userNo }}</div>
+              <div class="text-center">{{ scope.row.departmentName }}</div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              {{ scope.row.userNo }}
+              {{ scope.row.departmentName }}
             </span>
             </el-popover>
           </template>
@@ -75,10 +75,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                {{scope.row.className}}
+                {{ $moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss") }}
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                {{scope.row.className}}
+                {{ $moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss") }}
               </span>
             </el-popover>
           </template>
@@ -89,12 +89,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                <label>{{scope.row.payableDataList.invoiceAmount}}</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                <label>{{scope.row.payableDataList.invoiceAmount}}</label>
               </span>
             </el-popover>
           </template>
@@ -105,12 +103,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                <label>{{scope.row.payableDataList.stage}}</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                <label>{{scope.row.payableDataList.stage}}</label>
               </span>
             </el-popover>
           </template>
@@ -122,12 +118,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                <label>{{scope.row.payableDataList.shouldAmount}}</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                <label>{{scope.row.payableDataList.shouldAmount}}</label>
               </span>
             </el-popover>
           </template>
@@ -138,12 +132,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                <label>{{scope.row.payableDataList.invoiceAmount}}</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                <label>{{scope.row.payableDataList.invoiceAmount}}</label>
               </span>
             </el-popover>
           </template>
@@ -154,12 +146,12 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                <label v-if="scope.row.payableDataList.overdueStatus === 0" class="color-success">{{$t("未逾期")}}</label>
+                <label v-if="scope.row.payableDataList.overdueStatus === 1" class="color-danger">{{$t("已逾期")}}</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                <label v-if="scope.row.payableDataList.overdueStatus === 0" class="color-success">{{$t("未逾期")}}</label>
+                <label v-if="scope.row.payableDataList.overdueStatus === 1" class="color-danger">{{$t("已逾期")}}</label>
               </span>
             </el-popover>
           </template>
@@ -170,12 +162,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                <label>scope.row.payableDataList.overdueDays</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                <label>scope.row.payableDataList.overdueDays</label>
               </span>
             </el-popover>
           </template>
@@ -186,12 +176,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                <label>scope.row.payableDataList.overdueDays</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                <label>scope.row.payableDataList.overdueDays</label>
               </span>
             </el-popover>
           </template>

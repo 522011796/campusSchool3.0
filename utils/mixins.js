@@ -699,6 +699,25 @@ export default {
                   arrServerItem.push(dataList[j]);
                 }
               }
+              arrServerItem.push({
+                "formName": "应收应付",
+                "id": "113",
+                "formCode": "YSYF",
+                "unit": "2"
+              });
+              arrServerItem.push({
+                "formName": "发票管理",
+                "id": "114",
+                "formCode": "FPGL",
+                "unit": "2"
+              });
+              arrServerItem.push({
+                "formName": "交易流水",
+                "id": "115",
+                "formCode": "JYLS",
+                "unit": "2"
+              });
+
               arrServer[num]['formList'] = arrServerItem;
               num++;
             }

@@ -803,5 +803,15 @@ export const common = {
 
   ht_list: '/proxy/school/applet/form/apply/ht/list',//合同列表
 
+  file_manage_page: '/proxy/school/applet/form/apply-file/page',//附件管理分页
+
+  payable_manage_page: '/proxy/school/applet/form/apply-payable/page',//应收应付分页
+  payable_manage_count: '/proxy/school/applet/form/apply-payable/count',//应收应付统计
+
+  invoice_manage_page: '/proxy/school/applet/form/apply-invoice/page',//应收应付分页
+  invoice_manage_count: '/proxy/school/applet/form/apply-invoice/count',//应收应付统计
+
+  serial_manage_page: '/proxy/school/applet/form/apply-serial/page',//交易流水分页
+  serial_manage_count: '/proxy/school/applet/form/apply-serial/count',//交易流水统计
 
 };

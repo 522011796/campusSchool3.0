@@ -6,7 +6,7 @@
       <div slot="tab">
         <el-row>
           <el-col :span="24" class="text-right">
-<!--            <my-date-picker size="small" :sel-value="searchTime" @change="handleChangeTime($event,1)"></my-date-picker>-->
+            <my-date-picker size="small" :clearable="true" type="daterange" :sel-value="searchTime" @change="handleChangeTime($event,1)"></my-date-picker>
             <my-input-button ref="teacher width-150" size="small" plain width-class="width: 180px" type="success" :clearable="true" :placeholder="$t('请输入信息')" @click="search"></my-input-button>
           </el-col>
         </el-row>
@@ -26,9 +26,9 @@
             :label="$t('上传时间')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{$moment(scope.row.create_time).format("YYYY-MM-DD HH:mm")}}</div>
+                <div class="text-center">{{$moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm")}}</div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <span>{{$moment(scope.row.create_time).format("YYYY-MM-DD HH:mm")}}</span>
+                  <span>{{$moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm")}}</span>
                 </div>
               </el-popover>
             </template>
@@ -38,9 +38,9 @@
             :label="$t('附件名称')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.category_name}}</div>
+                <div class="text-center">{{scope.row.fileDataList.name}}</div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <span>{{scope.row.category_name}}</span>
+                  <span>{{scope.row.fileDataList.name}}</span>
                 </div>
               </el-popover>
             </template>
@@ -50,9 +50,9 @@
             :label="$t('大小')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.category_name}}</div>
+                <div class="text-center">{{scope.row.fileDataList.size}}</div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <span>{{scope.row.category_name}}</span>
+                  <span>{{scope.row.fileDataList.size}}</span>
                 </div>
               </el-popover>
             </template>
@@ -62,9 +62,9 @@
             :label="$t('所属人')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.category_name}}</div>
+                <div class="text-center">{{scope.row.realName}}</div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <span>{{scope.row.category_name}}</span>
+                  <span>{{scope.row.realName}}</span>
                 </div>
               </el-popover>
             </template>
@@ -74,9 +74,9 @@
             :label="$t('所属部门')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.category_name}}</div>
+                <div class="text-center">{{scope.row.departmentName ? scope.row.departmentName : '--'}}</div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <span>{{scope.row.category_name}}</span>
+                  <span>{{scope.row.departmentName ? scope.row.departmentName : '--'}}</span>
                 </div>
               </el-popover>
             </template>
@@ -86,9 +86,9 @@
             :label="$t('来源服务')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.category_name}}</div>
+                <div class="text-center">{{scope.row.fileDataList.source}}</div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <span>{{scope.row.category_name}}</span>
+                  <span>{{scope.row.fileDataList.source}}</span>
                 </div>
               </el-popover>
             </template>
@@ -98,9 +98,9 @@
             :label="$t('关联单据号')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.category_name}}</div>
+                <div class="text-center">{{scope.row.formApplyNo}}</div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <span>{{scope.row.category_name}}</span>
+                  <a href="javascript:;" class="color-grand">{{scope.row.formApplyNo}}</a>
                 </div>
               </el-popover>
             </template>
@@ -171,7 +171,7 @@
         visibleConfim: false,
         dialogLoading: false,
         searchKey: '',
-        searchTime: this.$moment(new Date()).format("YYYY-MM-DD"),
+        searchTime: [],
         form: {
           id: '',
           name: '',
@@ -188,9 +188,10 @@
           page: this.page,
           num: this.num,
           searchKey: this.searchKey,
-          busiTime: this.searchTime,
+          beginTime: this.searchTime && this.searchTime.length > 0 ? this.searchTime[0] : '',
+          endTime: this.searchTime && this.searchTime.length > 0 ? this.searchTime[1] : ''
         };
-        this.$axios.get(common.server_type_list, {params: params}).then(res => {
+        this.$axios.get(common.file_manage_page, {params: params}).then(res => {
           if (res.data.data){
             this.tableData = res.data.data.list;
             this.total = res.data.data.totalCount;

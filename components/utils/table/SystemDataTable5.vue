@@ -14,10 +14,10 @@
           :label="$t('序号')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">{{ scope.row.formName }}</div>
+              <div class="text-center">{{scope.$index+1}}</div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              {{ scope.row.formName }}
-            </span>
+                {{scope.$index+1}}
+              </span>
             </el-popover>
           </template>
         </el-table-column>
@@ -50,10 +50,12 @@
           :label="$t('交易金额')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">{{ scope.row.formApplyNo ? scope.row.formApplyNo : '--' }}</div>
+              <div class="text-center">
+                {{ scope.row.serialDataList.amount }}
+              </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              {{ scope.row.formApplyNo ? scope.row.formApplyNo : '--' }}
-            </span>
+                {{ scope.row.serialDataList.amount }}
+              </span>
             </el-popover>
           </template>
         </el-table-column>
@@ -74,10 +76,12 @@
           :label="$t('交易时间')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">{{ scope.row.userNo }}</div>
+              <div class="text-center">
+                {{ $moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss") }}
+              </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              {{ scope.row.userNo }}
-            </span>
+                {{ $moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss") }}
+              </span>
             </el-popover>
           </template>
         </el-table-column>
@@ -87,10 +91,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                {{scope.row.className}}
+                {{ scope.row.serialDataList.accountNo }}
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                {{scope.row.className}}
+                {{ scope.row.serialDataList.accountNo }}
               </span>
             </el-popover>
           </template>
@@ -101,12 +105,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                {{ scope.row.serialDataList.accountName }}
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                {{ scope.row.serialDataList.accountName }}
               </span>
             </el-popover>
           </template>
@@ -117,12 +119,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                {{ scope.row.serialDataList.useTo }}
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                {{ scope.row.serialDataList.useTo }}
               </span>
             </el-popover>
           </template>
@@ -133,12 +133,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                {{ scope.row.serialDataList.name }}
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                {{ scope.row.serialDataList.name }}
               </span>
             </el-popover>
           </template>

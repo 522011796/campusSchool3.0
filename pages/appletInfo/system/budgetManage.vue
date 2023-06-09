@@ -386,7 +386,7 @@
 
                 </td>
                 <td>
-                  <el-input size="mini" style="width: 80px" v-model="item.budgetMoney"></el-input>
+                  <el-input size="mini" style="width: 80px" v-model="item.budgetMoney" @input="changeBudgetMoney($event, index)"></el-input>
                 </td>
                 <td>
                   <el-input size="mini" style="width: 80px" v-model="item.warningMoney"></el-input>
@@ -422,7 +422,7 @@
           <my-el-tree-block v-if="dialogEditType == 4" ref="deptBlockRefSel" type="124" sub-type="" node-key="id" :show-filter="false" :show-campus="false" :show-checkbox="true" :defaultCheckedKeys="defaultCheckedKeys"></my-el-tree-block>
         </div>
       </div>
-      <div slot="footer">
+      <div slot="footer" class="padding-lr-10">
         <el-button size="small" @click="cancelEditDialog">{{$t("取消")}}</el-button>
         <el-button size="small" type="primary" @click="dialogLoading == false ? okEditDialog() : ''">
           <i class="el-icon-loading" v-if="dialogLoading"></i>
@@ -907,6 +907,10 @@
       },
       minTableItem(index){
         this.form.rule.splice(index, 1);
+      },
+      changeBudgetMoney(event, index){
+        let use = this.form.rule[index].usedMoney.split("/")[0]+"/"+event
+        this.$set(this.form.rule[index], 'usedMoney', use);
       },
       closeDialog(event){
         this.form = {

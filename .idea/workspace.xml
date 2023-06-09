@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="费控管理">
+    <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="预算管理">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/common.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/tree/MyElTreeBlock.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/tree/MyElTreeBlock.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/dialog/DrawerLayoutRight.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/dialog/DrawerLayoutRight.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/barBlock/SystemDataTopBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/barBlock/SystemDataTopBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/table/SystemDataTable3.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable3.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/table/SystemDataTable4.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable4.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/table/SystemDataTable5.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable5.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appSystemData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appSystemData.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/budgetManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/budgetManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/costManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/costManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/moneyManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/moneyManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/tagManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/tagManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/fileManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/fileManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/json/sliderMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/sliderMenu.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/json/systemServer.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/systemServer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/global.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utils.js" afterDir="false" />
     </list>
@@ -99,14 +100,7 @@
       <workItem from="1682661230487" duration="5305000" />
       <workItem from="1683168602119" duration="608000" />
       <workItem from="1683251524230" duration="66369000" />
-      <workItem from="1684463291875" duration="185285000" />
-    </task>
-    <task id="LOCAL-00015" summary="新增规则条件">
-      <created>1678415668163</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1678415668163</updated>
+      <workItem from="1684463291875" duration="200534000" />
     </task>
     <task id="LOCAL-00016" summary="新增规则条件">
       <created>1678416979885</created>
@@ -444,7 +438,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686134009001</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="预算管理">
+      <created>1686213028131</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1686213028133</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -475,6 +476,7 @@
     <MESSAGE value="教师财务帐号" />
     <MESSAGE value="学校财务帐号" />
     <MESSAGE value="费控管理" />
-    <option name="LAST_COMMIT_MESSAGE" value="费控管理" />
+    <MESSAGE value="预算管理" />
+    <option name="LAST_COMMIT_MESSAGE" value="预算管理" />
   </component>
 </project>

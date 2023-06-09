@@ -93,6 +93,7 @@ export function setFormServerChildren(tree) {//迭代方法--表单服务列表
         label: tree[i].appletName,
         value: tree[i].id,
         id: tree[i].id,
+        code: tree[i].formCode,
         unit: 1
       });
       if (tree[i].formList && tree[i].formList.length > 0){
@@ -103,6 +104,7 @@ export function setFormServerChildren(tree) {//迭代方法--表单服务列表
             label: childList[j].formName,
             value: childList[j].id,
             id: childList[j].id,
+            code: childList[j].formCode,
             unit: 2
           });
         }

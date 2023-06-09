@@ -30,7 +30,7 @@
         <div v-else>
           <div v-if="formName != '项目管理'" style="position: relative;">
             <el-card shadow="never" :body-style="{padding: '5px 10px',height: '45px',lineHeight:'45px'}">
-              <system-data-top-bar :form-id="formName"></system-data-top-bar>
+              <system-data-top-bar :form-id="formName" :obj-data="appDetailObj"></system-data-top-bar>
             </el-card>
           </div>
 
@@ -45,14 +45,14 @@
                     </el-button>
                     <el-button size="small" type="warning"  icon="el-icon-download" @click="addInfo($event, 1)">{{$t("新增项目")}}</el-button>
                   </template>
-                  <template v-if="formName == '合同管理'">
+                  <template v-if="formName == '采购合同单' || formName == '销售合同单' || formName == '通用合同单'">
                     <el-button size="small" type="text" @click="returnMain($event)">
                       <i class="fa fa-arrow-left"></i>
                       {{$t("返回")}}
                     </el-button>
                     <el-button size="small" type="warning"  icon="el-icon-download" @click="addInfo($event, 2)">{{$t("新增合同")}}</el-button>
                   </template>
-                  <template v-if="formName != '项目管理' && formName != '合同管理'">
+                  <template v-if="formName != '项目管理' && formName != '采购合同单' && formName != '销售合同单' && formName != '通用合同单'">
                     <el-button size="small" type="success" @click="returnMain($event)">
                       <i class="fa fa-arrow-left"></i>
                       {{$t("返回")}}
@@ -112,15 +112,18 @@
           </div>
           <template v-else>
             <system-data-table1 v-if="formName == '项目管理'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight2.height" @detailInfo="detailInfo($event, 1)"  @deleteInfo="deleteInfo($event, 1)" @printManage="printManage($event, 1)"></system-data-table1>
-            <system-data-table2 v-if="formName == '合同管理'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 2)"  @deleteInfo="deleteInfo($event, 2)" @printManage="printManage($event, 2)"></system-data-table2>
+            <system-data-table2 v-if="formName == '采购合同单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 2)"  @deleteInfo="deleteInfo($event, 2)" @printManage="printManage($event, 2)"></system-data-table2>
+            <system-data-table2 v-if="formName == '销售合同单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table2>
+            <system-data-table2 v-if="formName == '通用合同单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table2>
+            <system-data-table6 v-if="formName == '报账/报销单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table6>
+            <system-data-table7 v-if="formName == '对公打款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table7>
+            <system-data-table8 v-if="formName == '普通申请单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table8>
+            <system-data-table9 v-if="formName == '借款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table9>
+            <system-data-table10 v-if="formName == '收款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table10>
+            <system-data-table10 v-if="formName == '还款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table10>
             <system-data-table3 v-if="formName == '应收应付'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table3>
             <system-data-table4 v-if="formName == '发票管理'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table4>
             <system-data-table5 v-if="formName == '交易流水'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table5>
-            <system-data-table6 v-if="formName == '报账/报销'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table6>
-            <system-data-table7 v-if="formName == '对公打款'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table7>
-            <system-data-table8 v-if="formName == '普通申请'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table8>
-            <system-data-table9 v-if="formName == '借款管理'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table9>
-            <system-data-table10 v-if="formName == '收款管理'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table10>
           </template>
         </div>
         <div class="layout-right-footer text-right">
@@ -691,6 +694,8 @@
         merchatOptions: [],
         objectOptions: [],
         havePersionOptions: [],
+        appDetailObj: {},
+        schoolAccountIdList: [],
         currentNodeKey: '',
         types: [],
         detailType: 1,
@@ -711,6 +716,7 @@
         searchDetailDept: '',
         searchTimeData: [],
         formId: '',
+        formCode: '',
         formName: '',
         listId: '',
         appletId: '',
@@ -779,11 +785,13 @@
     },
     methods: {
       init(){
+        let url = '';
         let params = {
           page: this.pageDetail,
           num: this.numDetail,
           queryApplyListType: this.queryApplyListType,
           formId: this.formId,
+          formCode: this.formCode,
           appletId: this.appletId,
           status: this.searchAuditStatus,
           searchKey: this.searchDetailKey,
@@ -798,9 +806,19 @@
           //params['grade'] = this.collegeData[2];
           params['classId'] = this.collegeData[3];
         }
+        url = common.server_form_template_form_apply_page;
+        if (this.formCode == 'YSYF'){
+          url = common.payable_manage_page;
+        }else if (this.formCode == 'FPGL'){
+          url = common.invoice_manage_page;
+        }else if (this.formCode == 'JYLS'){
+          url = common.serial_manage_page;
+        }
+
         let applyContentArr = [];
         let applyContent = [];
-        this.$axios.get(common.server_form_template_form_apply_page, {params: params}).then(res => {
+        this.tableDetailData = [];
+        this.$axios.get(url, {params: params}).then(res => {
           if (res.data.data){
             if (res.data.data.list && res.data.data.list.length > 0 && res.data.data.list[0].applyContent){
               applyContentArr = JSON.parse(res.data.data.list[0].applyContent);
@@ -815,7 +833,7 @@
 
             this.applyContentArr = applyContentArr;
             this.tableDataTitles = res.data.data.title;
-            this.tableDetailData = [1,2];
+            this.tableDetailData = res.data.data.list;
             this.totalDetail = res.data.data.total;
             this.numDetail = res.data.data.num;
             this.pageDetail = res.data.data.page;
@@ -873,6 +891,57 @@
           }
         });
       },
+      async initCountInfo(formCode){
+        if (formCode == 'YSYF'){
+          this.initYSYFCount();
+        }else if (formCode == 'FPGL'){
+          this.initFPGLCount();
+        }else if (formCode == 'JYLS'){
+          await this.initSchoolAccount();
+          await this.initJYLSCount(this.schoolAccountIdList.length > 0 ? this.schoolAccountIdList[0] : '');
+        }
+      },
+      initYSYFCount(){
+        this.$axios.get(common.payable_manage_count).then(res=> {
+          if (res.data.code == 200) {
+            if (res.data.data) {
+              this.appDetailObj = res.data.data;
+            }
+          }
+        });
+      },
+      initFPGLCount(){
+        this.$axios.get(common.invoice_manage_count).then(res=> {
+          if (res.data.code == 200) {
+            if (res.data.data) {
+              this.appDetailObj = res.data.data;
+            }
+          }
+        });
+      },
+      async initJYLSCount(schoolAccountId){
+        let params = {
+          schoolAccountId: schoolAccountId ? schoolAccountId : ''
+        };
+        this.$axios.get(common.serial_manage_count, {params: params}).then(res=> {
+          if (res.data.code == 200) {
+            if (res.data.data) {
+              this.appDetailObj = res.data.data;
+              this.appDetailObj['account'] = [];
+            }
+          }
+        });
+      },
+      async initSchoolAccount(){
+        let params = {};
+        await this.$axios.get(common.school_account_list).then(res=> {
+          if (res.data.code == 200) {
+            if (res.data.data) {
+              this.schoolAccountIdList = res.data.data;
+            }
+          }
+        });
+      },
       sizeChange(event){
         if (this.mainMenu == 1){
           this.page = 1;
@@ -921,6 +990,7 @@
         this.departmentPath = '';
         this.collegeData = [];
         this.formId = '';
+        this.formCode = '';
         this.initApp();
       },
       expandInfo(){
@@ -941,6 +1011,7 @@
         this.appName = ''+item.id;
         this.appletId = item.id;
         this.formId = item.id;
+        this.formCode = item.code;
         this.formName = item.formName;
         this.searchDetailType = item.applet_type;
         await this.getAppletSystemServerInfo();
@@ -948,8 +1019,11 @@
         if (data && data.length > 0 && data[0]['children']){
           this.formId = data[0]['children'][0].id;
           this.formName = data[0]['children'][0].label;
+          this.formCode = data[0]['children'][0].code;
           this.defaultExpandedKeys = [data[0].id, data[0]['children'][0].id];
           this.currentNodeKey = data[0]['children'][0].id;
+
+          this.initCountInfo(this.formCode);
         }
 
         this.init();
@@ -1143,11 +1217,13 @@
       },
       nodeClick(data){
         this.formId = "";
-        this.page = 1;
+        this.pageDetail = 1;
 
         if (data.unit == 2){
           this.formId = data.id;
           this.formName = data.label;
+          this.formCode = data.code;
+          this.initCountInfo(data.code);
           this.init();
         }
       },

@@ -1127,6 +1127,12 @@
             "id": 92575,
             "top": "appletInfo",
             "path": "/appletInfo/app/appSystemData"
+          },{
+            "name": "附件管理",
+            "key": "fileManage",
+            "id": 96300,
+            "top": "appletInfo",
+            "path": "/appletInfo/system/fileManage"
           }
         ]
       },
@@ -1175,13 +1181,6 @@
             "id": 96200,
             "top": "appletInfo",
             "path": "/appletInfo/system/roleManage"
-          },
-          {
-            "name": "附件管理",
-            "key": "fileManage",
-            "id": 96300,
-            "top": "appletInfo",
-            "path": "/appletInfo/system/fileManage"
           },
           {
             "name": "预算管理",
