@@ -1,23 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="预算管理">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/utils/barBlock/SystemDataTopBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/barBlock/SystemDataTopBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/table/SystemDataTable3.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable3.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/table/SystemDataTable4.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable4.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/table/SystemDataTable5.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable5.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appSystemData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appSystemData.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/budgetManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/budgetManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/fileManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/fileManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/sliderMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/sliderMenu.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/systemServer.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/systemServer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,25 +28,27 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2HzKqN6CVYpGtLXouC0uQLhwFir" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/utils/validater" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
-    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-    <property name="vuejs.nuxt.types-notification-shown" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "vcs.Git",
+    "vue.rearranger.settings.migration": "true",
+    "vuejs.nuxt.types-notification-shown": "true"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/utils/validater" />
@@ -101,13 +96,12 @@
       <workItem from="1683168602119" duration="608000" />
       <workItem from="1683251524230" duration="66369000" />
       <workItem from="1684463291875" duration="200534000" />
-    </task>
-    <task id="LOCAL-00016" summary="新增规则条件">
-      <created>1678416979885</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1678416979885</updated>
+      <workItem from="1686291499431" duration="318000" />
+      <workItem from="1686308600981" duration="58000" />
+      <workItem from="1686311096354" duration="25000" />
+      <workItem from="1686320062952" duration="49000" />
+      <workItem from="1686446131050" duration="6000" />
+      <workItem from="1686531557880" duration="2938000" />
     </task>
     <task id="LOCAL-00017" summary="新增规则条件">
       <created>1678433855023</created>
@@ -445,7 +439,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686213028133</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="预算管理">
+      <created>1686291588060</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1686291588060</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -461,7 +462,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="解除申请" />

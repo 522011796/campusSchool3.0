@@ -30,7 +30,7 @@
         <div v-else>
           <div v-if="formName != '项目管理'" style="position: relative;">
             <el-card shadow="never" :body-style="{padding: '5px 10px',height: '45px',lineHeight:'45px'}">
-              <system-data-top-bar :form-id="formName" :obj-data="appDetailObj"></system-data-top-bar>
+              <system-data-top-bar :form-id="formName" :obj-data="appDetailObj" :extra-data="schoolAccountIdList" @handleChange="initJYLSCount"></system-data-top-bar>
             </el-card>
           </div>
 
@@ -898,7 +898,8 @@
           this.initFPGLCount();
         }else if (formCode == 'JYLS'){
           await this.initSchoolAccount();
-          await this.initJYLSCount(this.schoolAccountIdList.length > 0 ? this.schoolAccountIdList[0] : '');
+          //await this.initJYLSCount(this.schoolAccountIdList.length > 0 ? this.schoolAccountIdList[0].account_id : '');
+          await this.initJYLSCount();
         }
       },
       initYSYFCount(){

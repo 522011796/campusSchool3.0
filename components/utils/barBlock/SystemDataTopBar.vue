@@ -58,7 +58,16 @@
       <span class="fa fa-book color-grand"></span>
       <span>
         <label>{{$t("账户名称")}}:</label>
-        <label class="color-grand">{{objData.totalAmount}}</label>
+        <el-dropdown trigger="click" @command="_handleChange">
+          <span class="el-dropdown-link font-size-12 color-grand">
+            {{ accountValue == '' ? $t("请选择账户") : accountValue  }}<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item v-for="(item, index) in extraData" :key="index" :command="item">
+              {{item.account_name}}
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
       </span>
       <span class="margin-left-10">
         <label>{{$t("昨日收入")}}:</label>
@@ -193,6 +202,8 @@
 </template>
 
 <script>
+  import Ar from "element-ui/src/locale/lang/ar";
+
   export default {
     name: 'SystemDataTopBar',
     props: {
@@ -204,6 +215,12 @@
           return {}
         },
         type: Object
+      },
+      extraData: {
+        defalult: function (){
+          return []
+        },
+        type: Array
       }
     },
     computed: {
@@ -211,17 +228,26 @@
     },
     data() {
       return {
-
+        accountValue: '',
+        accountId: ''
       }
     },
     mounted() {
-
+      this._initExtra();
     },
     created() {
 
     },
     methods: {
+      _initExtra(){
+        this.accountValue = this.extraData.length > 0 ? this.extraData[0].account_name : '';
+      },
+      _handleChange(event){
+        this.accountValue = event.account_name;
+        this.accountId = event.account_id;
 
+        this.$emit('handleChange', event.account_id);
+      }
     }
   }
 </script>

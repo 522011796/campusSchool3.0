@@ -71,54 +71,6 @@
   "LazyLayoutTb": {
     "description": "Auto imported from components/Layout/LayoutTb.vue"
   },
-  "MyFormAuditType": {
-    "description": "Auto imported from components/form/MyFormAuditType.vue"
-  },
-  "LazyMyFormAuditType": {
-    "description": "Auto imported from components/form/MyFormAuditType.vue"
-  },
-  "MyFormFlow": {
-    "description": "Auto imported from components/form/MyFormFlow.vue"
-  },
-  "LazyMyFormFlow": {
-    "description": "Auto imported from components/form/MyFormFlow.vue"
-  },
-  "MyFormSet": {
-    "description": "Auto imported from components/form/MyFormSet.vue"
-  },
-  "LazyMyFormSet": {
-    "description": "Auto imported from components/form/MyFormSet.vue"
-  },
-  "MyFormSetNotice": {
-    "description": "Auto imported from components/form/MyFormSetNotice.vue"
-  },
-  "LazyMyFormSetNotice": {
-    "description": "Auto imported from components/form/MyFormSetNotice.vue"
-  },
-  "MyFormSetRole": {
-    "description": "Auto imported from components/form/MyFormSetRole.vue"
-  },
-  "LazyMyFormSetRole": {
-    "description": "Auto imported from components/form/MyFormSetRole.vue"
-  },
-  "MyProcessFlow": {
-    "description": "Auto imported from components/form/MyProcessFlow.vue"
-  },
-  "LazyMyProcessFlow": {
-    "description": "Auto imported from components/form/MyProcessFlow.vue"
-  },
-  "PcStaticTemplate": {
-    "description": "Auto imported from components/form/PCStaticTemplate.vue"
-  },
-  "LazyPcStaticTemplate": {
-    "description": "Auto imported from components/form/PCStaticTemplate.vue"
-  },
-  "PcStaticTemplateShow": {
-    "description": "Auto imported from components/form/PCStaticTemplateShow.vue"
-  },
-  "LazyPcStaticTemplateShow": {
-    "description": "Auto imported from components/form/PCStaticTemplateShow.vue"
-  },
   "BarChart": {
     "description": "Auto imported from components/charts/BarChart.vue"
   },
@@ -191,29 +143,17 @@
   "LazyTableBarChart": {
     "description": "Auto imported from components/charts/TableBarChart.vue"
   },
-  "MyInputButton": {
-    "description": "Auto imported from components/search/MyInputButton.vue"
+  "MyNewStudentFlow": {
+    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
   },
-  "LazyMyInputButton": {
-    "description": "Auto imported from components/search/MyInputButton.vue"
+  "LazyMyNewStudentFlow": {
+    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
   },
-  "MySearchOfDate": {
-    "description": "Auto imported from components/search/MySearchOfDate.vue"
+  "MyNewStudentFlowType": {
+    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
   },
-  "LazyMySearchOfDate": {
-    "description": "Auto imported from components/search/MySearchOfDate.vue"
-  },
-  "MySearchOfDateGroup": {
-    "description": "Auto imported from components/search/MySearchOfDateGroup.vue"
-  },
-  "LazyMySearchOfDateGroup": {
-    "description": "Auto imported from components/search/MySearchOfDateGroup.vue"
-  },
-  "MyYearTerm": {
-    "description": "Auto imported from components/search/MyYearTerm.vue"
-  },
-  "LazyMyYearTerm": {
-    "description": "Auto imported from components/search/MyYearTerm.vue"
+  "LazyMyNewStudentFlowType": {
+    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
   },
   "MyBlockListChildTree": {
     "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
@@ -244,6 +184,78 @@
   },
   "LazyTreeNode": {
     "description": "Auto imported from components/tree/treeNode.js"
+  },
+  "MyFormAuditType": {
+    "description": "Auto imported from components/form/MyFormAuditType.vue"
+  },
+  "LazyMyFormAuditType": {
+    "description": "Auto imported from components/form/MyFormAuditType.vue"
+  },
+  "MyFormFlow": {
+    "description": "Auto imported from components/form/MyFormFlow.vue"
+  },
+  "LazyMyFormFlow": {
+    "description": "Auto imported from components/form/MyFormFlow.vue"
+  },
+  "MyFormSet": {
+    "description": "Auto imported from components/form/MyFormSet.vue"
+  },
+  "LazyMyFormSet": {
+    "description": "Auto imported from components/form/MyFormSet.vue"
+  },
+  "MyFormSetNotice": {
+    "description": "Auto imported from components/form/MyFormSetNotice.vue"
+  },
+  "LazyMyFormSetNotice": {
+    "description": "Auto imported from components/form/MyFormSetNotice.vue"
+  },
+  "MyFormSetRole": {
+    "description": "Auto imported from components/form/MyFormSetRole.vue"
+  },
+  "LazyMyFormSetRole": {
+    "description": "Auto imported from components/form/MyFormSetRole.vue"
+  },
+  "MyProcessFlow": {
+    "description": "Auto imported from components/form/MyProcessFlow.vue"
+  },
+  "LazyMyProcessFlow": {
+    "description": "Auto imported from components/form/MyProcessFlow.vue"
+  },
+  "PcStaticTemplate": {
+    "description": "Auto imported from components/form/PCStaticTemplate.vue"
+  },
+  "LazyPcStaticTemplate": {
+    "description": "Auto imported from components/form/PCStaticTemplate.vue"
+  },
+  "PcStaticTemplateShow": {
+    "description": "Auto imported from components/form/PCStaticTemplateShow.vue"
+  },
+  "LazyPcStaticTemplateShow": {
+    "description": "Auto imported from components/form/PCStaticTemplateShow.vue"
+  },
+  "MyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
+  },
+  "LazyMyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
+  },
+  "MySearchOfDate": {
+    "description": "Auto imported from components/search/MySearchOfDate.vue"
+  },
+  "LazyMySearchOfDate": {
+    "description": "Auto imported from components/search/MySearchOfDate.vue"
+  },
+  "MySearchOfDateGroup": {
+    "description": "Auto imported from components/search/MySearchOfDateGroup.vue"
+  },
+  "LazyMySearchOfDateGroup": {
+    "description": "Auto imported from components/search/MySearchOfDateGroup.vue"
+  },
+  "MyYearTerm": {
+    "description": "Auto imported from components/search/MyYearTerm.vue"
+  },
+  "LazyMyYearTerm": {
+    "description": "Auto imported from components/search/MyYearTerm.vue"
   },
   "MyAuditPuStatus": {
     "description": "Auto imported from components/utils/MyAuditPuStatus.vue"
@@ -593,6 +605,18 @@
   "LazyUserBankAccountTable": {
     "description": "Auto imported from components/utils/table/UserBankAccountTable.vue"
   },
+  "QuillBlock": {
+    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
+  },
+  "LazyQuillBlock": {
+    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
+  },
+  "UploadSquare": {
+    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
+  },
+  "LazyUploadSquare": {
+    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
+  },
   "ClassroomTreeAndList": {
     "description": "Auto imported from components/utils/treeAndList/ClassroomTreeAndList.vue"
   },
@@ -658,29 +682,5 @@
   },
   "LazyTeacherTreeAndListRoleNoPage": {
     "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListRoleNoPage.vue"
-  },
-  "QuillBlock": {
-    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
-  },
-  "LazyQuillBlock": {
-    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
-  },
-  "UploadSquare": {
-    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
-  },
-  "LazyUploadSquare": {
-    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
-  },
-  "MyNewStudentFlow": {
-    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
-  },
-  "LazyMyNewStudentFlow": {
-    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
-  },
-  "MyNewStudentFlowType": {
-    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
-  },
-  "LazyMyNewStudentFlowType": {
-    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
   }
 }
