@@ -4,13 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="预算管理">
+    <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="交易流水">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/barBlock/SystemDataTopBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/barBlock/SystemDataTopBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/table/SystemDataTable1.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable1.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/upload/UploadSquare.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/upload/UploadSquare.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appSystemData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appSystemData.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/json/systemServer.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/systemServer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/global.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,14 +108,7 @@
       <workItem from="1686311096354" duration="25000" />
       <workItem from="1686320062952" duration="49000" />
       <workItem from="1686446131050" duration="6000" />
-      <workItem from="1686531557880" duration="2938000" />
-    </task>
-    <task id="LOCAL-00017" summary="新增规则条件">
-      <created>1678433855023</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1678433855023</updated>
+      <workItem from="1686531557880" duration="37967000" />
     </task>
     <task id="LOCAL-00018" summary="新增规则条件">
       <created>1678514144129</created>
@@ -446,7 +446,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686291588060</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="交易流水">
+      <created>1686535520427</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1686535520428</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -477,6 +484,7 @@
     <MESSAGE value="学校财务帐号" />
     <MESSAGE value="费控管理" />
     <MESSAGE value="预算管理" />
-    <option name="LAST_COMMIT_MESSAGE" value="预算管理" />
+    <MESSAGE value="交易流水" />
+    <option name="LAST_COMMIT_MESSAGE" value="交易流水" />
   </component>
 </project>

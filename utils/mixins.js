@@ -133,6 +133,8 @@ export default {
       filterHardType: global.filterHardType,
       filterAccountType: global.filterAccountType,
       filterBillTypes: global.filterBillTypes,
+      filterObjectTypes: global.filterObjectTypes,
+      filterObjectStatus: global.filterObjectStatus,
       g_currentDate: {},
       currentYearData: '',
       currentTermData: '',

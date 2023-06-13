@@ -111,7 +111,7 @@
             </el-row>
           </div>
           <template v-else>
-            <system-data-table1 v-if="formName == '项目管理'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight2.height" @detailInfo="detailInfo($event, 1)"  @deleteInfo="deleteInfo($event, 1)" @printManage="printManage($event, 1)"></system-data-table1>
+            <system-data-table1 v-if="formName == '项目管理'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight2.height" @editInfo="editInfo($event, 1)" @detailInfo="detailInfo($event, 1)"  @deleteInfo="deleteInfo($event, 1)" @printManage="printManage($event, 1)"></system-data-table1>
             <system-data-table2 v-if="formName == '采购合同单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 2)"  @deleteInfo="deleteInfo($event, 2)" @printManage="printManage($event, 2)"></system-data-table2>
             <system-data-table2 v-if="formName == '销售合同单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table2>
             <system-data-table2 v-if="formName == '通用合同单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table2>
@@ -139,31 +139,41 @@
             <el-input v-model="form.name" class="width-480"></el-input>
           </el-form-item>
           <el-form-item :label="$t('项目编号')" prop="no">
-            <el-input v-model="form.no" class="width-480"></el-input>
+            <el-input v-model="form.no" class="width-480">
+              <el-button slot="append" type="default" @click="autoSetNo">{{$t('自动填充')}}</el-button>
+            </el-input>
           </el-form-item>
           <el-form-item :label="$t('项目类型')" prop="type">
-            <my-select :sel-value="form.type" :options="typeOptions" :width-style="480" @change="handleChange($event, 9)"></my-select>
+            <my-select :sel-value="form.type" :options="filterObjectTypes" :width-style="480" @change="handleChange($event, 9)"></my-select>
           </el-form-item>
           <el-form-item :label="$t('所属部门')" prop="dept">
-            <el-select v-model="form.dept" multiple placeholder="请选择" style="width: 480px">
-              <el-option
-                v-for="item in deptOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
+            <my-cascader ref="selectorDept" :props="{ checkStrictly: true }" :sel-value="form.dept" type="4" sub-type="id" width-style="480" @change="handleCascaderDeptChange($event)"></my-cascader>
           </el-form-item>
           <template>
             <el-row :gutter="16">
               <el-col :span="12">
-                <el-form-item :label="$t('项目状态')" prop="status">
-                  <my-select :width-style="182" :sel-value="form.status" :options="statusOptions" style="width: 100%" @change="handleChange($event, 11)"></my-select>
+                <el-form-item :label="$t('项目状态')">
+                  <my-select :width-style="182" :sel-value="form.status" :options="filterObjectStatus" style="width: 100%" @change="handleChange($event, 11)"></my-select>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item :label="$t('负责人')" prop="user">
-                  <my-select :width-style="182" :sel-value="form.user" :options="userOptions" @change="handleChange($event, 16)"></my-select>
+                <el-form-item :label="$t('负责人')">
+<!--                  <my-select :width-style="182" :sel-value="form.user" :options="userOptions" @change="handleChange($event, 16)"></my-select>-->
+                  <el-popover
+                    popper-class="custom-popper-class-form"
+                    placement="left"
+                    width="700"
+                    trigger="click"
+                    @show="handleShowTeacher(1)">
+                    <div>
+                      <teacher-tree-and-list ref="popverUserRef" :sel-value="form.userId" @change="handleSelCreateUser($event, 1)"></teacher-tree-and-list>
+                    </div>
+                    <el-button slot="reference" type="success" plain size="small">{{$t("添加")}}</el-button>
+                  </el-popover>
+                  <span v-if="form.user != ''" class="color-warning margin-left-10">
+                    <i class="fa fa-user"></i>
+                    {{form.user}}
+                  </span>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -171,12 +181,12 @@
           <template>
             <el-row :gutter="16">
               <el-col :span="12">
-                <el-form-item :label="$t('开始时间')" prop="startTime">
+                <el-form-item :label="$t('开始时间')">
                   <my-date-picker :sel-value="form.startTime" width-style="182" @change="handleChange($event,13)"></my-date-picker>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item :label="$t('结束时间')" prop="endTime">
+                <el-form-item :label="$t('结束时间')">
                   <my-date-picker :sel-value="form.endTime" width-style="182" @change="handleChange($event,14)"></my-date-picker>
                 </el-form-item>
               </el-col>
@@ -185,7 +195,7 @@
           <template>
             <el-row :gutter="16">
               <el-col :span="12">
-                <el-form-item :label="$t('父级项目')" prop="parentObj">
+                <el-form-item :label="$t('父级项目')">
                   <my-select :width-style="182" :sel-value="form.parentObj" :options="parendObjOptions" @change="handleChange($event, 15)"></my-select>
                 </el-form-item>
               </el-col>
@@ -194,11 +204,11 @@
           <el-form-item :label="$t('附件')">
             <div v-if="images.length > 0" v-for="(item, index) in images" :key="index" class="pull-left" style="position: relative;margin-right:10px;top: 10px">
               <i class="fa fa-close" style="position: absolute; right: -5px; top: -5px;font-size: 12px" @click="deleteRemoveImg(index)"></i>
-              <i v-if="item.indexOf('.pdf') > -1" class="fa fa-file-pdf-o" style="height: 25px;width: 25px;font-size: 25px;position: relative;top: -2px;"></i>
-              <i v-else-if="item.indexOf('.doc') > -1 || item.indexOf('.docx') > -1" class="fa fa-wordpress" style="height: 25px;width: 25px;font-size: 25px;position: relative;top: -2px;"></i>
+              <i v-if="item.indexOf('.pdf') > -1" class="fa fa-file-pdf-o" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;"></i>
+              <i v-else-if="item.indexOf('.doc') > -1 || item.indexOf('.docx') > -1" class="fa fa-wordpress" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;"></i>
               <img v-else :src="item" class="rp-img"/>
             </div>
-            <upload-square :action="uploadFileUrl" max-size="20" :data="{path: 'PunishmentCancelApply'}" accept=".png,.jpg,.jpeg,.pdf,.doc,.docx" @success="uploadFileSuccess">
+            <upload-square :action="uploadFileUrl" :multiple="true" max-size="20" :data="{path: 'objectApp'}" accept=".png,.jpg,.jpeg,.pdf,.doc,.docx" @success="uploadFileSuccess">
               <div class="upload-block-class">
                 <el-button type="warning" size="small"><span>{{$t("上传文件")}}</span></el-button>
               </div>
@@ -209,7 +219,7 @@
           </el-form-item>
         </el-form>
       </div>
-      <div slot="footer">
+      <div slot="footer" class="padding-lr-10">
         <el-button size="small" @click="cancelDrawDialog">{{$t("取消")}}</el-button>
         <el-button size="small" type="primary" @click="dialogLoading == false ? okBudgetDialog() : ''">
           <i class="el-icon-loading" v-if="dialogLoading"></i>
@@ -290,8 +300,8 @@
           <el-form-item :label="$t('附件')">
             <div v-if="images.length > 0" v-for="(item, index) in images" :key="index" class="pull-left" style="position: relative;margin-right:10px;top: 10px">
               <i class="fa fa-close" style="position: absolute; right: -5px; top: -5px;font-size: 12px" @click="deleteRemoveImg(index)"></i>
-              <i v-if="item.indexOf('.pdf') > -1" class="fa fa-file-pdf-o" style="height: 25px;width: 25px;font-size: 25px;position: relative;top: -2px;"></i>
-              <i v-else-if="item.indexOf('.doc') > -1 || item.indexOf('.docx') > -1" class="fa fa-wordpress" style="height: 25px;width: 25px;font-size: 25px;position: relative;top: -2px;"></i>
+              <i v-if="item.indexOf('.pdf') > -1" class="fa fa-file-pdf-o" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;"></i>
+              <i v-else-if="item.indexOf('.doc') > -1 || item.indexOf('.docx') > -1" class="fa fa-wordpress" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;"></i>
               <img v-else :src="item" class="rp-img"/>
             </div>
             <upload-square :action="uploadFileUrl" max-size="20" :data="{path: 'PunishmentCancelApply'}" accept=".png,.jpg,.jpeg,.pdf,.doc,.docx" @success="uploadFileSuccess">
@@ -348,7 +358,7 @@
           </table>
         </template>
       </div>
-      <div slot="footer">
+      <div slot="footer" class="padding-lr-10">
         <el-button size="small" @click="cancelDrawDialog">{{$t("取消")}}</el-button>
         <el-button size="small" type="primary" @click="dialogLoading == false ? okOrderDialog() : ''">
           <i class="el-icon-loading" v-if="dialogLoading"></i>
@@ -357,7 +367,7 @@
       </div>
     </drawer-layout-right>
 
-    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="dialogObjServerDetail" size="600px" :title="$t('项目查看')" @right-close="cancelDrawDialog">
+    <drawer-layout-right tabindex="0" @close="closeDrawerDialog" :visible="dialogObjServerDetail" size="600px" :title="$t('项目查看')" @right-close="cancelDrawDialog">
       <div slot="content" class="color-muted">
         <div class="text-left">
           <el-button-group>
@@ -372,12 +382,12 @@
             <div class="detail-block" :style="{height: drawHeight8.height}">
               <el-form label-width="100px">
                 <el-form-item :label="$t('项目名称')">
-                  <label>xxxxx</label>
+                  <label>{{dataDetailObj['xm_name20230501'] ? dataDetailObj['xm_name20230501']['value'] : '--'}}</label>
                 </el-form-item>
               </el-form>
               <el-form label-width="100px">
                 <el-form-item :label="$t('项目编号')">
-                  <label>xxxxx</label>
+                  <label>{{dataDetailObj['xm_no20230501'] ? dataDetailObj['xm_no20230501']['value'] : '--'}}</label>
                 </el-form-item>
               </el-form>
               <template>
@@ -385,14 +395,14 @@
                   <el-col :span="12">
                     <el-form label-width="100px">
                       <el-form-item :label="$t('项目类型')">
-                        <label>xxxxx</label>
+                        <label>{{dataDetailObj['xm_type20230501'] ? objectTypeInfo(dataDetailObj['xm_type20230501']['value'], 'set') : '--'}}</label>
                       </el-form-item>
                     </el-form>
                   </el-col>
                   <el-col :span="12">
                     <el-form label-width="100px">
                       <el-form-item :label="$t('项目预算')">
-                        <label>xxxxx</label>
+                        <label>--</label>
                       </el-form-item>
                     </el-form>
                   </el-col>
@@ -403,14 +413,14 @@
                   <el-col :span="12">
                     <el-form label-width="100px">
                       <el-form-item :label="$t('项目状态')">
-                        <label>xxxxx</label>
+                        <label>{{dataDetailObj['xm_status20230501'] ? objectStatusInfo(dataDetailObj['xm_status20230501']['value'], 'set') : '--'}}</label>
                       </el-form-item>
                     </el-form>
                   </el-col>
                   <el-col :span="12">
                     <el-form label-width="100px">
                       <el-form-item :label="$t('审批状态')">
-                        <label>xxxxx</label>
+                        <label>{{dataMainDetailObj.status || dataMainDetailObj.status === 0   ? auditStatusTextInfo(dataMainDetailObj.status, 'set') : '--'}}</label>
                       </el-form-item>
                     </el-form>
                   </el-col>
@@ -421,14 +431,14 @@
                   <el-col :span="12">
                     <el-form label-width="100px">
                       <el-form-item :label="$t('开始时间')">
-                        <label>xxxxx</label>
+                        <label>{{dataDetailObj['xm_beginTime20230501'] ? dataDetailObj['xm_beginTime20230501']['value'] : '--'}}</label>
                       </el-form-item>
                     </el-form>
                   </el-col>
                   <el-col :span="12">
                     <el-form label-width="100px">
                       <el-form-item :label="$t('结束时间')">
-                        <label>xxxxx</label>
+                        <label>{{dataDetailObj['xm_endTime20230501'] ? dataDetailObj['xm_endTime20230501']['value'] : '--'}}</label>
                       </el-form-item>
                     </el-form>
                   </el-col>
@@ -439,14 +449,21 @@
                   <el-col :span="12">
                     <el-form label-width="100px">
                       <el-form-item :label="$t('父级项目')">
-                        <label>xxxxx</label>
+                        <label v-if="dataDetailObj['xm_superId20230501']">
+                          <template v-if="dataDetailObj['xm_superId20230501']['value'] == ''">
+                            {{$t("无")}}
+                          </template>
+                          <template v-else>
+                            {{dataDetailObj['xm_superId20230501'] ? dataDetailObj['xm_superId20230501']['value'] : '--'}}
+                          </template>
+                        </label>
                       </el-form-item>
                     </el-form>
                   </el-col>
                   <el-col :span="12">
                     <el-form label-width="100px">
                       <el-form-item :label="$t('负责人')">
-                        <label>xxxxx</label>
+                        <label>{{dataDetailObj['xm_personId20230501'] ? dataDetailObj['xm_personId20230501']['value'] : '--'}}</label>
                       </el-form-item>
                     </el-form>
                   </el-col>
@@ -454,12 +471,26 @@
               </template>
               <el-form label-width="100px">
                 <el-form-item :label="$t('附件')">
-                  <label>xxxxx</label>
+                  <div v-if="dataDetailObj['xm_files20230501']">
+                    <div v-if v-for="(item, index) in dataDetailObj['xm_files20230501']['value']" :key="index" class="pull-left" style="position: relative;margin-right:10px;top: 10px">
+                      <i v-if="item.indexOf('.pdf') > -1" class="fa fa-file-pdf-o" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;" @click="readOtherFile(item)"></i>
+                      <i v-else-if="item.indexOf('.doc') > -1 || item.indexOf('.docx') > -1" class="fa fa-wordpress" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;" @click="readOtherFile(item)"></i>
+                      <el-image
+                        v-else
+                        style="width: 50px; height: 50px"
+                        :src="item"
+                        :preview-src-list="[item]">
+                      </el-image>
+                    </div>
+                  </div>
+                  <div v-else>
+
+                  </div>
                 </el-form-item>
               </el-form>
               <el-form label-width="100px">
                 <el-form-item :label="$t('其他描述')">
-                  <label>xxxxx</label>
+                  <label>{{dataDetailObj['xm_des20230501'] ? dataDetailObj['xm_des20230501']['value'] : '--'}}</label>
                 </el-form-item>
               </el-form>
             </div>
@@ -467,62 +498,159 @@
 
           <template v-if="detailType == 2">
             <div class="detail-top-block" style="overflow-x: auto;padding: 20px 0px;white-space:nowrap;">
-              <div :style="{width: 6 * (600/4)+'px'}">
-                <div :style="{width: 600/4+'px'}" class="pull-left text-center" v-for="(n, index) in 6" :key="index">
-                  <template v-if="index == 0">
+              <div :style="{width: (detailApplyAuditList.length+2) * (600/4)+'px'}">
+                <div class="pull-left text-center" :style="{width: 600/4+'px'}">
+                  <div class="text-center margin-bottom-5">
+                    <span class="font-size-12"> &nbsp; </span>
+                  </div>
+                  <div class="detail-top-item-green-block">
+                    <span class="font-size-12 color-white">{{$t("开始")}}</span>
+                  </div>
+                  <div class="text-center margin-top-5">
+                    <span class="font-size-12">{{$t("提交")}}</span>
+                  </div>
+                </div>
+
+                <div :style="{width: 600/4+'px'}" class="pull-left text-center" v-for="(item, index) in detailApplyAuditList" :key="index">
+                  <template>
                     <div class="text-center margin-bottom-5">
-                      <span class="font-size-12"> &nbsp; </span>
+                      <span class="font-size-12">
+                        <label>{{ auditStatusTextInfo(item.status) }}</label>
+                      </span>
                     </div>
-                    <div class="detail-top-item-green-block">
-                      <span class="font-size-12 color-white">{{$t("开始")}}</span>
+                    <div class="detail-top-item-warning-block" :class="auditColorInfo(item.status)">
+                      <el-popover
+                        placement="left"
+                        width="150"
+                        trigger="hover">
+                        <div style="max-height: 100px;overflow-y: auto">
+                          <div v-for="(itemUser, indexUser) in item.handleUserNameList" :key="indexUser">
+                            <div class="font-size-12 padding-tb-5 text-center">
+                              <el-tag type="success" size="mini">{{itemUser}}</el-tag>
+                            </div>
+                          </div>
+                        </div>
+                        <div slot="reference" class="font-size-12 color-white moon-content-text-ellipsis-class text-center">
+                          {{ item.handleUserNameList.join() }}
+                        </div>
+                      </el-popover>
                     </div>
                     <div class="text-center margin-top-5">
-                      <span class="font-size-12">{{$t("提交")}}</span>
-                    </div>
-                  </template>
-                  <template v-else-if="index == 6-1">
-                    <div class="text-center margin-bottom-5">
-                      <span class="font-size-12"> &nbsp; </span>
-                    </div>
-                    <div class="detail-top-item-default-block">
-                      <span class="font-size-12 color-white">{{$t("结束")}}</span>
-                    </div>
-                    <div class="text-center margin-top-5">
-                      <span class="font-size-12">{{$t("完成")}}</span>
-                    </div>
-                  </template>
-                  <template v-else>
-                    <div class="text-center margin-bottom-5">
-                      <span class="font-size-12"> {{$t("待审核")}} </span>
-                    </div>
-                    <div class="detail-top-item-warning-block">
-                      <div class="font-size-12 color-white moon-content-text-ellipsis-class">xxxxx</div>
-                    </div>
-                    <div class="text-center margin-top-5">
-                      <span class="font-size-12">xxxx</span>
+                      <span class="font-size-12">{{ item.nodeName }}</span>
                     </div>
                   </template>
                 </div>
+
+                <div class="pull-left text-center" :style="{width: 600/4+'px'}">
+                  <div class="text-center margin-bottom-5">
+                    <span class="font-size-12"> &nbsp; </span>
+                  </div>
+                  <div class="detail-top-item-default-block">
+                    <span class="font-size-12 color-white">{{$t("结束")}}</span>
+                  </div>
+                  <div class="text-center margin-top-5">
+                    <span class="font-size-12">{{$t("完成")}}</span>
+                  </div>
+                </div>
+
                 <div class="moon-clearfix"></div>
               </div>
             </div>
 
             <div class="detail-block margin-top-20">
               <el-steps direction="vertical" space="60px">
-                <el-step v-for="(item, index) in 10" :key="index">
+                <el-step v-for="(item, index) in detailApplyAuditList" :key="index">
                   <div slot="icon">
-                    <i class="fa fa-flag" style="font-size: 12px"></i>
+                    <i v-if="item.handleLevel == 1" class="fa fa-flag" :class="auditTextColorInfo(item.status)" style="font-size: 12px"></i>
+                    <i v-if="item.handleLevel == 2" class="fa fa-bullseye" style="font-size: 12px"></i>
                   </div>
                   <div slot="title" class="font-size-12">
-                  <span v-if="item.nodeType == 'handle'" class="color-success">
-                    {{ $t("审批") }}
-                    <label v-if="item.andor == 'and'"> ({{ $t("与签") }}) </label>
-                    <label v-if="item.andor == 'or'"> ({{ $t("或签") }}) </label>
-                  </span>
+                    <span v-if="item.nodeType == 'handle'" class="color-success">
+                      {{item.nodeName}}{{ $t("审批") }}
+                      <label v-if="item.andor == 'and'" class="color-warning"> ({{ $t("与签") }}) </label>
+                      <label v-if="item.andor == 'or'" class="color-warning"> ({{ $t("或签") }}) </label>
+                    </span>
                     <span v-if="item.nodeType == 'cc'" class="color-warning">{{ $t("抄送") }}</span>
                   </div>
                   <div slot="description" class="font-size-12 color-sub-title">
                     <div>
+                      <template v-if="item.nodeType == 'handle'">
+                        <div v-for="(itemUser, indexUser) in item.handleUserList" :key="indexUser">
+                          <span class="color-grand"> <i class="fa fa-user"></i> {{ itemUser.userName }} </span>
+                          <span class="margin-left-10">
+                          <label v-if="itemUser.status === -1" class="color-warning">{{$t("撤销")}}</label>
+                          <label v-if="itemUser.status === 0" class="color-warning">{{$t("待审核")}}</label>
+                          <label v-if="itemUser.status === 3" class="color-success">
+                            {{$t("已通过")}}
+                            <el-tooltip v-if="itemUser.des" class="item" effect="dark" :content="itemUser.des" placement="top">
+                              <i class="fa fa-warning color-warning"></i>
+                            </el-tooltip>
+                            <span v-if="itemUser.url && itemUser.url.length > 0">
+                              <el-image v-for="(itemImg, indexImg) in itemUser.url" :key="indexImg" :src="itemImg" style="width: 20px; height: 20px;position: relative; top: 5px;margin-left: 5px"
+                                        :preview-src-list="[itemImg]">
+                              </el-image>
+                            </span>
+                          </label>
+                          <label v-if="itemUser.status === 4" class="color-danger">{{$t("未通过")}}</label>
+                          <label v-if="itemUser.status === 1" class="color-success">
+                            {{$t("已通过")}}
+                            <el-tooltip v-if="itemUser.des" class="item" effect="dark" :content="itemUser.des" placement="top">
+                              <i class="fa fa-warning color-warning"></i>
+                            </el-tooltip>
+                            <span v-if="itemUser.url && itemUser.url.length > 0">
+                              <el-image v-for="(itemImg, indexImg) in itemUser.url" :key="indexImg" :src="itemImg" style="width: 20px; height: 20px;position: relative; top: 5px;margin-left: 5px"
+                                        :preview-src-list="[itemImg]">
+                              </el-image>
+                            </span>
+                          </label>
+                          <label v-if="itemUser.status === 2" class="color-warning">
+                            {{$t("已驳回")}}
+                            <el-tooltip v-if="itemUser.des" class="item" effect="dark" :content="itemUser.des" placement="top">
+                              <i class="fa fa-warning color-warning"></i>
+                            </el-tooltip>
+                            <span v-if="itemUser.url && itemUser.url.length > 0">
+                              <el-image v-for="(itemImg, indexImg) in itemUser.url" :key="indexImg" :src="itemImg" style="width: 20px; height: 20px;position: relative; top: 5px;margin-left: 5px"
+                                        :preview-src-list="[itemImg]">
+                              </el-image>
+                            </span>
+                          </label>
+                          <label v-if="itemUser.status === 5" class="color-warning">{{$t("无需审批")}}</label>
+                          <label v-if="itemUser.status === 8" class="color-warning">{{$t("审批中")}}</label>
+                        </span>
+                          <span class="margin-left-10" v-if="itemUser.handleTime">
+                          <label class="color-muted">{{$moment(itemUser.handleTime).format("YYYY-MM-DD HH:mm:ss")}}</label>
+                        </span>
+                        </div>
+                      </template>
+                      <template v-if="item.nodeType == 'cc'">
+                        <el-tag size="mini" v-for="(itemUser, indexUser) in item.handleUserNameList" :key="indexUser" v-if="indexUser <= 5">
+                          <div class="moon-content-text-ellipsis-class" style="width: 50px">
+                            <el-tooltip class="item" effect="dark" :content="itemUser" placement="top-start">
+                              <span>{{ itemUser }}</span>
+                            </el-tooltip>
+                          </div>
+                        </el-tag>
+
+                        <el-popover
+                          placement="left"
+                          width="200"
+                          trigger="hover"
+                          v-if="item.handleUserNameList.length > 5">
+                          <div style="height: 100px;overflow-y: auto">
+                            <div v-for="(itemUser, indexUser) in item.handleUserNameList" :key="indexUser">
+                              <div class="font-size-12 padding-tb-5">
+                                <span>{{itemUser}}</span>
+                              </div>
+                            </div>
+                          </div>
+                          <el-tag slot="reference" size="mini" type="success">
+                            <div class="moon-content-text-ellipsis-class padding-lr-5">
+                              <i class="fa fa-user"></i>
+                              <label class="margin-left-5">{{item.handleUserNameList.length}}</label>
+                            </div>
+                          </el-tag>
+                        </el-popover>
+                      </template>
                     </div>
                   </div>
                 </el-step>
@@ -619,11 +747,8 @@
         </div>
       </div>
       <div slot="footer" class="padding-lr-10">
-        <el-button size="small" @click="cancelDrawDialog">{{$t("取消")}}</el-button>
-<!--        <el-button size="small" type="primary" @click="dialogLoading == false ? okOrderEditDialog() : ''">-->
-<!--          <i class="el-icon-loading" v-if="dialogLoading"></i>-->
-<!--          {{$t("编辑")}}-->
-<!--        </el-button>-->
+        <audit-button v-if="detailType == 2" :sel-value="dataMainDetailObj" @ok="handleOk" @no="handleNo" @cancel="handleCancel"></audit-button>
+        <el-button v-else size="small" @click="cancelDrawDialog">{{$t("取消")}}</el-button>
       </div>
     </drawer-layout-right>
 
@@ -638,7 +763,16 @@
 <script>
   import mixins from "~/utils/mixins";
   import {common} from "~/utils/api/url";
-  import {MessageError, MessageSuccess} from "~/utils/utils";
+  import {
+    auditStatusBgColor,
+    auditStatusColor,
+    auditStatusText,
+    MessageError,
+    MessageSuccess,
+    MessageWarning,
+    objectStatus,
+    objectType
+  } from "~/utils/utils";
   import MyElTree from "~/components/tree/MyElTree";
   import DrawerLayoutRight from "~/components/utils/dialog/DrawerLayoutRight";
   import MyInputButton from "~/components/search/MyInputButton";
@@ -656,9 +790,11 @@
   import SystemDataTable10 from "~/components/utils/table/SystemDataTable10";
   import orderValidater from "~/utils/validater/orderValidater";
   import appObjectValidater from "~/utils/validater/appObjectValidater";
+  import TeacherTreeAndList from "~/components/utils/treeAndList/TeacherTreeAndList.vue";
 
   export default {
     components: {
+      TeacherTreeAndList,
       SystemDataTable10,
       SystemDataTable9,
       SystemDataTable8,
@@ -679,7 +815,7 @@
         tableData: [],
         tableDetailData: [],
         tableDataTitles: [],
-        tableOrderDetailData: [1,2,3,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        tableOrderDetailData: [],
         collegeList: [],
         categorys: [],
         applyContentArr: [],
@@ -695,10 +831,13 @@
         objectOptions: [],
         havePersionOptions: [],
         appDetailObj: {},
+        dataDetailObj: {},
+        dataMainDetailObj: {},
         schoolAccountIdList: [],
         currentNodeKey: '',
         types: [],
         detailType: 1,
+        detailInfoType: '',
         subTitle: '',
         collegeData: '',
         searchKey: '',
@@ -749,7 +888,10 @@
         searchDetailData: [],
         uploadFileUrl: common.upload_file,
         images: [],
+        files: [],
+        submitStatus: true,
         formOrder: {
+          id: '',
           name: '',
           no: '',
           type: '',
@@ -766,17 +908,21 @@
           backMoney: ''
         },
         form: {
+          id: '',
           name: '',
           no: '',
           type: '',
           dept: [],
+          deptName: [],
           status: '',
           budget: '',
           startTime: '',
           endTime: '',
           parentObj: '',
           user: '',
+          userId: '',
           remarks: '',
+          fileList: []
         }
       }
     },
@@ -859,10 +1005,11 @@
           }
         });
       },
-      initAuditDetailList(id, type){
+      initAuditDetailList(id, type, extra){
         let params = {
           id: id
         };
+        this.detailApplyAuditList = [];
         this.$axios.get(common.server_form_audit_query, {params: params}).then(res=>{
           if (res.data.code == 200){
             if (res.data.data){
@@ -886,8 +1033,65 @@
                     };
                   }
                 }
+              }else if (type == 'edit'){
+                if (extra == 1){
+                  this.form = {
+                    id: res.data.data.id,
+                    name: res.data.data.applyData.xm_name20230501.value,
+                    no: res.data.data.applyData.xm_no20230501.value,
+                    type: res.data.data.applyData.xm_type20230501.value,
+                    dept: res.data.data.applyData['xm_applyDept20230501'] ? res.data.data.applyData.xm_applyDept20230501.value : '',
+                    deptName: res.data.data.applyData['xm_applyDept20230501'] ? res.data.data.applyData.xm_applyDept20230501.deptName : '',
+                    status: res.data.data.applyData.xm_status20230501.value+'',
+                    budget: '',
+                    startTime: res.data.data.applyData.xm_beginTime20230501.value,
+                    endTime: res.data.data.applyData.xm_endTime20230501.value,
+                    parentObj: res.data.data.applyData.xm_superId20230501.value,
+                    user: res.data.data.applyData.xm_personId20230501.value,
+                    userId: res.data.data.applyData.xm_personId20230501.userId,
+                    remarks: res.data.data.applyData.xm_des20230501.value,
+                    fileList: []
+                  };
+                  this.images = res.data.data.applyData.xm_files20230501.value;
+                  this.files = res.data.data.applyData.xm_files20230501.filename;
+                }
+              }else if (type == 'detail'){
+                if (extra == 1){
+                  this.dataDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
+                  this.dataMainDetailObj = res.data.data;
+                  this.detailApplyAuditList = res.data.data.handleList;
+                }
               }
             }
+          }
+        });
+      },
+      initParentList(){
+        let params = {};
+        this.$axios.get(common.object_order_used_list, {params: params}).then(res=> {
+          if (res.data.code == 200) {
+            let array = [];
+            for (let i = 0; i < res.data.data.length; i++){
+              array.push({
+                label: res.data.data[i].formName,
+                text: res.data.data[i].formName,
+                value: res.data.data[i]._id
+              });
+              this.objectOptions = array;
+              this.parendObjOptions = array;
+            }
+          }
+        });
+      },
+      initReal(id){
+        let params = {
+          id: id,
+          page: 1,
+          num: 9999
+        };
+        this.$axios.get(common.object_xm_real_page, {params: params}).then(res=> {
+          if (res.data.code == 200) {
+            this.tableOrderDetailData = res.data.data.list;
           }
         });
       },
@@ -994,6 +1198,22 @@
         this.formCode = '';
         this.initApp();
       },
+      objectTypeInfo(str, type){
+        return objectType(type, str);
+      },
+      objectStatusInfo(str, type){
+        return objectStatus(type, str);
+      },
+      auditStatusTextInfo(str){
+        console.log(str===0);
+        return auditStatusText(str);
+      },
+      auditColorInfo(val){
+        return auditStatusBgColor(val);
+      },
+      auditTextColorInfo(val){
+        return auditStatusColor(val);
+      },
       expandInfo(){
         let url = "";
         let params = {
@@ -1029,8 +1249,22 @@
 
         this.init();
       },
-      detailInfo(item, type){
+      async editInfo(item, type){
+        await this.getSessionInfo();
+        this.submitStatus = true;
         if (type == 1){
+          this.initParentList();
+          this.initAuditDetailList(item.id, 'edit', 1);
+          this.dialogBudgetVisible = true;
+        }else if (type == 2){
+
+        }
+      },
+      detailInfo(item, type){
+        this.detailInfoType = type;
+        if (type == 1){
+          this.initReal(item.id);
+          this.initAuditDetailList(item.id, 'detail', 1);
           this.dialogObjServerDetail = true;
         }else if (type == 2){
           this.dialogOrderServerDetail = true;
@@ -1047,11 +1281,35 @@
       printManage(item){
         window.open('/appletInfo/app/formPrint?serverId=' + item._id + "&title=" + item.formName + "&time=" + this.$moment().format("YYYY-MM-DD HH:mm:ss"), '_blank');
       },
+      autoSetNo(){
+        let url = common.object_order_auto_no;
+        let params = {};
+
+        this.$axios.get(url, {params: params}).then(res => {
+          if (res.data.data){
+            this.form.no = res.data.data.formApplyNo;
+          }
+        });
+      },
       readFile(file){//预览
         ImagePreview({
           images: [file],
           closeable: false,
         });
+      },
+      readOtherFile(file){
+        window.open(file, "_blank");
+      },
+      handleShowTeacher(type){
+        if (type == 1){
+          this.$refs.popverUserRef._handleOpen();
+        }
+      },
+      handleSelCreateUser(data, type){
+        if (type == 1){
+          this.form.user = data.real_name;
+          this.form.userId = data.user_id;
+        }
       },
       handleCheckCancel(){
         this.dialogServerCheckDetail = false;
@@ -1068,10 +1326,12 @@
       },
       closeDrawerDialog(event){
         this.form = {
+          id: '',
           name: '',
           no: '',
           type: '',
           dept: [],
+          deptName: [],
           status: '',
           budget: '',
           startTime: '',
@@ -1079,9 +1339,11 @@
           parentObj: '',
           user: '',
           remarks: '',
+          fileList: []
         };
 
         this.formOrder = {
+          id: '',
           name: '',
           no: '',
           type: '',
@@ -1099,6 +1361,14 @@
         };
 
         this.detailType = 1;
+        this.images = [];
+        this.files = [];
+        this.submitStatus = true;
+        this.tableOrderDetailData = [];
+        this.resetCasadeSelector('selectorDept');
+        if (this.$refs['form']){
+          this.$refs['form'].resetFields();
+        }
         this.dialogOrderVisible = event;
         this.dialogBudgetVisible = false;
         this.dialogObjServerDetail = false;
@@ -1173,7 +1443,7 @@
         }
         url = common.server_form_audit_delete;
         params = this.$qs.stringify(params);
-        this.$axios.post(url, params).then(res => {
+        this.$axios.post(url, params, {loading: false}).then(res => {
           if (res.data.code == 200){
             this.init();
             MessageSuccess(res.data.desc);
@@ -1252,6 +1522,11 @@
         this.pageDetail = 1;
         this.init();
       },
+      handleCascaderDeptChange(data){
+        this.form.dept = data;
+        this.form.deptName = this.$refs['selectorDept'].$refs.cascaderSelector.getCheckedNodes()[0].pathLabels;
+        console.log(this.$refs['selectorDept'].$refs.cascaderSelector.getCheckedNodes()[0].pathLabels);
+      },
       search(data){
         this.searchKey = data.input;
         this.page = 1;
@@ -1282,8 +1557,11 @@
         }
         return ruleList;
       },
-      addInfo(event, type){
+      async addInfo(event, type){
+        await this.getSessionInfo();
+        this.submitStatus = true;
         if (type == 1){
+          this.initParentList();
           this.dialogBudgetVisible = true;
         }else if (type == 2){
           this.dialogOrderVisible = true;
@@ -1296,6 +1574,7 @@
       uploadFileSuccess(res, file){
         if (res.code == 200){
           this.images.push(res.data.url);
+          this.files.push(file.name);
         }else {
 
         }
@@ -1307,10 +1586,144 @@
 
       },
       okBudgetDialog(){
+        let url = '';
+        let error = 0;
+        let req = /^([\+]?(([1-9]\d*)|(0)))([.]\d{0,2})?$/;
+        this.$refs['form'].validate((valid) => {
+          if (valid) {
 
+            let params = {};
+            let contentJson = {};
+            if (this.formCode == 'XMGL'){
+              contentJson = [
+                {
+                  field: 'xm_name20230501',
+                  value: this.form.name,
+                },
+                {
+                  field: 'xm_no20230501',
+                  value: this.form.no,
+                },
+                {
+                  field: 'xm_applyDept20230501',
+                  value: this.form.dept,
+                  deptName: this.form.deptName,
+                },
+                {
+                  field: 'xm_type20230501',
+                  value: this.form.type,
+                },
+                {
+                  field: 'xm_status20230501',
+                  value: this.form.status,
+                },
+                {
+                  field: 'xm_beginTime20230501',
+                  value: this.form.startTime,
+                },
+                {
+                  field: 'xm_endTime20230501',
+                  value: this.form.endTime,
+                },
+                {
+                  field: 'xm_superId20230501',
+                  value: this.form.parentObj,
+                },
+                {
+                  field: 'xm_personId20230501',
+                  value: this.form.user,
+                  userId: this.form.userId,
+                },
+                {
+                  field: 'xm_files20230501',
+                  value: this.images,
+                  filename: this.files
+                },
+                {
+                  field: 'xm_des20230501',
+                  value: this.form.remarks
+                }
+              ];
+              params = {
+                formCode: this.formCode,
+                userId: this.loginUserId,
+                applyContent: JSON.stringify(contentJson),
+                submit: this.submitStatus
+              }
+              url = common.object_order_add;
+            }
+
+            if (this.form.id != ''){
+              params['id'] = this.form.id;
+            }
+
+            params = this.$qs.stringify(params);
+            this.dialogLoading = true;
+            this.$axios.post(url, params).then(res => {
+              if (res.data.code == 200){
+                this.dialogBudgetVisible = false;
+                this.init();
+                MessageSuccess(res.data.desc);
+              }else {
+                MessageError(res.data.desc);
+              }
+              this.dialogLoading = false;
+            });
+          }
+        });
       },
       okOrderDialog(){
 
+      },
+      handleOk(data,textarea){
+        let params = {
+          id: this.dataMainDetailObj.id ? this.dataMainDetailObj.id : this.dataMainDetailObj.id,
+          status: 1,
+          des: textarea
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.server_form_audit_handle, params).then(res => {
+          if (res.data.code == 200){
+            this.detailInfo(this.dataMainDetailObj, this.detailInfoType);
+            this.init();
+            MessageSuccess(res.data.desc);
+          }else{
+            MessageWarning(res.data.desc);
+          }
+        });
+      },
+      handleNo(data,textarea){
+        let params = {
+          id: this.dataMainDetailObj.id ? this.dataMainDetailObj.id : this.dataMainDetailObj.id,
+          status: 2,
+          des: textarea
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.server_form_audit_handle, params).then(res => {
+          if (res.data.code == 200){
+            this.detailInfo(this.dataMainDetailObj, this.detailInfoType);
+            this.init();
+            MessageSuccess(res.data.desc);
+          }else{
+            MessageWarning(res.data.desc);
+          }
+        });
+      },
+      handleCancel(data){
+        let params = {
+          id: this.dataMainDetailObj.id ? this.dataMainDetailObj.id : this.dataMainDetailObj.id,
+          status: -1
+        };
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.server_form_audit_handle, params).then(res => {
+          if (res.data.code == 200){
+            this.detailInfo(this.dataMainDetailObj, this.detailInfoType);
+            this.init();
+            MessageSuccess(res.data.desc);
+          }else{
+            MessageWarning(res.data.desc);
+          }
+        });
       }
     }
   }
@@ -1351,7 +1764,7 @@
   height: 50px;
   line-height: 50px;
   text-align: center;
-  background: #67C23A;
+  //background: #67C23A;
   position: relative;
   margin: 0 auto;
 }
@@ -1374,5 +1787,10 @@
   background: #C0C4CC;
   position: relative;
   margin: 0 auto;
+}
+.rp-img{
+  height: 50px;
+  width: 50px;
+  border: 1px solid #dddddd;
 }
 </style>

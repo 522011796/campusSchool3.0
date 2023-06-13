@@ -70,6 +70,8 @@
       handleAvatarSuccess(res, file, index){
         if (this.multiple == false) {
           this.$refs.uploadRef.clearFiles();
+        }else if (this.multiple == true) {
+          this.$refs.uploadRef.clearFiles();
         }
         this.$emit('success', res, file, index);
       },

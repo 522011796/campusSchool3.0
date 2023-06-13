@@ -588,7 +588,7 @@ const filterSystemAppletTypes = [
 ];
 
 const filterBillTypes = [
-  { text: "项目管理", value: 'XIGL' ,label: '项目管理'},
+  { text: "项目管理", value: 'XMGL' ,label: '项目管理'},
   { text: '采购合同单', value: 'CGHT' ,label: '采购合同单'},
   { text: '销售合同单', value: 'XSHT' ,label: '销售合同单'},
   { text: '通用合同单', value: 'TYHT' ,label: '通用合同单'},
@@ -598,6 +598,20 @@ const filterBillTypes = [
   { text: '借款单', value: 'JKGL' ,label: '借款单'},
   { text: '收款单', value: 'SKD' ,label: '收款单'},
   { text: '还款单', value: 'HKD' ,label: '还款单'}
+];
+
+const filterObjectTypes = [
+  { text: "默认", value: '0' ,label: '默认'},
+  { text: '建筑', value: '1' ,label: '建筑'},
+  { text: '信息', value: '2' ,label: '信息'}
+];
+
+const filterObjectStatus = [
+  { text: "待启动", value: '0' ,label: '待启动'},
+  { text: '进行中', value: '1' ,label: '进行中'},
+  { text: '已完成', value: '2' ,label: '已完成'},
+  { text: '验收中', value: '3' ,label: '验收中'},
+  { text: '已中断', value: '4' ,label: '已中断'}
 ];
 
 export default {
@@ -711,5 +725,7 @@ export default {
   filterUserTeachTypes,
   filterSystemAppletTypes,
   filterAccountType,
-  filterBillTypes
+  filterBillTypes,
+  filterObjectTypes,
+  filterObjectStatus
 }

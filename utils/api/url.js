@@ -814,4 +814,11 @@ export const common = {
   serial_manage_page: '/proxy/school/applet/form/apply-serial/page',//交易流水分页
   serial_manage_count: '/proxy/school/applet/form/apply-serial/count',//交易流水统计
 
+  object_order_add: '/proxy/school/applet/form/apply/add',//项目添加
+  object_order_used_list: '/proxy/school/applet/form/apply/xm/list',//项目可用列表
+  object_order_auto_no: '/proxy/school/applet/form/apply/getNo',//获取应用编号
+  object_xm_real_page: '/proxy/school/applet/form/apply/xm/relaPage',//获取合同单据列表
+
+  server_form_audit_handle: '/proxy/school/applet/form/apply/handle',//服务审批操作
+
 };
