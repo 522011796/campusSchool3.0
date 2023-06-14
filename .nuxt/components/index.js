@@ -99,8 +99,6 @@ export { default as SystemDataTable7 } from '../../components/utils/table/System
 export { default as SystemDataTable8 } from '../../components/utils/table/SystemDataTable8.vue'
 export { default as SystemDataTable9 } from '../../components/utils/table/SystemDataTable9.vue'
 export { default as UserBankAccountTable } from '../../components/utils/table/UserBankAccountTable.vue'
-export { default as QuillBlock } from '../../components/utils/upload/QuillBlock.vue'
-export { default as UploadSquare } from '../../components/utils/upload/UploadSquare.vue'
 export { default as ClassroomTreeAndList } from '../../components/utils/treeAndList/ClassroomTreeAndList.vue'
 export { default as DormBuildTreeAndList } from '../../components/utils/treeAndList/DormBuildTreeAndList.vue'
 export { default as MyRoleList } from '../../components/utils/treeAndList/MyRoleList.vue'
@@ -112,6 +110,8 @@ export { default as TeacherTreeAndList } from '../../components/utils/treeAndLis
 export { default as TeacherTreeAndListBak } from '../../components/utils/treeAndList/TeacherTreeAndListBak.vue'
 export { default as TeacherTreeAndListNoPage } from '../../components/utils/treeAndList/TeacherTreeAndListNoPage.vue'
 export { default as TeacherTreeAndListRoleNoPage } from '../../components/utils/treeAndList/TeacherTreeAndListRoleNoPage.vue'
+export { default as QuillBlock } from '../../components/utils/upload/QuillBlock.vue'
+export { default as UploadSquare } from '../../components/utils/upload/UploadSquare.vue'
 
 export const LazyLogo = import('../../components/Logo.vue' /* webpackChunkName: "components/Logo" */).then(c => c.default || c)
 export const LazyMyBlockTree = import('../../components/MyBlockTree.vue' /* webpackChunkName: "components/MyBlockTree" */).then(c => c.default || c)
@@ -214,8 +214,6 @@ export const LazySystemDataTable7 = import('../../components/utils/table/SystemD
 export const LazySystemDataTable8 = import('../../components/utils/table/SystemDataTable8.vue' /* webpackChunkName: "components/utils/table/SystemDataTable8" */).then(c => c.default || c)
 export const LazySystemDataTable9 = import('../../components/utils/table/SystemDataTable9.vue' /* webpackChunkName: "components/utils/table/SystemDataTable9" */).then(c => c.default || c)
 export const LazyUserBankAccountTable = import('../../components/utils/table/UserBankAccountTable.vue' /* webpackChunkName: "components/utils/table/UserBankAccountTable" */).then(c => c.default || c)
-export const LazyQuillBlock = import('../../components/utils/upload/QuillBlock.vue' /* webpackChunkName: "components/utils/upload/QuillBlock" */).then(c => c.default || c)
-export const LazyUploadSquare = import('../../components/utils/upload/UploadSquare.vue' /* webpackChunkName: "components/utils/upload/UploadSquare" */).then(c => c.default || c)
 export const LazyClassroomTreeAndList = import('../../components/utils/treeAndList/ClassroomTreeAndList.vue' /* webpackChunkName: "components/utils/treeAndList/ClassroomTreeAndList" */).then(c => c.default || c)
 export const LazyDormBuildTreeAndList = import('../../components/utils/treeAndList/DormBuildTreeAndList.vue' /* webpackChunkName: "components/utils/treeAndList/DormBuildTreeAndList" */).then(c => c.default || c)
 export const LazyMyRoleList = import('../../components/utils/treeAndList/MyRoleList.vue' /* webpackChunkName: "components/utils/treeAndList/MyRoleList" */).then(c => c.default || c)
@@ -227,3 +225,5 @@ export const LazyTeacherTreeAndList = import('../../components/utils/treeAndList
 export const LazyTeacherTreeAndListBak = import('../../components/utils/treeAndList/TeacherTreeAndListBak.vue' /* webpackChunkName: "components/utils/treeAndList/TeacherTreeAndListBak" */).then(c => c.default || c)
 export const LazyTeacherTreeAndListNoPage = import('../../components/utils/treeAndList/TeacherTreeAndListNoPage.vue' /* webpackChunkName: "components/utils/treeAndList/TeacherTreeAndListNoPage" */).then(c => c.default || c)
 export const LazyTeacherTreeAndListRoleNoPage = import('../../components/utils/treeAndList/TeacherTreeAndListRoleNoPage.vue' /* webpackChunkName: "components/utils/treeAndList/TeacherTreeAndListRoleNoPage" */).then(c => c.default || c)
+export const LazyQuillBlock = import('../../components/utils/upload/QuillBlock.vue' /* webpackChunkName: "components/utils/upload/QuillBlock" */).then(c => c.default || c)
+export const LazyUploadSquare = import('../../components/utils/upload/UploadSquare.vue' /* webpackChunkName: "components/utils/upload/UploadSquare" */).then(c => c.default || c)

@@ -1660,11 +1660,17 @@
         };
       },
       showMsgDetail(event, item){
+        let url = '';
+        url = common.msg_detail_center;
         let params = {
           id:item.object_id ? item.object_id : item.id
         };
+        if (item.type == 3){
+          MessageWarning(this.$t("暂未支持该类型!"));
+          return;
+        }
         this.auditObjectItem = item;
-        this.$axios.get(common.msg_detail_center, {params: params}).then(res => {
+        this.$axios.get(url, {params: params}).then(res => {
           if (res.data.code == 200){
             this.dataAudit = res.data.data;
             this.msgType = res.data.data.apply_type_code;

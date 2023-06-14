@@ -859,6 +859,25 @@ export function auditStatusText(val, type){
   return statusList[val];
 }
 
+export function formXmText(val, type){
+  let statusList = {
+    "XMGL": "项目管理",
+    "CGHT": "采购合同单",
+    "XSHT": "销售合同单",
+    "TYHT": "通用合同单",
+    "BZBX": "报账/报销单",
+    "DGDK": "对公打款单",
+    "PTGL": "普通申请单",
+    "JKGL": "借款单",
+    "SKD": "收款单",
+    "HKD": "还款单",
+    "YSYF": "应收应付",
+    "FPGL": "发票管理",
+    "JYLS": "交易流水"
+  };
+  return statusList[val];
+}
+
 export function auditStatusColor(val){
   let statusList = {
     "0": "color-muted",

@@ -377,7 +377,7 @@
       </div>
     </drawer-layout-right>
 
-    <drawer-layout-right tabindex="0" @close="closeDrawerDialog" :visible="dialogObjServerDetail" size="600px" :title="$t('项目查看')" @right-close="cancelDrawDialog">
+    <drawer-layout-right tabindex="0" @close="closeDrawerDialog" :visible="dialogObjServerDetail" size="600px" :title="$t('详细查看')" @right-close="cancelDrawDialog">
       <div slot="content" class="color-muted">
         <div class="text-left">
           <el-button-group>
@@ -507,16 +507,22 @@
                 </template>
               </template>
               <template v-if="formCode == 'XMGL'">
-                <el-form label-width="100px">
-                  <el-form-item :label="$t('项目名称')">
-                    <label>{{dataDetailObj['xm_name20230501'] ? dataDetailObj['xm_name20230501']['value'] : '--'}}</label>
-                  </el-form-item>
-                </el-form>
-                <el-form label-width="100px">
-                  <el-form-item :label="$t('项目编号')">
-                    <label>{{dataDetailObj['xm_no20230501'] ? dataDetailObj['xm_no20230501']['value'] : '--'}}</label>
-                  </el-form-item>
-                </el-form>
+                <el-row>
+                  <el-col :span="12">
+                    <el-form label-width="100px">
+                      <el-form-item :label="$t('项目名称')">
+                        <label>{{dataDetailObj['xm_name20230501'] ? dataDetailObj['xm_name20230501']['value'] : '--'}}</label>
+                      </el-form-item>
+                    </el-form>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form label-width="100px">
+                      <el-form-item :label="$t('项目编号')">
+                        <label>{{dataDetailObj['xm_no20230501'] ? dataDetailObj['xm_no20230501']['value'] : '--'}}</label>
+                      </el-form-item>
+                    </el-form>
+                  </el-col>
+                </el-row>
                 <template>
                   <el-row>
                     <el-col :span="12">
@@ -808,9 +814,9 @@
                     :label="$t('类型')">
                     <template slot-scope="scope">
                       <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                        <div class="text-center">{{scope.row.category_name}}</div>
+                        <div class="text-center"><span>{{formXmTextInfo(scope.row.formCode, 'set')}}</span></div>
                         <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                          <span>{{scope.row.category_name}}</span>
+                          <span>{{formXmTextInfo(scope.row.formCode, 'set')}}</span>
                         </div>
                       </el-popover>
                     </template>
@@ -820,9 +826,9 @@
                     :label="$t('名称')">
                     <template slot-scope="scope">
                       <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                        <div class="text-center">{{scope.row.category_name}}</div>
+                        <div class="text-center">{{scope.row.applyData['ht_name20230501'] ? scope.row.applyData['ht_name20230501'].value : '--'}}</div>
                         <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                          <span>{{scope.row.category_name}}</span>
+                          <span>{{scope.row.applyData['ht_name20230501'] ? scope.row.applyData['ht_name20230501'].value : '--'}}</span>
                         </div>
                       </el-popover>
                     </template>
@@ -832,9 +838,9 @@
                     :label="$t('编号')">
                     <template slot-scope="scope">
                       <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                        <div class="text-center">{{scope.row.category_name}}</div>
+                        <div class="text-center">{{scope.row.formApplyNo}}</div>
                         <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                          <span>{{scope.row.category_name}}</span>
+                          <span>{{scope.row.formApplyNo}}</span>
                         </div>
                       </el-popover>
                     </template>
@@ -844,9 +850,9 @@
                     :label="$t('金额')">
                     <template slot-scope="scope">
                       <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                        <div class="text-center">{{scope.row.category_name}}</div>
+                        <div class="text-center">{{scope.row.applyData['ht_amount20230501'] ? scope.row.applyData['ht_amount20230501'].value: '--'}}</div>
                         <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                          <span>{{scope.row.category_name}}</span>
+                          <span>{{scope.row.applyData['ht_amount20230501'] ? scope.row.applyData['ht_amount20230501'].value: '--'}}</span>
                         </div>
                       </el-popover>
                     </template>
@@ -856,9 +862,9 @@
                     :label="$t('状态')">
                     <template slot-scope="scope">
                       <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                        <div class="text-center">{{scope.row.category_name}}</div>
+                        <div class="text-center">{{ auditStatusTextInfo(scope.row.status) }}</div>
                         <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                          <span>{{scope.row.category_name}}</span>
+                          <span>{{auditStatusTextInfo(scope.row.status)}}</span>
                         </div>
                       </el-popover>
                     </template>
@@ -884,7 +890,126 @@
     </drawer-layout-right>
 
     <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDetailDialog" :visible="dialogOrderDetailVisible" size="550px" :title="$t('详细信息')" @right-close="cancelDrawDetailDialog">
+      <div slot="content" class="color-muted">
+        <div class="detail-block" :style="{height: drawHeight8.height}">
+          <template>
+            <el-row>
+              <el-col :span="12">
+                <el-form label-width="100px">
+                  <el-form-item :label="$t('合同名称')">
+                    <label>{{dataOrderDetailObj['ht_name20230501'] ? dataOrderDetailObj['ht_name20230501']['value'] : '--'}}</label>
+                  </el-form-item>
+                </el-form>
+              </el-col>
+              <el-col :span="12">
+                <el-form label-width="100px">
+                  <el-form-item :label="$t('合同编号')">
+                    <label>{{dataOrderDetailObj['ht_no20230501'] ? dataOrderDetailObj['ht_no20230501']['value'] : '--'}}</label>
+                  </el-form-item>
+                </el-form>
+              </el-col>
+            </el-row>
+            <template>
+              <el-row>
+                <el-col :span="12">
+                  <el-form label-width="100px">
+                    <el-form-item :label="$t('关联单据')">
+                      <label>{{dataOrderDetailObj['tag_ids20230501'] ? dataOrderDetailObj['tag_ids20230501']['name'] : '--'}}</label>
+                    </el-form-item>
+                  </el-form>
+                </el-col>
+                <el-col :span="12">
+                  <el-form label-width="100px">
+                    <el-form-item :label="$t('合同金额')">
+                      <label>{{dataOrderDetailObj['ht_amount20230501'] ? dataOrderDetailObj['ht_amount20230501']['value'] : '--'}}</label>
+                    </el-form-item>
+                  </el-form>
+                </el-col>
+              </el-row>
+            </template>
+            <template>
+              <el-row>
+                <el-col :span="12">
+                  <el-form label-width="100px">
+                    <el-form-item :label="$t('关联项目')">
+                      <label>{{dataOrderDetailObj['xm_id20230501'] ? (dataOrderDetailObj['xm_id20230501']['name'] ? dataOrderDetailObj['xm_id20230501']['name'] : '--') : '--'}}</label>
+                    </el-form-item>
+                  </el-form>
+                </el-col>
+                <el-col :span="12">
+                  <el-form label-width="100px">
+                    <el-form-item :label="$t('责任人')">
+                      <label>{{dataOrderDetailObj['ht_duty20230501'] ? (dataOrderDetailObj['ht_duty20230501']['userName'] ? dataOrderDetailObj['ht_duty20230501']['userName'] : '--') : '--'}}</label>
+                    </el-form-item>
+                  </el-form>
+                </el-col>
+              </el-row>
+            </template>
+            <el-form label-width="100px">
+              <el-form-item :label="$t('附件')">
+                <div v-if="dataOrderDetailObj['ht_files20230501']">
+                  <div v-if="dataOrderDetailObj['ht_files20230501']['value'].length > 0" v-for="(item, index) in dataOrderDetailObj['ht_files20230501']['value']" :key="index" class="pull-left" style="position: relative;margin-right:10px;top: 10px">
+                    <i v-if="item.indexOf('.pdf') > -1" class="fa fa-file-pdf-o" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;" @click="readOtherFile(item)"></i>
+                    <i v-else-if="item.indexOf('.doc') > -1 || item.indexOf('.docx') > -1" class="fa fa-wordpress" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;" @click="readOtherFile(item)"></i>
+                    <el-image
+                      v-else
+                      style="width: 50px; height: 50px"
+                      :src="item"
+                      :preview-src-list="[item]">
+                    </el-image>
+                  </div>
+                  <div v-else>
+                    --
+                  </div>
+                </div>
+                <div v-else>
+                  --
+                </div>
+              </el-form-item>
+            </el-form>
+            <el-form label-width="100px">
+              <el-form-item :label="$t('其他描述')">
+                <div style="word-wrap:break-word;word-break:break-all;overflow: hidden;">{{dataOrderDetailObj['ht_des20230501'] ? (dataOrderDetailObj['ht_des20230501']['value'] ? dataOrderDetailObj['ht_des20230501']['value'] : '--') : '--'}}</div>
+              </el-form-item>
+            </el-form>
 
+            <template>
+              <div style="margin-left: 30px">
+                <span class="color-text-default">{{$t('回款计划')}}</span>
+              </div>
+              <table class="custom-table" style="width: 520px;margin-top: 10px;font-size: 12px;margin-left: 30px">
+                <tr>
+                  <th width="10%">{{$t("期数")}}</th>
+                  <th width="15%">{{$t("比例")}}</th>
+                  <th width="15%">{{$t("金额")}}</th>
+                  <th width="25%">{{$t("日期")}}</th>
+                  <th width="30%">{{$t("备注")}}</th>
+                </tr>
+                <tbody>
+                <tr v-for="(item, index) in payableOrderDataList" :key="item.id">
+                  <td>
+                    <!--                <el-input size="mini" style="width: 45px" v-model="item.stage"></el-input>-->
+                    <label>{{item.stage}}</label>
+                  </td>
+                  <td>
+                    <label>{{item.rate}}</label>%
+                  </td>
+                  <td>
+                    <label>{{item.shouldAmount}}</label>
+                  </td>
+                  <td>
+                    <label>{{item.time}}</label>
+                  </td>
+                  <td>
+                    <div class="moon-content-text-ellipsis-class" style="max-width: 200px">{{item.des}}</div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </template>
+          </template>
+        </div>
+      </div>
     </drawer-layout-right>
 
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="确认需要删除该信息？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
@@ -897,7 +1022,7 @@
   import {
     auditStatusBgColor,
     auditStatusColor,
-    auditStatusText,
+    auditStatusText, formXmText,
     MessageError,
     MessageSuccess,
     MessageWarning,
@@ -964,7 +1089,11 @@
         appDetailObj: {},
         dataDetailObj: {},
         dataMainDetailObj: {},
+        dataOrderDetailObj: {},
+        dataOrderMainDetailObj: {},
         schoolAccountIdList: [],
+        detailOrderApplyAuditList: [],
+        payableOrderDataList: [],
         currentNodeKey: '',
         types: [],
         detailType: 1,
@@ -1289,6 +1418,17 @@
                   this.detailApplyAuditList = res.data.data.handleList;
                   this.payableDataList = res.data.data.payableDataList;
                 }
+              }else if (type == 'detailOrder'){
+                if (extra == 1){
+                  this.dataOrderDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
+                  this.dataOrderMainDetailObj = res.data.data;
+                  this.detailOrderApplyAuditList = res.data.data.handleList;
+                }else if (extra == 2){
+                  this.dataOrderDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
+                  this.dataOrderMainDetailObj = res.data.data;
+                  this.detailOrderApplyAuditList = res.data.data.handleList;
+                  this.payableOrderDataList = res.data.data.payableDataList;
+                }
               }
             }
           }
@@ -1350,6 +1490,8 @@
           await this.initJYLSCount();
         }else if (formCode == 'TYHT' || formCode == 'XSHT' || formCode == 'CGHT'){
           this.initTYHTCount();
+        }else if (formCode == 'BZBX'){
+          this.initBZBXCount();
         }
       },
       initYSYFCount(){
@@ -1388,6 +1530,18 @@
           formCode: this.formCode
         };
         this.$axios.get(common.ht_manage_count, {params: params}).then(res=> {
+          if (res.data.code == 200) {
+            if (res.data.data) {
+              this.appDetailObj = res.data.data;
+            }
+          }
+        });
+      },
+      async initBZBXCount(){
+        let params = {
+          formCode: this.formCode
+        };
+        this.$axios.get(common.bzbx_manage_count, {params: params}).then(res=> {
           if (res.data.code == 200) {
             if (res.data.data) {
               this.appDetailObj = res.data.data;
@@ -1463,7 +1617,6 @@
         return objectStatus(type, str);
       },
       auditStatusTextInfo(str){
-        console.log(str===0);
         return auditStatusText(str);
       },
       auditColorInfo(val){
@@ -1471,6 +1624,9 @@
       },
       auditTextColorInfo(val){
         return auditStatusColor(val);
+      },
+      formXmTextInfo(str, type){
+        return formXmText(str, type);
       },
       expandInfo(){
         let url = "";
@@ -1684,6 +1840,10 @@
         this.dialogOrderDetailVisible = false;
       },
       closeDrawerDetailDialog(){
+        this.dataOrderDetailObj = {};
+        this.dataOrderMainDetailObj = {};
+        this.payableOrderDataList = [];
+        this.detailOrderApplyAuditList = [];
         this.dialogOrderDetailVisible = false;
       },
       closeCheckDrawerDialog(event){
@@ -1895,7 +2055,8 @@
 
         }
       },
-      detailOrderInfo(){
+      detailOrderInfo(item){
+        this.initAuditDetailList(item.id, 'detailOrder', 2);
         this.dialogOrderDetailVisible = true;
       },
       okOrderEditDialog(){

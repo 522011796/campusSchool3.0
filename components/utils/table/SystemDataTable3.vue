@@ -14,10 +14,14 @@
           :label="$t('类型')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">{{ scope.row.formName }}</div>
+              <div class="text-center">
+                <label v-if="scope.row.payableDataList.payableType == 0" class="color-warning">{{$t("应付")}}</label>
+                <label v-if="scope.row.payableDataList.payableType == 1" class="color-success">{{$t("应收")}}</label>
+              </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              {{ scope.row.formName }}
-            </span>
+                <label v-if="scope.row.payableDataList.payableType == 0" class="color-warning">{{$t("应付")}}</label>
+                <label v-if="scope.row.payableDataList.payableType == 1" class="color-success">{{$t("应收")}}</label>
+              </span>
             </el-popover>
           </template>
         </el-table-column>
@@ -26,10 +30,12 @@
           :label="$t('合同编号')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">{{ $moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss") }}</div>
+              <div class="text-center">
+                {{scope.row.formApplyNo}}
+              </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              {{ $moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss") }}
-            </span>
+                {{scope.row.formApplyNo}}
+              </span>
             </el-popover>
           </template>
         </el-table-column>
@@ -38,9 +44,9 @@
           :label="$t('合同名称')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">{{ scope.row.formApplyNo ? scope.row.formApplyNo : '--' }}</div>
+              <div class="text-center">{{ scope.row.noticeName ? scope.row.noticeName : '--' }}</div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              {{ scope.row.formApplyNo ? scope.row.formApplyNo : '--' }}
+              {{ scope.row.noticeName ? scope.row.noticeName : '--' }}
             </span>
             </el-popover>
           </template>
@@ -89,10 +95,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label>{{scope.row.payableDataList.invoiceAmount}}</label>
+                <label>{{scope.row.ht_amount20230501.value}}</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label>{{scope.row.payableDataList.invoiceAmount}}</label>
+                <label>{{scope.row.ht_amount20230501.value}}</label>
               </span>
             </el-popover>
           </template>
@@ -162,10 +168,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label>scope.row.payableDataList.overdueDays</label>
+                <label>{{scope.row.payableDataList.overdueDays}}</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label>scope.row.payableDataList.overdueDays</label>
+                <label>{{scope.row.payableDataList.overdueDays}}</label>
               </span>
             </el-popover>
           </template>
@@ -176,10 +182,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label>scope.row.payableDataList.overdueDays</label>
+                <label>{{scope.row['xm_id20230501'] ? scope.row['xm_id20230501'].value : '--'}}</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label>scope.row.payableDataList.overdueDays</label>
+                <label>{{scope.row['xm_id20230501'] ? scope.row['xm_id20230501'].value : '--'}}</label>
               </span>
             </el-popover>
           </template>
@@ -190,12 +196,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                <label>{{scope.row['tag_ids20230501'] ? scope.row['tag_ids20230501'].value : '--'}}</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                <label>{{scope.row['tag_ids20230501'] ? scope.row['tag_ids20230501'].value : '--'}}</label>
               </span>
             </el-popover>
           </template>
