@@ -112,9 +112,9 @@
           </div>
           <template v-else>
             <system-data-table1 v-if="formName == '项目管理'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight2.height" @editInfo="editInfo($event, 1)" @detailInfo="detailInfo($event, 1)"  @deleteInfo="deleteInfo($event, 1)" @printManage="printManage($event, 1)"></system-data-table1>
-            <system-data-table2 v-if="formName == '采购合同单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 2)"  @deleteInfo="deleteInfo($event, 2)" @printManage="printManage($event, 2)"></system-data-table2>
-            <system-data-table2 v-if="formName == '销售合同单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table2>
-            <system-data-table2 v-if="formName == '通用合同单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table2>
+            <system-data-table2 v-if="formName == '采购合同单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @editInfo="editInfo($event, 2)"  @deleteInfo="deleteInfo($event, 2)" @detailInfo="detailInfo($event, 2)"></system-data-table2>
+            <system-data-table2 v-if="formName == '销售合同单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @editInfo="editInfo($event, 3)"  @deleteInfo="deleteInfo($event, 3)" @detailInfo="detailInfo($event, 3)"></system-data-table2>
+            <system-data-table2 v-if="formName == '通用合同单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @editInfo="editInfo($event, 4)"  @deleteInfo="deleteInfo($event, 4)" @detailInfo="detailInfo($event, 4)"></system-data-table2>
             <system-data-table6 v-if="formName == '报账/报销单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table6>
             <system-data-table7 v-if="formName == '对公打款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table7>
             <system-data-table8 v-if="formName == '普通申请单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table8>
@@ -140,7 +140,7 @@
           </el-form-item>
           <el-form-item :label="$t('项目编号')" prop="no">
             <el-input v-model="form.no" class="width-480">
-              <el-button slot="append" type="default" @click="autoSetNo">{{$t('自动填充')}}</el-button>
+              <el-button slot="append" type="default" @click="autoSetNo(1)">{{$t('自动填充')}}</el-button>
             </el-input>
           </el-form-item>
           <el-form-item :label="$t('项目类型')" prop="type">
@@ -228,35 +228,22 @@
       </div>
     </drawer-layout-right>
 
-    <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="dialogOrderVisible" size="600px" :title="$t('合同设置')" @right-close="cancelDrawDialog">
+    <drawer-layout-right tabindex="0" @close="closeDrawerDialog" :visible="dialogOrderVisible" size="600px" :title="$t('合同设置')" @right-close="cancelDrawDialog">
       <div slot="content" class="color-muted">
         <el-form :model="formOrder" :rules="rules" ref="formOrder" label-width="100px">
           <el-form-item :label="$t('合同名称')" prop="name">
             <el-input v-model="formOrder.name" class="width-480"></el-input>
           </el-form-item>
           <el-form-item :label="$t('合同编号')" prop="no">
-            <el-input v-model="formOrder.no" class="width-480"></el-input>
+            <el-input v-model="formOrder.no" class="width-480">
+              <el-button slot="append" type="default" @click="autoSetNo(2)">{{$t('自动填充')}}</el-button>
+            </el-input>
           </el-form-item>
-          <el-form-item :label="$t('合同类型')" prop="type">
-            <my-select :sel-value="formOrder.type" :options="typeOptions" :width-style="480" @change="handleChange($event, 1)"></my-select>
+          <el-form-item :label="$t('关联单据')">
+            <el-select v-model="formOrder.order" filterable placeholder="请选择" value-key="value" style="width: 480px;" @change="handleChange($event, 2)">
+              <el-option v-for="item in filterBillTypes" :key="item.value" :label="item.label" :value="item"></el-option>
+            </el-select>
           </el-form-item>
-          <el-form-item :label="$t('关联单据')" prop="order">
-            <my-select :sel-value="formOrder.order" :options="orderOptions" :width-style="480" @change="handleChange($event, 2)"></my-select>
-          </el-form-item>
-          <template>
-            <el-row :gutter="16">
-              <el-col :span="12">
-                <el-form-item :label="$t('合同状态')" prop="status">
-                  <my-select :width-style="182" :sel-value="formOrder.status" :options="statusOptions" style="width: 100%" @change="handleChange($event, 3)"></my-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item :label="$t('责任人')" prop="havePerson">
-                  <my-select :width-style="182" :sel-value="formOrder.havePerson" :options="havePersionOptions" @change="handleChange($event, 8)"></my-select>
-                </el-form-item>
-              </el-col>
-            </el-row>
-          </template>
           <template>
             <el-row :gutter="16">
               <el-col :span="12">
@@ -265,8 +252,22 @@
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item :label="$t('所属部门')" prop="dept">
-                  <my-select :width-style="182" :sel-value="formOrder.dept" :options="deptOptions" @change="handleChange($event, 5)"></my-select>
+                <el-form-item :label="$t('责任人')">
+                  <el-popover
+                    popper-class="custom-popper-class-form"
+                    placement="left"
+                    width="700"
+                    trigger="click"
+                    @show="handleShowTeacher(2)">
+                    <div>
+                      <teacher-tree-and-list ref="popverOrderRef" :sel-value="formOrder.userId" @change="handleSelCreateUser($event, 2)"></teacher-tree-and-list>
+                    </div>
+                    <el-button slot="reference" type="success" plain size="small">{{$t("添加")}}</el-button>
+                  </el-popover>
+                  <span v-if="formOrder.user != ''" class="color-warning margin-left-10">
+                    <i class="fa fa-user"></i>
+                    {{formOrder.user}}
+                  </span>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -274,22 +275,24 @@
           <template>
             <el-row :gutter="16">
               <el-col :span="12">
-                <el-form-item :label="$t('开始时间')" prop="startTime">
-                  <my-date-picker :sel-value="formOrder.startTime" width-style="182" @change="handleChange($event,9)"></my-date-picker>
+                <el-form-item :label="$t('关联项目')">
+                  <el-select v-model="formOrder.object" filterable placeholder="请选择" value-key="value" style="width: 182px;" @change="handleChange($event, 7)">
+                    <el-option v-for="item in objectOptions" :key="item.value" :label="item.label" :value="item"></el-option>
+                  </el-select>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item :label="$t('供应商')" prop="merchat">
+                <el-form-item :label="$t('所属部门')">
+                  <my-cascader ref="selectorDept" :props="{ checkStrictly: true }" :sel-value="formOrder.dept" type="4" sub-type="id" width-style="182" @change="handleCascaderDeptChange($event)"></my-cascader>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </template>
+          <template>
+            <el-row :gutter="16">
+              <el-col :span="12">
+                <el-form-item :label="$t('供应商')">
                   <my-select :width-style="182" :sel-value="formOrder.merchat" :options="merchatOptions" @change="handleChange($event, 6)"></my-select>
-                </el-form-item>
-              </el-col>
-            </el-row>
-          </template>
-          <template>
-            <el-row :gutter="16">
-              <el-col :span="12">
-                <el-form-item :label="$t('关联项目')" prop="object">
-                  <my-select :width-style="182" :sel-value="formOrder.object" :options="objectOptions" @change="handleChange($event, 7)"></my-select>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -312,43 +315,50 @@
           </el-form-item>
         </el-form>
 
-        <template>
+        <template v-if="formCode != 'TYHT'">
           <div style="margin-left: 60px">
             <el-row>
               <el-col :span="12">
                 <span class="color-text-default">{{$t('回款计划')}}</span>
+                <el-tooltip class="item" effect="dark" :content="$t('金额仅供参考,准确数据需要提交后查看详细信息')" placement="right">
+                  <i class="fa fa-info-circle"></i>
+                </el-tooltip>
               </el-col>
               <el-col :span="12" class="text-right">
-                <span>{{$t('总金额')}}: 0</span>
-                <span class="margin-left-5">{{$t('已添加')}}: 0</span>
-                <span class="margin-left-5">{{$t('待添加')}}: 0</span>
+                &nbsp;
+<!--                <span>{{$t('总金额')}}: 0</span>-->
+<!--                <span class="margin-left-5">{{$t('已添加')}}: 0</span>-->
+<!--                <span class="margin-left-5">{{$t('待添加')}}: 0</span>-->
               </el-col>
             </el-row>
           </div>
           <table class="custom-table" style="width: 520px;margin-top: 10px;font-size: 12px;margin-left: 60px">
             <tr>
-              <th width="10%">{{$t("期数")}}</th>
+              <th width="8%">{{$t("期数")}}</th>
               <th width="15%">{{$t("比例")}}</th>
-              <th width="20%">{{$t("金额")}}</th>
-              <th width="20%">{{$t("日期")}}</th>
+              <th width="15%">{{$t("金额")}}</th>
+              <th width="27%">{{$t("日期")}}</th>
               <th width="20%">{{$t("备注")}}</th>
               <th width="15%">{{$t("操作")}}</th>
             </tr>
             <tbody>
             <tr v-for="(item, index) in formOrder.backMoney" :key="item.id">
               <td>
-                <my-select size="mini" :placeholder="$t('请选择')" :sel-value="item.type" :options="typeOptions" :width-style="90" @change="handleTableChange($event, index)"></my-select>
+<!--                <el-input size="mini" style="width: 45px" v-model="item.stage"></el-input>-->
+                <label>{{index+1}}</label>
               </td>
               <td>
-                <a href="javascript:;" class="font-size-12 color-grand">{{$t("编辑")}}</a>
+                <el-input size="mini" style="width: 55px" placeholder="1-100" v-model="item.rate"></el-input>%
               </td>
               <td>
-                <el-input size="mini" style="width: 80px" v-model="item.budgetMoney"></el-input>
+                <label>{{isNaN((item.rate * formOrder.orderMoney / 100)) ? '合同金额有误' : (item.rate * formOrder.orderMoney / 100).toFixed(2)}}</label>
               </td>
               <td>
-                <el-input size="mini" style="width: 80px" v-model="item.warningMoney"></el-input>
+                <my-date-picker size="mini" :sel-value="item.time" width-style="125" @change="handleChange($event,17, index)"></my-date-picker>
               </td>
-              <td>{{item.usedMoney}}</td>
+              <td>
+                <el-input size="mini" style="width: 85px" v-model="item.des"></el-input>
+              </td>
               <td>
                 <i class="fa fa-plus color-success" @click="addTableItem(index)"></i>
                 <i v-if="index != 0" class="fa fa-minus color-danger margin-left-5" @click="minTableItem(index)"></i>
@@ -371,128 +381,249 @@
       <div slot="content" class="color-muted">
         <div class="text-left">
           <el-button-group>
-            <el-button size="small" :type="detailType == 1 ? 'primary' : 'default'" @click="changeDetailType($event ,1)">{{ $t("项目信息") }}</el-button>
+            <el-button size="small" :type="detailType == 1 ? 'primary' : 'default'" @click="changeDetailType($event ,1)">{{ formCode == 'TYHT' || formCode == 'XSHT' || formCode == 'CGHT' ? $t("合同信息") : $t("项目信息") }}</el-button>
             <el-button size="small" :type="detailType == 2 ? 'primary' : 'default'" @click="changeDetailType($event ,2)">{{ $t("审批详情") }}</el-button>
-            <el-button size="small" :type="detailType == 3 ? 'primary' : 'default'" @click="changeDetailType($event ,3)">{{ $t("合同单据") }}</el-button>
+            <el-button v-if="formCode != 'TYHT' && formCode != 'XSHT' && formCode != 'CGHT'" size="small" :type="detailType == 3 ? 'primary' : 'default'" @click="changeDetailType($event ,3)">{{ $t("合同单据") }}</el-button>
           </el-button-group>
         </div>
 
         <div class="margin-top-20">
           <template v-if="detailType == 1">
             <div class="detail-block" :style="{height: drawHeight8.height}">
-              <el-form label-width="100px">
-                <el-form-item :label="$t('项目名称')">
-                  <label>{{dataDetailObj['xm_name20230501'] ? dataDetailObj['xm_name20230501']['value'] : '--'}}</label>
-                </el-form-item>
-              </el-form>
-              <el-form label-width="100px">
-                <el-form-item :label="$t('项目编号')">
-                  <label>{{dataDetailObj['xm_no20230501'] ? dataDetailObj['xm_no20230501']['value'] : '--'}}</label>
-                </el-form-item>
-              </el-form>
-              <template>
+              <template v-if="formCode == 'TYHT' || formCode == 'XSHT' || formCode == 'CGHT'">
                 <el-row>
                   <el-col :span="12">
                     <el-form label-width="100px">
-                      <el-form-item :label="$t('项目类型')">
-                        <label>{{dataDetailObj['xm_type20230501'] ? objectTypeInfo(dataDetailObj['xm_type20230501']['value'], 'set') : '--'}}</label>
+                      <el-form-item :label="$t('合同名称')">
+                        <label>{{dataDetailObj['ht_name20230501'] ? dataDetailObj['ht_name20230501']['value'] : '--'}}</label>
                       </el-form-item>
                     </el-form>
                   </el-col>
                   <el-col :span="12">
                     <el-form label-width="100px">
-                      <el-form-item :label="$t('项目预算')">
-                        <label>--</label>
+                      <el-form-item :label="$t('合同编号')">
+                        <label>{{dataDetailObj['ht_no20230501'] ? dataDetailObj['ht_no20230501']['value'] : '--'}}</label>
                       </el-form-item>
                     </el-form>
                   </el-col>
                 </el-row>
-              </template>
-              <template>
-                <el-row>
-                  <el-col :span="12">
-                    <el-form label-width="100px">
-                      <el-form-item :label="$t('项目状态')">
-                        <label>{{dataDetailObj['xm_status20230501'] ? objectStatusInfo(dataDetailObj['xm_status20230501']['value'], 'set') : '--'}}</label>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form label-width="100px">
-                      <el-form-item :label="$t('审批状态')">
-                        <label>{{dataMainDetailObj.status || dataMainDetailObj.status === 0   ? auditStatusTextInfo(dataMainDetailObj.status, 'set') : '--'}}</label>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                </el-row>
-              </template>
-              <template>
-                <el-row>
-                  <el-col :span="12">
-                    <el-form label-width="100px">
-                      <el-form-item :label="$t('开始时间')">
-                        <label>{{dataDetailObj['xm_beginTime20230501'] ? dataDetailObj['xm_beginTime20230501']['value'] : '--'}}</label>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form label-width="100px">
-                      <el-form-item :label="$t('结束时间')">
-                        <label>{{dataDetailObj['xm_endTime20230501'] ? dataDetailObj['xm_endTime20230501']['value'] : '--'}}</label>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                </el-row>
-              </template>
-              <template>
-                <el-row>
-                  <el-col :span="12">
-                    <el-form label-width="100px">
-                      <el-form-item :label="$t('父级项目')">
-                        <label v-if="dataDetailObj['xm_superId20230501']">
-                          <template v-if="dataDetailObj['xm_superId20230501']['value'] == ''">
-                            {{$t("无")}}
-                          </template>
-                          <template v-else>
-                            {{dataDetailObj['xm_superId20230501'] ? dataDetailObj['xm_superId20230501']['value'] : '--'}}
-                          </template>
-                        </label>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form label-width="100px">
-                      <el-form-item :label="$t('负责人')">
-                        <label>{{dataDetailObj['xm_personId20230501'] ? dataDetailObj['xm_personId20230501']['value'] : '--'}}</label>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                </el-row>
-              </template>
-              <el-form label-width="100px">
-                <el-form-item :label="$t('附件')">
-                  <div v-if="dataDetailObj['xm_files20230501']">
-                    <div v-if v-for="(item, index) in dataDetailObj['xm_files20230501']['value']" :key="index" class="pull-left" style="position: relative;margin-right:10px;top: 10px">
-                      <i v-if="item.indexOf('.pdf') > -1" class="fa fa-file-pdf-o" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;" @click="readOtherFile(item)"></i>
-                      <i v-else-if="item.indexOf('.doc') > -1 || item.indexOf('.docx') > -1" class="fa fa-wordpress" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;" @click="readOtherFile(item)"></i>
-                      <el-image
-                        v-else
-                        style="width: 50px; height: 50px"
-                        :src="item"
-                        :preview-src-list="[item]">
-                      </el-image>
+                <template>
+                  <el-row>
+                    <el-col :span="12">
+                      <el-form label-width="100px">
+                        <el-form-item :label="$t('关联单据')">
+                          <label>{{dataDetailObj['tag_ids20230501'] ? dataDetailObj['tag_ids20230501']['name'] : '--'}}</label>
+                        </el-form-item>
+                      </el-form>
+                    </el-col>
+                    <el-col :span="12">
+                      <el-form label-width="100px">
+                        <el-form-item :label="$t('合同金额')">
+                          <label>{{dataDetailObj['ht_amount20230501'] ? dataDetailObj['ht_amount20230501']['value'] : '--'}}</label>
+                        </el-form-item>
+                      </el-form>
+                    </el-col>
+                  </el-row>
+                </template>
+                <template>
+                  <el-row>
+                    <el-col :span="12">
+                      <el-form label-width="100px">
+                        <el-form-item :label="$t('关联项目')">
+                          <label>{{dataDetailObj['xm_id20230501'] ? (dataDetailObj['xm_id20230501']['name'] ? dataDetailObj['xm_id20230501']['name'] : '--') : '--'}}</label>
+                        </el-form-item>
+                      </el-form>
+                    </el-col>
+                    <el-col :span="12">
+                      <el-form label-width="100px">
+                        <el-form-item :label="$t('责任人')">
+                          <label>{{dataDetailObj['ht_duty20230501'] ? (dataDetailObj['ht_duty20230501']['userName'] ? dataDetailObj['ht_duty20230501']['userName'] : '--') : '--'}}</label>
+                        </el-form-item>
+                      </el-form>
+                    </el-col>
+                  </el-row>
+                </template>
+                <el-form label-width="100px">
+                  <el-form-item :label="$t('附件')">
+                    <div v-if="dataDetailObj['ht_files20230501']">
+                      <div v-if="dataDetailObj['ht_files20230501']['value'].length > 0" v-for="(item, index) in dataDetailObj['ht_files20230501']['value']" :key="index" class="pull-left" style="position: relative;margin-right:10px;top: 10px">
+                        <i v-if="item.indexOf('.pdf') > -1" class="fa fa-file-pdf-o" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;" @click="readOtherFile(item)"></i>
+                        <i v-else-if="item.indexOf('.doc') > -1 || item.indexOf('.docx') > -1" class="fa fa-wordpress" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;" @click="readOtherFile(item)"></i>
+                        <el-image
+                          v-else
+                          style="width: 50px; height: 50px"
+                          :src="item"
+                          :preview-src-list="[item]">
+                        </el-image>
+                      </div>
+                      <div v-else>
+                        --
+                      </div>
                     </div>
-                  </div>
-                  <div v-else>
+                    <div v-else>
+                      --
+                    </div>
+                  </el-form-item>
+                </el-form>
+                <el-form label-width="100px">
+                  <el-form-item :label="$t('其他描述')">
+                    <div style="word-wrap:break-word;word-break:break-all;overflow: hidden;">{{dataDetailObj['ht_des20230501'] ? (dataDetailObj['ht_des20230501']['value'] ? dataDetailObj['ht_des20230501']['value'] : '--') : '--'}}</div>
+                  </el-form-item>
+                </el-form>
 
+                <template v-if="formCode == 'XSHT' || formCode == 'CGHT'">
+                  <div style="margin-left: 30px">
+                    <span class="color-text-default">{{$t('回款计划')}}</span>
                   </div>
-                </el-form-item>
-              </el-form>
-              <el-form label-width="100px">
-                <el-form-item :label="$t('其他描述')">
-                  <label>{{dataDetailObj['xm_des20230501'] ? dataDetailObj['xm_des20230501']['value'] : '--'}}</label>
-                </el-form-item>
-              </el-form>
+                  <table class="custom-table" style="width: 520px;margin-top: 10px;font-size: 12px;margin-left: 30px">
+                    <tr>
+                      <th width="10%">{{$t("期数")}}</th>
+                      <th width="15%">{{$t("比例")}}</th>
+                      <th width="15%">{{$t("金额")}}</th>
+                      <th width="25%">{{$t("日期")}}</th>
+                      <th width="30%">{{$t("备注")}}</th>
+                    </tr>
+                    <tbody>
+                    <tr v-for="(item, index) in payableDataList" :key="item.id">
+                      <td>
+                        <!--                <el-input size="mini" style="width: 45px" v-model="item.stage"></el-input>-->
+                        <label>{{item.stage}}</label>
+                      </td>
+                      <td>
+                        <label>{{item.rate}}</label>%
+                      </td>
+                      <td>
+                        <label>{{item.shouldAmount}}</label>
+                      </td>
+                      <td>
+                        <label>{{item.time}}</label>
+                      </td>
+                      <td>
+                        <div class="moon-content-text-ellipsis-class" style="max-width: 200px">{{item.des}}</div>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </template>
+              </template>
+              <template v-if="formCode == 'XMGL'">
+                <el-form label-width="100px">
+                  <el-form-item :label="$t('项目名称')">
+                    <label>{{dataDetailObj['xm_name20230501'] ? dataDetailObj['xm_name20230501']['value'] : '--'}}</label>
+                  </el-form-item>
+                </el-form>
+                <el-form label-width="100px">
+                  <el-form-item :label="$t('项目编号')">
+                    <label>{{dataDetailObj['xm_no20230501'] ? dataDetailObj['xm_no20230501']['value'] : '--'}}</label>
+                  </el-form-item>
+                </el-form>
+                <template>
+                  <el-row>
+                    <el-col :span="12">
+                      <el-form label-width="100px">
+                        <el-form-item :label="$t('项目类型')">
+                          <label>{{dataDetailObj['xm_type20230501'] ? objectTypeInfo(dataDetailObj['xm_type20230501']['value'], 'set') : '--'}}</label>
+                        </el-form-item>
+                      </el-form>
+                    </el-col>
+                    <el-col :span="12">
+                      <el-form label-width="100px">
+                        <el-form-item :label="$t('项目预算')">
+                          <label>--</label>
+                        </el-form-item>
+                      </el-form>
+                    </el-col>
+                  </el-row>
+                </template>
+                <template>
+                  <el-row>
+                    <el-col :span="12">
+                      <el-form label-width="100px">
+                        <el-form-item :label="$t('项目状态')">
+                          <label>{{dataDetailObj['xm_status20230501'] ? (dataDetailObj['xm_status20230501']['value'] ? objectStatusInfo(dataDetailObj['xm_status20230501']['value'], 'set')  : '--') : '--'}}</label>
+                        </el-form-item>
+                      </el-form>
+                    </el-col>
+                    <el-col :span="12">
+                      <el-form label-width="100px">
+                        <el-form-item :label="$t('审批状态')">
+                          <label>{{dataMainDetailObj.status || dataMainDetailObj.status === 0   ? auditStatusTextInfo(dataMainDetailObj.status, 'set') : '--'}}</label>
+                        </el-form-item>
+                      </el-form>
+                    </el-col>
+                  </el-row>
+                </template>
+                <template>
+                  <el-row>
+                    <el-col :span="12">
+                      <el-form label-width="100px">
+                        <el-form-item :label="$t('开始时间')">
+                          <label>{{dataDetailObj['xm_beginTime20230501'] ? (dataDetailObj['xm_beginTime20230501']['value'] ? dataDetailObj['xm_beginTime20230501']['value'] : '--') : '--'}}</label>
+                        </el-form-item>
+                      </el-form>
+                    </el-col>
+                    <el-col :span="12">
+                      <el-form label-width="100px">
+                        <el-form-item :label="$t('结束时间')">
+                          <label>{{dataDetailObj['xm_endTime20230501'] ? (dataDetailObj['xm_endTime20230501']['value'] ? dataDetailObj['xm_endTime20230501']['value'] : '--') : '--'}}</label>
+                        </el-form-item>
+                      </el-form>
+                    </el-col>
+                  </el-row>
+                </template>
+                <template>
+                  <el-row>
+                    <el-col :span="12">
+                      <el-form label-width="100px">
+                        <el-form-item :label="$t('父级项目')">
+                          <label v-if="dataDetailObj['xm_superId20230501']">
+                            <template v-if="dataDetailObj['xm_superId20230501']['value'] == ''">
+                              {{$t("无")}}
+                            </template>
+                            <template v-else>
+                              {{dataDetailObj['xm_superId20230501'] ? (dataDetailObj['xm_superId20230501']['value'] ? dataDetailObj['xm_superId20230501']['value'] : '--') : '--'}}
+                            </template>
+                          </label>
+                        </el-form-item>
+                      </el-form>
+                    </el-col>
+                    <el-col :span="12">
+                      <el-form label-width="100px">
+                        <el-form-item :label="$t('负责人')">
+                          <label>{{dataDetailObj['xm_personId20230501'] ? (dataDetailObj['xm_personId20230501']['userName'] ? dataDetailObj['xm_personId20230501']['userName'] : '--') : '--'}}</label>
+                        </el-form-item>
+                      </el-form>
+                    </el-col>
+                  </el-row>
+                </template>
+                <el-form label-width="100px">
+                  <el-form-item :label="$t('附件')">
+                    <div v-if="dataDetailObj['xm_files20230501']">
+                      <div v-if="dataDetailObj['xm_files20230501']['value'].length > 0" v-for="(item, index) in dataDetailObj['xm_files20230501']['value']" :key="index" class="pull-left" style="position: relative;margin-right:10px;top: 10px">
+                        <i v-if="item.indexOf('.pdf') > -1" class="fa fa-file-pdf-o" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;" @click="readOtherFile(item)"></i>
+                        <i v-else-if="item.indexOf('.doc') > -1 || item.indexOf('.docx') > -1" class="fa fa-wordpress" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;" @click="readOtherFile(item)"></i>
+                        <el-image
+                          v-else
+                          style="width: 50px; height: 50px"
+                          :src="item"
+                          :preview-src-list="[item]">
+                        </el-image>
+                      </div>
+                      <div v-else>
+                        --
+                      </div>
+                    </div>
+                    <div v-else>
+
+                    </div>
+                  </el-form-item>
+                </el-form>
+                <el-form label-width="100px">
+                  <el-form-item :label="$t('其他描述')">
+                    <label>{{dataDetailObj['xm_des20230501'] ? dataDetailObj['xm_des20230501']['value'] : '--'}}</label>
+                  </el-form-item>
+                </el-form>
+              </template>
             </div>
           </template>
 
@@ -869,6 +1000,7 @@
         detailApplyAuditList: [],
         detailCheckApplyContentData: [],
         detailCheckApplyAuditList: [],
+        payableDataList: [],
         dialogLoading: false,
         dialogApp: false,
         visibleConfim: false,
@@ -896,16 +1028,29 @@
           no: '',
           type: '',
           order: '',
+          ordername: '',
           status: '',
           budget: '',
           orderMoney: '',
-          dept: '',
+          dept: [],
+          deptName: [],
           merchat: '',
           havePerson: '',
           object: '',
+          objectName: '',
           startTime: '',
           remarks: '',
-          backMoney: ''
+          backMoney: [
+            {
+              stage: 1,
+              rate: 1,
+              amount: 0,
+              time: '',
+              des: ''
+            }
+          ],
+          user: '',
+          userId: '',
         },
         form: {
           id: '',
@@ -1047,19 +1192,102 @@
                     startTime: res.data.data.applyData.xm_beginTime20230501.value,
                     endTime: res.data.data.applyData.xm_endTime20230501.value,
                     parentObj: res.data.data.applyData.xm_superId20230501.value,
-                    user: res.data.data.applyData.xm_personId20230501.value,
+                    user: res.data.data.applyData.xm_personId20230501.userName,
                     userId: res.data.data.applyData.xm_personId20230501.userId,
                     remarks: res.data.data.applyData.xm_des20230501.value,
                     fileList: []
                   };
                   this.images = res.data.data.applyData.xm_files20230501.value;
                   this.files = res.data.data.applyData.xm_files20230501.filename;
+                }else if (extra == 4 || extra == 2 || extra == 3){
+                  let order = "";
+                  let orderName = "";
+                  let object = "";
+                  let objectName = "";
+
+                  if (res.data.data.applyData['tag_ids20230501'] && res.data.data.applyData['tag_ids20230501']['value'] != ''){
+                    order = {
+                      label: res.data.data.applyData.tag_ids20230501.name,
+                      text: res.data.data.applyData.tag_ids20230501.name,
+                      value: res.data.data.applyData.tag_ids20230501.value
+                    };
+                  }else {
+                    order = '';
+                  }
+
+                  if (res.data.data.applyData['tag_ids20230501'] && res.data.data.applyData['tag_ids20230501']['name'] != ''){
+                    orderName = res.data.data.applyData.tag_ids20230501.name;
+                  }else {
+                    order = '';
+                  }
+
+                  if (res.data.data.applyData['xm_id20230501'] && res.data.data.applyData['xm_id20230501']['value'] != ''){
+                    object = {
+                      label: res.data.data.applyData.xm_id20230501.name,
+                      text: res.data.data.applyData.xm_id20230501.name,
+                      value: res.data.data.applyData.xm_id20230501.value
+                    };
+                  }else {
+                    order = '';
+                  }
+
+                  if (res.data.data.applyData['xm_id20230501'] && res.data.data.applyData['xm_id20230501']['name'] != ''){
+                    objectName = res.data.data.applyData.xm_id20230501.name;
+                  }else {
+                    objectName = '';
+                  }
+
+                  this.formOrder = {
+                    id: res.data.data.id,
+                    name: res.data.data.applyData.ht_name20230501.value,
+                    no: res.data.data.applyData.ht_no20230501.value,
+                    type: '',
+                    order: order,
+                    ordername: orderName,
+                    status: '',
+                    budget: '',
+                    orderMoney: res.data.data.applyData.ht_amount20230501.value,
+                    dept: res.data.data.applyData['apply_dept20230501'] ? res.data.data.applyData.apply_dept20230501.value : '',
+                    deptName: res.data.data.applyData['apply_dept20230501'] ? res.data.data.applyData.apply_dept20230501.deptName : '',
+                    merchat: res.data.data.applyData.ht_supplierId20230501.value,
+                    havePerson: '',
+                    object: object,
+                    objectName: objectName,
+                    startTime: res.data.data.applyData['ht_beginTime20230501'] ? res.data.data.applyData.ht_beginTime20230501.value : '',
+                    remarks: res.data.data.applyData['ht_des20230501'] ? res.data.data.applyData.ht_des20230501.value : '',
+                    backMoney: [],
+                    user: res.data.data.applyData['ht_duty20230501'] ? res.data.data.applyData.ht_duty20230501.userName : '',
+                    userId: res.data.data.applyData['ht_duty20230501'] ? res.data.data.applyData.ht_duty20230501.userId : ''
+                  }
+                  this.images = res.data.data.applyData.ht_files20230501.value;
+                  this.files = res.data.data.applyData.ht_files20230501.filename;
+
+                  if (extra == 2 || extra == 3 || extra == 4){
+                    let ruleList = [];
+                    let count = res.data.data.applyData['ht_stage20230501'] ? res.data.data.applyData['ht_stage20230501'].value : 0;
+                    console.log(count);
+                    for (let i = 0; i < count; i++){
+                      ruleList.push({
+                        stage: res.data.data.applyData['ht_payStage20230501_'+(i+1)].value,
+                        rate: res.data.data.applyData['ht_payRate20230501_'+(i+1)].value,
+                        amount: res.data.data.applyData['ht_payAmount20230501_'+(i+1)].value,
+                        time: res.data.data.applyData['ht_payTime20230501_'+(i+1)].value,
+                        des: res.data.data.applyData['ht_payDes20230501_'+(i+1)].value
+                      });
+                    }
+                    this.formOrder.backMoney = ruleList;
+                  }
                 }
               }else if (type == 'detail'){
                 if (extra == 1){
                   this.dataDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
                   this.dataMainDetailObj = res.data.data;
                   this.detailApplyAuditList = res.data.data.handleList;
+                }else if (extra == 2 || extra == 3 || extra == 4){
+                  this.dataDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
+                  this.dataMainDetailObj = res.data.data;
+                  this.detailApplyAuditList = res.data.data.handleList;
+                  this.payableDataList = res.data.data.payableDataList;
                 }
               }
             }
@@ -1073,12 +1301,28 @@
             let array = [];
             for (let i = 0; i < res.data.data.length; i++){
               array.push({
-                label: res.data.data[i].formName,
-                text: res.data.data[i].formName,
+                label: res.data.data[i].applyData.xm_name20230501.value,
+                text: res.data.data[i].applyData.xm_name20230501.value,
                 value: res.data.data[i]._id
               });
               this.objectOptions = array;
               this.parendObjOptions = array;
+            }
+          }
+        });
+      },
+      initMerchatList(){
+        let params = {};
+        this.$axios.get(common.supplier_account_list, {params: params}).then(res=> {
+          if (res.data.code == 200) {
+            let array = [];
+            for (let i = 0; i < res.data.data.length; i++){
+              array.push({
+                label: res.data.data[i].company,
+                text: res.data.data[i].company,
+                value: res.data.data[i].id
+              });
+              this.merchatOptions = array;
             }
           }
         });
@@ -1104,6 +1348,8 @@
           await this.initSchoolAccount();
           //await this.initJYLSCount(this.schoolAccountIdList.length > 0 ? this.schoolAccountIdList[0].account_id : '');
           await this.initJYLSCount();
+        }else if (formCode == 'TYHT' || formCode == 'XSHT' || formCode == 'CGHT'){
+          this.initTYHTCount();
         }
       },
       initYSYFCount(){
@@ -1133,6 +1379,18 @@
             if (res.data.data) {
               this.appDetailObj = res.data.data;
               this.appDetailObj['account'] = [];
+            }
+          }
+        });
+      },
+      async initTYHTCount(){
+        let params = {
+          formCode: this.formCode
+        };
+        this.$axios.get(common.ht_manage_count, {params: params}).then(res=> {
+          if (res.data.code == 200) {
+            if (res.data.data) {
+              this.appDetailObj = res.data.data;
             }
           }
         });
@@ -1257,7 +1515,20 @@
           this.initAuditDetailList(item.id, 'edit', 1);
           this.dialogBudgetVisible = true;
         }else if (type == 2){
-
+          this.initParentList();
+          this.initMerchatList();
+          this.initAuditDetailList(item.id, 'edit', 2);
+          this.dialogOrderVisible = true;
+        }else if (type == 3){
+          this.initParentList();
+          this.initMerchatList();
+          this.initAuditDetailList(item.id, 'edit', 3);
+          this.dialogOrderVisible = true;
+        }else if (type == 4){
+          this.initParentList();
+          this.initMerchatList();
+          this.initAuditDetailList(item.id, 'edit', 4);
+          this.dialogOrderVisible = true;
         }
       },
       detailInfo(item, type){
@@ -1267,7 +1538,17 @@
           this.initAuditDetailList(item.id, 'detail', 1);
           this.dialogObjServerDetail = true;
         }else if (type == 2){
-          this.dialogOrderServerDetail = true;
+          this.initReal(item.id);
+          this.initAuditDetailList(item.id, 'detail', 2);
+          this.dialogObjServerDetail = true;
+        }else if (type == 3){
+          this.initReal(item.id);
+          this.initAuditDetailList(item.id, 'detail', 2);
+          this.dialogObjServerDetail = true;
+        }else if (type == 4){
+          this.initReal(item.id);
+          this.initAuditDetailList(item.id, 'detail', 2);
+          this.dialogObjServerDetail = true;
         }
       },
       detailCheckClick($event, id){
@@ -1281,13 +1562,17 @@
       printManage(item){
         window.open('/appletInfo/app/formPrint?serverId=' + item._id + "&title=" + item.formName + "&time=" + this.$moment().format("YYYY-MM-DD HH:mm:ss"), '_blank');
       },
-      autoSetNo(){
+      autoSetNo(type){
         let url = common.object_order_auto_no;
         let params = {};
 
         this.$axios.get(url, {params: params}).then(res => {
           if (res.data.data){
-            this.form.no = res.data.data.formApplyNo;
+            if (type == 1){
+              this.form.no = res.data.data.formApplyNo;
+            }else if (type == 2){
+              this.formOrder.no = res.data.data.formApplyNo;
+            }
           }
         });
       },
@@ -1303,12 +1588,17 @@
       handleShowTeacher(type){
         if (type == 1){
           this.$refs.popverUserRef._handleOpen();
+        }else if (type == 2){
+          this.$refs.popverOrderRef._handleOpen();
         }
       },
       handleSelCreateUser(data, type){
         if (type == 1){
           this.form.user = data.real_name;
           this.form.userId = data.user_id;
+        }else if (type == 2){
+          this.formOrder.user = data.real_name;
+          this.formOrder.userId = data.user_id;
         }
       },
       handleCheckCancel(){
@@ -1348,16 +1638,29 @@
           no: '',
           type: '',
           order: '',
+          ordername: '',
           status: '',
           budget: '',
           orderMoney: '',
-          dept: '',
+          dept: [],
+          deptName: [],
           merchat: '',
           havePerson: '',
           object: '',
+          objectName: '',
           startTime: '',
           remarks: '',
-          backMoney: ''
+          backMoney: [
+            {
+              stage: 1,
+              rate: 1,
+              amount: 0,
+              time: '',
+              des: ''
+            }
+          ],
+          user: '',
+          userId: '',
         };
 
         this.detailType = 1;
@@ -1365,6 +1668,11 @@
         this.files = [];
         this.submitStatus = true;
         this.tableOrderDetailData = [];
+        this.objectOptions = [];
+        this.merchatOptions = [];
+        this.parendObjOptions = [];
+        this.payableDataList = [];
+        this.dialogLoading = false;
         this.resetCasadeSelector('selectorDept');
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
@@ -1400,11 +1708,12 @@
       handleCancelChange(data) {
         this.visibleConfim = false;
       },
-      handleChange(event, type){
+      handleChange(event, type, index){
         if (type == 1){
           this.formOrder.type = event;
         }else if (type == 2){
           this.formOrder.order = event;
+          this.formOrder.ordername = event.label;
         }else if (type == 3){
           this.formOrder.status = event;
         }else if (type == 4){
@@ -1415,6 +1724,7 @@
           this.formOrder.merchat = event;
         }else if (type == 7){
           this.formOrder.object = event;
+          this.formOrder.objectName = event.label;
         }else if (type == 8){
           this.formOrder.havePerson = event;
         }else if (type == 9){
@@ -1433,6 +1743,8 @@
           this.form.parentObj = event;
         }else if (type == 16){
           this.form.user = event;
+        }else if (type == 17){
+          this.$set(this.formOrder.backMoney[index], 'time', event);
         }
       },
       handleOkChange(data) {
@@ -1525,7 +1837,9 @@
       handleCascaderDeptChange(data){
         this.form.dept = data;
         this.form.deptName = this.$refs['selectorDept'].$refs.cascaderSelector.getCheckedNodes()[0].pathLabels;
-        console.log(this.$refs['selectorDept'].$refs.cascaderSelector.getCheckedNodes()[0].pathLabels);
+
+        this.formOrder.dept = data;
+        this.formOrder.deptName = this.$refs['selectorDept'].$refs.cascaderSelector.getCheckedNodes()[0].pathLabels;
       },
       search(data){
         this.searchKey = data.input;
@@ -1564,6 +1878,8 @@
           this.initParentList();
           this.dialogBudgetVisible = true;
         }else if (type == 2){
+          this.initParentList();
+          this.initMerchatList();
           this.dialogOrderVisible = true;
         }
       },
@@ -1631,8 +1947,9 @@
                 },
                 {
                   field: 'xm_personId20230501',
-                  value: this.form.user,
+                  value: this.form.userId,
                   userId: this.form.userId,
+                  userName: this.form.user,
                 },
                 {
                   field: 'xm_files20230501',
@@ -1673,7 +1990,136 @@
         });
       },
       okOrderDialog(){
+        let url = '';
+        let error = 0;
+        let req = /^([1-9][0-9]{0,1}|100)$/;
+        this.$refs['formOrder'].validate((valid) => {
+          if (valid) {
+            let params = {};
+            let contentJson = {};
+            contentJson = [
+              {
+                field: 'ht_name20230501',
+                value: this.formOrder.name,
+              },
+              {
+                field: 'ht_no20230501',
+                value: this.formOrder.no,
+              },
+              {
+                field: 'tag_ids20230501',
+                value: this.formOrder.order.value,
+                name: this.formOrder.ordername,
+              },
+              {
+                field: 'ht_amount20230501',
+                value: this.formOrder.orderMoney,
+              },
+              {
+                field: 'apply_dept20230501',
+                value: this.formOrder.dept,
+                deptName: this.formOrder.deptName,
+              },
+              {
+                field: 'xm_id20230501',
+                value: this.formOrder.object.value,
+                name: this.formOrder.objectName,
+              },
+              {
+                field: 'ht_status20230501',
+                value: this.formOrder.status,
+              },
+              {
+                field: 'ht_duty20230501',
+                value: this.formOrder.userId,
+                userId: this.formOrder.userId,
+                userName: this.formOrder.user,
+              },
+              {
+                field: 'ht_supplierId20230501',
+                value: this.formOrder.merchat
+              },
+              {
+                field: 'ht_files20230501',
+                value: this.images,
+                filename: this.files
+              },
+              {
+                field: 'ht_des20230501',
+                value: this.formOrder.remarks
+              }
+            ];
+            this.dialogLoading = true;
 
+            if (this.formCode == 'CGHT' || this.formCode == 'XSHT'){
+              let backRule = [];
+              let error = 0;
+              for (let i = 0; i < this.formOrder.backMoney.length; i++){
+                if (this.formOrder.backMoney[i].rate == ''){
+                  error++;
+                  break;
+                }
+                if (this.formOrder.backMoney[i].rate != '' && !req.test(this.formOrder.backMoney[i].rate)){
+                  error++;
+                  break;
+                }
+                if (this.formOrder.backMoney[i].time == ''){
+                  error++;
+                  break;
+                }
+
+                contentJson.push({
+                  field: 'ht_payStage20230501_' + (i+1),
+                  value: this.formOrder.backMoney[i].stage
+                },{
+                  field: 'ht_payRate20230501_' + (i+1),
+                  value: this.formOrder.backMoney[i].rate
+                },{
+                  field: 'ht_payAmount20230501_' + (i+1),
+                  value: this.formOrder.backMoney[i].amount
+                },{
+                  field: 'ht_payTime20230501_' + (i+1),
+                  value: this.formOrder.backMoney[i].time
+                },{
+                  field: 'ht_payDes20230501_' + (i+1),
+                  value: this.formOrder.backMoney[i].des
+                });
+              }
+
+              if (error > 0){
+                this.dialogLoading = false;
+                MessageWarning(this.$t("规则信息未设置或错误(比例:1-100),请检查!!"));
+                return;
+              }
+            }
+
+            params = {
+              formCode: this.formCode,
+              userId: this.loginUserId,
+              applyContent: JSON.stringify(contentJson),
+              submit: this.submitStatus
+            }
+            console.log(this.formCode);
+
+            url = common.object_order_add;
+
+            if (this.formOrder.id != ''){
+              params['id'] = this.formOrder.id;
+            }
+
+            params = this.$qs.stringify(params);
+            this.$axios.post(url, params, {loading: false}).then(res => {
+              if (res.data.code == 200){
+                this.dialogOrderVisible = false;
+                this.init();
+                MessageSuccess(res.data.desc);
+              }else {
+                MessageError(res.data.desc);
+              }
+              this.dialogLoading = false;
+            });
+          }
+        });
       },
       handleOk(data,textarea){
         let params = {
@@ -1724,6 +2170,19 @@
             MessageWarning(res.data.desc);
           }
         });
+      },
+      addTableItem(index){
+        let obj = {
+          stage: 1,
+          rate: 1,
+          amount: 0,
+          time: '',
+          des: ''
+        };
+        this.formOrder.backMoney.splice(index+1, 0, obj);
+      },
+      minTableItem(index){
+        this.formOrder.backMoney.splice(index, 1);
       }
     }
   }

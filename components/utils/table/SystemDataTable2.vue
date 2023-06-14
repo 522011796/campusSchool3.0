@@ -11,13 +11,13 @@
       <template>
         <el-table-column
           align="center"
-          :label="$t('合同类型')">
+          :label="$t('名称')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">{{ scope.row.formName }}</div>
+              <div class="text-center">{{ scope.row.applyData['ht_name20230501'] ? scope.row.applyData.ht_name20230501.value : '--' }}</div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              {{ scope.row.formName }}
-            </span>
+                {{ scope.row.applyData['ht_name20230501'] ? scope.row.applyData.ht_name20230501.value : '--' }}
+              </span>
             </el-popover>
           </template>
         </el-table-column>
@@ -26,34 +26,22 @@
           :label="$t('编号')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">{{ $moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss") }}</div>
+              <div class="text-center">{{ scope.row.applyData['ht_no20230501'] ? scope.row.applyData.ht_no20230501.value : '--' }}</div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              {{ $moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss") }}
-            </span>
+                {{ scope.row.applyData['ht_no20230501'] ? scope.row.applyData.ht_no20230501.value : '--' }}
+              </span>
             </el-popover>
           </template>
         </el-table-column>
         <el-table-column
           align="center"
-          :label="$t('类型')">
+          :label="$t('责任人')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">{{ scope.row.formApplyNo ? scope.row.formApplyNo : '--' }}</div>
+              <div class="text-center">{{ scope.row.applyData['ht_duty20230501'] ? (scope.row.applyData.ht_duty20230501.userName ? scope.row.applyData.ht_duty20230501.userName : '--') : "--" }}</div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              {{ scope.row.formApplyNo ? scope.row.formApplyNo : '--' }}
-            </span>
-            </el-popover>
-          </template>
-        </el-table-column>
-        <el-table-column
-          align="center"
-          :label="$t('申请人')">
-          <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">{{ scope.row.applyUserName }}</div>
-              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              {{ scope.row.applyUserName }}
-            </span>
+                {{ scope.row.applyData['ht_duty20230501'] ? (scope.row.applyData.ht_duty20230501.userName ? scope.row.applyData.ht_duty20230501.userName : '--') : "--" }}
+              </span>
             </el-popover>
           </template>
         </el-table-column>
@@ -62,10 +50,24 @@
           :label="$t('部门')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">{{ scope.row.userNo }}</div>
+              <div class="text-center">
+                <label v-if="scope.row.applyData['apply_dept20230501']" v-for="(item, index) in scope.row.applyData.apply_dept20230501.deptName" :key="index">
+                  <template>{{item}}</template>
+                  <template v-if="index != scope.row.applyData.apply_dept20230501.deptName.length-1">/</template>
+                </label>
+                <label v-if="scope.row.applyData['apply_dept20230501'] && scope.row.applyData.apply_dept20230501.deptName == ''">
+                  --
+                </label>
+              </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              {{ scope.row.userNo }}
-            </span>
+                <label v-if="scope.row.applyData['apply_dept20230501']" v-for="(item, index) in scope.row.applyData.apply_dept20230501.deptName" :key="index">
+                  <template>{{item}}</template>
+                  <template v-if="index != scope.row.applyData.apply_dept20230501.deptName.length-1">/</template>
+                </label>
+                <label v-if="scope.row.applyData['apply_dept20230501'] && scope.row.applyData.apply_dept20230501.deptName == ''">
+                  --
+                </label>
+              </span>
             </el-popover>
           </template>
         </el-table-column>
@@ -75,10 +77,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                {{scope.row.className}}
+                {{$moment(scope.row.applyTime).format('YYYY-MM-dd HH:mm:ss')}}
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                {{scope.row.className}}
+                {{$moment(scope.row.applyTime).format('YYYY-MM-dd HH:mm:ss')}}
               </span>
             </el-popover>
           </template>
@@ -89,12 +91,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                {{ auditStatusTextInfo(scope.row.status) }}
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                {{ auditStatusTextInfo(scope.row.status) }}
               </span>
             </el-popover>
           </template>
@@ -105,12 +105,24 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                <template v-if="scope.row.applyData['ht_pay_status20230501']">
+                  <label v-if="scope.row.applyData.ht_pay_status20230501.value == 0">{{$("未支付")}}</label>
+                  <label v-if="scope.row.applyData.ht_pay_status20230501.value == 1">{{$("支付中")}}</label>
+                  <label v-if="scope.row.applyData.ht_pay_status20230501.value == 2">{{$("已支付")}}</label>
+                </template>
+                <template v-else>
+                  <span>--</span>
+                </template>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                <template v-if="scope.row.applyData['ht_pay_status20230501']">
+                  <label v-if="scope.row.applyData.ht_pay_status20230501.value == 0">{{$("未支付")}}</label>
+                  <label v-if="scope.row.applyData.ht_pay_status20230501.value == 1">{{$("支付中")}}</label>
+                  <label v-if="scope.row.applyData.ht_pay_status20230501.value == 2">{{$("已支付")}}</label>
+                </template>
+                <template v-else>
+                  <span>--</span>
+                </template>
               </span>
             </el-popover>
           </template>
@@ -121,12 +133,22 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                <template v-if="scope.row.applyData['ht_kp_status20230501']">
+                  <label v-if="scope.row.applyData.ht_kp_status20230501.value == 0">{{$("未开票")}}</label>
+                  <label v-if="scope.row.applyData.ht_kp_status20230501.value == 2">{{$("已开票")}}</label>
+                </template>
+                <template v-else>
+                  <span>--</span>
+                </template>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                <template v-if="scope.row.applyData['ht_kp_status20230501']">
+                  <label v-if="scope.row.applyData.ht_kp_status20230501.value == 0">{{$("未开票")}}</label>
+                  <label v-if="scope.row.applyData.ht_kp_status20230501.value == 2">{{$("已开票")}}</label>
+                </template>
+                <template v-else>
+                  <span>--</span>
+                </template>
               </span>
             </el-popover>
           </template>
@@ -137,108 +159,88 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                {{ scope.row.applyData.ht_amount20230501.value }}
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                {{ scope.row.applyData.ht_amount20230501.value }}
               </span>
             </el-popover>
           </template>
         </el-table-column>
+<!--        <el-table-column-->
+<!--          align="center"-->
+<!--          :label="$t('已付')">-->
+<!--          <template slot-scope="scope">-->
+<!--            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">-->
+<!--              <div class="text-center">-->
+<!--                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>-->
+<!--                <label v-else>{{scope.row.className}}</label>-->
+<!--              </div>-->
+<!--              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">-->
+<!--                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>-->
+<!--                <label v-else>{{scope.row.className}}</label>-->
+<!--              </span>-->
+<!--            </el-popover>-->
+<!--          </template>-->
+<!--        </el-table-column>-->
+<!--        <el-table-column-->
+<!--          align="center"-->
+<!--          :label="$t('待付')">-->
+<!--          <template slot-scope="scope">-->
+<!--            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">-->
+<!--              <div class="text-center">-->
+<!--                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>-->
+<!--                <label v-else>{{scope.row.className}}</label>-->
+<!--              </div>-->
+<!--              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">-->
+<!--                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>-->
+<!--                <label v-else>{{scope.row.className}}</label>-->
+<!--              </span>-->
+<!--            </el-popover>-->
+<!--          </template>-->
+<!--        </el-table-column>-->
+<!--        <el-table-column-->
+<!--          align="center"-->
+<!--          :label="$t('待开票')">-->
+<!--          <template slot-scope="scope">-->
+<!--            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">-->
+<!--              <div class="text-center">-->
+<!--                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>-->
+<!--                <label v-else>{{scope.row.className}}</label>-->
+<!--              </div>-->
+<!--              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">-->
+<!--                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>-->
+<!--                <label v-else>{{scope.row.className}}</label>-->
+<!--              </span>-->
+<!--            </el-popover>-->
+<!--          </template>-->
+<!--        </el-table-column>-->
+<!--        <el-table-column-->
+<!--          align="center"-->
+<!--          :label="$t('占预算')">-->
+<!--          <template slot-scope="scope">-->
+<!--            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">-->
+<!--              <div class="text-center">-->
+<!--                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>-->
+<!--                <label v-else>{{scope.row.className}}</label>-->
+<!--              </div>-->
+<!--              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">-->
+<!--                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>-->
+<!--                <label v-else>{{scope.row.className}}</label>-->
+<!--              </span>-->
+<!--            </el-popover>-->
+<!--          </template>-->
+<!--        </el-table-column>-->
         <el-table-column
           align="center"
-          :label="$t('已付')">
+          :label="$t('关联项目')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                {{ scope.row.applyData['xm_id20230501'] ? (scope.row.applyData.xm_id20230501.name ? scope.row.applyData.xm_id20230501.name : '--') : '--' }}
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
-              </span>
-            </el-popover>
-          </template>
-        </el-table-column>
-        <el-table-column
-          align="center"
-          :label="$t('待付')">
-          <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
-              </div>
-              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
-              </span>
-            </el-popover>
-          </template>
-        </el-table-column>
-        <el-table-column
-          align="center"
-          :label="$t('待开票')">
-          <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
-              </div>
-              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
-              </span>
-            </el-popover>
-          </template>
-        </el-table-column>
-        <el-table-column
-          align="center"
-          :label="$t('占预算')">
-          <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
-              </div>
-              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
-              </span>
-            </el-popover>
-          </template>
-        </el-table-column>
-        <el-table-column
-          align="center"
-          :label="$t('标签')">
-          <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
-              </div>
-              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
-              </span>
-            </el-popover>
-          </template>
-        </el-table-column>
-        <el-table-column
-          align="center"
-          :label="$t('关联状态')">
-          <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
-              </div>
-              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                {{ scope.row.applyData['xm_id20230501'] ? (scope.row.applyData.xm_id20230501.name ? scope.row.applyData.xm_id20230501.name : '--') : '--' }}
               </span>
             </el-popover>
           </template>
@@ -249,12 +251,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                {{ scope.row.applyData['tag_ids20230501'] ? scope.row.applyData.tag_ids20230501.name : '--' }}
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.userType == 4">{{scope.row.departmentName}}</label>
-                <label v-else>{{scope.row.className}}</label>
+                {{ scope.row.applyData['tag_ids20230501'] ? scope.row.applyData.tag_ids20230501.name : '--' }}
               </span>
             </el-popover>
           </template>
@@ -265,9 +265,9 @@
           fixed="right"
           :label="$t('操作')">
           <template slot-scope="scope">
-            <i class="fa fa-file-text margin-right-5 color-grand" @click="detailInfo(scope.row)"></i>
+            <i class="fa fa-edit margin-right-5 color-success" v-if="scope.row.status == -1 || scope.row.status == 4" @click="editInfo(scope.row)"></i>
+            <i class="fa fa-file-text margin-right-5 color-grand" v-if="scope.row.status != -1 && scope.row.status != 4" @click="detailInfo(scope.row)"></i>
             <i class="fa fa-trash margin-right-5 color-danger" @click="deleteInfo(scope.row)"></i>
-            <i class="fa fa-print color-warning" @click="printManage(scope.row)"></i>
           </template>
         </el-table-column>
       </template>
@@ -276,6 +276,8 @@
 </template>
 
 <script>
+  import {auditStatusText} from "~/utils/utils";
+
   export default {
     name: 'SystemDataTable2',
     props: {
@@ -305,6 +307,12 @@
 
     },
     methods: {
+      auditStatusTextInfo(str){
+        return auditStatusText(str);
+      },
+      editInfo(row){
+        this.$emit('editInfo', row);
+      },
       detailInfo(row){
         this.$emit('detailInfo', row);
       },

@@ -4,27 +4,27 @@
       <span class="fa fa-book color-grand"></span>
       <span>
         <label>{{$t("合同总额")}}:</label>
-        <label class="color-grand">0</label>
+        <label class="color-grand">{{objData.totalAmount}}</label>
         <label class="color-grand">{{$t("元")}}</label>
       </span>
       <span class="margin-left-10">
         <label>{{$t("应支付")}}:</label>
-        <label class="color-grand">0</label>
+        <label class="color-grand">{{objData.shouldAmount}}</label>
         <label class="color-grand">{{$t("元")}}</label>
       </span>
       <span class="margin-left-10">
         <label>{{$t("待支付")}}:</label>
-        <label class="color-grand">0</label>
+        <label class="color-grand">{{objData.waitAmount}}</label>
         <label class="color-grand">{{$t("元")}}</label>
       </span>
       <span class="margin-left-10">
         <label>{{$t("已开票")}}:</label>
-        <label class="color-grand">0</label>
+        <label class="color-grand">{{objData.invoiceAmount}}</label>
         <label class="color-grand">{{$t("元")}}</label>
       </span>
       <span class="margin-left-10">
         <label>{{$t("待开票")}}:</label>
-        <label class="color-grand">0</label>
+        <label class="color-grand">{{objData.notInvoiceAmount}}</label>
         <label class="color-grand">{{$t("元")}}</label>
       </span>
     </div>
