@@ -27,6 +27,13 @@
             "path": "/basicInfo/yearAndTerm"
           },
           {
+            "name": "部门信息",
+            "key": "deptInfo",
+            "id": 10210,
+            "top": "basicInfo",
+            "path": "/basicInfo/deptInfo"
+          },
+          {
             "name": "学院信息",
             "key": "college",
             "id": 10300,
@@ -220,6 +227,13 @@
             "path": "/basicInfo/stuRepu"
           },
           {
+            "name": "解除奖惩申请",
+            "key": "stuRelieveRepu",
+            "id": 16250,
+            "top": "basicInfo",
+            "path": "/basicInfo/stuRelieveRepu"
+          },
+          {
             "name": "学生素质学分申请",
             "key": "stuCredit",
             "id": 16300,
@@ -389,6 +403,13 @@
             "path": "/studentInfo/rp/rpApply"
           },
           {
+            "name": "奖惩管理",
+            "key": "rpManage",
+            "id": 30150,
+            "top": "studentInfo",
+            "path": "/studentInfo/rp/rpManage"
+          },
+          {
             "name": "级别管理",
             "key": "level",
             "id": 30200,
@@ -556,6 +577,20 @@
             "id": 35100,
             "top": "studentInfo",
             "path": "/studentInfo/student/manage"
+          },
+          {
+            "name": "学籍异动",
+            "key": "stuChangeInfo",
+            "id": 35150,
+            "top": "studentInfo",
+            "path": "/studentInfo/student/stuChangeInfo"
+          },
+          {
+            "name": "毕业管理",
+            "key": "stuGraduate",
+            "id": 35160,
+            "top": "studentInfo",
+            "path": "/studentInfo/student/stuGraduate"
           },
           {
             "name": "学生报警",
@@ -821,6 +856,13 @@
             "path": "/auditInfo/stuApply/repuApply"
           },
           {
+            "name": "解除奖惩审批",
+            "key": "relieveRepuApply",
+            "id": 50350,
+            "top": "auditInfo",
+            "path": "/auditInfo/stuApply/relieveRepuApply"
+          },
+          {
             "name": "门禁审批",
             "key": "doorApply",
             "id": 50400,
@@ -1044,105 +1086,210 @@
           {
             "name": "应用管理",
             "key": "appManage",
-            "id": 90100,
+            "id": 91000,
             "top": "appletInfo",
             "path": "/appletInfo/app/appManage"
           },
           {
             "name": "应用设计",
             "key": "appCreate",
-            "id": 90200,
+            "id": 92000,
             "top": "appletInfo",
             "path": "/appletInfo/app/appCreate"
           },
           {
             "name": "数据中心",
             "key": "appData",
-            "id": 90300,
+            "id": 93000,
             "top": "appletInfo",
             "path": "/appletInfo/app/appData"
           },
           {
-            "name": "模版中心",
-            "key": "appTemplate",
-            "id": 90400,
-            "top": "appletInfo",
-            "path": "/appletInfo/app/appTemplate"
-          },
-          {
             "name": "类别管理",
             "key": "appType",
-            "id": 90500,
+            "id": 95000,
             "top": "appletInfo",
             "path": "/appletInfo/app/appType"
           }
         ]
       },
       {
-        "name": "流程管理",
+        "name": "流程中心",
         "icon": "fa fa-sitemap",
         "toggle": false,
-        "id": 91000,
-        "key": "flowManage",
+        "id": 96000,
+        "key": "appCenter",
         "keySub": "appletInfo",
         "list": [
           {
-            "name": "流程中心",
-            "key": "flowCenter",
-            "id": 91100,
+            "name": "流程管理",
+            "key": "flowManage",
+            "id": 96100,
             "top": "appletInfo",
-            "path": "/appletInfo/flow/flowCenter"
-          }
-        ]
-      },
-      {
-        "name": "通知公告",
-        "icon": "fa fa-bullhorn",
-        "toggle": false,
-        "id": 92000,
-        "key": "notification",
-        "keySub": "appletInfo",
-        "list": [
-          {
-            "name": "通知公告",
-            "key": "notification",
-            "id": 92100,
-            "top": "appletInfo",
-            "path": "/appletInfo/noti/notification"
+            "path": "/appletInfo/flow/flowManage"
           },
           {
-            "name": "留言反馈",
-            "key": "feedback",
-            "id": 92200,
+            "name": "权限管理",
+            "key": "roleManage",
+            "id": 96200,
             "top": "appletInfo",
-            "path": "/appletInfo/noti/feedback"
-          },
-          {
-            "name": "业务反馈",
-            "key": "business",
-            "id": 92300,
-            "top": "appletInfo",
-            "path": "/appletInfo/noti/business"
+            "path": "/appletInfo/flow/roleManage"
           }
         ]
       },
       {
         "name": "统计中心",
-        "icon": "fa fa-map",
+        "icon": "fa fa-object-group",
         "toggle": false,
-        "id": 93000,
-        "key": "staticCenter",
+        "id": 97000,
+        "key": "appCenter",
         "keySub": "appletInfo",
         "list": [
           {
-            "name": "表单统计",
-            "key": "formStatic",
-            "id": 93100,
+            "name": "统计表管理",
+            "key": "formStaticManage",
+            "id": 97100,
             "top": "appletInfo",
-            "path": "/appletInfo/staticCenter/formStatic"
+            "path": "/appletInfo/staticCenter/formStaticManage"
+          },
+          {
+            "name": "我的统计",
+            "key": "myFormStatic",
+            "id": 97200,
+            "top": "appletInfo",
+            "path": "/appletInfo/staticCenter/myFormStatic"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "enrollInfo",
+    "name": "智慧迎新",
+    "id": 10,
+    "list": [
+      {
+        "name": "迎新管理",
+        "icon": "fa fa-graduation-cap",
+        "toggle": false,
+        "id": 100000,
+        "key": "newArrivalManage",
+        "keySub": "enrollInfo",
+        "list": [
+          {
+            "name": "录取管理",
+            "key": "admissionManage",
+            "id": 100100,
+            "top": "enrollInfo",
+            "path": "/newStudent/manage/admissionManage"
+          },
+          {
+            "name": "流程管理",
+            "key": "flowManage",
+            "id": 100200,
+            "top": "enrollInfo",
+            "path": "/newStudent/manage/flowManage"
+          },
+          {
+            "name": "环节管理",
+            "key": "linkManage",
+            "id": 100300,
+            "top": "enrollInfo",
+            "path": "/newStudent/manage/linkManage"
+          },
+          {
+            "name": "迎新设置",
+            "key": "newSetting",
+            "id": 100400,
+            "top": "enrollInfo",
+            "path": "/newStudent/manage/newSetting"
+          }
+        ]
+      },
+      {
+        "name": "数据中心",
+        "icon": "fa fa-institution",
+        "toggle": false,
+        "id": 101000,
+        "key": "dataCenter",
+        "keySub": "enrollInfo",
+        "list": [
+          {
+            "name": "报到统计",
+            "key": "signStatic",
+            "id": 101100,
+            "top": "enrollInfo",
+            "path": "/newStudent/data/signStatic"
+          },
+          {
+            "name": "流程统计",
+            "key": "flowStatic",
+            "id": 101200,
+            "top": "enrollInfo",
+            "path": "/newStudent/data/flowStatic"
+          },
+          {
+            "name": "报到数据",
+            "key": "signData",
+            "id": 101300,
+            "top": "enrollInfo",
+            "path": "/newStudent/data/signData"
+          },
+          {
+            "name": "缴费数据",
+            "key": "payData",
+            "id": 101400,
+            "top": "enrollInfo",
+            "path": "/newStudent/data/payData"
+          },
+          {
+            "name": "选寝数据",
+            "key": "dormData",
+            "id": 101500,
+            "top": "enrollInfo",
+            "path": "/newStudent/data/dormData"
+          },
+          {
+            "name": "接站数据",
+            "key": "pickUpData",
+            "id": 101600,
+            "top": "enrollInfo",
+            "path": "/newStudent/data/pickUpData"
+          },
+          {
+            "name": "报到记录",
+            "key": "registerData",
+            "id": 101700,
+            "top": "enrollInfo",
+            "path": "/newStudent/data/registerData"
+          },
+          {
+            "name": "自定义环节数据",
+            "key": "linkCustomData",
+            "id": 101800,
+            "top": "enrollInfo",
+            "path": "/newStudent/data/linkCustomData"
+          }
+        ]
+      },
+      {
+        "name": "操作日志",
+        "icon": "fa fa-tags",
+        "toggle": false,
+        "id": 103000,
+        "key": "arrivalLogOpr",
+        "keySub": "enrollInfo",
+        "list": [
+          {
+            "name": "操作日志",
+            "key": "log",
+            "id": 103100,
+            "top": "enrollInfo",
+            "path": "/newStudent/log/log"
           }
         ]
       }
     ]
   }
 ]
+

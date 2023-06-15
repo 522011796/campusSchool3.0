@@ -199,6 +199,9 @@ export default {
       tableHeight18: {
         'height': ''
       },
+      tableHeight19: {
+        'height': ''
+      },
       tableMiddleHeight: {
         'height': ''
       },
@@ -280,6 +283,9 @@ export default {
         'height': ''
       },
       drawHeight8: {
+        'height': ''
+      },
+      drawHeight9: {
         'height': ''
       }
     }
@@ -434,6 +440,7 @@ export default {
         this.tableHeight16.height = window.innerHeight - 130 + 'px';
         this.tableHeight17.height = window.innerHeight - 258 + 'px';
         this.tableHeight18.height = window.innerHeight - 258 + 'px';
+        this.tableHeight19.height = window.innerHeight - 180 + 'px';
         this.tableMiddleHeight.height = window.innerHeight - 335 + 'px';
         this.divHeight["max-height"] = window.innerHeight - 205 + 'px';
         this.divHeight2["max-height"] = window.innerHeight - 235 + 'px';
@@ -454,6 +461,7 @@ export default {
         this.drawHeight6.height = window.innerHeight - 120 + 'px';
         this.drawHeight7.height = window.innerHeight - 80 + 'px';
         this.drawHeight8.height = window.innerHeight - 180 + 'px';
+        this.drawHeight9.height = window.innerHeight - 120 + 'px';
       }
     },
     async initVersionData(){

@@ -379,509 +379,20 @@
 
     <drawer-layout-right tabindex="0" @close="closeDrawerDialog" :visible="dialogObjServerDetail" size="600px" :title="$t('详细查看')" @right-close="cancelDrawDialog">
       <div slot="content" class="color-muted">
-        <div class="text-left">
-          <el-button-group>
-            <el-button size="small" :type="detailType == 1 ? 'primary' : 'default'" @click="changeDetailType($event ,1)">{{ formCode == 'TYHT' || formCode == 'XSHT' || formCode == 'CGHT' ? $t("合同信息") : $t("项目信息") }}</el-button>
-            <el-button size="small" :type="detailType == 2 ? 'primary' : 'default'" @click="changeDetailType($event ,2)">{{ $t("审批详情") }}</el-button>
-            <el-button v-if="formCode != 'TYHT' && formCode != 'XSHT' && formCode != 'CGHT'" size="small" :type="detailType == 3 ? 'primary' : 'default'" @click="changeDetailType($event ,3)">{{ $t("合同单据") }}</el-button>
-          </el-button-group>
-        </div>
+        <form-system-detail
+          :form-code="formCode"
+          :detail-type="detailType"
+          :data-main-detail-obj="dataMainDetailObj"
+          :data-detail-obj="dataDetailObj"
+          :extra-data-list="payableDataList"
+          :detail-apply-audit-list="detailApplyAuditList"
+          :table-order-detail-data="tableOrderDetailData"
+          :draw-height="tableHeight19.height"
+          :table-height="tableHeight.height"
+          @changeDetailType="changeDetailType"
+          @detailOrderInfo="detailOrderInfo">
 
-        <div class="margin-top-20">
-          <template v-if="detailType == 1">
-            <div class="detail-block" :style="{height: drawHeight8.height}">
-              <template v-if="formCode == 'TYHT' || formCode == 'XSHT' || formCode == 'CGHT'">
-                <el-row>
-                  <el-col :span="12">
-                    <el-form label-width="100px">
-                      <el-form-item :label="$t('合同名称')">
-                        <label>{{dataDetailObj['ht_name20230501'] ? dataDetailObj['ht_name20230501']['value'] : '--'}}</label>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form label-width="100px">
-                      <el-form-item :label="$t('合同编号')">
-                        <label>{{dataDetailObj['ht_no20230501'] ? dataDetailObj['ht_no20230501']['value'] : '--'}}</label>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                </el-row>
-                <template>
-                  <el-row>
-                    <el-col :span="12">
-                      <el-form label-width="100px">
-                        <el-form-item :label="$t('关联单据')">
-                          <label>{{dataDetailObj['tag_ids20230501'] ? dataDetailObj['tag_ids20230501']['name'] : '--'}}</label>
-                        </el-form-item>
-                      </el-form>
-                    </el-col>
-                    <el-col :span="12">
-                      <el-form label-width="100px">
-                        <el-form-item :label="$t('合同金额')">
-                          <label>{{dataDetailObj['ht_amount20230501'] ? dataDetailObj['ht_amount20230501']['value'] : '--'}}</label>
-                        </el-form-item>
-                      </el-form>
-                    </el-col>
-                  </el-row>
-                </template>
-                <template>
-                  <el-row>
-                    <el-col :span="12">
-                      <el-form label-width="100px">
-                        <el-form-item :label="$t('关联项目')">
-                          <label>{{dataDetailObj['xm_id20230501'] ? (dataDetailObj['xm_id20230501']['name'] ? dataDetailObj['xm_id20230501']['name'] : '--') : '--'}}</label>
-                        </el-form-item>
-                      </el-form>
-                    </el-col>
-                    <el-col :span="12">
-                      <el-form label-width="100px">
-                        <el-form-item :label="$t('责任人')">
-                          <label>{{dataDetailObj['ht_duty20230501'] ? (dataDetailObj['ht_duty20230501']['userName'] ? dataDetailObj['ht_duty20230501']['userName'] : '--') : '--'}}</label>
-                        </el-form-item>
-                      </el-form>
-                    </el-col>
-                  </el-row>
-                </template>
-                <el-form label-width="100px">
-                  <el-form-item :label="$t('附件')">
-                    <div v-if="dataDetailObj['ht_files20230501']">
-                      <div v-if="dataDetailObj['ht_files20230501']['value'].length > 0" v-for="(item, index) in dataDetailObj['ht_files20230501']['value']" :key="index" class="pull-left" style="position: relative;margin-right:10px;top: 10px">
-                        <i v-if="item.indexOf('.pdf') > -1" class="fa fa-file-pdf-o" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;" @click="readOtherFile(item)"></i>
-                        <i v-else-if="item.indexOf('.doc') > -1 || item.indexOf('.docx') > -1" class="fa fa-wordpress" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;" @click="readOtherFile(item)"></i>
-                        <el-image
-                          v-else
-                          style="width: 50px; height: 50px"
-                          :src="item"
-                          :preview-src-list="[item]">
-                        </el-image>
-                      </div>
-                      <div v-else>
-                        --
-                      </div>
-                    </div>
-                    <div v-else>
-                      --
-                    </div>
-                  </el-form-item>
-                </el-form>
-                <el-form label-width="100px">
-                  <el-form-item :label="$t('其他描述')">
-                    <div style="word-wrap:break-word;word-break:break-all;overflow: hidden;">{{dataDetailObj['ht_des20230501'] ? (dataDetailObj['ht_des20230501']['value'] ? dataDetailObj['ht_des20230501']['value'] : '--') : '--'}}</div>
-                  </el-form-item>
-                </el-form>
-
-                <template v-if="formCode == 'XSHT' || formCode == 'CGHT'">
-                  <div style="margin-left: 30px">
-                    <span class="color-text-default">{{$t('回款计划')}}</span>
-                  </div>
-                  <table class="custom-table" style="width: 520px;margin-top: 10px;font-size: 12px;margin-left: 30px">
-                    <tr>
-                      <th width="10%">{{$t("期数")}}</th>
-                      <th width="15%">{{$t("比例")}}</th>
-                      <th width="15%">{{$t("金额")}}</th>
-                      <th width="25%">{{$t("日期")}}</th>
-                      <th width="30%">{{$t("备注")}}</th>
-                    </tr>
-                    <tbody>
-                    <tr v-for="(item, index) in payableDataList" :key="item.id">
-                      <td>
-                        <!--                <el-input size="mini" style="width: 45px" v-model="item.stage"></el-input>-->
-                        <label>{{item.stage}}</label>
-                      </td>
-                      <td>
-                        <label>{{item.rate}}</label>%
-                      </td>
-                      <td>
-                        <label>{{item.shouldAmount}}</label>
-                      </td>
-                      <td>
-                        <label>{{item.time}}</label>
-                      </td>
-                      <td>
-                        <div class="moon-content-text-ellipsis-class" style="max-width: 200px">{{item.des}}</div>
-                      </td>
-                    </tr>
-                    </tbody>
-                  </table>
-                </template>
-              </template>
-              <template v-if="formCode == 'XMGL'">
-                <el-row>
-                  <el-col :span="12">
-                    <el-form label-width="100px">
-                      <el-form-item :label="$t('项目名称')">
-                        <label>{{dataDetailObj['xm_name20230501'] ? dataDetailObj['xm_name20230501']['value'] : '--'}}</label>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                  <el-col :span="12">
-                    <el-form label-width="100px">
-                      <el-form-item :label="$t('项目编号')">
-                        <label>{{dataDetailObj['xm_no20230501'] ? dataDetailObj['xm_no20230501']['value'] : '--'}}</label>
-                      </el-form-item>
-                    </el-form>
-                  </el-col>
-                </el-row>
-                <template>
-                  <el-row>
-                    <el-col :span="12">
-                      <el-form label-width="100px">
-                        <el-form-item :label="$t('项目类型')">
-                          <label>{{dataDetailObj['xm_type20230501'] ? objectTypeInfo(dataDetailObj['xm_type20230501']['value'], 'set') : '--'}}</label>
-                        </el-form-item>
-                      </el-form>
-                    </el-col>
-                    <el-col :span="12">
-                      <el-form label-width="100px">
-                        <el-form-item :label="$t('项目预算')">
-                          <label>--</label>
-                        </el-form-item>
-                      </el-form>
-                    </el-col>
-                  </el-row>
-                </template>
-                <template>
-                  <el-row>
-                    <el-col :span="12">
-                      <el-form label-width="100px">
-                        <el-form-item :label="$t('项目状态')">
-                          <label>{{dataDetailObj['xm_status20230501'] ? (dataDetailObj['xm_status20230501']['value'] ? objectStatusInfo(dataDetailObj['xm_status20230501']['value'], 'set')  : '--') : '--'}}</label>
-                        </el-form-item>
-                      </el-form>
-                    </el-col>
-                    <el-col :span="12">
-                      <el-form label-width="100px">
-                        <el-form-item :label="$t('审批状态')">
-                          <label>{{dataMainDetailObj.status || dataMainDetailObj.status === 0   ? auditStatusTextInfo(dataMainDetailObj.status, 'set') : '--'}}</label>
-                        </el-form-item>
-                      </el-form>
-                    </el-col>
-                  </el-row>
-                </template>
-                <template>
-                  <el-row>
-                    <el-col :span="12">
-                      <el-form label-width="100px">
-                        <el-form-item :label="$t('开始时间')">
-                          <label>{{dataDetailObj['xm_beginTime20230501'] ? (dataDetailObj['xm_beginTime20230501']['value'] ? dataDetailObj['xm_beginTime20230501']['value'] : '--') : '--'}}</label>
-                        </el-form-item>
-                      </el-form>
-                    </el-col>
-                    <el-col :span="12">
-                      <el-form label-width="100px">
-                        <el-form-item :label="$t('结束时间')">
-                          <label>{{dataDetailObj['xm_endTime20230501'] ? (dataDetailObj['xm_endTime20230501']['value'] ? dataDetailObj['xm_endTime20230501']['value'] : '--') : '--'}}</label>
-                        </el-form-item>
-                      </el-form>
-                    </el-col>
-                  </el-row>
-                </template>
-                <template>
-                  <el-row>
-                    <el-col :span="12">
-                      <el-form label-width="100px">
-                        <el-form-item :label="$t('父级项目')">
-                          <label v-if="dataDetailObj['xm_superId20230501']">
-                            <template v-if="dataDetailObj['xm_superId20230501']['value'] == ''">
-                              {{$t("无")}}
-                            </template>
-                            <template v-else>
-                              {{dataDetailObj['xm_superId20230501'] ? (dataDetailObj['xm_superId20230501']['value'] ? dataDetailObj['xm_superId20230501']['value'] : '--') : '--'}}
-                            </template>
-                          </label>
-                        </el-form-item>
-                      </el-form>
-                    </el-col>
-                    <el-col :span="12">
-                      <el-form label-width="100px">
-                        <el-form-item :label="$t('负责人')">
-                          <label>{{dataDetailObj['xm_personId20230501'] ? (dataDetailObj['xm_personId20230501']['userName'] ? dataDetailObj['xm_personId20230501']['userName'] : '--') : '--'}}</label>
-                        </el-form-item>
-                      </el-form>
-                    </el-col>
-                  </el-row>
-                </template>
-                <el-form label-width="100px">
-                  <el-form-item :label="$t('附件')">
-                    <div v-if="dataDetailObj['xm_files20230501']">
-                      <div v-if="dataDetailObj['xm_files20230501']['value'].length > 0" v-for="(item, index) in dataDetailObj['xm_files20230501']['value']" :key="index" class="pull-left" style="position: relative;margin-right:10px;top: 10px">
-                        <i v-if="item.indexOf('.pdf') > -1" class="fa fa-file-pdf-o" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;" @click="readOtherFile(item)"></i>
-                        <i v-else-if="item.indexOf('.doc') > -1 || item.indexOf('.docx') > -1" class="fa fa-wordpress" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;" @click="readOtherFile(item)"></i>
-                        <el-image
-                          v-else
-                          style="width: 50px; height: 50px"
-                          :src="item"
-                          :preview-src-list="[item]">
-                        </el-image>
-                      </div>
-                      <div v-else>
-                        --
-                      </div>
-                    </div>
-                    <div v-else>
-
-                    </div>
-                  </el-form-item>
-                </el-form>
-                <el-form label-width="100px">
-                  <el-form-item :label="$t('其他描述')">
-                    <label>{{dataDetailObj['xm_des20230501'] ? dataDetailObj['xm_des20230501']['value'] : '--'}}</label>
-                  </el-form-item>
-                </el-form>
-              </template>
-            </div>
-          </template>
-
-          <template v-if="detailType == 2">
-            <div class="detail-top-block" style="overflow-x: auto;padding: 20px 0px;white-space:nowrap;">
-              <div :style="{width: (detailApplyAuditList.length+2) * (600/4)+'px'}">
-                <div class="pull-left text-center" :style="{width: 600/4+'px'}">
-                  <div class="text-center margin-bottom-5">
-                    <span class="font-size-12"> &nbsp; </span>
-                  </div>
-                  <div class="detail-top-item-green-block">
-                    <span class="font-size-12 color-white">{{$t("开始")}}</span>
-                  </div>
-                  <div class="text-center margin-top-5">
-                    <span class="font-size-12">{{$t("提交")}}</span>
-                  </div>
-                </div>
-
-                <div :style="{width: 600/4+'px'}" class="pull-left text-center" v-for="(item, index) in detailApplyAuditList" :key="index">
-                  <template>
-                    <div class="text-center margin-bottom-5">
-                      <span class="font-size-12">
-                        <label>{{ auditStatusTextInfo(item.status) }}</label>
-                      </span>
-                    </div>
-                    <div class="detail-top-item-warning-block" :class="auditColorInfo(item.status)">
-                      <el-popover
-                        placement="left"
-                        width="150"
-                        trigger="hover">
-                        <div style="max-height: 100px;overflow-y: auto">
-                          <div v-for="(itemUser, indexUser) in item.handleUserNameList" :key="indexUser">
-                            <div class="font-size-12 padding-tb-5 text-center">
-                              <el-tag type="success" size="mini">{{itemUser}}</el-tag>
-                            </div>
-                          </div>
-                        </div>
-                        <div slot="reference" class="font-size-12 color-white moon-content-text-ellipsis-class text-center">
-                          {{ item.handleUserNameList.join() }}
-                        </div>
-                      </el-popover>
-                    </div>
-                    <div class="text-center margin-top-5">
-                      <span class="font-size-12">{{ item.nodeName }}</span>
-                    </div>
-                  </template>
-                </div>
-
-                <div class="pull-left text-center" :style="{width: 600/4+'px'}">
-                  <div class="text-center margin-bottom-5">
-                    <span class="font-size-12"> &nbsp; </span>
-                  </div>
-                  <div class="detail-top-item-default-block">
-                    <span class="font-size-12 color-white">{{$t("结束")}}</span>
-                  </div>
-                  <div class="text-center margin-top-5">
-                    <span class="font-size-12">{{$t("完成")}}</span>
-                  </div>
-                </div>
-
-                <div class="moon-clearfix"></div>
-              </div>
-            </div>
-
-            <div class="detail-block margin-top-20">
-              <el-steps direction="vertical" space="60px">
-                <el-step v-for="(item, index) in detailApplyAuditList" :key="index">
-                  <div slot="icon">
-                    <i v-if="item.handleLevel == 1" class="fa fa-flag" :class="auditTextColorInfo(item.status)" style="font-size: 12px"></i>
-                    <i v-if="item.handleLevel == 2" class="fa fa-bullseye" style="font-size: 12px"></i>
-                  </div>
-                  <div slot="title" class="font-size-12">
-                    <span v-if="item.nodeType == 'handle'" class="color-success">
-                      {{item.nodeName}}{{ $t("审批") }}
-                      <label v-if="item.andor == 'and'" class="color-warning"> ({{ $t("与签") }}) </label>
-                      <label v-if="item.andor == 'or'" class="color-warning"> ({{ $t("或签") }}) </label>
-                    </span>
-                    <span v-if="item.nodeType == 'cc'" class="color-warning">{{ $t("抄送") }}</span>
-                  </div>
-                  <div slot="description" class="font-size-12 color-sub-title">
-                    <div>
-                      <template v-if="item.nodeType == 'handle'">
-                        <div v-for="(itemUser, indexUser) in item.handleUserList" :key="indexUser">
-                          <span class="color-grand"> <i class="fa fa-user"></i> {{ itemUser.userName }} </span>
-                          <span class="margin-left-10">
-                          <label v-if="itemUser.status === -1" class="color-warning">{{$t("撤销")}}</label>
-                          <label v-if="itemUser.status === 0" class="color-warning">{{$t("待审核")}}</label>
-                          <label v-if="itemUser.status === 3" class="color-success">
-                            {{$t("已通过")}}
-                            <el-tooltip v-if="itemUser.des" class="item" effect="dark" :content="itemUser.des" placement="top">
-                              <i class="fa fa-warning color-warning"></i>
-                            </el-tooltip>
-                            <span v-if="itemUser.url && itemUser.url.length > 0">
-                              <el-image v-for="(itemImg, indexImg) in itemUser.url" :key="indexImg" :src="itemImg" style="width: 20px; height: 20px;position: relative; top: 5px;margin-left: 5px"
-                                        :preview-src-list="[itemImg]">
-                              </el-image>
-                            </span>
-                          </label>
-                          <label v-if="itemUser.status === 4" class="color-danger">{{$t("未通过")}}</label>
-                          <label v-if="itemUser.status === 1" class="color-success">
-                            {{$t("已通过")}}
-                            <el-tooltip v-if="itemUser.des" class="item" effect="dark" :content="itemUser.des" placement="top">
-                              <i class="fa fa-warning color-warning"></i>
-                            </el-tooltip>
-                            <span v-if="itemUser.url && itemUser.url.length > 0">
-                              <el-image v-for="(itemImg, indexImg) in itemUser.url" :key="indexImg" :src="itemImg" style="width: 20px; height: 20px;position: relative; top: 5px;margin-left: 5px"
-                                        :preview-src-list="[itemImg]">
-                              </el-image>
-                            </span>
-                          </label>
-                          <label v-if="itemUser.status === 2" class="color-warning">
-                            {{$t("已驳回")}}
-                            <el-tooltip v-if="itemUser.des" class="item" effect="dark" :content="itemUser.des" placement="top">
-                              <i class="fa fa-warning color-warning"></i>
-                            </el-tooltip>
-                            <span v-if="itemUser.url && itemUser.url.length > 0">
-                              <el-image v-for="(itemImg, indexImg) in itemUser.url" :key="indexImg" :src="itemImg" style="width: 20px; height: 20px;position: relative; top: 5px;margin-left: 5px"
-                                        :preview-src-list="[itemImg]">
-                              </el-image>
-                            </span>
-                          </label>
-                          <label v-if="itemUser.status === 5" class="color-warning">{{$t("无需审批")}}</label>
-                          <label v-if="itemUser.status === 8" class="color-warning">{{$t("审批中")}}</label>
-                        </span>
-                          <span class="margin-left-10" v-if="itemUser.handleTime">
-                          <label class="color-muted">{{$moment(itemUser.handleTime).format("YYYY-MM-DD HH:mm:ss")}}</label>
-                        </span>
-                        </div>
-                      </template>
-                      <template v-if="item.nodeType == 'cc'">
-                        <el-tag size="mini" v-for="(itemUser, indexUser) in item.handleUserNameList" :key="indexUser" v-if="indexUser <= 5">
-                          <div class="moon-content-text-ellipsis-class" style="width: 50px">
-                            <el-tooltip class="item" effect="dark" :content="itemUser" placement="top-start">
-                              <span>{{ itemUser }}</span>
-                            </el-tooltip>
-                          </div>
-                        </el-tag>
-
-                        <el-popover
-                          placement="left"
-                          width="200"
-                          trigger="hover"
-                          v-if="item.handleUserNameList.length > 5">
-                          <div style="height: 100px;overflow-y: auto">
-                            <div v-for="(itemUser, indexUser) in item.handleUserNameList" :key="indexUser">
-                              <div class="font-size-12 padding-tb-5">
-                                <span>{{itemUser}}</span>
-                              </div>
-                            </div>
-                          </div>
-                          <el-tag slot="reference" size="mini" type="success">
-                            <div class="moon-content-text-ellipsis-class padding-lr-5">
-                              <i class="fa fa-user"></i>
-                              <label class="margin-left-5">{{item.handleUserNameList.length}}</label>
-                            </div>
-                          </el-tag>
-                        </el-popover>
-                      </template>
-                    </div>
-                  </div>
-                </el-step>
-              </el-steps>
-            </div>
-          </template>
-
-          <template v-if="detailType == 3">
-            <div class="detail-block" :style="{height: drawHeight8.height}">
-              <div>
-                <span>{{$t("被下列合同/单据关联")}}</span>
-              </div>
-              <div class="margin-top-10">
-                <el-table
-                  :data="tableOrderDetailData"
-                  header-cell-class-name="custom-table-cell-bg"
-                  size="small"
-                  row-key="id"
-                  border
-                  :max-height="tableHeight.height"
-                  style="width: 100%">
-                  <el-table-column
-                    align="center"
-                    :label="$t('类型')">
-                    <template slot-scope="scope">
-                      <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                        <div class="text-center"><span>{{formXmTextInfo(scope.row.formCode, 'set')}}</span></div>
-                        <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                          <span>{{formXmTextInfo(scope.row.formCode, 'set')}}</span>
-                        </div>
-                      </el-popover>
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    align="center"
-                    :label="$t('名称')">
-                    <template slot-scope="scope">
-                      <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                        <div class="text-center">{{scope.row.applyData['ht_name20230501'] ? scope.row.applyData['ht_name20230501'].value : '--'}}</div>
-                        <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                          <span>{{scope.row.applyData['ht_name20230501'] ? scope.row.applyData['ht_name20230501'].value : '--'}}</span>
-                        </div>
-                      </el-popover>
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    align="center"
-                    :label="$t('编号')">
-                    <template slot-scope="scope">
-                      <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                        <div class="text-center">{{scope.row.formApplyNo}}</div>
-                        <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                          <span>{{scope.row.formApplyNo}}</span>
-                        </div>
-                      </el-popover>
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    align="center"
-                    :label="$t('金额')">
-                    <template slot-scope="scope">
-                      <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                        <div class="text-center">{{scope.row.applyData['ht_amount20230501'] ? scope.row.applyData['ht_amount20230501'].value: '--'}}</div>
-                        <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                          <span>{{scope.row.applyData['ht_amount20230501'] ? scope.row.applyData['ht_amount20230501'].value: '--'}}</span>
-                        </div>
-                      </el-popover>
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    align="center"
-                    :label="$t('状态')">
-                    <template slot-scope="scope">
-                      <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                        <div class="text-center">{{ auditStatusTextInfo(scope.row.status) }}</div>
-                        <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                          <span>{{auditStatusTextInfo(scope.row.status)}}</span>
-                        </div>
-                      </el-popover>
-                    </template>
-                  </el-table-column>
-                  <el-table-column
-                    align="center"
-                    label="操作"
-                    width="80">
-                    <template slot-scope="scope">
-                      <a href="javascript:;" class="color-success" @click="detailOrderInfo(scope.row, false)">{{$t("查看")}}</a>
-                    </template>
-                  </el-table-column>
-                </el-table>
-              </div>
-            </div>
-          </template>
-        </div>
+        </form-system-detail>
       </div>
       <div slot="footer" class="padding-lr-10">
         <audit-button v-if="detailType == 2" :sel-value="dataMainDetailObj" @ok="handleOk" @no="handleNo" @cancel="handleCancel"></audit-button>
@@ -891,123 +402,19 @@
 
     <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDetailDialog" :visible="dialogOrderDetailVisible" size="550px" :title="$t('详细信息')" @right-close="cancelDrawDetailDialog">
       <div slot="content" class="color-muted">
-        <div class="detail-block" :style="{height: drawHeight8.height}">
-          <template>
-            <el-row>
-              <el-col :span="12">
-                <el-form label-width="100px">
-                  <el-form-item :label="$t('合同名称')">
-                    <label>{{dataOrderDetailObj['ht_name20230501'] ? dataOrderDetailObj['ht_name20230501']['value'] : '--'}}</label>
-                  </el-form-item>
-                </el-form>
-              </el-col>
-              <el-col :span="12">
-                <el-form label-width="100px">
-                  <el-form-item :label="$t('合同编号')">
-                    <label>{{dataOrderDetailObj['ht_no20230501'] ? dataOrderDetailObj['ht_no20230501']['value'] : '--'}}</label>
-                  </el-form-item>
-                </el-form>
-              </el-col>
-            </el-row>
-            <template>
-              <el-row>
-                <el-col :span="12">
-                  <el-form label-width="100px">
-                    <el-form-item :label="$t('关联单据')">
-                      <label>{{dataOrderDetailObj['tag_ids20230501'] ? dataOrderDetailObj['tag_ids20230501']['name'] : '--'}}</label>
-                    </el-form-item>
-                  </el-form>
-                </el-col>
-                <el-col :span="12">
-                  <el-form label-width="100px">
-                    <el-form-item :label="$t('合同金额')">
-                      <label>{{dataOrderDetailObj['ht_amount20230501'] ? dataOrderDetailObj['ht_amount20230501']['value'] : '--'}}</label>
-                    </el-form-item>
-                  </el-form>
-                </el-col>
-              </el-row>
-            </template>
-            <template>
-              <el-row>
-                <el-col :span="12">
-                  <el-form label-width="100px">
-                    <el-form-item :label="$t('关联项目')">
-                      <label>{{dataOrderDetailObj['xm_id20230501'] ? (dataOrderDetailObj['xm_id20230501']['name'] ? dataOrderDetailObj['xm_id20230501']['name'] : '--') : '--'}}</label>
-                    </el-form-item>
-                  </el-form>
-                </el-col>
-                <el-col :span="12">
-                  <el-form label-width="100px">
-                    <el-form-item :label="$t('责任人')">
-                      <label>{{dataOrderDetailObj['ht_duty20230501'] ? (dataOrderDetailObj['ht_duty20230501']['userName'] ? dataOrderDetailObj['ht_duty20230501']['userName'] : '--') : '--'}}</label>
-                    </el-form-item>
-                  </el-form>
-                </el-col>
-              </el-row>
-            </template>
-            <el-form label-width="100px">
-              <el-form-item :label="$t('附件')">
-                <div v-if="dataOrderDetailObj['ht_files20230501']">
-                  <div v-if="dataOrderDetailObj['ht_files20230501']['value'].length > 0" v-for="(item, index) in dataOrderDetailObj['ht_files20230501']['value']" :key="index" class="pull-left" style="position: relative;margin-right:10px;top: 10px">
-                    <i v-if="item.indexOf('.pdf') > -1" class="fa fa-file-pdf-o" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;" @click="readOtherFile(item)"></i>
-                    <i v-else-if="item.indexOf('.doc') > -1 || item.indexOf('.docx') > -1" class="fa fa-wordpress" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;" @click="readOtherFile(item)"></i>
-                    <el-image
-                      v-else
-                      style="width: 50px; height: 50px"
-                      :src="item"
-                      :preview-src-list="[item]">
-                    </el-image>
-                  </div>
-                  <div v-else>
-                    --
-                  </div>
-                </div>
-                <div v-else>
-                  --
-                </div>
-              </el-form-item>
-            </el-form>
-            <el-form label-width="100px">
-              <el-form-item :label="$t('其他描述')">
-                <div style="word-wrap:break-word;word-break:break-all;overflow: hidden;">{{dataOrderDetailObj['ht_des20230501'] ? (dataOrderDetailObj['ht_des20230501']['value'] ? dataOrderDetailObj['ht_des20230501']['value'] : '--') : '--'}}</div>
-              </el-form-item>
-            </el-form>
+        <div class="detail-block" :style="{height: drawHeight9.height}">
+          <form-system-order-detail
+            :detail-type="detailOrderType"
+            :data-detail-obj="dataOrderDetailObj"
+            :data-main-detail-obj = "dataOrderMainDetailObj"
+            :extra-data-list="payableOrderDataList"
+            :detail-apply-audit-list="detailOrderApplyAuditList"
+            :table-order-detail-data="payableOrderDataList"
+            :draw-height="tableHeight19.height"
+            :table-height="tableHeight.height"
+            @changeDetailType="changeOrderDetailType">
 
-            <template>
-              <div style="margin-left: 30px">
-                <span class="color-text-default">{{$t('回款计划')}}</span>
-              </div>
-              <table class="custom-table" style="width: 520px;margin-top: 10px;font-size: 12px;margin-left: 30px">
-                <tr>
-                  <th width="10%">{{$t("期数")}}</th>
-                  <th width="15%">{{$t("比例")}}</th>
-                  <th width="15%">{{$t("金额")}}</th>
-                  <th width="25%">{{$t("日期")}}</th>
-                  <th width="30%">{{$t("备注")}}</th>
-                </tr>
-                <tbody>
-                <tr v-for="(item, index) in payableOrderDataList" :key="item.id">
-                  <td>
-                    <!--                <el-input size="mini" style="width: 45px" v-model="item.stage"></el-input>-->
-                    <label>{{item.stage}}</label>
-                  </td>
-                  <td>
-                    <label>{{item.rate}}</label>%
-                  </td>
-                  <td>
-                    <label>{{item.shouldAmount}}</label>
-                  </td>
-                  <td>
-                    <label>{{item.time}}</label>
-                  </td>
-                  <td>
-                    <div class="moon-content-text-ellipsis-class" style="max-width: 200px">{{item.des}}</div>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-            </template>
-          </template>
+          </form-system-order-detail>
         </div>
       </div>
     </drawer-layout-right>
@@ -1047,9 +454,13 @@
   import orderValidater from "~/utils/validater/orderValidater";
   import appObjectValidater from "~/utils/validater/appObjectValidater";
   import TeacherTreeAndList from "~/components/utils/treeAndList/TeacherTreeAndList.vue";
+  import FormSystemOrderDetail from "~/components/utils/formDetail/FormSystemOrderDetail.vue";
+  import FormSystemDetail from "~/components/utils/formDetail/FormSystemDetail.vue";
 
   export default {
     components: {
+      FormSystemDetail,
+      FormSystemOrderDetail,
       TeacherTreeAndList,
       SystemDataTable10,
       SystemDataTable9,
@@ -1097,6 +508,7 @@
         currentNodeKey: '',
         types: [],
         detailType: 1,
+        detailOrderType: 1,
         detailInfoType: '',
         subTitle: '',
         collegeData: '',
@@ -1417,6 +829,7 @@
                   this.dataMainDetailObj = res.data.data;
                   this.detailApplyAuditList = res.data.data.handleList;
                   this.payableDataList = res.data.data.payableDataList;
+                  this.tableOrderDetailData = res.data.data.payableDataList;
                 }
               }else if (type == 'detailOrder'){
                 if (extra == 1){
@@ -1694,16 +1107,16 @@
           this.initAuditDetailList(item.id, 'detail', 1);
           this.dialogObjServerDetail = true;
         }else if (type == 2){
-          this.initReal(item.id);
+          //this.initReal(item.id);
           this.initAuditDetailList(item.id, 'detail', 2);
           this.dialogObjServerDetail = true;
         }else if (type == 3){
-          this.initReal(item.id);
-          this.initAuditDetailList(item.id, 'detail', 2);
+          //this.initReal(item.id);
+          this.initAuditDetailList(item.id, 'detail', 3);
           this.dialogObjServerDetail = true;
         }else if (type == 4){
-          this.initReal(item.id);
-          this.initAuditDetailList(item.id, 'detail', 2);
+          //this.initReal(item.id);
+          this.initAuditDetailList(item.id, 'detail', 4);
           this.dialogObjServerDetail = true;
         }
       },
@@ -1762,6 +1175,9 @@
       },
       changeDetailType(event, type){
         this.detailType = type;
+      },
+      changeOrderDetailType(event, type){
+        this.detailOrderType = type;
       },
       closeDialog(event){
         this.listId = "";
@@ -1844,6 +1260,7 @@
         this.dataOrderMainDetailObj = {};
         this.payableOrderDataList = [];
         this.detailOrderApplyAuditList = [];
+        this.detailOrderType = 1;
         this.dialogOrderDetailVisible = false;
       },
       closeCheckDrawerDialog(event){
@@ -2056,6 +1473,7 @@
         }
       },
       detailOrderInfo(item){
+        console.log(111);
         this.initAuditDetailList(item.id, 'detailOrder', 2);
         this.dialogOrderDetailVisible = true;
       },
