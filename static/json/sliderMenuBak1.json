@@ -1126,14 +1126,14 @@
             "key": "flowManage",
             "id": 96100,
             "top": "appletInfo",
-            "path": "/appletInfo/flow/flowManage"
+            "path": "/appletInfo/system/flowManage"
           },
           {
             "name": "权限管理",
             "key": "roleManage",
             "id": 96200,
             "top": "appletInfo",
-            "path": "/appletInfo/flow/roleManage"
+            "path": "/appletInfo/system/roleManage"
           }
         ]
       },

@@ -301,6 +301,12 @@ const filterScoreFlowTypes = [
   { text: '减分', value: "减分", label: '减分'}
 ];
 
+const filterScoreFixedFlowTypes = [
+  { text: "加分", value: "加分", label: '加分'},
+  { text: '减分', value: "减分", label: '减分'},
+  { text: '固定人加减分', value: "固定人加减分", label: '固定人加减分'}
+];
+
 const filterTripFlowTypes = [
   { text: "出差", value: "出差", label: '出差'}
 ];
@@ -690,6 +696,7 @@ export default {
   currentYearId,
   filterAttendTypes,
   filterScoreFlowTypes,
+  filterScoreFixedFlowTypes,
   filterTripFlowTypes,
   filterCardFlowTypes,
   filterUserTypes,

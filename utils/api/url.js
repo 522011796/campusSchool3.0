@@ -804,6 +804,7 @@ export const common = {
   ht_list: '/proxy/school/applet/form/apply/ht/list',//合同列表
 
   file_manage_page: '/proxy/school/applet/form/apply-file/page',//附件管理分页
+  file_manage_download: '/proxy/school/url/download',//附件下载
 
   payable_manage_page: '/proxy/school/applet/form/apply-payable/page',//应收应付分页
   payable_manage_count: '/proxy/school/applet/form/apply-payable/count',//应收应付统计

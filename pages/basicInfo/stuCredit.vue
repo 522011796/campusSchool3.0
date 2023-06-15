@@ -141,7 +141,26 @@
             <el-input v-model="form.content" class="width-300"></el-input>
           </el-form-item>
           <el-form-item label="条件" prop="conditionType">
-            <my-select width-style="300" :sel-value="form.conditionType" :options="filterScoreFlowTypes" @change="handleChangeSelect($event)"></my-select>
+            <div class="layout-inline">
+              <my-select class="layout-item" width-style="300" :sel-value="form.conditionType" :options="filterScoreFixedFlowTypes" @change="handleChangeSelect($event)"></my-select>
+              <div v-if="form.conditionType == '固定人加减分'" class="layout-item">
+                <el-popover
+                  popper-class="custom-popper-class-form"
+                  placement="left"
+                  width="700"
+                  trigger="click"
+                  @show="handleShowTeacher(1)">
+                  <div>
+                    <teacher-tree-and-list ref="popverUserRef" set-type="check" :sel-arr="form.conditionUserId" @select="handleSelCreateUser($event, 1)"></teacher-tree-and-list>
+                  </div>
+                  <el-button slot="reference" type="success" plain class="fa fa-user">
+                    <span v-if="form.conditionUserId.length > 0" class="color-warning margin-left-10">
+                      {{$t("人数")}}:{{form.conditionUserId.length}}
+                    </span>
+                  </el-button>
+                </el-popover>
+              </div>
+            </div>
           </el-form-item>
           <el-form-item label="状态">
             <my-radio :sel-value="form.status" :label="true" @change="changeStatus($event, true)">{{$t("启用")}}</my-radio>
@@ -183,10 +202,12 @@
   import MyFlowProcessList from "../../components/utils/status/MyFlowProcessList";
   import flowProcessValidater from "../../utils/validater/flowProcessValidater";
   import MySelect from "../../components/MySelect";
+  import TeacherTreeAndList from "~/components/utils/treeAndList/TeacherTreeAndList.vue";
 
   export default {
     mixins: [mixins, flowProcessValidater],
     components: {
+      TeacherTreeAndList,
       MySelect,
       MyRadio,
       LayoutTb,MyInputButton,MyPagination,DialogNormal,MyNormalDialog,DrawerRight,DrawerLayoutRight,MyFlowType,MyFlowCondition,MyFlowProcess,MyFlowProcessList},
@@ -215,6 +236,8 @@
           conditionType: '',
           conditionDay1: '',
           conditionDay2: '',
+          conditionUser: [],
+          conditionUserId: [],
           status: true,
           handleProcess: []
         },
@@ -275,6 +298,8 @@
           conditionType: '',
           conditionDay1: '',
           conditionDay2: '',
+          conditionUser: [],
+          conditionUserId: [],
           status: row.enable,
           handleProcess: []
         };
@@ -282,6 +307,15 @@
         for (let i = 0; i < handleCondition.length; i++){
           if (handleCondition[i].type == 'scoreType'){
             this.form.conditionType = handleCondition[i].value1;
+            let arr = [];
+            if (handleCondition[i].value1 == '固定人加减分'){
+              for (let j = 0; j < handleCondition[i].value2.length; j++){
+                arr.push({
+                  user_id: handleCondition[i].value2[j]
+                });
+              }
+              this.form.conditionUserId = arr;
+            }
           }
         }
         let handleProcess = row.handle_process;
@@ -311,6 +345,24 @@
         this.form.id = row.id;
         this.subTitle = row.name;
         this.visibleConfim = true;
+      },
+      handleShowTeacher(type){
+        if (type == 1){
+          this.$refs.popverUserRef._handleOpen();
+        }else if (type == 2){
+          this.$refs.popverOrderRef._handleOpen();
+        }
+      },
+      handleSelCreateUser(data, type){
+        if (type == 1){
+          this.form.conditionUser = [];
+          this.form.conditionUserId = [];
+          for (let i = 0; i < data.length; i++){
+            console.log(data);
+            this.form.conditionUser.push(data[i].real_name);
+            this.form.conditionUserId.push(data[i].user_id);
+          }
+        }
       },
       cancelDialog(){
         this.modalVisible = false;
@@ -377,11 +429,25 @@
               des: this.form.content,
               enable: this.form.status,
               name: this.form.name,
+              userId: this.form.conditionUserId
             };
             params['handleConditions'] = [{
               type: 'scoreType',
               value1: this.form.conditionType
             }];
+            if (this.form.conditionType == '固定人加减分'){
+              if (this.form.conditionUserId.length == 0){
+                MessageWarning(this.$t("请设置加减分人"));
+                return;
+              }else {
+                params['handleConditions'] = [{
+                  type: 'scoreType',
+                  value1: this.form.conditionType,
+                  value2: this.form.conditionUserId
+                }];
+              }
+            }
+
             let processList = this.$refs.flowProcessRef._getFlowProcessData();
             let processData = [];
             for (let i = 0; i < processList.length; i++){

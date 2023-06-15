@@ -102,6 +102,7 @@ export default {
       currentWeekList: global.currentWeekList,
       filterAttendTypes: global.filterAttendTypes,
       filterScoreFlowTypes: global.filterScoreFlowTypes,
+      filterScoreFixedFlowTypes: global.filterScoreFixedFlowTypes,
       filterTripFlowTypes: global.filterTripFlowTypes,
       filterCardFlowTypes: global.filterCardFlowTypes,
       filterUserTypes: global.filterUserTypes,

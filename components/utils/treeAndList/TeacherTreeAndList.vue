@@ -140,7 +140,7 @@
         params['realName'] = this.commSearchKey['input'];
         //this.commSelUserArr = [];
         //this.commSelUserNameArr = [];
-        this.$axios.get(common.teacher_list, {params: params}).then(res => {
+        this.$axios.get(common.teacher_list, {params: params, loading: false}).then(res => {
           if (res.data.data){
             //this.$refs.commTableRef.clearSelection();
             for (let i = 0; i < res.data.data.page.list.length; i++){

@@ -110,9 +110,9 @@
             :label="$t('关联费用')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.category_name}}</div>
+                <div class="text-center">{{scope.row['applyData'] ? scope.row['applyData']['cost_allName20230501'] : '--'}}</div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <span>{{scope.row.category_name}}</span>
+                  <span>{{scope.row['applyData'] ? scope.row['applyData']['cost_allName20230501'] : '--'}}</span>
                 </div>
               </el-popover>
             </template>
@@ -300,8 +300,9 @@
         };
         this.dialogType = true;
       },
-      downInfo(){
-
+      downInfo(item){
+        let url = common.file_manage_download + "?url=" + item.fileDataList.url + "&fileName="  + item.fileDataList.name;
+        window.open(url, "_blank");
       },
       detailOrderListInfo(){
         this.dialogOrderDetailVisible = true;

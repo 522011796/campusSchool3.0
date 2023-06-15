@@ -103,7 +103,7 @@
         <label class="color-grand">{{$t("元")}}</label>
       </span>
     </div>
-    <div class="font-size-12" v-if="formId == '对公打款'">
+    <div class="font-size-12" v-if="formId == '对公打款单'">
       <span class="fa fa-book color-grand"></span>
       <span>
         <label>{{$t("总额")}}:</label>
