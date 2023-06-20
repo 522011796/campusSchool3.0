@@ -428,8 +428,7 @@
               applyTypeCode: 'ScoreApply',
               des: this.form.content,
               enable: this.form.status,
-              name: this.form.name,
-              userId: this.form.conditionUserId
+              name: this.form.name
             };
             params['handleConditions'] = [{
               type: 'scoreType',

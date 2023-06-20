@@ -1091,11 +1091,18 @@
             "path": "/appletInfo/app/appManage"
           },
           {
-            "name": "表单(服务)设计",
+            "name": "应用设计",
             "key": "appCreate",
             "id": 92000,
             "top": "appletInfo",
             "path": "/appletInfo/app/appCreate"
+          },
+          {
+            "name": "数据中心",
+            "key": "appData",
+            "id": 93000,
+            "top": "appletInfo",
+            "path": "/appletInfo/app/appData"
           },
           {
             "name": "类别管理",
@@ -1107,61 +1114,7 @@
         ]
       },
       {
-        "name": "数据中心",
-        "icon": "fa fa-cubes",
-        "toggle": false,
-        "id": 92500,
-        "key": "appCenter",
-        "keySub": "appletInfo",
-        "list": [
-          {
-            "name": "自定义应用",
-            "key": "appCustomData",
-            "id": 93000,
-            "top": "appletInfo",
-            "path": "/appletInfo/app/appData"
-          },
-          {
-            "name": "系统应用",
-            "key": "appSystemData",
-            "id": 92575,
-            "top": "appletInfo",
-            "path": "/appletInfo/app/appSystemData"
-          },{
-            "name": "附件管理",
-            "key": "fileManage",
-            "id": 96300,
-            "top": "appletInfo",
-            "path": "/appletInfo/system/fileManage"
-          }
-        ]
-      },
-      {
-        "name": "统计中心",
-        "icon": "fa fa-object-group",
-        "toggle": false,
-        "id": 97000,
-        "key": "appCenter",
-        "keySub": "appletInfo",
-        "list": [
-          {
-            "name": "统计表管理",
-            "key": "formStaticManage",
-            "id": 97100,
-            "top": "appletInfo",
-            "path": "/appletInfo/staticCenter/formStaticManage"
-          },
-          {
-            "name": "我的统计表",
-            "key": "myFormStatic",
-            "id": 97200,
-            "top": "appletInfo",
-            "path": "/appletInfo/staticCenter/myFormStatic"
-          }
-        ]
-      },
-      {
-        "name": "系统服务",
+        "name": "流程中心",
         "icon": "fa fa-sitemap",
         "toggle": false,
         "id": 96000,
@@ -1181,34 +1134,30 @@
             "id": 96200,
             "top": "appletInfo",
             "path": "/appletInfo/system/roleManage"
+          }
+        ]
+      },
+      {
+        "name": "统计中心",
+        "icon": "fa fa-object-group",
+        "toggle": false,
+        "id": 97000,
+        "key": "appCenter",
+        "keySub": "appletInfo",
+        "list": [
+          {
+            "name": "统计表管理",
+            "key": "formStaticManage",
+            "id": 97100,
+            "top": "appletInfo",
+            "path": "/appletInfo/staticCenter/formStaticManage"
           },
           {
-            "name": "预算管理",
-            "key": "budgetManage",
-            "id": 96400,
+            "name": "我的统计",
+            "key": "myFormStatic",
+            "id": 97200,
             "top": "appletInfo",
-            "path": "/appletInfo/system/budgetManage"
-          },
-          {
-            "name": "费控管理",
-            "key": "moneyManage",
-            "id": 96500,
-            "top": "appletInfo",
-            "path": "/appletInfo/system/moneyManage"
-          },
-          {
-            "name": "费用管理",
-            "key": "costManage",
-            "id": 96600,
-            "top": "appletInfo",
-            "path": "/appletInfo/system/costManage"
-          },
-          {
-            "name": "标签管理",
-            "key": "tagManage",
-            "id": 96700,
-            "top": "appletInfo",
-            "path": "/appletInfo/system/tagManage"
+            "path": "/appletInfo/staticCenter/myFormStatic"
           }
         ]
       }
@@ -1343,3 +1292,4 @@
     ]
   }
 ]
+
