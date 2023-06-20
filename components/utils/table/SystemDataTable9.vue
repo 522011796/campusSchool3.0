@@ -231,7 +231,8 @@
                 {{ scope.row.applyData['rela_apply'] ? (scope.row.applyData.rela_apply.value ? scope.row.applyData.rela_apply.value : '--') : '--' }}
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                {{ scope.row.applyData['rela_apply'] ? (scope.row.applyData.rela_apply.value ? scope.row.applyData.rela_apply.value : '--') : '--' }}
+                <a v-if="scope.row.applyData['rela_apply'] && scope.row.applyData.rela_apply.value" href="javascript:;" class="color-grand" @click="detailInfo(scope.row)">{{scope.row.applyData.rela_apply.value}}</a>
+                <span v-else>--</span>
               </span>
             </el-popover>
           </template>

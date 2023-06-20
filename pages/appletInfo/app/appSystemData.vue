@@ -118,7 +118,7 @@
             <system-data-table6 v-if="formName == '报账/报销单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table6>
             <system-data-table7 v-if="formName == '对公打款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table7>
             <system-data-table8 v-if="formName == '普通申请单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table8>
-            <system-data-table9 v-if="formName == '借款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table9>
+            <system-data-table9 v-if="formName == '借款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 9)"></system-data-table9>
             <system-data-table10 v-if="formName == '收款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table10>
             <system-data-table10 v-if="formName == '还款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table10>
             <system-data-table3 v-if="formName == '应收应付'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table3>
@@ -419,6 +419,25 @@
       </div>
     </drawer-layout-right>
 
+    <drawer-layout-right tabindex="0" @close="closeDrawerDialog" :visible="dialogTagsVisible" size="600px" :title="$t('详细查看')" @right-close="cancelDrawDialog">
+      <div slot="content" class="color-muted">
+        <form-system-tags-detail
+          :detail-type="detailType"
+          :data-detail-obj="dataDetailObj"
+          :data-main-detail-obj = "dataMainDetailObj"
+          :extra-data-list="tableTagsDetailData"
+          :detail-apply-audit-list="detailApplyAuditList"
+          :draw-height="drawHeight8.height"
+          @changeDetailType="changeDetailType">
+
+        </form-system-tags-detail>
+      </div>
+      <div slot="footer" class="padding-lr-10">
+        <!--        <audit-button v-if="detailType == 2" :sel-value="dataMainDetailObj" @ok="handleOk" @no="handleNo" @cancel="handleCancel"></audit-button>-->
+        <el-button size="small" @click="cancelDrawDialog">{{$t("取消")}}</el-button>
+      </div>
+    </drawer-layout-right>
+
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="确认需要删除该信息？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
   </div>
 </template>
@@ -456,9 +475,11 @@
   import TeacherTreeAndList from "~/components/utils/treeAndList/TeacherTreeAndList.vue";
   import FormSystemOrderDetail from "~/components/utils/formDetail/FormSystemOrderDetail.vue";
   import FormSystemDetail from "~/components/utils/formDetail/FormSystemDetail.vue";
+  import FormSystemTagsDetail from "~/components/utils/formDetail/FormSystemTagsDetail.vue";
 
   export default {
     components: {
+      FormSystemTagsDetail,
       FormSystemDetail,
       FormSystemOrderDetail,
       TeacherTreeAndList,
@@ -483,6 +504,7 @@
         tableDetailData: [],
         tableDataTitles: [],
         tableOrderDetailData: [],
+        tableTagsDetailData: [],
         collegeList: [],
         categorys: [],
         applyContentArr: [],
@@ -555,6 +577,7 @@
         dialogOrderVisible: false,
         dialogBudgetVisible: false,
         dialogOrderDetailVisible: false,
+        dialogTagsVisible: false,
         mainMenuType: 1,
         subMenuType: 4,
         mainMenu: 1,
@@ -830,6 +853,27 @@
                   this.detailApplyAuditList = res.data.data.handleList;
                   this.payableDataList = res.data.data.payableDataList;
                   this.tableOrderDetailData = res.data.data.payableDataList;
+                }else if (extra == 9){
+                  this.dataDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
+                  this.dataMainDetailObj = res.data.data;
+                  this.detailApplyAuditList = res.data.data.handleList;
+                  if (res.data.data.formCode == 'XMGL'){
+                    this.initReal(item._id);
+                  }else if (res.data.data.formCode == 'XSHT' || res.data.data.formCode == 'CGHT' || res.data.data.formCode == 'TYHT'){
+                    let ruleList = [];
+                    //let count = res.data.data.applyData['ht_stage20230501'] ? res.data.data.applyData['ht_stage20230501'].value : 0;
+                    console.log(res.data.data.payableDataList);
+                    for (let i = 0; i < res.data.data.payableDataList.length; i++){
+                      ruleList.push({
+                        stage: res.data.data.payableDataList[i].stage,
+                        rate: res.data.data.payableDataList[i].rate,
+                        amount: res.data.data.payableDataList[i].shouldAmount,
+                        time: res.data.data.payableDataList[i].time,
+                        des: res.data.data.payableDataList[i].des,
+                      });
+                    }
+                    this.tableTagsDetailData = ruleList;
+                  }
                 }
               }else if (type == 'detailOrder'){
                 if (extra == 1){
@@ -1132,6 +1176,10 @@
           //this.initReal(item.id);
           this.initAuditDetailList(item.id, 'detail', 4);
           this.dialogObjServerDetail = true;
+        }else if (type == 9){
+          //this.initReal(item.id);
+          this.initAuditDetailList(item.id, 'detail', 9);
+          this.dialogTagsVisible = true;
         }
       },
       detailCheckClick($event, id){
@@ -1254,6 +1302,7 @@
         this.files = [];
         this.submitStatus = true;
         this.tableOrderDetailData = [];
+        this.tableTagsDetailData = [];
         this.objectOptions = [];
         this.merchatOptions = [];
         this.parendObjOptions = [];
@@ -1268,6 +1317,7 @@
         this.dialogObjServerDetail = false;
         this.dialogOrderServerDetail = false;
         this.dialogOrderDetailVisible = false;
+        this.dialogTagsVisible = false;
       },
       closeDrawerDetailDialog(){
         this.dataOrderDetailObj = {};
@@ -1289,6 +1339,7 @@
         this.dialogObjServerDetail = false;
         this.dialogOrderServerDetail = false;
         this.dialogOrderDetailVisible = false;
+        this.dialogTagsVisible = false;
       },
       cancelDrawDetailDialog(){
         this.dialogOrderDetailVisible = false;
