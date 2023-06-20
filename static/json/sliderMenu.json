@@ -1091,18 +1091,11 @@
             "path": "/appletInfo/app/appManage"
           },
           {
-            "name": "应用设计",
+            "name": "表单(服务)设计",
             "key": "appCreate",
             "id": 92000,
             "top": "appletInfo",
             "path": "/appletInfo/app/appCreate"
-          },
-          {
-            "name": "数据中心",
-            "key": "appData",
-            "id": 93000,
-            "top": "appletInfo",
-            "path": "/appletInfo/app/appData"
           },
           {
             "name": "类别管理",
@@ -1114,26 +1107,32 @@
         ]
       },
       {
-        "name": "流程中心",
-        "icon": "fa fa-sitemap",
+        "name": "数据中心",
+        "icon": "fa fa-cubes",
         "toggle": false,
-        "id": 96000,
+        "id": 92500,
         "key": "appCenter",
         "keySub": "appletInfo",
         "list": [
           {
-            "name": "流程管理",
-            "key": "flowManage",
-            "id": 96100,
+            "name": "自定义应用",
+            "key": "appCustomData",
+            "id": 93000,
             "top": "appletInfo",
-            "path": "/appletInfo/system/flowManage"
+            "path": "/appletInfo/app/appData"
           },
           {
-            "name": "权限管理",
-            "key": "roleManage",
-            "id": 96200,
+            "name": "系统应用",
+            "key": "appSystemData",
+            "id": 92575,
             "top": "appletInfo",
-            "path": "/appletInfo/system/roleManage"
+            "path": "/appletInfo/app/appSystemData"
+          },{
+            "name": "附件管理",
+            "key": "fileManage",
+            "id": 96300,
+            "top": "appletInfo",
+            "path": "/appletInfo/system/fileManage"
           }
         ]
       },
@@ -1153,11 +1152,63 @@
             "path": "/appletInfo/staticCenter/formStaticManage"
           },
           {
-            "name": "我的统计",
+            "name": "我的统计表",
             "key": "myFormStatic",
             "id": 97200,
             "top": "appletInfo",
             "path": "/appletInfo/staticCenter/myFormStatic"
+          }
+        ]
+      },
+      {
+        "name": "系统服务",
+        "icon": "fa fa-sitemap",
+        "toggle": false,
+        "id": 96000,
+        "key": "appCenter",
+        "keySub": "appletInfo",
+        "list": [
+          {
+            "name": "流程管理",
+            "key": "flowManage",
+            "id": 96100,
+            "top": "appletInfo",
+            "path": "/appletInfo/system/flowManage"
+          },
+          {
+            "name": "权限管理",
+            "key": "roleManage",
+            "id": 96200,
+            "top": "appletInfo",
+            "path": "/appletInfo/system/roleManage"
+          },
+          {
+            "name": "预算管理",
+            "key": "budgetManage",
+            "id": 96400,
+            "top": "appletInfo",
+            "path": "/appletInfo/system/budgetManage"
+          },
+          {
+            "name": "费控管理",
+            "key": "moneyManage",
+            "id": 96500,
+            "top": "appletInfo",
+            "path": "/appletInfo/system/moneyManage"
+          },
+          {
+            "name": "费用管理",
+            "key": "costManage",
+            "id": 96600,
+            "top": "appletInfo",
+            "path": "/appletInfo/system/costManage"
+          },
+          {
+            "name": "标签管理",
+            "key": "tagManage",
+            "id": 96700,
+            "top": "appletInfo",
+            "path": "/appletInfo/system/tagManage"
           }
         ]
       }
@@ -1292,4 +1343,3 @@
     ]
   }
 ]
-

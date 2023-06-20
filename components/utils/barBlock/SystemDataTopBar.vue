@@ -148,17 +148,17 @@
       <span class="fa fa-book color-grand"></span>
       <span>
         <label>{{$t("借款总额")}}:</label>
-        <label class="color-grand">0</label>
+        <label class="color-grand">{{objData.totalAmount}}</label>
         <label class="color-grand">{{$t("元")}}</label>
       </span>
       <span>
         <label>{{$t("已还款")}}:</label>
-        <label class="color-grand">0</label>
+        <label class="color-grand">{{objData.shouldAmount}}</label>
         <label class="color-grand">{{$t("元")}}</label>
       </span>
       <span>
         <label>{{$t("待还款")}}:</label>
-        <label class="color-grand">0</label>
+        <label class="color-grand">{{objData.waitAmount}}</label>
         <label class="color-grand">{{$t("元")}}</label>
       </span>
     </div>

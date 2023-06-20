@@ -905,6 +905,8 @@
           this.initTYHTCount();
         }else if (formCode == 'BZBX'){
           this.initBZBXCount();
+        }else if (formCode == 'JKGL'){
+          this.initJKGLCount();
         }
       },
       initYSYFCount(){
@@ -968,6 +970,18 @@
           if (res.data.code == 200) {
             if (res.data.data) {
               this.schoolAccountIdList = res.data.data;
+            }
+          }
+        });
+      },
+      async initJKGLCount(){
+        let params = {
+          formCode: this.formCode
+        };
+        this.$axios.get(common.jk_manage_count, {params: params}).then(res=> {
+          if (res.data.code == 200) {
+            if (res.data.data) {
+              this.appDetailObj = res.data.data;
             }
           }
         });
