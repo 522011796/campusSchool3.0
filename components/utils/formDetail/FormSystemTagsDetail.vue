@@ -4,7 +4,7 @@
       <el-button-group>
         <el-button size="small" :type="detailDataType == 1 ? 'primary' : 'default'" @click="changeDetailType($event ,1)">{{ $t("单据信息") }}</el-button>
         <el-button size="small" :type="detailDataType == 2 ? 'primary' : 'default'" @click="changeDetailType($event ,2)">{{ $t("审批详情") }}</el-button>
-        <el-button v-if="dataMainDetailObj.formCode != 'TYHT'" size="small" :type="detailDataType == 3 ? 'primary' : 'default'" @click="changeDetailType($event ,3)">{{ $t("单据列表") }}</el-button>
+        <el-button v-if="dataMainDetailObj.formCode != 'TYHT' && extraDataList && extraDataList.length > 0" size="small" :type="detailDataType == 3 ? 'primary' : 'default'" @click="changeDetailType($event ,3)">{{ $t("单据列表") }}</el-button>
       </el-button-group>
     </div>
 

@@ -816,7 +816,7 @@ export const common = {
   serial_manage_count: '/proxy/school/applet/form/apply-serial/count',//交易流水统计
 
   ht_manage_count: '/proxy/school/applet/form/apply/ht/amountCount',//合同统计
-  bzbx_manage_count: '/proxy/school/applet/form/apply/ht/amountCount',//报账报销统计
+  bzbx_manage_count: '/proxy/school/applet/fk/apply/BB-amount/sum',//报账报销统计
   jk_manage_count: '/proxy/school/applet/fk/apply/jk-amount/sum',//借款单统计
   hk_manage_count: '/proxy/school/applet/fk/apply/hk-amount/sum',//还款单统计
 

@@ -84,7 +84,7 @@
       <span class="fa fa-book color-grand"></span>
       <span>
         <label>{{$t("总额")}}:</label>
-        <label class="color-grand">{{objData.totalAmount}}</label>
+        <label class="color-grand">{{objData.bbAmount}}</label>
         <label class="color-grand">{{$t("元")}}</label>
       </span>
       <span class="margin-left-10">
@@ -97,11 +97,11 @@
         <label class="color-grand">{{objData.totalAmount}}</label>
         <label class="color-grand">{{$t("元")}}</label>
       </span>
-      <span class="margin-left-10">
-        <label>{{$t("审批中")}}:</label>
-        <label class="color-grand">{{objData.totalAmount}}</label>
-        <label class="color-grand">{{$t("元")}}</label>
-      </span>
+<!--      <span class="margin-left-10">-->
+<!--        <label>{{$t("审批中")}}:</label>-->
+<!--        <label class="color-grand">{{objData.totalAmount}}</label>-->
+<!--        <label class="color-grand">{{$t("元")}}</label>-->
+<!--      </span>-->
     </div>
     <div class="font-size-12" v-if="formId == '对公打款单'">
       <span class="fa fa-book color-grand"></span>
