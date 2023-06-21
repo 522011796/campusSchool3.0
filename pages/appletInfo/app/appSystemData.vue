@@ -115,7 +115,7 @@
             <system-data-table2 v-if="formName == '采购合同单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @editInfo="editInfo($event, 2)"  @deleteInfo="deleteInfo($event, 2)" @detailInfo="detailInfo($event, 2)"></system-data-table2>
             <system-data-table2 v-if="formName == '销售合同单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @editInfo="editInfo($event, 3)"  @deleteInfo="deleteInfo($event, 3)" @detailInfo="detailInfo($event, 3)"></system-data-table2>
             <system-data-table2 v-if="formName == '通用合同单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @editInfo="editInfo($event, 4)"  @deleteInfo="deleteInfo($event, 4)" @detailInfo="detailInfo($event, 4)"></system-data-table2>
-            <system-data-table6 v-if="formName == '报账/报销单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table6>
+            <system-data-table6 v-if="formName == '报账/报销单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 6)" @detailListInfo="detailInfo($event, 61)"></system-data-table6>
             <system-data-table7 v-if="formName == '对公打款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table7>
             <system-data-table8 v-if="formName == '普通申请单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table8>
             <system-data-table9 v-if="formName == '借款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 9)" @detailListInfo="detailInfo($event, 91)"></system-data-table9>
@@ -878,13 +878,13 @@
                   this.detailApplyAuditList = res.data.data.handleList;
                   this.payableDataList = res.data.data.payableDataList;
                   this.tableOrderDetailData = res.data.data.payableDataList;
-                }else if (extra == 91 || extra == 101){
+                }else if (extra == 91 || extra == 101 || extra == 61){
                   this.dataDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
                   this.dataMainDetailObj = res.data.data;
                   this.detailApplyAuditList = res.data.data.handleList;
                   this.payableDataList = res.data.data.payableDataList;
                   this.tableNormalDetailData = res.data.data.payableDataList;
-                }else if (extra == 9 || extra == 10){
+                }else if (extra == 9 || extra == 10 || extra == 6){
                   this.dataDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
                   this.dataMainDetailObj = res.data.data;
                   this.detailApplyAuditList = res.data.data.handleList;
@@ -1221,6 +1221,10 @@
           //this.initReal(item.id);
           this.initAuditDetailList(item.id, 'detail', 4);
           this.dialogObjServerDetail = true;
+        }else if (type == 6){
+          //this.initReal(item.id);
+          this.initAuditDetailList(item.applyData.borrow_apply20230501.value, 'detail', 6);
+          this.dialogTagsVisible = true;
         }else if (type == 9){
           //this.initReal(item.id);
           this.initAuditDetailList(item.applyData.off_apply20230501.value, 'detail', 9);
@@ -1229,6 +1233,10 @@
           //this.initReal(item.id);
           this.initAuditDetailList(item.applyData.borrow_apply20230501.value, 'detail', 10);
           this.dialogTagsVisible = true;
+        }else if (type == 61){
+          //this.initReal(item.id);
+          this.initAuditDetailList(item.id, 'detail', 61);
+          this.dialogNormalVisible = true;
         }else if (type == 91){
           //this.initReal(item.id);
           this.initAuditDetailList(item.id, 'detail', 91);

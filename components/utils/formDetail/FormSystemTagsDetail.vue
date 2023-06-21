@@ -103,7 +103,7 @@
                     </el-form-item>
                   </el-form>
                 </template>
-                <template v-if="dataMainDetailObj.formCode == 'XMGL'">
+                <template v-else-if="dataMainDetailObj.formCode == 'XMGL'">
                   <el-row>
                     <el-col :span="12">
                       <el-form label-width="100px">
@@ -228,10 +228,218 @@
                   </el-form>
                 </template>
 
-                <template v-if="dataMainDetailObj.formCode == 'XSHT' || dataMainDetailObj.formCode == 'CGHT' || dataMainDetailObj.formCode == 'TYHT'">
-                  <div>
-                    1
-                  </div>
+                <template v-else>
+                  <el-row>
+                    <el-col :span="12">
+                      <el-form label-width="100px">
+                        <el-form-item :label="$t('申请人')">
+                          <label>{{dataMainDetailObj.applyUserName}}</label>
+                        </el-form-item>
+                      </el-form>
+                    </el-col>
+                    <el-col :span="12">
+                      <el-form label-width="100px">
+                        <el-form-item :label="$t('工号')">
+                          <label>{{dataMainDetailObj.userNo}}</label>
+                        </el-form-item>
+                      </el-form>
+                    </el-col>
+                  </el-row>
+                  <template>
+                    <el-row>
+                      <el-col :span="12">
+                        <el-form label-width="100px">
+                          <el-form-item :label="$t('提交日期')">
+                            <label>{{$moment(dataMainDetailObj.applyTime).format("YYYY-MM-DD HH:mm:ss")}}</label>
+                          </el-form-item>
+                        </el-form>
+                      </el-col>
+                      <el-col :span="12">
+                        <el-form label-width="100px">
+                          <el-form-item v-if="dataMainDetailObj.formCode =='JKGL'" :label="$t('借款日期')">
+                            <label v-if="dataDetailObj['jk_date20230501'] && dataDetailObj['jk_date20230501']['value']">{{dataDetailObj['jk_date20230501']['value']}}</label>
+                            <label v-else>--</label>
+                          </el-form-item>
+                        </el-form>
+                      </el-col>
+                    </el-row>
+                  </template>
+                  <template v-if="dataMainDetailObj.formCode == 'JKGL'">
+                    <el-row>
+                      <el-col :span="12">
+                        <el-form label-width="100px">
+                          <el-form-item :label="$t('关联项目')">
+                            <label>{{ dataDetailObj['xm_id20230501'] ? (dataDetailObj.xm_id20230501.name ? dataDetailObj.xm_id20230501.name : '--') : '--' }}</label>
+                          </el-form-item>
+                        </el-form>
+                      </el-col>
+                      <el-col :span="12">
+                        <el-form label-width="100px">
+                          <el-form-item :label="$t('关联合同')">
+                            <label>{{ dataDetailObj['ht_id20230501'] ? (dataDetailObj.xm_id20230501.name ? dataDetailObj.xm_id20230501.name : '--') : '--' }}</label>
+                          </el-form-item>
+                        </el-form>
+                      </el-col>
+                    </el-row>
+                    <el-row>
+                      <el-col :span="12">
+                        <el-form label-width="100px">
+                          <el-form-item :label="$t('关联标签')">
+                            <label>{{ dataDetailObj['tag_id20230501'] ? (dataDetailObj.tag_id20230501.name ? dataDetailObj.tag_id20230501.name : '--') : '--' }}</label>
+                          </el-form-item>
+                        </el-form>
+                      </el-col>
+                      <el-col :span="12">
+                        <el-form label-width="100px">
+                          <el-form-item :label="$t('金额')">
+                            <label>{{ dataDetailObj['cost_allAmount20230501'] ? (dataDetailObj.cost_allAmount20230501.value ? dataDetailObj.cost_allAmount20230501.value : '--') : '--' }}</label>
+                          </el-form-item>
+                        </el-form>
+                      </el-col>
+                    </el-row>
+                    <el-row>
+                      <el-col :span="24">
+                        <el-form label-width="100px">
+                          <el-form-item :label="$t('借款账户')">
+                            <label>{{ dataDetailObj['jk_account20230501'] ? (dataDetailObj.jk_account20230501.name ? dataDetailObj.jk_account20230501.name : '--') : '--' }}</label>
+                          </el-form-item>
+                        </el-form>
+                      </el-col>
+                    </el-row>
+                  </template>
+                  <template v-if="dataMainDetailObj.formCode == 'HKD'">
+                    <el-row>
+                      <el-col :span="12">
+                        <el-form label-width="100px">
+                          <el-form-item :label="$t('关联标签')">
+                            <label>{{ dataDetailObj['tag_id20230501'] ? (dataDetailObj.tag_id20230501.name ? dataDetailObj.tag_id20230501.name : '--') : '--' }}</label>
+                          </el-form-item>
+                        </el-form>
+                      </el-col>
+                      <el-col :span="12">
+                        <el-form label-width="100px">
+                          <el-form-item :label="$t('核销借款')">
+                            <label>{{ dataDetailObj['borrow_apply20230501'] ? (dataDetailObj.borrow_apply20230501.name ? dataDetailObj.borrow_apply20230501.name : '--') : '--' }}</label>
+                          </el-form-item>
+                        </el-form>
+                      </el-col>
+                    </el-row>
+                    <el-row>
+                      <el-col :span="12">
+                        <el-form label-width="100px">
+                          <el-form-item :label="$t('关联单据')">
+                            <label>{{ dataDetailObj['rela_apply20230501'] ? (dataDetailObj.rela_apply20230501.name ? dataDetailObj.rela_apply20230501.name : '--') : '--' }}</label>
+                          </el-form-item>
+                        </el-form>
+                      </el-col>
+                      <el-col :span="12">
+                        <el-form label-width="100px">
+                          <el-form-item :label="$t('金额')">
+                            <label>{{ dataDetailObj['cost_allAmount20230501'] ? (dataDetailObj.cost_allAmount20230501.value ? dataDetailObj.cost_allAmount20230501.value : '--') : '--' }}</label>
+                          </el-form-item>
+                        </el-form>
+                      </el-col>
+                    </el-row>
+                    <el-row>
+                      <el-col :span="24">
+                        <el-form label-width="100px">
+                          <el-form-item :label="$t('还款账户')">
+                            <label>{{ dataDetailObj['jk_account20230501'] ? (dataDetailObj.jk_account20230501.name ? dataDetailObj.jk_account20230501.name : '--') : '--' }}</label>
+                          </el-form-item>
+                        </el-form>
+                      </el-col>
+                    </el-row>
+                  </template>
+
+                  <template v-if="dataMainDetailObj.formCode == 'BZBX'">
+                    <el-row>
+                      <el-col :span="12">
+                        <el-form label-width="100px">
+                          <el-form-item :label="$t('关联标签')">
+                            <label>{{ dataDetailObj['tag_id20230501'] ? (dataDetailObj.tag_id20230501.name ? dataDetailObj.tag_id20230501.name : '--') : '--' }}</label>
+                          </el-form-item>
+                        </el-form>
+                      </el-col>
+                      <el-col :span="12">
+                        <el-form label-width="100px">
+                          <el-form-item :label="$t('核销借款')">
+                            <label>{{ dataDetailObj['borrow_apply20230501'] ? (dataDetailObj.borrow_apply20230501.name ? dataDetailObj.borrow_apply20230501.name : '--') : '--' }}</label>
+                          </el-form-item>
+                        </el-form>
+                      </el-col>
+                    </el-row>
+                    <el-row>
+                      <el-col :span="12">
+                        <el-form label-width="100px">
+                          <el-form-item :label="$t('关联单据')">
+                            <label>{{ dataDetailObj['rela_apply20230501'] ? (dataDetailObj.rela_apply20230501.name ? dataDetailObj.rela_apply20230501.name : '--') : '--' }}</label>
+                          </el-form-item>
+                        </el-form>
+                      </el-col>
+                      <el-col :span="12">
+                        <el-form label-width="100px">
+                          <el-form-item :label="$t('报销金额')">
+                            <label>{{ dataDetailObj['cost_allAmount20230501'] ? (dataDetailObj.cost_allAmount20230501.value ? dataDetailObj.cost_allAmount20230501.value : '--') : '--' }}</label>
+                          </el-form-item>
+                        </el-form>
+                      </el-col>
+                    </el-row>
+                    <el-row>
+                      <el-col :span="24">
+                        <el-form label-width="100px">
+                          <el-form-item :label="$t('报销账户')">
+                            <label>{{ dataDetailObj['my_account20230501'] ? (dataDetailObj.my_account20230501.name ? dataDetailObj.my_account20230501.name : '--') : '--' }}</label>
+                          </el-form-item>
+                        </el-form>
+                      </el-col>
+                    </el-row>
+                  </template>
+
+                  <el-form label-width="100px">
+                    <el-form-item :label="$t('附件')">
+                      <div v-if="(dataMainDetailObj.formCode == 'JKGL' || dataMainDetailObj.formCode == 'HKD') && dataDetailObj['jk_files20230501']">
+                        <div v-if="dataDetailObj['jk_files20230501']['value'].length > 0" v-for="(item, index) in dataDetailObj['jk_files20230501']['value']" :key="index" class="pull-left" style="position: relative;margin-right:10px;top: 10px">
+                          <i v-if="item.indexOf('.pdf') > -1" class="fa fa-file-pdf-o" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;" @click="readOtherFile(item)"></i>
+                          <i v-else-if="item.indexOf('.doc') > -1 || item.indexOf('.docx') > -1" class="fa fa-wordpress" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;" @click="readOtherFile(item)"></i>
+                          <el-image
+                            v-else
+                            style="width: 50px; height: 50px"
+                            :src="item"
+                            :preview-src-list="[item]">
+                          </el-image>
+                        </div>
+                        <div v-else>
+                          --
+                        </div>
+                      </div>
+                      <div v-else-if="(dataMainDetailObj.formCode == 'BZBX') && dataDetailObj['bb_files20230501']">
+                        <div v-if="dataDetailObj['bb_files20230501']['value'].length > 0" v-for="(item, index) in dataDetailObj['bb_files20230501']['value']" :key="index" class="pull-left" style="position: relative;margin-right:10px;top: 10px">
+                          <i v-if="item.indexOf('.pdf') > -1" class="fa fa-file-pdf-o" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;" @click="readOtherFile(item)"></i>
+                          <i v-else-if="item.indexOf('.doc') > -1 || item.indexOf('.docx') > -1" class="fa fa-wordpress" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;" @click="readOtherFile(item)"></i>
+                          <el-image
+                            v-else
+                            style="width: 50px; height: 50px"
+                            :src="item"
+                            :preview-src-list="[item]">
+                          </el-image>
+                        </div>
+                        <div v-else>
+                          --
+                        </div>
+                      </div>
+                      <div v-else>
+                        --
+                      </div>
+                    </el-form-item>
+                  </el-form>
+                  <el-form label-width="100px">
+                    <el-form-item :label="$t('借款说明')" v-if="dataMainDetailObj.formCode == 'JKGL'">
+                      <div style="word-wrap:break-word;word-break:break-all;overflow: hidden;">{{dataDetailObj['jk_des20230501'] ? (dataDetailObj['jk_des20230501']['value'] ? dataDetailObj['jk_des20230501']['value'] : '--') : '--'}}</div>
+                    </el-form-item>
+                    <el-form-item :label="$t('还款说明')" v-if="dataMainDetailObj.formCode == 'HKD'">
+                      <div style="word-wrap:break-word;word-break:break-all;overflow: hidden;">{{dataDetailObj['jk_des20230501'] ? (dataDetailObj['jk_des20230501']['value'] ? dataDetailObj['jk_des20230501']['value'] : '--') : '--'}}</div>
+                    </el-form-item>
+                  </el-form>
                 </template>
               </div>
             </template>
