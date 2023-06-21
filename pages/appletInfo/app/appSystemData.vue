@@ -118,9 +118,9 @@
             <system-data-table6 v-if="formName == '报账/报销单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table6>
             <system-data-table7 v-if="formName == '对公打款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table7>
             <system-data-table8 v-if="formName == '普通申请单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table8>
-            <system-data-table9 v-if="formName == '借款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 9)"></system-data-table9>
+            <system-data-table9 v-if="formName == '借款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 9)" @detailListInfo="detailInfo($event, 91)"></system-data-table9>
             <system-data-table10 v-if="formName == '收款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table10>
-            <system-data-table10 v-if="formName == '还款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table10>
+            <system-data-table10 v-if="formName == '还款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 10)" @detailListInfo="detailInfo($event, 101)"></system-data-table10>
             <system-data-table3 v-if="formName == '应收应付'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table3>
             <system-data-table4 v-if="formName == '发票管理'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table4>
             <system-data-table5 v-if="formName == '交易流水'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table5>
@@ -438,6 +438,27 @@
       </div>
     </drawer-layout-right>
 
+    <drawer-layout-right tabindex="0" @close="closeDrawerDialog" :visible="dialogNormalVisible" size="600px" :title="$t('详细查看')" @right-close="cancelDrawDialog">
+      <div slot="content" class="color-muted">
+        <form-system-normal-detail
+          :detail-type="detailType"
+          :data-detail-obj="dataDetailObj"
+          :data-main-detail-obj = "dataMainDetailObj"
+          :extra-data-list="tableNormalDetailData"
+          :detail-apply-audit-list="detailApplyAuditList"
+          :draw-height="drawHeight8.height"
+          @changeDetailType="changeDetailType">
+
+        </form-system-normal-detail>
+      </div>
+      <div slot="footer">
+        <audit-button v-if="detailType == 2" :sel-value="dataMainDetailObj" @ok="handleOk" @no="handleNo" @cancel="handleCancel"></audit-button>
+        <div class="padding-lr-10">
+          <el-button size="small" @click="cancelDrawDialog">{{$t("取消")}}</el-button>
+        </div>
+      </div>
+    </drawer-layout-right>
+
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" content="确认需要删除该信息？" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="closeDialog"></my-normal-dialog>
   </div>
 </template>
@@ -476,9 +497,11 @@
   import FormSystemOrderDetail from "~/components/utils/formDetail/FormSystemOrderDetail.vue";
   import FormSystemDetail from "~/components/utils/formDetail/FormSystemDetail.vue";
   import FormSystemTagsDetail from "~/components/utils/formDetail/FormSystemTagsDetail.vue";
+  import FormSystemNormalDetail from "~/components/utils/formDetail/FormSystemNormalDetail.vue";
 
   export default {
     components: {
+      FormSystemNormalDetail,
       FormSystemTagsDetail,
       FormSystemDetail,
       FormSystemOrderDetail,
@@ -505,6 +528,7 @@
         tableDataTitles: [],
         tableOrderDetailData: [],
         tableTagsDetailData: [],
+        tableNormalDetailData: [],
         collegeList: [],
         categorys: [],
         applyContentArr: [],
@@ -578,6 +602,7 @@
         dialogBudgetVisible: false,
         dialogOrderDetailVisible: false,
         dialogTagsVisible: false,
+        dialogNormalVisible: false,
         mainMenuType: 1,
         subMenuType: 4,
         mainMenu: 1,
@@ -853,7 +878,13 @@
                   this.detailApplyAuditList = res.data.data.handleList;
                   this.payableDataList = res.data.data.payableDataList;
                   this.tableOrderDetailData = res.data.data.payableDataList;
-                }else if (extra == 9){
+                }else if (extra == 91 || extra == 101){
+                  this.dataDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
+                  this.dataMainDetailObj = res.data.data;
+                  this.detailApplyAuditList = res.data.data.handleList;
+                  this.payableDataList = res.data.data.payableDataList;
+                  this.tableNormalDetailData = res.data.data.payableDataList;
+                }else if (extra == 9 || extra == 10){
                   this.dataDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
                   this.dataMainDetailObj = res.data.data;
                   this.detailApplyAuditList = res.data.data.handleList;
@@ -951,6 +982,8 @@
           this.initBZBXCount();
         }else if (formCode == 'JKGL'){
           this.initJKGLCount();
+        }else if (formCode == 'HKD'){
+          this.initHKDCount();
         }
       },
       initYSYFCount(){
@@ -1023,6 +1056,18 @@
           formCode: this.formCode
         };
         this.$axios.get(common.jk_manage_count, {params: params}).then(res=> {
+          if (res.data.code == 200) {
+            if (res.data.data) {
+              this.appDetailObj = res.data.data;
+            }
+          }
+        });
+      },
+      async initHKDCount(){
+        let params = {
+          formCode: this.formCode
+        };
+        this.$axios.get(common.hk_manage_count, {params: params}).then(res=> {
           if (res.data.code == 200) {
             if (res.data.data) {
               this.appDetailObj = res.data.data;
@@ -1178,8 +1223,20 @@
           this.dialogObjServerDetail = true;
         }else if (type == 9){
           //this.initReal(item.id);
-          this.initAuditDetailList(item.id, 'detail', 9);
+          this.initAuditDetailList(item.applyData.off_apply20230501.value, 'detail', 9);
           this.dialogTagsVisible = true;
+        }else if (type == 10){
+          //this.initReal(item.id);
+          this.initAuditDetailList(item.applyData.borrow_apply20230501.value, 'detail', 10);
+          this.dialogTagsVisible = true;
+        }else if (type == 91){
+          //this.initReal(item.id);
+          this.initAuditDetailList(item.id, 'detail', 91);
+          this.dialogNormalVisible = true;
+        }else if (type == 101){
+          //this.initReal(item.id);
+          this.initAuditDetailList(item.id, 'detail', 101);
+          this.dialogNormalVisible = true;
         }
       },
       detailCheckClick($event, id){
@@ -1303,6 +1360,7 @@
         this.submitStatus = true;
         this.tableOrderDetailData = [];
         this.tableTagsDetailData = [];
+        this.tableNormalDetailData = [];
         this.objectOptions = [];
         this.merchatOptions = [];
         this.parendObjOptions = [];
@@ -1318,6 +1376,7 @@
         this.dialogOrderServerDetail = false;
         this.dialogOrderDetailVisible = false;
         this.dialogTagsVisible = false;
+        this.dialogNormalVisible = false;
       },
       closeDrawerDetailDialog(){
         this.dataOrderDetailObj = {};
@@ -1340,6 +1399,7 @@
         this.dialogOrderServerDetail = false;
         this.dialogOrderDetailVisible = false;
         this.dialogTagsVisible = false;
+        this.dialogNormalVisible = false;
       },
       cancelDrawDetailDialog(){
         this.dialogOrderDetailVisible = false;

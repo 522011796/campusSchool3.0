@@ -156,10 +156,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                {{$moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss")}}
+                {{scope.row.handleTime ? $moment(scope.row.handleTime).format("YYYY-MM-DD HH:mm:ss") : '--'}}
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                {{$moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss")}}
+                {{scope.row.handleTime ? $moment(scope.row.handleTime).format("YYYY-MM-DD HH:mm:ss") : '--'}}
               </span>
             </el-popover>
           </template>
@@ -228,10 +228,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                {{ scope.row.applyData['rela_apply'] ? (scope.row.applyData.rela_apply.value ? scope.row.applyData.rela_apply.value : '--') : '--' }}
+                {{ scope.row.applyData['off_apply20230501'] ? (scope.row.applyData.off_apply20230501.value ? scope.row.applyData.off_apply20230501.value : '--') : '--' }}
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <a v-if="scope.row.applyData['rela_apply'] && scope.row.applyData.rela_apply.value" href="javascript:;" class="color-grand" @click="detailInfo(scope.row)">{{scope.row.applyData.rela_apply.value}}</a>
+                <a v-if="scope.row.applyData['off_apply20230501'] && scope.row.applyData.off_apply20230501.value" href="javascript:;" class="color-grand" @click="detailInfo(scope.row)">{{scope.row.applyData.off_apply20230501.value}}</a>
                 <span v-else>--</span>
               </span>
             </el-popover>
@@ -264,6 +264,15 @@
                 {{ scope.row.applyData['tag_id20230501'] ? (scope.row.applyData.tag_id20230501.name ? scope.row.applyData.tag_id20230501.name : '--') : '--' }}
               </span>
             </el-popover>
+          </template>
+        </el-table-column>
+        <el-table-column
+          align="center"
+          width="100"
+          fixed="right"
+          :label="$t('操作')">
+          <template slot-scope="scope">
+            <i class="fa fa-file-text margin-right-5 color-grand" @click="detailListInfo(scope.row)"></i>
           </template>
         </el-table-column>
       </template>
@@ -308,6 +317,9 @@
       },
       detailInfo(row){
         this.$emit('detailInfo', row);
+      },
+      detailListInfo(row){
+        this.$emit('detailListInfo', row);
       },
       deleteInfo(row){
         this.$emit('deleteInfo', row);

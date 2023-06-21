@@ -818,6 +818,7 @@ export const common = {
   ht_manage_count: '/proxy/school/applet/form/apply/ht/amountCount',//合同统计
   bzbx_manage_count: '/proxy/school/applet/form/apply/ht/amountCount',//报账报销统计
   jk_manage_count: '/proxy/school/applet/fk/apply/jk-amount/sum',//借款单统计
+  hk_manage_count: '/proxy/school/applet/fk/apply/hk-amount/sum',//还款单统计
 
   object_order_add: '/proxy/school/applet/form/apply/add',//项目添加
   object_order_used_list: '/proxy/school/applet/form/apply/xm/list',//项目可用列表

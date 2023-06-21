@@ -45,6 +45,12 @@
       <el-button type="info" size="small" v-if="value.cancel == true" @click="handleCancel">{{$t("撤销")}}</el-button>
     </div>
     <div v-if="value.handle == false">
+      <div v-if="value.status == 0" class="bg-danger color-white text-center">
+        <span>{{$t("待审批")}}</span>
+      </div>
+      <div v-if="value.status == 1" class="bg-danger color-white text-center">
+        <span>{{$t("已通过")}}</span>
+      </div>
       <div v-if="value.status == 2" class="bg-danger color-white text-center">
         <span>{{$t("已驳回")}}</span>
       </div>
@@ -53,6 +59,9 @@
       </div>
       <div v-if="value.status == 4" class="bg-danger color-white text-center">
         <span>{{$t("已驳回")}}</span>
+      </div>
+      <div v-if="value.status == 5" class="bg-danger color-white text-center">
+        <span>{{$t("不需要审批")}}</span>
       </div>
       <div v-if="value.status == -1" class="bg-muted color-white text-center">
         <span>{{$t("已撤销")}}</span>
