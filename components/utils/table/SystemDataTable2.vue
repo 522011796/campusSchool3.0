@@ -77,10 +77,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                {{$moment(scope.row.applyTime).format('YYYY-MM-dd HH:mm:ss')}}
+                {{$moment(scope.row.applyTime).format('YYYY-MM-DD HH:mm:ss')}}
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                {{$moment(scope.row.applyTime).format('YYYY-MM-dd HH:mm:ss')}}
+                {{$moment(scope.row.applyTime).format('YYYY-MM-DD HH:mm:ss')}}
               </span>
             </el-popover>
           </template>
@@ -159,10 +159,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                {{ scope.row.applyData.ht_amount20230501.value }}
+                {{ scope.row.applyData['ht_amount20230501'] ? (scope.row.applyData.ht_amount20230501.userName ? scope.row.applyData.ht_amount20230501.userName : '--') : "--" }}
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                {{ scope.row.applyData.ht_amount20230501.value }}
+                {{ scope.row.applyData['ht_amount20230501'] ? (scope.row.applyData.ht_amount20230501.userName ? scope.row.applyData.ht_amount20230501.userName : '--') : "--" }}
               </span>
             </el-popover>
           </template>

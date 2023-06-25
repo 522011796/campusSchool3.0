@@ -295,6 +295,11 @@
                   <my-select :width-style="182" :sel-value="formOrder.merchat" :options="merchatOptions" @change="handleChange($event, 6)"></my-select>
                 </el-form-item>
               </el-col>
+              <el-col :span="12">
+                <el-form-item :label="$t('申请时间')">
+                  <my-date-picker :sel-value="form.startTime" width-style="182" @change="handleChange($event,18)"></my-date-picker>
+                </el-form-item>
+              </el-col>
             </el-row>
           </template>
           <el-form-item :label="$t('备注')" class="custom-textarea-inner">
@@ -1523,6 +1528,8 @@
           this.form.user = event;
         }else if (type == 17){
           this.$set(this.formOrder.backMoney[index], 'time', event);
+        }else if (type == 18){
+          this.formOrder.startTime = event;
         }
       },
       handleOkChange(data) {
@@ -1799,6 +1806,11 @@
                 field: 'apply_dept20230501',
                 value: this.formOrder.dept,
                 deptName: this.formOrder.deptName,
+              },
+              {
+                field: 'ht_time20230501',
+                value: this.formOrder.startTime,
+                deptName: this.formOrder.startTime,
               },
               {
                 field: 'xm_id20230501',
