@@ -820,6 +820,7 @@ export const common = {
   jk_manage_count: '/proxy/school/applet/fk/apply/jk-amount/sum',//借款单统计
   hk_manage_count: '/proxy/school/applet/fk/apply/hk-amount/sum',//还款单统计
   pt_manage_count: '/proxy/school/applet/fk/apply/hk-amount/sum',//普通单统计
+  dgdk_manage_count: '/proxy/school/applet/fk/apply/hk-amount/sum',//对公打款统计
 
   object_order_add: '/proxy/school/applet/form/apply/add',//项目添加
   object_order_used_list: '/proxy/school/applet/form/apply/xm/list',//项目可用列表

@@ -230,10 +230,18 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-
+                <label v-if="scope.row.applyData['has_budget20230501'] && scope.row.applyData['has_budget20230501']['value'] == true"
+                         class="color-success">{{ $t("是") }}</label>
+                <label v-else-if="scope.row.applyData['has_budget20230501'] && scope.row.applyData['has_budget20230501']['value'] == false"
+                       class="color-danger">{{ $t("否") }}</label>
+                <label v-else>--</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-
+                <label v-if="scope.row.applyData['has_budget20230501'] && scope.row.applyData['has_budget20230501']['value'] == true"
+                       class="color-success">{{ $t("是") }}</label>
+                <label v-else-if="scope.row.applyData['has_budget20230501'] && scope.row.applyData['has_budget20230501']['value'] == false"
+                       class="color-danger">{{ $t("否") }}</label>
+                <label v-else>--</label>
               </span>
             </el-popover>
           </template>

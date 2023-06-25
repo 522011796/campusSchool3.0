@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="报销管理">
+    <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="普通管理单">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/utils/formDetail/FormSystemNormalDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/formDetail/FormSystemNormalDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/table/SystemDataTable10.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable10.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/table/SystemDataTable6.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable6.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/table/SystemDataTable7.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable7.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/utils/table/SystemDataTable8.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable8.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/table/SystemDataTable9.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable9.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appSystemData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appSystemData.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
     </list>
@@ -38,20 +39,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/likai/工作/object/vuejs/campusSchool3.0/components/utils/formDetail&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
-    &quot;vuejs.nuxt.types-notification-shown&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/likai/工作/object/vuejs/campusSchool3.0/components/utils/formDetail",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.toDoOptions",
+    "vue.rearranger.settings.migration": "true",
+    "vuejs.nuxt.types-notification-shown": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/components/utils/formDetail" />
@@ -114,14 +115,7 @@
       <workItem from="1687308909114" duration="18110000" />
       <workItem from="1687344379151" duration="676000" />
       <workItem from="1687654978876" duration="12000" />
-      <workItem from="1687658663080" duration="2695000" />
-    </task>
-    <task id="LOCAL-00030" summary="修改登录细节">
-      <created>1681202916612</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1681202916612</updated>
+      <workItem from="1687658663080" duration="6847000" />
     </task>
     <task id="LOCAL-00031" summary="修改登录细节">
       <created>1681203775601</created>
@@ -459,7 +453,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687337994570</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="普通管理单">
+      <created>1687661711697</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1687661711697</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -505,6 +506,7 @@
     <MESSAGE value="项目管理" />
     <MESSAGE value="合同管理" />
     <MESSAGE value="报销管理" />
-    <option name="LAST_COMMIT_MESSAGE" value="报销管理" />
+    <MESSAGE value="普通管理单" />
+    <option name="LAST_COMMIT_MESSAGE" value="普通管理单" />
   </component>
 </project>

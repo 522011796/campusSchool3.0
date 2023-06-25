@@ -54,6 +54,10 @@
                             <label v-if="dataDetailObj['jk_date20230501'] && dataDetailObj['jk_date20230501']['value']">{{dataDetailObj['jk_date20230501']['value']}}</label>
                             <label v-else>--</label>
                           </el-form-item>
+                          <el-form-item v-if="dataMainDetailObj.formCode =='DGDK'" :label="$t('供应商')">
+                            <label v-if="dataDetailObj['supplierId20230501'] && dataDetailObj['supplierId20230501']['name']">{{dataDetailObj['supplierId20230501']['name']}}</label>
+                            <label v-else>--</label>
+                          </el-form-item>
                         </el-form>
                       </el-col>
                     </el-row>
@@ -217,6 +221,50 @@
                     </el-row>
                   </template>
 
+                  <template v-if="dataMainDetailObj.formCode == 'DGDK'">
+                    <el-row>
+                      <el-col :span="12">
+                        <el-form label-width="100px">
+                          <el-form-item :label="$t('关联项目')">
+                            <label>{{ dataDetailObj['xm_id20230501'] ? (dataDetailObj.xm_id20230501.name ? dataDetailObj.xm_id20230501.name : '--') : '--' }}</label>
+                          </el-form-item>
+                        </el-form>
+                      </el-col>
+                      <el-col :span="12">
+                        <el-form label-width="100px">
+                          <el-form-item :label="$t('关联合同')">
+                            <label>{{ dataDetailObj['ht_id20230501'] ? (dataDetailObj.xm_id20230501.name ? dataDetailObj.xm_id20230501.name : '--') : '--' }}</label>
+                          </el-form-item>
+                        </el-form>
+                      </el-col>
+                    </el-row>
+                    <el-row>
+                      <el-col :span="12">
+                        <el-form label-width="100px">
+                          <el-form-item :label="$t('关联标签')">
+                            <label>{{ dataDetailObj['tag_id20230501'] ? (dataDetailObj.tag_id20230501.name ? dataDetailObj.tag_id20230501.name : '--') : '--' }}</label>
+                          </el-form-item>
+                        </el-form>
+                      </el-col>
+                      <el-col :span="12">
+                        <el-form label-width="100px">
+                          <el-form-item :label="$t('管理单据')">
+                            <label>{{ dataDetailObj['rela_apply20230501'] ? (dataDetailObj.rela_apply20230501.name ? dataDetailObj.rela_apply20230501.name : '--') : '--' }}</label>
+                          </el-form-item>
+                        </el-form>
+                      </el-col>
+                    </el-row>
+                    <el-row>
+                      <el-col :span="24">
+                        <el-form label-width="100px">
+                          <el-form-item :label="$t('金额')">
+                            <label>{{ dataDetailObj['cost_allAmount20230501'] ? (dataDetailObj.cost_allAmount20230501.value ? dataDetailObj.cost_allAmount20230501.value : '--') : '--' }}</label>
+                          </el-form-item>
+                        </el-form>
+                      </el-col>
+                    </el-row>
+                  </template>
+
                   <el-form label-width="100px">
                     <el-form-item :label="$t('附件')">
                       <div v-if="(dataMainDetailObj.formCode == 'JKGL' || dataMainDetailObj.formCode == 'HKD') && dataDetailObj['jk_files20230501']">
@@ -249,7 +297,7 @@
                           --
                         </div>
                       </div>
-                      <div v-else-if="(dataMainDetailObj.formCode == 'PTGL') && dataDetailObj['fk_files20230501']">
+                      <div v-else-if="(dataMainDetailObj.formCode == 'PTGL' || dataMainDetailObj.formCode == 'DGDK') && dataDetailObj['fk_files20230501']">
                         <div v-if="dataDetailObj['fk_files20230501']['value'].length > 0" v-for="(item, index) in dataDetailObj['fk_files20230501']['value']" :key="index" class="pull-left" style="position: relative;margin-right:10px;top: 10px">
                           <i v-if="item.indexOf('.pdf') > -1" class="fa fa-file-pdf-o" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;" @click="readOtherFile(item)"></i>
                           <i v-else-if="item.indexOf('.doc') > -1 || item.indexOf('.docx') > -1" class="fa fa-wordpress" style="height: 50px;width: 50px;font-size: 50px;position: relative;top: -2px;" @click="readOtherFile(item)"></i>
