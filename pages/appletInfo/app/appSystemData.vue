@@ -117,7 +117,7 @@
             <system-data-table2 v-if="formName == '通用合同单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @editInfo="editInfo($event, 4)"  @deleteInfo="deleteInfo($event, 4)" @detailInfo="detailInfo($event, 4)"></system-data-table2>
             <system-data-table6 v-if="formName == '报账/报销单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 6)" @detailListInfo="detailInfo($event, 61)"></system-data-table6>
             <system-data-table7 v-if="formName == '对公打款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table7>
-            <system-data-table8 v-if="formName == '普通申请单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table8>
+            <system-data-table8 v-if="formName == '普通申请单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 8)" @detailListInfo="detailInfo($event, 81)"></system-data-table8>
             <system-data-table9 v-if="formName == '借款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 9)" @detailListInfo="detailInfo($event, 91)"></system-data-table9>
             <system-data-table10 v-if="formName == '收款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table10>
             <system-data-table10 v-if="formName == '还款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 10)" @detailListInfo="detailInfo($event, 101)"></system-data-table10>
@@ -878,7 +878,7 @@
                   this.detailApplyAuditList = res.data.data.handleList;
                   this.payableDataList = res.data.data.payableDataList;
                   this.tableOrderDetailData = res.data.data.payableDataList;
-                }else if (extra == 91 || extra == 101 || extra == 61){
+                }else if (extra == 91 || extra == 101 || extra == 61 || extra == 81){
                   this.dataDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
                   this.dataMainDetailObj = res.data.data;
                   this.detailApplyAuditList = res.data.data.handleList;
@@ -984,6 +984,8 @@
           this.initJKGLCount();
         }else if (formCode == 'HKD'){
           this.initHKDCount();
+        }else if (formCode == 'PTGL'){
+          this.initPTGLCount();
         }
       },
       initYSYFCount(){
@@ -1068,6 +1070,18 @@
           formCode: this.formCode
         };
         this.$axios.get(common.hk_manage_count, {params: params}).then(res=> {
+          if (res.data.code == 200) {
+            if (res.data.data) {
+              this.appDetailObj = res.data.data;
+            }
+          }
+        });
+      },
+      async initPTGLCount(){
+        let params = {
+          formCode: this.formCode
+        };
+        this.$axios.get(common.pt_manage_count, {params: params}).then(res=> {
           if (res.data.code == 200) {
             if (res.data.data) {
               this.appDetailObj = res.data.data;
@@ -1225,6 +1239,10 @@
           //this.initReal(item.id);
           this.initAuditDetailList(item.applyData.borrow_apply20230501.value, 'detail', 6);
           this.dialogTagsVisible = true;
+        }else if (type == 8){
+          //this.initReal(item.id);
+          this.initAuditDetailList(item.applyData.off_apply20230501.value, 'detail', 8);
+          this.dialogTagsVisible = true;
         }else if (type == 9){
           //this.initReal(item.id);
           this.initAuditDetailList(item.applyData.off_apply20230501.value, 'detail', 9);
@@ -1236,6 +1254,10 @@
         }else if (type == 61){
           //this.initReal(item.id);
           this.initAuditDetailList(item.id, 'detail', 61);
+          this.dialogNormalVisible = true;
+        }else if (type == 81){
+          //this.initReal(item.id);
+          this.initAuditDetailList(item.id, 'detail', 81);
           this.dialogNormalVisible = true;
         }else if (type == 91){
           //this.initReal(item.id);
