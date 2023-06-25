@@ -119,7 +119,7 @@
             <system-data-table7 v-if="formName == '对公打款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 7)" @detailListInfo="detailInfo($event, 71)"></system-data-table7>
             <system-data-table8 v-if="formName == '普通申请单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 8)" @detailListInfo="detailInfo($event, 81)"></system-data-table8>
             <system-data-table9 v-if="formName == '借款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 9)" @detailListInfo="detailInfo($event, 91)"></system-data-table9>
-            <system-data-table10 v-if="formName == '收款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table10>
+            <system-data-table11 v-if="formName == '收款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 11)" @detailListInfo="detailInfo($event, 111)"></system-data-table11>
             <system-data-table10 v-if="formName == '还款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 10)" @detailListInfo="detailInfo($event, 101)"></system-data-table10>
             <system-data-table3 v-if="formName == '应收应付'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table3>
             <system-data-table4 v-if="formName == '发票管理'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table4>
@@ -498,9 +498,11 @@
   import FormSystemDetail from "~/components/utils/formDetail/FormSystemDetail.vue";
   import FormSystemTagsDetail from "~/components/utils/formDetail/FormSystemTagsDetail.vue";
   import FormSystemNormalDetail from "~/components/utils/formDetail/FormSystemNormalDetail.vue";
+  import SystemDataTable11 from "~/components/utils/table/SystemDataTable11.vue";
 
   export default {
     components: {
+      SystemDataTable11,
       FormSystemNormalDetail,
       FormSystemTagsDetail,
       FormSystemDetail,
@@ -878,13 +880,13 @@
                   this.detailApplyAuditList = res.data.data.handleList;
                   this.payableDataList = res.data.data.payableDataList;
                   this.tableOrderDetailData = res.data.data.payableDataList;
-                }else if (extra == 91 || extra == 101 || extra == 61 || extra == 81 || extra == 71){
+                }else if (extra == 91 || extra == 101 || extra == 111 || extra == 61 || extra == 81 || extra == 71){
                   this.dataDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
                   this.dataMainDetailObj = res.data.data;
                   this.detailApplyAuditList = res.data.data.handleList;
                   this.payableDataList = res.data.data.payableDataList;
                   this.tableNormalDetailData = res.data.data.payableDataList;
-                }else if (extra == 9 || extra == 10 || extra == 6){
+                }else if (extra == 9 || extra == 10 || extra == 11 || extra == 6){
                   this.dataDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
                   this.dataMainDetailObj = res.data.data;
                   this.detailApplyAuditList = res.data.data.handleList;
@@ -988,6 +990,8 @@
           this.initPTGLCount();
         }else if (formCode == 'DGDK'){
           this.initDGDKCount();
+        }else if (formCode == 'SKD'){
+          this.initSKDCount();
         }
       },
       initYSYFCount(){
@@ -1096,6 +1100,18 @@
           formCode: this.formCode
         };
         this.$axios.get(common.dgdk_manage_count, {params: params}).then(res=> {
+          if (res.data.code == 200) {
+            if (res.data.data) {
+              this.appDetailObj = res.data.data;
+            }
+          }
+        });
+      },
+      async initSKDCount(){
+        let params = {
+          formCode: this.formCode
+        };
+        this.$axios.get(common.skd_manage_count, {params: params}).then(res=> {
           if (res.data.code == 200) {
             if (res.data.data) {
               this.appDetailObj = res.data.data;
@@ -1269,6 +1285,10 @@
           //this.initReal(item.id);
           this.initAuditDetailList(item.applyData.borrow_apply20230501.value, 'detail', 10);
           this.dialogTagsVisible = true;
+        }else if (type == 11){
+          //this.initReal(item.id);
+          this.initAuditDetailList(item.applyData.borrow_apply20230501.value, 'detail', 11);
+          this.dialogTagsVisible = true;
         }else if (type == 61){
           //this.initReal(item.id);
           this.initAuditDetailList(item.id, 'detail', 61);
@@ -1288,6 +1308,10 @@
         }else if (type == 101){
           //this.initReal(item.id);
           this.initAuditDetailList(item.id, 'detail', 101);
+          this.dialogNormalVisible = true;
+        }else if (type == 111){
+          //this.initReal(item.id);
+          this.initAuditDetailList(item.id, 'detail', 111);
           this.dialogNormalVisible = true;
         }
       },

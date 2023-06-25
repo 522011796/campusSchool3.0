@@ -71,6 +71,120 @@
   "LazyLayoutTb": {
     "description": "Auto imported from components/Layout/LayoutTb.vue"
   },
+  "MyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
+  },
+  "LazyMyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
+  },
+  "MySearchOfDate": {
+    "description": "Auto imported from components/search/MySearchOfDate.vue"
+  },
+  "LazyMySearchOfDate": {
+    "description": "Auto imported from components/search/MySearchOfDate.vue"
+  },
+  "MySearchOfDateGroup": {
+    "description": "Auto imported from components/search/MySearchOfDateGroup.vue"
+  },
+  "LazyMySearchOfDateGroup": {
+    "description": "Auto imported from components/search/MySearchOfDateGroup.vue"
+  },
+  "MyYearTerm": {
+    "description": "Auto imported from components/search/MyYearTerm.vue"
+  },
+  "LazyMyYearTerm": {
+    "description": "Auto imported from components/search/MyYearTerm.vue"
+  },
+  "MyNewStudentFlow": {
+    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
+  },
+  "LazyMyNewStudentFlow": {
+    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
+  },
+  "MyNewStudentFlowType": {
+    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
+  },
+  "LazyMyNewStudentFlowType": {
+    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
+  },
+  "MyBlockListChildTree": {
+    "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
+  },
+  "LazyMyBlockListChildTree": {
+    "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
+  },
+  "MyBlockListTree": {
+    "description": "Auto imported from components/tree/MyBlockListTree.vue"
+  },
+  "LazyMyBlockListTree": {
+    "description": "Auto imported from components/tree/MyBlockListTree.vue"
+  },
+  "MyElTree": {
+    "description": "Auto imported from components/tree/MyElTree.vue"
+  },
+  "LazyMyElTree": {
+    "description": "Auto imported from components/tree/MyElTree.vue"
+  },
+  "MyElTreeBlock": {
+    "description": "Auto imported from components/tree/MyElTreeBlock.vue"
+  },
+  "LazyMyElTreeBlock": {
+    "description": "Auto imported from components/tree/MyElTreeBlock.vue"
+  },
+  "TreeNode": {
+    "description": "Auto imported from components/tree/treeNode.js"
+  },
+  "LazyTreeNode": {
+    "description": "Auto imported from components/tree/treeNode.js"
+  },
+  "MyFormAuditType": {
+    "description": "Auto imported from components/form/MyFormAuditType.vue"
+  },
+  "LazyMyFormAuditType": {
+    "description": "Auto imported from components/form/MyFormAuditType.vue"
+  },
+  "MyFormFlow": {
+    "description": "Auto imported from components/form/MyFormFlow.vue"
+  },
+  "LazyMyFormFlow": {
+    "description": "Auto imported from components/form/MyFormFlow.vue"
+  },
+  "MyFormSet": {
+    "description": "Auto imported from components/form/MyFormSet.vue"
+  },
+  "LazyMyFormSet": {
+    "description": "Auto imported from components/form/MyFormSet.vue"
+  },
+  "MyFormSetNotice": {
+    "description": "Auto imported from components/form/MyFormSetNotice.vue"
+  },
+  "LazyMyFormSetNotice": {
+    "description": "Auto imported from components/form/MyFormSetNotice.vue"
+  },
+  "MyFormSetRole": {
+    "description": "Auto imported from components/form/MyFormSetRole.vue"
+  },
+  "LazyMyFormSetRole": {
+    "description": "Auto imported from components/form/MyFormSetRole.vue"
+  },
+  "MyProcessFlow": {
+    "description": "Auto imported from components/form/MyProcessFlow.vue"
+  },
+  "LazyMyProcessFlow": {
+    "description": "Auto imported from components/form/MyProcessFlow.vue"
+  },
+  "PcStaticTemplate": {
+    "description": "Auto imported from components/form/PCStaticTemplate.vue"
+  },
+  "LazyPcStaticTemplate": {
+    "description": "Auto imported from components/form/PCStaticTemplate.vue"
+  },
+  "PcStaticTemplateShow": {
+    "description": "Auto imported from components/form/PCStaticTemplateShow.vue"
+  },
+  "LazyPcStaticTemplateShow": {
+    "description": "Auto imported from components/form/PCStaticTemplateShow.vue"
+  },
   "BarChart": {
     "description": "Auto imported from components/charts/BarChart.vue"
   },
@@ -143,120 +257,6 @@
   "LazyTableBarChart": {
     "description": "Auto imported from components/charts/TableBarChart.vue"
   },
-  "MyNewStudentFlow": {
-    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
-  },
-  "LazyMyNewStudentFlow": {
-    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
-  },
-  "MyNewStudentFlowType": {
-    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
-  },
-  "LazyMyNewStudentFlowType": {
-    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
-  },
-  "MyInputButton": {
-    "description": "Auto imported from components/search/MyInputButton.vue"
-  },
-  "LazyMyInputButton": {
-    "description": "Auto imported from components/search/MyInputButton.vue"
-  },
-  "MySearchOfDate": {
-    "description": "Auto imported from components/search/MySearchOfDate.vue"
-  },
-  "LazyMySearchOfDate": {
-    "description": "Auto imported from components/search/MySearchOfDate.vue"
-  },
-  "MySearchOfDateGroup": {
-    "description": "Auto imported from components/search/MySearchOfDateGroup.vue"
-  },
-  "LazyMySearchOfDateGroup": {
-    "description": "Auto imported from components/search/MySearchOfDateGroup.vue"
-  },
-  "MyYearTerm": {
-    "description": "Auto imported from components/search/MyYearTerm.vue"
-  },
-  "LazyMyYearTerm": {
-    "description": "Auto imported from components/search/MyYearTerm.vue"
-  },
-  "MyFormAuditType": {
-    "description": "Auto imported from components/form/MyFormAuditType.vue"
-  },
-  "LazyMyFormAuditType": {
-    "description": "Auto imported from components/form/MyFormAuditType.vue"
-  },
-  "MyFormFlow": {
-    "description": "Auto imported from components/form/MyFormFlow.vue"
-  },
-  "LazyMyFormFlow": {
-    "description": "Auto imported from components/form/MyFormFlow.vue"
-  },
-  "MyFormSet": {
-    "description": "Auto imported from components/form/MyFormSet.vue"
-  },
-  "LazyMyFormSet": {
-    "description": "Auto imported from components/form/MyFormSet.vue"
-  },
-  "MyFormSetNotice": {
-    "description": "Auto imported from components/form/MyFormSetNotice.vue"
-  },
-  "LazyMyFormSetNotice": {
-    "description": "Auto imported from components/form/MyFormSetNotice.vue"
-  },
-  "MyFormSetRole": {
-    "description": "Auto imported from components/form/MyFormSetRole.vue"
-  },
-  "LazyMyFormSetRole": {
-    "description": "Auto imported from components/form/MyFormSetRole.vue"
-  },
-  "MyProcessFlow": {
-    "description": "Auto imported from components/form/MyProcessFlow.vue"
-  },
-  "LazyMyProcessFlow": {
-    "description": "Auto imported from components/form/MyProcessFlow.vue"
-  },
-  "PcStaticTemplate": {
-    "description": "Auto imported from components/form/PCStaticTemplate.vue"
-  },
-  "LazyPcStaticTemplate": {
-    "description": "Auto imported from components/form/PCStaticTemplate.vue"
-  },
-  "PcStaticTemplateShow": {
-    "description": "Auto imported from components/form/PCStaticTemplateShow.vue"
-  },
-  "LazyPcStaticTemplateShow": {
-    "description": "Auto imported from components/form/PCStaticTemplateShow.vue"
-  },
-  "MyBlockListChildTree": {
-    "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
-  },
-  "LazyMyBlockListChildTree": {
-    "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
-  },
-  "MyBlockListTree": {
-    "description": "Auto imported from components/tree/MyBlockListTree.vue"
-  },
-  "LazyMyBlockListTree": {
-    "description": "Auto imported from components/tree/MyBlockListTree.vue"
-  },
-  "MyElTree": {
-    "description": "Auto imported from components/tree/MyElTree.vue"
-  },
-  "LazyMyElTree": {
-    "description": "Auto imported from components/tree/MyElTree.vue"
-  },
-  "MyElTreeBlock": {
-    "description": "Auto imported from components/tree/MyElTreeBlock.vue"
-  },
-  "LazyMyElTreeBlock": {
-    "description": "Auto imported from components/tree/MyElTreeBlock.vue"
-  },
-  "TreeNode": {
-    "description": "Auto imported from components/tree/treeNode.js"
-  },
-  "LazyTreeNode": {
-    "description": "Auto imported from components/tree/treeNode.js"
-  },
   "MyAuditPuStatus": {
     "description": "Auto imported from components/utils/MyAuditPuStatus.vue"
   },
@@ -292,72 +292,6 @@
   },
   "LazyMyUserType": {
     "description": "Auto imported from components/utils/MyUserType.vue"
-  },
-  "AuditButton": {
-    "description": "Auto imported from components/utils/auditDetail/AuditButton.vue"
-  },
-  "LazyAuditButton": {
-    "description": "Auto imported from components/utils/auditDetail/AuditButton.vue"
-  },
-  "CreditDetail": {
-    "description": "Auto imported from components/utils/auditDetail/CreditDetail.vue"
-  },
-  "LazyCreditDetail": {
-    "description": "Auto imported from components/utils/auditDetail/CreditDetail.vue"
-  },
-  "FaceDetail": {
-    "description": "Auto imported from components/utils/auditDetail/FaceDetail.vue"
-  },
-  "LazyFaceDetail": {
-    "description": "Auto imported from components/utils/auditDetail/FaceDetail.vue"
-  },
-  "MyAuditDetail": {
-    "description": "Auto imported from components/utils/auditDetail/MyAuditDetail.vue"
-  },
-  "LazyMyAuditDetail": {
-    "description": "Auto imported from components/utils/auditDetail/MyAuditDetail.vue"
-  },
-  "RepuDetail": {
-    "description": "Auto imported from components/utils/auditDetail/RepuDetail.vue"
-  },
-  "LazyRepuDetail": {
-    "description": "Auto imported from components/utils/auditDetail/RepuDetail.vue"
-  },
-  "RepuRemoveDetail": {
-    "description": "Auto imported from components/utils/auditDetail/RepuRemoveDetail.vue"
-  },
-  "LazyRepuRemoveDetail": {
-    "description": "Auto imported from components/utils/auditDetail/RepuRemoveDetail.vue"
-  },
-  "StudoorDetail": {
-    "description": "Auto imported from components/utils/auditDetail/StudoorDetail.vue"
-  },
-  "LazyStudoorDetail": {
-    "description": "Auto imported from components/utils/auditDetail/StudoorDetail.vue"
-  },
-  "StuleaveDetail": {
-    "description": "Auto imported from components/utils/auditDetail/StuleaveDetail.vue"
-  },
-  "LazyStuleaveDetail": {
-    "description": "Auto imported from components/utils/auditDetail/StuleaveDetail.vue"
-  },
-  "TerdoorDetail": {
-    "description": "Auto imported from components/utils/auditDetail/TerdoorDetail.vue"
-  },
-  "LazyTerdoorDetail": {
-    "description": "Auto imported from components/utils/auditDetail/TerdoorDetail.vue"
-  },
-  "TerleaveDetail": {
-    "description": "Auto imported from components/utils/auditDetail/TerleaveDetail.vue"
-  },
-  "LazyTerleaveDetail": {
-    "description": "Auto imported from components/utils/auditDetail/TerleaveDetail.vue"
-  },
-  "SystemDataTopBar": {
-    "description": "Auto imported from components/utils/barBlock/SystemDataTopBar.vue"
-  },
-  "LazySystemDataTopBar": {
-    "description": "Auto imported from components/utils/barBlock/SystemDataTopBar.vue"
   },
   "AuditStatusButton": {
     "description": "Auto imported from components/utils/button/AuditStatusButton.vue"
@@ -437,35 +371,239 @@
   "LazyMyNormalDialog": {
     "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
   },
+  "SystemDataTopBar": {
+    "description": "Auto imported from components/utils/barBlock/SystemDataTopBar.vue"
+  },
+  "LazySystemDataTopBar": {
+    "description": "Auto imported from components/utils/barBlock/SystemDataTopBar.vue"
+  },
   "MyCascader": {
     "description": "Auto imported from components/utils/select/MyCascader.vue"
   },
   "LazyMyCascader": {
     "description": "Auto imported from components/utils/select/MyCascader.vue"
   },
-  "FormSystemDetail": {
-    "description": "Auto imported from components/utils/formDetail/FormSystemDetail.vue"
+  "AuditButton": {
+    "description": "Auto imported from components/utils/auditDetail/AuditButton.vue"
   },
-  "LazyFormSystemDetail": {
-    "description": "Auto imported from components/utils/formDetail/FormSystemDetail.vue"
+  "LazyAuditButton": {
+    "description": "Auto imported from components/utils/auditDetail/AuditButton.vue"
   },
-  "FormSystemNormalDetail": {
-    "description": "Auto imported from components/utils/formDetail/FormSystemNormalDetail.vue"
+  "CreditDetail": {
+    "description": "Auto imported from components/utils/auditDetail/CreditDetail.vue"
   },
-  "LazyFormSystemNormalDetail": {
-    "description": "Auto imported from components/utils/formDetail/FormSystemNormalDetail.vue"
+  "LazyCreditDetail": {
+    "description": "Auto imported from components/utils/auditDetail/CreditDetail.vue"
   },
-  "FormSystemOrderDetail": {
-    "description": "Auto imported from components/utils/formDetail/FormSystemOrderDetail.vue"
+  "FaceDetail": {
+    "description": "Auto imported from components/utils/auditDetail/FaceDetail.vue"
   },
-  "LazyFormSystemOrderDetail": {
-    "description": "Auto imported from components/utils/formDetail/FormSystemOrderDetail.vue"
+  "LazyFaceDetail": {
+    "description": "Auto imported from components/utils/auditDetail/FaceDetail.vue"
   },
-  "FormSystemTagsDetail": {
-    "description": "Auto imported from components/utils/formDetail/FormSystemTagsDetail.vue"
+  "MyAuditDetail": {
+    "description": "Auto imported from components/utils/auditDetail/MyAuditDetail.vue"
   },
-  "LazyFormSystemTagsDetail": {
-    "description": "Auto imported from components/utils/formDetail/FormSystemTagsDetail.vue"
+  "LazyMyAuditDetail": {
+    "description": "Auto imported from components/utils/auditDetail/MyAuditDetail.vue"
+  },
+  "RepuDetail": {
+    "description": "Auto imported from components/utils/auditDetail/RepuDetail.vue"
+  },
+  "LazyRepuDetail": {
+    "description": "Auto imported from components/utils/auditDetail/RepuDetail.vue"
+  },
+  "RepuRemoveDetail": {
+    "description": "Auto imported from components/utils/auditDetail/RepuRemoveDetail.vue"
+  },
+  "LazyRepuRemoveDetail": {
+    "description": "Auto imported from components/utils/auditDetail/RepuRemoveDetail.vue"
+  },
+  "StudoorDetail": {
+    "description": "Auto imported from components/utils/auditDetail/StudoorDetail.vue"
+  },
+  "LazyStudoorDetail": {
+    "description": "Auto imported from components/utils/auditDetail/StudoorDetail.vue"
+  },
+  "StuleaveDetail": {
+    "description": "Auto imported from components/utils/auditDetail/StuleaveDetail.vue"
+  },
+  "LazyStuleaveDetail": {
+    "description": "Auto imported from components/utils/auditDetail/StuleaveDetail.vue"
+  },
+  "TerdoorDetail": {
+    "description": "Auto imported from components/utils/auditDetail/TerdoorDetail.vue"
+  },
+  "LazyTerdoorDetail": {
+    "description": "Auto imported from components/utils/auditDetail/TerdoorDetail.vue"
+  },
+  "TerleaveDetail": {
+    "description": "Auto imported from components/utils/auditDetail/TerleaveDetail.vue"
+  },
+  "LazyTerleaveDetail": {
+    "description": "Auto imported from components/utils/auditDetail/TerleaveDetail.vue"
+  },
+  "CompBankAccountTable": {
+    "description": "Auto imported from components/utils/table/CompBankAccountTable.vue"
+  },
+  "LazyCompBankAccountTable": {
+    "description": "Auto imported from components/utils/table/CompBankAccountTable.vue"
+  },
+  "MerchatClientTable": {
+    "description": "Auto imported from components/utils/table/MerchatClientTable.vue"
+  },
+  "LazyMerchatClientTable": {
+    "description": "Auto imported from components/utils/table/MerchatClientTable.vue"
+  },
+  "SystemDataTable1": {
+    "description": "Auto imported from components/utils/table/SystemDataTable1.vue"
+  },
+  "LazySystemDataTable1": {
+    "description": "Auto imported from components/utils/table/SystemDataTable1.vue"
+  },
+  "SystemDataTable10": {
+    "description": "Auto imported from components/utils/table/SystemDataTable10.vue"
+  },
+  "LazySystemDataTable10": {
+    "description": "Auto imported from components/utils/table/SystemDataTable10.vue"
+  },
+  "SystemDataTable11": {
+    "description": "Auto imported from components/utils/table/SystemDataTable11.vue"
+  },
+  "LazySystemDataTable11": {
+    "description": "Auto imported from components/utils/table/SystemDataTable11.vue"
+  },
+  "SystemDataTable2": {
+    "description": "Auto imported from components/utils/table/SystemDataTable2.vue"
+  },
+  "LazySystemDataTable2": {
+    "description": "Auto imported from components/utils/table/SystemDataTable2.vue"
+  },
+  "SystemDataTable3": {
+    "description": "Auto imported from components/utils/table/SystemDataTable3.vue"
+  },
+  "LazySystemDataTable3": {
+    "description": "Auto imported from components/utils/table/SystemDataTable3.vue"
+  },
+  "SystemDataTable4": {
+    "description": "Auto imported from components/utils/table/SystemDataTable4.vue"
+  },
+  "LazySystemDataTable4": {
+    "description": "Auto imported from components/utils/table/SystemDataTable4.vue"
+  },
+  "SystemDataTable5": {
+    "description": "Auto imported from components/utils/table/SystemDataTable5.vue"
+  },
+  "LazySystemDataTable5": {
+    "description": "Auto imported from components/utils/table/SystemDataTable5.vue"
+  },
+  "SystemDataTable6": {
+    "description": "Auto imported from components/utils/table/SystemDataTable6.vue"
+  },
+  "LazySystemDataTable6": {
+    "description": "Auto imported from components/utils/table/SystemDataTable6.vue"
+  },
+  "SystemDataTable7": {
+    "description": "Auto imported from components/utils/table/SystemDataTable7.vue"
+  },
+  "LazySystemDataTable7": {
+    "description": "Auto imported from components/utils/table/SystemDataTable7.vue"
+  },
+  "SystemDataTable8": {
+    "description": "Auto imported from components/utils/table/SystemDataTable8.vue"
+  },
+  "LazySystemDataTable8": {
+    "description": "Auto imported from components/utils/table/SystemDataTable8.vue"
+  },
+  "SystemDataTable9": {
+    "description": "Auto imported from components/utils/table/SystemDataTable9.vue"
+  },
+  "LazySystemDataTable9": {
+    "description": "Auto imported from components/utils/table/SystemDataTable9.vue"
+  },
+  "UserBankAccountTable": {
+    "description": "Auto imported from components/utils/table/UserBankAccountTable.vue"
+  },
+  "LazyUserBankAccountTable": {
+    "description": "Auto imported from components/utils/table/UserBankAccountTable.vue"
+  },
+  "QuillBlock": {
+    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
+  },
+  "LazyQuillBlock": {
+    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
+  },
+  "UploadSquare": {
+    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
+  },
+  "LazyUploadSquare": {
+    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
+  },
+  "ClassroomTreeAndList": {
+    "description": "Auto imported from components/utils/treeAndList/ClassroomTreeAndList.vue"
+  },
+  "LazyClassroomTreeAndList": {
+    "description": "Auto imported from components/utils/treeAndList/ClassroomTreeAndList.vue"
+  },
+  "DormBuildTreeAndList": {
+    "description": "Auto imported from components/utils/treeAndList/DormBuildTreeAndList.vue"
+  },
+  "LazyDormBuildTreeAndList": {
+    "description": "Auto imported from components/utils/treeAndList/DormBuildTreeAndList.vue"
+  },
+  "MyRoleList": {
+    "description": "Auto imported from components/utils/treeAndList/MyRoleList.vue"
+  },
+  "LazyMyRoleList": {
+    "description": "Auto imported from components/utils/treeAndList/MyRoleList.vue"
+  },
+  "StudentSelTreeAndListNoPage": {
+    "description": "Auto imported from components/utils/treeAndList/StudentSelTreeAndListNoPage.vue"
+  },
+  "LazyStudentSelTreeAndListNoPage": {
+    "description": "Auto imported from components/utils/treeAndList/StudentSelTreeAndListNoPage.vue"
+  },
+  "StudentTreeAndList": {
+    "description": "Auto imported from components/utils/treeAndList/StudentTreeAndList.vue"
+  },
+  "LazyStudentTreeAndList": {
+    "description": "Auto imported from components/utils/treeAndList/StudentTreeAndList.vue"
+  },
+  "StudentTreeAndListNoPage": {
+    "description": "Auto imported from components/utils/treeAndList/StudentTreeAndListNoPage.vue"
+  },
+  "LazyStudentTreeAndListNoPage": {
+    "description": "Auto imported from components/utils/treeAndList/StudentTreeAndListNoPage.vue"
+  },
+  "TeacherCourseTreeAndList": {
+    "description": "Auto imported from components/utils/treeAndList/TeacherCourseTreeAndList.vue"
+  },
+  "LazyTeacherCourseTreeAndList": {
+    "description": "Auto imported from components/utils/treeAndList/TeacherCourseTreeAndList.vue"
+  },
+  "TeacherTreeAndList": {
+    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndList.vue"
+  },
+  "LazyTeacherTreeAndList": {
+    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndList.vue"
+  },
+  "TeacherTreeAndListBak": {
+    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListBak.vue"
+  },
+  "LazyTeacherTreeAndListBak": {
+    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListBak.vue"
+  },
+  "TeacherTreeAndListNoPage": {
+    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListNoPage.vue"
+  },
+  "LazyTeacherTreeAndListNoPage": {
+    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListNoPage.vue"
+  },
+  "TeacherTreeAndListRoleNoPage": {
+    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListRoleNoPage.vue"
+  },
+  "LazyTeacherTreeAndListRoleNoPage": {
+    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListRoleNoPage.vue"
   },
   "MyAdminAtten": {
     "description": "Auto imported from components/utils/status/MyAdminAtten.vue"
@@ -551,160 +689,28 @@
   "LazyMyFlowType": {
     "description": "Auto imported from components/utils/status/MyFlowType.vue"
   },
-  "CompBankAccountTable": {
-    "description": "Auto imported from components/utils/table/CompBankAccountTable.vue"
+  "FormSystemDetail": {
+    "description": "Auto imported from components/utils/formDetail/FormSystemDetail.vue"
   },
-  "LazyCompBankAccountTable": {
-    "description": "Auto imported from components/utils/table/CompBankAccountTable.vue"
+  "LazyFormSystemDetail": {
+    "description": "Auto imported from components/utils/formDetail/FormSystemDetail.vue"
   },
-  "MerchatClientTable": {
-    "description": "Auto imported from components/utils/table/MerchatClientTable.vue"
+  "FormSystemNormalDetail": {
+    "description": "Auto imported from components/utils/formDetail/FormSystemNormalDetail.vue"
   },
-  "LazyMerchatClientTable": {
-    "description": "Auto imported from components/utils/table/MerchatClientTable.vue"
+  "LazyFormSystemNormalDetail": {
+    "description": "Auto imported from components/utils/formDetail/FormSystemNormalDetail.vue"
   },
-  "SystemDataTable1": {
-    "description": "Auto imported from components/utils/table/SystemDataTable1.vue"
+  "FormSystemOrderDetail": {
+    "description": "Auto imported from components/utils/formDetail/FormSystemOrderDetail.vue"
   },
-  "LazySystemDataTable1": {
-    "description": "Auto imported from components/utils/table/SystemDataTable1.vue"
+  "LazyFormSystemOrderDetail": {
+    "description": "Auto imported from components/utils/formDetail/FormSystemOrderDetail.vue"
   },
-  "SystemDataTable10": {
-    "description": "Auto imported from components/utils/table/SystemDataTable10.vue"
+  "FormSystemTagsDetail": {
+    "description": "Auto imported from components/utils/formDetail/FormSystemTagsDetail.vue"
   },
-  "LazySystemDataTable10": {
-    "description": "Auto imported from components/utils/table/SystemDataTable10.vue"
-  },
-  "SystemDataTable2": {
-    "description": "Auto imported from components/utils/table/SystemDataTable2.vue"
-  },
-  "LazySystemDataTable2": {
-    "description": "Auto imported from components/utils/table/SystemDataTable2.vue"
-  },
-  "SystemDataTable3": {
-    "description": "Auto imported from components/utils/table/SystemDataTable3.vue"
-  },
-  "LazySystemDataTable3": {
-    "description": "Auto imported from components/utils/table/SystemDataTable3.vue"
-  },
-  "SystemDataTable4": {
-    "description": "Auto imported from components/utils/table/SystemDataTable4.vue"
-  },
-  "LazySystemDataTable4": {
-    "description": "Auto imported from components/utils/table/SystemDataTable4.vue"
-  },
-  "SystemDataTable5": {
-    "description": "Auto imported from components/utils/table/SystemDataTable5.vue"
-  },
-  "LazySystemDataTable5": {
-    "description": "Auto imported from components/utils/table/SystemDataTable5.vue"
-  },
-  "SystemDataTable6": {
-    "description": "Auto imported from components/utils/table/SystemDataTable6.vue"
-  },
-  "LazySystemDataTable6": {
-    "description": "Auto imported from components/utils/table/SystemDataTable6.vue"
-  },
-  "SystemDataTable7": {
-    "description": "Auto imported from components/utils/table/SystemDataTable7.vue"
-  },
-  "LazySystemDataTable7": {
-    "description": "Auto imported from components/utils/table/SystemDataTable7.vue"
-  },
-  "SystemDataTable8": {
-    "description": "Auto imported from components/utils/table/SystemDataTable8.vue"
-  },
-  "LazySystemDataTable8": {
-    "description": "Auto imported from components/utils/table/SystemDataTable8.vue"
-  },
-  "SystemDataTable9": {
-    "description": "Auto imported from components/utils/table/SystemDataTable9.vue"
-  },
-  "LazySystemDataTable9": {
-    "description": "Auto imported from components/utils/table/SystemDataTable9.vue"
-  },
-  "UserBankAccountTable": {
-    "description": "Auto imported from components/utils/table/UserBankAccountTable.vue"
-  },
-  "LazyUserBankAccountTable": {
-    "description": "Auto imported from components/utils/table/UserBankAccountTable.vue"
-  },
-  "ClassroomTreeAndList": {
-    "description": "Auto imported from components/utils/treeAndList/ClassroomTreeAndList.vue"
-  },
-  "LazyClassroomTreeAndList": {
-    "description": "Auto imported from components/utils/treeAndList/ClassroomTreeAndList.vue"
-  },
-  "DormBuildTreeAndList": {
-    "description": "Auto imported from components/utils/treeAndList/DormBuildTreeAndList.vue"
-  },
-  "LazyDormBuildTreeAndList": {
-    "description": "Auto imported from components/utils/treeAndList/DormBuildTreeAndList.vue"
-  },
-  "MyRoleList": {
-    "description": "Auto imported from components/utils/treeAndList/MyRoleList.vue"
-  },
-  "LazyMyRoleList": {
-    "description": "Auto imported from components/utils/treeAndList/MyRoleList.vue"
-  },
-  "StudentSelTreeAndListNoPage": {
-    "description": "Auto imported from components/utils/treeAndList/StudentSelTreeAndListNoPage.vue"
-  },
-  "LazyStudentSelTreeAndListNoPage": {
-    "description": "Auto imported from components/utils/treeAndList/StudentSelTreeAndListNoPage.vue"
-  },
-  "StudentTreeAndList": {
-    "description": "Auto imported from components/utils/treeAndList/StudentTreeAndList.vue"
-  },
-  "LazyStudentTreeAndList": {
-    "description": "Auto imported from components/utils/treeAndList/StudentTreeAndList.vue"
-  },
-  "StudentTreeAndListNoPage": {
-    "description": "Auto imported from components/utils/treeAndList/StudentTreeAndListNoPage.vue"
-  },
-  "LazyStudentTreeAndListNoPage": {
-    "description": "Auto imported from components/utils/treeAndList/StudentTreeAndListNoPage.vue"
-  },
-  "TeacherCourseTreeAndList": {
-    "description": "Auto imported from components/utils/treeAndList/TeacherCourseTreeAndList.vue"
-  },
-  "LazyTeacherCourseTreeAndList": {
-    "description": "Auto imported from components/utils/treeAndList/TeacherCourseTreeAndList.vue"
-  },
-  "TeacherTreeAndList": {
-    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndList.vue"
-  },
-  "LazyTeacherTreeAndList": {
-    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndList.vue"
-  },
-  "TeacherTreeAndListBak": {
-    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListBak.vue"
-  },
-  "LazyTeacherTreeAndListBak": {
-    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListBak.vue"
-  },
-  "TeacherTreeAndListNoPage": {
-    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListNoPage.vue"
-  },
-  "LazyTeacherTreeAndListNoPage": {
-    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListNoPage.vue"
-  },
-  "TeacherTreeAndListRoleNoPage": {
-    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListRoleNoPage.vue"
-  },
-  "LazyTeacherTreeAndListRoleNoPage": {
-    "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListRoleNoPage.vue"
-  },
-  "QuillBlock": {
-    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
-  },
-  "LazyQuillBlock": {
-    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
-  },
-  "UploadSquare": {
-    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
-  },
-  "LazyUploadSquare": {
-    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
+  "LazyFormSystemTagsDetail": {
+    "description": "Auto imported from components/utils/formDetail/FormSystemTagsDetail.vue"
   }
 }
