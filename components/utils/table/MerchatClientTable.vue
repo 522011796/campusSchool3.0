@@ -86,9 +86,9 @@
           :label="$t('开户银行')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">{{ scope.row.bank_name }}</div>
+              <div class="text-center">{{ scope.row.bank_name ? scope.row.bank_name : '--' }}</div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              {{ scope.row.bank_name }}
+              {{ scope.row.bank_name ? scope.row.bank_name : '--' }}
             </span>
             </el-popover>
           </template>

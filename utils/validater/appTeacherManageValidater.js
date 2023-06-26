@@ -19,6 +19,9 @@ export default {
           { required: true, message: this.$t("请输入信息"), trigger: 'blur' },
           { validator: rules.FormValidate.Form().validate_numberZeroReg, trigger: 'blur' }
         ],
+        accountTeacherType: [
+          { required: true, message: this.$t("请输入信息"), trigger: 'change' }
+        ]
       }
     }
   }

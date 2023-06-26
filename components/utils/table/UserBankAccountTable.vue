@@ -50,9 +50,9 @@
           :label="$t('户名')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">{{ scope.row.account_name }}</div>
+              <div class="text-center">{{ scope.row.account_name ? scope.row.account_name : '--' }}</div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              {{ scope.row.account_name }}
+              {{ scope.row.account_name ? scope.row.account_name : '--' }}
             </span>
             </el-popover>
           </template>

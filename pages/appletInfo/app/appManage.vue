@@ -212,10 +212,13 @@
               {{formTeacherAccount.name}}
             </span>
             </el-form-item>
-            <el-form-item :label="$t('开户行')" key="bankName" prop="bankName">
+            <el-form-item :label="$t('类型')" key="accountSchoolType" prop="accountTeacherType">
+              <my-select :sel-value="formTeacherAccount.accountTeacherType" :options="filterAccountType" width-style="260" @change="handleFormChange($event, 5)"></my-select>
+            </el-form-item>
+            <el-form-item v-if="formTeacherAccount.accountTeacherType != 2 && formTeacherAccount.accountTeacherType != 3" :label="$t('开户行')" key="bankName" prop="bankName">
               <el-input v-model="formTeacherAccount.bankName" class="width-260"></el-input>
             </el-form-item>
-            <el-form-item :label="$t('户名')" key="bankAccountName" prop="bankAccountName">
+            <el-form-item v-if="formTeacherAccount.accountTeacherType != 2 && formTeacherAccount.accountTeacherType != 3" :label="$t('户名')" key="bankAccountName" prop="bankAccountName">
               <el-input v-model="formTeacherAccount.bankAccountName" class="width-260"></el-input>
             </el-form-item>
             <el-form-item :label="$t('账号')" key="bankAccount" prop="bankAccount">
@@ -244,7 +247,7 @@
             <el-form-item :label="$t('电话')" key="phone" prop="phone">
               <el-input v-model="formMerchatAccount.phone" class="width-260"></el-input>
             </el-form-item>
-            <el-form-item :label="$t('开户行')" key="bankMerName" prop="bankMerName">
+            <el-form-item v-if="formMerchatAccount.accountType != 2 && formMerchatAccount.accountType != 3" :label="$t('开户行')" key="bankMerName" prop="bankMerName">
               <el-input v-model="formMerchatAccount.bankMerName" class="width-260"></el-input>
             </el-form-item>
             <el-form-item :label="$t('银行账户')" key="bankMerAccount" prop="bankMerAccount">
@@ -258,10 +261,10 @@
             <el-form-item :label="$t('账户类型')" key="accountSchoolType" prop="accountSchoolType">
               <my-select :sel-value="formSchoolAccount.accountSchoolType" :options="filterAccountType" width-style="300" @change="handleFormChange($event, 4)"></my-select>
             </el-form-item>
-            <el-form-item :label="$t('开户行')" key="bankSchoolName" prop="bankSchoolName">
+            <el-form-item v-if="formSchoolAccount.accountSchoolType != 2 && formSchoolAccount.accountSchoolType != 3" :label="$t('开户行')" key="bankSchoolName" prop="bankSchoolName">
               <el-input v-model="formSchoolAccount.bankSchoolName" class="width-300"></el-input>
             </el-form-item>
-            <el-form-item :label="$t('户名')" key="accountName" prop="accountName">
+            <el-form-item v-if="formSchoolAccount.accountSchoolType != 2 && formSchoolAccount.accountSchoolType != 3" :label="$t('户名')" key="accountName" prop="accountName">
               <el-input v-model="formSchoolAccount.accountName" class="width-300"></el-input>
             </el-form-item>
             <el-form-item :label="$t('银行账户')" key="bankSchoolAccount" prop="bankSchoolAccount">
@@ -468,7 +471,8 @@
           bankName: '',
           bankAccountName: '',
           bankAccount: '',
-          userId: ''
+          userId: '',
+          accountTeacherType: ''
         },
         formMerchatAccount: {
           id: '',
@@ -750,6 +754,7 @@
         if (type == 1){
           this.formTeacherAccount = {
             id: item.id,
+            accountTeacherType: item.account_type+'',
             name: item.real_name,
             dept: '',
             bankName: item.bank_name,
@@ -758,6 +763,7 @@
             userId: item.user_id
           }
         }else if (type == 3){
+          console.log(item);
           this.formMerchatAccount = {
             id: item.id,
             accountType: item.account_type+'',
@@ -918,6 +924,8 @@
           this.formMerchatAccount.accountType = event;
         }else if (type == 4){
           this.formSchoolAccount.accountSchoolType = event;
+        }else if (type == 5){
+          this.formTeacherAccount.accountTeacherType = event;
         }
       },
       setAreaChildren(tree, type){//迭代方法
@@ -994,11 +1002,14 @@
               }
 
               let params = {
-                bankName: this.formTeacherAccount.bankName,
-                accountName: this.formTeacherAccount.bankAccountName,
-                accountNum: this.formTeacherAccount.bankAccount,
-                userId: this.formTeacherAccount.userId
+                accountType: this.formTeacherAccount.accountTeacherType,
+                userId: this.formTeacherAccount.userId,
+                accountNum: this.formTeacherAccount.bankAccount
               };
+              if (this.formTeacherAccount.accountTeacherType != 2 && this.formTeacherAccount.accountTeacherType != 3){
+                params['bankName'] = this.formTeacherAccount.bankName;
+                params['accountName'] = this.formTeacherAccount.bankAccountName;
+              }
               if (this.formTeacherAccount.id != ''){
                 params['id'] = this.formTeacherAccount.id;
               }
@@ -1027,10 +1038,12 @@
                 address: this.formMerchatAccount.address,
                 contact: this.formMerchatAccount.contact,
                 phone: this.formMerchatAccount.phone,
-                bankName: this.formMerchatAccount.bankMerName,
-                accountName: this.formMerchatAccount.bankMerAccountName,
                 accountNum: this.formMerchatAccount.bankMerAccount
               };
+              if (this.formMerchatAccount.accountType != 2 && this.formMerchatAccount.accountType != 3){
+                //params['accountName'] = this.formMerchatAccount.bankMerName;
+                params['bankName'] = this.formMerchatAccount.bankMerName;
+              }
               if (this.formMerchatAccount.id != ''){
                 params['id'] = this.formMerchatAccount.id;
               }
@@ -1061,10 +1074,14 @@
               let params = {
                 accountName: this.formSchoolAccount.accountName,
                 rangeType: this.formSchoolAccount.rangeType,
-                bankName: this.formSchoolAccount.bankSchoolName,
-                accountNum: this.formSchoolAccount.bankSchoolAccount,
-                accountType: this.formSchoolAccount.accountSchoolType
+                accountType: this.formSchoolAccount.accountSchoolType,
+                accountNum:this.formSchoolAccount.bankSchoolAccount
               };
+              if (this.formSchoolAccount.accountSchoolType != 2 && this.formSchoolAccount.accountSchoolType != 3){
+                params['bankName'] = this.formSchoolAccount.bankSchoolName;
+
+              }
+
               url = common.school_account_save;
               if (this.formSchoolAccount.id && this.formSchoolAccount.id != ""){
                 params['id'] = this.formSchoolAccount.id;
@@ -1124,7 +1141,8 @@
           bankName: '',
           bankAccountName: '',
           bankAccount: '',
-          userId: ''
+          userId: '',
+          accountTeacherType: ''
         };
         this.formMerchatAccount = {
           id: '',

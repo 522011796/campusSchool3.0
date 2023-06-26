@@ -106,9 +106,9 @@
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
                 <template v-if="scope.row.applyData['ht_pay_status20230501']">
-                  <label v-if="scope.row.applyData.ht_pay_status20230501.value == 0">{{$("未支付")}}</label>
-                  <label v-if="scope.row.applyData.ht_pay_status20230501.value == 1">{{$("支付中")}}</label>
-                  <label v-if="scope.row.applyData.ht_pay_status20230501.value == 2">{{$("已支付")}}</label>
+                  <label v-if="scope.row.applyData.ht_pay_status20230501.value == 0">{{$t("未支付")}}</label>
+                  <label v-if="scope.row.applyData.ht_pay_status20230501.value == 1">{{$t("支付中")}}</label>
+                  <label v-if="scope.row.applyData.ht_pay_status20230501.value == 2">{{$t("已支付")}}</label>
                 </template>
                 <template v-else>
                   <span>--</span>
@@ -116,9 +116,9 @@
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                 <template v-if="scope.row.applyData['ht_pay_status20230501']">
-                  <label v-if="scope.row.applyData.ht_pay_status20230501.value == 0">{{$("未支付")}}</label>
-                  <label v-if="scope.row.applyData.ht_pay_status20230501.value == 1">{{$("支付中")}}</label>
-                  <label v-if="scope.row.applyData.ht_pay_status20230501.value == 2">{{$("已支付")}}</label>
+                  <label v-if="scope.row.applyData.ht_pay_status20230501.value == 0">{{$t("未支付")}}</label>
+                  <label v-if="scope.row.applyData.ht_pay_status20230501.value == 1">{{$t("支付中")}}</label>
+                  <label v-if="scope.row.applyData.ht_pay_status20230501.value == 2">{{$t("已支付")}}</label>
                 </template>
                 <template v-else>
                   <span>--</span>
@@ -134,8 +134,8 @@
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
                 <template v-if="scope.row.applyData['ht_kp_status20230501']">
-                  <label v-if="scope.row.applyData.ht_kp_status20230501.value == 0">{{$("未开票")}}</label>
-                  <label v-if="scope.row.applyData.ht_kp_status20230501.value == 2">{{$("已开票")}}</label>
+                  <label v-if="scope.row.applyData.ht_kp_status20230501.value == 0">{{$t("未开票")}}</label>
+                  <label v-if="scope.row.applyData.ht_kp_status20230501.value == 2">{{$t("已开票")}}</label>
                 </template>
                 <template v-else>
                   <span>--</span>
@@ -143,8 +143,8 @@
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                 <template v-if="scope.row.applyData['ht_kp_status20230501']">
-                  <label v-if="scope.row.applyData.ht_kp_status20230501.value == 0">{{$("未开票")}}</label>
-                  <label v-if="scope.row.applyData.ht_kp_status20230501.value == 2">{{$("已开票")}}</label>
+                  <label v-if="scope.row.applyData.ht_kp_status20230501.value == 0">{{$t("未开票")}}</label>
+                  <label v-if="scope.row.applyData.ht_kp_status20230501.value == 2">{{$t("已开票")}}</label>
                 </template>
                 <template v-else>
                   <span>--</span>
