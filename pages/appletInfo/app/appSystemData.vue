@@ -399,9 +399,11 @@
 
         </form-system-detail>
       </div>
-      <div slot="footer" class="padding-lr-10">
+      <div slot="footer">
         <audit-button v-if="detailType == 2" :sel-value="dataMainDetailObj" @ok="handleOk" @no="handleNo" @cancel="handleCancel"></audit-button>
-        <el-button v-else size="small" @click="cancelDrawDialog">{{$t("取消")}}</el-button>
+        <div class="padding-lr-10">
+          <el-button size="small" @click="cancelDrawDialog">{{$t("取消")}}</el-button>
+        </div>
       </div>
     </drawer-layout-right>
 
@@ -849,7 +851,7 @@
                     havePerson: '',
                     object: object,
                     objectName: objectName,
-                    startTime: res.data.data.applyData['ht_beginTime20230501'] ? res.data.data.applyData.ht_beginTime20230501.value : '',
+                    startTime: res.data.data.applyData['ht_time20230501'] ? res.data.data.applyData.ht_time20230501.value : '',
                     remarks: res.data.data.applyData['ht_des20230501'] ? res.data.data.applyData.ht_des20230501.value : '',
                     backMoney: [],
                     user: res.data.data.applyData['ht_duty20230501'] ? res.data.data.applyData.ht_duty20230501.userName : '',
