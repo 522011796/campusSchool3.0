@@ -182,10 +182,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label>{{scope.row['xm_id20230501'] ? scope.row['xm_id20230501'].value : '--'}}</label>
+                <label>{{scope.row['xm_id20230501'] ? scope.row['xm_id20230501'].name : '--'}}</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label>{{scope.row['xm_id20230501'] ? scope.row['xm_id20230501'].value : '--'}}</label>
+                <label>{{scope.row['xm_id20230501'] ? scope.row['xm_id20230501'].name : '--'}}</label>
               </span>
             </el-popover>
           </template>
@@ -196,10 +196,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label>{{scope.row['tag_ids20230501'] ? scope.row['tag_ids20230501'].value : '--'}}</label>
+                <label>{{scope.row['tag_ids20230501'] ? scope.row['tag_ids20230501'].name : '--'}}</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label>{{scope.row['tag_ids20230501'] ? scope.row['tag_ids20230501'].value : '--'}}</label>
+                <label>{{scope.row['tag_ids20230501'] ? scope.row['tag_ids20230501'].name : '--'}}</label>
               </span>
             </el-popover>
           </template>

@@ -121,9 +121,9 @@
             <system-data-table9 v-if="formName == '借款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 9)" @detailListInfo="detailInfo($event, 91)"></system-data-table9>
             <system-data-table11 v-if="formName == '收款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 11)" @detailListInfo="detailInfo($event, 111)"></system-data-table11>
             <system-data-table10 v-if="formName == '还款单'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 10)" @detailListInfo="detailInfo($event, 101)"></system-data-table10>
-            <system-data-table3 v-if="formName == '应收应付'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table3>
-            <system-data-table4 v-if="formName == '发票管理'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table4>
-            <system-data-table5 v-if="formName == '交易流水'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height"></system-data-table5>
+            <system-data-table3 v-if="formName == '应收应付'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 33)"></system-data-table3>
+            <system-data-table4 v-if="formName == '发票管理'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 44)"></system-data-table4>
+            <system-data-table5 v-if="formName == '交易流水'" :form-id="formId" :table-data="tableDetailData" :table-height="tableHeight17.height" @detailInfo="detailInfo($event, 5)"></system-data-table5>
           </template>
         </div>
         <div class="layout-right-footer text-right">
@@ -881,7 +881,7 @@
                   this.dataDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
                   this.dataMainDetailObj = res.data.data;
                   this.detailApplyAuditList = res.data.data.handleList;
-                }else if (extra == 2 || extra == 3 || extra == 4){
+                }else if (extra == 2 || extra == 3 || extra == 4 || extra == 5 || extra == 44 || extra == 33){
                   this.dataDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
                   this.dataMainDetailObj = res.data.data;
                   this.detailApplyAuditList = res.data.data.handleList;
@@ -1271,6 +1271,18 @@
         }else if (type == 4){
           //this.initReal(item.id);
           this.initAuditDetailList(item.id, 'detail', 4);
+          this.dialogObjServerDetail = true;
+        }else if (type == 44){
+          //this.initReal(item.id);
+          this.initAuditDetailList(item._id, 'detail', 44);
+          this.dialogObjServerDetail = true;
+        }else if (type == 33){
+          //this.initReal(item.id);
+          this.initAuditDetailList(item._id, 'detail', 33);
+          this.dialogObjServerDetail = true;
+        }else if (type == 5){
+          //this.initReal(item.id);
+          this.initAuditDetailList(item._id, 'detail', 5);
           this.dialogObjServerDetail = true;
         }else if (type == 6){
           //this.initReal(item.id);

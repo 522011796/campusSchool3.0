@@ -28,10 +28,10 @@
           :label="$t('发票号码')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">{{ $moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss") }}</div>
+              <div class="text-center">{{ scope.row.invoiceDataList.no }}</div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              {{ $moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss") }}
-            </span>
+                {{ scope.row.invoiceDataList.no }}
+              </span>
             </el-popover>
           </template>
         </el-table-column>
@@ -91,10 +91,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label>{{scope.row.totalAmount}}</label>
+                <label>{{scope.row.invoiceDataList.totalAmount}}</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label>{{scope.row.totalAmount}}</label>
+                <label>{{ scope.row.invoiceDataList.totalAmount }}</label>
               </span>
             </el-popover>
           </template>
@@ -105,10 +105,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label>{{scope.row.invoiceDataList.taxRate}}</label>
+                <label>{{scope.row.invoiceDataList.taxRate}}%</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label>{{scope.row.invoiceDataList.taxRate}}</label>
+                <label>{{scope.row.invoiceDataList.taxRate}}%</label>
               </span>
             </el-popover>
           </template>
@@ -147,10 +147,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label>{{scope.row.invoiceDataList.name}}</label>
+                <label>{{scope.row.invoiceDataList.header}}</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label>{{scope.row.invoiceDataList.name}}</label>
+                <label>{{scope.row.invoiceDataList.header}}</label>
               </span>
             </el-popover>
           </template>
@@ -161,10 +161,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label>{{scope.row.invoiceDataList}}</label>
+                <label>{{scope.row.invoiceDataList.seller}}</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label>{{scope.row.invoiceDataList}}</label>
+                <label>{{scope.row.invoiceDataList.seller}}</label>
               </span>
             </el-popover>
           </template>
@@ -175,10 +175,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label>{{ $moment(scope.row.invoiceDataList.handleTime).format("YYYY-MM-DD HH:mm:ss") }}</label>
+                <label>{{ scope.row.invoiceDataList.time }}</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label>{{ $moment(scope.row.invoiceDataList.handleTime).format("YYYY-MM-DD HH:mm:ss") }}</label>
+                <label>{{ scope.row.invoiceDataList.time }}</label>
               </span>
             </el-popover>
           </template>
@@ -203,10 +203,12 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label>{{scope.row.invoiceDataList.source}}</label>
+                <label v-if="scope.row.real == true" class="color-success">{{$t("已验真")}}</label>
+                <label v-if="scope.row.real == false" class="color-danger">{{$t("未验真")}}</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label>{{scope.row.invoiceDataList.source}}</label>
+                <label v-if="scope.row.real == true" class="color-success">{{$t("已验真")}}</label>
+                <label v-if="scope.row.real == false" class="color-danger">{{$t("未验真")}}</label>
               </span>
             </el-popover>
           </template>
@@ -217,10 +219,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label>{{scope.row.invoiceDataList.source}}</label>
+                <label>{{scope.row.invoiceDataList.costName ? scope.row.invoiceDataList.costName : '--'}}</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label>{{scope.row.invoiceDataList.source}}</label>
+                <label>{{scope.row.invoiceDataList.costName ? scope.row.invoiceDataList.costName : '--'}}</label>
               </span>
             </el-popover>
           </template>
@@ -231,10 +233,11 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label>{{scope.row.invoiceDataList.source}}</label>
+                <label>{{ scope.row._id ? scope.row._id : '--' }}</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label>{{scope.row.invoiceDataList.source}}</label>
+                <a v-if="scope.row._id" href="javascript:;" class="color-grand" @click="detailInfo(scope.row)">{{scope.row.noticeName}}</a>
+                <span v-else>--</span>
               </span>
             </el-popover>
           </template>
@@ -245,25 +248,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <label>{{scope.row.invoiceDataList.source}}</label>
+                <label>{{auditStatusTextInfo(scope.row.status)}}</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label>{{scope.row.invoiceDataList.source}}</label>
-              </span>
-            </el-popover>
-          </template>
-        </el-table-column>
-        <el-table-column
-          align="center"
-          width="160"
-          :label="$t('关联财务凭证号')">
-          <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">
-                <label>{{scope.row.invoiceDataList.source}}</label>
-              </div>
-              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label>{{scope.row.invoiceDataList.source}}</label>
+                <label>{{auditStatusTextInfo(scope.row.status)}}</label>
               </span>
             </el-popover>
           </template>
@@ -274,6 +262,8 @@
 </template>
 
 <script>
+  import {auditStatusText} from "~/utils/utils";
+
   export default {
     name: 'SystemDataTable4',
     props: {
@@ -303,6 +293,9 @@
 
     },
     methods: {
+      auditStatusTextInfo(str){
+        return auditStatusText(str);
+      },
       detailInfo(row){
         this.$emit('detailInfo', row);
       },

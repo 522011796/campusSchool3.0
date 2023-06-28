@@ -1060,7 +1060,8 @@ export function flowAuditItemType(str, type){
     "3": "发起人自选审批",
     "4": "抄送给固定人",
     "5": "抄送给系统角色",
-    "6": "自选抄送人"
+    "6": "自选抄送人",
+    "7": "子流程审批"
   };
   if (str && type == 'set') {
     return flowAuditType[str];

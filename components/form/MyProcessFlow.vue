@@ -25,6 +25,7 @@
 <!--              <my-select class="margin-top-5" size="mini" :placeholder="$t('类型')" :sel-value="flowDetailData.type" :options="auditFlowType" :clearable="false" @change="handleAuditTypeChange"></my-select>-->
                 <div v-if="flowDetailData.extra == 'audit'" class="margin-top-10">{{$t("审批节点")}}</div>
                 <div v-if="flowDetailData.extra == 'send'" class="margin-top-10">{{$t("抄送节点")}}</div>
+              <div v-if="flowDetailData.extra == 'sub'" class="margin-top-10">{{$t("子流程审批")}}</div>
             </div>
             <div class="margin-top-10">
               <div class="font-bold">{{$t("节点名称")}}</div>
@@ -58,7 +59,7 @@
                 <div class="font-bold">{{$t("审批人")}}</div>
                 <div class="margin-top-5">
                   <el-popover
-                    v-if="flowDetailData.type == 1 || flowDetailData.type == 3"
+                    v-if="flowDetailData.type == 1 || flowDetailData.type == 3 || flowDetailData.type == 7"
                     popper-class="custom-popper-class-form"
                     placement="left"
                     width="700"
@@ -76,15 +77,27 @@
                 </div>
               </template>
 
-              <template>
+              <template v-if="flowDetailData.extra != 'sub'">
                 <div class="font-bold margin-top-10">{{$t("审批人(部门角色)")}}</div>
                 <div class="margin-top-5">
                   <my-cascader size="mini" :clearable="true" ref="SelectorDept" :props="{multiple: true}" :sel-value="flowDetailData.hrole" type="5" sub-type="" @change="handleCascaderChange($event)"></my-cascader>
                 </div>
               </template>
+
+              <template v-if="flowDetailData.extra == 'sub'">
+                <div class="font-bold margin-top-10">{{$t("流程设置")}}</div>
+                <el-select ref="processRef" class="margin-top-5" size="mini" :placeholder="$t('流程')" v-model="flowDetailData.pId" :clearable="false" @change="handleProcessTypeChange">
+                  <el-option
+                    v-for="item in processOptions"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                  </el-option>
+                </el-select>
+              </template>
             </div>
 
-            <template v-if="flowDetailData.extra != 'send'">
+            <template v-if="flowDetailData.extra != 'send' && flowDetailData.extra != 'sub'">
               <div class="margin-top-10 border-bottom-1 padding-bottom-5">
                 <div class="font-bold">{{$t("多人审批规则")}}</div>
                 <div class="margin-top-10">
@@ -368,15 +381,34 @@
                 <div>
                   <div>
                     <span style="position: relative; top: -5px">
-                      <i class="fa fa-users"></i>
-                      <label>{{ $t("审批人") }}: </label>
+                      <template v-if="item.type == 1 || item.type == 3 || item.type == 4">
+                        <i class="fa fa-users"></i>
+                        <label>{{ $t("审批人") }}: </label>
+                      </template>
+                      <template v-if="item.type == 7">
+                        <i class="fa fa-cube"></i>
+                        <label>{{ $t("子流程") }}: </label>
+                      </template>
                     </span>
                     <span>
-                      <template v-if="item.type == 1 || item.type == 3 || item.type == 4 || item.type == 6">
+                      <template v-if="item.type == 1 || item.type == 3 || item.type == 4">
                         <span v-if="item.hName.length > 0">
                           <el-tag size="mini" v-for="(itemUser ,indexUser) in item.hName" :key="indexUser" v-if="indexUser < 4" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
                             <el-tooltip class="item" effect="dark" :content="itemUser" placement="top-start">
                               <span>{{ itemUser }}</span>
+                            </el-tooltip>
+                          </el-tag>
+                          <label class="flow-user-count-tag margin-left-5" v-if="item.users.length >= 4">4+</label>
+                        </span>
+                        <span v-else class="color-muted" style="position: relative; top:-5px;">
+                          无
+                        </span>
+                      </template>
+                      <template v-if="item.type == 7">
+                        <span v-if="item.pId != ''">
+                          <el-tag size="mini" class="margin-left-5 moon-content-text-ellipsis-class" style="width: 50px">
+                            <el-tooltip class="item" effect="dark" :content="item.pName" placement="top-start">
+                              <span>{{ item.pName }}</span>
                             </el-tooltip>
                           </el-tag>
                           <label class="flow-user-count-tag margin-left-5" v-if="item.users.length >= 4">4+</label>
@@ -417,7 +449,7 @@
                       </template>
                     </span>
                   </div>
-                  <div class="margin-top-5" v-if="item.extra != 'send'">
+                  <div class="margin-top-5" v-if="item.extra != 'send' && item.extra != 'sub'">
                     <span style="position: relative; top: -5px">
                       <i class="fa fa-cog"></i>
                       <label>{{ $t("权限") }}: </label>
@@ -462,6 +494,7 @@
   import {flowAuditItemType, MessageError, MessageSuccess, MessageWarning} from "~/utils/utils";
   import MySelect from "~/components/MySelect";
   import MyFormAuditType from "~/components/form/MyFormAuditType";
+  import formItem from "element-ui/packages/form-item";
 
   export default {
     name: 'myProcessFlow',
@@ -503,6 +536,7 @@
         flowDetailData: {},
         approverUsers: [],
         formFieldList: [],
+        processOptions: [],
         roleGroup: {},
         auditFlowType: [
           {label: this.$t("固定人审批"), text: this.$t("固定人审批"), value: 1},
@@ -511,6 +545,7 @@
           {label: this.$t("抄送给固定人"), text: this.$t("抄送给固定人"), value: 4},
           {label: this.$t("抄送给系统角色"), text: this.$t("抄送给系统角色"), value: 5},
           {label: this.$t("自选抄送人"), text: this.$t("自选抄送人"), value: 6},
+          {label: this.$t("子流程审批"), text: this.$t("子流程审批"), value: 7},
         ]
       }
     },
@@ -518,6 +553,27 @@
       //this.initAsync();
     },
     methods: {
+      initProcess(type, id){
+        console.log(id);
+        let params = {
+          processType: type
+        };
+        this.$axios.get(common.process_sub_list, {params: params}).then(res => {
+          if (res.data.data){
+            let arr = [];
+            for (let i =0; i < res.data.data.length; i++){
+              if (res.data.data[i].id != id){
+                arr.push({
+                  label: res.data.data[i].processName,
+                  text: res.data.data[i].processName,
+                  value: res.data.data[i].id
+                });
+              }
+            }
+            this.processOptions = arr;
+          }
+        });
+      },
       async initAsync(){
         this.roleGroup = {};
         await this.getRoleTreeInfo(5);
@@ -560,7 +616,10 @@
           applicantEdit: false,
           right1: [],
           right2: [],
-          urge: false
+          urge: false,
+          pId: '',
+          pName: '',
+          cType: ''
         };
         this.flowData.splice(index, 0, obj);
         this.selFlowItemBlock(null, obj, index);
@@ -582,10 +641,12 @@
         return flowAuditItemType(value, type);
       },
       selFlowItemBlock(event, data, index){
+        console.log(data);
         this.flowDetailData = data;
         this.approverUsers = data.users;
         this.flowDetailIndex = index;
         let ruleList = [];
+        this.initProcess(this.formId.process_type, this.formId.id);
         if (this.formId.form_content){
           let form_content = JSON.parse(this.formId.form_content);
           //this.formFieldList = form_content.rule;
@@ -702,6 +763,14 @@
       },
       handleCascaderChange(data){
         this.flowDetailData.hrole = data;
+      },
+      handleProcessTypeChange(data){
+        this.flowDetailData.pId = data;
+        let obj = {};
+        obj = this.processOptions.find((item)=>{
+          return item.value === data;
+        });
+        this.flowDetailData.pName = obj.label;
       },
       showPop(){
         this.flowCustonUserStatus = false;

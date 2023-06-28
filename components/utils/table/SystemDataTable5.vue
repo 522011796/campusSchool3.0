@@ -26,9 +26,9 @@
           :label="$t('流水号')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">{{ scope.row.formName }}</div>
+              <div class="text-center">{{ scope.row.serialDataList._id }}</div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              {{ scope.row.formName }}
+              {{ scope.row.serialDataList._id }}
             </span>
             </el-popover>
           </template>
@@ -38,9 +38,9 @@
           :label="$t('类型')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">{{ $moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss") }}</div>
+              <div class="text-center">{{ scope.row.serialDataList.name }}</div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              {{ $moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss") }}
+              {{ scope.row.serialDataList.name }}
             </span>
             </el-popover>
           </template>
@@ -61,26 +61,14 @@
         </el-table-column>
         <el-table-column
           align="center"
-          :label="$t('交易后余额')">
-          <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">{{ scope.row.applyUserName }}</div>
-              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-              {{ scope.row.applyUserName }}
-            </span>
-            </el-popover>
-          </template>
-        </el-table-column>
-        <el-table-column
-          align="center"
           :label="$t('交易时间')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                {{ $moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss") }}
+                {{ $moment(scope.row.serialDataList.time).format("YYYY-MM-DD HH:mm:ss") }}
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                {{ $moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss") }}
+                {{ $moment(scope.row.serialDataList.time).format("YYYY-MM-DD HH:mm:ss") }}
               </span>
             </el-popover>
           </template>
@@ -91,10 +79,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                {{ scope.row.serialDataList.accountNo }}
+                {{ scope.row.serialDataList.accNo ? scope.row.serialDataList.accNo : '--' }}
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                {{ scope.row.serialDataList.accountNo }}
+                {{ scope.row.serialDataList.accNo ? scope.row.serialDataList.accNo : '--' }}
               </span>
             </el-popover>
           </template>
@@ -105,10 +93,10 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                {{ scope.row.serialDataList.accountName }}
+                {{ scope.row.serialDataList.accName ? scope.row.serialDataList.accName : '--' }}
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                {{ scope.row.serialDataList.accountName }}
+                {{ scope.row.serialDataList.accName ? scope.row.serialDataList.accName : '--' }}
               </span>
             </el-popover>
           </template>
@@ -133,10 +121,11 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                {{ scope.row.serialDataList.name }}
+                {{ scope.row._id ? scope.row._id : '--' }}
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                {{ scope.row.serialDataList.name }}
+                <a v-if="scope.row._id" href="javascript:;" class="color-grand" @click="detailInfo(scope.row)">{{scope.row.noticeName}}</a>
+                <span v-else>--</span>
               </span>
             </el-popover>
           </template>

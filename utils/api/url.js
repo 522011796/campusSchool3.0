@@ -829,5 +829,6 @@ export const common = {
   object_xm_real_page: '/proxy/school/applet/form/apply/xm/relaPage',//获取合同单据列表
 
   server_form_audit_handle: '/proxy/school/applet/form/apply/handle',//服务审批操作
+  process_sub_list: '/proxy/school/applet/form/process/list2',//子流程
 
 };

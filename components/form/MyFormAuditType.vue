@@ -24,6 +24,10 @@
               <i class="fa fa-flag"></i>
               <span>{{$t("发起人自选审批")}}</span>
             </div>
+            <div v-if="customUserStatus == false" class="flow-item-child-block padding-tb-5" @click="selAuditType($event, 7, 'sub')">
+              <i class="fa fa-money"></i>
+              <span>{{$t("子流程审批")}}</span>
+            </div>
           </div>
         </div>
         <div class="margin-top-5">

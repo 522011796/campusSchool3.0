@@ -35,6 +35,22 @@
             :label="$t('名称')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">
+                  <span v-if="scope.row.process_type == 5">{{$t("学生流程")}}</span>
+                  <span v-if="scope.row.process_type == 4">{{$t("老师流程")}}</span>
+                </div>
+                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  <span v-if="scope.row.process_type == 5">{{$t("学生流程")}}</span>
+                  <span v-if="scope.row.process_type == 4">{{$t("老师流程")}}</span>
+                </div>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            :label="$t('名称')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                 <div class="text-center">{{scope.row.process_name}}</div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                   <span>{{scope.row.process_name}}</span>
@@ -69,6 +85,42 @@
                 <div class="text-center">{{scope.row.form_name ? scope.row.form_name : '--'}}</div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
                   <span>{{scope.row.form_name ? scope.row.form_name : '--'}}</span>
+                </div>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            :label="$t('被引用费用')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.cost_name ? scope.row.cost_name : '--'}}</div>
+                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  <span>{{scope.row.cost_name ? scope.row.cost_name : '--'}}</span>
+                </div>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            :label="$t('被引用预算')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.budget_name ? scope.row.budget_name : '--'}}</div>
+                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  <span>{{scope.row.budget_name ? scope.row.budget_name : '--'}}</span>
+                </div>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            :label="$t('被引用费控')">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center">{{scope.row.control_name ? scope.row.control_name : '--'}}</div>
+                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  <span>{{scope.row.control_name ? scope.row.control_name : '--'}}</span>
                 </div>
               </el-popover>
             </template>
@@ -224,6 +276,8 @@
             ntype = 'audit';
           }else if (formProcess[j].ntype == 'cc'){
             ntype = 'send';
+          }else if (formProcess[j].ntype == 'sub'){
+            ntype = 'sub';
           }
           let obj = {
             type: formProcess[j].nChildType,
@@ -243,6 +297,9 @@
             right1: formProcess[j].right1 ? formProcess[j].right1 : [],
             right2: formProcess[j].right2 ? formProcess[j].right2 : [],
             urge: formProcess[j].urge,
+            pId: formProcess[j].pId,
+            pName: formProcess[j].pName,
+            cType: formProcess[j].cType,
           };
 
           for (let k = 0; k < formProcess[j].hid.length; k++){
@@ -446,6 +503,15 @@
             ntype = 'handle';
           }else if (flowData[i].extra == 'send'){
             ntype = 'cc';
+          }else if (flowData[i].extra == 'sub'){
+            ntype = 'sub';
+
+            if (flowData[i].extra == 'sub'){
+              if (flowData[i].pId == ''){
+                MessageWarning(this.$t("子流程未设置流程！"));
+                return;
+              }
+            }
           }
           if (flowData[i].type == 1 || flowData[i].type == 4){
             htype = 'AnyUser';
@@ -484,6 +550,11 @@
             right1: flowData[i].right1,
             right2: flowData[i].right2,
             urge: flowData[i].urge,
+            cType: flowData[i].cType,
+          }
+          if (flowData[i].extra == 'sub'){
+            obj['pId'] = flowData[i].pId;
+            obj['pName'] = flowData[i].pName;
           }
           flowDataArray.push(obj);
         }
