@@ -372,6 +372,18 @@
               <div class="block-item-bg font-size-12">
                 <el-row :gutter="8">
                   <el-col :span="12">
+                    <el-form-item :label="$t('班主任姓名')" prop="bzrName">
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.bzrName" size="small" class="width-220"></el-input>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form-item :label="$t('班主任电话')" prop="bzrPhone">
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.bzrPhone" size="small" class="width-220"></el-input>
+                    </el-form-item>
+                  </el-col>
+                </el-row>
+                <el-row :gutter="8">
+                  <el-col :span="12">
                     <el-form-item :label="$t('录取批次')" prop="adBath">
 <!--                      <my-select :disabled="form.id != '' && oprType == 'detail'" :sel-value="form.adBath" :options="bathOptions" width-style="220" @change="handleSelectChange($event, 7)"></my-select>-->
                       <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.adBath" size="small" class="width-220"></el-input>
@@ -694,6 +706,8 @@
           politics: '',
           retire: '',
           hard: '',
+          bzrName: '',
+          bzrPhone: ''
         }
       }
     },
@@ -932,6 +946,8 @@
               politics: res.data.data.political_type,
               retire: res.data.data.soldier,
               hard: res.data.data.difficulty_type,
+              bzrName: res.data.data.master_name,
+              bzrPhone: res.data.data.master_phone
             };
           }
         });
@@ -1044,7 +1060,9 @@
           graduationSchool: '',
           examScore: '',
           otherMsg: '',
-          facePhotos: []
+          facePhotos: [],
+          bzrName: '',
+          bzrPhone: ''
         };
         this.subTitle = "";
         this.versionStatus = '';
@@ -1248,7 +1266,9 @@
               graduationType: this.form.graduation,
               politicalType: this.form.politics,
               soldier: this.form.retire,
-              difficultyType: this.form.hard
+              difficultyType: this.form.hard,
+              masterName: this.form.bzrName,
+              masterPhone: this.form.bzrPhone,
             };
 
             url = common.enroll_student_save;

@@ -39,6 +39,9 @@ export default {
         ],
         email: [
           { required: false, validator: rules.FormValidate.Form().validateEmail, trigger: 'blur' }
+        ],
+        bzrPhone: [
+          { required: false, validator: rules.FormValidate.Form().validatePhone, trigger: 'blur' }
         ]
       }
     }
