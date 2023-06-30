@@ -105,7 +105,7 @@
                   <th width="30%">{{$t("备注")}}</th>
                 </tr>
                 <tbody>
-                <tr v-for="(item, index) in extraDataList" :key="item.id">
+                <tr v-for="(item, index) in extraDataList" :key="index">
                   <td>
                     <!--                <el-input size="mini" style="width: 45px" v-model="item.stage"></el-input>-->
                     <label>{{item.stage}}</label>
@@ -385,8 +385,8 @@
                 </el-col>
                 <el-col :span="12">
                   <el-form label-width="100px">
-                    <el-form-item :label="$t('核销借款')">
-                      <label>{{ dataDetailObj['borrow_apply20230501'] ? (dataDetailObj.borrow_apply20230501.name ? dataDetailObj.borrow_apply20230501.name : '--') : '--' }}</label>
+                    <el-form-item :label="$t('关联单据')">
+                      <label>{{ dataDetailObj['rela_apply20230501'] ? (dataDetailObj.rela_apply20230501.name ? dataDetailObj.rela_apply20230501.name : '--') : '--' }}</label>
                     </el-form-item>
                   </el-form>
                 </el-col>
@@ -394,8 +394,8 @@
               <el-row>
                 <el-col :span="12">
                   <el-form label-width="100px">
-                    <el-form-item :label="$t('关联单据')">
-                      <label>{{ dataDetailObj['rela_apply20230501'] ? (dataDetailObj.rela_apply20230501.name ? dataDetailObj.rela_apply20230501.name : '--') : '--' }}</label>
+                    <el-form-item :label="$t('收款账户')">
+                      <label>{{ dataDetailObj['jk_account20230501'] ? (dataDetailObj.jk_account20230501.name ? dataDetailObj.jk_account20230501.name : '--') : '--' }}</label>
                     </el-form-item>
                   </el-form>
                 </el-col>
@@ -403,15 +403,6 @@
                   <el-form label-width="100px">
                     <el-form-item :label="$t('金额')">
                       <label>{{ dataDetailObj['cost_allAmount20230501'] ? (dataDetailObj.cost_allAmount20230501.value ? dataDetailObj.cost_allAmount20230501.value : '--') : '--' }}</label>
-                    </el-form-item>
-                  </el-form>
-                </el-col>
-              </el-row>
-              <el-row>
-                <el-col :span="24">
-                  <el-form label-width="100px">
-                    <el-form-item :label="$t('收款账户')">
-                      <label>{{ dataDetailObj['jk_account20230501'] ? (dataDetailObj.jk_account20230501.name ? dataDetailObj.jk_account20230501.name : '--') : '--' }}</label>
                     </el-form-item>
                   </el-form>
                 </el-col>
@@ -743,7 +734,6 @@
               :data="tableOrderDetailData"
               header-cell-class-name="custom-table-cell-bg"
               size="small"
-              row-key="id"
               border
               :max-height="tableHeight"
               style="width: 100%">
@@ -822,7 +812,6 @@
               :data="tableOrderDetailData"
               header-cell-class-name="custom-table-cell-bg"
               size="small"
-              row-key="id"
               border
               style="width: 100%">
               <el-table-column

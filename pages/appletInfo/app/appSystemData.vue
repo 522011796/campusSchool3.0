@@ -758,10 +758,10 @@
             if (res.data.data){
               if (type == 'main'){
                 this.detailData = res.data.data;
-                this.detailApplyAuditList = res.data.data.handleList;
+                this.detailApplyAuditList = res.data.data.handleList && res.data.data.handleList.length > 0 ? res.data.data.handleList : [];
               }else if (type == 'check'){
                 this.detailCheckData = res.data.data;
-                this.detailCheckApplyAuditList = res.data.data.handleList;
+                this.detailCheckApplyAuditList = res.data.data.handleList && res.data.data.handleList.length > 0 ? res.data.data.handleList : [];
                 let orderIndex = res.data.data.orderIndex;
 
                 if (res.data.data.applyContent  && res.data.data.applyContent != "[]"){
@@ -880,23 +880,23 @@
                 if (extra == 1){
                   this.dataDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
                   this.dataMainDetailObj = res.data.data;
-                  this.detailApplyAuditList = res.data.data.handleList;
+                  this.detailApplyAuditList = res.data.data.handleList && res.data.data.handleList.length > 0 ? res.data.data.handleList : [];
                 }else if (extra == 2 || extra == 3 || extra == 4 || extra == 5 || extra == 44 || extra == 33){
                   this.dataDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
                   this.dataMainDetailObj = res.data.data;
-                  this.detailApplyAuditList = res.data.data.handleList;
+                  this.detailApplyAuditList = res.data.data.handleList && res.data.data.handleList.length > 0 ? res.data.data.handleList : [];
                   this.payableDataList = res.data.data.payableDataList;
                   this.tableOrderDetailData = res.data.data.payableDataList;
                 }else if (extra == 91 || extra == 101 || extra == 111 || extra == 61 || extra == 81 || extra == 71){
                   this.dataDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
                   this.dataMainDetailObj = res.data.data;
-                  this.detailApplyAuditList = res.data.data.handleList;
+                  this.detailApplyAuditList = res.data.data.handleList && res.data.data.handleList.length > 0 ? res.data.data.handleList : [];
                   this.payableDataList = res.data.data.payableDataList;
                   this.tableNormalDetailData = res.data.data.payableDataList;
                 }else if (extra == 9 || extra == 10 || extra == 11 || extra == 6){
                   this.dataDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
                   this.dataMainDetailObj = res.data.data;
-                  this.detailApplyAuditList = res.data.data.handleList;
+                  this.detailApplyAuditList = res.data.data.handleList && res.data.data.handleList.length > 0 ? res.data.data.handleList : [];
                   if (res.data.data.formCode == 'XMGL'){
                     this.initReal(item._id);
                   }else if (res.data.data.formCode == 'XSHT' || res.data.data.formCode == 'CGHT' || res.data.data.formCode == 'TYHT'){
@@ -919,11 +919,11 @@
                 if (extra == 1){
                   this.dataOrderDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
                   this.dataOrderMainDetailObj = res.data.data;
-                  this.detailOrderApplyAuditList = res.data.data.handleList;
+                  this.detailOrderApplyAuditList = res.data.data.handleList && res.data.data.handleList.length > 0 ? res.data.data.handleList : [];
                 }else if (extra == 2){
                   this.dataOrderDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
                   this.dataOrderMainDetailObj = res.data.data;
-                  this.detailOrderApplyAuditList = res.data.data.handleList;
+                  this.detailOrderApplyAuditList = res.data.data.handleList && res.data.data.handleList.length > 0 ? res.data.data.handleList : [];
                   this.payableOrderDataList = res.data.data.payableDataList;
                 }
               }

@@ -362,8 +362,8 @@
                       </el-col>
                       <el-col :span="12">
                         <el-form label-width="100px">
-                          <el-form-item :label="$t('核销借款')">
-                            <label>{{ dataDetailObj['borrow_apply20230501'] ? (dataDetailObj.borrow_apply20230501.name ? dataDetailObj.borrow_apply20230501.name : '--') : '--' }}</label>
+                          <el-form-item :label="$t('关联单据')">
+                            <label>{{ dataDetailObj['rela_apply20230501'] ? (dataDetailObj.rela_apply20230501.name ? dataDetailObj.rela_apply20230501.name : '--') : '--' }}</label>
                           </el-form-item>
                         </el-form>
                       </el-col>
@@ -371,8 +371,8 @@
                     <el-row>
                       <el-col :span="12">
                         <el-form label-width="100px">
-                          <el-form-item :label="$t('关联单据')">
-                            <label>{{ dataDetailObj['rela_apply20230501'] ? (dataDetailObj.rela_apply20230501.name ? dataDetailObj.rela_apply20230501.name : '--') : '--' }}</label>
+                          <el-form-item :label="$t('收款账户')">
+                            <label>{{ dataDetailObj['jk_account20230501'] ? (dataDetailObj.jk_account20230501.name ? dataDetailObj.jk_account20230501.name : '--') : '--' }}</label>
                           </el-form-item>
                         </el-form>
                       </el-col>
@@ -380,15 +380,6 @@
                         <el-form label-width="100px">
                           <el-form-item :label="$t('金额')">
                             <label>{{ dataDetailObj['cost_allAmount20230501'] ? (dataDetailObj.cost_allAmount20230501.value ? dataDetailObj.cost_allAmount20230501.value : '--') : '--' }}</label>
-                          </el-form-item>
-                        </el-form>
-                      </el-col>
-                    </el-row>
-                    <el-row>
-                      <el-col :span="24">
-                        <el-form label-width="100px">
-                          <el-form-item :label="$t('收款账户')">
-                            <label>{{ dataDetailObj['jk_account20230501'] ? (dataDetailObj.jk_account20230501.name ? dataDetailObj.jk_account20230501.name : '--') : '--' }}</label>
                           </el-form-item>
                         </el-form>
                       </el-col>
