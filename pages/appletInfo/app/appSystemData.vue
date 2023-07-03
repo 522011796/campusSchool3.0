@@ -1894,7 +1894,7 @@
 
               if (error > 0){
                 this.dialogLoading = false;
-                MessageWarning(this.$t("规则信息未设置或错误(比例:1-100),请检查!"));
+                MessageWarning(this.$t("支付比例或时间设置有误(比例:1-100),请检查!"));
                 return;
               }
             }

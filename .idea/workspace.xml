@@ -7,10 +7,10 @@
     <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="收款单">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/formDetail/FormSystemDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/formDetail/FormSystemDetail.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/utils/formDetail/FormSystemNormalDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/formDetail/FormSystemNormalDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/formDetail/FormSystemTagsDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/formDetail/FormSystemTagsDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appSystemData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appSystemData.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -119,14 +119,8 @@
       <workItem from="1687913870720" duration="14066000" />
       <workItem from="1688001587641" duration="147000" />
       <workItem from="1688004168355" duration="9599000" />
-      <workItem from="1688090402973" duration="12804000" />
-    </task>
-    <task id="LOCAL-00038" summary="修改后勤记录细节">
-      <created>1683252136630</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1683252136630</updated>
+      <workItem from="1688090402973" duration="12858000" />
+      <workItem from="1688347128624" duration="4023000" />
     </task>
     <task id="LOCAL-00039" summary="修改后勤记录细节">
       <created>1683364571044</created>
@@ -464,7 +458,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688027073433</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="收款单">
+      <created>1688124234530</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1688124234530</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
