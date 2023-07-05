@@ -62,7 +62,12 @@
             align="center"
             :label="$t('创建时间')">
             <template slot-scope="scope">
-              <span>{{$moment(scope.row.create_time).format("YYYY-MM-DD HH:mm")}}</span>
+              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                <div class="text-center"><span>{{$moment(scope.row.create_time).format("YYYY-MM-DD HH:mm")}}</span></div>
+                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                  <span>{{$moment(scope.row.create_time).format("YYYY-MM-DD HH:mm")}}</span>
+                </div>
+              </el-popover>
             </template>
           </el-table-column>
           <el-table-column

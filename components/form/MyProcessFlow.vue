@@ -362,7 +362,7 @@
           </div>
 
           <div v-if="flowData.length > 0" v-for="(item, index) in flowData" :key="index">
-            <div class="flow-item-block" @click="selFlowItemBlock($event, item, index)">
+            <div class="flow-item-block" @click="selFlowItemBlock($event, item, index)" :class="flowDetailIndex == index ? 'flow-item-active' : ''">
               <div class="flow-item-title-block" :class="item.extra == 'audit' ? 'bg-warning' : 'bg-success'">
                 <i class="fa fa-times-circle flow-item-close-block color-danger" @click.stop="delAuditType($event, item, index)"></i>
                 <span class="font-bold font-size-12">
@@ -381,7 +381,7 @@
                 <div>
                   <div>
                     <span style="position: relative; top: -5px">
-                      <template v-if="item.type == 1 || item.type == 3 || item.type == 4">
+                      <template v-if="item.type == 1 || item.type == 2 || item.type == 3 || item.type == 4">
                         <i class="fa fa-users"></i>
                         <label>{{ $t("审批人") }}: </label>
                       </template>
@@ -641,7 +641,6 @@
         return flowAuditItemType(value, type);
       },
       selFlowItemBlock(event, data, index){
-        console.log(data);
         this.flowDetailData = data;
         this.approverUsers = data.users;
         this.flowDetailIndex = index;
@@ -762,6 +761,7 @@
         }
       },
       handleCascaderChange(data){
+        console.log(data);
         this.flowDetailData.hrole = data;
       },
       handleProcessTypeChange(data){
@@ -890,5 +890,8 @@
 .tab-class{
   cursor: default;
   padding: 10px;
+}
+.flow-item-active{
+  box-shadow: 0 0 10px #343434;
 }
 </style>
