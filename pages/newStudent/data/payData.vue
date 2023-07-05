@@ -287,7 +287,7 @@
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
-                  <el-form-item :label="$t('身份证')" prop="idCardNo">
+                  <el-form-item :label="$t('身份证')" prop="idCardNo" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '身份证'">
                     <el-input :disabled="form.id != ''" v-model="form.idCardNo" size="small" class="width-220"></el-input>
                   </el-form-item>
                 </el-col>
@@ -476,6 +476,7 @@ export default {
       searchSignTimeStatus: '',
       searchInterface: '',
       payType: 3,
+      tableSelColData: [],
       form: {
         id: '',
         year: '',
@@ -521,6 +522,26 @@ export default {
     this.initPayStatic();
   },
   methods: {
+    initYear(){
+      let year = [];
+      let params = {
+        page: 1,
+        num: 9999
+      };
+      this.$axios.get(common.enroll_page, {params: params}).then(res => {
+        if (res.data.data){
+          let year = [];
+          for (let i = 0; i < res.data.data.list.length; i++){
+            year.push({
+              label: res.data.data.list[i].year,
+              text: res.data.data.list[i].year,
+              value: res.data.data.list[i].id,
+            });
+          }
+          this.yearOptions = year;
+        }
+      });
+    },
     initProcess(){
       let params = {
         page: 1,
@@ -746,6 +767,11 @@ export default {
           };
         }
       });
+      await this.$axios.get(common.enroll_admin_get).then(res => {
+        this.tableSelColData = res.data.data.displayField;
+      });
+
+      this.initYear();
       this.initPay(item);
       this.dialogDetail = true;
     },

@@ -7,9 +7,9 @@
     <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="收款单">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/newStudent/data/signData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/data/signData.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/admissionManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/admissionManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/newStudent/data/payData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/data/payData.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,14 +120,8 @@
       <workItem from="1688090402973" duration="12858000" />
       <workItem from="1688347128624" duration="4104000" />
       <workItem from="1688431991223" duration="1999000" />
-      <workItem from="1688519119557" duration="1649000" />
-    </task>
-    <task id="LOCAL-00040" summary="修改后勤记录细节">
-      <created>1683510936007</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1683510936007</updated>
+      <workItem from="1688519119557" duration="2215000" />
+      <workItem from="1688539199609" duration="1795000" />
     </task>
     <task id="LOCAL-00041" summary="修改后勤记录细节">
       <created>1683514128932</created>
@@ -465,7 +459,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688378879902</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="收款单">
+      <created>1688538634832</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1688538634832</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
