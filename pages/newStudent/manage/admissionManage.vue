@@ -663,6 +663,12 @@
           "name": this.$t("退役士兵")
         },{
           "name": this.$t("困难类型")
+        },{
+          "name": this.$t("身份证")
+        },{
+          "name": this.$t("班主任姓名")
+        },{
+          "name": this.$t("班主任电话")
         }],
         form: {
           id: '',

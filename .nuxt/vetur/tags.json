@@ -155,36 +155,6 @@
   "LazyMyNewStudentFlowType": {
     "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
   },
-  "MyBlockListChildTree": {
-    "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
-  },
-  "LazyMyBlockListChildTree": {
-    "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
-  },
-  "MyBlockListTree": {
-    "description": "Auto imported from components/tree/MyBlockListTree.vue"
-  },
-  "LazyMyBlockListTree": {
-    "description": "Auto imported from components/tree/MyBlockListTree.vue"
-  },
-  "MyElTree": {
-    "description": "Auto imported from components/tree/MyElTree.vue"
-  },
-  "LazyMyElTree": {
-    "description": "Auto imported from components/tree/MyElTree.vue"
-  },
-  "MyElTreeBlock": {
-    "description": "Auto imported from components/tree/MyElTreeBlock.vue"
-  },
-  "LazyMyElTreeBlock": {
-    "description": "Auto imported from components/tree/MyElTreeBlock.vue"
-  },
-  "TreeNode": {
-    "description": "Auto imported from components/tree/treeNode.js"
-  },
-  "LazyTreeNode": {
-    "description": "Auto imported from components/tree/treeNode.js"
-  },
   "MyFormAuditType": {
     "description": "Auto imported from components/form/MyFormAuditType.vue"
   },
@@ -232,6 +202,36 @@
   },
   "LazyPcStaticTemplateShow": {
     "description": "Auto imported from components/form/PCStaticTemplateShow.vue"
+  },
+  "MyBlockListChildTree": {
+    "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
+  },
+  "LazyMyBlockListChildTree": {
+    "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
+  },
+  "MyBlockListTree": {
+    "description": "Auto imported from components/tree/MyBlockListTree.vue"
+  },
+  "LazyMyBlockListTree": {
+    "description": "Auto imported from components/tree/MyBlockListTree.vue"
+  },
+  "MyElTree": {
+    "description": "Auto imported from components/tree/MyElTree.vue"
+  },
+  "LazyMyElTree": {
+    "description": "Auto imported from components/tree/MyElTree.vue"
+  },
+  "MyElTreeBlock": {
+    "description": "Auto imported from components/tree/MyElTreeBlock.vue"
+  },
+  "LazyMyElTreeBlock": {
+    "description": "Auto imported from components/tree/MyElTreeBlock.vue"
+  },
+  "TreeNode": {
+    "description": "Auto imported from components/tree/treeNode.js"
+  },
+  "LazyTreeNode": {
+    "description": "Auto imported from components/tree/treeNode.js"
   },
   "MyInputButton": {
     "description": "Auto imported from components/search/MyInputButton.vue"
@@ -389,30 +389,6 @@
   "LazyTimeoutButton": {
     "description": "Auto imported from components/utils/button/TimeoutButton.vue"
   },
-  "DialogNormal": {
-    "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
-  },
-  "LazyDialogNormal": {
-    "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
-  },
-  "DrawerLayoutRight": {
-    "description": "Auto imported from components/utils/dialog/DrawerLayoutRight.vue"
-  },
-  "LazyDrawerLayoutRight": {
-    "description": "Auto imported from components/utils/dialog/DrawerLayoutRight.vue"
-  },
-  "DrawerRight": {
-    "description": "Auto imported from components/utils/dialog/DrawerRight.vue"
-  },
-  "LazyDrawerRight": {
-    "description": "Auto imported from components/utils/dialog/DrawerRight.vue"
-  },
-  "MyNormalDialog": {
-    "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
-  },
-  "LazyMyNormalDialog": {
-    "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
-  },
   "MyHeadImg": {
     "description": "Auto imported from components/utils/common/MyHeadImg.vue"
   },
@@ -436,6 +412,30 @@
   },
   "LazyPhotoHeadImg": {
     "description": "Auto imported from components/utils/common/PhotoHeadImg.vue"
+  },
+  "DialogNormal": {
+    "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
+  },
+  "LazyDialogNormal": {
+    "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
+  },
+  "DrawerLayoutRight": {
+    "description": "Auto imported from components/utils/dialog/DrawerLayoutRight.vue"
+  },
+  "LazyDrawerLayoutRight": {
+    "description": "Auto imported from components/utils/dialog/DrawerLayoutRight.vue"
+  },
+  "DrawerRight": {
+    "description": "Auto imported from components/utils/dialog/DrawerRight.vue"
+  },
+  "LazyDrawerRight": {
+    "description": "Auto imported from components/utils/dialog/DrawerRight.vue"
+  },
+  "MyNormalDialog": {
+    "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
+  },
+  "LazyMyNormalDialog": {
+    "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
   },
   "MyCascader": {
     "description": "Auto imported from components/utils/select/MyCascader.vue"
@@ -550,18 +550,6 @@
   },
   "LazyMyFlowType": {
     "description": "Auto imported from components/utils/status/MyFlowType.vue"
-  },
-  "QuillBlock": {
-    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
-  },
-  "LazyQuillBlock": {
-    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
-  },
-  "UploadSquare": {
-    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
-  },
-  "LazyUploadSquare": {
-    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
   },
   "CompBankAccountTable": {
     "description": "Auto imported from components/utils/table/CompBankAccountTable.vue"
@@ -712,5 +700,17 @@
   },
   "LazyTeacherTreeAndListRoleNoPage": {
     "description": "Auto imported from components/utils/treeAndList/TeacherTreeAndListRoleNoPage.vue"
+  },
+  "QuillBlock": {
+    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
+  },
+  "LazyQuillBlock": {
+    "description": "Auto imported from components/utils/upload/QuillBlock.vue"
+  },
+  "UploadSquare": {
+    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
+  },
+  "LazyUploadSquare": {
+    "description": "Auto imported from components/utils/upload/UploadSquare.vue"
   }
 }

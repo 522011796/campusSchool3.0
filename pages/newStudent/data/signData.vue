@@ -495,7 +495,7 @@
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
-                  <el-form-item :label="$t('身份证')" prop="idCardNo">
+                  <el-form-item :label="$t('身份证')" prop="idCardNo" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '身份证'">
                     <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.idCardNo" size="small" class="width-220"></el-input>
                   </el-form-item>
                 </el-col>
@@ -634,6 +634,16 @@
               </div>
               <div class="block-item-bg font-size-12">
                 <el-row :gutter="8">
+                  <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '班主任姓名'">
+                    <el-form-item :label="$t('班主任姓名')" prop="bzrName">
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.bzrName" size="small" class="width-220"></el-input>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '班主任电话'">
+                    <el-form-item :label="$t('班主任电话')" prop="bzrPhone">
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.bzrPhone" size="small" class="width-220"></el-input>
+                    </el-form-item>
+                  </el-col>
                   <el-col :span="12" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '录取批次'">
                     <el-form-item :label="$t('录取批次')" prop="adBath">
                       <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.adBath" size="small" class="width-220"></el-input>
@@ -850,7 +860,9 @@ export default {
         retire: '',
         hard: '',
         photo_simple: '',
-        updateClass: false
+        updateClass: false,
+        bzrName: '',
+        bzrPhone: ''
       }
     }
   },
@@ -1152,6 +1164,8 @@ export default {
             hard: res.data.data.difficulty_type,
             photo_simple: res.data.data.photo_simple,
             updateClass: res.data.data.otherSetting.updateClass,
+            bzrName: res.data.data.master_name,
+            bzrPhone: res.data.data.master_phone,
           };
         }
         if (!res.data.data.class_id){
@@ -1295,7 +1309,9 @@ export default {
         checkinId: '',
         checkin_id: '',
         facePhotos: [],
-        photo_simple: ''
+        photo_simple: '',
+        bzrName: '',
+        bzrPhone: ''
       };
       this.subTitle = "";
       this.versionStatus = '';
