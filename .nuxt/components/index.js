@@ -10,6 +10,17 @@ export { default as MyTree } from '../../components/MyTree.vue'
 export { default as LayoutLr } from '../../components/Layout/LayoutLr.vue'
 export { default as LayoutLrBefore } from '../../components/Layout/LayoutLrBefore.vue'
 export { default as LayoutTb } from '../../components/Layout/LayoutTb.vue'
+export { default as MyNewStudentFlow } from '../../components/flow/MyNewStudentFlow.vue'
+export { default as MyNewStudentFlowType } from '../../components/flow/MyNewStudentFlowType.vue'
+export { default as MyBlockListChildTree } from '../../components/tree/MyBlockListChildTree.vue'
+export { default as MyBlockListTree } from '../../components/tree/MyBlockListTree.vue'
+export { default as MyElTree } from '../../components/tree/MyElTree.vue'
+export { default as MyElTreeBlock } from '../../components/tree/MyElTreeBlock.vue'
+export { default as TreeNode } from '../../components/tree/treeNode.js'
+export { default as MyInputButton } from '../../components/search/MyInputButton.vue'
+export { default as MySearchOfDate } from '../../components/search/MySearchOfDate.vue'
+export { default as MySearchOfDateGroup } from '../../components/search/MySearchOfDateGroup.vue'
+export { default as MyYearTerm } from '../../components/search/MyYearTerm.vue'
 export { default as BarChart } from '../../components/charts/BarChart.vue'
 export { default as CircleChart } from '../../components/charts/CircleChart.vue'
 export { default as HBarChart } from '../../components/charts/HBarChart.vue'
@@ -22,8 +33,6 @@ export { default as RadarDormChart } from '../../components/charts/RadarDormChar
 export { default as SexPieChart } from '../../components/charts/SexPieChart.vue'
 export { default as SexPieMoreChart } from '../../components/charts/SexPieMoreChart.vue'
 export { default as TableBarChart } from '../../components/charts/TableBarChart.vue'
-export { default as MyNewStudentFlow } from '../../components/flow/MyNewStudentFlow.vue'
-export { default as MyNewStudentFlowType } from '../../components/flow/MyNewStudentFlowType.vue'
 export { default as MyFormAuditType } from '../../components/form/MyFormAuditType.vue'
 export { default as MyFormFlow } from '../../components/form/MyFormFlow.vue'
 export { default as MyFormSet } from '../../components/form/MyFormSet.vue'
@@ -32,15 +41,6 @@ export { default as MyFormSetRole } from '../../components/form/MyFormSetRole.vu
 export { default as MyProcessFlow } from '../../components/form/MyProcessFlow.vue'
 export { default as PcStaticTemplate } from '../../components/form/PCStaticTemplate.vue'
 export { default as PcStaticTemplateShow } from '../../components/form/PCStaticTemplateShow.vue'
-export { default as MyInputButton } from '../../components/search/MyInputButton.vue'
-export { default as MySearchOfDate } from '../../components/search/MySearchOfDate.vue'
-export { default as MySearchOfDateGroup } from '../../components/search/MySearchOfDateGroup.vue'
-export { default as MyYearTerm } from '../../components/search/MyYearTerm.vue'
-export { default as MyBlockListChildTree } from '../../components/tree/MyBlockListChildTree.vue'
-export { default as MyBlockListTree } from '../../components/tree/MyBlockListTree.vue'
-export { default as MyElTree } from '../../components/tree/MyElTree.vue'
-export { default as MyElTreeBlock } from '../../components/tree/MyElTreeBlock.vue'
-export { default as TreeNode } from '../../components/tree/treeNode.js'
 export { default as MyAuditPuStatus } from '../../components/utils/MyAuditPuStatus.vue'
 export { default as MyAuditRePuStatus } from '../../components/utils/MyAuditRePuStatus.vue'
 export { default as MyAuditStatus } from '../../components/utils/MyAuditStatus.vue'
@@ -53,11 +53,6 @@ export { default as AuditStatusRelieveButton } from '../../components/utils/butt
 export { default as DormAttendStatusButtonGroup } from '../../components/utils/button/DormAttendStatusButtonGroup.vue'
 export { default as TabGroupButton } from '../../components/utils/button/TabGroupButton.vue'
 export { default as TimeoutButton } from '../../components/utils/button/TimeoutButton.vue'
-export { default as FormSystemDetail } from '../../components/utils/formDetail/FormSystemDetail.vue'
-export { default as FormSystemNormalDetail } from '../../components/utils/formDetail/FormSystemNormalDetail.vue'
-export { default as FormSystemOrderDetail } from '../../components/utils/formDetail/FormSystemOrderDetail.vue'
-export { default as FormSystemTagsDetail } from '../../components/utils/formDetail/FormSystemTagsDetail.vue'
-export { default as MyCascader } from '../../components/utils/select/MyCascader.vue'
 export { default as AuditButton } from '../../components/utils/auditDetail/AuditButton.vue'
 export { default as CreditDetail } from '../../components/utils/auditDetail/CreditDetail.vue'
 export { default as FaceDetail } from '../../components/utils/auditDetail/FaceDetail.vue'
@@ -68,6 +63,15 @@ export { default as StudoorDetail } from '../../components/utils/auditDetail/Stu
 export { default as StuleaveDetail } from '../../components/utils/auditDetail/StuleaveDetail.vue'
 export { default as TerdoorDetail } from '../../components/utils/auditDetail/TerdoorDetail.vue'
 export { default as TerleaveDetail } from '../../components/utils/auditDetail/TerleaveDetail.vue'
+export { default as MyCascader } from '../../components/utils/select/MyCascader.vue'
+export { default as DialogNormal } from '../../components/utils/dialog/DialogNormal.vue'
+export { default as DrawerLayoutRight } from '../../components/utils/dialog/DrawerLayoutRight.vue'
+export { default as DrawerRight } from '../../components/utils/dialog/DrawerRight.vue'
+export { default as MyNormalDialog } from '../../components/utils/dialog/MyNormalDialog.vue'
+export { default as MyHeadImg } from '../../components/utils/common/MyHeadImg.vue'
+export { default as MyHeadListImg } from '../../components/utils/common/MyHeadListImg.vue'
+export { default as MyViewImg } from '../../components/utils/common/MyViewImg.vue'
+export { default as PhotoHeadImg } from '../../components/utils/common/PhotoHeadImg.vue'
 export { default as CompBankAccountTable } from '../../components/utils/table/CompBankAccountTable.vue'
 export { default as MerchatClientTable } from '../../components/utils/table/MerchatClientTable.vue'
 export { default as SystemDataTable1 } from '../../components/utils/table/SystemDataTable1.vue'
@@ -82,14 +86,6 @@ export { default as SystemDataTable7 } from '../../components/utils/table/System
 export { default as SystemDataTable8 } from '../../components/utils/table/SystemDataTable8.vue'
 export { default as SystemDataTable9 } from '../../components/utils/table/SystemDataTable9.vue'
 export { default as UserBankAccountTable } from '../../components/utils/table/UserBankAccountTable.vue'
-export { default as MyHeadImg } from '../../components/utils/common/MyHeadImg.vue'
-export { default as MyHeadListImg } from '../../components/utils/common/MyHeadListImg.vue'
-export { default as MyViewImg } from '../../components/utils/common/MyViewImg.vue'
-export { default as PhotoHeadImg } from '../../components/utils/common/PhotoHeadImg.vue'
-export { default as DialogNormal } from '../../components/utils/dialog/DialogNormal.vue'
-export { default as DrawerLayoutRight } from '../../components/utils/dialog/DrawerLayoutRight.vue'
-export { default as DrawerRight } from '../../components/utils/dialog/DrawerRight.vue'
-export { default as MyNormalDialog } from '../../components/utils/dialog/MyNormalDialog.vue'
 export { default as QuillBlock } from '../../components/utils/upload/QuillBlock.vue'
 export { default as UploadSquare } from '../../components/utils/upload/UploadSquare.vue'
 export { default as ClassroomTreeAndList } from '../../components/utils/treeAndList/ClassroomTreeAndList.vue'
@@ -117,6 +113,10 @@ export { default as MyFlowCondition } from '../../components/utils/status/MyFlow
 export { default as MyFlowProcess } from '../../components/utils/status/MyFlowProcess.vue'
 export { default as MyFlowProcessList } from '../../components/utils/status/MyFlowProcessList.vue'
 export { default as MyFlowType } from '../../components/utils/status/MyFlowType.vue'
+export { default as FormSystemDetail } from '../../components/utils/formDetail/FormSystemDetail.vue'
+export { default as FormSystemNormalDetail } from '../../components/utils/formDetail/FormSystemNormalDetail.vue'
+export { default as FormSystemOrderDetail } from '../../components/utils/formDetail/FormSystemOrderDetail.vue'
+export { default as FormSystemTagsDetail } from '../../components/utils/formDetail/FormSystemTagsDetail.vue'
 
 export const LazyLogo = import('../../components/Logo.vue' /* webpackChunkName: "components/Logo" */).then(c => c.default || c)
 export const LazyMyBlockTree = import('../../components/MyBlockTree.vue' /* webpackChunkName: "components/MyBlockTree" */).then(c => c.default || c)
@@ -130,6 +130,17 @@ export const LazyMyTree = import('../../components/MyTree.vue' /* webpackChunkNa
 export const LazyLayoutLr = import('../../components/Layout/LayoutLr.vue' /* webpackChunkName: "components/Layout/LayoutLr" */).then(c => c.default || c)
 export const LazyLayoutLrBefore = import('../../components/Layout/LayoutLrBefore.vue' /* webpackChunkName: "components/Layout/LayoutLrBefore" */).then(c => c.default || c)
 export const LazyLayoutTb = import('../../components/Layout/LayoutTb.vue' /* webpackChunkName: "components/Layout/LayoutTb" */).then(c => c.default || c)
+export const LazyMyNewStudentFlow = import('../../components/flow/MyNewStudentFlow.vue' /* webpackChunkName: "components/flow/MyNewStudentFlow" */).then(c => c.default || c)
+export const LazyMyNewStudentFlowType = import('../../components/flow/MyNewStudentFlowType.vue' /* webpackChunkName: "components/flow/MyNewStudentFlowType" */).then(c => c.default || c)
+export const LazyMyBlockListChildTree = import('../../components/tree/MyBlockListChildTree.vue' /* webpackChunkName: "components/tree/MyBlockListChildTree" */).then(c => c.default || c)
+export const LazyMyBlockListTree = import('../../components/tree/MyBlockListTree.vue' /* webpackChunkName: "components/tree/MyBlockListTree" */).then(c => c.default || c)
+export const LazyMyElTree = import('../../components/tree/MyElTree.vue' /* webpackChunkName: "components/tree/MyElTree" */).then(c => c.default || c)
+export const LazyMyElTreeBlock = import('../../components/tree/MyElTreeBlock.vue' /* webpackChunkName: "components/tree/MyElTreeBlock" */).then(c => c.default || c)
+export const LazyTreeNode = import('../../components/tree/treeNode.js' /* webpackChunkName: "components/tree/treeNode" */).then(c => c.default || c)
+export const LazyMyInputButton = import('../../components/search/MyInputButton.vue' /* webpackChunkName: "components/search/MyInputButton" */).then(c => c.default || c)
+export const LazyMySearchOfDate = import('../../components/search/MySearchOfDate.vue' /* webpackChunkName: "components/search/MySearchOfDate" */).then(c => c.default || c)
+export const LazyMySearchOfDateGroup = import('../../components/search/MySearchOfDateGroup.vue' /* webpackChunkName: "components/search/MySearchOfDateGroup" */).then(c => c.default || c)
+export const LazyMyYearTerm = import('../../components/search/MyYearTerm.vue' /* webpackChunkName: "components/search/MyYearTerm" */).then(c => c.default || c)
 export const LazyBarChart = import('../../components/charts/BarChart.vue' /* webpackChunkName: "components/charts/BarChart" */).then(c => c.default || c)
 export const LazyCircleChart = import('../../components/charts/CircleChart.vue' /* webpackChunkName: "components/charts/CircleChart" */).then(c => c.default || c)
 export const LazyHBarChart = import('../../components/charts/HBarChart.vue' /* webpackChunkName: "components/charts/HBarChart" */).then(c => c.default || c)
@@ -142,8 +153,6 @@ export const LazyRadarDormChart = import('../../components/charts/RadarDormChart
 export const LazySexPieChart = import('../../components/charts/SexPieChart.vue' /* webpackChunkName: "components/charts/SexPieChart" */).then(c => c.default || c)
 export const LazySexPieMoreChart = import('../../components/charts/SexPieMoreChart.vue' /* webpackChunkName: "components/charts/SexPieMoreChart" */).then(c => c.default || c)
 export const LazyTableBarChart = import('../../components/charts/TableBarChart.vue' /* webpackChunkName: "components/charts/TableBarChart" */).then(c => c.default || c)
-export const LazyMyNewStudentFlow = import('../../components/flow/MyNewStudentFlow.vue' /* webpackChunkName: "components/flow/MyNewStudentFlow" */).then(c => c.default || c)
-export const LazyMyNewStudentFlowType = import('../../components/flow/MyNewStudentFlowType.vue' /* webpackChunkName: "components/flow/MyNewStudentFlowType" */).then(c => c.default || c)
 export const LazyMyFormAuditType = import('../../components/form/MyFormAuditType.vue' /* webpackChunkName: "components/form/MyFormAuditType" */).then(c => c.default || c)
 export const LazyMyFormFlow = import('../../components/form/MyFormFlow.vue' /* webpackChunkName: "components/form/MyFormFlow" */).then(c => c.default || c)
 export const LazyMyFormSet = import('../../components/form/MyFormSet.vue' /* webpackChunkName: "components/form/MyFormSet" */).then(c => c.default || c)
@@ -152,15 +161,6 @@ export const LazyMyFormSetRole = import('../../components/form/MyFormSetRole.vue
 export const LazyMyProcessFlow = import('../../components/form/MyProcessFlow.vue' /* webpackChunkName: "components/form/MyProcessFlow" */).then(c => c.default || c)
 export const LazyPcStaticTemplate = import('../../components/form/PCStaticTemplate.vue' /* webpackChunkName: "components/form/PCStaticTemplate" */).then(c => c.default || c)
 export const LazyPcStaticTemplateShow = import('../../components/form/PCStaticTemplateShow.vue' /* webpackChunkName: "components/form/PCStaticTemplateShow" */).then(c => c.default || c)
-export const LazyMyInputButton = import('../../components/search/MyInputButton.vue' /* webpackChunkName: "components/search/MyInputButton" */).then(c => c.default || c)
-export const LazyMySearchOfDate = import('../../components/search/MySearchOfDate.vue' /* webpackChunkName: "components/search/MySearchOfDate" */).then(c => c.default || c)
-export const LazyMySearchOfDateGroup = import('../../components/search/MySearchOfDateGroup.vue' /* webpackChunkName: "components/search/MySearchOfDateGroup" */).then(c => c.default || c)
-export const LazyMyYearTerm = import('../../components/search/MyYearTerm.vue' /* webpackChunkName: "components/search/MyYearTerm" */).then(c => c.default || c)
-export const LazyMyBlockListChildTree = import('../../components/tree/MyBlockListChildTree.vue' /* webpackChunkName: "components/tree/MyBlockListChildTree" */).then(c => c.default || c)
-export const LazyMyBlockListTree = import('../../components/tree/MyBlockListTree.vue' /* webpackChunkName: "components/tree/MyBlockListTree" */).then(c => c.default || c)
-export const LazyMyElTree = import('../../components/tree/MyElTree.vue' /* webpackChunkName: "components/tree/MyElTree" */).then(c => c.default || c)
-export const LazyMyElTreeBlock = import('../../components/tree/MyElTreeBlock.vue' /* webpackChunkName: "components/tree/MyElTreeBlock" */).then(c => c.default || c)
-export const LazyTreeNode = import('../../components/tree/treeNode.js' /* webpackChunkName: "components/tree/treeNode" */).then(c => c.default || c)
 export const LazyMyAuditPuStatus = import('../../components/utils/MyAuditPuStatus.vue' /* webpackChunkName: "components/utils/MyAuditPuStatus" */).then(c => c.default || c)
 export const LazyMyAuditRePuStatus = import('../../components/utils/MyAuditRePuStatus.vue' /* webpackChunkName: "components/utils/MyAuditRePuStatus" */).then(c => c.default || c)
 export const LazyMyAuditStatus = import('../../components/utils/MyAuditStatus.vue' /* webpackChunkName: "components/utils/MyAuditStatus" */).then(c => c.default || c)
@@ -173,11 +173,6 @@ export const LazyAuditStatusRelieveButton = import('../../components/utils/butto
 export const LazyDormAttendStatusButtonGroup = import('../../components/utils/button/DormAttendStatusButtonGroup.vue' /* webpackChunkName: "components/utils/button/DormAttendStatusButtonGroup" */).then(c => c.default || c)
 export const LazyTabGroupButton = import('../../components/utils/button/TabGroupButton.vue' /* webpackChunkName: "components/utils/button/TabGroupButton" */).then(c => c.default || c)
 export const LazyTimeoutButton = import('../../components/utils/button/TimeoutButton.vue' /* webpackChunkName: "components/utils/button/TimeoutButton" */).then(c => c.default || c)
-export const LazyFormSystemDetail = import('../../components/utils/formDetail/FormSystemDetail.vue' /* webpackChunkName: "components/utils/formDetail/FormSystemDetail" */).then(c => c.default || c)
-export const LazyFormSystemNormalDetail = import('../../components/utils/formDetail/FormSystemNormalDetail.vue' /* webpackChunkName: "components/utils/formDetail/FormSystemNormalDetail" */).then(c => c.default || c)
-export const LazyFormSystemOrderDetail = import('../../components/utils/formDetail/FormSystemOrderDetail.vue' /* webpackChunkName: "components/utils/formDetail/FormSystemOrderDetail" */).then(c => c.default || c)
-export const LazyFormSystemTagsDetail = import('../../components/utils/formDetail/FormSystemTagsDetail.vue' /* webpackChunkName: "components/utils/formDetail/FormSystemTagsDetail" */).then(c => c.default || c)
-export const LazyMyCascader = import('../../components/utils/select/MyCascader.vue' /* webpackChunkName: "components/utils/select/MyCascader" */).then(c => c.default || c)
 export const LazyAuditButton = import('../../components/utils/auditDetail/AuditButton.vue' /* webpackChunkName: "components/utils/auditDetail/AuditButton" */).then(c => c.default || c)
 export const LazyCreditDetail = import('../../components/utils/auditDetail/CreditDetail.vue' /* webpackChunkName: "components/utils/auditDetail/CreditDetail" */).then(c => c.default || c)
 export const LazyFaceDetail = import('../../components/utils/auditDetail/FaceDetail.vue' /* webpackChunkName: "components/utils/auditDetail/FaceDetail" */).then(c => c.default || c)
@@ -188,6 +183,15 @@ export const LazyStudoorDetail = import('../../components/utils/auditDetail/Stud
 export const LazyStuleaveDetail = import('../../components/utils/auditDetail/StuleaveDetail.vue' /* webpackChunkName: "components/utils/auditDetail/StuleaveDetail" */).then(c => c.default || c)
 export const LazyTerdoorDetail = import('../../components/utils/auditDetail/TerdoorDetail.vue' /* webpackChunkName: "components/utils/auditDetail/TerdoorDetail" */).then(c => c.default || c)
 export const LazyTerleaveDetail = import('../../components/utils/auditDetail/TerleaveDetail.vue' /* webpackChunkName: "components/utils/auditDetail/TerleaveDetail" */).then(c => c.default || c)
+export const LazyMyCascader = import('../../components/utils/select/MyCascader.vue' /* webpackChunkName: "components/utils/select/MyCascader" */).then(c => c.default || c)
+export const LazyDialogNormal = import('../../components/utils/dialog/DialogNormal.vue' /* webpackChunkName: "components/utils/dialog/DialogNormal" */).then(c => c.default || c)
+export const LazyDrawerLayoutRight = import('../../components/utils/dialog/DrawerLayoutRight.vue' /* webpackChunkName: "components/utils/dialog/DrawerLayoutRight" */).then(c => c.default || c)
+export const LazyDrawerRight = import('../../components/utils/dialog/DrawerRight.vue' /* webpackChunkName: "components/utils/dialog/DrawerRight" */).then(c => c.default || c)
+export const LazyMyNormalDialog = import('../../components/utils/dialog/MyNormalDialog.vue' /* webpackChunkName: "components/utils/dialog/MyNormalDialog" */).then(c => c.default || c)
+export const LazyMyHeadImg = import('../../components/utils/common/MyHeadImg.vue' /* webpackChunkName: "components/utils/common/MyHeadImg" */).then(c => c.default || c)
+export const LazyMyHeadListImg = import('../../components/utils/common/MyHeadListImg.vue' /* webpackChunkName: "components/utils/common/MyHeadListImg" */).then(c => c.default || c)
+export const LazyMyViewImg = import('../../components/utils/common/MyViewImg.vue' /* webpackChunkName: "components/utils/common/MyViewImg" */).then(c => c.default || c)
+export const LazyPhotoHeadImg = import('../../components/utils/common/PhotoHeadImg.vue' /* webpackChunkName: "components/utils/common/PhotoHeadImg" */).then(c => c.default || c)
 export const LazyCompBankAccountTable = import('../../components/utils/table/CompBankAccountTable.vue' /* webpackChunkName: "components/utils/table/CompBankAccountTable" */).then(c => c.default || c)
 export const LazyMerchatClientTable = import('../../components/utils/table/MerchatClientTable.vue' /* webpackChunkName: "components/utils/table/MerchatClientTable" */).then(c => c.default || c)
 export const LazySystemDataTable1 = import('../../components/utils/table/SystemDataTable1.vue' /* webpackChunkName: "components/utils/table/SystemDataTable1" */).then(c => c.default || c)
@@ -202,14 +206,6 @@ export const LazySystemDataTable7 = import('../../components/utils/table/SystemD
 export const LazySystemDataTable8 = import('../../components/utils/table/SystemDataTable8.vue' /* webpackChunkName: "components/utils/table/SystemDataTable8" */).then(c => c.default || c)
 export const LazySystemDataTable9 = import('../../components/utils/table/SystemDataTable9.vue' /* webpackChunkName: "components/utils/table/SystemDataTable9" */).then(c => c.default || c)
 export const LazyUserBankAccountTable = import('../../components/utils/table/UserBankAccountTable.vue' /* webpackChunkName: "components/utils/table/UserBankAccountTable" */).then(c => c.default || c)
-export const LazyMyHeadImg = import('../../components/utils/common/MyHeadImg.vue' /* webpackChunkName: "components/utils/common/MyHeadImg" */).then(c => c.default || c)
-export const LazyMyHeadListImg = import('../../components/utils/common/MyHeadListImg.vue' /* webpackChunkName: "components/utils/common/MyHeadListImg" */).then(c => c.default || c)
-export const LazyMyViewImg = import('../../components/utils/common/MyViewImg.vue' /* webpackChunkName: "components/utils/common/MyViewImg" */).then(c => c.default || c)
-export const LazyPhotoHeadImg = import('../../components/utils/common/PhotoHeadImg.vue' /* webpackChunkName: "components/utils/common/PhotoHeadImg" */).then(c => c.default || c)
-export const LazyDialogNormal = import('../../components/utils/dialog/DialogNormal.vue' /* webpackChunkName: "components/utils/dialog/DialogNormal" */).then(c => c.default || c)
-export const LazyDrawerLayoutRight = import('../../components/utils/dialog/DrawerLayoutRight.vue' /* webpackChunkName: "components/utils/dialog/DrawerLayoutRight" */).then(c => c.default || c)
-export const LazyDrawerRight = import('../../components/utils/dialog/DrawerRight.vue' /* webpackChunkName: "components/utils/dialog/DrawerRight" */).then(c => c.default || c)
-export const LazyMyNormalDialog = import('../../components/utils/dialog/MyNormalDialog.vue' /* webpackChunkName: "components/utils/dialog/MyNormalDialog" */).then(c => c.default || c)
 export const LazyQuillBlock = import('../../components/utils/upload/QuillBlock.vue' /* webpackChunkName: "components/utils/upload/QuillBlock" */).then(c => c.default || c)
 export const LazyUploadSquare = import('../../components/utils/upload/UploadSquare.vue' /* webpackChunkName: "components/utils/upload/UploadSquare" */).then(c => c.default || c)
 export const LazyClassroomTreeAndList = import('../../components/utils/treeAndList/ClassroomTreeAndList.vue' /* webpackChunkName: "components/utils/treeAndList/ClassroomTreeAndList" */).then(c => c.default || c)
@@ -237,3 +233,7 @@ export const LazyMyFlowCondition = import('../../components/utils/status/MyFlowC
 export const LazyMyFlowProcess = import('../../components/utils/status/MyFlowProcess.vue' /* webpackChunkName: "components/utils/status/MyFlowProcess" */).then(c => c.default || c)
 export const LazyMyFlowProcessList = import('../../components/utils/status/MyFlowProcessList.vue' /* webpackChunkName: "components/utils/status/MyFlowProcessList" */).then(c => c.default || c)
 export const LazyMyFlowType = import('../../components/utils/status/MyFlowType.vue' /* webpackChunkName: "components/utils/status/MyFlowType" */).then(c => c.default || c)
+export const LazyFormSystemDetail = import('../../components/utils/formDetail/FormSystemDetail.vue' /* webpackChunkName: "components/utils/formDetail/FormSystemDetail" */).then(c => c.default || c)
+export const LazyFormSystemNormalDetail = import('../../components/utils/formDetail/FormSystemNormalDetail.vue' /* webpackChunkName: "components/utils/formDetail/FormSystemNormalDetail" */).then(c => c.default || c)
+export const LazyFormSystemOrderDetail = import('../../components/utils/formDetail/FormSystemOrderDetail.vue' /* webpackChunkName: "components/utils/formDetail/FormSystemOrderDetail" */).then(c => c.default || c)
+export const LazyFormSystemTagsDetail = import('../../components/utils/formDetail/FormSystemTagsDetail.vue' /* webpackChunkName: "components/utils/formDetail/FormSystemTagsDetail" */).then(c => c.default || c)

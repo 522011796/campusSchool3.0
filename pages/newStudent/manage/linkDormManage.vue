@@ -787,11 +787,12 @@ export default {
         beginTime: (this.searchTimeUserData && this.searchTimeUserData.length > 0) ? this.$moment(this.searchTimeUserData[0]).format("YYYY-MM-DD") : '',
         endTime: (this.searchTimeUserData && this.searchTimeUserData.length > 0) ? this.$moment(this.searchTimeUserData[1]).format("YYYY-MM-DD") : '',
         searchKey: this.searchUserKey,
-        processId: this.processId
+        processId: this.processId,
+        topUserId: this.selStudentData.length > 0 ? this.selStudentData : []
       };
       this.checkboxCount = 0;
       this.tableDormLoading = true;
-      this.$axios.get(common.enroll_student_page, {params: params}).then(res => {
+      this.$axios.post(common.enroll_student_page, JSON.stringify(params) ,{dataType: 'stringfy'}).then(res => {
         if (res.data.data){
           let intersection=[];
 
