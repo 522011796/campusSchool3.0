@@ -23,7 +23,7 @@
           </el-col>
           <el-col :span="12" class="text-right">
             <my-date-picker :sel-value="searchDate" :clearable="true" type="daterange" size="small" width-style="240" @change="handleChange" style="position: relative; top: 1px;"></my-date-picker>
-            <my-input-button size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('登录人')" @click="search"></my-input-button>
+            <my-input-button size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('登录人/内容')" @click="search"></my-input-button>
           </el-col>
         </el-row>
       </div>
