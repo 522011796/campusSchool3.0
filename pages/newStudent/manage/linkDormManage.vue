@@ -32,9 +32,9 @@
 
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{$moment(scope.row.time).format("YYYY-MM-DD HH:mm:ss")}}</div>
+                <div class="text-center">{{$moment(scope.row.create_time).format("YYYY-MM-DD HH:mm:ss")}}</div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  {{$moment(scope.row.time).format("YYYY-MM-DD HH:mm:ss")}}
+                  {{$moment(scope.row.create_time).format("YYYY-MM-DD HH:mm:ss")}}
                 </div>
               </el-popover>
             </template>
@@ -775,6 +775,11 @@ export default {
       });
     },
     initStudent(){
+      let selStudentData = [];
+      for (let i = 0; i < this.selStudentData.length; i++){
+        selStudentData.push(this.selStudentData[i].user_id);
+      }
+      console.log(selStudentData);
       let params = {
         page: this.pageStudent,
         num: this.numStudent,
@@ -788,7 +793,7 @@ export default {
         endTime: (this.searchTimeUserData && this.searchTimeUserData.length > 0) ? this.$moment(this.searchTimeUserData[1]).format("YYYY-MM-DD") : '',
         searchKey: this.searchUserKey,
         processId: this.processId,
-        topUserId: this.selStudentData.length > 0 ? this.selStudentData : []
+        topUserId: selStudentData
       };
       this.checkboxCount = 0;
       this.tableDormLoading = true;

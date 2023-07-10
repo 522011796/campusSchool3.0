@@ -9,6 +9,7 @@
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/linkDormManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/linkDormManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/dorm/dorm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/dorm/dorm.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,14 +125,9 @@
       <workItem from="1688605271991" duration="651000" />
       <workItem from="1688622195688" duration="4959000" />
       <workItem from="1688691154702" duration="4197000" />
-      <workItem from="1688716663725" duration="1470000" />
-    </task>
-    <task id="LOCAL-00044" summary="修改后勤记录细节">
-      <created>1683624726307</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1683624726309</updated>
+      <workItem from="1688716663725" duration="1633000" />
+      <workItem from="1688780837489" duration="3963000" />
+      <workItem from="1688950879346" duration="1247000" />
     </task>
     <task id="LOCAL-00045" summary="修改后勤记录细节">
       <created>1683710129844</created>
@@ -469,7 +465,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688550768120</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="收款单">
+      <created>1688724339426</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1688724339426</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

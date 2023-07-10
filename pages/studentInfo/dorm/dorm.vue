@@ -594,7 +594,11 @@
         });
       },
       initDormInfo(){
-        this.$axios.post(common.dorm_bed_info).then(res => {
+        let params = {};
+        params['buildingId'] = this.searchBuild;
+        params['floorNum'] = this.searchFloor;
+        params = this.$qs.stringify(params);
+        this.$axios.post(common.dorm_bed_info, params).then(res => {
           if (res.data.data){
             this.dormData = res.data.data;
           }
@@ -680,6 +684,10 @@
         this.searchFloor = "";
         this.searchDorm = "";
 
+        if (data.unit == undefined){
+          this.initDormInfo();
+        }
+
         if (this.mainType == 1){
           if (data.unit == 1){
             this.searchCollege = data.id;
@@ -695,9 +703,11 @@
         }else if (this.mainType == 2){
           if (data.unit == 6){
             this.searchBuild = data.id;
+            this.initDormInfo();
           }else if (data.unit == 7){
             this.searchBuild = data.buildId;
             this.searchFloor = data.id;
+            this.initDormInfo();
           }else if (data.unit == 8){
             this.searchBuild = data.buildId;
             this.searchFloor = data.floorNum;
@@ -923,6 +933,9 @@
         this.page = 1;
         this.num = 20;
         this.init();
+        if (mainType == 2){
+          this.initDormInfo();
+        }
       },
       clearDataInfo(data){
         return clearData(data);
