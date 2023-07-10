@@ -1,0 +1,15 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "Y2YZHX47E3.com.netmoon.smartschool.teacher",
+                "paths": [ "/teacher/*"]
+            },
+            {
+                "appID": "Y2YZHX47E3.com.netmoon.smartschool.student",
+                "paths": [ "/student/*"]
+            }
+        ]
+    }
+}
