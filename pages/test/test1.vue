@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div>test1</div>
+    <div>test11</div>
     <div>
       <my-pagination :total="total" :current-page="page" :page-size="num" @currentPage="handleCurrentChangeExp" @sizeChange="handleSizeChangeExp"></my-pagination>
       <div>

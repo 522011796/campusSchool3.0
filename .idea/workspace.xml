@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="收款单" />
+    <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="收款单">
+      <change beforePath="$PROJECT_DIR$/pages/test/test1.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/test/test1.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -121,14 +123,7 @@
       <workItem from="1688691154702" duration="4197000" />
       <workItem from="1688716663725" duration="1633000" />
       <workItem from="1688780837489" duration="3963000" />
-      <workItem from="1688950879346" duration="4984000" />
-    </task>
-    <task id="LOCAL-00049" summary="增加毕业和异动管理">
-      <created>1684206565292</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1684206565292</updated>
+      <workItem from="1688950879346" duration="5013000" />
     </task>
     <task id="LOCAL-00050" summary="增加毕业和异动管理">
       <created>1684218714654</created>
@@ -466,7 +461,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688976735610</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="收款单">
+      <created>1688976760275</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1688976760275</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
