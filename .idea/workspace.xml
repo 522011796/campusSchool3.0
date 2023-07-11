@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="收款单">
+      <change afterPath="$PROJECT_DIR$/components/utils/treeAndList/TeacherTreeDialog.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/barBlock/SystemDataTopBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/barBlock/SystemDataTopBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/formDetail/FormSystemDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/formDetail/FormSystemDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/formDetail/FormSystemNormalDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/formDetail/FormSystemNormalDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/formDetail/FormSystemOrderDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/formDetail/FormSystemOrderDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/formDetail/FormSystemTagsDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/formDetail/FormSystemTagsDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appSystemData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appSystemData.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -127,14 +134,7 @@
       <workItem from="1688780837489" duration="3963000" />
       <workItem from="1688950879346" duration="11948000" />
       <workItem from="1689037706965" duration="3267000" />
-      <workItem from="1689042791534" duration="4325000" />
-    </task>
-    <task id="LOCAL-00053" summary="增加毕业和异动管理">
-      <created>1684375209736</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1684375209737</updated>
+      <workItem from="1689042791534" duration="11447000" />
     </task>
     <task id="LOCAL-00054" summary="增加毕业和异动管理">
       <created>1684376902832</created>
@@ -472,7 +472,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689045227938</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="收款单">
+      <created>1689048187187</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1689048187187</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
