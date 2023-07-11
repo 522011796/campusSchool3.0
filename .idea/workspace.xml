@@ -5,7 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="收款单">
-      <change beforePath="$PROJECT_DIR$/pages/test/test1.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/test/test1.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/utils/treeAndList/AreaAndSelTreeList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/common.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/tree/MyElTreeBlock.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/tree/MyElTreeBlock.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/barBlock/SystemDataTopBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/barBlock/SystemDataTopBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/budgetManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/budgetManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/costManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/costManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/tagManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/tagManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/test/test3.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/test/test3.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,27 +45,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/likai/工作/object/vuejs/campusSchool3.0/components/utils/table",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.sourceCode",
-    "vue.rearranger.settings.migration": "true",
-    "vuejs.nuxt.types-notification-shown": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/likai/工作/object/vuejs/campusSchool3.0/components/utils/treeAndList&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
+    &quot;vuejs.nuxt.types-notification-shown&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/components/utils/treeAndList" />
       <recent name="$PROJECT_DIR$/components/utils/table" />
       <recent name="$PROJECT_DIR$/components/utils/formDetail" />
       <recent name="$PROJECT_DIR$/utils/validater" />
       <recent name="$PROJECT_DIR$/components/tree" />
-      <recent name="$PROJECT_DIR$/pages/appletInfo/system" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/pages/appletInfo/system" />
@@ -123,14 +137,9 @@
       <workItem from="1688691154702" duration="4197000" />
       <workItem from="1688716663725" duration="1633000" />
       <workItem from="1688780837489" duration="3963000" />
-      <workItem from="1688950879346" duration="5114000" />
-    </task>
-    <task id="LOCAL-00051" summary="增加毕业和异动管理">
-      <created>1684222847936</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1684222847936</updated>
+      <workItem from="1688950879346" duration="11948000" />
+      <workItem from="1689037706965" duration="3267000" />
+      <workItem from="1689042791534" duration="1514000" />
     </task>
     <task id="LOCAL-00052" summary="增加毕业和异动管理">
       <created>1684314167616</created>
@@ -468,7 +477,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688976871190</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="收款单">
+      <created>1688976885419</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1688976885419</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

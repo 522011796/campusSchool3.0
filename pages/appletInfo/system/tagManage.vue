@@ -182,7 +182,7 @@
                 </div>
                 <div v-show="selRangeType == 3">
                   <div class="rang-block">
-                    <my-el-tree ref="roleRefSel" type="150" sub-type="" :show-filter="false" :show-campus="false" :show-checkbox="true" :defaultCheckedKeys="defaultCheckedRoleKeys"></my-el-tree>
+                    <my-el-tree-block ref="roleRefSel" type="150" sub-type="" :show-filter="false" :show-campus="false" :show-checkbox="true" :defaultCheckedKeys="defaultCheckedRoleKeys"></my-el-tree-block>
                   </div>
                 </div>
               </div>

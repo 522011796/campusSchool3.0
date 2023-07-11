@@ -189,6 +189,9 @@
               this.$refs.tree.setCurrentKey(this.currentNodeKey); //一定要加这个选中了否则样式没有出来
             }
           });
+        }else if(this.type == 150){//角色选择用，不显示学校和默认选中第一个
+          await this.getRoleTreeInfo(this.extraType);
+          this.data = this.dataRoleTreeList;
         }else if(this.type == 111){
           await this.getAppletServerInfo(this.extraType);
           this.data = this.dataAppletServer;

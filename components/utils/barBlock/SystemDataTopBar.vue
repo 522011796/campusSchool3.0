@@ -71,12 +71,12 @@
       </span>
       <span class="margin-left-10">
         <label>{{$t("昨日收入")}}:</label>
-        <label class="color-grand">{{objData.intAmount}}</label>
+        <label class="color-grand">{{objData.intAmount ? objData.intAmount : 0}}</label>
         <label class="color-grand">{{$t("元")}}</label>
       </span>
       <span class="margin-left-10">
         <label>{{$t("昨日支出")}}:</label>
-        <label class="color-grand">{{objData.outAmount}}</label>
+        <label class="color-grand">{{objData.outAmount ? objData.outAmount : 0}}</label>
         <label class="color-grand">{{$t("元")}}</label>
       </span>
     </div>
@@ -89,12 +89,12 @@
       </span>
       <span class="margin-left-10">
         <label>{{$t("已支付")}}:</label>
-        <label class="color-grand">{{objData.totalAmount}}</label>
+        <label class="color-grand">{{objData.payAmount}}</label>
         <label class="color-grand">{{$t("元")}}</label>
       </span>
       <span class="margin-left-10">
         <label>{{$t("待支付")}}:</label>
-        <label class="color-grand">{{objData.totalAmount}}</label>
+        <label class="color-grand">{{objData.notPayAmount}}</label>
         <label class="color-grand">{{$t("元")}}</label>
       </span>
 <!--      <span class="margin-left-10">-->
@@ -107,32 +107,32 @@
       <span class="fa fa-book color-grand"></span>
       <span>
         <label>{{$t("总额")}}:</label>
-        <label class="color-grand">0</label>
+        <label class="color-grand">{{objData.allAmount}}</label>
         <label class="color-grand">{{$t("元")}}</label>
       </span>
       <span class="margin-left-10">
         <label>{{$t("已支付")}}:</label>
-        <label class="color-grand">0</label>
+        <label class="color-grand">{{objData.payAmount}}</label>
         <label class="color-grand">{{$t("元")}}</label>
       </span>
       <span class="margin-left-10">
         <label>{{$t("待支付")}}:</label>
-        <label class="color-grand">0</label>
+        <label class="color-grand">{{objData.notPayAmount}}</label>
         <label class="color-grand">{{$t("元")}}</label>
       </span>
       <span class="margin-left-10">
         <label>{{$t("审批中")}}:</label>
-        <label class="color-grand">0</label>
+        <label class="color-grand">{{objData.waitAmount}}</label>
         <label class="color-grand">{{$t("元")}}</label>
       </span>
       <span class="margin-left-10">
         <label>{{$t("已开票")}}:</label>
-        <label class="color-grand">0</label>
+        <label class="color-grand">{{objData.taxAmount}}</label>
         <label class="color-grand">{{$t("元")}}</label>
       </span>
       <span class="margin-left-10">
         <label>{{$t("未开票")}}:</label>
-        <label class="color-grand">0</label>
+        <label class="color-grand">{{objData.unTaxAmount}}</label>
         <label class="color-grand">{{$t("元")}}</label>
       </span>
     </div>
@@ -140,7 +140,7 @@
       <span class="fa fa-book color-grand"></span>
       <span>
         <label>{{$t("申请总额")}}:</label>
-        <label class="color-grand">0</label>
+        <label class="color-grand">{{objData.allAmount}}</label>
         <label class="color-grand">{{$t("元")}}</label>
       </span>
     </div>
@@ -165,20 +165,20 @@
     <div class="font-size-12" v-if="formId == '收款单'">
       <span class="fa fa-book color-grand"></span>
       <span>
-        <label>{{$t("借款总额")}}:</label>
-        <label class="color-grand">0</label>
+        <label>{{$t("收款总额")}}:</label>
+        <label class="color-grand">{{objData.hkAmount}}</label>
         <label class="color-grand">{{$t("元")}}</label>
       </span>
-      <span>
-        <label>{{$t("已收款")}}:</label>
-        <label class="color-grand">0</label>
-        <label class="color-grand">{{$t("元")}}</label>
-      </span>
-      <span>
-        <label>{{$t("待收款")}}:</label>
-        <label class="color-grand">0</label>
-        <label class="color-grand">{{$t("元")}}</label>
-      </span>
+<!--      <span>-->
+<!--        <label>{{$t("已收款")}}:</label>-->
+<!--        <label class="color-grand">0</label>-->
+<!--        <label class="color-grand">{{$t("元")}}</label>-->
+<!--      </span>-->
+<!--      <span>-->
+<!--        <label>{{$t("待收款")}}:</label>-->
+<!--        <label class="color-grand">0</label>-->
+<!--        <label class="color-grand">{{$t("元")}}</label>-->
+<!--      </span>-->
     </div>
     <div class="font-size-12" v-if="formId == '还款单'">
       <span class="fa fa-book color-grand"></span>
