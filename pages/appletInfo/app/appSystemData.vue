@@ -891,14 +891,14 @@
                   this.dataMainDetailObj = res.data.data;
                   this.detailApplyAuditList = res.data.data.handleList && res.data.data.handleList.length > 0 ? res.data.data.handleList : [];
                   this.payableDataList = res.data.data.payableDataList;
-                  this.serialDataList = res.data.data.serialDataList;
+                  this.serialDataList = res.data.data.applyData && res.data.data.applyData['cost_info20230501'] ? res.data.data.applyData['cost_info20230501'].value : [];
                   this.tableOrderDetailData = res.data.data.payableDataList;
                 }else if (extra == 91 || extra == 101 || extra == 111 || extra == 61 || extra == 81 || extra == 71){
                   this.dataDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
                   this.dataMainDetailObj = res.data.data;
                   this.detailApplyAuditList = res.data.data.handleList && res.data.data.handleList.length > 0 ? res.data.data.handleList : [];
                   this.payableDataList = res.data.data.payableDataList;
-                  this.serialDataList = res.data.data.serialDataList;
+                  this.serialDataList = res.data.data.applyData && res.data.data.applyData['cost_info20230501'] ? res.data.data.applyData['cost_info20230501'].value : [];
                   this.tableNormalDetailData = res.data.data.payableDataList;
                 }else if (extra == 9 || extra == 10 || extra == 11 || extra == 6){
                   this.dataDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
@@ -932,7 +932,7 @@
                   this.dataOrderMainDetailObj = res.data.data;
                   this.detailOrderApplyAuditList = res.data.data.handleList && res.data.data.handleList.length > 0 ? res.data.data.handleList : [];
                   this.payableOrderDataList = res.data.data.payableDataList;
-                  this.serialDataList = res.data.data.serialDataList;
+                  this.serialDataList = res.data.data.applyData && res.data.data.applyData['cost_info20230501'] ? res.data.data.applyData['cost_info20230501'].value : [];
                 }
               }
             }
