@@ -1021,7 +1021,7 @@
       },
       async initJYLSCount(schoolAccountId){
         let params = {
-          schoolAccountId: schoolAccountId ? schoolAccountId : ''
+          schoolAccountNo: schoolAccountId ? schoolAccountId : ''
         };
         this.$axios.get(common.serial_manage_count, {params: params}).then(res=> {
           if (res.data.code == 200) {

@@ -246,7 +246,7 @@
         this.accountValue = event.account_name;
         this.accountId = event.account_id;
 
-        this.$emit('handleChange', event.account_id);
+        this.$emit('handleChange', event.account_num);
       }
     }
   }
