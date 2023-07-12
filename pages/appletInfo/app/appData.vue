@@ -224,12 +224,50 @@
               <template slot-scope="scope">
                 <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
                   <div class="text-center">
-                    <label v-if="scope.row[item]" class="moon-content-text-ellipsis-class" style="max-width: 200px !important;display: inline-block">{{scope.row[item]}}</label>
-                    <label v-else>--</label>
+                    <template v-if="(scope.row[`${item}_map`] ? scope.row[`${item}_map`]['type'] : '') === 'upload'">
+                      <div v-if="scope.row[`${item}_map`]['value'].length > 0">
+                        <img v-for="(itemChild, indexChild) in scope.row[`${item}_map`]['value']" :key="indexChild" :src="itemChild" style="height: 25px;width: 25px;margin-right: 5px"></img>
+                      </div>
+                      <div v-else>--</div>
+                    </template>
+
+                    <template v-else-if="(scope.row[`${item}_map`] ? scope.row[`${item}_map`]['type'] : '') === 'el-transfer'">
+                      <span v-if="scope.row[`${item}_map`]['value'] && scope.row[`${item}_map`]['value'].length > 0">
+                        {{ scope.row[`${item}_map`]['value'].join()}}
+                      </span>
+                      <span v-else>--</span>
+                    </template>
+
+                    <template v-else>
+                      <label v-if="scope.row[item]" class="moon-content-text-ellipsis-class" style="max-width: 90px !important;display: inline-block">{{scope.row[item]}}</label>
+                      <label v-else>--</label>
+                    </template>
                   </div>
                   <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                    <label v-if="scope.row[item]" class="moon-content-text-ellipsis-class" style="max-width: 90px !important;display: inline-block">{{scope.row[item]}}</label>
-                    <label v-else>--</label>
+                    <template v-if="(scope.row[`${item}_map`] ? scope.row[`${item}_map`]['type'] : '') === 'upload'">
+                      <div v-if="scope.row[`${item}_map`]['value'].length > 0">
+                        <el-image
+                            v-for="(itemChild, indexChild) in scope.row[`${item}_map`]['value']"
+                            :key="indexChild"
+                            :src="itemChild"
+                            style="width: 25px; height: 25px;margin-right: 5px"
+                            :preview-src-list="scope.row[`${item}_map`]['value']">
+                        </el-image>
+                      </div>
+                      <div v-else>--</div>
+                    </template>
+
+                    <template v-else-if="(scope.row[`${item}_map`] ? scope.row[`${item}_map`]['type'] : '') === 'el-transfer'">
+                      <span v-if="scope.row[`${item}_map`]['value'] && scope.row[`${item}_map`]['value'].length > 0">
+                        {{ scope.row[`${item}_map`]['value'].join()}}
+                      </span>
+                      <span v-else>--</span>
+                    </template>
+
+                    <template v-else>
+                      <label v-if="scope.row[item]" class="moon-content-text-ellipsis-class" style="max-width: 90px !important;display: inline-block">{{scope.row[item]}}</label>
+                      <label v-else>--</label>
+                    </template>
                   </span>
                 </el-popover>
               </template>
@@ -426,7 +464,9 @@
 <!--                    </span>-->
 <!--                    </el-tooltip>-->
                     <span class="moon-content-text-ellipsis-class">
-                      <label class="font-size-12">{{ item.value }}</label>
+                      <label v-if="item.type == 'el-transfer' && item.value && item.value.length > 0" class="font-size-12">{{ item.value.join() }}</label>
+                      <label v-else-if="item.type == 'el-transfer' && item.value && item.value.length <= 0" class="font-size-12"></label>
+                      <label v-else class="font-size-12">{{ item.value }}</label>
                     </span>
                   </td>
                 </template>
@@ -724,7 +764,9 @@
                     <!--                    </span>-->
                     <!--                    </el-tooltip>-->
                     <span class="moon-content-text-ellipsis-class">
-                      <label class="font-size-12">{{ item.value }}</label>
+                      <label v-if="item.type == 'el-transfer' && item.value && item.value.length > 0" class="font-size-12">{{ item.value.join() }}</label>
+                      <label v-else-if="item.type == 'el-transfer' && item.value && item.value.length <= 0" class="font-size-12"></label>
+                      <label v-else class="font-size-12">{{ item.value }}</label>
                     </span>
                   </td>
                 </template>
