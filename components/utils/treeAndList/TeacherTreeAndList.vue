@@ -129,12 +129,18 @@
     },
     methods: {
       _initTeacher(){
+        let selTeacherArray = [];
+        for (let i = 0; i < this.selArr.length; i++){
+          selTeacherArray.push(this.selArr[i].user_id);
+        }
+
         this.checkboxCount = 0;
         let params = {
           page: this.commPage,
           num: this.commNum,
           departPath: this.commSearchDept,
-          deleted: 0
+          deleted: 0,
+          topUserId: selTeacherArray
         };
         this.commLoading = true;
         params['realName'] = this.commSearchKey['input'];

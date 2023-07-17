@@ -256,7 +256,7 @@
           roleId: id
         };
 
-        this.$axios(common.web_auth_group_role_user_list, {params: params}).then(res => {
+        this.$axios(common.web_auth_group_role_user_list, {params: params, loading: false}).then(res => {
           if (res.data.data){
             this.tableTeacherData = res.data.data.list;
             this.totalStudent = res.data.data.totalCount;

@@ -9,7 +9,8 @@
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appData.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/treeAndList/TeacherTreeAndList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/treeAndList/TeacherTreeAndList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/webAuth.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/webAuth.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,13 +40,14 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
     "last_opened_file_path": "/Users/likai/工作/object/vuejs/campusSchool3.0/components/utils/treeAndList",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "vcs.Git",
+    "settings.editor.selected.configurable": "preferences.customizations",
     "vue.rearranger.settings.migration": "true",
     "vuejs.nuxt.types-notification-shown": "true"
   }
@@ -131,14 +133,14 @@
       <workItem from="1688950879346" duration="11948000" />
       <workItem from="1689037706965" duration="3267000" />
       <workItem from="1689042791534" duration="16005000" />
-      <workItem from="1689125715580" duration="6831000" />
-    </task>
-    <task id="LOCAL-00056" summary="修改设备管理">
-      <created>1684751225732</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1684751225732</updated>
+      <workItem from="1689125715580" duration="8189000" />
+      <workItem from="1689152665790" duration="609000" />
+      <workItem from="1689211551786" duration="6257000" />
+      <workItem from="1689296353857" duration="611000" />
+      <workItem from="1689306623176" duration="100000" />
+      <workItem from="1689306773068" duration="80000" />
+      <workItem from="1689318935647" duration="874000" />
+      <workItem from="1689555842498" duration="616000" />
     </task>
     <task id="LOCAL-00057" summary="修改设备管理">
       <created>1684812913417</created>
@@ -476,7 +478,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689068956632</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="收款单">
+      <created>1689142654667</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1689142654667</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
