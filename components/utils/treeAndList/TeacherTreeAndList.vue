@@ -140,7 +140,7 @@
           num: this.commNum,
           departPath: this.commSearchDept,
           deleted: 0,
-          topUserId: selTeacherArray
+          //topUserId: selTeacherArray
         };
         this.commLoading = true;
         params['realName'] = this.commSearchKey['input'];

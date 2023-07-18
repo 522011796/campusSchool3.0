@@ -188,7 +188,7 @@
           departPath: this.selTreeId,
         };
         params['realName'] = this.searchKey['input'];
-        this.$axios.get(common.teacher_list, {params: params}).then(res => {
+        this.$axios.get(common.teacher_list, {params: params, loading: false}).then(res => {
           if (res.data.data){
             this.tableSelData = res.data.data.page.list;
             this.totalTeacher = res.data.data.page.totalCount;
@@ -269,14 +269,29 @@
       getCurrentSettingData(){
         let obj = {};
         let userArray  = [];
-        let deptArr  = this.setAreaChildren(this.$refs.deptRefSel.$refs.tree.getCheckedNodes(), 'dept');
-        let roleArr  = this.setAreaChildren(this.$refs.roleRefSel.$refs.tree.getCheckedNodes());
+        let deptArr = [];
+        let roleArr = [];
+
+        if (this.$refs['deptRefSel']){
+          deptArr  = this.setAreaChildren(this.$refs.deptRefSel.$refs.tree.getCheckedNodes(), 'dept');
+        }
+        if (this.$refs['roleRefSel']){
+          roleArr  = this.setAreaChildren(this.$refs.roleRefSel.$refs.tree.getCheckedNodes());
+        }
+
         if (deptArr.length > 0){
           obj['deptRange'] = deptArr.join();
+        }else {
+          obj['deptRange'] = '';
         }
+
         if (roleArr.length > 0){
           obj['roleRange'] = roleArr.join();
+        }else {
+          obj['roleRange'] = '';
         }
+
+        obj['userRange'] = '';
         if (this.form.userRange.length > 0){
           for (let i = 0; i < this.form.userRange.length; i++){
             userArray.push(this.form.userRange[i].user_id);
