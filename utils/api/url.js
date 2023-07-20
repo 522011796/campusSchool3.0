@@ -830,5 +830,7 @@ export const common = {
 
   server_form_audit_handle: '/proxy/school/applet/form/apply/handle',//服务审批操作
   process_sub_list: '/proxy/school/applet/form/process/list2',//子流程
+  budget_list: '/proxy/school/applet/budget/list1',//预算列表
+
 
 };

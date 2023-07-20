@@ -448,7 +448,7 @@
       </div>
     </drawer-layout-right>
 
-    <drawer-layout-right tabindex="0" @close="closeDrawerDialog" :visible="dialogNormalVisible" size="600px" :title="$t('详细查看')" @right-close="cancelDrawDialog">
+    <drawer-layout-right tabindex="0" @close="closeDrawerDialog" :visible="dialogNormalVisible" size="650px" :title="$t('详细查看')" @right-close="cancelDrawDialog">
       <div slot="content" class="color-muted">
         <form-system-normal-detail
           :detail-type="detailType"
@@ -900,10 +900,13 @@
                   this.payableDataList = res.data.data.payableDataList;
                   this.serialDataList = res.data.data.applyData && res.data.data.applyData['cost_info20230501'] ? res.data.data.applyData['cost_info20230501'].value : [];
                   this.tableNormalDetailData = res.data.data.payableDataList;
+                  console.log(1,this.serialDataList);
                 }else if (extra == 9 || extra == 10 || extra == 11 || extra == 6){
                   this.dataDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
                   this.dataMainDetailObj = res.data.data;
+                  this.serialDataList = res.data.data.applyData && res.data.data.applyData['cost_info20230501'] ? res.data.data.applyData['cost_info20230501'].value : [];
                   this.detailApplyAuditList = res.data.data.handleList && res.data.data.handleList.length > 0 ? res.data.data.handleList : [];
+                  console.log(2,this.serialDataList);
                   if (res.data.data.formCode == 'XMGL'){
                     this.initReal(item._id);
                   }else if (res.data.data.formCode == 'XSHT' || res.data.data.formCode == 'CGHT' || res.data.data.formCode == 'TYHT'){

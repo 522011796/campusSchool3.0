@@ -4,16 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="收款单">
-      <change afterPath="$PROJECT_DIR$/components/utils/treeAndList/TeacherDialogTreeList.vue" afterDir="false" />
+    <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="列表组件">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/treeAndList/AreaAndSelTreeList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/treeAndList/AreaAndSelTreeList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/treeAndList/TeacherTreeAndList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/treeAndList/TeacherTreeAndList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/test/test3.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/test/test3.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/formDetail/FormSystemNormalDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/formDetail/FormSystemNormalDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/formDetail/FormSystemTagsDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/formDetail/FormSystemTagsDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appSystemData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appSystemData.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,14 +145,10 @@
       <workItem from="1689318935647" duration="874000" />
       <workItem from="1689555842498" duration="1284000" />
       <workItem from="1689645021816" duration="24000" />
-      <workItem from="1689660230053" duration="7141000" />
-    </task>
-    <task id="LOCAL-00058" summary="财务管理">
-      <created>1685612666290</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1685612666291</updated>
+      <workItem from="1689660230053" duration="7659000" />
+      <workItem from="1689727896256" duration="60000" />
+      <workItem from="1689727967771" duration="3991000" />
+      <workItem from="1689815082672" duration="7991000" />
     </task>
     <task id="LOCAL-00059" summary="财务管理">
       <created>1685695168473</created>
@@ -490,7 +486,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689556495525</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="列表组件">
+      <created>1689674125628</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1689674125628</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -540,6 +543,7 @@
     <MESSAGE value="普通管理单" />
     <MESSAGE value="对公打款单" />
     <MESSAGE value="收款单" />
-    <option name="LAST_COMMIT_MESSAGE" value="收款单" />
+    <MESSAGE value="列表组件" />
+    <option name="LAST_COMMIT_MESSAGE" value="列表组件" />
   </component>
 </project>
