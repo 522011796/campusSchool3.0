@@ -135,20 +135,20 @@
             </el-popover>
           </template>
         </el-table-column>
-        <el-table-column
-          align="center"
-          :label="$t('待还金额')">
-          <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">
-                {{ scope.row.applyData['cost_notAmount'] ? (scope.row.applyData.cost_notAmount.value ? scope.row.applyData.cost_notAmount.value : '--') : '--' }}
-              </div>
-              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                {{ scope.row.applyData['cost_notAmount'] ? (scope.row.applyData.cost_notAmount.value ? scope.row.applyData.cost_notAmount.value : '--') : '--' }}
-              </span>
-            </el-popover>
-          </template>
-        </el-table-column>
+<!--        <el-table-column-->
+<!--          align="center"-->
+<!--          :label="$t('待还金额')">-->
+<!--          <template slot-scope="scope">-->
+<!--            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">-->
+<!--              <div class="text-center">-->
+<!--                {{ scope.row.applyData['cost_notAmount'] ? (scope.row.applyData.cost_notAmount.value ? scope.row.applyData.cost_notAmount.value : '&#45;&#45;') : '&#45;&#45;' }}-->
+<!--              </div>-->
+<!--              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">-->
+<!--                {{ scope.row.applyData['cost_notAmount'] ? (scope.row.applyData.cost_notAmount.value ? scope.row.applyData.cost_notAmount.value : '&#45;&#45;') : '&#45;&#45;' }}-->
+<!--              </span>-->
+<!--            </el-popover>-->
+<!--          </template>-->
+<!--        </el-table-column>-->
         <el-table-column
           align="center"
           width="140"

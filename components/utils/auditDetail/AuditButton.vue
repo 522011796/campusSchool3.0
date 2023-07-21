@@ -4,13 +4,14 @@
       <div :selectModel="selectModel">
       <span v-if="value.handle == true">
         <el-popover
+            popper-class="custom-popper-class"
             placement="top"
-            width="300"
+            width="400"
             @hide="cancelPop"
             v-model="visibleOk">
           <template v-if="value.agreeType == 'pay'">
             <div class="margin-bottom-10">
-              <my-select placeholder="请选择账户" :sel-value="account" width-style="300" :options="schoolAccountIdList" @change="handleAccountChange($event)"></my-select>
+              <my-select placeholder="请选择账户" :sel-value="account" width-style="400" :options="schoolAccountIdList" @change="handleAccountChange($event)"></my-select>
             </div>
             <div class="margin-bottom-10">
               <el-input
@@ -35,8 +36,9 @@
         </el-popover>
 
         <el-popover
+            popper-class="custom-popper-class"
             placement="top"
-            width="200"
+            width="400"
             @hide="cancelPop"
             v-model="visibleNo">
           <div class="margin-bottom-10">

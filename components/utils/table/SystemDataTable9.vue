@@ -107,13 +107,13 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                <span v-if="scope.row['off_apply20230501']" class="color-success">
+                <span v-if="scope.row['off over20230501']" class="color-success">
                   {{$t("已支付")}}
                 </span>
                 <label v-else  class="color-danger">{{$t("未支付")}}</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <span v-if="scope.row['off_apply20230501']" class="color-success">
+                <span v-if="scope.row['off over20230501']" class="color-success">
                   {{$t("已支付")}}
                 </span>
                 <label v-else  class="color-danger">{{$t("未支付")}}</label>

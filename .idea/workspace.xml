@@ -5,26 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="列表组件">
-      <change afterPath="$PROJECT_DIR$/plugins/write.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/form/MyProcessFlow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/form/MyProcessFlow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/common.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/AuditButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/AuditButton.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/formDetail/FormSystemDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/formDetail/FormSystemDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/formDetail/FormSystemNormalDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/formDetail/FormSystemNormalDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/formDetail/FormSystemOrderDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/formDetail/FormSystemOrderDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/formDetail/FormSystemTagsDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/formDetail/FormSystemTagsDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/table/SystemDataTable2.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable2.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appSystemData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appSystemData.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/fileManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/fileManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/flowManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/flowManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/logInfo/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logInfo/login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/logInfo/opr.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logInfo/opr.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/table/SystemDataTable10.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable10.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/table/SystemDataTable9.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable9.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,14 +146,7 @@
       <workItem from="1689727967771" duration="3991000" />
       <workItem from="1689815082672" duration="24123000" />
       <workItem from="1689850726407" duration="189000" />
-      <workItem from="1689900998447" duration="11575000" />
-    </task>
-    <task id="LOCAL-00060" summary="费用管理">
-      <created>1686033894819</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1686033894820</updated>
+      <workItem from="1689900998447" duration="13806000" />
     </task>
     <task id="LOCAL-00061" summary="教师财务帐号">
       <created>1686044035803</created>
@@ -506,7 +484,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689831735309</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="列表组件">
+      <created>1689925645571</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1689925645571</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
