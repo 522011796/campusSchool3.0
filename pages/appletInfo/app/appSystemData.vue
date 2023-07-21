@@ -283,7 +283,7 @@
               </el-col>
               <el-col :span="12">
                 <el-form-item :label="$t('所属部门')">
-                  <my-cascader ref="selectorDept" :props="{ checkStrictly: true }" :sel-value="formOrder.dept" type="4" sub-type="id" width-style="182" @change="handleCascaderDeptChange($event)"></my-cascader>
+                  <my-cascader ref="selectorDept" :props="{ checkStrictly: true }" :sel-value="formOrder.dept" type="4" sub-type="" width-style="182" @change="handleCascaderDeptChange($event)"></my-cascader>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -297,7 +297,7 @@
               </el-col>
               <el-col :span="12">
                 <el-form-item :label="$t('申请时间')">
-                  <my-date-picker :sel-value="form.startTime" width-style="182" @change="handleChange($event,18)"></my-date-picker>
+                  <my-date-picker :sel-value="formOrder.startTime" width-style="182" @change="handleChange($event,18)"></my-date-picker>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -801,12 +801,14 @@
                     fileList: []
                   };
                   this.images = res.data.data.applyData.xm_files20230501.value;
-                  this.files = res.data.data.applyData.xm_files20230501.filename;
+                  this.files = res.data.data.applyData.ht_files20230501['filename'] ? res.data.data.applyData.ht_files20230501.filename : res.data.data.applyData.ht_files20230501.name;
                 }else if (extra == 4 || extra == 2 || extra == 3){
                   let order = "";
                   let orderName = "";
                   let object = "";
                   let objectName = "";
+                  let dept = "";
+                  let deptName = "";
 
                   if (res.data.data.applyData['tag_ids20230501'] && res.data.data.applyData['tag_ids20230501']['value'] != ''){
                     order = {
@@ -840,6 +842,14 @@
                     objectName = '';
                   }
 
+                  if (res.data.data.applyData['apply_dept20230501'] && res.data.data.applyData['apply_dept20230501']['value'] != ''){
+                    dept = res.data.data.applyData.apply_dept20230501.value.split(",");
+                    deptName = res.data.data.applyData.apply_dept20230501.deptName.split(",");
+                  }else {
+                    dept = '';
+                    deptName = '';
+                  }
+
                   this.formOrder = {
                     id: res.data.data.id,
                     name: res.data.data.applyData.ht_name20230501.value,
@@ -849,10 +859,10 @@
                     ordername: orderName,
                     status: '',
                     budget: '',
-                    orderMoney: res.data.data.applyData.ht_amount20230501.value,
-                    dept: res.data.data.applyData['apply_dept20230501'] ? res.data.data.applyData.apply_dept20230501.value : '',
-                    deptName: res.data.data.applyData['apply_dept20230501'] ? res.data.data.applyData.apply_dept20230501.deptName : '',
-                    merchat: res.data.data.applyData.ht_supplierId20230501.value,
+                    orderMoney: res.data.data['applyData'] && res.data.data.applyData['ht_amount20230501'] ? res.data.data.applyData.ht_amount20230501.value : '',
+                    dept: dept,
+                    deptName: deptName,
+                    merchat: res.data.data['applyData'] && res.data.data.applyData['ht_supplierId20230501'] ?  res.data.data.applyData.ht_supplierId20230501.value : '',
                     havePerson: '',
                     object: object,
                     objectName: objectName,
@@ -863,12 +873,12 @@
                     userId: res.data.data.applyData['ht_duty20230501'] ? res.data.data.applyData.ht_duty20230501.userId : ''
                   }
                   this.images = res.data.data.applyData.ht_files20230501.value;
-                  this.files = res.data.data.applyData.ht_files20230501.filename;
+                  this.files = res.data.data.applyData.ht_files20230501['filename'] ? res.data.data.applyData.ht_files20230501.filename : res.data.data.applyData.ht_files20230501.name;
 
                   if (extra == 2 || extra == 3 || extra == 4){
                     let ruleList = [];
                     let count = res.data.data.applyData['ht_stage20230501'] ? res.data.data.applyData['ht_stage20230501'].value : 0;
-                    console.log(count);
+
                     for (let i = 0; i < count; i++){
                       ruleList.push({
                         stage: res.data.data.applyData['ht_payStage20230501_'+(i+1)].value,
@@ -900,19 +910,18 @@
                   this.payableDataList = res.data.data.payableDataList;
                   this.serialDataList = res.data.data.applyData && res.data.data.applyData['cost_info20230501'] ? res.data.data.applyData['cost_info20230501'].value : [];
                   this.tableNormalDetailData = res.data.data.payableDataList;
-                  console.log(1,this.serialDataList);
                 }else if (extra == 9 || extra == 10 || extra == 11 || extra == 6){
                   this.dataDetailObj = res.data.data['applyData'] ? res.data.data['applyData'] : {};
                   this.dataMainDetailObj = res.data.data;
                   this.serialDataList = res.data.data.applyData && res.data.data.applyData['cost_info20230501'] ? res.data.data.applyData['cost_info20230501'].value : [];
                   this.detailApplyAuditList = res.data.data.handleList && res.data.data.handleList.length > 0 ? res.data.data.handleList : [];
-                  console.log(2,this.serialDataList);
+
                   if (res.data.data.formCode == 'XMGL'){
                     this.initReal(item._id);
                   }else if (res.data.data.formCode == 'XSHT' || res.data.data.formCode == 'CGHT' || res.data.data.formCode == 'TYHT'){
                     let ruleList = [];
                     //let count = res.data.data.applyData['ht_stage20230501'] ? res.data.data.applyData['ht_stage20230501'].value : 0;
-                    console.log(res.data.data.payableDataList);
+
                     for (let i = 0; i < res.data.data.payableDataList.length; i++){
                       ruleList.push({
                         stage: res.data.data.payableDataList[i].stage,
@@ -1699,6 +1708,7 @@
       },
       uploadFileSuccess(res, file){
         if (res.code == 200){
+          console.log(this.images,this.files);
           this.images.push(res.data.url);
           this.files.push(file.name);
         }else {
@@ -1706,7 +1716,6 @@
         }
       },
       detailOrderInfo(item){
-        console.log(111);
         this.initAuditDetailList(item.id, 'detailOrder', 2);
         this.dialogOrderDetailVisible = true;
       },
@@ -1809,6 +1818,7 @@
           if (valid) {
             let params = {};
             let contentJson = {};
+
             contentJson = [
               {
                 field: 'ht_name20230501',
@@ -1829,8 +1839,8 @@
               },
               {
                 field: 'apply_dept20230501',
-                value: this.formOrder.dept,
-                deptName: this.formOrder.deptName,
+                value: this.formOrder.dept.length > 0 ? this.formOrder.dept.join() : '',
+                deptName: this.formOrder.deptName.length > 0 ? this.formOrder.deptName.join() : '',
               },
               {
                 field: 'ht_time20230501',
@@ -1916,7 +1926,6 @@
               applyContent: JSON.stringify(contentJson),
               submit: this.submitStatus
             }
-            console.log(this.formCode);
 
             url = common.object_order_add;
 
@@ -1938,11 +1947,14 @@
           }
         });
       },
-      handleOk(data,textarea){
+      handleOk(data, textarea, amount, account, sign, type){
         let params = {
           id: this.dataMainDetailObj.id ? this.dataMainDetailObj.id : this.dataMainDetailObj.id,
           status: 1,
-          des: textarea
+          des: textarea,
+          signStr:sign,
+          schoolAccountId: account,
+          amount: amount
         };
         params = this.$qs.stringify(params);
         this.$axios.post(common.server_form_audit_handle, params).then(res => {

@@ -49,7 +49,7 @@
           align="center"
           :label="$t('部门')">
           <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover" v-if="scope.row.applyData['apply_dept20230501'] && Array.isArray(scope.row.applyData['apply_dept20230501']['value'])">
               <div class="text-center">
                 <label v-if="scope.row.applyData['apply_dept20230501']" v-for="(item, index) in scope.row.applyData.apply_dept20230501.deptName" :key="index">
                   <template>{{item}}</template>
@@ -60,7 +60,28 @@
                 </label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.applyData['apply_dept20230501']" v-for="(item, index) in scope.row.applyData.apply_dept20230501.deptName" :key="index">
+                <label v-if="scope.row.applyData['apply_dept20230501'] && scope.row.applyData['apply_dept20230501']['deptName']" v-for="(item, index) in scope.row.applyData.apply_dept20230501.deptName" :key="index">
+                  <template>{{item}}</template>
+                  <template v-if="index != scope.row.applyData.apply_dept20230501.deptName.length-1">/</template>
+                </label>
+                <label v-if="scope.row.applyData['apply_dept20230501'] && scope.row.applyData.apply_dept20230501.deptName == ''">
+                  --
+                </label>
+              </span>
+            </el-popover>
+
+            <el-popover v-else trigger="hover" placement="top" popper-class="custom-table-popover">
+              <div class="text-center">
+                <label v-if="scope.row.applyData['apply_dept20230501'] && scope.row.applyData['apply_dept20230501']['deptName']" v-for="(item, index) in scope.row.applyData.apply_dept20230501.deptName.split(',')" :key="index">
+                  <template>{{item}}</template>
+                  <template v-if="index != scope.row.applyData.apply_dept20230501.deptName.split(',').length-1">/</template>
+                </label>
+                <label v-if="scope.row.applyData['apply_dept20230501'] && scope.row.applyData.apply_dept20230501.deptName == ''">
+                  --
+                </label>
+              </div>
+              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                <label v-if="scope.row.applyData['apply_dept20230501'] && scope.row.applyData['apply_dept20230501']['deptName']" v-for="(item, index) in scope.row.applyData.apply_dept20230501.deptName.split(',')" :key="index">
                   <template>{{item}}</template>
                   <template v-if="index != scope.row.applyData.apply_dept20230501.deptName.length-1">/</template>
                 </label>

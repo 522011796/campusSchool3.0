@@ -116,10 +116,13 @@ export default {
       searchDate: [],
       searchKey: '',
       visible: false,
-      clearTime: ''
+      clearTime: '',
     }
   },
   created() {
+    let startTime = this.$moment().subtract(7, 'days').format("YYYY-MM-DD");
+    let endTime = this.$moment().format("YYYY-MM-DD");
+    this.searchDate = [startTime, endTime];
     this.init();
   },
   methods: {

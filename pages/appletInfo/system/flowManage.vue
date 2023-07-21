@@ -172,7 +172,7 @@
       </div>
     </dialog-normal>
 
-    <drawer-layout-right tabindex="0" :title="$t('流程设计')" :show-close="true" @opened="openForm" @changeDrawer="closeDialog" :visible="drawerForm" size="85%">
+    <drawer-layout-right tabindex="0" :title="$t('流程设计')" :show-close="true" @close="closeDialog" @opened="openForm" @changeDrawer="closeDialog" :visible="drawerForm" size="85%">
       <div slot="title">
         <div class="header-block padding-lr-10">
           <span class="tab-class font-bold">
@@ -305,6 +305,8 @@
             pId: formProcess[j].pId,
             pName: formProcess[j].pName,
             cType: formProcess[j].cType,
+            atype: formProcess[j].atype,
+            sign: formProcess[j].sign ? formProcess[j].sign : false,
           };
 
           for (let k = 0; k < formProcess[j].hid.length; k++){
@@ -324,7 +326,8 @@
           allowBack: item.allow_revoke ? item.allow_revoke : false,
           urge: item.allow_urge ? item.allow_urge : false,
           autoAudit: item.allow_auto ? item.allow_auto : false,
-          merge: item.allow_merge ? item.allow_merge : false
+          merge: item.allow_merge ? item.allow_merge : false,
+          needConfirm: item.need_confirm ? item.need_confirm : false
         };
         this.flowFormData = formObj;
       },
@@ -416,12 +419,14 @@
           this.$refs.flow.flowDetailData = {};
           this.$refs.flow.approverUsers = [];
           this.$refs.flow.formFieldList = [];
+          this.$refs.flow.flowDetailIndex = '';
         }
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
         }
         this.btnLoading = false;
         this.drawerForm = false;
+        this.dialogVisible = false;
       },
       cancelDialog(){
         this.dialogVisible = false;
@@ -477,6 +482,7 @@
         });
       },
       cancelDrawDialog(){
+        this.closeDialog();
         this.detailData = '';
         this.drawerVisible = false;
         this.drawerForm = false;
@@ -488,6 +494,8 @@
         let flowForm = this.$refs.flow.form;
         let ntype = '';
         let htype = '';
+        let atype = '';
+        let pay = '';
         let hrole= [];
         let hid = [];
         let hname = [];
@@ -545,7 +553,7 @@
             hid: hid,
             hname: hname,
             andor: flowData[i].andor,
-            sign: flowData[i].waitName,
+            //sign: flowData[i].waitName,
             agreed1: flowData[i].allowShow,
             agreed2: flowData[i].allowMuti,
             notagreed1: flowData[i].rejectShow,
@@ -556,6 +564,8 @@
             right2: flowData[i].right2,
             urge: flowData[i].urge,
             cType: flowData[i].cType,
+            atype: flowData[i].atype,
+            sign: flowData[i].sign
           }
           if (flowData[i].extra == 'sub'){
             obj['pId'] = flowData[i].pId;
@@ -570,7 +580,8 @@
           allowRevoke: flowForm.allowBack,
           allowUrge: flowForm.urge,
           allowAuto: flowForm.autoAudit,
-          allowMerge: flowForm.merge
+          allowMerge: flowForm.merge,
+          needConfirm: flowForm.needConfirm
         };
         if (flowForm.id != '' && type != 'new'){
           flowDataOjb['id'] = flowForm.id;

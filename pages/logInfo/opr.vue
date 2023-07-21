@@ -125,6 +125,9 @@
       }
     },
     created() {
+      let startTime = this.$moment().subtract(7, 'days').format("YYYY-MM-DD");
+      let endTime = this.$moment().format("YYYY-MM-DD");
+      this.searchDate = [startTime, endTime];
       this.init();
       this.initType();
     },

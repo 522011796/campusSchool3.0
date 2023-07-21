@@ -166,11 +166,17 @@
                           &nbsp;
                         </el-col>
                         <el-col :span="12" class="text-center">
-                          <el-checkbox v-model="flowDetailData.allowShow"></el-checkbox>
+                          <el-checkbox v-model="flowDetailData.allowShow" @change="handleChangeAllowShow($event)"></el-checkbox>
                         </el-col>
                       </el-row>
                     </el-col>
                   </el-row>
+                  <template v-if="flowDetailData.allowShow == true">
+                    <div class="extra-item-block layout-inline">
+                      <my-select class="layout-item" size="mini" :placeholder="$t('类型')" :sel-value="flowDetailData.atype" width-style="125" :options="allowShowTypeOptions" @change="handleAllowType($event)"></my-select>
+                      <my-select class="layout-item" size="mini" :placeholder="$t('签名')" :sel-value="flowDetailData.sign" width-style="125" :options="allowShowSignOptions" @change="handleAllowSign($event)"></my-select>
+                    </div>
+                  </template>
                   <el-row class="margin-top-5">
                     <el-col :span="16">
                       <span>{{$t("驳回")}}</span>
@@ -341,6 +347,16 @@
                   </el-col>
                 </el-row>
               </div>
+              <div class="margin-top-10">
+                <el-row>
+                  <el-col :span="20">
+                    <span>{{$t("发起人签收")}}</span>
+                  </el-col>
+                  <el-col :span="4" class="text-center">
+                    <el-checkbox v-model="form.needConfirm"></el-checkbox>
+                  </el-col>
+                </el-row>
+              </div>
             </div>
           </template>
         </div>
@@ -362,7 +378,7 @@
           </div>
 
           <div v-if="flowData.length > 0" v-for="(item, index) in flowData" :key="index">
-            <div class="flow-item-block" @click="selFlowItemBlock($event, item, index)" :class="flowDetailIndex == index ? 'flow-item-active' : ''">
+            <div class="flow-item-block" @click="selFlowItemBlock($event, item, index)" :class="flowDetailIndex === index ? 'flow-item-active' : ''">
               <div class="flow-item-title-block" :class="item.extra == 'audit' ? 'bg-warning' : 'bg-success'">
                 <i class="fa fa-times-circle flow-item-close-block color-danger" @click.stop="delAuditType($event, item, index)"></i>
                 <span class="font-bold font-size-12">
@@ -515,7 +531,8 @@
             name: '',
             allowBack: false,
             autoAudit: false,
-            merge: false
+            merge: false,
+            needConfirm: false
           };
         },
         type: Object
@@ -538,6 +555,14 @@
         formFieldList: [],
         processOptions: [],
         roleGroup: {},
+        allowShowTypeOptions: [
+          {label: this.$t("同意"), text: this.$t("同意"), value: ''},
+          {label: this.$t("确认打款"), text: this.$t("确认打款"), value: 'pay'}
+        ],
+        allowShowSignOptions: [
+          {label: this.$t("签名"), text: this.$t("签名"), value: true},
+          {label: this.$t("不签名"), text: this.$t("不签名"), value: false}
+        ],
         auditFlowType: [
           {label: this.$t("固定人审批"), text: this.$t("固定人审批"), value: 1},
           {label: this.$t("系统角色审批"), text: this.$t("系统角色审批"), value: 2},
@@ -619,7 +644,9 @@
           urge: false,
           pId: '',
           pName: '',
-          cType: ''
+          cType: '',
+          atype: '',
+          sign: false
         };
         this.flowData.splice(index, 0, obj);
         this.selFlowItemBlock(null, obj, index);
@@ -636,6 +663,12 @@
       handleUserType(data){
         this.flowDetailData.htype = data;
         this.flowDetailData.hType = data;
+      },
+      handleAllowType(data){
+        this.flowDetailData.atype = data;
+      },
+      handleAllowSign(data){
+        this.flowDetailData.sign = data;
       },
       auditFlowTypeItemInfo(value, type){
         return flowAuditItemType(value, type);
@@ -780,6 +813,9 @@
             break;
           }
         }
+      },
+      handleChangeAllowShow(event){
+        this.flowDetailData.allowShow = event;
       }
     }
   }
@@ -893,5 +929,8 @@
 }
 .flow-item-active{
   box-shadow: 0 0 10px #343434;
+}
+.extra-item-block{
+  padding: 5px 0px;
 }
 </style>

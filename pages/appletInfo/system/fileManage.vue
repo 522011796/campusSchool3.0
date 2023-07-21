@@ -422,11 +422,14 @@
 
         this.dialogVisible = true;
       },
-      handleOk(data,textarea){
+      handleOk(data, textarea, amount, account, sign, type){
         let params = {
           id: this.dataMainDetailObj.id ? this.dataMainDetailObj.id : this.dataMainDetailObj.id,
           status: 1,
-          des: textarea
+          des: textarea,
+          signStr:sign,
+          schoolAccountId: account,
+          amount: amount
         };
         params = this.$qs.stringify(params);
         this.$axios.post(common.server_form_audit_handle, params).then(res => {

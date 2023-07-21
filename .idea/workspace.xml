@@ -5,15 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="列表组件">
+      <change afterPath="$PROJECT_DIR$/plugins/write.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/form/MyProcessFlow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/form/MyProcessFlow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/AuditButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/AuditButton.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/formDetail/FormSystemDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/formDetail/FormSystemDetail.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/utils/formDetail/FormSystemNormalDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/formDetail/FormSystemNormalDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/formDetail/FormSystemOrderDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/formDetail/FormSystemOrderDetail.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/utils/formDetail/FormSystemTagsDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/formDetail/FormSystemTagsDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/table/SystemDataTable2.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable2.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appSystemData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appSystemData.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/fileManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/fileManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/flowManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/flowManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/logInfo/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logInfo/login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/logInfo/opr.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logInfo/opr.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +55,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/likai/工作/object/vuejs/campusSchool3.0/components/utils/treeAndList&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/likai/工作/object/vuejs/campusSchool3.0/plugins&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -57,11 +68,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/plugins" />
       <recent name="$PROJECT_DIR$/components/utils/treeAndList" />
       <recent name="$PROJECT_DIR$/components/utils/table" />
       <recent name="$PROJECT_DIR$/components/utils/formDetail" />
       <recent name="$PROJECT_DIR$/utils/validater" />
-      <recent name="$PROJECT_DIR$/components/tree" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/pages/appletInfo/system" />
@@ -148,14 +159,9 @@
       <workItem from="1689660230053" duration="7659000" />
       <workItem from="1689727896256" duration="60000" />
       <workItem from="1689727967771" duration="3991000" />
-      <workItem from="1689815082672" duration="7991000" />
-    </task>
-    <task id="LOCAL-00059" summary="财务管理">
-      <created>1685695168473</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1685695168474</updated>
+      <workItem from="1689815082672" duration="24123000" />
+      <workItem from="1689850726407" duration="189000" />
+      <workItem from="1689900998447" duration="11575000" />
     </task>
     <task id="LOCAL-00060" summary="费用管理">
       <created>1686033894819</created>
@@ -493,7 +499,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689674125628</updated>
     </task>
-    <option name="localTasksCounter" value="108" />
+    <task id="LOCAL-00108" summary="列表组件">
+      <created>1689831735309</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1689831735309</updated>
+    </task>
+    <option name="localTasksCounter" value="109" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
