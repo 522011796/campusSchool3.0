@@ -87,30 +87,34 @@
             </el-popover>
           </template>
         </el-table-column>
+<!--        <el-table-column-->
+<!--          align="center"-->
+<!--          :label="$t('已到票')">-->
+<!--          <template slot-scope="scope">-->
+<!--            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">-->
+<!--              <div class="text-center">-->
+
+<!--              </div>-->
+<!--              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">-->
+
+<!--              </span>-->
+<!--            </el-popover>-->
+<!--          </template>-->
+<!--        </el-table-column>-->
         <el-table-column
           align="center"
-          :label="$t('已到票')">
+          :label="$t('到票状态')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-
+                <label v-if="scope.row['applyData'] && scope.row['applyData']['open_invoice20230501'] && scope.row['applyData']['open_invoice20230501'] == true" class="color-success">{{$t("已到票")}}</label>
+                <label v-else-if="scope.row['applyData'] && scope.row['applyData']['open_invoice20230501'] && scope.row['applyData']['open_invoice20230501'] == false" class="color-danger">{{$t("未到票")}}</label>
+                <label>--</label>
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-
-              </span>
-            </el-popover>
-          </template>
-        </el-table-column>
-        <el-table-column
-          align="center"
-          :label="$t('未到票')">
-          <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">
-
-              </div>
-              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-
+                <label v-if="scope.row['applyData'] && scope.row['applyData']['open_invoice20230501'] && scope.row['applyData']['open_invoice20230501'] == true" class="color-success">{{$t("已到票")}}</label>
+                <label v-else-if="scope.row['applyData'] && scope.row['applyData']['open_invoice20230501'] && scope.row['applyData']['open_invoice20230501'] == false" class="color-danger">{{$t("未到票")}}</label>
+                <label>--</label>
               </span>
             </el-popover>
           </template>

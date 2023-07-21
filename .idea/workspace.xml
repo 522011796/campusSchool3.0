@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="列表组件">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/common.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/auditDetail/AuditButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/auditDetail/AuditButton.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/table/SystemDataTable10.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable10.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/table/SystemDataTable9.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable9.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/table/SystemDataTable7.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable7.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,14 +144,7 @@
       <workItem from="1689727967771" duration="3991000" />
       <workItem from="1689815082672" duration="24123000" />
       <workItem from="1689850726407" duration="189000" />
-      <workItem from="1689900998447" duration="13806000" />
-    </task>
-    <task id="LOCAL-00061" summary="教师财务帐号">
-      <created>1686044035803</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1686044035804</updated>
+      <workItem from="1689900998447" duration="15430000" />
     </task>
     <task id="LOCAL-00062" summary="学校财务帐号">
       <created>1686117644359</created>
@@ -491,7 +482,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689925645571</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="列表组件">
+      <created>1689927757569</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1689927757569</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
