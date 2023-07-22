@@ -75,7 +75,7 @@
         </el-table-column>
         <el-table-column
           align="center"
-          :label="$t('借款金额')">
+          :label="$t('还款金额')">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
@@ -101,40 +101,40 @@
             </el-popover>
           </template>
         </el-table-column>
-        <el-table-column
-          align="center"
-          :label="$t('还款状态')">
-          <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">
-                <span v-if="scope.row['off_apply20230501']" class="color-success">
-                  {{$t("已支付")}}
-                </span>
-                <label v-else  class="color-danger">{{$t("未支付")}}</label>
-              </div>
-              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <span v-if="scope.row['off_apply20230501']" class="color-success">
-                  {{$t("已支付")}}
-                </span>
-                <label v-else  class="color-danger">{{$t("未支付")}}</label>
-              </span>
-            </el-popover>
-          </template>
-        </el-table-column>
-        <el-table-column
-          align="center"
-          :label="$t('已还金额')">
-          <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">
-                {{ scope.row.applyData['cost_repaidAmount'] ? (scope.row.applyData.cost_repaidAmount.value ? scope.row.applyData.cost_repaidAmount.value : '--') : '--' }}
-              </div>
-              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                {{ scope.row.applyData['cost_repaidAmount'] ? (scope.row.applyData.cost_repaidAmount.value ? scope.row.applyData.cost_repaidAmount.value : '--') : '--' }}
-              </span>
-            </el-popover>
-          </template>
-        </el-table-column>
+<!--        <el-table-column-->
+<!--          align="center"-->
+<!--          :label="$t('还款状态')">-->
+<!--          <template slot-scope="scope">-->
+<!--            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">-->
+<!--              <div class="text-center">-->
+<!--                <span v-if="scope.row['off_apply20230501']" class="color-success">-->
+<!--                  {{$t("已支付")}}-->
+<!--                </span>-->
+<!--                <label v-else  class="color-danger">{{$t("未支付")}}</label>-->
+<!--              </div>-->
+<!--              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">-->
+<!--                <span v-if="scope.row['off_apply20230501']" class="color-success">-->
+<!--                  {{$t("已支付")}}-->
+<!--                </span>-->
+<!--                <label v-else  class="color-danger">{{$t("未支付")}}</label>-->
+<!--              </span>-->
+<!--            </el-popover>-->
+<!--          </template>-->
+<!--        </el-table-column>-->
+<!--        <el-table-column-->
+<!--          align="center"-->
+<!--          :label="$t('已还金额')">-->
+<!--          <template slot-scope="scope">-->
+<!--            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">-->
+<!--              <div class="text-center">-->
+<!--                {{ scope.row.applyData['cost_repaidAmount'] ? (scope.row.applyData.cost_repaidAmount.value ? scope.row.applyData.cost_repaidAmount.value : '&#45;&#45;') : '&#45;&#45;' }}-->
+<!--              </div>-->
+<!--              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">-->
+<!--                {{ scope.row.applyData['cost_repaidAmount'] ? (scope.row.applyData.cost_repaidAmount.value ? scope.row.applyData.cost_repaidAmount.value : '&#45;&#45;') : '&#45;&#45;' }}-->
+<!--              </span>-->
+<!--            </el-popover>-->
+<!--          </template>-->
+<!--        </el-table-column>-->
 <!--        <el-table-column-->
 <!--          align="center"-->
 <!--          :label="$t('待还金额')">-->
@@ -164,20 +164,20 @@
             </el-popover>
           </template>
         </el-table-column>
-        <el-table-column
-          align="center"
-          :label="$t('还款日期')">
-          <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">
-                {{ scope.row.applyData['hk_date20230501'] ? (scope.row.applyData.hk_date20230501.value ? scope.row.applyData.hk_date20230501.value : '--') : '--' }}
-              </div>
-              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                {{ scope.row.applyData['hk_date20230501'] ? (scope.row.applyData.hk_date20230501.value ? scope.row.applyData.hk_date20230501.value : '--') : '--' }}
-              </span>
-            </el-popover>
-          </template>
-        </el-table-column>
+<!--        <el-table-column-->
+<!--          align="center"-->
+<!--          :label="$t('还款日期')">-->
+<!--          <template slot-scope="scope">-->
+<!--            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">-->
+<!--              <div class="text-center">-->
+<!--                {{ scope.row.applyData['hk_date20230501'] ? (scope.row.applyData.hk_date20230501.value ? scope.row.applyData.hk_date20230501.value : '&#45;&#45;') : '&#45;&#45;' }}-->
+<!--              </div>-->
+<!--              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">-->
+<!--                {{ scope.row.applyData['hk_date20230501'] ? (scope.row.applyData.hk_date20230501.value ? scope.row.applyData.hk_date20230501.value : '&#45;&#45;') : '&#45;&#45;' }}-->
+<!--              </span>-->
+<!--            </el-popover>-->
+<!--          </template>-->
+<!--        </el-table-column>-->
         <!--        <el-table-column-->
         <!--          align="center"-->
         <!--          :label="$t('支付账户')">-->
@@ -223,29 +223,29 @@
             </el-popover>
           </template>
         </el-table-column>
-        <el-table-column
-          align="center"
-          width="140"
-          :label="$t('是否占预算')">
-          <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-              <div class="text-center">
-                <label v-if="scope.row.applyData['has_budget20230501'] && scope.row.applyData['has_budget20230501']['value'] == true"
-                         class="color-success">{{ $t("是") }}</label>
-                <label v-else-if="scope.row.applyData['has_budget20230501'] && scope.row.applyData['has_budget20230501']['value'] == false"
-                       class="color-danger">{{ $t("否") }}</label>
-                <label v-else>--</label>
-              </div>
-              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                <label v-if="scope.row.applyData['has_budget20230501'] && scope.row.applyData['has_budget20230501']['value'] == true"
-                       class="color-success">{{ $t("是") }}</label>
-                <label v-else-if="scope.row.applyData['has_budget20230501'] && scope.row.applyData['has_budget20230501']['value'] == false"
-                       class="color-danger">{{ $t("否") }}</label>
-                <label v-else>--</label>
-              </span>
-            </el-popover>
-          </template>
-        </el-table-column>
+<!--        <el-table-column-->
+<!--          align="center"-->
+<!--          width="140"-->
+<!--          :label="$t('是否占预算')">-->
+<!--          <template slot-scope="scope">-->
+<!--            <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">-->
+<!--              <div class="text-center">-->
+<!--                <label v-if="scope.row.applyData['has_budget20230501'] && scope.row.applyData['has_budget20230501']['value'] == true"-->
+<!--                         class="color-success">{{ $t("是") }}</label>-->
+<!--                <label v-else-if="scope.row.applyData['has_budget20230501'] && scope.row.applyData['has_budget20230501']['value'] == false"-->
+<!--                       class="color-danger">{{ $t("否") }}</label>-->
+<!--                <label v-else>&#45;&#45;</label>-->
+<!--              </div>-->
+<!--              <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">-->
+<!--                <label v-if="scope.row.applyData['has_budget20230501'] && scope.row.applyData['has_budget20230501']['value'] == true"-->
+<!--                       class="color-success">{{ $t("是") }}</label>-->
+<!--                <label v-else-if="scope.row.applyData['has_budget20230501'] && scope.row.applyData['has_budget20230501']['value'] == false"-->
+<!--                       class="color-danger">{{ $t("否") }}</label>-->
+<!--                <label v-else>&#45;&#45;</label>-->
+<!--              </span>-->
+<!--            </el-popover>-->
+<!--          </template>-->
+<!--        </el-table-column>-->
         <el-table-column
           align="center"
           :label="$t('标签')">

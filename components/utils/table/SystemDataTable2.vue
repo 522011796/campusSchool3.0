@@ -122,7 +122,7 @@
         </el-table-column>
         <el-table-column
           align="center"
-          :label="$t('支付状态')">
+          :label="$t('支付状态')" v-if="formId != 103">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
@@ -150,7 +150,7 @@
         </el-table-column>
         <el-table-column
           align="center"
-          :label="$t('开票状态')">
+          :label="$t('开票状态')" v-if="formId != 103">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
@@ -176,14 +176,14 @@
         </el-table-column>
         <el-table-column
           align="center"
-          :label="$t('合同总额')">
+          :label="$t('合同总额')" v-if="formId != 103">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
               <div class="text-center">
-                {{ scope.row.applyData['ht_amount20230501'] ? (scope.row.applyData.ht_amount20230501.userName ? scope.row.applyData.ht_amount20230501.userName : '--') : "--" }}
+                {{ scope.row.applyData['ht amount20230501'] ? (scope.row.applyData.ht_amount20230501.value ? scope.row.applyData.ht_amount20230501.value : '--') : "--" }}
               </div>
               <span slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                {{ scope.row.applyData['ht_amount20230501'] ? (scope.row.applyData.ht_amount20230501.userName ? scope.row.applyData.ht_amount20230501.userName : '--') : "--" }}
+                {{ scope.row.applyData['ht_amount20230501'] ? (scope.row.applyData.ht_amount20230501.value ? scope.row.applyData.ht_amount20230501.value : '--') : "--" }}
               </span>
             </el-popover>
           </template>
