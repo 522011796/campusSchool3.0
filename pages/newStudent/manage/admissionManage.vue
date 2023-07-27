@@ -310,8 +310,15 @@
                 </el-row>
                 <el-row :gutter="8">
                   <el-col :span="24">
+                    <el-form-item :label="$t('邮政编码')" prop="postalCode">
+                      <el-input :disabled="form.postalCode != '' && oprType == 'detail'" v-model="form.postalCode" size="small" :placeholder="$t('请填写邮政编码')"></el-input>
+                    </el-form-item>
+                  </el-col>
+                </el-row>
+                <el-row :gutter="8">
+                  <el-col :span="24">
                     <el-form-item :label="$t('详细地址')" prop="address">
-                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.address" size="small"></el-input>
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.address" size="small" :placeholder="$t('请填写详细地址至楼号门牌号')"></el-input>
                     </el-form-item>
                   </el-col>
                 </el-row>
@@ -415,7 +422,7 @@
                 <el-row :gutter="8">
                   <el-col :span="12">
                     <el-form-item :label="$t('毕业学校')" prop="graduationSchool">
-                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.graduationSchool" size="small" class="width-220"></el-input>
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.graduationSchool" size="small" class="width-220" :placeholder="$t('请填写学校全称')"></el-input>
                     </el-form-item>
                   </el-col>
                 </el-row>
@@ -628,6 +635,8 @@
         },{
           "name": this.$t("微信号")
         },{
+          "name": this.$t("邮政编码")
+        },{
           "name": this.$t("详细地址")
         },{
           "name": this.$t("QQ")
@@ -713,7 +722,8 @@
           retire: '',
           hard: '',
           bzrName: '',
-          bzrPhone: ''
+          bzrPhone: '',
+          postalCode: ''
         }
       }
     },
@@ -953,7 +963,8 @@
               retire: res.data.data.soldier,
               hard: res.data.data.difficulty_type,
               bzrName: res.data.data.master_name,
-              bzrPhone: res.data.data.master_phone
+              bzrPhone: res.data.data.master_phone,
+              postalCode: res.data.data.postal_code,
             };
           }
         });
@@ -1009,7 +1020,8 @@
               adCity: res.data.data.enroll_city+'',
               graduationSchool: res.data.data.high_school,
               examScore: res.data.data.gaokao_score,
-              otherMsg: res.data.data.des
+              otherMsg: res.data.data.des,
+              postalCode: res.data.data.postal_code,
             };
           }
         });
@@ -1068,7 +1080,8 @@
           otherMsg: '',
           facePhotos: [],
           bzrName: '',
-          bzrPhone: ''
+          bzrPhone: '',
+          postalCode: '',
         };
         this.subTitle = "";
         this.versionStatus = '';
@@ -1275,6 +1288,7 @@
               difficultyType: this.form.hard,
               masterName: this.form.bzrName,
               masterPhone: this.form.bzrPhone,
+              postalCode: this.form.postalCode,
             };
 
             url = common.enroll_student_save;

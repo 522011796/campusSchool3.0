@@ -42,6 +42,10 @@ export default {
         ],
         bzrPhone: [
           { required: false, validator: rules.FormValidate.Form().validatePhone, trigger: 'blur' }
+        ],
+        postalCode: [
+          { required: true, message: this.$t("请填写邮政编码"), trigger: 'blur' },
+          { validator: rules.FormValidate.Form().validate_posterCode, trigger: 'blur' }
         ]
       }
     }

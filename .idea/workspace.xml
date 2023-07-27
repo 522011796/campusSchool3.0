@@ -8,9 +8,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/table/SystemDataTable10.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable10.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/table/SystemDataTable2.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable2.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/table/SystemDataTable9.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/table/SystemDataTable9.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/newStudent/data/signData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/data/signData.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/admissionManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/admissionManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/validater/admissionValidater.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/admissionValidater.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/validater/rules.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/rules.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,14 +150,11 @@
       <workItem from="1689815082672" duration="24123000" />
       <workItem from="1689850726407" duration="189000" />
       <workItem from="1689900998447" duration="15532000" />
-      <workItem from="1689989058490" duration="2567000" />
-    </task>
-    <task id="LOCAL-00063" summary="费控管理">
-      <created>1686134009000</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1686134009001</updated>
+      <workItem from="1689989058490" duration="3222000" />
+      <workItem from="1690160339230" duration="2533000" />
+      <workItem from="1690247125931" duration="606000" />
+      <workItem from="1690333593119" duration="607000" />
+      <workItem from="1690420078474" duration="3296000" />
     </task>
     <task id="LOCAL-00064" summary="预算管理">
       <created>1686213028131</created>
@@ -493,7 +492,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689933534380</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="列表组件">
+      <created>1690015231735</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1690015231736</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

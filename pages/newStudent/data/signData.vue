@@ -580,6 +580,13 @@
                 </el-row>
                 <el-row :gutter="8">
                   <el-col :span="24">
+                    <el-form-item :label="$t('邮政编码')" prop="address" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '邮政编码'">
+                      <el-input :disabled="form.postalCode != '' && oprType == 'detail'" v-model="form.postalCode" size="small"></el-input>
+                    </el-form-item>
+                  </el-col>
+                </el-row>
+                <el-row :gutter="8">
+                  <el-col :span="24">
                     <el-form-item :label="$t('详细地址')" prop="address" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '详细地址'">
                       <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.address" size="small"></el-input>
                     </el-form-item>
@@ -862,7 +869,8 @@ export default {
         photo_simple: '',
         updateClass: false,
         bzrName: '',
-        bzrPhone: ''
+        bzrPhone: '',
+        postalCode: ''
       }
     }
   },
@@ -1166,6 +1174,7 @@ export default {
             updateClass: res.data.data.otherSetting.updateClass,
             bzrName: res.data.data.master_name,
             bzrPhone: res.data.data.master_phone,
+            postalCode: res.data.data.postal_code,
           };
         }
         if (!res.data.data.class_id){
@@ -1311,7 +1320,8 @@ export default {
         facePhotos: [],
         photo_simple: '',
         bzrName: '',
-        bzrPhone: ''
+        bzrPhone: '',
+        postalCode: ''
       };
       this.subTitle = "";
       this.versionStatus = '';
