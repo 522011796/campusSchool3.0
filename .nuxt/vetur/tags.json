@@ -143,65 +143,17 @@
   "LazyTableBarChart": {
     "description": "Auto imported from components/charts/TableBarChart.vue"
   },
-  "MyInputButton": {
-    "description": "Auto imported from components/search/MyInputButton.vue"
+  "MyNewStudentFlow": {
+    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
   },
-  "LazyMyInputButton": {
-    "description": "Auto imported from components/search/MyInputButton.vue"
+  "LazyMyNewStudentFlow": {
+    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
   },
-  "MySearchOfDate": {
-    "description": "Auto imported from components/search/MySearchOfDate.vue"
+  "MyNewStudentFlowType": {
+    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
   },
-  "LazyMySearchOfDate": {
-    "description": "Auto imported from components/search/MySearchOfDate.vue"
-  },
-  "MySearchOfDateGroup": {
-    "description": "Auto imported from components/search/MySearchOfDateGroup.vue"
-  },
-  "LazyMySearchOfDateGroup": {
-    "description": "Auto imported from components/search/MySearchOfDateGroup.vue"
-  },
-  "MyYearTerm": {
-    "description": "Auto imported from components/search/MyYearTerm.vue"
-  },
-  "LazyMyYearTerm": {
-    "description": "Auto imported from components/search/MyYearTerm.vue"
-  },
-  "MyAuditPuStatus": {
-    "description": "Auto imported from components/utils/MyAuditPuStatus.vue"
-  },
-  "LazyMyAuditPuStatus": {
-    "description": "Auto imported from components/utils/MyAuditPuStatus.vue"
-  },
-  "MyAuditRePuStatus": {
-    "description": "Auto imported from components/utils/MyAuditRePuStatus.vue"
-  },
-  "LazyMyAuditRePuStatus": {
-    "description": "Auto imported from components/utils/MyAuditRePuStatus.vue"
-  },
-  "MyAuditStatus": {
-    "description": "Auto imported from components/utils/MyAuditStatus.vue"
-  },
-  "LazyMyAuditStatus": {
-    "description": "Auto imported from components/utils/MyAuditStatus.vue"
-  },
-  "MyCourseSelect": {
-    "description": "Auto imported from components/utils/MyCourseSelect.vue"
-  },
-  "LazyMyCourseSelect": {
-    "description": "Auto imported from components/utils/MyCourseSelect.vue"
-  },
-  "MySexSelect": {
-    "description": "Auto imported from components/utils/MySexSelect.vue"
-  },
-  "LazyMySexSelect": {
-    "description": "Auto imported from components/utils/MySexSelect.vue"
-  },
-  "MyUserType": {
-    "description": "Auto imported from components/utils/MyUserType.vue"
-  },
-  "LazyMyUserType": {
-    "description": "Auto imported from components/utils/MyUserType.vue"
+  "LazyMyNewStudentFlowType": {
+    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
   },
   "MyFormAuditType": {
     "description": "Auto imported from components/form/MyFormAuditType.vue"
@@ -251,17 +203,29 @@
   "LazyPcStaticTemplateShow": {
     "description": "Auto imported from components/form/PCStaticTemplateShow.vue"
   },
-  "MyNewStudentFlow": {
-    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
+  "MyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
   },
-  "LazyMyNewStudentFlow": {
-    "description": "Auto imported from components/flow/MyNewStudentFlow.vue"
+  "LazyMyInputButton": {
+    "description": "Auto imported from components/search/MyInputButton.vue"
   },
-  "MyNewStudentFlowType": {
-    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
+  "MySearchOfDate": {
+    "description": "Auto imported from components/search/MySearchOfDate.vue"
   },
-  "LazyMyNewStudentFlowType": {
-    "description": "Auto imported from components/flow/MyNewStudentFlowType.vue"
+  "LazyMySearchOfDate": {
+    "description": "Auto imported from components/search/MySearchOfDate.vue"
+  },
+  "MySearchOfDateGroup": {
+    "description": "Auto imported from components/search/MySearchOfDateGroup.vue"
+  },
+  "LazyMySearchOfDateGroup": {
+    "description": "Auto imported from components/search/MySearchOfDateGroup.vue"
+  },
+  "MyYearTerm": {
+    "description": "Auto imported from components/search/MyYearTerm.vue"
+  },
+  "LazyMyYearTerm": {
+    "description": "Auto imported from components/search/MyYearTerm.vue"
   },
   "MyBlockListChildTree": {
     "description": "Auto imported from components/tree/MyBlockListChildTree.vue"
@@ -292,6 +256,42 @@
   },
   "LazyTreeNode": {
     "description": "Auto imported from components/tree/treeNode.js"
+  },
+  "MyAuditPuStatus": {
+    "description": "Auto imported from components/utils/MyAuditPuStatus.vue"
+  },
+  "LazyMyAuditPuStatus": {
+    "description": "Auto imported from components/utils/MyAuditPuStatus.vue"
+  },
+  "MyAuditRePuStatus": {
+    "description": "Auto imported from components/utils/MyAuditRePuStatus.vue"
+  },
+  "LazyMyAuditRePuStatus": {
+    "description": "Auto imported from components/utils/MyAuditRePuStatus.vue"
+  },
+  "MyAuditStatus": {
+    "description": "Auto imported from components/utils/MyAuditStatus.vue"
+  },
+  "LazyMyAuditStatus": {
+    "description": "Auto imported from components/utils/MyAuditStatus.vue"
+  },
+  "MyCourseSelect": {
+    "description": "Auto imported from components/utils/MyCourseSelect.vue"
+  },
+  "LazyMyCourseSelect": {
+    "description": "Auto imported from components/utils/MyCourseSelect.vue"
+  },
+  "MySexSelect": {
+    "description": "Auto imported from components/utils/MySexSelect.vue"
+  },
+  "LazyMySexSelect": {
+    "description": "Auto imported from components/utils/MySexSelect.vue"
+  },
+  "MyUserType": {
+    "description": "Auto imported from components/utils/MyUserType.vue"
+  },
+  "LazyMyUserType": {
+    "description": "Auto imported from components/utils/MyUserType.vue"
   },
   "AuditButton": {
     "description": "Auto imported from components/utils/auditDetail/AuditButton.vue"
@@ -359,30 +359,6 @@
   "LazySystemDataTopBar": {
     "description": "Auto imported from components/utils/barBlock/SystemDataTopBar.vue"
   },
-  "MyHeadImg": {
-    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
-  },
-  "LazyMyHeadImg": {
-    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
-  },
-  "MyHeadListImg": {
-    "description": "Auto imported from components/utils/common/MyHeadListImg.vue"
-  },
-  "LazyMyHeadListImg": {
-    "description": "Auto imported from components/utils/common/MyHeadListImg.vue"
-  },
-  "MyViewImg": {
-    "description": "Auto imported from components/utils/common/MyViewImg.vue"
-  },
-  "LazyMyViewImg": {
-    "description": "Auto imported from components/utils/common/MyViewImg.vue"
-  },
-  "PhotoHeadImg": {
-    "description": "Auto imported from components/utils/common/PhotoHeadImg.vue"
-  },
-  "LazyPhotoHeadImg": {
-    "description": "Auto imported from components/utils/common/PhotoHeadImg.vue"
-  },
   "AuditStatusButton": {
     "description": "Auto imported from components/utils/button/AuditStatusButton.vue"
   },
@@ -413,6 +389,30 @@
   "LazyTimeoutButton": {
     "description": "Auto imported from components/utils/button/TimeoutButton.vue"
   },
+  "MyHeadImg": {
+    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
+  },
+  "LazyMyHeadImg": {
+    "description": "Auto imported from components/utils/common/MyHeadImg.vue"
+  },
+  "MyHeadListImg": {
+    "description": "Auto imported from components/utils/common/MyHeadListImg.vue"
+  },
+  "LazyMyHeadListImg": {
+    "description": "Auto imported from components/utils/common/MyHeadListImg.vue"
+  },
+  "MyViewImg": {
+    "description": "Auto imported from components/utils/common/MyViewImg.vue"
+  },
+  "LazyMyViewImg": {
+    "description": "Auto imported from components/utils/common/MyViewImg.vue"
+  },
+  "PhotoHeadImg": {
+    "description": "Auto imported from components/utils/common/PhotoHeadImg.vue"
+  },
+  "LazyPhotoHeadImg": {
+    "description": "Auto imported from components/utils/common/PhotoHeadImg.vue"
+  },
   "DialogNormal": {
     "description": "Auto imported from components/utils/dialog/DialogNormal.vue"
   },
@@ -437,96 +437,6 @@
   "LazyMyNormalDialog": {
     "description": "Auto imported from components/utils/dialog/MyNormalDialog.vue"
   },
-  "MyCascader": {
-    "description": "Auto imported from components/utils/select/MyCascader.vue"
-  },
-  "LazyMyCascader": {
-    "description": "Auto imported from components/utils/select/MyCascader.vue"
-  },
-  "CompBankAccountTable": {
-    "description": "Auto imported from components/utils/table/CompBankAccountTable.vue"
-  },
-  "LazyCompBankAccountTable": {
-    "description": "Auto imported from components/utils/table/CompBankAccountTable.vue"
-  },
-  "MerchatClientTable": {
-    "description": "Auto imported from components/utils/table/MerchatClientTable.vue"
-  },
-  "LazyMerchatClientTable": {
-    "description": "Auto imported from components/utils/table/MerchatClientTable.vue"
-  },
-  "SystemDataTable1": {
-    "description": "Auto imported from components/utils/table/SystemDataTable1.vue"
-  },
-  "LazySystemDataTable1": {
-    "description": "Auto imported from components/utils/table/SystemDataTable1.vue"
-  },
-  "SystemDataTable10": {
-    "description": "Auto imported from components/utils/table/SystemDataTable10.vue"
-  },
-  "LazySystemDataTable10": {
-    "description": "Auto imported from components/utils/table/SystemDataTable10.vue"
-  },
-  "SystemDataTable11": {
-    "description": "Auto imported from components/utils/table/SystemDataTable11.vue"
-  },
-  "LazySystemDataTable11": {
-    "description": "Auto imported from components/utils/table/SystemDataTable11.vue"
-  },
-  "SystemDataTable2": {
-    "description": "Auto imported from components/utils/table/SystemDataTable2.vue"
-  },
-  "LazySystemDataTable2": {
-    "description": "Auto imported from components/utils/table/SystemDataTable2.vue"
-  },
-  "SystemDataTable3": {
-    "description": "Auto imported from components/utils/table/SystemDataTable3.vue"
-  },
-  "LazySystemDataTable3": {
-    "description": "Auto imported from components/utils/table/SystemDataTable3.vue"
-  },
-  "SystemDataTable4": {
-    "description": "Auto imported from components/utils/table/SystemDataTable4.vue"
-  },
-  "LazySystemDataTable4": {
-    "description": "Auto imported from components/utils/table/SystemDataTable4.vue"
-  },
-  "SystemDataTable5": {
-    "description": "Auto imported from components/utils/table/SystemDataTable5.vue"
-  },
-  "LazySystemDataTable5": {
-    "description": "Auto imported from components/utils/table/SystemDataTable5.vue"
-  },
-  "SystemDataTable6": {
-    "description": "Auto imported from components/utils/table/SystemDataTable6.vue"
-  },
-  "LazySystemDataTable6": {
-    "description": "Auto imported from components/utils/table/SystemDataTable6.vue"
-  },
-  "SystemDataTable7": {
-    "description": "Auto imported from components/utils/table/SystemDataTable7.vue"
-  },
-  "LazySystemDataTable7": {
-    "description": "Auto imported from components/utils/table/SystemDataTable7.vue"
-  },
-  "SystemDataTable8": {
-    "description": "Auto imported from components/utils/table/SystemDataTable8.vue"
-  },
-  "LazySystemDataTable8": {
-    "description": "Auto imported from components/utils/table/SystemDataTable8.vue"
-  },
-  "SystemDataTable9": {
-    "description": "Auto imported from components/utils/table/SystemDataTable9.vue"
-  },
-  "LazySystemDataTable9": {
-    "description": "Auto imported from components/utils/table/SystemDataTable9.vue"
-  },
-  "UserBankAccountTable": {
-    "description": "Auto imported from components/utils/table/UserBankAccountTable.vue"
-  },
-  "LazyUserBankAccountTable": {
-    "description": "Auto imported from components/utils/table/UserBankAccountTable.vue"
-  },
   "FormSystemDetail": {
     "description": "Auto imported from components/utils/formDetail/FormSystemDetail.vue"
   },
@@ -550,6 +460,12 @@
   },
   "LazyFormSystemTagsDetail": {
     "description": "Auto imported from components/utils/formDetail/FormSystemTagsDetail.vue"
+  },
+  "MyCascader": {
+    "description": "Auto imported from components/utils/select/MyCascader.vue"
+  },
+  "LazyMyCascader": {
+    "description": "Auto imported from components/utils/select/MyCascader.vue"
   },
   "MyAdminAtten": {
     "description": "Auto imported from components/utils/status/MyAdminAtten.vue"
@@ -634,6 +550,90 @@
   },
   "LazyMyFlowType": {
     "description": "Auto imported from components/utils/status/MyFlowType.vue"
+  },
+  "CompBankAccountTable": {
+    "description": "Auto imported from components/utils/table/CompBankAccountTable.vue"
+  },
+  "LazyCompBankAccountTable": {
+    "description": "Auto imported from components/utils/table/CompBankAccountTable.vue"
+  },
+  "MerchatClientTable": {
+    "description": "Auto imported from components/utils/table/MerchatClientTable.vue"
+  },
+  "LazyMerchatClientTable": {
+    "description": "Auto imported from components/utils/table/MerchatClientTable.vue"
+  },
+  "SystemDataTable1": {
+    "description": "Auto imported from components/utils/table/SystemDataTable1.vue"
+  },
+  "LazySystemDataTable1": {
+    "description": "Auto imported from components/utils/table/SystemDataTable1.vue"
+  },
+  "SystemDataTable10": {
+    "description": "Auto imported from components/utils/table/SystemDataTable10.vue"
+  },
+  "LazySystemDataTable10": {
+    "description": "Auto imported from components/utils/table/SystemDataTable10.vue"
+  },
+  "SystemDataTable11": {
+    "description": "Auto imported from components/utils/table/SystemDataTable11.vue"
+  },
+  "LazySystemDataTable11": {
+    "description": "Auto imported from components/utils/table/SystemDataTable11.vue"
+  },
+  "SystemDataTable2": {
+    "description": "Auto imported from components/utils/table/SystemDataTable2.vue"
+  },
+  "LazySystemDataTable2": {
+    "description": "Auto imported from components/utils/table/SystemDataTable2.vue"
+  },
+  "SystemDataTable3": {
+    "description": "Auto imported from components/utils/table/SystemDataTable3.vue"
+  },
+  "LazySystemDataTable3": {
+    "description": "Auto imported from components/utils/table/SystemDataTable3.vue"
+  },
+  "SystemDataTable4": {
+    "description": "Auto imported from components/utils/table/SystemDataTable4.vue"
+  },
+  "LazySystemDataTable4": {
+    "description": "Auto imported from components/utils/table/SystemDataTable4.vue"
+  },
+  "SystemDataTable5": {
+    "description": "Auto imported from components/utils/table/SystemDataTable5.vue"
+  },
+  "LazySystemDataTable5": {
+    "description": "Auto imported from components/utils/table/SystemDataTable5.vue"
+  },
+  "SystemDataTable6": {
+    "description": "Auto imported from components/utils/table/SystemDataTable6.vue"
+  },
+  "LazySystemDataTable6": {
+    "description": "Auto imported from components/utils/table/SystemDataTable6.vue"
+  },
+  "SystemDataTable7": {
+    "description": "Auto imported from components/utils/table/SystemDataTable7.vue"
+  },
+  "LazySystemDataTable7": {
+    "description": "Auto imported from components/utils/table/SystemDataTable7.vue"
+  },
+  "SystemDataTable8": {
+    "description": "Auto imported from components/utils/table/SystemDataTable8.vue"
+  },
+  "LazySystemDataTable8": {
+    "description": "Auto imported from components/utils/table/SystemDataTable8.vue"
+  },
+  "SystemDataTable9": {
+    "description": "Auto imported from components/utils/table/SystemDataTable9.vue"
+  },
+  "LazySystemDataTable9": {
+    "description": "Auto imported from components/utils/table/SystemDataTable9.vue"
+  },
+  "UserBankAccountTable": {
+    "description": "Auto imported from components/utils/table/UserBankAccountTable.vue"
+  },
+  "LazyUserBankAccountTable": {
+    "description": "Auto imported from components/utils/table/UserBankAccountTable.vue"
   },
   "AreaAndSelTreeList": {
     "description": "Auto imported from components/utils/treeAndList/AreaAndSelTreeList.vue"

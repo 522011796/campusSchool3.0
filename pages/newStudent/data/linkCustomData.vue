@@ -434,7 +434,7 @@
           linkType: this.searchStatusInfo,
           status: this.searchCommitInfo,
           searchKey: this.searchKey,
-          linkId: this.linkId
+          linkId: this.currentNodeKey
         };
         params = this.$qs.stringify(params);
         url = common.enroll_form_data_export;
