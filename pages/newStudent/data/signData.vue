@@ -581,7 +581,7 @@
                 <el-row :gutter="8">
                   <el-col :span="24">
                     <el-form-item :label="$t('邮政编码')" prop="address" v-for="(item, index) in tableSelColData" :key="index" v-if="item == '邮政编码'">
-                      <el-input :disabled="form.postalCode != '' && oprType == 'detail'" v-model="form.postalCode" size="small"></el-input>
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.postalCode" size="small"></el-input>
                     </el-form-item>
                   </el-col>
                 </el-row>

@@ -24,6 +24,10 @@ export { default as SexPieMoreChart } from '../../components/charts/SexPieMoreCh
 export { default as TableBarChart } from '../../components/charts/TableBarChart.vue'
 export { default as MyNewStudentFlow } from '../../components/flow/MyNewStudentFlow.vue'
 export { default as MyNewStudentFlowType } from '../../components/flow/MyNewStudentFlowType.vue'
+export { default as MyInputButton } from '../../components/search/MyInputButton.vue'
+export { default as MySearchOfDate } from '../../components/search/MySearchOfDate.vue'
+export { default as MySearchOfDateGroup } from '../../components/search/MySearchOfDateGroup.vue'
+export { default as MyYearTerm } from '../../components/search/MyYearTerm.vue'
 export { default as MyFormAuditType } from '../../components/form/MyFormAuditType.vue'
 export { default as MyFormFlow } from '../../components/form/MyFormFlow.vue'
 export { default as MyFormSet } from '../../components/form/MyFormSet.vue'
@@ -32,10 +36,6 @@ export { default as MyFormSetRole } from '../../components/form/MyFormSetRole.vu
 export { default as MyProcessFlow } from '../../components/form/MyProcessFlow.vue'
 export { default as PcStaticTemplate } from '../../components/form/PCStaticTemplate.vue'
 export { default as PcStaticTemplateShow } from '../../components/form/PCStaticTemplateShow.vue'
-export { default as MyInputButton } from '../../components/search/MyInputButton.vue'
-export { default as MySearchOfDate } from '../../components/search/MySearchOfDate.vue'
-export { default as MySearchOfDateGroup } from '../../components/search/MySearchOfDateGroup.vue'
-export { default as MyYearTerm } from '../../components/search/MyYearTerm.vue'
 export { default as MyBlockListChildTree } from '../../components/tree/MyBlockListChildTree.vue'
 export { default as MyBlockListTree } from '../../components/tree/MyBlockListTree.vue'
 export { default as MyElTree } from '../../components/tree/MyElTree.vue'
@@ -71,10 +71,6 @@ export { default as DialogNormal } from '../../components/utils/dialog/DialogNor
 export { default as DrawerLayoutRight } from '../../components/utils/dialog/DrawerLayoutRight.vue'
 export { default as DrawerRight } from '../../components/utils/dialog/DrawerRight.vue'
 export { default as MyNormalDialog } from '../../components/utils/dialog/MyNormalDialog.vue'
-export { default as FormSystemDetail } from '../../components/utils/formDetail/FormSystemDetail.vue'
-export { default as FormSystemNormalDetail } from '../../components/utils/formDetail/FormSystemNormalDetail.vue'
-export { default as FormSystemOrderDetail } from '../../components/utils/formDetail/FormSystemOrderDetail.vue'
-export { default as FormSystemTagsDetail } from '../../components/utils/formDetail/FormSystemTagsDetail.vue'
 export { default as MyCascader } from '../../components/utils/select/MyCascader.vue'
 export { default as MyAdminAtten } from '../../components/utils/status/MyAdminAtten.vue'
 export { default as MyAuthOptions } from '../../components/utils/status/MyAuthOptions.vue'
@@ -104,6 +100,8 @@ export { default as SystemDataTable7 } from '../../components/utils/table/System
 export { default as SystemDataTable8 } from '../../components/utils/table/SystemDataTable8.vue'
 export { default as SystemDataTable9 } from '../../components/utils/table/SystemDataTable9.vue'
 export { default as UserBankAccountTable } from '../../components/utils/table/UserBankAccountTable.vue'
+export { default as QuillBlock } from '../../components/utils/upload/QuillBlock.vue'
+export { default as UploadSquare } from '../../components/utils/upload/UploadSquare.vue'
 export { default as AreaAndSelTreeList } from '../../components/utils/treeAndList/AreaAndSelTreeList.vue'
 export { default as ClassroomTreeAndList } from '../../components/utils/treeAndList/ClassroomTreeAndList.vue'
 export { default as DormBuildTreeAndList } from '../../components/utils/treeAndList/DormBuildTreeAndList.vue'
@@ -118,8 +116,10 @@ export { default as TeacherTreeAndListBak } from '../../components/utils/treeAnd
 export { default as TeacherTreeAndListNoPage } from '../../components/utils/treeAndList/TeacherTreeAndListNoPage.vue'
 export { default as TeacherTreeAndListRoleNoPage } from '../../components/utils/treeAndList/TeacherTreeAndListRoleNoPage.vue'
 export { default as TeacherTreeDialog } from '../../components/utils/treeAndList/TeacherTreeDialog.vue'
-export { default as QuillBlock } from '../../components/utils/upload/QuillBlock.vue'
-export { default as UploadSquare } from '../../components/utils/upload/UploadSquare.vue'
+export { default as FormSystemDetail } from '../../components/utils/formDetail/FormSystemDetail.vue'
+export { default as FormSystemNormalDetail } from '../../components/utils/formDetail/FormSystemNormalDetail.vue'
+export { default as FormSystemOrderDetail } from '../../components/utils/formDetail/FormSystemOrderDetail.vue'
+export { default as FormSystemTagsDetail } from '../../components/utils/formDetail/FormSystemTagsDetail.vue'
 
 export const LazyLogo = import('../../components/Logo.vue' /* webpackChunkName: "components/Logo" */).then(c => c.default || c)
 export const LazyMyBlockTree = import('../../components/MyBlockTree.vue' /* webpackChunkName: "components/MyBlockTree" */).then(c => c.default || c)
@@ -147,6 +147,10 @@ export const LazySexPieMoreChart = import('../../components/charts/SexPieMoreCha
 export const LazyTableBarChart = import('../../components/charts/TableBarChart.vue' /* webpackChunkName: "components/charts/TableBarChart" */).then(c => c.default || c)
 export const LazyMyNewStudentFlow = import('../../components/flow/MyNewStudentFlow.vue' /* webpackChunkName: "components/flow/MyNewStudentFlow" */).then(c => c.default || c)
 export const LazyMyNewStudentFlowType = import('../../components/flow/MyNewStudentFlowType.vue' /* webpackChunkName: "components/flow/MyNewStudentFlowType" */).then(c => c.default || c)
+export const LazyMyInputButton = import('../../components/search/MyInputButton.vue' /* webpackChunkName: "components/search/MyInputButton" */).then(c => c.default || c)
+export const LazyMySearchOfDate = import('../../components/search/MySearchOfDate.vue' /* webpackChunkName: "components/search/MySearchOfDate" */).then(c => c.default || c)
+export const LazyMySearchOfDateGroup = import('../../components/search/MySearchOfDateGroup.vue' /* webpackChunkName: "components/search/MySearchOfDateGroup" */).then(c => c.default || c)
+export const LazyMyYearTerm = import('../../components/search/MyYearTerm.vue' /* webpackChunkName: "components/search/MyYearTerm" */).then(c => c.default || c)
 export const LazyMyFormAuditType = import('../../components/form/MyFormAuditType.vue' /* webpackChunkName: "components/form/MyFormAuditType" */).then(c => c.default || c)
 export const LazyMyFormFlow = import('../../components/form/MyFormFlow.vue' /* webpackChunkName: "components/form/MyFormFlow" */).then(c => c.default || c)
 export const LazyMyFormSet = import('../../components/form/MyFormSet.vue' /* webpackChunkName: "components/form/MyFormSet" */).then(c => c.default || c)
@@ -155,10 +159,6 @@ export const LazyMyFormSetRole = import('../../components/form/MyFormSetRole.vue
 export const LazyMyProcessFlow = import('../../components/form/MyProcessFlow.vue' /* webpackChunkName: "components/form/MyProcessFlow" */).then(c => c.default || c)
 export const LazyPcStaticTemplate = import('../../components/form/PCStaticTemplate.vue' /* webpackChunkName: "components/form/PCStaticTemplate" */).then(c => c.default || c)
 export const LazyPcStaticTemplateShow = import('../../components/form/PCStaticTemplateShow.vue' /* webpackChunkName: "components/form/PCStaticTemplateShow" */).then(c => c.default || c)
-export const LazyMyInputButton = import('../../components/search/MyInputButton.vue' /* webpackChunkName: "components/search/MyInputButton" */).then(c => c.default || c)
-export const LazyMySearchOfDate = import('../../components/search/MySearchOfDate.vue' /* webpackChunkName: "components/search/MySearchOfDate" */).then(c => c.default || c)
-export const LazyMySearchOfDateGroup = import('../../components/search/MySearchOfDateGroup.vue' /* webpackChunkName: "components/search/MySearchOfDateGroup" */).then(c => c.default || c)
-export const LazyMyYearTerm = import('../../components/search/MyYearTerm.vue' /* webpackChunkName: "components/search/MyYearTerm" */).then(c => c.default || c)
 export const LazyMyBlockListChildTree = import('../../components/tree/MyBlockListChildTree.vue' /* webpackChunkName: "components/tree/MyBlockListChildTree" */).then(c => c.default || c)
 export const LazyMyBlockListTree = import('../../components/tree/MyBlockListTree.vue' /* webpackChunkName: "components/tree/MyBlockListTree" */).then(c => c.default || c)
 export const LazyMyElTree = import('../../components/tree/MyElTree.vue' /* webpackChunkName: "components/tree/MyElTree" */).then(c => c.default || c)
@@ -194,10 +194,6 @@ export const LazyDialogNormal = import('../../components/utils/dialog/DialogNorm
 export const LazyDrawerLayoutRight = import('../../components/utils/dialog/DrawerLayoutRight.vue' /* webpackChunkName: "components/utils/dialog/DrawerLayoutRight" */).then(c => c.default || c)
 export const LazyDrawerRight = import('../../components/utils/dialog/DrawerRight.vue' /* webpackChunkName: "components/utils/dialog/DrawerRight" */).then(c => c.default || c)
 export const LazyMyNormalDialog = import('../../components/utils/dialog/MyNormalDialog.vue' /* webpackChunkName: "components/utils/dialog/MyNormalDialog" */).then(c => c.default || c)
-export const LazyFormSystemDetail = import('../../components/utils/formDetail/FormSystemDetail.vue' /* webpackChunkName: "components/utils/formDetail/FormSystemDetail" */).then(c => c.default || c)
-export const LazyFormSystemNormalDetail = import('../../components/utils/formDetail/FormSystemNormalDetail.vue' /* webpackChunkName: "components/utils/formDetail/FormSystemNormalDetail" */).then(c => c.default || c)
-export const LazyFormSystemOrderDetail = import('../../components/utils/formDetail/FormSystemOrderDetail.vue' /* webpackChunkName: "components/utils/formDetail/FormSystemOrderDetail" */).then(c => c.default || c)
-export const LazyFormSystemTagsDetail = import('../../components/utils/formDetail/FormSystemTagsDetail.vue' /* webpackChunkName: "components/utils/formDetail/FormSystemTagsDetail" */).then(c => c.default || c)
 export const LazyMyCascader = import('../../components/utils/select/MyCascader.vue' /* webpackChunkName: "components/utils/select/MyCascader" */).then(c => c.default || c)
 export const LazyMyAdminAtten = import('../../components/utils/status/MyAdminAtten.vue' /* webpackChunkName: "components/utils/status/MyAdminAtten" */).then(c => c.default || c)
 export const LazyMyAuthOptions = import('../../components/utils/status/MyAuthOptions.vue' /* webpackChunkName: "components/utils/status/MyAuthOptions" */).then(c => c.default || c)
@@ -227,6 +223,8 @@ export const LazySystemDataTable7 = import('../../components/utils/table/SystemD
 export const LazySystemDataTable8 = import('../../components/utils/table/SystemDataTable8.vue' /* webpackChunkName: "components/utils/table/SystemDataTable8" */).then(c => c.default || c)
 export const LazySystemDataTable9 = import('../../components/utils/table/SystemDataTable9.vue' /* webpackChunkName: "components/utils/table/SystemDataTable9" */).then(c => c.default || c)
 export const LazyUserBankAccountTable = import('../../components/utils/table/UserBankAccountTable.vue' /* webpackChunkName: "components/utils/table/UserBankAccountTable" */).then(c => c.default || c)
+export const LazyQuillBlock = import('../../components/utils/upload/QuillBlock.vue' /* webpackChunkName: "components/utils/upload/QuillBlock" */).then(c => c.default || c)
+export const LazyUploadSquare = import('../../components/utils/upload/UploadSquare.vue' /* webpackChunkName: "components/utils/upload/UploadSquare" */).then(c => c.default || c)
 export const LazyAreaAndSelTreeList = import('../../components/utils/treeAndList/AreaAndSelTreeList.vue' /* webpackChunkName: "components/utils/treeAndList/AreaAndSelTreeList" */).then(c => c.default || c)
 export const LazyClassroomTreeAndList = import('../../components/utils/treeAndList/ClassroomTreeAndList.vue' /* webpackChunkName: "components/utils/treeAndList/ClassroomTreeAndList" */).then(c => c.default || c)
 export const LazyDormBuildTreeAndList = import('../../components/utils/treeAndList/DormBuildTreeAndList.vue' /* webpackChunkName: "components/utils/treeAndList/DormBuildTreeAndList" */).then(c => c.default || c)
@@ -241,5 +239,7 @@ export const LazyTeacherTreeAndListBak = import('../../components/utils/treeAndL
 export const LazyTeacherTreeAndListNoPage = import('../../components/utils/treeAndList/TeacherTreeAndListNoPage.vue' /* webpackChunkName: "components/utils/treeAndList/TeacherTreeAndListNoPage" */).then(c => c.default || c)
 export const LazyTeacherTreeAndListRoleNoPage = import('../../components/utils/treeAndList/TeacherTreeAndListRoleNoPage.vue' /* webpackChunkName: "components/utils/treeAndList/TeacherTreeAndListRoleNoPage" */).then(c => c.default || c)
 export const LazyTeacherTreeDialog = import('../../components/utils/treeAndList/TeacherTreeDialog.vue' /* webpackChunkName: "components/utils/treeAndList/TeacherTreeDialog" */).then(c => c.default || c)
-export const LazyQuillBlock = import('../../components/utils/upload/QuillBlock.vue' /* webpackChunkName: "components/utils/upload/QuillBlock" */).then(c => c.default || c)
-export const LazyUploadSquare = import('../../components/utils/upload/UploadSquare.vue' /* webpackChunkName: "components/utils/upload/UploadSquare" */).then(c => c.default || c)
+export const LazyFormSystemDetail = import('../../components/utils/formDetail/FormSystemDetail.vue' /* webpackChunkName: "components/utils/formDetail/FormSystemDetail" */).then(c => c.default || c)
+export const LazyFormSystemNormalDetail = import('../../components/utils/formDetail/FormSystemNormalDetail.vue' /* webpackChunkName: "components/utils/formDetail/FormSystemNormalDetail" */).then(c => c.default || c)
+export const LazyFormSystemOrderDetail = import('../../components/utils/formDetail/FormSystemOrderDetail.vue' /* webpackChunkName: "components/utils/formDetail/FormSystemOrderDetail" */).then(c => c.default || c)
+export const LazyFormSystemTagsDetail = import('../../components/utils/formDetail/FormSystemTagsDetail.vue' /* webpackChunkName: "components/utils/formDetail/FormSystemTagsDetail" */).then(c => c.default || c)

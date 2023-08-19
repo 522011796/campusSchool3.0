@@ -311,7 +311,7 @@
                 <el-row :gutter="8">
                   <el-col :span="24">
                     <el-form-item :label="$t('邮政编码')" prop="postalCode">
-                      <el-input :disabled="form.postalCode != '' && oprType == 'detail'" v-model="form.postalCode" size="small" :placeholder="$t('请填写邮政编码')"></el-input>
+                      <el-input :disabled="form.id != '' && oprType == 'detail'" v-model="form.postalCode" size="small" :placeholder="$t('请填写邮政编码')"></el-input>
                     </el-form-item>
                   </el-col>
                 </el-row>
