@@ -303,7 +303,6 @@
         params = this.$qs.stringify(params);
         this.$axios.post(common.student_list, params).then(res => {
           if (res.data.data){
-            console.log(res.data.data);
             this.tableData = res.data.data.list;
             this.total = res.data.data.totalCount;
             this.num = res.data.data.num;

@@ -9,8 +9,9 @@
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/newStudent/data/signData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/data/signData.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/admissionManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/admissionManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/upload/QuillBlock.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/upload/QuillBlock.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/student.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/student.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +39,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
@@ -162,14 +164,21 @@
       <workItem from="1691023612075" duration="598000" />
       <workItem from="1691720978633" duration="3571000" />
       <workItem from="1692408854611" duration="667000" />
-      <workItem from="1692425183628" duration="224000" />
-    </task>
-    <task id="LOCAL-00066" summary="交易流水">
-      <created>1686535520427</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1686535520428</updated>
+      <workItem from="1692425183628" duration="248000" />
+      <workItem from="1692584764655" duration="1289000" />
+      <workItem from="1692620830103" duration="598000" />
+      <workItem from="1692669308762" duration="642000" />
+      <workItem from="1692709325206" duration="12000" />
+      <workItem from="1692955153489" duration="172000" />
+      <workItem from="1692955823757" duration="663000" />
+      <workItem from="1693185990928" duration="43000" />
+      <workItem from="1693293972613" duration="321000" />
+      <workItem from="1693299448129" duration="1098000" />
+      <workItem from="1693301269482" duration="1466000" />
+      <workItem from="1693306656315" duration="598000" />
+      <workItem from="1693312924455" duration="533000" />
+      <workItem from="1693356956169" duration="598000" />
+      <workItem from="1693448157467" duration="681000" />
     </task>
     <task id="LOCAL-00067" summary="项目管理">
       <created>1686635018946</created>
@@ -507,7 +516,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691736006350</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="增加邮政编码">
+      <created>1692425426279</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1692425426280</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
