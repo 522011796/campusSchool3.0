@@ -42,6 +42,7 @@ export const common = {
 
   hierarchical_build: '/proxy/school/hierarchical/get-building-tree',//0教学楼 1宿舍楼
   hierarchical_college: '/proxy/edu/edu/major/year/class/tree',//学院
+  hierarchical_college_new: '/proxy/school/edu/major/year/class/new-tree',//学院new
   hierarchical_dept: '/proxy/school/hierarchical/get-organize-tree',//部门
   teacher_list: '/proxy/user/employee/page',//教师列表
   employee_role_list: '/proxy/user/employee/role/list',//教师权限列表

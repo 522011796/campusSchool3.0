@@ -586,6 +586,18 @@ export default {
       });
     },
     /**
+     * 获取学院的list信息--新
+     * 主要用于树形菜单，下来菜单等
+     * @returns {Promise<void>}
+     */
+    async getCollegeInfoNew(type = 1) {
+      await this.$axios.get(common.hierarchical_college_new).then(res => {
+        if (res.data.data){
+          this.dataCollege = setCollegeChildren(res.data.data.tree, type);
+        }
+      });
+    },
+    /**
      * 获取宿舍楼的list信息
      * 主要用于树形菜单，下来菜单等
      * @returns {Promise<void>}
