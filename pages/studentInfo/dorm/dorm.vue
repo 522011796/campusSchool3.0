@@ -135,7 +135,7 @@
                           <span>{{dormData && Object.keys(dormData).length  > 0 ? dormData[0].has_people_num : 0}}</span>
                         </div>
                         <div class="margin-top-5">
-                          <span>{{$t("女生")}}</span>
+                          <span>{{$t("男生")}}</span>
                           <span>{{dormData && Object.keys(dormData).length  > 0 ? dormData[1].has_people_num : 0}}</span>
                         </div>
                         <div class="margin-top-5">
@@ -149,7 +149,7 @@
                           <span>{{dormData && Object.keys(dormData).length  > 0 ? dormData[0].has_people_num + dormData[1].has_people_num : 0}}</span>
                         </div>
                         <div class="margin-top-5">
-                          <span>{{$t("女生")}}</span>
+                          <span>{{$t("男生")}}</span>
                           <span>{{dormData && Object.keys(dormData).length  > 0 ? dormData[0].has_people_num : 0}}</span>
                         </div>
                         <div class="margin-top-5">
@@ -433,18 +433,33 @@
         </el-table>
 
         <div class="margin-top-5 color-muted" v-if="tableStudentData.length > 0">
-          <span style="font-weight: bold">{{$t("床位统计")}}:</span>
+          <span style="font-weight: bold">{{$t("人数统计")}}:</span>
           <span class="color-grand">
-            {{$t("总床位")}}
-            {{dormDetailData && Object.keys(dormDetailData).length > 0 ? dormDetailData[0].people_num + dormDetailData[1].people_num : 0}}
+            {{$t("总人数")}}
+            <label v-if="commSex.type == 0">
+              {{dormDetailData && Object.keys(dormDetailData).length > 0 ? dormDetailData[1].people_num : 0}}
+            </label>
+            <label v-if="commSex.type == 1">
+              {{dormDetailData && Object.keys(dormDetailData).length > 0 ? dormDetailData[2].people_num : 0}}
+            </label>
           </span>
           <span class="margin-left-5 color-success">
             {{$t("已分配")}}
-            {{dormDetailData && Object.keys(dormDetailData).length  > 0 ? dormDetailData[0].has_people_num + dormDetailData[1].has_people_num : 0}}
+            <label v-if="commSex.type == 0">
+              {{dormDetailData && Object.keys(dormDetailData).length  > 0 ? dormDetailData[1].has_people_num : 0}}
+            </label>
+            <label v-if="commSex.type == 1">
+              {{dormDetailData && Object.keys(dormDetailData).length  > 0 ? dormDetailData[2].has_people_num : 0}}
+            </label>
           </span>
           <span class="margin-left-5 color-warning">
             {{$t("未分配")}}
-            {{dormDetailData && Object.keys(dormDetailData).length  > 0 ? dormDetailData[0].not_people_num + dormDetailData[1].not_people_num : 0}}
+            <label v-if="commSex.type == 0">
+              {{dormDetailData && Object.keys(dormDetailData).length  > 0 ? dormDetailData[1].not_people_num : 0}}
+            </label>
+            <label v-if="commSex.type == 1">
+              {{dormDetailData && Object.keys(dormDetailData).length  > 0 ? dormDetailData[2].not_people_num : 0}}
+            </label>
           </span>
         </div>
       </div>
@@ -490,18 +505,33 @@
         </el-table>
 
         <div class="margin-top-5 color-muted" v-if="tableDormData.length > 0 && !commDrawer">
-          <span style="font-weight: bold">{{$t("人数统计")}}:</span>
+          <span style="font-weight: bold">{{$t("床位统计")}}:</span>
           <span class="color-grand">
-            {{$t("总人数")}}
-            {{dormDetailData && Object.keys(dormDetailData).length > 0 ? dormDetailData[0].people_num + dormDetailData[1].people_num + dormDetailData[2].people_num : 0}}
+            {{$t("总床位")}}
+            <label v-if="commSex.sex == 1">
+              {{dormDetailData && Object.keys(dormDetailData).length > 0 ? dormDetailData[0].people_num : 0}}
+            </label>
+            <label v-if="commSex.sex == 2">
+              {{dormDetailData && Object.keys(dormDetailData).length > 0 ? dormDetailData[1].people_num : 0}}
+            </label>
           </span>
           <span class="margin-left-5 color-success">
             {{$t("已分配")}}
-            {{dormDetailData && Object.keys(dormDetailData).length  > 0 ? dormDetailData[0].has_people_num + dormDetailData[1].has_people_num + dormDetailData[2].has_people_num : 0}}
+            <label v-if="commSex.sex == 1">
+              {{dormDetailData && Object.keys(dormDetailData).length  > 0 ? dormDetailData[0].has_people_num : 0}}
+            </label>
+            <label v-if="commSex.sex == 2">
+              {{dormDetailData && Object.keys(dormDetailData).length  > 0 ? dormDetailData[1].has_people_num : 0}}
+            </label>
           </span>
           <span class="margin-left-5 color-warning">
             {{$t("未分配")}}
-            {{dormDetailData && Object.keys(dormDetailData).length  > 0 ? dormDetailData[0].not_people_num + dormDetailData[1].not_people_num + dormDetailData[2].not_people_num : 0}}
+            <label v-if="commSex.sex == 1">
+              {{dormDetailData && Object.keys(dormDetailData).length  > 0 ? dormDetailData[0].not_people_num : 0}}
+            </label>
+            <label v-if="commSex.sex == 2">
+              {{dormDetailData && Object.keys(dormDetailData).length  > 0 ? dormDetailData[1].not_people_num : 0}}
+            </label>
           </span>
         </div>
 
@@ -667,6 +697,7 @@
         searchDetailType: -1,
         showType: 2,
         mainType: "2",
+        mainSubType: '',
         subType: "3",
         uploadFile: common.teacher_file + "?fileName=" + encodeURIComponent(this.$t("宿舍分配模板.xls")),
         uploadAction: common.dorm_user_class_import,
@@ -969,6 +1000,7 @@
         this.searchDormBedStatus = "";
         this.searchDormStatus = "";
         this.dormRow = {};
+        this.mainSubType = "";
         this.resetCasadeSelector('SelectorDept');
         this.resetCasadeSelector('SelectorDormDept');
 
@@ -1263,7 +1295,8 @@
         setTimeout(() => {
           this.initDorm();
         }, 800);
-        this.initDormDetailCountInfo(this.mainType);
+        this.mainSubType = 2;
+        this.initDormDetailCountInfo(this.mainSubType);
         this.drawerDormVisible = true;
       },
       setStudentList(row){
@@ -1273,7 +1306,8 @@
         setTimeout(() => {
           this.initStudent();
         }, 800);
-        this.initDormDetailCountInfo(this.mainType);
+        this.mainSubType = 1;
+        this.initDormDetailCountInfo(this.mainSubType);
         this.drawerStudentVisible = true;
       },
       selectBedno(row){
@@ -1323,7 +1357,7 @@
         }
         this.studentPage = 1;
         this.initStudent();
-        this.initDormDetailCountInfo(this.mainType);
+        this.initDormDetailCountInfo(this.mainSubType);
       },
       selectDormBedno(row){
         let params = {
@@ -1364,7 +1398,7 @@
       returnDormList(){
         this.searchCommDeptBedData = [this.commSearchBuild, this.commSearchFloor];
         this.searchDormBedStatus = "";
-        this.initDormDetailCountInfo(this.mainType);
+        this.initDormDetailCountInfo(this.mainSubType);
         this.commDrawer = false;
       },
       handleCascaderBedChange(data){
@@ -1379,7 +1413,7 @@
         }
         this.commPage = 1;
         this.initDorm();
-        this.initDormDetailCountInfo(this.mainType);
+        this.initDormDetailCountInfo(this.mainSubType);
       }
     }
   }
