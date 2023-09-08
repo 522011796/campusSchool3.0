@@ -303,6 +303,7 @@
         type: '',
         uploadResult: {},
         uploadProcess: '',
+        loopTimer: null,
         form: {
           id: '',
           name: '',
@@ -518,13 +519,16 @@
         this.init();
       },
       uploadSuccess(res, file){
-        this.uploadProcess = res.desc;
-
         if (res.code == 200){
-          this.uploadResult = res.data ? res.data : [res.desc];
+          this.uploadProcess = res.desc;
+          this.loopUploadResult(res.data);
         }else {
+          this.uploadProcess = this.$t("文件上传成功,正在导入文件...");
+          this.resultList = [];
           if (res.data){
-            this.uploadResult = res.data;
+            for (let i in res.data){
+              this.uploadResult.push(res.data[i]);
+            }
           }else {
             this.uploadResult = [res.desc];
           }
@@ -532,6 +536,51 @@
       },
       uploadError(res, file){
         this.uploadProcess = res.data.data;
+      },
+      loopUploadResult(uuid){
+        this.getUploadResult(uuid);
+      },
+      getUploadResult(uuid){
+        let _self = this;
+        let num = 0;
+        clearTimeout(this.loopTimer);
+        let params = {
+          uuid: uuid,
+          action: 2
+        };
+        this.$axios.get(common.upload_loop_result, {params: params}).then(res => {
+          let result = "";
+          if (res.data.code == 200){
+            let arrResult = [];
+            if (res.data.data){
+              for (let i = 0; i < res.data.data.length; i++){
+                //设置结果列表
+                if (res.data.data[i].line){
+                  arrResult.push(this.$t("第") + res.data.data[i].line + this.$t("行") + JSON.parse(res.data.data[i].mess).join());
+                }else {
+                  arrResult.push(JSON.parse(res.data.data[i].mess).join());
+                }
+
+                if (res.data.data[i].status == 1){
+                  num++;
+                }
+              }
+              if (num > 0){
+                this.uploadResult = arrResult;
+                clearTimeout(this.loopTimer);
+                this.loopTimer = null;
+                this.uploadProcess = this.$t("导入操作已完成，请查看上传结果！");
+              }else {
+                this.loopTimer = setTimeout(function () {
+                  _self.getUploadResult(uuid)
+                }, 10000);
+              }
+            }else {
+              this.uploadResult = [this.$t("上传停止！")];
+              clearTimeout(this.loopTimer);
+            }
+          }
+        });
       }
     }
   }
