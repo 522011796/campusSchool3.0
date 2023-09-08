@@ -347,6 +347,7 @@ export const common = {
   teacher_role_group_user_list: '/proxy/user/school/role/employees',//教师角色用户列表
 
   dorm_bed_info: '/proxy/school/dormitory/student/count',//宿舍床位信息
+  dorm_bed_info2: '/proxy/school/dormitory/student/count2',//宿舍床位信息
   dorm_bed_list: '/proxy/school/dormitory/student/count',//宿舍列表
   dorm_user_dorm_list: '/proxy/school/bed/dorm-group/page',//宿舍人员列表--宿舍
   dorm_user_class_list: '/proxy/school/student/class-group/page',//宿舍人员列表--班级
@@ -358,6 +359,8 @@ export const common = {
   dorm_user_class_bed_clear: '/proxy/building/dormitory/bed/remove',//清空床位
   dorm_user_class_bed_enable: '/proxy/building/dormitory/bed/enable',//启用禁用床位
   dorm_user_class_bed_list: '/proxy/building/dormitory/bedStudent/list',//床位列表
+  dorm_list_class_import: '/proxy/building/dormitory/import',//宿舍导入
+  dorm_list_class_export: '/proxy/building/dormitory/model/download',//宿舍导出
 
   dormaccess_record_stu: '/proxy/school/person/student/recognition/page',//门禁识别记录--学生
   dormaccess_record_ter: '/proxy/school/person/teacher/recognition/page',//门禁识别记录--教师
@@ -485,6 +488,9 @@ export const common = {
   student_delete_info: '/proxy/user/student/del',//删除学生信息
   student_export_change: '/proxy/user/student-dropout/export',//导出学生异动
   student_export_graduate: '/proxy/user/student-leave/export',//导出学生毕业
+  student_change_file: '/proxy/user/file/download',//异动文件
+  student_change_import: '/proxy/user/student-leave/import',//毕业学生导入
+  student_change_dropout_import: '/proxy/user/student-dropout/import',//异动学生导入
 
   student_info_warning: '/proxy/user/alarm/list',//学生报警
   student_info_warning_detail_list: '/proxy/user/masterTeacher/userinfo/get',//学生报警

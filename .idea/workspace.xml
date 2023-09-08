@@ -7,11 +7,16 @@
     <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="增加邮政编码">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/upload/QuillBlock.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/upload/QuillBlock.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/basicInfo/student.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/student.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/dormRoom.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/dormRoom.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/dorm/dorm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/dorm/dorm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/student/stuChangeInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/student/stuChangeInfo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/student/stuGraduate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/student/stuGraduate.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/global.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,14 +183,16 @@
       <workItem from="1693306656315" duration="598000" />
       <workItem from="1693312924455" duration="533000" />
       <workItem from="1693356956169" duration="598000" />
-      <workItem from="1693448157467" duration="681000" />
-    </task>
-    <task id="LOCAL-00067" summary="项目管理">
-      <created>1686635018946</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1686635018946</updated>
+      <workItem from="1693448157467" duration="829000" />
+      <workItem from="1693791459537" duration="2564000" />
+      <workItem from="1693881346582" duration="1800000" />
+      <workItem from="1693961565816" duration="4239000" />
+      <workItem from="1694001923855" duration="696000" />
+      <workItem from="1694047901370" duration="641000" />
+      <workItem from="1694071356203" duration="7000" />
+      <workItem from="1694071371027" duration="607000" />
+      <workItem from="1694134650071" duration="1601000" />
+      <workItem from="1694136522049" duration="10483000" />
     </task>
     <task id="LOCAL-00068" summary="合同管理">
       <created>1686722577943</created>
@@ -523,7 +530,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692425426280</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="增加邮政编码">
+      <created>1693448850022</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1693448850023</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -5,9 +5,9 @@
 
       <div slot="tab">
         <el-row>
-          <el-col :span="9">
+          <el-col :span="10">
             <div class="custom-button-search">
-              <el-select v-model="collegeValue" :clearable="true" size="small" placeholder="院系筛选" style="width: 120px" @change="handleCollegeChange">
+              <el-select v-model="collegeValue" :clearable="true" size="small" placeholder="院系筛选" style="width: 115px" @change="handleCollegeChange">
                 <el-option
                   v-for="item in collegeOptions"
                   :key="item.id"
@@ -16,7 +16,7 @@
                 </el-option>
               </el-select>
 
-              <el-select v-model="majorValue" :clearable="true" size="small" placeholder="专业筛选" style="width: 120px" @change="handleMajorChange">
+              <el-select v-model="majorValue" :clearable="true" size="small" placeholder="专业筛选" style="width: 115px" @change="handleMajorChange">
                 <el-option
                   v-for="item in majorOptions"
                   :key="item.id"
@@ -25,7 +25,7 @@
                 </el-option>
               </el-select>
 
-              <el-select v-model="classValue" :clearable="true" size="small" placeholder="班级筛选" style="width: 120px" @change="handleClassChange">
+              <el-select v-model="classValue" :clearable="true" size="small" placeholder="班级筛选" style="width: 115px" @change="handleClassChange">
                 <el-option
                   v-for="item in classOptions"
                   :key="item.value"
@@ -33,14 +33,29 @@
                   :value="item.id">
                 </el-option>
               </el-select>
-              <el-button size="small" type="warning"  icon="el-icon-download" @click="expandInfo($event)">{{$t("导出")}}</el-button>
+
+              <el-dropdown trigger="click">
+                <el-button type="warning" size="small">
+                  {{$t("导入/导出")}}<i class="el-icon-arrow-down el-icon--right"></i>
+                </el-button>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item @click.native="importInfo($event)">
+                    <i class="el-icon-upload"></i>
+                    {{$t("导入")}}
+                  </el-dropdown-item>
+                  <el-dropdown-item @click.native="expandInfo($event)">
+                    <i class="el-icon-download"></i>
+                    {{$t("导出")}}
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
             </div>
           </el-col>
-          <el-col :span="15" class="text-right">
+          <el-col :span="14" class="text-right">
             <div>
-              <my-date-picker :sel-value="searchInnerDate" :clearable="true" type="daterange" size="small" :start-placeholder="$t('入学开始')" :end-placeholder="$t('入学结束')" width-style="220" @change="handleStartChange" style="position: relative; top: 1px;"></my-date-picker>
-              <my-date-picker :sel-value="searchOutDate" :clearable="true" type="daterange" size="small" :start-placeholder="$t('毕业开始')" :end-placeholder="$t('毕业结束')" width-style="220" @change="handleEndChange" style="position: relative; top: 1px;"></my-date-picker>
-              <my-input-button class="layout-item" :placeholder="$t('姓名/学号/身份证号')" size="small" plain width-class="width: 170px" type="success" :clearable="true" @click="search"></my-input-button>
+              <my-date-picker :sel-value="searchInnerDate" :clearable="true" type="daterange" size="small" :start-placeholder="$t('入学开始')" :end-placeholder="$t('入学结束')" width-style="215" @change="handleStartChange" style="position: relative; top: 1px;"></my-date-picker>
+              <my-date-picker :sel-value="searchOutDate" :clearable="true" type="daterange" size="small" :start-placeholder="$t('毕业开始')" :end-placeholder="$t('毕业结束')" width-style="215" @change="handleEndChange" style="position: relative; top: 1px;"></my-date-picker>
+              <my-input-button class="layout-item" :placeholder="$t('姓名/学号/身份证号')" size="small" plain width-class="width: 165px" type="success" :clearable="true" @click="search"></my-input-button>
             </div>
           </el-col>
         </el-row>
@@ -232,6 +247,10 @@
       </div>
     </layout-tb>
 
+    <drawer-right @changeDrawer="closeDrawerDialog" :visible="drawerVisible" accept=".xls,.xlsx" :data="{all: true}" :loading="drawerLoading" :hide-footer="true" size="400px" :title="$t('导入文件')" :action="uploadChangeAction" :download-file="uploadFile" :result="uploadResult" :process="uploadProcess" @right-close="cancelDrawDialog" @success="uploadSuccess" @error="uploadError">
+
+    </drawer-right>
+
     <my-normal-dialog :visible.sync="visibleConfim" :loading="dialogLoading" title="提示" :detail="subTitle" :content="visibleContent" @ok-click="handleOkChange" @cancel-click="handleCancelChange" @close="cancelDrawDialog"></my-normal-dialog>
   </div>
 </template>
@@ -248,9 +267,10 @@
   import MyInputButton from "../../../components/search/MyInputButton";
   import levelValidater from "../../../utils/validater/levelValidater";
   import DialogNormal from "../../../components/utils/dialog/DialogNormal";
+  import DrawerRight from "~/components/utils/dialog/DrawerRight.vue";
   export default {
     mixins: [mixins, levelValidater],
-    components: {MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal},
+    components: {DrawerRight, MyPagination,LayoutTb,MySelect,MyUserType,MyDatePicker,MyInputButton,DialogNormal},
     data(){
       return {
         tableData: [],
@@ -261,7 +281,12 @@
         modalVisible: false,
         dialogLoading: false,
         visibleConfim: false,
+        drawerVisible: false,
+        drawerLoading: false,
         visibleContent: '',
+        uploadFile: common.student_change_file + "?fileName=" + encodeURIComponent(this.$t("学生学籍修改模板.xlsx")),
+        uploadChangeAction: common.student_change_import,
+        uploadDropoutAction: common.student_change_dropout_import,
         clearTime: '',
         action: '',
         subTitle: '',
@@ -276,6 +301,8 @@
         searchOutDate: [],
         filterTypesText: '',
         type: '',
+        uploadResult: {},
+        uploadProcess: '',
         form: {
           id: '',
           name: '',
@@ -422,6 +449,11 @@
         this.visibleConfim = false;
         this.dialogLoading = false;
       },
+      closeDrawerDialog(event){
+        this.uploadProcess = '';
+        this.uploadResult = {};
+        this.drawerVisible = event;
+      },
       cancelDrawDialog(){
         this.oprType = '';
         this.visibleConfim = false;
@@ -446,6 +478,9 @@
         this.page = 1;
         this.classValue = event;
         this.init();
+      },
+      importInfo(event){
+        this.drawerVisible = true;
       },
       expandInfo(){
         let url = common.student_export_change;
@@ -481,6 +516,22 @@
         }
         this.page = 1;
         this.init();
+      },
+      uploadSuccess(res, file){
+        this.uploadProcess = res.desc;
+
+        if (res.code == 200){
+          this.uploadResult = res.data ? res.data : [res.desc];
+        }else {
+          if (res.data){
+            this.uploadResult = res.data;
+          }else {
+            this.uploadResult = [res.desc];
+          }
+        }
+      },
+      uploadError(res, file){
+        this.uploadProcess = res.data.data;
       }
     }
   }

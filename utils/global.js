@@ -83,6 +83,16 @@ const dormroomType = [
     value: "1"
   }
 ];
+const dormChoseType = [
+  {
+    label: '未分配',
+    value: "0"
+  },
+  {
+    label: '已分配',
+    value: "1"
+  }
+];
 const searchTeacherType = [
   {
     label: "姓名",
@@ -667,6 +677,7 @@ export default {
   buildInterest,
   classroomUsed,
   dormroomType,
+  dormChoseType,
   searchTeacherType,
   g_sex,
   searchStudentType,

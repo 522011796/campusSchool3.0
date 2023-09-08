@@ -160,8 +160,8 @@ export default {
       drawerLoading: false,
       subTitle: '',
       subDetail: '',
-      uploadFile: common.doomroom_import_file + "?fileName=" + encodeURIComponent(this.$t("宿舍分配模板.xlsx")),
-      uploadAction: common.doomroom_import,
+      uploadFile: common.dorm_list_class_export + "?fileName=" + encodeURIComponent(this.$t("宿舍分配模板.xlsx")),
+      uploadAction: common.dorm_list_class_import,
       uploadResult: {},
       uploadProcess: '',
       form: {

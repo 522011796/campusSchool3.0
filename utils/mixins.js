@@ -69,6 +69,7 @@ export default {
       buildInterest: global.buildInterest,
       classroomUsed: global.classroomUsed,
       dormroomType: global.dormroomType,
+      dormChoseType: global.dormChoseType,
       searchTeacherType: global.searchTeacherType,
       searchStudentType: global.searchStudentType,
       searchStudentType2: global.searchStudentType2,
@@ -201,6 +202,9 @@ export default {
         'height': ''
       },
       tableHeight19: {
+        'height': ''
+      },
+      tableHeight20: {
         'height': ''
       },
       tableMiddleHeight: {
@@ -442,6 +446,7 @@ export default {
         this.tableHeight17.height = window.innerHeight - 258 + 'px';
         this.tableHeight18.height = window.innerHeight - 258 + 'px';
         this.tableHeight19.height = window.innerHeight - 180 + 'px';
+        this.tableHeight20.height = window.innerHeight - 170 + 'px';
         this.tableMiddleHeight.height = window.innerHeight - 335 + 'px';
         this.divHeight["max-height"] = window.innerHeight - 205 + 'px';
         this.divHeight2["max-height"] = window.innerHeight - 235 + 'px';

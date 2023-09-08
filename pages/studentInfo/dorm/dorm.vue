@@ -23,10 +23,12 @@
                   <el-col :span="8">
                     <div class="rpStatic-top-item-mini color-muted">
                       <i class="fa fa-bed"></i>
-                      <label>{{$t("总床位")}}:</label>
+                      <label v-if="mainType == 2">{{$t("总床位")}}:</label>
+                      <label v-if="mainType == 1">{{$t("总人数")}}:</label>
                     </div>
                     <div class="font-size-25 margin-top-5 color-muted margin-left-20">
-                      <label>{{Object.keys(dormData).length > 0 ? dormData[0].people_num + dormData[1].people_num : 0}}</label>
+                      <label v-if="mainType == 1">{{dormData && Object.keys(dormData).length > 0 ? dormData[0].people_num + dormData[1].people_num + dormData[2].people_num : 0}}</label>
+                      <label v-if="mainType == 2">{{dormData && Object.keys(dormData).length > 0 ? dormData[0].people_num + dormData[1].people_num : 0}}</label>
                     </div>
                   </el-col>
                   <el-col :span="8">
@@ -35,7 +37,8 @@
                       <label>{{$t("已分配")}}:</label>
                     </div>
                     <div class="font-size-25 margin-top-5 color-muted margin-left-20">
-                      <label>{{Object.keys(dormData).length  > 0 ? dormData[0].has_people_num + dormData[1].has_people_num : 0}}</label>
+                      <label v-if="mainType == 1">{{dormData && Object.keys(dormData).length  > 0 ? dormData[0].has_people_num + dormData[1].has_people_num + dormData[2].has_people_num : 0}}</label>
+                      <label v-if="mainType == 2">{{dormData && Object.keys(dormData).length  > 0 ? dormData[0].has_people_num + dormData[1].has_people_num : 0}}</label>
                     </div>
                   </el-col>
                   <el-col :span="8">
@@ -44,7 +47,8 @@
                       <label>{{$t("未分配")}}:</label>
                     </div>
                     <div class="font-size-25 margin-top-5 color-muted margin-left-20">
-                      <label>{{Object.keys(dormData).length  > 0 ? dormData[0].not_people_num + dormData[1].not_people_num : 0}}</label>
+                      <label v-if="mainType == 1">{{dormData && Object.keys(dormData).length  > 0 ? dormData[0].not_people_num + dormData[1].not_people_num + dormData[2].not_people_num : 0}}</label>
+                      <label v-if="mainType == 2">{{dormData && Object.keys(dormData).length  > 0 ? dormData[0].not_people_num + dormData[1].not_people_num : 0}}</label>
                     </div>
                   </el-col>
                 </el-row>
@@ -67,23 +71,44 @@
                         <i class="fa fa-bed color-warning" style="font-size: 35px"></i>
                       </div>
                       <div>
-                        <span class="color-warning font-size-12">{{$t("总床位")}}</span>
+                        <span class="color-warning font-size-12" v-if="mainType == 2">{{$t("总床位")}}</span>
+                        <span class="color-warning font-size-12" v-if="mainType == 1">{{$t("总人数")}}</span>
                       </div>
                     </div>
 
-                    <div class="layout-item font-size-12 color-warning margin-left-10">
-                      <div>
-                        <span>{{$t("总床位")}}</span>
-                        <span>{{Object.keys(dormData).length > 0 ? dormData[0].people_num + dormData[1].people_num : 0}}</span>
-                      </div>
-                      <div class="margin-top-5">
-                        <span>{{$t("男生")}}</span>
-                        <span>{{Object.keys(dormData).length  > 0 ? dormData[0].people_num : 0}}</span>
-                      </div>
-                      <div class="margin-top-5">
-                        <span>{{$t("女生")}}</span>
-                        <span>{{Object.keys(dormData).length  > 0 ? dormData[1].people_num : 0}}</span>
-                      </div>
+                    <div class="layout-item font-size-12 color-warning margin-left-10" style="position: relative;top: 10px;">
+                      <template v-if="mainType == 1">
+                        <div>
+                          <span>{{$t("总人数")}}</span>
+                          <span>{{dormData && Object.keys(dormData).length > 0 ? dormData[0].people_num + dormData[1].people_num + dormData[2].people_num : 0}}</span>
+                        </div>
+                        <div class="margin-top-5">
+                          <span>{{$t("未知性别")}}</span>
+                          <span>{{dormData && Object.keys(dormData).length  > 0 ? dormData[0].people_num : 0}}</span>
+                        </div>
+                        <div class="margin-top-5">
+                          <span>{{$t("男生")}}</span>
+                          <span>{{dormData && Object.keys(dormData).length  > 0 ? dormData[1].people_num : 0}}</span>
+                        </div>
+                        <div class="margin-top-5">
+                          <span>{{$t("女生")}}</span>
+                          <span>{{dormData && Object.keys(dormData).length  > 0 ? dormData[2].people_num : 0}}</span>
+                        </div>
+                      </template>
+                      <template v-if="mainType == 2">
+                        <div>
+                          <span>{{$t("总床位")}}</span>
+                          <span>{{dormData && Object.keys(dormData).length > 0 ? dormData[0].people_num + dormData[1].people_num : 0}}</span>
+                        </div>
+                        <div class="margin-top-5">
+                          <span>{{$t("男生")}}</span>
+                          <span>{{dormData && Object.keys(dormData).length  > 0 ? dormData[0].people_num : 0}}</span>
+                        </div>
+                        <div class="margin-top-5">
+                          <span>{{$t("女生")}}</span>
+                          <span>{{dormData && Object.keys(dormData).length  > 0 ? dormData[1].people_num : 0}}</span>
+                        </div>
+                      </template>
                     </div>
                   </div>
                 </el-col>
@@ -99,19 +124,39 @@
                       </div>
                     </div>
 
-                    <div class="layout-item font-size-12 color-success margin-left-10">
-                      <div>
-                        <span>{{$t("已分配")}}</span>
-                        <span>{{Object.keys(dormData).length  > 0 ? dormData[0].has_people_num + dormData[1].has_people_num : 0}}</span>
-                      </div>
-                      <div class="margin-top-5">
-                        <span>{{$t("男生")}}</span>
-                        <span>{{Object.keys(dormData).length  > 0 ? dormData[0].has_people_num : 0}}</span>
-                      </div>
-                      <div class="margin-top-5">
-                        <span>{{$t("女生")}}</span>
-                        <span>{{Object.keys(dormData).length  > 0 ? dormData[1].has_people_num : 0}}</span>
-                      </div>
+                    <div class="layout-item font-size-12 color-success margin-left-10" style="position: relative;top: 10px;">
+                      <template v-if="mainType == 1">
+                        <div>
+                          <span>{{$t("已分配")}}</span>
+                          <span>{{dormData && Object.keys(dormData).length  > 0 ? dormData[0].has_people_num + dormData[1].has_people_num + dormData[2].has_people_num : 0}}</span>
+                        </div>
+                        <div class="margin-top-5">
+                          <span>{{$t("未知性别")}}</span>
+                          <span>{{dormData && Object.keys(dormData).length  > 0 ? dormData[0].has_people_num : 0}}</span>
+                        </div>
+                        <div class="margin-top-5">
+                          <span>{{$t("女生")}}</span>
+                          <span>{{dormData && Object.keys(dormData).length  > 0 ? dormData[1].has_people_num : 0}}</span>
+                        </div>
+                        <div class="margin-top-5">
+                          <span>{{$t("女生")}}</span>
+                          <span>{{dormData && Object.keys(dormData).length  > 0 ? dormData[2].has_people_num : 0}}</span>
+                        </div>
+                      </template>
+                      <template v-if="mainType == 2">
+                        <div>
+                          <span>{{$t("已分配")}}</span>
+                          <span>{{dormData && Object.keys(dormData).length  > 0 ? dormData[0].has_people_num + dormData[1].has_people_num : 0}}</span>
+                        </div>
+                        <div class="margin-top-5">
+                          <span>{{$t("女生")}}</span>
+                          <span>{{dormData && Object.keys(dormData).length  > 0 ? dormData[0].has_people_num : 0}}</span>
+                        </div>
+                        <div class="margin-top-5">
+                          <span>{{$t("女生")}}</span>
+                          <span>{{dormData && Object.keys(dormData).length  > 0 ? dormData[1].has_people_num : 0}}</span>
+                        </div>
+                      </template>
                     </div>
                   </div>
                 </el-col>
@@ -127,19 +172,39 @@
                       </div>
                     </div>
 
-                    <div class="layout-item font-size-12 color-danger margin-left-10">
-                      <div>
-                        <span>{{$t("未分配")}}</span>
-                        <span>{{Object.keys(dormData).length  > 0 ? dormData[0].not_people_num + dormData[1].not_people_num : 0}}</span>
-                      </div>
-                      <div class="margin-top-5">
-                        <span>{{$t("男生")}}</span>
-                        <span>{{Object.keys(dormData).length  > 0 ? dormData[0].not_people_num : 0}}</span>
-                      </div>
-                      <div class="margin-top-5">
-                        <span>{{$t("女生")}}</span>
-                        <span>{{Object.keys(dormData).length  > 0 ? dormData[1].not_people_num : 0}}</span>
-                      </div>
+                    <div class="layout-item font-size-12 color-danger margin-left-10" style="position: relative;top: 10px;">
+                      <template v-if="mainType == 1">
+                        <div>
+                          <span>{{$t("未分配")}}</span>
+                          <span>{{dormData && Object.keys(dormData).length  > 0 ? dormData[0].not_people_num + dormData[1].not_people_num + dormData[2].not_people_num : 0}}</span>
+                        </div>
+                        <div class="margin-top-5">
+                          <span>{{$t("未知性别")}}</span>
+                          <span>{{dormData && Object.keys(dormData).length  > 0 ? dormData[0].not_people_num : 0}}</span>
+                        </div>
+                        <div class="margin-top-5">
+                          <span>{{$t("男生")}}</span>
+                          <span>{{dormData && Object.keys(dormData).length  > 0 ? dormData[1].not_people_num : 0}}</span>
+                        </div>
+                        <div class="margin-top-5">
+                          <span>{{$t("女生")}}</span>
+                          <span>{{dormData && Object.keys(dormData).length  > 0 ? dormData[2].not_people_num : 0}}</span>
+                        </div>
+                      </template>
+                      <template v-if="mainType == 2">
+                        <div>
+                          <span>{{$t("未分配")}}</span>
+                          <span>{{dormData && Object.keys(dormData).length  > 0 ? dormData[0].not_people_num + dormData[1].not_people_num : 0}}</span>
+                        </div>
+                        <div class="margin-top-5">
+                          <span>{{$t("男生")}}</span>
+                          <span>{{dormData && Object.keys(dormData).length  > 0 ? dormData[0].not_people_num : 0}}</span>
+                        </div>
+                        <div class="margin-top-5">
+                          <span>{{$t("女生")}}</span>
+                          <span>{{dormData && Object.keys(dormData).length  > 0 ? dormData[1].not_people_num : 0}}</span>
+                        </div>
+                      </template>
                     </div>
                   </div>
                 </el-col>
@@ -155,14 +220,15 @@
 
           <div class="layout-right-tab margin-top-10">
             <el-row class="layout-inline">
-              <el-col :span="12">
+              <el-col :span="16">
                 <el-button size="small" type="primary"  icon="el-icon-upload" @click="addInfo()">{{$t("导入")}}</el-button>
                 <el-button size="small" type="warning"  icon="el-icon-download" @click="expandInfo()">{{$t("导出")}}</el-button>
 
                 <my-select :placeholder="$t('状态')" :sel-value="searchStatusType" class="layout-item" :clearable="true" size="small" width-style="120" :options="searchStatusTypeInfo()" @change="handleChange($event, 1)"></my-select>
                 <my-select v-if="showType == 2" :placeholder="$t('类型')" :sel-value="searchDormType" class="layout-item" :clearable="true" size="small" width-style="120" :options="dormroomType" @change="handleChange($event, 2)"></my-select>
+                <my-select :placeholder="$t('分配')" :sel-value="searchDormType" class="layout-item" :clearable="true" size="small" width-style="120" :options="dormChoseType" @change="handleChange($event, 3)"></my-select>
               </el-col>
-              <el-col :span="12" class="text-right">
+              <el-col :span="8" class="text-right">
                 <my-input-button size="small" plain width-class="width: 150px" type="success" :clearable="true" :placeholder="$t('姓名/学号')" @click="search"></my-input-button>
               </el-col>
             </el-row>
@@ -230,13 +296,14 @@
                               <i class="fa fa-ban color-danger"></i>
                             </label>
 
-                            {{itemChild.bed_no}}号床
+                            <label v-if="itemChild.dormitory_no != null">{{itemChild.dormitory_no}}/</label>{{itemChild.bed_no}}号床
                           </span>
 
                           <span v-if="showType == 1">
                             <label v-if="itemChild.bed_no != null" @click="removeBed(itemChild, 'clearBedId')">
                               <i class="fa fa-trash color-danger"></i>
                             </label>
+                            <label v-if="itemChild.dormitory_no != null">{{itemChild.dormitory_no}}/</label>
                             <label v-if="itemChild.bed_no != null">{{itemChild.bed_no}}号床</label>
                             <!--<el-popover
                               v-else
@@ -321,7 +388,7 @@
     <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerStudentVisible" :loading="drawerLoading" size="800px" :title="$t('分配学生')" @right-close="cancelDrawDialog">
       <div slot="content">
         <div class="layout-inline">
-          <my-cascader class="layout-item" ref="SelectorDept" size="small" width-style="160" :clearable="true" :sel-value="searchCommDeptData" type="1" sub-type="4" @change="handleCascaderChange($event)"></my-cascader>
+          <my-cascader class="layout-item" ref="SelectorDept" size="small" width-style="160" :clearable="true" :props="{ checkStrictly: true }" :sel-value="searchCommDeptData" type="1" sub-type="4" @change="handleCascaderChange($event)"></my-cascader>
           <my-input-button ref="searchInput" class="layout-item" size="small" :clearable="true" type="success" plain @click="handleSearch"></my-input-button>
         </div>
         <el-table ref="studentTableRef"
@@ -329,7 +396,8 @@
                   :data="tableStudentData"
                   size="mini"
                   class="margin-top-10"
-                  v-loading="tableStudentLoading">
+                  v-loading="tableStudentLoading"
+                  :max-height="tableHeight20.height">
           <el-table-column align="center" label="操作">
             <template slot-scope="scope">
               <a href="javascript:;" class="color-grand" v-if="scope.row.bed_no == null" @click="selectBedno(scope.row)">{{$t("分配")}}</a>
@@ -353,6 +421,22 @@
             </template>
           </el-table-column>
         </el-table>
+
+        <div class="margin-top-5 color-muted" v-if="tableStudentData.length > 0">
+          <span style="font-weight: bold">{{$t("人数统计")}}:</span>
+          <span class="color-grand">
+            {{$t("总人数")}}
+            {{dormDetailData && Object.keys(dormDetailData).length > 0 ? dormDetailData[0].people_num + dormDetailData[1].people_num + dormDetailData[2].people_num : 0}}
+          </span>
+          <span class="margin-left-5 color-success">
+            {{$t("已分配")}}
+            {{dormDetailData && Object.keys(dormDetailData).length  > 0 ? dormDetailData[0].has_people_num + dormDetailData[1].has_people_num + dormDetailData[2].has_people_num : 0}}
+          </span>
+          <span class="margin-left-5 color-warning">
+            {{$t("未分配")}}
+            {{dormDetailData && Object.keys(dormDetailData).length  > 0 ? dormDetailData[0].not_people_num + dormDetailData[1].not_people_num + dormDetailData[2].not_people_num : 0}}
+          </span>
+        </div>
       </div>
       <div slot="footer">
         <div class="text-right padding-lr-10">
@@ -364,12 +448,13 @@
     <drawer-layout-right tabindex="0" @changeDrawer="closeDrawerDialog" :visible="drawerDormVisible" :loading="drawerLoading" size="800px" :title="$t('分配床位')" @right-close="cancelDrawDialog">
       <div slot="content">
         <div class="layout-inline"  v-if="!commDrawer">
-          <my-cascader class="layout-item" :clearable="true" ref="SelectorDormDept" size="small" width-style="160" :sel-value="searchCommDeptBedData" type="2" sub-type="2" @change="handleCascaderBedChange($event)"></my-cascader>
+          <my-cascader class="layout-item" :clearable="true" :props="{ checkStrictly: true }" ref="SelectorDormDept" size="small" width-style="160" :sel-value="searchCommDeptBedData" type="2" sub-type="2" @change="handleCascaderBedChange($event)"></my-cascader>
         </div>
         <el-table class="margin-top-10"  v-if="!commDrawer" ref="dormTableRef"
                   :data="tableDormData"
                   size="mini"
-                  v-loading="tableDormLoading">
+                  v-loading="tableDormLoading"
+                  :max-height="tableHeight20.height">
           <el-table-column
             label="操作"
             align="center">
@@ -393,6 +478,22 @@
             </template>
           </el-table-column>
         </el-table>
+
+        <div class="margin-top-5 color-muted" v-if="tableDormData.length > 0 && !commDrawer">
+          <span style="font-weight: bold">{{$t("床位统计")}}:</span>
+          <span class="color-grand">
+            {{$t("总床位")}}
+            {{dormDetailData && Object.keys(dormDetailData).length > 0 ? dormDetailData[0].people_num + dormDetailData[1].people_num : 0}}
+          </span>
+          <span class="margin-left-5 color-success">
+            {{$t("已分配")}}
+            {{dormDetailData && Object.keys(dormDetailData).length  > 0 ? dormDetailData[0].has_people_num + dormDetailData[1].has_people_num : 0}}
+          </span>
+          <span class="margin-left-5 color-warning">
+            {{$t("未分配")}}
+            {{dormDetailData && Object.keys(dormDetailData).length  > 0 ? dormDetailData[0].not_people_num + dormDetailData[1].not_people_num : 0}}
+          </span>
+        </div>
 
         <div v-if="commDrawer">
           <div class="layout-inline">
@@ -478,7 +579,13 @@
     clearData, deviceType,
     dormStatus
   } from "../../../utils/utils";
+  import main from "element-ui/packages/main";
   export default {
+    computed: {
+      main() {
+        return main
+      }
+    },
     mixins: [mixins],
     components: {LayoutLr,MyElTree,MyPagination,MyInputButton,MySex,DialogNormal,MySelect,MyCascader,MyDatePicker,MyNormalDialog,DrawerRight,MySearchOfDate,DrawerLayoutRight,StudentTreeAndList,DormBuildTreeAndList},
     data(){
@@ -514,6 +621,7 @@
         searchCommDeptData: [],
         searchCommDeptBedData: [],
         dormData: {},
+        dormDetailData: {},
         modalVisible: false,
         dialogLoading: false,
         visibleConfim: false,
@@ -533,6 +641,7 @@
         searchDept: '',
         searchStatusType: '',
         searchDormType: '',
+        searchChoseType: '',
         subTitle: '',
         searchType: -1,
         searchDetailType: -1,
@@ -574,12 +683,14 @@
           params['majorId'] = this.searchMajor;
           params['grade'] = this.searchGrade;
           params['classId'] = this.searchClass;
+          params['chose'] = this.searchChoseType;
           url = common.dorm_user_class_list;
         }else if (this.showType == 2){
           params['buildId'] = this.searchBuild;
           params['floorNum'] = this.searchFloor;
           params['dormId'] = this.searchDorm;
           params['type'] = this.searchDormType;
+          params['chose'] = this.searchChoseType;
           url = common.dorm_user_dorm_list;
         }
         params = this.clearDataInfo(params);
@@ -595,12 +706,45 @@
       },
       initDormInfo(){
         let params = {};
-        params['buildingId'] = this.searchBuild;
-        params['floorNum'] = this.searchFloor;
+        let url = "";
+        if (this.mainType == 1){
+          params['collegeId'] = this.searchCollege;
+          params['marjorId'] = this.searchMajor;
+          params['classId'] = this.searchClass;
+
+          url = common.dorm_bed_info2;
+        }else if (this.mainType == 2){
+          params['buildingId'] = this.searchBuild;
+          params['floorNum'] = this.searchFloor;
+
+          url = common.dorm_bed_info;
+        }
         params = this.$qs.stringify(params);
-        this.$axios.post(common.dorm_bed_info, params).then(res => {
+        this.$axios.post(url, params).then(res => {
           if (res.data.data){
             this.dormData = res.data.data;
+          }
+        });
+      },
+      initDormDetailCountInfo(mainType){
+        let params = {};
+        let url = "";
+        if (mainType == 1){
+          params['collegeId'] = this.commSearchCollege;
+          params['marjorId'] = this.commSearchMajor;
+          params['classId'] = this.commSearchClass;
+
+          url = common.dorm_bed_info2;
+        }else if (mainType == 2){
+          params['buildingId'] = this.commSearchBuild;
+          params['floorNum'] = this.commSearchFloor;
+
+          url = common.dorm_bed_info;
+        }
+        params = this.$qs.stringify(params);
+        this.$axios.post(url, params).then(res => {
+          if (res.data.data){
+            this.dormDetailData = res.data.data;
           }
         });
       },
@@ -691,14 +835,17 @@
         if (this.mainType == 1){
           if (data.unit == 1){
             this.searchCollege = data.id;
+            this.initDormInfo();
           }else if (data.unit == 2){
             this.searchCollege = data.college_id;
             this.searchMajor = data.id;
+            this.initDormInfo();
           }else if (data.unit == 3){
             this.searchMajor = data.major_id;
             this.searchGrade = data.grade;
           }else if (data.unit == 4){
             this.searchClass = data.id;
+            this.initDormInfo();
           }
         }else if (this.mainType == 2){
           if (data.unit == 6){
@@ -796,6 +943,7 @@
         this.commSearchBuild = "";
         this.commSearchFloor = "";
         this.commSearchKey = "";
+        this.dormDetailData = {};
         this.resetCasadeSelector('SelectorDept');
         this.resetCasadeSelector('SelectorDormDept');
         this.drawerVisible = event;
@@ -930,12 +1078,11 @@
         this.mainType = ''+mainType;
         this.subType = ''+subType;
         this.showType = type;
+        this.dormData = {};
         this.page = 1;
         this.num = 20;
         this.init();
-        if (mainType == 2){
-          this.initDormInfo();
-        }
+        this.initDormInfo();
       },
       clearDataInfo(data){
         return clearData(data);
@@ -947,6 +1094,9 @@
             break;
           case 2:
             this.searchDormType = data;
+            break;
+          case 3:
+            this.searchChoseType = data;
             break;
         }
         this.page = 1;
@@ -1058,6 +1208,7 @@
         setTimeout(() => {
           this.initDorm();
         }, 800);
+        this.initDormDetailCountInfo(2);
         this.drawerDormVisible = true;
       },
       setStudentList(row){
@@ -1067,6 +1218,7 @@
         setTimeout(() => {
           this.initStudent();
         }, 800);
+        this.initDormDetailCountInfo(1);
         this.drawerStudentVisible = true;
       },
       selectBedno(row){
@@ -1115,6 +1267,7 @@
         }
         this.studentPage = 1;
         this.initStudent();
+        this.initDormDetailCountInfo(1);
       },
       selectDormBedno(row){
         let params = {
@@ -1151,6 +1304,7 @@
         this.commDrawer = true;
       },
       returnDormList(){
+        this.searchCommDeptBedData = [this.commSearchBuild, this.commSearchFloor];
         this.commDrawer = false;
       },
       handleCascaderBedChange(data){
@@ -1165,6 +1319,7 @@
         }
         this.commPage = 1;
         this.initDorm();
+        this.initDormDetailCountInfo(2);
       }
     }
   }
