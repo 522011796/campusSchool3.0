@@ -183,7 +183,10 @@
                 <el-card shadow="never" v-loading="loadingMaster" :element-loading-text="$t('加载中...')" element-loading-spinner="el-icon-loading" :body-style="{padding: '10px', height: '300px', overflowY: 'auto', overflowX: 'auto'}">
                   <el-radio-group v-model="form.masterId">
                     <div v-for="(item, index) in tableMasterTeacherData" :key="index" class="padding-tb-5">
-                      <el-radio :label="item.user_id">{{item.real_name}}</el-radio>
+                      <el-radio :label="item.user_id">
+                        {{item.real_name}}
+                        <span v-if="item.job_num">({{item.job_num}})</span>
+                      </el-radio>
                     </div>
                   </el-radio-group>
                 </el-card>
@@ -203,7 +206,10 @@
                     <li v-for="(item, index) in tableCoachTeacherData" :key="index" class="padding-tb-5">
                       <div>
                         <el-radio-group v-model="form.coachId">
-                          <el-radio :label="item.user_id">{{item.real_name}}</el-radio>
+                          <el-radio :label="item.user_id">
+                            {{item.real_name}}
+                            <span v-if="item.job_num">({{item.job_num}})</span>
+                          </el-radio>
                         </el-radio-group>
                       </div>
                     </li>
@@ -265,6 +271,7 @@ export default {
       searchGrade: '',
       searchMasterId: '',
       searchCoachId: '',
+      row: {},
       form: {
         id: '',
         classNo: '',
@@ -306,10 +313,10 @@ export default {
         }
       });
     },
-    initTeacher(type){
+    initTeacher(type, row){
       let params = {
         page: 1,
-        num: 9999,
+        num: 9999
       };
       if (type == 1){
         params['realName'] = this.searchMasterId;
@@ -321,19 +328,38 @@ export default {
       this.$axios(common.teacher_list, {params: params}).then(res => {
         if (res.data.data){
           if (type == 1){
-            this.tableMasterTeacherData = res.data.data.page.list;
+            let arrayMaster = [];
+            arrayMaster = this.sortTeacherList(this.row.master_teacher, res.data.data.page.list);
+            this.tableMasterTeacherData = arrayMaster;
             this.loadingMaster = false;
           }else if (type == 2){
-            this.tableCoachTeacherData = res.data.data.page.list;
+            let arrayCoach = [];
+            arrayCoach = this.sortTeacherList(this.row.coach_teacher, res.data.data.page.list);
+            this.tableCoachTeacherData = arrayCoach;
             this.loadingCoach = false;
           }else {
-            this.tableMasterTeacherData = res.data.data.page.list;
-            this.tableCoachTeacherData = res.data.data.page.list;
+            let arrayMaster = [];
+            let arrayCoach = [];
+            arrayMaster = this.sortTeacherList(row.master_teacher, res.data.data.page.list);
+            arrayCoach = this.sortTeacherList(row.coach_teacher, res.data.data.page.list);
+            this.tableMasterTeacherData = arrayMaster;
+            this.tableCoachTeacherData = arrayCoach;
             this.loadingMaster = false;
             this.loadingCoach = false;
           }
         }
       });
+    },
+    sortTeacherList(userId, teacherList){
+      let array = [];
+      for(let i = 0; i < teacherList.length; i++){
+        if (userId == teacherList[i].user_id){
+          array.splice(0,0,teacherList[i]);
+        }else {
+          array.push(teacherList[i]);
+        }
+      }
+      return array;
     },
     addInfo(){
       this.modalVisible = true;
@@ -356,10 +382,11 @@ export default {
       this.$set(this.form,'buildData', [row.build_id,row.floor_num,row.classroom_id]);
       this.$set(this.form,'collegeData', [row.college_id, row.major_id]);
 
+      this.row = row;
       this.loadingMaster = true;
       this.loadingCoach = true;
       setTimeout(() => {
-        this.initTeacher();
+        this.initTeacher(null, row);
       },800);
 
       this.modalManageVisible = true;
@@ -480,6 +507,7 @@ export default {
         searchName: '',
         searchNo: ''
       };
+      this.row = {};
       this.$set(this.form,'buildData', []);
       this.$set(this.form,'collegeData', []);
       this.resetCasadeSelector('SelectorCollege');

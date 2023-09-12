@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="修改宿舍需求">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/student/stuChangeInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/student/stuChangeInfo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/student/stuGraduate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/student/stuGraduate.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/class.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/class.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,14 +184,9 @@
       <workItem from="1694071356203" duration="7000" />
       <workItem from="1694071371027" duration="607000" />
       <workItem from="1694134650071" duration="1601000" />
-      <workItem from="1694136522049" duration="20523000" />
-    </task>
-    <task id="LOCAL-00071" summary="合同管理">
-      <created>1686807935820</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1686807935820</updated>
+      <workItem from="1694136522049" duration="21188000" />
+      <workItem from="1694394084737" duration="3307000" />
+      <workItem from="1694499440034" duration="3915000" />
     </task>
     <task id="LOCAL-00072" summary="合同管理">
       <created>1686812888729</created>
@@ -528,7 +524,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694161349534</updated>
     </task>
-    <option name="localTasksCounter" value="120" />
+    <task id="LOCAL-00120" summary="修改宿舍需求">
+      <created>1694165132263</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1694165132263</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
