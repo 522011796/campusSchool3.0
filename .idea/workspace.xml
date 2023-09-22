@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="修改班级需求">
+    <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="增加归寝统计导出">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/search/MySearchOfDateGroup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/search/MySearchOfDateGroup.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/static.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/attendanceInfo/dormAttend/static.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/sliderMenu.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/sliderMenu.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/student/stuGraduate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/student/stuGraduate.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,14 +197,7 @@
       <workItem from="1695112268070" duration="14000" />
       <workItem from="1695112291461" duration="624000" />
       <workItem from="1695176671329" duration="603000" />
-      <workItem from="1695344732051" duration="2852000" />
-    </task>
-    <task id="LOCAL-00073" summary="合同管理">
-      <created>1687240803763</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1687240803763</updated>
+      <workItem from="1695344732051" duration="3771000" />
     </task>
     <task id="LOCAL-00074" summary="合同管理">
       <created>1687256203945</created>
@@ -547,7 +535,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694503472094</updated>
     </task>
-    <option name="localTasksCounter" value="122" />
+    <task id="LOCAL-00122" summary="增加归寝统计导出">
+      <created>1695348135543</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1695348135544</updated>
+    </task>
+    <option name="localTasksCounter" value="123" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -601,6 +596,7 @@
     <MESSAGE value="增加邮政编码" />
     <MESSAGE value="修改宿舍需求" />
     <MESSAGE value="修改班级需求" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改班级需求" />
+    <MESSAGE value="增加归寝统计导出" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加归寝统计导出" />
   </component>
 </project>

@@ -102,9 +102,9 @@
             :label="$t('身份证')">
             <template slot-scope="scope">
               <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.student_id}}</div>
+                <div class="text-center">{{scope.row.certificate_num}}</div>
                 <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  {{scope.row.student_id}}
+                  {{scope.row.certificate_num}}
                 </div>
               </el-popover>
             </template>
