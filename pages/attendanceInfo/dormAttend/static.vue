@@ -20,6 +20,9 @@
               </my-search-of-date>-->
 
               <my-search-of-date-group size="small" :show-year="false" :show-search-btn="true" :sel-date-time="searchTopTime" @click="searchTopDate" @type-click="searchTopType">
+                <span slot="left">
+                  <el-button class="layout-item" size="small" type="warning"  icon="el-icon-download" @click="expandInfo($event)">{{$t("导出")}}</el-button>
+                </span>
                 <span slot="other">
                   <el-input size="small" :placeholder="$t('姓名/学号')" :clearable="true" v-model="searchKey" class="layout-item width-150"></el-input>
                 </span>
@@ -684,6 +687,42 @@
       },
       searchTopType(data){
 
+      },
+      expandInfo(){
+        let url = "";
+        let params = {
+          page: 0,
+          num: 0,
+          collegeId: this.searchCollege,
+          majorId: this.searchMajor,
+          grade: this.searchGrade,
+          classId: this.searchClass,
+          keyWord: this.searchKey,
+        };
+        if (this.searchType != -1){
+          params['signStatus'] = this.searchType;
+        }
+        //时间类型
+        if (this.searchTimeData.timeUnit == 1){
+          let day = this.searchTimeData.value;
+          params['busiTime'] = day;
+          params['timeUnit'] = 3;
+        }else if (this.searchTimeData.timeUnit == 2){
+          params['weekNum'] = this.searchTimeData.value;
+          params['timeUnit'] = 2;
+        }else if (this.searchTimeData.timeUnit == 3){
+          params['queryDate'] = this.searchTimeData.value+"-01";
+          params['timeUnit'] = 4;
+        }else if (this.searchTimeData.timeUnit == 5){
+          params['timeUnit'] = 1;
+        }else {
+          let day = this.$moment(new Date()).format("YYYY-MM-DD");
+          params['busiTime'] = this.$moment(new Date()).format("YYYY-MM-DD");
+          params['timeUnit'] = 3;
+        }
+        params = this.$qs.stringify(params);
+        url = common.student_analysis_bed_static_export;
+        window.open(url+"?"+params, "_self");
       },
       changeStatus(type){
         this.searchType = type;

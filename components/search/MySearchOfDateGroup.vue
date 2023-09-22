@@ -22,6 +22,7 @@
 
       <el-col :span="16">
         <div class="text-right layout-inline">
+          <slot name="left"></slot>
           <span>
             <my-date-picker class="layout-item" v-if="searchDateType == 1" :size="size" :sel-value="searchCurrentDatteTime" @change="handleSearchChangeTime($event)"></my-date-picker>
 

@@ -767,7 +767,7 @@
           },
           {
             "name": "归寝统计",
-            "key": "static",
+            "key": "dormStatic",
             "id": 42200,
             "top": "attendanceInfo",
             "path": "/attendanceInfo/dormAttend/static"
