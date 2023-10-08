@@ -9,7 +9,7 @@ export default {
         ],
         studentId: [
           { required: true, message: this.$t("请输入学号"), trigger: 'blur' },
-          { validator: rules.FormValidate.Form().validatesn1_10Reg, trigger: 'blur' }
+          { validator: rules.FormValidate.Form().validatesn1_30Reg, trigger: 'blur' }
         ],
         sex: [
           { required: true, message: this.$t("请选择性别"), trigger: 'change' }

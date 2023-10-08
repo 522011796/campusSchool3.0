@@ -16,6 +16,8 @@ let n1_10Reg = /^([1-9][0-9]{0,9})$/;
 let all1_20Reg = /^[\u4e00-\u9fa5a-zA-Z0-9]{1,20}$/;
 //1-10位字母、数字
 let sn1_10Reg = /^[a-zA-Z0-9]{1,10}$/;
+//1-30位字母、数字
+let sn1_30Reg = /^[a-zA-Z0-9]{1,30}$/;
 //1-20位字母、数字、中文及特殊字符
 let allOther1_20Reg = /^[\u4e00-\u9fa5a-zA-Z0-9!@#$%^&*-_,，、。；;()（）\.]{1,20}$/;
 //1-30位字母、数字、中文及特殊字符，不能数字、空格、点开头
@@ -188,6 +190,14 @@ let FormValidate = (function () {
       validatesn1_10Reg (rule, value, callback) {
         if (value && !sn1_10Reg.test(value)) {
           callback(new Error('请输入1-10位数字、字母'))
+        } else {
+          callback()
+        }
+      },
+      // 1-30位字母、数字
+      validatesn1_30Reg (rule, value, callback) {
+        if (value && !sn1_30Reg.test(value)) {
+          callback(new Error('请输入1-30位数字、字母'))
         } else {
           callback()
         }
