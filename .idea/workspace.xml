@@ -9,8 +9,9 @@
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/validater/rules.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/rules.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/validater/studentValidater.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/studentValidater.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/class/classChecked.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/class/classChecked.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/homework/homework.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/homework/homework.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,14 +210,9 @@
       <workItem from="1696649513835" duration="140000" />
       <workItem from="1696661186405" duration="45000" />
       <workItem from="1696661711431" duration="10000" />
-      <workItem from="1696734099659" duration="148000" />
-    </task>
-    <task id="LOCAL-00075" summary="合同管理">
-      <created>1687257881590</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1687257881590</updated>
+      <workItem from="1696734099659" duration="276000" />
+      <workItem from="1696832747166" duration="58000" />
+      <workItem from="1696833396949" duration="1280000" />
     </task>
     <task id="LOCAL-00076" summary="合同管理">
       <created>1687329906732</created>
@@ -554,7 +550,14 @@
       <option name="project" value="LOCAL" />
       <updated>1695349283782</updated>
     </task>
-    <option name="localTasksCounter" value="124" />
+    <task id="LOCAL-00124" summary="增加归寝统计导出">
+      <created>1696734290652</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1696734290653</updated>
+    </task>
+    <option name="localTasksCounter" value="125" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

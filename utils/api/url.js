@@ -232,6 +232,7 @@ export const common = {
   qtzt_analysis_static_set: '/proxy/course/quantization/statconf-save',//量化统计设置
   qtzt_analysis_static_set_query: '/proxy/course/quantization/statconf-query',//量化统计设置查询
   qtzt_analysis_static_set_query_export: '/proxy/course/quantization/query-qtzt-class-statistic-export',//量化统计--导出
+  qtzt_analysis_whole_user_export: '/proxy/course/quantization/qtzt-query-whole-user-export',//量化统计--导出全部
 
   local_pad_page: '/proxy/school/device/pad/page',//本地平板查询
   local_pad_sn: '/proxy/school/device/pad/add/get/sn',//本地平板sn查询

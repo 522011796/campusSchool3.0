@@ -34,6 +34,7 @@
                 <tab-group-button size="small" :options='[{label:$t("全部"), value:"1", extra: checkData.checkStatusTotal},{label:$t("已检查"), value: "2", extra: checkData.checkStatusTrue},{label:$t("未检查"), value: "3", extra: checkData.checkStatusFalse}]' @click="checkTypeInfo"></tab-group-button>
               </el-col>
               <el-col :span="16" class="text-right">
+                <el-button size="small" type="warning"  icon="el-icon-download" @click="exportInfo($event)">{{$t("导出")}}</el-button>
                 <my-date-picker size="small" :sel-value="searchTime" @change="handleChangeTime($event,1)"></my-date-picker>
                 <my-input-button size="small" plain width-class="width: 200px" type="success" :placeholder="$t('请输入班级')" :clearable="true" @click="search"></my-input-button>
               </el-col>
@@ -610,6 +611,24 @@
             MessageError(res.data.desc);
           }
         });
+      },
+      exportInfo(){
+        let url = "";
+        let params = {
+          page: 1,
+          num: 99999,
+          className: this.searchKey,
+          realName: this.searchKey,
+          collegeId: this.searchCollege,
+          majorId: this.searchMajor,
+          grade: this.searchGrade,
+          classId: this.searchClass,
+          busiTime: this.searchTime,
+          checkType: 2
+        };
+        params = this.$qs.stringify(params);
+        url = common.qtzt_analysis_whole_user_export;
+        window.open(url+"?"+params, "_self");
       },
       saveInfo(item, status){
         let params = {
