@@ -7,11 +7,10 @@
     <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="增加归寝统计导出">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/class/classChecked.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/class/classChecked.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/homework/homework.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/homework/homework.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/api/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/stuAuth.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/stuAuth.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/validater/stuAuthValidater.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/stuAuthValidater.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,14 +211,15 @@
       <workItem from="1696661711431" duration="10000" />
       <workItem from="1696734099659" duration="276000" />
       <workItem from="1696832747166" duration="58000" />
-      <workItem from="1696833396949" duration="1280000" />
-    </task>
-    <task id="LOCAL-00076" summary="合同管理">
-      <created>1687329906732</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1687329906733</updated>
+      <workItem from="1696833396949" duration="2557000" />
+      <workItem from="1696910596976" duration="26000" />
+      <workItem from="1696931587658" duration="205000" />
+      <workItem from="1696990736140" duration="1103000" />
+      <workItem from="1697015288784" duration="367000" />
+      <workItem from="1697015686337" duration="324000" />
+      <workItem from="1697077202948" duration="3125000" />
+      <workItem from="1697103361930" duration="1060000" />
+      <workItem from="1697158832244" duration="7050000" />
     </task>
     <task id="LOCAL-00077" summary="报销管理">
       <created>1687337287738</created>
@@ -557,7 +557,14 @@
       <option name="project" value="LOCAL" />
       <updated>1696734290653</updated>
     </task>
-    <option name="localTasksCounter" value="125" />
+    <task id="LOCAL-00125" summary="增加归寝统计导出">
+      <created>1696837059934</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1696837059934</updated>
+    </task>
+    <option name="localTasksCounter" value="126" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -180,13 +180,58 @@
     </dialog-normal>
 
     <dialog-normal :visible="modalAuthVisible" :title="tipsText" @close="closeDialog" @right-close="cancelDialog">
-      <div class="margin-top-10">
+      <div class="margin-top-10 custom-textarea-inner">
         <el-form :model="formAuth" :rules="rulesAuth" ref="formAuth" label-width="140px">
           <el-form-item :label="$t('功能启用')">
+            <label slot="label" class="font-bold">{{$t('功能启用')}}</label>
             <el-switch v-model="formAuth.switch" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
           </el-form-item>
-          <el-form-item :label="$t('提示信息')" prop="content">
-            <el-input type="textarea" :rows="4" v-model="formAuth.content" class="width-260"></el-input>
+          <el-form-item :label="$t('提示信息')" :prop='formAuth.switch == true ? "content" : "empty"'>
+            <el-input type="textarea" :rows="2" v-model="formAuth.content" class="width-260" :disabled="!formAuth.switch"></el-input>
+          </el-form-item>
+          <el-form-item :label="$t('号段白名单')">
+            <div slot="label">
+              <label class="font-bold">{{$t('号段白名单')}}</label>
+            </div>
+            <label class="color-muted">({{$t('多个号段之间请用 | 隔开')}})</label>
+          </el-form-item>
+          <el-form-item :label="$t('手机号段')">
+            <el-input type="textarea" :rows="2" v-model="formAuth.whiteMobileList" class="width-260" :disabled="!formAuth.switch"></el-input>
+          </el-form-item>
+          <el-form-item :label="$t('定时认证')">
+            <label slot="label" class="font-bold">{{$t('定时认证')}}</label>
+            <el-switch v-model="formAuth.timeAuthEnable" active-color="#13ce66" inactive-color="#ff4949" :disabled="!formAuth.switch"></el-switch>
+          </el-form-item>
+          <el-form-item :label="$t('周期')" :prop='formAuth.timeAuthEnable == true ? "timeAuthRange" : "empty"'>
+            <el-radio-group v-model="formAuth.timeAuthRange" :disabled="!formAuth.timeAuthEnable || !formAuth.switch">
+              <el-radio label="3">{{$t('每天')}}</el-radio>
+              <el-radio label="2">{{$t('每周')}}</el-radio>
+              <el-radio label="4">{{$t('每月')}}</el-radio>
+              <el-radio label="6">{{$t('每年')}}</el-radio>
+            </el-radio-group>
+          </el-form-item>
+          <el-form-item :label="$t('定时停用')">
+            <div slot="label">
+              <label slot="label" class="font-bold">{{$t('定时停用')}}</label>
+            </div>
+            <el-switch v-model="formAuth.timeStopEnable" active-color="#13ce66" inactive-color="#ff4949" :disabled="!formAuth.switch"></el-switch>
+            <label class="color-muted">({{$t('号段白名单将不生效!')}})</label>
+          </el-form-item>
+          <el-form-item :label="$t('运营商')" :prop='formAuth.timeStopEnable == true ? "timeStopPhoneOwner" : "empty"'>
+            <el-checkbox-group v-model="formAuth.timeStopPhoneOwner" :disabled="!formAuth.timeStopEnable || !formAuth.switch">
+              <el-checkbox label="1">{{$t("移动")}}</el-checkbox>
+              <el-checkbox label="2">{{$t("联通")}}</el-checkbox>
+              <el-checkbox label="3">{{$t("电信")}}</el-checkbox>
+              <el-checkbox label="4">{{$t("其他")}}</el-checkbox>
+            </el-checkbox-group>
+          </el-form-item>
+          <el-form-item :label="$t('周期')" :prop='formAuth.timeStopEnable == true ? "timeStopRange" : "empty"'>
+            <el-radio-group v-model="formAuth.timeStopRange" :disabled="!formAuth.timeStopEnable || !formAuth.switch">
+              <el-radio label="3">{{$t('每天')}}</el-radio>
+              <el-radio label="2">{{$t('每周')}}</el-radio>
+              <el-radio label="4">{{$t('每月')}}</el-radio>
+              <el-radio label="6">{{$t('每年')}}</el-radio>
+            </el-radio-group>
           </el-form-item>
         </el-form>
       </div>
@@ -270,7 +315,14 @@
         },
         formAuth: {
           switch: false,
-          content: ''
+          content: '',
+          whiteMobileEnable: false,
+          whiteMobileList: '',
+          timeAuthEnable: false,
+          timeAuthRange: '',
+          timeStopEnable: false,
+          timeStopPhoneOwner: [],
+          timeStopRange: ''
         }
       }
     },
@@ -301,7 +353,14 @@
           if (res.data.data){
             this.formAuth = {
               switch: res.data.data.status,
-              content: res.data.data.des
+              content: res.data.data.des,
+              whiteMobileEnable: res.data.data.status,
+              whiteMobileList: !res.data.data.phoneSection ? '' : res.data.data.phoneSection,
+              timeAuthEnable: !res.data.data.authSwitch ? false : res.data.data.authSwitch,
+              timeAuthRange: !res.data.data.authTime ? '' : res.data.data.authTime+'',
+              timeStopEnable: !res.data.data.disableSwitch ? false : res.data.data.disableSwitch,
+              timeStopPhoneOwner: res.data.data.disableOwner && res.data.data.disableOwner != '' ? res.data.data.disableOwner.split("|") : [],
+              timeStopRange: !res.data.data.disableTime ? '' : res.data.data.disableTime+''
             };
           }
         });
@@ -403,9 +462,17 @@
         };
         this.formAuth = {
           switch: false,
-          content: ''
+          content: '',
+          whiteMobileEnable: false,
+          whiteMobileList: '',
+          timeAuthEnable: false,
+          timeAuthRange: '',
+          timeStopEnable: false,
+          timeStopPhoneOwner: [],
+          timeStopRange: ''
         };
         this.subTitle = "";
+        this.dialogLoading = false;
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
         }
@@ -451,7 +518,13 @@
             this.dialogLoading = true;
             let params = {
               status: this.formAuth.switch,
-              des: this.formAuth.content
+              des: this.formAuth.content,
+              phoneSection: this.formAuth.whiteMobileList,
+              authSwitch: this.formAuth.timeAuthEnable,
+              authTime: this.formAuth.timeAuthRange,
+              disableSwitch: this.formAuth.timeStopEnable,
+              disableOwner: this.formAuth.timeStopPhoneOwner.join("|"),
+              disableTime: this.formAuth.timeStopRange
             };
 
             url = common.phone_limit_tips_set;
@@ -481,6 +554,9 @@
       },
       selOwner(type){
         this.form.phoneOwner = type;
+      },
+      selStopOwner(type){
+        this.formAuth.timeStopPhoneOwner = type;
       },
       autoNo(){
         this.autoLoading = true;
