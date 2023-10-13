@@ -170,7 +170,8 @@
                     :data= "scope.row.deviceList"
                     header-cell-class-name="custom-table-cell-bg"
                     size="mini"
-                    style="width: 100%">
+                    style="width: 100%"
+                    :max-height="tableHeight21.height">
                     <el-table-column
                       :label="$t('名称')"
                       align="center">
@@ -474,7 +475,8 @@
             size="mini"
             :row-key="getDeviceRowKeys"
             @selection-change="handleSelectionDeviceChange"
-            style="width: 100%">
+            style="width: 100%"
+            :max-height="tableHeight21.height">
             <el-table-column
               :reserve-selection="true"
               type="selection"

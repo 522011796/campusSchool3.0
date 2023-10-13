@@ -207,6 +207,9 @@ export default {
       tableHeight20: {
         'height': ''
       },
+      tableHeight21: {
+        'height': ''
+      },
       tableMiddleHeight: {
         'height': ''
       },
@@ -447,6 +450,7 @@ export default {
         this.tableHeight18.height = window.innerHeight - 258 + 'px';
         this.tableHeight19.height = window.innerHeight - 180 + 'px';
         this.tableHeight20.height = window.innerHeight - 170 + 'px';
+        this.tableHeight21.height = window.innerHeight - 350 + 'px';
         this.tableMiddleHeight.height = window.innerHeight - 335 + 'px';
         this.divHeight["max-height"] = window.innerHeight - 205 + 'px';
         this.divHeight2["max-height"] = window.innerHeight - 235 + 'px';
