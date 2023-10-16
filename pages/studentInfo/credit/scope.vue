@@ -77,7 +77,7 @@
     <dialog-normal :visible="modalVisible" :title="$t('项目设置')" @close="closeDialog" @right-close="cancelDialog">
       <div class="margin-top-10">
         <el-form :model="form" :rules="rules" ref="form" label-width="140px">
-          <el-form-item :label="$t('学院/专业/年级')" prop="classData">
+          <el-form-item :label="$t('学院/专业/班级')" prop="classData">
             <my-cascader ref="selectorCollege" :props="{ checkStrictly: true }" :sel-value="form.classData" type="1" sub-type="3" width-style="260" @change="handleCascaderChange($event)"></my-cascader>
           </el-form-item>
           <el-form-item  :label="$t('分值')" prop="score">

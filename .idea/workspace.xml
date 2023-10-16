@@ -4,27 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="增加认证设置">
+    <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="取消年级显示">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/tree/MyElTree.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/tree/MyElTree.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/select/MyCascader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/select/MyCascader.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/treeAndList/StudentSelTreeAndListNoPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/treeAndList/StudentSelTreeAndListNoPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/treeAndList/StudentTreeAndList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/treeAndList/StudentTreeAndList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/basicInfo/class.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/class.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/basicInfo/student.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/student.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/doorAccessRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/doorAccessRecord.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/admissionManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/admissionManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/flowManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/flowManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/linkPayManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/linkPayManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/dorm/dorm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/dorm/dorm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/dorm/online.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/dorm/online.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/studentInfo/student/manage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/student/manage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/validater/studentValidater.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/studentValidater.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/credit/scope.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/credit/scope.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,14 +217,7 @@
       <workItem from="1697077202948" duration="3125000" />
       <workItem from="1697103361930" duration="1060000" />
       <workItem from="1697158832244" duration="12105000" />
-      <workItem from="1697417659369" duration="7971000" />
-    </task>
-    <task id="LOCAL-00079" summary="普通管理单">
-      <created>1687661711697</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1687661711697</updated>
+      <workItem from="1697417659369" duration="9918000" />
     </task>
     <task id="LOCAL-00080" summary="对公打款单">
       <created>1687671951157</created>
@@ -579,7 +555,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697179709688</updated>
     </task>
-    <option name="localTasksCounter" value="128" />
+    <task id="LOCAL-00128" summary="取消年级显示">
+      <created>1697427743579</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1697427743580</updated>
+    </task>
+    <option name="localTasksCounter" value="129" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -609,7 +592,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="新增规则条件" />
     <MESSAGE value="新增服务大厅模版" />
     <MESSAGE value="修改登录细节" />
     <MESSAGE value="修改后勤记录细节" />
@@ -634,6 +616,7 @@
     <MESSAGE value="修改班级需求" />
     <MESSAGE value="增加归寝统计导出" />
     <MESSAGE value="增加认证设置" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加认证设置" />
+    <MESSAGE value="取消年级显示" />
+    <option name="LAST_COMMIT_MESSAGE" value="取消年级显示" />
   </component>
 </project>
