@@ -853,7 +853,8 @@
         }else if (data.length == 3){
           this.searchStudnetCollege = data[0];
           this.searchStudnetMajor = data[1];
-          this.searchStudnetGrade = data[2];
+          //this.searchStudnetGrade = data[2];
+          this.searchStudnetClass = data[2];
         }else if (data.length == 4){
           this.searchStudnetCollege = data[0];
           this.searchStudnetMajor = data[1];

@@ -101,7 +101,7 @@
     methods: {
       async initInfo(){
         if(this.type == 1){
-          await this.getCollegeInfo(this.subType);
+          await this.getCollegeInfoNew(this.subType);
           this.data = this.dataCollege;
         }else if(this.type == 2){
           await this.getDormBuildInfo(this.subType);

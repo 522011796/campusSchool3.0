@@ -279,7 +279,8 @@
           if (this.searchTreeType == 1){
             this.commSearchCollege = data[0];
             this.commSearchMajor = data[1];
-            this.commSearchGrade = data[2];
+            //this.commSearchGrade = data[2];
+            this.commSearchClass = data[2];
           }else if (this.searchTreeType == 2) {
             this.commSearchBuild = data[0];
             this.commSearchFloor = data[1];

@@ -41,7 +41,7 @@ export default {
           { required: true, message: this.$t("请选择方式"), trigger: 'change' }
         ],
         classData: [
-          { type: 'array', required: true, min: 4, message: this.$t("请选择班级"), trigger: 'change' }
+          { type: 'array', required: true, min: 3, message: this.$t("请选择班级"), trigger: 'change' }
         ]
       }
     }

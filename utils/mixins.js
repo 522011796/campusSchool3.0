@@ -591,7 +591,7 @@ export default {
     },
     /**
      * 获取学院的list信息--新
-     * 主要用于树形菜单，下来菜单等
+     * 主要用于树形菜单,无年级，下来菜单等
      * @returns {Promise<void>}
      */
     async getCollegeInfoNew(type = 1) {

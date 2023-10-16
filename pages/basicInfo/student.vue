@@ -335,7 +335,8 @@
           claszDate: this.$moment(row.clasz_date).format("YYYY-MM-DD"),
           nativePlace: row.native_place
         };
-        this.$set(this.form, 'classData', [row.college_id, row.major_id, row.grade, row.class_id]);
+        console.log(row.college_id, row.major_id, row.class_id);
+        this.$set(this.form, 'classData', [row.college_id, row.major_id, row.class_id]);
         this.modalVisible = true;
       },
       deleteInfo(row){
@@ -417,7 +418,7 @@
               type: this.form.type,
               addAccount: 'on',
               studentCurrentStatus: this.form.status,
-              clasz: classData[3].value,
+              clasz: classData[2].value,
               collegeId: classData[0].value,
               majorId: classData[1].value,
               attendType: this.form.type,

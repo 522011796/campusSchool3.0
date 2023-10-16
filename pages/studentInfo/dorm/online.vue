@@ -226,6 +226,10 @@
         searchDate: '',
         searchStatus: '',
         uploadFileUrl: common.upload_file,
+        searchCollege: '',
+        searchMajor: '',
+        searchGrade: '',
+        searchClass: '',
         form: {
           id: '',
           buildName: '',
@@ -262,7 +266,11 @@
           addTimeBegin: this.searchDate ? this.searchDate[0] : '',
           addTimeEnd: this.searchDate ? this.searchDate[1] : '',
           searchKey: this.searchKey,
-          status: this.searchStatus
+          status: this.searchStatus,
+          collegeId: this.searchCollege,
+          majorId: this.searchMajor,
+          grade: this.searchGrade,
+          clazz: this.searchClass,
         };
         this.$axios.get(common.dorm_online_page, {params: params}).then(res => {
           if (res.data.data){
@@ -306,14 +314,31 @@
         this.visibleConfim = true;
       },
       nodeClick(data){
-        this.searchBuildId = "";
-        this.searchFloorNum = "";
-        if (data.unit == 6){
-          this.searchBuildId = data.id;
-          this.searchFloorNum = data.floorNum;
-        }else if (data.unit == 7){
-          this.searchBuildId = data.buildId;
-          this.searchFloorNum = data.floorNum;
+        // this.searchBuildId = "";
+        // this.searchFloorNum = "";
+        // if (data.unit == 6){
+        //   this.searchBuildId = data.id;
+        //   this.searchFloorNum = data.floorNum;
+        // }else if (data.unit == 7){
+        //   this.searchBuildId = data.buildId;
+        //   this.searchFloorNum = data.floorNum;
+        // }
+        // this.page = 1;
+
+        this.searchCollege = "";
+        this.searchMajor = "";
+        this.searchGrade = "";
+        this.searchClass = "";
+        if (data.unit == 1){
+          this.searchCollege = data.id;
+        }else if (data.unit == 2){
+          this.searchCollege = data.college_id;
+          this.searchMajor = data.id;
+        }else if (data.unit == 3){
+          this.searchMajor = data.major_id;
+          this.searchGrade = data.grade;
+        }else if (data.unit == 4){
+          this.searchClass = data.id;
         }
         this.page = 1;
         this.init();

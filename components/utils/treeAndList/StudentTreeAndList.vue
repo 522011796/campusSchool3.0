@@ -213,7 +213,8 @@
         }else if (data.length == 3){
           this.commSearchCollege = data[0];
           this.commSearchMajor = data[1];
-          this.commSearchGrade = data[2];
+          //this.commSearchGrade = data[2];
+          this.commSearchClass = data[2];
         }else if (data.length == 4){
           this.commSearchCollege = data[0];
           this.commSearchMajor = data[1];

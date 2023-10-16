@@ -972,7 +972,7 @@
           this.$set(this.form, 'college', [item.college_id, item.major_id]);
         }
         if (item.clasz){
-          this.$set(this.form, 'college', [item.college_id, item.major_id, item.grade, item.clasz]);
+          this.$set(this.form, 'college', [item.college_id, item.major_id, item.clasz]);
         }
         this.footerHidden = true;
         this.drawerForm = true;
@@ -1244,10 +1244,10 @@
         let url = "";
         this.$refs['form'].validate((valid) => {
           if (valid) {
-            if (this.form.college.length == 3){
-              MessageWarning("请选择到班级");
-              return;
-            }
+            // if (this.form.college.length == 3){
+            //   MessageWarning("请选择到班级");
+            //   return;
+            // }
             let params = {
               enrollId: this.form.year,
               realName: this.form.name,
@@ -1272,7 +1272,7 @@
               eduLevel: this.form.education,
               collegeId: this.form.college[0],
               majorId: this.form.college[1],
-              clasz: this.form.college.length == 4 ? this.form.college[3] : '',
+              clasz: this.form.college.length == 3 ? this.form.college[2] : '',
               eduYear: this.form.eduSystem,
               enrollTeacher: this.form.recruitingTeacher,
               enrollBatch: this.form.adBath,

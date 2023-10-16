@@ -1629,7 +1629,7 @@
         this.form.studentInfo.collegeId = data[0];
         this.form.studentInfo.majorId = data[1];
         //this.form.studentInfo.grade = data[0];
-        this.form.studentInfo.clasz = data[3];
+        this.form.studentInfo.clasz = data[2];
         this.form.classData = data;
       },
       closeDrawerDialog(event){

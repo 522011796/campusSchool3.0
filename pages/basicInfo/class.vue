@@ -271,6 +271,7 @@ export default {
       searchGrade: '',
       searchMasterId: '',
       searchCoachId: '',
+      searchNo: '',
       row: {},
       form: {
         id: '',
@@ -302,7 +303,7 @@ export default {
         majorId: this.searchMajorId,
         grade: this.searchGrade,
         className: this.form.searchName,
-        classNo: this.form.searchNo
+        classNo: this.searchNo
       };
       this.$axios.get(common.class_list, {params: params}).then(res => {
         if (res.data.data){
@@ -418,14 +419,15 @@ export default {
       this.searchCollegeId = "";
       this.searchMajorId = "";
       this.searchGrade = "";
+      this.searchNo = "";
       if (data.unit == 1){
         this.searchCollegeId = data.id;
       }else if (data.unit == 2){
         this.searchCollegeId = data.college_id;
         this.searchMajorId = data.id;
-      }else if (data.unit == 3){
-        this.searchMajorId = data.major_id;
-        this.searchGrade = data.grade;
+      }else if (data.unit == 4){
+        //this.searchMajorId = data.major_id;
+        this.searchNo = data.id;
       }
       this.page = 1;
       this.init();

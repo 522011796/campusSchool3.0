@@ -9,9 +9,22 @@
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/tree/MyElTree.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/tree/MyElTree.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/select/MyCascader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/select/MyCascader.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/treeAndList/StudentSelTreeAndListNoPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/treeAndList/StudentSelTreeAndListNoPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/treeAndList/StudentTreeAndList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/treeAndList/StudentTreeAndList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/basicInfo/deviceArea.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/deviceArea.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/class.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/class.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/basicInfo/student.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/basicInfo/student.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/doorAccessRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logisticsInfo/doorAccess/doorAccessRecord.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/admissionManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/admissionManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/flowManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/flowManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/newStudent/manage/linkPayManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/newStudent/manage/linkPayManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/dorm/dorm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/dorm/dorm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/dorm/online.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/dorm/online.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/studentInfo/student/manage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/studentInfo/student/manage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/validater/studentValidater.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validater/studentValidater.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,14 +233,8 @@
       <workItem from="1697015686337" duration="324000" />
       <workItem from="1697077202948" duration="3125000" />
       <workItem from="1697103361930" duration="1060000" />
-      <workItem from="1697158832244" duration="11393000" />
-    </task>
-    <task id="LOCAL-00078" summary="报销管理">
-      <created>1687337994570</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1687337994570</updated>
+      <workItem from="1697158832244" duration="12105000" />
+      <workItem from="1697417659369" duration="7971000" />
     </task>
     <task id="LOCAL-00079" summary="普通管理单">
       <created>1687661711697</created>
@@ -565,7 +572,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697166561628</updated>
     </task>
-    <option name="localTasksCounter" value="127" />
+    <task id="LOCAL-00127" summary="增加认证设置">
+      <created>1697179709688</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1697179709688</updated>
+    </task>
+    <option name="localTasksCounter" value="128" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

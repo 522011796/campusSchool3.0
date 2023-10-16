@@ -1066,7 +1066,8 @@ export default {
       }else if (data.length == 3){
         this.searchStudnetDrawerCollege = data[0];
         this.searchStudnetDrawerMajor = data[1];
-        this.searchStudnetDrawerGrade = data[2];
+        //this.searchStudnetDrawerGrade = data[2];
+        this.searchStudnetDrawerClass = data[2];
       }else if (data.length == 4){
         this.searchStudnetDrawerCollege = data[0];
         this.searchStudnetDrawerMajor = data[1];
