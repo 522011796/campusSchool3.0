@@ -744,6 +744,7 @@
       },
       search(data){
         this.searchKey = data.input;
+        this.page = 1;
         this.init();
       },
       fliterTable(value, row, column){
