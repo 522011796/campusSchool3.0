@@ -444,7 +444,8 @@
         }else if (data.length == 3){
           this.searchCollege = data[0];
           this.searchMajor = data[1];
-          this.searchGrade = data[2];
+          // this.searchGrade = data[2];
+          this.searchClass = data[2];
         }else if (data.length == 4){
           this.searchCollege = data[0];
           this.searchMajor = data[1];
