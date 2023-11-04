@@ -34,8 +34,8 @@
         @node-click="handleNodeClick"
         @check-change="handleCheckChange">
 
-        <el-tooltip effect="dark" :content="node.label" placement="right"  slot-scope="{ node, data }" >
-          <span class="span-ellipsis">{{node.label}}</span>
+        <el-tooltip effect="dark" :content="node.label" placement="right" slot-scope="{ node, data }" >
+          <span class="tree-text">{{node.label}}</span>
         </el-tooltip>
       </el-tree>
     </div>
@@ -262,5 +262,12 @@
   text-align: left;
   font-size: 14px;
   color: #606266;
+}
+.tree-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  width: 100%;
 }
 </style>
