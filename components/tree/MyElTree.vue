@@ -33,6 +33,10 @@
         :highlight-current="selectCampusAll == true ? false : true"
         @node-click="handleNodeClick"
         @check-change="handleCheckChange">
+
+        <el-tooltip effect="dark" :content="node.label" placement="right"  slot-scope="{ node, data }" >
+          <span class="span-ellipsis">{{node.label}}</span>
+        </el-tooltip>
       </el-tree>
     </div>
   </div>
