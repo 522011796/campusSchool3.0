@@ -53,7 +53,7 @@
                   style="width: 220px">
                 </el-date-picker>
                 <my-select class="layout-item width-100" size="small" :placeholder="$t('状态')" :sel-value="searchStatus" :options="filterDetailStatus" :clearable="true" @change="handleTypeChange($event, 3)"></my-select>
-                <my-input-button ref="teacher width-150" size="small" plain width-class="width: 180px" type="success" :clearable="true" :placeholder="$t('编号/关键字')" class="layout-item" @click="searchDetail"></my-input-button>
+                <my-input-button ref="teacher width-150" size="small" plain width-class="width: 240px" type="success" :show-select="searchOptionsType && searchOptionsType.length > 0 ? true : false" :options="searchOptionsType" :clearable="true" :placeholder="$t('编号/关键字')" class="layout-item" @click="searchDetail"></my-input-button>
               </div>
             </el-col>
           </el-row>
@@ -961,6 +961,7 @@
         searchDetailKey: '',
         searchType: '',
         searchStatus: '',
+        searchOptionsType: [],
         searchAuditStatus: '',
         beginTime: '',
         endTime: '',
@@ -1010,7 +1011,7 @@
           formId: this.formId,
           appletId: this.appletId,
           status: this.searchAuditStatus,
-          searchKey: this.searchDetailKey,
+          searchKey: this.searchDetailKey['input'],
           beginTime: this.beginTime,
           endTime: this.endTime,
         };
@@ -1022,6 +1023,11 @@
           //params['grade'] = this.collegeData[2];
           params['classId'] = this.collegeData[3];
         }
+
+        if (this.searchOptionsType.length > 0 && this.searchDetailKey['select'] != -1){
+          params['searchFiled'] = this.searchDetailKey['select'];
+        }
+
         let applyContentArr = [];
         let applyContent = [];
         this.$axios.get(common.server_form_template_form_apply_page, {params: params}).then(res => {
@@ -1043,6 +1049,21 @@
             this.totalDetail = res.data.data.total;
             this.numDetail = res.data.data.num;
             this.pageDetail = res.data.data.page;
+
+            let optionsType = [];
+            if (res.data.data.title && res.data.data.title.length > 0) {
+              for(let i = 0; i < res.data.data.title.length; i++){
+                optionsType.push({
+                  label: res.data.data.title[i],
+                  value: res.data.data.field[i]
+                });
+              }
+              optionsType.push({
+                label: "其他",
+                value: -1
+              });
+              this.searchOptionsType = optionsType;
+            }
           }
         });
       },
@@ -1144,6 +1165,7 @@
         this.college = '';
         this.departmentPath = '';
         this.collegeData = [];
+        this.searchOptionsType = [];
         this.initApp();
       },
       expandInfo(){
@@ -1325,7 +1347,7 @@
         this.initApp(data);
       },
       searchDetail(data){
-        this.searchDetailKey = data.input;
+        this.searchDetailKey = data;
         this.pageDetail = 1;
         this.init();
       },

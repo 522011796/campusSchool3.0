@@ -8,7 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/teachInfo/teach/searchTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/teachInfo/teach/searchTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appData.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,14 +228,12 @@
       <workItem from="1697590084200" duration="614000" />
       <workItem from="1697608138959" duration="606000" />
       <workItem from="1699066070895" duration="3271000" />
-      <workItem from="1699069717041" duration="248000" />
-    </task>
-    <task id="LOCAL-00084" summary="收款单">
-      <created>1687774446493</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1687774446493</updated>
+      <workItem from="1699069717041" duration="300000" />
+      <workItem from="1699322345749" duration="2497000" />
+      <workItem from="1699347322173" duration="631000" />
+      <workItem from="1699362560228" duration="10000" />
+      <workItem from="1699598302395" duration="645000" />
+      <workItem from="1699836893368" duration="2589000" />
     </task>
     <task id="LOCAL-00085" summary="收款单">
       <created>1687943368270</created>
@@ -572,7 +571,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699069620516</updated>
     </task>
-    <option name="localTasksCounter" value="133" />
+    <task id="LOCAL-00133" summary="取消年级显示">
+      <created>1699069998988</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1699069998988</updated>
+    </task>
+    <option name="localTasksCounter" value="134" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
