@@ -122,7 +122,14 @@
               <span v-if="filterOnlineStatusText != ''" class="font-size-12 color-disabeld">{{filterOnlineStatusText}}</span>
             </template>
             <template slot-scope="scope">
-              <div v-if="scope.row.online == false" class="color-warning">{{$t("离线")}}</div>
+              <div v-if="scope.row.online == false" class="color-warning">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{$moment(scope.row.uptime).format('YYYY-MM-DD HH:mm:ss')}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    {{$t("离线")}}
+                  </div>
+                </el-popover>
+              </div>
               <div v-if="scope.row.online == true" class="color-success">
                 <span v-if="scope.row.user_sync_count > 0" style="position: relative; top:-8px;">{{$t("在线")}}</span>
                 <span v-else>{{$t("在线")}}</span>
