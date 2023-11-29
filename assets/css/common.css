@@ -1071,6 +1071,9 @@ ul{
 .custom-button-search .el-button--small, .el-button--small.is-round {
   padding: 9px 5px;
 }
+.custom-button-mini .el-button--mini, .el-button--small.is-mini {
+  padding: 9px 2px;
+}
 .custom-select-tag .el-tag.el-tag--info {
   white-space: nowrap;
   text-overflow: ellipsis;

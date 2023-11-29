@@ -277,6 +277,8 @@
         this.flowListData = [];
         for (let j = 0; j < formProcess.length; j++){
           let users = [];
+          let trangeUsers = [];
+          let jrangeUsers = [];
           if (formProcess[j].ntype == 'handle'){
             ntype = 'audit';
           }else if (formProcess[j].ntype == 'cc'){
@@ -284,6 +286,7 @@
           }else if (formProcess[j].ntype == 'sub'){
             ntype = 'sub';
           }
+
           let obj = {
             type: formProcess[j].nChildType,
             extra: ntype,
@@ -307,6 +310,16 @@
             cType: formProcess[j].cType,
             atype: formProcess[j].atype,
             sign: formProcess[j].sign ? formProcess[j].sign : false,
+            aname: formProcess[j].aname,
+            notaname: formProcess[j].notaname,
+            uname: formProcess[j].uname,
+            jname: formProcess[j].jname,
+            tname: formProcess[j].tname,
+            join: formProcess[j].join ? formProcess[j].join : false,
+            trans: formProcess[j].trans ? formProcess[j].trans : false,
+            trange: formProcess[j].trange,
+            jtype: formProcess[j].jtype != undefined ? formProcess[j].jtype : true,
+            jrange: formProcess[j].jrange,
           };
 
           for (let k = 0; k < formProcess[j].hid.length; k++){
@@ -316,6 +329,30 @@
             });
           }
           obj['users'] = users;
+
+          if (formProcess[j].trange && formProcess[j].trange.length > 0){
+            for (let k = 0; k < formProcess[j].trange.length; k++){
+              trangeUsers.push({
+                user_id: formProcess[j].trange[k]['userId'],
+                real_name: formProcess[j].trange[k]['realName'],
+                userId: formProcess[j].trange[k]['userId'],
+                realName: formProcess[j].trange[k]['realName'],
+              });
+            }
+          }
+          obj['trange'] = trangeUsers;
+
+          if (formProcess[j].jrange && formProcess[j].jrange.length > 0){
+            for (let k = 0; k < formProcess[j].jrange.length; k++){
+              jrangeUsers.push({
+                user_id: formProcess[j].jrange[k]['userId'],
+                real_name: formProcess[j].jrange[k]['realName'],
+                userId: formProcess[j].jrange[k]['userId'],
+                realName: formProcess[j].jrange[k]['realName'],
+              });
+            }
+          }
+          obj['jrange'] = jrangeUsers;
 
           this.flowListData.push(obj);
         }
@@ -416,10 +453,23 @@
         this.serverDataIndex = '';
 
         if (this.$refs['flow']){
-          this.$refs.flow.flowDetailData = {};
+          this.$refs.flow.flowDetailData = {
+            allowShow: false,
+            allowMuti: false,
+            rejectShow: false,
+            rejectMuti: false,
+            urge: false,
+            join: false,
+            trans: false,
+          };
           this.$refs.flow.approverUsers = [];
           this.$refs.flow.formFieldList = [];
           this.$refs.flow.flowDetailIndex = '';
+          this.$refs.flow.anameStatus = false;
+          this.$refs.flow.notnameStatus = false;
+          this.$refs.flow.unameStatus = false;
+          this.$refs.flow.jnameStatus = false;
+          this.$refs.flow.tnameStatus = false;
         }
         if (this.$refs['form']){
           this.$refs['form'].resetFields();
@@ -495,10 +545,13 @@
         let ntype = '';
         let htype = '';
         let atype = '';
+        let jtype = '';
         let pay = '';
         let hrole= [];
         let hid = [];
         let hname = [];
+        let trange = [];
+        let jrange = [];
         let flowDataArray = [];
         let flowDataOjb = {};
         if (flowData.length == 0){
@@ -512,6 +565,8 @@
         for (let i = 0; i < flowData.length; i++){
           hid = [];
           hname = [];
+          trange = [];
+          jrange = [];
           if (flowData[i].extra == 'audit'){
             ntype = 'handle';
           }else if (flowData[i].extra == 'send'){
@@ -543,6 +598,35 @@
               hname.push(flowDataUsers[j].real_name);
             }
           }
+
+          if (flowData[i].join == true && flowData[i].jrange.length == 0){
+            MessageWarning(this.$t("请选择转签人员范围！"));
+            return;
+          }
+
+          if (flowData[i].trans == true && flowData[i].trange.length == 0){
+            MessageWarning(this.$t("请选择加签人员范围！"));
+            return;
+          }
+
+          if (flowData[i].trange && flowData[i].trange.length > 0){
+            for (let j = 0; j < flowData[i].trange.length; j++){
+              trange .push({
+                userId: flowData[i].trange[j].user_id,
+                realName: flowData[i].trange[j].real_name,
+              });
+            }
+          }
+
+          if (flowData[i].jrange && flowData[i].jrange.length > 0){
+            for (let j = 0; j < flowData[i].jrange.length; j++){
+              jrange .push({
+                userId: flowData[i].jrange[j].user_id,
+                realName: flowData[i].jrange[j].real_name,
+              });
+            }
+          }
+
           let obj = {
             ntype: ntype,
             nChildType: flowData[i].type,
@@ -565,7 +649,17 @@
             urge: flowData[i].urge,
             cType: flowData[i].cType,
             atype: flowData[i].atype,
-            sign: flowData[i].sign
+            sign: flowData[i].sign,
+            aname: flowData[i].aname,
+            notaname: flowData[i].notaname,
+            uname: flowData[i].uname,
+            jname: flowData[i].jname,
+            tname: flowData[i].tname,
+            join: flowData[i].join,
+            trans: flowData[i].trans,
+            trange: trange,
+            jtype: flowData[i].jtype,
+            jrange: jrange
           }
           if (flowData[i].extra == 'sub'){
             obj['pId'] = flowData[i].pId;

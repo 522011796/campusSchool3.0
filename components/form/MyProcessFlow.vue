@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="form-set-main" :style="drawHeight3">
-      <div class="pull-right form-set-right" style="overflow-y: auto">
+      <div class="pull-right form-set-right" style="overflow-y: auto;margin-bottom: 10px">
         <div class="header-block padding-lr-10 border-bottom-1">
           <el-row>
             <el-col :span="12" class="text-center">
@@ -158,6 +158,21 @@
                   <el-row class="margin-top-5">
                     <el-col :span="16">
                       <span>{{$t("同意")}}</span>
+                      <span v-if="anameStatus == false">
+                        <i class="fa fa-edit color-grand" @click="changeEditName($event, 1)"></i>
+                        <label>{{flowDetailData.aname}}</label>
+                      </span>
+                      <span>
+                        <template v-if="anameStatus == true">
+                          <el-input size="mini" style="width: 80px" v-model="flowDetailData.aname" maxlength="4"></el-input>
+                          <el-button size="mini" type="text">
+                            <label class="color-grand" @click="okEditName($event, 1)">{{$t("确定")}}</label>
+                          </el-button>
+                          <el-button size="mini" type="text" style="margin-left: 0px !important;">
+                            <label class="color-danger" @click="cancelEditName($event, 1)">{{$t("取消")}}</label>
+                          </el-button>
+                        </template>
+                      </span>
                     </el-col>
                     <el-col :span="8" class="text-center">
                       <el-row>
@@ -180,6 +195,21 @@
                   <el-row class="margin-top-5">
                     <el-col :span="16">
                       <span>{{$t("驳回")}}</span>
+                      <span v-if="notnameStatus == false">
+                        <i class="fa fa-edit color-grand" @click="changeEditName($event, 2)"></i>
+                        <label>{{flowDetailData.notaname}}</label>
+                      </span>
+                      <span>
+                        <template v-if="notnameStatus == true">
+                          <el-input size="mini" style="width: 80px" v-model="flowDetailData.notaname" maxlength="4"></el-input>
+                          <el-button size="mini" type="text">
+                            <label class="color-grand" @click="okEditName($event, 2)">{{$t("确定")}}</label>
+                          </el-button>
+                          <el-button size="mini" type="text" style="margin-left: 0px !important;">
+                            <label class="color-danger" @click="cancelEditName($event, 2)">{{$t("取消")}}</label>
+                          </el-button>
+                        </template>
+                      </span>
                     </el-col>
                     <el-col :span="8" class="text-center">
                       <el-row>
@@ -196,6 +226,21 @@
                   <el-row class="margin-top-5">
                     <el-col :span="16">
                       <span>{{$t("催办")}}</span>
+                      <span v-if="unameStatus == false">
+                        <i class="fa fa-edit color-grand" @click="changeEditName($event, 3)"></i>
+                        <label>{{flowDetailData.uname}}</label>
+                      </span>
+                      <span>
+                        <template v-if="unameStatus == true">
+                          <el-input size="mini" style="width: 80px" v-model="flowDetailData.uname" maxlength="4"></el-input>
+                          <el-button size="mini" type="text">
+                            <label class="color-grand" @click="okEditName($event, 3)">{{$t("确定")}}</label>
+                          </el-button>
+                          <el-button size="mini" type="text" style="margin-left: 0px !important;">
+                            <label class="color-danger" @click="cancelEditName($event, 3)">{{$t("取消")}}</label>
+                          </el-button>
+                        </template>
+                      </span>
                     </el-col>
                     <el-col :span="8" class="text-center">
                       <el-row>
@@ -292,6 +337,104 @@
 <!--                  </el-row>-->
 <!--                </div>-->
 <!--              </div>-->
+              <el-row class="margin-top-5">
+                <el-col :span="16">
+                  <span>{{$t("加签")}}</span>
+                  <span v-if="jnameStatus == false">
+                        <i class="fa fa-edit color-grand" @click="changeEditName($event, 4)"></i>
+                        <label>{{flowDetailData.jname}}</label>
+                      </span>
+                  <span>
+                        <template v-if="jnameStatus == true">
+                          <el-input size="mini" style="width: 80px" v-model="flowDetailData.jname" maxlength="4"></el-input>
+                          <el-button size="mini" type="text">
+                            <label class="color-grand" @click="okEditName($event, 4)">{{$t("确定")}}</label>
+                          </el-button>
+                          <el-button size="mini" type="text" style="margin-left: 0px !important;">
+                            <label class="color-danger" @click="cancelEditName($event, 4)">{{$t("取消")}}</label>
+                          </el-button>
+                        </template>
+                      </span>
+                </el-col>
+                <el-col :span="8" class="text-center">
+                  <el-row>
+                    <el-col :span="12" class="text-center">
+                      &nbsp;
+                    </el-col>
+                    <el-col :span="12" class="text-center">
+                      <el-checkbox v-model="flowDetailData.join"></el-checkbox>
+                    </el-col>
+                  </el-row>
+                </el-col>
+              </el-row>
+              <template v-if="flowDetailData.join == true">
+                <div class="extra-item-block layout-inline">
+                  <my-select class="layout-item" size="mini" :placeholder="$t('类型')" :sel-value="flowDetailData.jtype" width-style="125" :options="jTypeOptions" @change="handleJoinType($event)"></my-select>
+                  <el-popover
+                      class="layout-item"
+                      popper-class="custom-popper-class-form"
+                      placement="top"
+                      width="700"
+                      trigger="click"
+                      @show="handleShowTeacher(3)">
+                    <div style="height: 320px">
+                      <teacher-tree-and-list-no-page ref="joinTeacherRef" user-type="user" :sel-arr="flowDetailData.jrange" set-type="check" @select="handleSelUser($event, 3)"></teacher-tree-and-list-no-page>
+                    </div>
+                    <el-button slot="reference" type="success" style="width: 125px" plain size="small" @click="loadingShow(3)">
+                      <i v-if="refreshTeacherStatus == true" class="fa fa-refresh fa-spin"></i>
+                      {{$t("选择范围")}}({{$t("人数")}}:{{jrangeUsers.length}})
+                    </el-button>
+                  </el-popover>
+                </div>
+              </template>
+              <el-row class="margin-top-5">
+                <el-col :span="16">
+                  <span>{{$t("转签")}}</span>
+                  <span v-if="tnameStatus == false">
+                    <i class="fa fa-edit color-grand" @click="changeEditName($event, 5)"></i>
+                    <label>{{flowDetailData.tname}}</label>
+                  </span>
+                  <span>
+                        <template v-if="tnameStatus == true">
+                          <el-input size="mini" style="width: 80px" v-model="flowDetailData.tname" maxlength="4"></el-input>
+                          <el-button size="mini" type="text">
+                            <label class="color-grand" @click="okEditName($event, 5)">{{$t("确定")}}</label>
+                          </el-button>
+                          <el-button size="mini" type="text" style="margin-left: 0px !important;">
+                            <label class="color-danger" @click="cancelEditName($event, 5)">{{$t("取消")}}</label>
+                          </el-button>
+                        </template>
+                      </span>
+                </el-col>
+                <el-col :span="8" class="text-center">
+                  <el-row>
+                    <el-col :span="12" class="text-center">
+                      &nbsp;
+                    </el-col>
+                    <el-col :span="12" class="text-center">
+                      <el-checkbox v-model="flowDetailData.trans"></el-checkbox>
+                    </el-col>
+                  </el-row>
+                </el-col>
+              </el-row>
+              <template v-if="flowDetailData.trans == true">
+                <div class="margin-top-5 padding-bottom-5">
+                  <el-popover
+                      popper-class="custom-popper-class-form"
+                      placement="top"
+                      width="700"
+                      trigger="click"
+                      @show="handleShowTeacher(2)">
+                    <div style="height: 320px">
+                      <teacher-tree-and-list-no-page ref="trangeTeacherRef" user-type="user" :sel-arr="flowDetailData.trange" set-type="check" @select="handleSelUser($event, 2)"></teacher-tree-and-list-no-page>
+                    </div>
+                    <el-button slot="reference" type="success" style="width: 100%" plain size="small" @click="loadingShow(2)">
+                      <i v-if="refreshTeacherStatus == true" class="fa fa-refresh fa-spin"></i>
+                      {{$t("选择人员范围")}}({{$t("人数")}}:{{trangeUsers.length}})
+                    </el-button>
+                  </el-popover>
+                </div>
+              </template>
             </template>
           </template>
 
@@ -543,6 +686,12 @@
     },
     data() {
       return {
+        checkFalseStatus: false,
+        anameStatus: false,
+        notnameStatus: false,
+        unameStatus: false,
+        jnameStatus: false,
+        tnameStatus: false,
         checkRight1All: false,
         checkRight2All: false,
         popVisible: false,
@@ -554,6 +703,8 @@
         approverUsers: [],
         formFieldList: [],
         processOptions: [],
+        trangeUsers: [],
+        jrangeUsers: [],
         roleGroup: {},
         allowShowTypeOptions: [
           {label: this.$t("同意"), text: this.$t("同意"), value: ''},
@@ -562,6 +713,10 @@
         allowShowSignOptions: [
           {label: this.$t("签名"), text: this.$t("签名"), value: true},
           {label: this.$t("不签名"), text: this.$t("不签名"), value: false}
+        ],
+        jTypeOptions: [
+          {label: this.$t("前加签"), text: this.$t("前加签"), value: true},
+          {label: this.$t("后加签"), text: this.$t("后加签"), value: false}
         ],
         auditFlowType: [
           {label: this.$t("固定人审批"), text: this.$t("固定人审批"), value: 1},
@@ -579,7 +734,6 @@
     },
     methods: {
       initProcess(type, id){
-        console.log(id);
         let params = {
           processType: type
         };
@@ -627,6 +781,8 @@
           hType: '',
           hrole: [],
           hName: '',
+          trangeName: '',
+          jrangeName: '',
           andor: 'or',
           waitName: false,
           allowShow: false,
@@ -646,7 +802,17 @@
           pName: '',
           cType: '',
           atype: '',
-          sign: false
+          jtype: '',
+          sign: false,
+          aname: '',
+          notaname: '',
+          uname: '',
+          jname: '',
+          tname: '',
+          join: false,
+          trans: false,
+          trangeUsers: [],
+          jtrangeUsers: [],
         };
         this.flowData.splice(index, 0, obj);
         this.selFlowItemBlock(null, obj, index);
@@ -667,6 +833,9 @@
       handleAllowType(data){
         this.flowDetailData.atype = data;
       },
+      handleJoinType(data){
+        this.flowDetailData.jtype = data;
+      },
       handleAllowSign(data){
         this.flowDetailData.sign = data;
       },
@@ -676,6 +845,8 @@
       selFlowItemBlock(event, data, index){
         this.flowDetailData = data;
         this.approverUsers = data.users;
+        this.trangeUsers = data.trange;
+        this.jrangeUsers = data.jrange;
         this.flowDetailIndex = index;
         let ruleList = [];
         this.initProcess(this.formId.process_type, this.formId.id);
@@ -729,12 +900,30 @@
               clearTimeout(timer);
             },1000);
             break;
+          case 2:
+            this.refreshTeacherStatus = true;
+            timer = setTimeout(() => {
+              this.refreshTeacherStatus = false;
+              clearTimeout(timer);
+            },1000);
+            break;
+          case 3:
+            this.refreshTeacherStatus = true;
+            timer = setTimeout(() => {
+              this.refreshTeacherStatus = false;
+              clearTimeout(timer);
+            },1000);
+            break;
         }
       },
       handleShowTeacher(type){
         setTimeout(()=>{
           if (type == 1){
             this.$refs.popverTeacherRef._handleOpen();
+          }else if (type == 2){
+            this.$refs.trangeTeacherRef._handleOpen();
+          }else if (type == 3){
+            this.$refs.joinTeacherRef._handleOpen();
           }
         },800);
       },
@@ -745,8 +934,22 @@
           for (let i = 0; i < data.length; i++){
             this.flowDetailData.hName.push(data[i].real_name);
           }
+          this.approverUsers = this.flowDetailData.users;
+        }else if (type == 2){
+          this.flowDetailData.trange = data;
+          this.flowDetailData.trangeName = [];
+          for (let i = 0; i < data.length; i++){
+            this.flowDetailData.trangeName.push(data[i].real_name);
+          }
+          this.trangeUsers = this.flowDetailData.trange;
+        }else if (type == 3){
+          this.flowDetailData.jrange = data;
+          this.flowDetailData.jrangeName = [];
+          for (let i = 0; i < data.length; i++){
+            this.flowDetailData.jrangeName.push(data[i].real_name);
+          }
+          this.jrangeUsers = this.flowDetailData.jrange;
         }
-        this.approverUsers = this.flowDetailData.users;
       },
       versionList(){
         this.$emit("versionClick");
@@ -794,7 +997,6 @@
         }
       },
       handleCascaderChange(data){
-        console.log(data);
         this.flowDetailData.hrole = data;
       },
       handleProcessTypeChange(data){
@@ -816,6 +1018,45 @@
       },
       handleChangeAllowShow(event){
         this.flowDetailData.allowShow = event;
+      },
+      changeEditName(event, type){
+        if (type == 1){
+          this.anameStatus = true;
+        }else if (type == 2){
+          this.notnameStatus = true;
+        }else if (type == 3){
+          this.unameStatus = true;
+        }else if (type == 4){
+          this.jnameStatus = true;
+        }else if (type == 5){
+          this.tnameStatus = true;
+        }
+      },
+      cancelEditName(event, type){
+        if (type == 1){
+          this.anameStatus = false;
+        }else if (type == 2){
+          this.notnameStatus = false;
+        }else if (type == 3){
+          this.unameStatus = false;
+        }else if (type == 4){
+          this.jnameStatus = false;
+        }else if (type == 5){
+          this.tnameStatus = false;
+        }
+      },
+      okEditName(event, type){
+        if (type == 1){
+          this.anameStatus = false;
+        }else if (type == 2){
+          this.notnameStatus = false;
+        }else if (type == 3){
+          this.unameStatus = false;
+        }else if (type == 4){
+          this.jnameStatus = false;
+        }else if (type == 5){
+          this.tnameStatus = false;
+        }
       }
     }
   }
