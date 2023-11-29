@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="增加普通审批加签、转签">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appData.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/formPrint.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/formPrint.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/flowManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/flowManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mixins.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -265,7 +265,7 @@
       <workItem from="1700314836690" duration="1070000" />
       <workItem from="1700551423399" duration="3025000" />
       <workItem from="1701138729355" duration="20058000" />
-      <workItem from="1701219380307" duration="3313000" />
+      <workItem from="1701219380307" duration="5826000" />
     </task>
     <task id="LOCAL-00086" summary="收款单">
       <created>1688027073433</created>
@@ -610,7 +610,7 @@
       <option name="project" value="LOCAL" />
       <updated>1699846353164</updated>
     </task>
-    <option name="localTasksCounter" value="137" />
+    <option name="localTasksCounter" value="138" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

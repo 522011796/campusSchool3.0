@@ -94,42 +94,44 @@
               </el-popover>
             </template>
           </el-table-column>
-          <el-table-column
-            align="center"
-            :label="$t('被引用费用')">
-            <template slot-scope="scope">
-              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.cost_name ? scope.row.cost_name : '--'}}</div>
-                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <span>{{scope.row.cost_name ? scope.row.cost_name : '--'}}</span>
-                </div>
-              </el-popover>
-            </template>
-          </el-table-column>
-          <el-table-column
-            align="center"
-            :label="$t('被引用预算')">
-            <template slot-scope="scope">
-              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.budget_name ? scope.row.budget_name : '--'}}</div>
-                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <span>{{scope.row.budget_name ? scope.row.budget_name : '--'}}</span>
-                </div>
-              </el-popover>
-            </template>
-          </el-table-column>
-          <el-table-column
-            align="center"
-            :label="$t('被引用费控')">
-            <template slot-scope="scope">
-              <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
-                <div class="text-center">{{scope.row.control_name ? scope.row.control_name : '--'}}</div>
-                <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
-                  <span>{{scope.row.control_name ? scope.row.control_name : '--'}}</span>
-                </div>
-              </el-popover>
-            </template>
-          </el-table-column>
+          <template v-if="g_showMoneyItem == true">
+            <el-table-column
+                align="center"
+                :label="$t('被引用费用')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.cost_name ? scope.row.cost_name : '--'}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    <span>{{scope.row.cost_name ? scope.row.cost_name : '--'}}</span>
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+                align="center"
+                :label="$t('被引用预算')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.budget_name ? scope.row.budget_name : '--'}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    <span>{{scope.row.budget_name ? scope.row.budget_name : '--'}}</span>
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+                align="center"
+                :label="$t('被引用费控')">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top" popper-class="custom-table-popover">
+                  <div class="text-center">{{scope.row.control_name ? scope.row.control_name : '--'}}</div>
+                  <div slot="reference" class="name-wrapper moon-content-text-ellipsis-class">
+                    <span>{{scope.row.control_name ? scope.row.control_name : '--'}}</span>
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+          </template>
           <el-table-column
             align="center"
             label="操作"
@@ -253,9 +255,13 @@
       }
     },
     created() {
-      this.init();
+      this.initInfo();
     },
     methods: {
+      async initInfo(){
+        await this.getSessionInfo();
+        this.init();
+      },
       init(){
         let params = {
           page: this.page,
