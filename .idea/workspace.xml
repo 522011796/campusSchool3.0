@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="一体机 离线 时间">
+    <list default="true" id="d8d3e38f-096e-4c05-a6ba-882c10276345" name="Changes" comment="增加普通审批加签、转签">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/vetur/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/vetur/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/common.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/form/MyProcessFlow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/form/MyProcessFlow.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/zh-CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/appletInfo/system/flowManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/system/flowManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/appData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/appData.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/appletInfo/app/formPrint.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/appletInfo/app/formPrint.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,7 +265,7 @@
       <workItem from="1700314836690" duration="1070000" />
       <workItem from="1700551423399" duration="3025000" />
       <workItem from="1701138729355" duration="20058000" />
-      <workItem from="1701219380307" duration="807000" />
+      <workItem from="1701219380307" duration="3313000" />
     </task>
     <task id="LOCAL-00086" summary="收款单">
       <created>1688027073433</created>
@@ -615,7 +610,7 @@
       <option name="project" value="LOCAL" />
       <updated>1699846353164</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -645,7 +640,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="修改登录细节" />
     <MESSAGE value="修改后勤记录细节" />
     <MESSAGE value="增加毕业和异动管理" />
     <MESSAGE value="修改设备管理" />
@@ -670,6 +664,7 @@
     <MESSAGE value="增加认证设置" />
     <MESSAGE value="取消年级显示" />
     <MESSAGE value="一体机 离线 时间" />
-    <option name="LAST_COMMIT_MESSAGE" value="一体机 离线 时间" />
+    <MESSAGE value="增加普通审批加签、转签" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加普通审批加签、转签" />
   </component>
 </project>
